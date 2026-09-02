@@ -37,6 +37,15 @@
  * Last Updated: August 17, 2026 (W2a — truth in copy; re-cited to the CFR)
  */
 
+import { FEDERAL_DEFAULT } from "@/lib/policy";
+
+/**
+ * 42 CFR 435.552(a), 91 FR 33470. Interpolated rather than written down (ADR-0001).
+ * Statutory rather than a state election, so binding to the federal default loses nothing —
+ * `src/content/helpText.ts`'s header carries the full reasoning.
+ */
+const HOURS = FEDERAL_DEFAULT.requiredHours;
+
 export interface TermDefinition {
   term: string;
   definition: string;
@@ -155,7 +164,7 @@ export const termDefinitions: Record<string, TermDefinition> = {
       // least half-time" among things that count toward 80 hours, which is the
       // 435.552(a)(4)/(a)(5) error again: half-time school needs no hours and may
       // not be combined. Work here includes in-kind and unpaid work, 435.552(b).
-      "The activities that can satisfy this requirement. Work, volunteering, and job training add up to a monthly total of 80 hours between them. Being in school at least half-time is different: it can be enough on its own, with no hours to count. Income is another route again.",
+      `The activities that can satisfy this requirement. Work, volunteering, and job training add up to a monthly total of ${HOURS} hours between them. Being in school at least half-time is different: it can be enough on its own, with no hours to count. Income is another route again.`,
     examples: [
       "Working 20 hours a week at a job",
       "Volunteering 10 hours a week through an organized program",
@@ -325,7 +334,7 @@ export const termDefinitions: Record<string, TermDefinition> = {
       // Distinct from the Alternative Benefit Plan definition at 42 CFR 440.315(f).
       // Under challenge in Massachusetts v. Oz (D. Mass.), which targets this
       // functional gate; no injunction is in effect, so the rule is operative.
-      "Having a serious health condition or disability that gets in the way of working or volunteering. Two things decide it: whether your condition is on the list your state keeps, and whether it genuinely stops you managing 80 hours a month — a diagnosis on its own isn't the test. The list covers blindness and disability, substance use disorders, mental health conditions, physical, intellectual and developmental disabilities, and serious or complex medical conditions. Ask your state for its list, and if your condition isn't on it, ask how to request that it be considered anyway — states have to offer that route.",
+      `Having a serious health condition or disability that gets in the way of working or volunteering. Two things decide it: whether your condition is on the list your state keeps, and whether it genuinely stops you managing ${HOURS} hours a month — a diagnosis on its own isn't the test. The list covers blindness and disability, substance use disorders, mental health conditions, physical, intellectual and developmental disabilities, and serious or complex medical conditions. Ask your state for its list, and if your condition isn't on it, ask how to request that it be considered anyway — states have to offer that route.`,
     examples: [
       "You're blind or have very limited vision",
       "You have a disability that limits your daily activities",

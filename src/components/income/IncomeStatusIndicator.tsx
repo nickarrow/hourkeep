@@ -6,10 +6,14 @@ import {
   Warning as WarningIcon,
 } from "@mui/icons-material";
 import { MonthlyIncomeSummary } from "@/types/income";
-import {
-  formatCurrency,
-  INCOME_THRESHOLD,
-} from "@/lib/utils/payPeriodConversion";
+import { formatCurrency } from "@/lib/utils/payPeriodConversion";
+import { FEDERAL_DEFAULT, incomeThreshold } from "@/lib/policy";
+
+/**
+ * 42 CFR 435.552(a)(6), 91 FR 33470. Read from the profile rather than the deprecated
+ * `INCOME_THRESHOLD` alias, which is fixed to the federal default (ADR-0001).
+ */
+const INCOME_THRESHOLD = incomeThreshold(FEDERAL_DEFAULT);
 import { IncomeTrackingHelpIcon } from "@/components/help/IncomeTrackingHelp";
 
 interface IncomeStatusIndicatorProps {

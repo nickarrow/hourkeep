@@ -30,6 +30,7 @@ import {
 } from "@/lib/storage/exemptions";
 import { format } from "date-fns";
 import { APP_CONFIG } from "@/config/app";
+import { FEDERAL_DEFAULT } from "@/lib/policy";
 
 // Helper function to get category label
 function getCategoryLabel(category: string): string {
@@ -345,7 +346,8 @@ export default function SettingsPage() {
         </Typography>
         <Divider sx={{ mb: 2 }} />
         <Typography variant="body2" color="text.secondary" paragraph>
-          {APP_CONFIG.description} (80 hours/month).
+          {APP_CONFIG.description} ({FEDERAL_DEFAULT.requiredHours}{" "}
+          hours/month).
         </Typography>
         <Typography variant="body2" color="text.secondary" paragraph>
           Keep your hours, keep your coverage.

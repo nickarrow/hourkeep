@@ -13,7 +13,13 @@ import {
   Warning as WarningIcon,
 } from "@mui/icons-material";
 import { formatCurrency } from "@/lib/utils/payPeriodConversion";
-import { INCOME_THRESHOLD } from "@/lib/utils/payPeriodConversion";
+import { FEDERAL_DEFAULT, incomeThreshold } from "@/lib/policy";
+
+/**
+ * 42 CFR 435.552(a)(6), 91 FR 33470. From the profile rather than the deprecated
+ * `INCOME_THRESHOLD` alias (ADR-0001).
+ */
+const INCOME_THRESHOLD = incomeThreshold(FEDERAL_DEFAULT);
 import { SeasonalWorkerHelpIcon } from "@/components/help/SeasonalWorkerHelp";
 
 export interface SeasonalWorkerViewProps {

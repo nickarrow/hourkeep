@@ -246,26 +246,176 @@ describe("no policy literal survives in the Tier-1 modules", () => {
     "src/lib/reviewPeriod.ts",
   ] as const;
 
-  it.each(TIER_1)(
-    "%s contains no bare 80, 580, 7.25, 2.17 or 4.33",
-    async (file) => {
-      const { readFileSync } = await import("node:fs");
-      const { resolve } = await import("node:path");
+  /**
+   * Content and UI files carrying the same values in user-facing strings.
+   *
+   * NOT Tier 1, and the shell gate never reached any of them — its `targets` array is the
+   * five compliance-critical modules. `wave-2a-truth-in-copy.md`'s handoff table was the
+   * only record, and it was short by four live files, one of which
+   * (`components/help/HourTrackingHelp.tsx`) renders on the primary tracking surface.
+   *
+   * A number in a sentence is as wrong as a number in a comparison, and harder to find.
+   */
+  const COPY_AND_UI = [
+    "src/content/helpText.ts",
+    "src/config/app.ts",
+    "src/app/how-to-hourkeep/results/page.tsx",
+    "src/app/export/page.tsx",
+    "src/app/settings/page.tsx",
+    "src/components/onboarding/GettingStartedContextual.tsx",
+    "src/components/help/HourTrackingHelp.tsx",
+    "src/components/assessment/EstimationTools.tsx",
+    "src/components/assessment/NoticeQuestion.tsx",
+    "src/components/income/IncomeEntryForm.tsx",
+    "src/components/income/IncomeStatusIndicator.tsx",
+    "src/components/income/SeasonalWorkerView.tsx",
+    "src/lib/exemptions/definitions.ts",
+  ] as const;
 
-      const source = readFileSync(resolve(process.cwd(), file), "utf8");
-      const offenders = source
-        .split("\n")
-        .map((line, i) => ({ line, n: i + 1 }))
-        .filter(({ line }) => !/^\s*(\/\/|\*|\/\*)/.test(line))
-        .filter(({ line }) => !line.includes("policy-literal-ok"))
+  /**
+   * Expressions that legitimately contain one of these numbers and are not policy values.
+   *
+   * Explicit rather than a looser pattern. `validation-findings-2026-08.md` § C10 records
+   * why the original repo-wide grep died: it matched `width: 80`, `maxWidth: 480`, `1980`
+   * and the documented `1920x1080` camera constraint, and was disabled by day three. A short
+   * allowlist of named expressions stays honest; a vaguer regex does not.
+   */
+  const NOT_A_POLICY_VALUE = [
+    /width: 80/,
+    /height: 80/,
+    /quota\.percentage/,
+    /fontSize/,
+  ];
+
+  /**
+   * Strip comments before scanning, tracking block comments across lines.
+   *
+   * A line-prefix test is not enough, and this was found by running the scan: the second and
+   * later lines of a `/* … *\/` or `{/* … *\/}` block start with ordinary prose, so
+   * `IncomeStatusIndicator.tsx`, `ReviewPeriodPanel.tsx`, `CompletionMessage.tsx` and
+   * `HourTrackingHelp.tsx` all reported hits that were explanatory comments quoting the very
+   * standard being enforced.
+   *
+   * Tracking depth is better than allowlisting each one. An allowlist would have grown by
+   * four entries for a single cause, and every future comment mentioning a threshold would
+   * add another — which is how a guard becomes something people switch off.
+   */
+  function stripComments(
+    source: string,
+  ): Array<{ line: string; raw: string; n: number }> {
+    let inBlock = false;
+
+    return source.split("\n").map((raw, i) => {
+      let line = raw;
+
+      if (inBlock) {
+        const end = line.indexOf("*/");
+        if (end === -1) return { line: "", raw, n: i + 1 };
+        line = line.slice(end + 2);
+        inBlock = false;
+      }
+
+      // Repeatedly remove complete block comments on this line.
+      for (;;) {
+        const start = line.indexOf("/*");
+        if (start === -1) break;
+        const end = line.indexOf("*/", start + 2);
+        if (end === -1) {
+          line = line.slice(0, start);
+          inBlock = true;
+          break;
+        }
+        line = line.slice(0, start) + line.slice(end + 2);
+      }
+
+      // Line comments. `[^:]` guards `https://`, per the no-verdict guard's own note.
+      line = line.replace(/(^|[^:])\/\/.*$/, "$1");
+
+      return { line, raw, n: i + 1 };
+    });
+  }
+
+  async function scan(file: string): Promise<string[]> {
+    const { readFileSync } = await import("node:fs");
+    const { resolve } = await import("node:path");
+
+    return (
+      stripComments(readFileSync(resolve(process.cwd(), file), "utf8"))
+        // Checked against the RAW line: the suppression marker is itself a comment, so the
+        // stripper has already removed it from `line`. Found by running the scan.
+        .filter(({ raw }) => !raw.includes("policy-literal-ok"))
+        .filter(({ line }) => !NOT_A_POLICY_VALUE.some((ok) => ok.test(line)))
         .filter(({ line }) =>
           /(^|[^0-9._$A-Za-z])(80|580|7\.25|4\.33|2\.17)([^0-9%A-Za-z]|$)/.test(
             line,
           ),
         )
-        .map(({ line, n }) => `${file}:${n}: ${line.trim()}`);
+        .map(({ line, n }) => `${file}:${n}: ${line.trim()}`)
+    );
+  }
 
+  it("the comment stripper does not hide a literal that is really code", () => {
+    /**
+     * Positive twin for `stripComments`. A stripper that returned empty lines would make
+     * every scan above pass vacuously — which is the failure mode of every guard in this
+     * repo that had to be tightened later.
+     */
+    const found = stripComments(
+      [
+        "/* 80 in a block comment */",
+        "/**",
+        " * 580 across a multi-line block",
+        " * still 80 here",
+        " */",
+        "const real = 80;",
+        "const alsoReal = 580; // 7.25 in a trailing comment",
+        "const url = 'https://example.com/80';",
+      ].join("\n"),
+    )
+      .filter(({ line }) =>
+        /(^|[^0-9._$A-Za-z])(80|580|7\.25|4\.33|2\.17)([^0-9%A-Za-z]|$)/.test(
+          line,
+        ),
+      )
+      .map(({ n }) => n);
+
+    // Lines 6 and 7 are code; 8 is a URL containing 80 and is also code, so it is expected
+    // to be reported — the scan is not meant to be clever about strings.
+    expect(found).toEqual([6, 7, 8]);
+  });
+
+  it.each(TIER_1)(
+    "%s contains no bare 80, 580, 7.25, 2.17 or 4.33",
+    async (file) => {
+      const offenders = await scan(file);
       expect(offenders, offenders.join("\n")).toEqual([]);
     },
   );
+
+  it.each(COPY_AND_UI)("%s states no threshold as a literal", async (file) => {
+    const offenders = await scan(file);
+    expect(offenders, offenders.join("\n")).toEqual([]);
+  });
+
+  it("every allowlist entry is exercised, so a stale one has to be removed deliberately", async () => {
+    /**
+     * Positive twin for `NOT_A_POLICY_VALUE`. An allowlist nothing matches is dead weight
+     * that silently grows; an allowlist that excuses too much makes the whole scan vacuous.
+     * This asserts each entry is still doing work somewhere in the scanned tree.
+     */
+    const { readFileSync } = await import("node:fs");
+    const { resolve } = await import("node:path");
+
+    const everything = [
+      ...TIER_1,
+      ...COPY_AND_UI,
+      "src/components/settings/StorageInfo.tsx",
+    ]
+      .map((f) => readFileSync(resolve(process.cwd(), f), "utf8"))
+      .join("\n");
+
+    for (const pattern of NOT_A_POLICY_VALUE) {
+      expect(everything, `unused allowlist entry: ${pattern}`).toMatch(pattern);
+    }
+  });
 });

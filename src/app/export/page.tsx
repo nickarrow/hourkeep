@@ -19,6 +19,7 @@ import {
 } from "@mui/icons-material";
 import { db } from "@/lib/db";
 import { buildTextReport } from "@/lib/export/buildTextReport";
+import { FEDERAL_DEFAULT, incomeThreshold } from "@/lib/policy";
 
 export default function ExportPage() {
   const router = useRouter();
@@ -104,14 +105,18 @@ export default function ExportPage() {
 
       // The report itself is built by a pure function in lib/export so it can be
       // asserted directly — see that module's header for why W2a extracted it.
-      // The 80 and 580 literals below are the last two in this file and are
-      // recorded in the W2a -> W2b policy-literal handoff table.
+      // Thresholds come from the policy profile (ADR-0001). `buildTextReport` already
+      // took them as a parameter, which is why W2b changes one call site rather than
+      // the module — the structural improvement W2a banked for this wave.
       const textContent = buildTextReport({
         profile: profiles[0],
         activities,
         incomeEntries,
         complianceModes,
-        thresholds: { hours: 80, income: 580 },
+        thresholds: {
+          hours: FEDERAL_DEFAULT.requiredHours,
+          income: incomeThreshold(FEDERAL_DEFAULT),
+        },
       });
 
       // Create blob and download

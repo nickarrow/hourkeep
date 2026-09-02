@@ -11,6 +11,17 @@ import {
   Paper,
 } from "@mui/material";
 import { ExpandMore as ExpandMoreIcon } from "@mui/icons-material";
+import { PAY_PERIOD_MULTIPLIERS } from "@/lib/utils/payPeriodConversion";
+
+/**
+ * Weeks per month, for the hours converter. The same 52/12 figure as the weekly pay-period
+ * multiplier, shared rather than restated — and, like it, NOT a value from the rule.
+ *
+ * Note this is NOT 42 CFR 435.552(d)'s Carnegie Unit, which appears in
+ * `creditHours x 3 x 4.33` for less-than-half-time education. Same digits, unrelated
+ * meanings, and W6a owns that one.
+ */
+const WEEKS_PER_MONTH = PAY_PERIOD_MULTIPLIERS.weekly;
 
 interface HoursConverterProps {
   onUseValue: (monthlyHours: number) => void;
@@ -21,7 +32,7 @@ export function HoursConverter({ onUseValue }: HoursConverterProps) {
   const [weeklyHours, setWeeklyHours] = useState("");
 
   const monthlyEquivalent = weeklyHours
-    ? Math.round(parseFloat(weeklyHours) * 4.33)
+    ? Math.round(parseFloat(weeklyHours) * WEEKS_PER_MONTH)
     : 0;
 
   return (
@@ -91,7 +102,7 @@ export function HoursConverter({ onUseValue }: HoursConverterProps) {
                 {monthlyEquivalent} hours/month
               </Typography>
               <Typography variant="caption" color="text.secondary">
-                Calculated: {weeklyHours} × 4.33 weeks/month
+                Calculated: {weeklyHours} × {WEEKS_PER_MONTH} weeks/month
               </Typography>
             </Box>
           )}
@@ -125,10 +136,19 @@ export function IncomeConverter({ onUseValue }: IncomeConverterProps) {
     "biweekly",
   );
 
+  /**
+   * Shared with `lib/utils/payPeriodConversion.ts` rather than restated.
+   *
+   * These were duplicated here with the same values, which is how two copies of one number
+   * drift. NOT from the rule — gap 5.4 classes them as `contradicts`, because the IFC
+   * prescribes no pay-period conversion and 42 CFR 435.603 leaves the monthly figure to
+   * state MAGI methodology. W7a owns replacing them; sharing them now means it has one
+   * place to change.
+   */
   const multipliers = {
-    weekly: 4.33,
-    biweekly: 2.17,
-    monthly: 1,
+    weekly: PAY_PERIOD_MULTIPLIERS.weekly,
+    biweekly: PAY_PERIOD_MULTIPLIERS["bi-weekly"],
+    monthly: PAY_PERIOD_MULTIPLIERS.monthly,
   };
 
   const monthlyEquivalent = paycheckAmount

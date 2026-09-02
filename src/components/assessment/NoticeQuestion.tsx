@@ -15,6 +15,11 @@ import {
   ArrowBack as ArrowBackIcon,
   ArrowForward as ArrowForwardIcon,
 } from "@mui/icons-material";
+import { FEDERAL_DEFAULT, incomeThreshold } from "@/lib/policy";
+
+/** 42 CFR 435.552(a) and (a)(6), 91 FR 33470. From the profile, not literals (ADR-0001). */
+const HOURS = FEDERAL_DEFAULT.requiredHours;
+const INCOME_MINIMUM = incomeThreshold(FEDERAL_DEFAULT);
 
 interface NoticeQuestionProps {
   onAnswer: (receivedNotice: boolean, skipToWork: boolean) => void;
@@ -62,7 +67,9 @@ export function NoticeQuestion({ onAnswer, onBack }: NoticeQuestionProps) {
             <li>Community engagement requirements</li>
             <li>Work requirements for Medicaid</li>
             <li>Reporting your work hours or income</li>
-            <li>80 hours per month or $580 per month</li>
+            <li>
+              {HOURS} hours per month or ${INCOME_MINIMUM} per month
+            </li>
           </Typography>
         </Alert>
       </Box>

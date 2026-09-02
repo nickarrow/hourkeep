@@ -27,6 +27,15 @@ import {
   getComplianceMethodLabel,
   getComplianceMethodDescription,
 } from "@/lib/assessment/recommendationEngine";
+import { FEDERAL_DEFAULT, incomeThreshold } from "@/lib/policy";
+
+/**
+ * 42 CFR 435.552(a) and (a)(6), 91 FR 33470. Read from the profile, not written down
+ * (ADR-0001). Both are statutory rather than state elections — see
+ * `src/content/helpText.ts`'s header for why binding to the federal default is safe here.
+ */
+const HOURS = FEDERAL_DEFAULT.requiredHours;
+const INCOME_MINIMUM = incomeThreshold(FEDERAL_DEFAULT);
 
 interface GettingStartedContextualProps {
   hasNotice: boolean;
@@ -68,14 +77,13 @@ export function GettingStartedContextual({
   // W2a — de-duplicating it needs the unified compliance model in W7b. Both copies
   // are corrected here so neither states something false in the meantime.
   //
-  // The 80 and $580 literals move to the policy profile in W2b.
   const getMethodMessage = (method: string, isAlternative: boolean): string => {
     if (method === "income-tracking") {
       if (isAlternative) {
         return "This route is open to you as well. Recording income means keeping pay stubs rather than logging time.";
       }
       const income = responses?.monthlyIncome || 0;
-      const needed = 580 - income;
+      const needed = INCOME_MINIMUM - income;
       if (needed <= 0) {
         return `Recorded: $${income} a month. Threshold: $580. Your state counts your whole household here, so its figure may be higher than yours.`;
       } else if (income > 0 && needed <= 100) {
@@ -100,15 +108,15 @@ export function GettingStartedContextual({
         (responses?.volunteerHoursPerMonth || 0) +
         (responses?.schoolHoursPerMonth || 0) +
         (responses?.workProgramHoursPerMonth || 0);
-      const needed = 80 - totalHours;
+      const needed = HOURS - totalHours;
       if (needed <= 0) {
-        return `Recorded: ${totalHours} hours a month. Threshold: 80 hours. Keep recording as you go.`;
+        return `Recorded: ${totalHours} hours a month. Threshold: ${HOURS} hours. Keep recording as you go.`;
       } else if (totalHours > 0 && needed <= 20) {
-        return `Recorded: ${totalHours} hours a month. Threshold: 80 hours. Difference: ${needed}. Work, volunteering, school, and job training all count toward the same total.`;
+        return `Recorded: ${totalHours} hours a month. Threshold: ${HOURS} hours. Difference: ${needed}. Work, volunteering, school, and job training all count toward the same total.`;
       } else if (totalHours > 0) {
-        return `Recorded: ${totalHours} hours a month. Threshold: 80 hours. Difference: ${needed}. Anything counts toward the total, and income may be credited as hours too.`;
+        return `Recorded: ${totalHours} hours a month. Threshold: ${HOURS} hours. Difference: ${needed}. Anything counts toward the total, and income may be credited as hours too.`;
       }
-      return "No hours recorded. Work, volunteering, school, and job training all count toward one monthly total of 80, and income can be counted alongside them.";
+      return `No hours recorded. Work, volunteering, school, and job training all count toward one monthly total of ${HOURS}, and income can be counted alongside them.`;
     }
     return "";
   };

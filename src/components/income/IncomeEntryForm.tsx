@@ -33,6 +33,7 @@ import {
   calculateMonthlyEquivalent,
   formatCurrency,
   getPayPeriodLabel,
+  PAY_PERIOD_MULTIPLIERS,
 } from "@/lib/utils/payPeriodConversion";
 import { DocumentCapture } from "@/components/documents/DocumentCapture";
 import { DocumentViewer } from "@/components/documents/DocumentViewer";
@@ -483,13 +484,7 @@ export function IncomeEntryForm({
               </Typography>
               <Typography variant="caption" color="text.secondary">
                 Calculated: {formatCurrency(parseFloat(amount))} ×{" "}
-                {payPeriod === "monthly"
-                  ? "1"
-                  : payPeriod === "bi-weekly"
-                    ? "2.17"
-                    : payPeriod === "weekly"
-                      ? "4.33"
-                      : "30"}{" "}
+                {PAY_PERIOD_MULTIPLIERS[payPeriod]}{" "}
                 {getPayPeriodLabel(payPeriod).toLowerCase()} periods/month
               </Typography>
             </Box>

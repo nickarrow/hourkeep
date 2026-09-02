@@ -38,6 +38,24 @@ import {
   getComplianceMethodDescription,
 } from "@/lib/assessment/recommendationEngine";
 import { currentMonth } from "@/lib/month";
+import { FEDERAL_DEFAULT, incomeThreshold } from "@/lib/policy";
+
+/**
+ * 42 CFR 435.552(a) and (a)(6), 91 FR 33470. Read from the profile, not written down
+ * (ADR-0001). Both are statutory rather than state elections — see
+ * `src/content/helpText.ts`'s header for why binding to the federal default is safe here.
+ */
+const HOURS = FEDERAL_DEFAULT.requiredHours;
+const INCOME_MINIMUM = incomeThreshold(FEDERAL_DEFAULT);
+/**
+ * 42 CFR 435.552(g)'s statutory averaging window. Unlike the two above this IS a state
+ * election — 42 CFR 435.603(h)(3) lets a state prorate over a different span, and CMS says
+ * most elect it. The copy hedges with "your state", and W7a owns seasonal.
+ */
+const SEASONAL_MONTHS =
+  FEDERAL_DEFAULT.seasonalMethod.kind === "preceding-average"
+    ? FEDERAL_DEFAULT.seasonalMethod.months
+    : FEDERAL_DEFAULT.seasonalMethod.windowMonths;
 
 export default function AssessmentResultsPage() {
   const router = useRouter();
@@ -149,12 +167,11 @@ export default function AssessmentResultsPage() {
   // determines — 42 CFR 435.556 makes the applicable-individual question the
   // state's, and it must exhaust its own records first under 435.557(a)-(b).
   //
-  // The 80 and $580 literals here move to the policy profile in W2b.
   const getExemptMethodMessage = (method: string): string => {
     if (method === "income-tracking") {
       const income = result?.responses.monthlyIncome || 0;
-      if (income >= 580) {
-        return `Recorded: $${income} a month. Threshold: $580. Your answers also suggest a set-aside category may apply, which would mean your state doesn't assess this at all — worth confirming with them either way.`;
+      if (income >= INCOME_MINIMUM) {
+        return `Recorded: $${income} a month. Threshold: $${INCOME_MINIMUM}. Your answers also suggest a set-aside category may apply, which would mean your state doesn't assess this at all — worth confirming with them either way.`;
       }
       return "If a set-aside category applies to you, your state doesn't assess this. Keep income in mind as a route if that changes.";
     }
@@ -167,8 +184,8 @@ export default function AssessmentResultsPage() {
         (result?.responses.volunteerHoursPerMonth || 0) +
         (result?.responses.schoolHoursPerMonth || 0) +
         (result?.responses.workProgramHoursPerMonth || 0);
-      if (totalHours >= 80) {
-        return `Recorded: ${totalHours} hours a month. Threshold: 80 hours. Your answers also suggest a set-aside category may apply, which would mean your state doesn't assess this at all — worth confirming with them either way.`;
+      if (totalHours >= HOURS) {
+        return `Recorded: ${totalHours} hours a month. Threshold: ${HOURS} hours. Your answers also suggest a set-aside category may apply, which would mean your state doesn't assess this at all — worth confirming with them either way.`;
       }
       return "If a set-aside category applies to you, your state doesn't assess this. Recording hours stays useful if that changes.";
     }
@@ -187,27 +204,26 @@ export default function AssessmentResultsPage() {
     // elections we don't know. And under 435.552(e) pathways combine rather than
     // competing, so "instead" is the wrong frame too.
     //
-    // The 80 and $580 literals here move to the policy profile in W2b.
     if (method === "income-tracking") {
       if (isAlternative) {
         return "This route is open to you as well. Recording income means keeping pay stubs rather than logging time.";
       }
       const income = result?.responses.monthlyIncome || 0;
-      const needed = 580 - income;
+      const needed = INCOME_MINIMUM - income;
       if (needed <= 0) {
-        return `Recorded: $${income} a month. Threshold: $580. Your state counts your whole household here, so its figure may be higher than yours — ask what it has on file.`;
+        return `Recorded: $${income} a month. Threshold: $${INCOME_MINIMUM}. Your state counts your whole household here, so its figure may be higher than yours — ask what it has on file.`;
       } else if (income > 0 && needed <= 100) {
-        return `Recorded: $${income} a month. Threshold: $580. Difference: $${needed}. Household income counts toward this, not just yours, so you may be closer than this looks.`;
+        return `Recorded: $${income} a month. Threshold: $${INCOME_MINIMUM}. Difference: $${needed}. Household income counts toward this, not just yours, so you may be closer than this looks.`;
       } else if (income > 0) {
-        return `Recorded: $${income} a month. Threshold: $580. Difference: $${needed}. Household income counts toward this, and income under the threshold may still be credited as hours, so it isn't wasted.`;
+        return `Recorded: $${income} a month. Threshold: $${INCOME_MINIMUM}. Difference: $${needed}. Household income counts toward this, and income under the threshold may still be credited as hours, so it isn't wasted.`;
       }
-      return "No income recorded. This route uses household income against a $580 threshold, so a spouse's earnings count too. Recording it means keeping pay stubs rather than logging time.";
+      return `No income recorded. This route uses household income against a $${INCOME_MINIMUM} threshold, so a spouse's earnings count too. Recording it means keeping pay stubs rather than logging time.`;
     }
     if (method === "seasonal-income-tracking") {
       if (isAlternative) {
         return "This route is open to you as well, if your work comes and goes with the season.";
       }
-      return "This route averages your income over the 6 months before the month being reviewed, against a $580 threshold. It's for work that comes and goes with the season.";
+      return `This route averages your income over the ${SEASONAL_MONTHS} months before the month being reviewed, against a $${INCOME_MINIMUM} threshold. It's for work that comes and goes with the season.`;
     }
     if (method === "hour-tracking") {
       if (isAlternative) {
@@ -218,15 +234,15 @@ export default function AssessmentResultsPage() {
         (result?.responses.volunteerHoursPerMonth || 0) +
         (result?.responses.schoolHoursPerMonth || 0) +
         (result?.responses.workProgramHoursPerMonth || 0);
-      const needed = 80 - totalHours;
+      const needed = HOURS - totalHours;
       if (needed <= 0) {
-        return `Recorded: ${totalHours} hours a month. Threshold: 80 hours. Keep recording as you go.`;
+        return `Recorded: ${totalHours} hours a month. Threshold: ${HOURS} hours. Keep recording as you go.`;
       } else if (totalHours > 0 && needed <= 20) {
-        return `Recorded: ${totalHours} hours a month. Threshold: 80 hours. Difference: ${needed}. Work, volunteering, school, and job training all count toward the same total, and income can be counted alongside them.`;
+        return `Recorded: ${totalHours} hours a month. Threshold: ${HOURS} hours. Difference: ${needed}. Work, volunteering, school, and job training all count toward the same total, and income can be counted alongside them.`;
       } else if (totalHours > 0) {
-        return `Recorded: ${totalHours} hours a month. Threshold: 80 hours. Difference: ${needed}. Anything counts toward the total — work, volunteering, school, job training — and income may be credited as hours too.`;
+        return `Recorded: ${totalHours} hours a month. Threshold: ${HOURS} hours. Difference: ${needed}. Anything counts toward the total — work, volunteering, school, job training — and income may be credited as hours too.`;
       }
-      return "No hours recorded. Work, volunteering, school, and job training all count toward one monthly total of 80, and income can be counted alongside them.";
+      return `No hours recorded. Work, volunteering, school, and job training all count toward one monthly total of ${HOURS}, and income can be counted alongside them.`;
     }
     return "";
   };

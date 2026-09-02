@@ -1,13 +1,59 @@
 /**
  * Help Text Content for Activity Definitions
  *
- * This file contains all help text, definitions, examples, and edge cases
- * for activity tracking and income requirements. All content is derived from
- * HR1 Section 71119 and the CFA Service Blueprint.
+ * Plain language, around an 8th-grade reading level. Authority is 42 CFR 435.550-435.563
+ * (CMS-2454-IFC, 91 FR 33348) implementing SSA 1902(xx) as added by PL 119-21 section 71119.
  *
- * Content is written in plain language (8th grade reading level) to ensure
- * accessibility for all Medicaid beneficiaries.
+ * ## Thresholds are interpolated, never written down — ADR-0001, W2b
+ *
+ * Every `${HOURS}` and `${INCOME}` below reads from `src/lib/policy/`. Twelve literals used
+ * to be spelled out here, and `compliance-copy-standards.md` requires the opposite: "No
+ * policy literals in strings — interpolate from the policy profile so `$580` updates with
+ * the minimum wage."
+ *
+ * WHY THESE BIND TO `FEDERAL_DEFAULT` RATHER THAN TAKING A PROFILE. The exports here are
+ * const objects consumed by eight components, and `no-verdict.content.test.ts` RECURSIVELY
+ * WALKS them to find every string — which is how `gigEconomy`'s three verdict strings were
+ * caught in W2a. Turning them into functions would make the guard's coverage depend on which
+ * profile it chose to call them with.
+ *
+ * That costs nothing real for these two values, and the reason is specific rather than
+ * convenient: **they are statutory, not state elections.** 42 CFR 435.552(a) fixes the
+ * monthly figure at 80 hours, and (a)(6) ties the income threshold to the FLSA wage at
+ * 29 U.S.C. 206(a)(1)(C) — states may not substitute the tipped wage, the $4.25 youth wage,
+ * or a higher state minimum wage even where one exists. No per-state profile can carry a
+ * different number. What interpolation buys is the property ADR-0001 actually wants: if the
+ * FLSA is amended, every string here updates with no edit.
+ *
+ * ONE VALUE HERE IS A STATE ELECTION AND IS NOT SOLVED BY THIS. The seasonal averaging
+ * window in `incomeDefinitions.seasonalWorker` is `seasonalMethod`, and a state electing the
+ * 42 CFR 435.603(h)(3) reasonably-predictable-changes methodology prorates over a different
+ * span — CMS says most states elect it. It is interpolated from the federal fallback and the
+ * copy hedges with "your state can", which is true but incomplete. **W7a owns seasonal.**
  */
+
+import { FEDERAL_DEFAULT, incomeThreshold } from "@/lib/policy";
+
+/**
+ * 42 CFR 435.552(a)(1)-(3), (5), 91 FR 33470. The monthly TOTAL across activities, not a
+ * per-activity figure — see `combinationRules`, which exists because this file used to imply
+ * the opposite.
+ */
+const HOURS = FEDERAL_DEFAULT.requiredHours;
+
+/** 42 CFR 435.552(a)(6), 91 FR 33470. The FLSA wage multiplied by the hours figure. */
+const INCOME = incomeThreshold(FEDERAL_DEFAULT);
+
+/** The wage itself, for the one string that shows the derivation. */
+const WAGE = FEDERAL_DEFAULT.federalMinimumWage;
+
+/**
+ * 42 CFR 435.552(g). The statutory fallback window; see the header note on W7a.
+ */
+const SEASONAL_MONTHS =
+  FEDERAL_DEFAULT.seasonalMethod.kind === "preceding-average"
+    ? FEDERAL_DEFAULT.seasonalMethod.months
+    : FEDERAL_DEFAULT.seasonalMethod.windowMonths;
 
 // ============================================================================
 // TypeScript Interfaces
@@ -178,8 +224,7 @@ export const activityDefinitions: Record<string, ActivityDefinition> = {
       {
         scenario: "I work 60 hours at one job and 20 hours at another",
         counts: true,
-        explanation:
-          "Hours from every job add together: 60 + 20 = 80. The threshold is a monthly total, not a per-job one.",
+        explanation: `Hours from every job add together: 60 + 20 = ${HOURS}. The threshold is a monthly total, not a per-job one.`,
       },
       {
         // 42 CFR 435.552(b): standalone supervised job search or job search
@@ -242,8 +287,7 @@ export const activityDefinitions: Record<string, ActivityDefinition> = {
       {
         scenario: "I volunteer 40 hours and work 40 hours",
         counts: true,
-        explanation:
-          "These add together: 40 + 40 = 80. Different activities count toward one monthly total.",
+        explanation: `These add together: 40 + 40 = ${HOURS}. Different activities count toward one monthly total.`,
       },
       {
         scenario: "I help my neighbor with yard work",
@@ -396,7 +440,7 @@ export const incomeDefinitions: Record<string, IncomeDefinition> = {
     // The $580, 80, and $7.25 literals here move to the policy profile in W2b.
     definition:
       "Income is one way to meet the requirement. If your household's monthly income is at least $580, that may be enough on its own, with no hours to track. Your state makes that decision.",
-    calculation: "$580 = 80 hours × $7.25, the federal minimum wage",
+    calculation: `$${INCOME} = ${HOURS} hours × $${WAGE}, the federal minimum wage`,
     whatCounts: {
       title: "What kinds of income usually count?",
       // 42 CFR 435.552(f)(2) -> 435.603(e) -> 26 U.S.C. 36B(d)(2)(B).
@@ -475,8 +519,7 @@ export const incomeDefinitions: Record<string, IncomeDefinition> = {
       {
         scenario: "My spouse works and I don't",
         counts: "varies",
-        explanation:
-          "Your spouse's income counts toward this pathway, so you may already be over the threshold without working an hour. Do not go looking for 80 hours of volunteering before you ask. Your state calculates the household figure.",
+        explanation: `Your spouse's income counts toward this pathway, so you may already be over the threshold without working an hour. Do not go looking for ${HOURS} hours of volunteering before you ask. Your state calculates the household figure.`,
       },
       {
         // The two-sided message. More household income helps THIS pathway
@@ -502,8 +545,7 @@ export const incomeDefinitions: Record<string, IncomeDefinition> = {
     // The copy below says "before the month your state is looking at" for that
     // reason. The arithmetic fix in src/lib/storage/income.ts, which currently
     // includes the assessed month, belongs to W7a (gaps 5.4, 5.5).
-    definition:
-      "If you do seasonal work, your state can look at your average monthly income over the 6 months before the month it is reviewing, instead of that one month on its own.",
+    definition: `If you do seasonal work, your state can look at your average monthly income over the ${SEASONAL_MONTHS} months before the month it is reviewing, instead of that one month on its own.`,
     // "Seasonal worker" is defined by 26 U.S.C. 45R(d)(5)(B): labour performed on
     // a seasonal basis as the Secretary of Labor defines it (29 CFR
     // 500.20(s)(1)), INCLUDING retail workers employed exclusively during
@@ -563,8 +605,7 @@ export const incomeDefinitions: Record<string, IncomeDefinition> = {
       },
       {
         option: "Hours",
-        description:
-          "80 hours a month in total across work, volunteering, school, or job training",
+        description: `${HOURS} hours a month in total across work, volunteering, school, or job training`,
         benefit: "Counts when income is under $580",
       },
       {
@@ -579,8 +620,7 @@ export const incomeDefinitions: Record<string, IncomeDefinition> = {
       {
         scenario: "I work 100 hours per month but only earn $400",
         counts: true,
-        explanation:
-          "Logged: 100 hours. Threshold: 80 hours. Income under $580 does not undo that — the hours pathway stands on its own.",
+        explanation: `Logged: 100 hours. Threshold: ${HOURS} hours. Income under $${INCOME} does not undo that — the hours pathway stands on its own.`,
       },
       {
         // CMS worked example, 42 CFR 435.552(e)(2): $380 / $7.25 = 52 hours,
@@ -589,8 +629,7 @@ export const incomeDefinitions: Record<string, IncomeDefinition> = {
         // cannot know, so this is always "up to", never "about".
         scenario: "I earn $380 a month and volunteer 30 hours",
         counts: "varies",
-        explanation:
-          "These may combine. Some states can credit income as hours — $380 ÷ $7.25 is up to 52 hours — which alongside 30 volunteer hours would clear 80. Whether your state does this, and how much of the income it credits to you rather than to someone else in your household, is its decision. Record both.",
+        explanation: `These may combine. Some states can credit income as hours — $380 ÷ $${WAGE} is up to 52 hours — which alongside 30 volunteer hours would clear ${HOURS}. Whether your state does this, and how much of the income it credits to you rather than to someone else in your household, is its decision. Record both.`,
       },
     ],
     source: "42 CFR 435.552(a), (e)",
@@ -667,15 +706,14 @@ export const incomeDefinitions: Record<string, IncomeDefinition> = {
  */
 export const combinationRules: CombinationRules = {
   title: "Adding Activities Together",
-  definition:
-    "The 80 hours is one monthly total across everything you do, not 80 hours of any single activity.",
+  definition: `The ${HOURS} hours is one monthly total across everything you do, not ${HOURS} hours of any single activity.`,
   examples: [
-    "40 hours work + 40 hours community service = 80",
-    "30 hours work + 30 hours community service + 20 hours job training = 80",
+    `40 hours work + 40 hours community service = ${HOURS}`,
+    `30 hours work + 30 hours community service + 20 hours job training = ${HOURS}`,
     "Less-than-half-time school converts to hours and adds in alongside the rest",
     "Income under $580 may be credited as hours and added too, if your state does that",
   ],
-  note: "Add up everything for the month and compare the total against 80. School at half-time or more is the exception: it counts on its own and is not combined with anything.",
+  note: `Add up everything for the month and compare the total against ${HOURS}. School at half-time or more is the exception: it counts on its own and is not combined with anything.`,
   source: "42 CFR 435.552(a)(5), (e)",
 };
 
@@ -818,7 +856,7 @@ export const documentVerificationHelp: DocumentVerificationHelp = {
   title: "Verification Documents",
   definition:
     "Documents that prove you completed work, volunteer, or education activities, or that verify your income.",
-  why: "Your state Medicaid agency may ask for proof that you met the 80-hour requirement or the $580 income threshold. Having documents ready makes it easier to verify your hours or income.",
+  why: `Your state Medicaid agency may ask for proof that you met the ${HOURS}-hour requirement or the $${INCOME} income threshold. Having documents ready makes it easier to verify your hours or income.`,
   workExamples: [
     "Pay stubs showing hours worked",
     "Timesheet or work schedule",
