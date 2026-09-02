@@ -183,3 +183,53 @@ mutate "$TR" 's|CMS-2454-IFC PREAMBLE, 91 FR 33416|CMS-2454-IFC, 91 FR 33416|' \
 
 echo
 echo "TRANSITION TOTALS  caught: $pass   insensitive: $insensitive"
+
+# --- Appended for task 10: the gate and the guards ----------------------------
+HTH=src/components/help/HourTrackingHelp.tsx
+RPP=src/components/tracking/ReviewPeriodPanel.tsx
+ISI=src/components/income/IncomeStatusIndicator.tsx
+HT=src/content/helpText.ts
+
+echo "== the spelt-value guard =="
+mutate "$RPP" "s|We've assumed |We've assumed six |" \
+  "reintroduce W5's spelt renewal interval" src/__tests__/no-spelt
+mutate "$RPP" 's|\${period.months.length}, but yours|, but yours|' \
+  "drop the interpolated figure entirely" src/__tests__/no-spelt
+mutate "$HT" 's|over the \${SEASONAL_MONTHS} months|over the six months|' \
+  "spell the seasonal window as a word" src/__tests__/no-spelt
+mutate "src/lib/policy/transition.ts" 's|\${leadDays.min} to \${leadDays.max} days|sixty to ninety days|' \
+  "spell the initiation lead time" src/__tests__/no-spelt
+
+echo "== the no-verdict render guard, on components W2b added =="
+mutate "$HTH" 's|If this requirement applies to you, the usual way to meet it is|To meet Medicaid work requirements, you need to complete|' \
+  "restore the 'you need to complete' assertion" src/__tests__/no-verdict.render
+# The JSX carries `doesn&apos;t`, not an apostrophe. Matching the entity is the fix.
+mutate "$HTH" 's|Looking for work doesn\&apos;t count on its own|Job searching does NOT count as a qualifying activity|' \
+  "restore 'Job searching does NOT count'" src/__tests__/no-verdict.render
+mutate "$HTH" 's|Household income of at least \$|Nothing else counts. Not income of at least $|' \
+  "remove the other-pathways disclosure" src/__tests__/no-verdict.render
+mutate "$HTH" 's|in school at least half-time can be enough|in school full-time can be enough|' \
+  "narrow the half-time education pathway to full-time" src/__tests__/no-verdict.render
+# IncomeStatusIndicator: reintroduce the exact verdict W5 removed from this component,
+# which W5 then failed to guard. This is the mutation that proves the new coverage works.
+mutate "$ISI" 's|That\&apos;s at or over|Compliant. That\&apos;s at or over|' \
+  "restore the 'Compliant' verdict W5 removed but never guarded" src/__tests__/no-verdict.render
+mutate "$ISI" 's|here, not just yours|here|' \
+  "remove the household caution from the AT-OR-OVER branch" src/__tests__/no-verdict.render
+mutate "$ISI" 's|which is often more|which is different|' \
+  "weaken the household disclosure on the UNDER branch" src/__tests__/no-verdict.render
+mutate "$ISI" 's|already be over this without doing anything else|already be over this|' \
+  "drop the two-sided reassurance on the UNDER branch" src/__tests__/no-verdict.render
+
+echo "== the in-CI literal scan, on files the shell gate cannot see =="
+mutate "$HT" 's|const HOURS = FEDERAL_DEFAULT.requiredHours;|const HOURS = 80;|' \
+  "helpText re-hardcodes the hours threshold" src/lib/__tests__/policyInjection
+mutate "$HTH" 's|const INCOME_MINIMUM = incomeThreshold(FEDERAL_DEFAULT);|const INCOME_MINIMUM = 580;|' \
+  "HourTrackingHelp re-hardcodes the income threshold" src/lib/__tests__/policyInjection
+mutate "src/app/export/page.tsx" 's|hours: FEDERAL_DEFAULT.requiredHours,|hours: 80,|' \
+  "export page re-hardcodes the hours threshold" src/lib/__tests__/policyInjection
+mutate "src/lib/__tests__/policyInjection.test.ts" 's|/fontSize/,|/neverAppearsAnywhere/,|' \
+  "allowlist entry that matches nothing" src/lib/__tests__/policyInjection
+
+echo
+echo "GUARD TOTALS  caught: $pass   insensitive: $insensitive"

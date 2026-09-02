@@ -29,15 +29,18 @@ import { Dashboard } from "@/components/Dashboard";
 import { CompletionMessage } from "@/components/tracking/CompletionMessage";
 import { MonthNavigator } from "@/components/tracking/MonthNavigator";
 import { ReviewPeriodPanel } from "@/components/tracking/ReviewPeriodPanel";
+import { HourTrackingHelpIcon } from "@/components/help/HourTrackingHelp";
+import { IncomeStatusIndicator } from "@/components/income/IncomeStatusIndicator";
 import {
   applicationReviewPeriod,
   renewalReviewPeriodEndingAt,
 } from "@/lib/reviewPeriod";
-import { FEDERAL_DEFAULT } from "@/lib/policy";
+import { FEDERAL_DEFAULT, incomeThreshold } from "@/lib/policy";
 
 import { requirementFacts } from "@/content/helpText";
 import type { AssessmentResult } from "@/types/assessment";
 import type { ExemptionHistory as ExemptionHistoryType } from "@/types/exemptions";
+import type { MonthlyIncomeSummary } from "@/types/income";
 
 import {
   VERDICT_PHRASES,
@@ -663,6 +666,190 @@ describe("ADR-0003 no-verdict guard: W5 month-scoped surfaces", () => {
       expect(text).toMatch(/doesn't match your letter/i);
       expect(text).toMatch(/Keep logging the extra months/i);
       expectNoVerdict("ReviewPeriodPanel (notice mismatch)");
+    });
+  });
+});
+
+/**
+ * Components W2b added to this guard, and the reason they were missing.
+ *
+ * W5's most valuable review finding was STRUCTURAL: it created five month-scoped components
+ * and put none of them in this file, which is why two verdicts got through code that had
+ * already passed 509 tests. `wave-2b-policy-profile.md` § 2.1.4 says to expect the same shape
+ * here, and it was there.
+ *
+ * `HourTrackingHelpIcon` — LIVE on the primary tracking surface via `Dashboard.tsx:88`, and
+ * absent from this guard, from `wave-2` § 2.5's site table, and from W2a's handoff table.
+ * Its copy said "To meet Medicaid work requirements, you need to complete 80 hours per
+ * month", which asserts the requirement APPLIES — and under 42 CFR 435.554 a specified
+ * excluded individual is not an applicable individual at all, with § 435.556(c) prohibiting
+ * the state from assessing them.
+ *
+ * WHY IT ESCAPED, precisely: its content renders inside a `HelpTooltip`, which mounts nothing
+ * until the icon is clicked. A component whose output nobody renders is a component whose
+ * copy nobody checks — W5 wrote that about `CompletionMessage`, and it was true twice.
+ *
+ * `IncomeStatusIndicator` — W5 FIXED a `Compliant` verdict here and did not add it to the
+ * guard, so the fix was unprotected. Both of its branches are exercised below.
+ */
+describe("components W2b added to the render guard", () => {
+  function incomeSummary(totalIncome: number): MonthlyIncomeSummary {
+    // 42 CFR 435.552(a)(6): the threshold is the FLSA wage x the hours figure.
+    const threshold = incomeThreshold(FEDERAL_DEFAULT);
+    return {
+      month: "2026-07",
+      totalIncome,
+      entryCount: 1,
+      isCompliant: totalIncome >= threshold,
+      amountNeeded: Math.max(threshold - totalIncome, 0),
+      isSeasonalWorker: false,
+    };
+  }
+
+  describe("HourTrackingHelpIcon — the tooltip content, which needs a click to exist", () => {
+    it("renders no verdict once opened", () => {
+      render(<HourTrackingHelpIcon />);
+
+      // Nothing is asserted before the click, deliberately: asserting on the closed state
+      // would pass while checking an empty dialog, which is how this file missed the
+      // component for two whole waves.
+      fireEvent.click(
+        screen.getByRole("button", { name: /help for hour tracking/i }),
+      );
+
+      const text = document.body.textContent ?? "";
+      expect(
+        text.length,
+        "the tooltip did not open — the click target moved",
+      ).toBeGreaterThan(400);
+
+      expectNoVerdict("HourTrackingHelpIcon (opened)");
+    });
+
+    it("does not assert that the requirement applies to the reader", () => {
+      /**
+       * The specific claim, separate from the phrase list, because no entry on that list
+       * matched it: every banned phrase carries a pronoun or is all-caps, and this said
+       * "you need to". Fixed in W2b; pinned here so it cannot come back in that wording.
+       */
+      render(<HourTrackingHelpIcon />);
+      fireEvent.click(
+        screen.getByRole("button", { name: /help for hour tracking/i }),
+      );
+      const text = normaliseForGuard(document.body.textContent ?? "");
+
+      expect(text).not.toMatch(/you need to complete/i);
+      expect(text).not.toMatch(/to meet Medicaid work requirements, you need/i);
+
+      // Positive twin: it states the condition instead of asserting it.
+      expect(text).toMatch(/if this requirement applies to you/i);
+    });
+
+    it("42 CFR 435.552: names the other pathways rather than implying hours are the only one", () => {
+      /**
+       * The second substantive error. The old copy said "Job searching does NOT count as a
+       * qualifying activity. If you lose your job, you need to volunteer, go to school, or
+       * join a work program" — which both contradicted W2a's own correction to
+       * `activityDefinitions.workProgram` and presented three routes as exhaustive.
+       *
+       * § 435.552(a)(6) is income, (e)(2) is the income-to-hours proxy, and (a)(4) is
+       * half-time education, which needs no hours at all.
+       */
+      render(<HourTrackingHelpIcon />);
+      fireEvent.click(
+        screen.getByRole("button", { name: /help for hour tracking/i }),
+      );
+      const text = normaliseForGuard(document.body.textContent ?? "");
+
+      expect(text).not.toMatch(/job searching does NOT count/i);
+
+      /**
+       * Positive twins, one per omitted pathway — and each asserts the WHOLE CLAIM rather
+       * than a keyword.
+       *
+       * Mutation testing forced this. A first version asserted `/half-time/i`, which
+       * survived narrowing this component's sentence to "full-time" because `helpText.ts`
+       * uses the phrase twelve times and the School definition renders inside the same
+       * tooltip. A keyword match across a 3,000-character DOM proves nothing about the
+       * sentence you meant. Same failure W5 recorded for `not.toHaveText`.
+       */
+      expect(text).toMatch(
+        /household income of at least \$\d+ a month can count instead/i,
+      );
+      expect(text).toMatch(/credit income below that as hours/i);
+      expect(text).toMatch(
+        /in school at least half-time can be enough on its own/i,
+      );
+      // And the subsidiary-activity nuance W2a established elsewhere.
+      expect(text).toMatch(
+        /if job searching is part of a job training program/i,
+      );
+    });
+  });
+
+  describe("IncomeStatusIndicator — W5 fixed a verdict here without guarding it", () => {
+    it("renders no verdict at or over the threshold", () => {
+      // The branch W5 found rendering `Compliant` in green beside a tick.
+      render(<IncomeStatusIndicator summary={incomeSummary(700)} />);
+      expectNoVerdict("IncomeStatusIndicator (at or over)");
+    });
+
+    it("keeps the household-MAGI caution on the at-or-over branch too", () => {
+      /**
+       * Added after mutation testing, and it was a real gap rather than a bad mutation.
+       *
+       * W5's review moved the household disclosure to the under-threshold branch, where
+       * `compliance-copy-standards.md` says the married user "is the case that matters".
+       * It also left a differently-phrased CAUTION on this branch — and nothing asserted
+       * it, so deleting it changed no test result. Both branches need the fact, for
+       * opposite reasons: below the line it is reassurance, above it a warning that the
+       * figure shown is not the figure the state compares (42 CFR 435.552(f)(2) measures
+       * MAGI-based income for the HOUSEHOLD).
+       */
+      render(<IncomeStatusIndicator summary={incomeSummary(700)} />);
+      const text = normaliseForGuard(document.body.textContent ?? "");
+
+      expect(text).toMatch(
+        /your state counts your whole household'?s income here, not just yours/i,
+      );
+      // Named actor plus a next action, per compliance-copy-standards.md.
+      expect(text).toMatch(/ask them what they have on file/i);
+    });
+
+    it("renders no verdict under the threshold", () => {
+      render(<IncomeStatusIndicator summary={incomeSummary(300)} />);
+      expectNoVerdict("IncomeStatusIndicator (under)");
+    });
+
+    it("keeps the household-MAGI disclosure on the under-threshold branch", () => {
+      /**
+       * W5's review moved this here from the at-or-over branch, and the reasoning is the
+       * whole point of the fix: `compliance-copy-standards.md` names the married user whose
+       * spouse works as "the case that matters", because telling them they are failing
+       * "sends them looking for 80 hours of volunteering they don't need."
+       *
+       * 42 CFR 435.552(f)(2) measures against MAGI-based income for the HOUSEHOLD, and
+       * HourKeep stores one person's records — so the figure shown is not the figure the
+       * state compares. Guarded now, so a later edit cannot quietly move it back.
+       */
+      render(<IncomeStatusIndicator summary={incomeSummary(300)} />);
+      const text = normaliseForGuard(document.body.textContent ?? "");
+
+      /**
+       * The whole claim, not the word "household".
+       *
+       * Mutation testing forced this too: `/household/i` survived deleting the sentence,
+       * because the component says "household" three times and the other two are in the
+       * two-sided explanation further down. Asserting the specific clause is what makes
+       * this guard protect the fix W5's review actually made.
+       */
+      expect(text).toMatch(
+        /your state counts your whole household'?s income here, which is often more/i,
+      );
+      // The two-sided half: more household income HELPS this pathway.
+      expect(text).toMatch(/already be over this without doing anything else/i);
+      // And it must not read as a spouse's income being a problem.
+      expect(text).not.toMatch(/spouse'?s income (may|could|might) disqualif/i);
     });
   });
 });

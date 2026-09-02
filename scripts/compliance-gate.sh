@@ -52,7 +52,21 @@ targets=(
   src/lib/storage/income.ts
   src/lib/exemptions/calculator.ts
   src/lib/assessment/recommendationEngine.ts
+  # Added by W2b, 2026-09-02. It holds review-period policy values and was never
+  # scanned — `wave-5-month-scoping.md` flagged the omission at its close.
+  src/lib/reviewPeriod.ts
 )
+
+# NOTE ON THIS GATE'S LIMITS, so nobody mistakes silence for proof.
+#
+# It reaches six files. W2b removed 60 policy literals across FOURTEEN, and the
+# nine outside this list — src/content/helpText.ts, src/app/*, src/components/* —
+# are invisible here. That is deliberate: this hook runs on save under src/lib/
+# and must stay fast.
+#
+# The real gate is `src/lib/__tests__/policyInjection.test.ts`, which scans all
+# nineteen files, strips block comments properly, and runs in CI because
+# `npm test` gates deployment. This remains a smoke alarm.
 existing=()
 for f in "${targets[@]}"; do [ -f "$f" ] && existing+=("$f"); done
 

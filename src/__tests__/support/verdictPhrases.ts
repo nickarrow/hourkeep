@@ -114,6 +114,36 @@ export const VERDICT_PHRASES: readonly VerdictPhrase[] = [
     why: "compliance-copy-standards.md banned phrase. Nothing is automatic: 42 CFR 435.557 ex parte review comes first and the State decides",
   },
   {
+    // ADDED IN W2b, and it closes a hole every earlier entry shared.
+    //
+    // `HourTrackingHelp.tsx` — live on the primary tracking surface — said "To meet Medicaid
+    // work requirements, you need to complete 80 hours per month of qualifying activities."
+    // That asserts the requirement APPLIES, which is the threshold question 42 CFR 435.556
+    // gives the State: under § 435.554 a specified excluded individual is not an applicable
+    // individual at all, and § 435.556(c) PROHIBITS the State from assessing their
+    // compliance.
+    //
+    // Nothing on this list came close. "must track hours" and "you must track" cover the
+    // imperative form; every other entry either carries a different pronoun construction or
+    // is all-caps. "you need to" is the same claim in the softest available register, which
+    // is exactly why it survived two waves of copy review.
+    //
+    // Word boundaries keep it narrow: it does not match "if you need to add hours" because
+    // that is "need to add", nor "you needed to". The phrase is banned as a preface to an
+    // obligation, and the fix is always to state the condition — "if this requirement
+    // applies to you" — rather than assume it.
+    phrase: "you need to complete",
+    why: "ADR-0003: asserts the requirement applies to the reader. Whether someone is an applicable individual is the State's threshold question (42 CFR 435.556; § 435.556(c) prohibits assessing an excluded individual)",
+  },
+  {
+    // Same claim, same wave, different verb. Found by reading the sentence after the one
+    // above: "you need to volunteer, go to school, or join a work program to meet the
+    // 80-hour requirement" — which also presented three of the seven pathways as the only
+    // ones (42 CFR 435.552(a) makes all seven available, and (a)(4) needs no hours at all).
+    phrase: "you need to volunteer",
+    why: "ADR-0003: asserts both that the requirement applies and that a subset of pathways is exhaustive. 42 CFR 435.552(a) makes all seven equally available",
+  },
+  {
     phrase: "you meet requirements",
     why: "ADR-0003: a verdict. State the comparison, not the conclusion",
   },

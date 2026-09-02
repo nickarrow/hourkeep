@@ -45,8 +45,8 @@ export function calculateMonthlySummary(
   if (!isValidMonth(month)) {
     throw new Error(
       `calculateMonthlySummary needs a month as YYYY-MM, got ${JSON.stringify(month)}. ` +
-        `A bare year would silently total twelve months and report them as one ` +
-        `(ADR-0005).`,
+        `A bare year would silently total a whole year and report it as a single ` +
+        `month (ADR-0005).`,
     );
   }
 
