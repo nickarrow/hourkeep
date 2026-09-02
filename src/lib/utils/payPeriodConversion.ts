@@ -6,18 +6,56 @@
  */
 
 import { IncomeEntry } from "@/types/income";
+import { FEDERAL_DEFAULT, incomeThreshold } from "@/lib/policy";
 
-// Income threshold constants
-// Based on federal minimum wage: $7.25 × 80 hours = $580
-export const FEDERAL_MINIMUM_WAGE = 7.25;
-export const REQUIRED_HOURS = 80;
-export const INCOME_THRESHOLD = FEDERAL_MINIMUM_WAGE * REQUIRED_HOURS; // $580
+/**
+ * The three threshold constants moved to `src/lib/policy/` in W2b.
+ *
+ * ADR-0001's header names this file by name: "Supersedes: the ad-hoc constants in
+ * `src/lib/utils/payPeriodConversion.ts`". They are re-exported rather than deleted because
+ * `INCOME_THRESHOLD` had three live importers at the start of W2b — `lib/storage/income.ts`,
+ * `components/income/IncomeStatusIndicator.tsx` and `components/income/SeasonalWorkerView.tsx`.
+ * `storage/income.ts` now takes a profile instead, leaving **two**, both components. The
+ * aliases survive because W7a repositions income entirely and this export surface is its to
+ * retire; breaking every consumer inside a wave whose gate is "behaviour did not change"
+ * would have mixed two kinds of diff.
+ *
+ * `codebase-audit-2026-08.md` § 6 claims `REQUIRED_HOURS` and `INCOME_THRESHOLD` "sit
+ * unused" here. That is wrong for `INCOME_THRESHOLD`, as W0's characterization test already
+ * records.
+ *
+ * @deprecated Read `FEDERAL_DEFAULT.requiredHours`, `.federalMinimumWage`, or
+ * `incomeThreshold(profile)` from `@/lib/policy`. These aliases are fixed to the federal
+ * default and cannot follow a per-state profile, which is the whole point of ADR-0001.
+ */
+export const FEDERAL_MINIMUM_WAGE = FEDERAL_DEFAULT.federalMinimumWage;
+/** @deprecated See `FEDERAL_MINIMUM_WAGE` above. */
+export const REQUIRED_HOURS = FEDERAL_DEFAULT.requiredHours;
+/** @deprecated See `FEDERAL_MINIMUM_WAGE` above. Prefer `incomeThreshold(profile)`. */
+export const INCOME_THRESHOLD = incomeThreshold(FEDERAL_DEFAULT);
 
-// Pay period multipliers for converting to monthly equivalent
+/**
+ * Pay-period multipliers.
+ *
+ * NOT FROM THE RULE, AND THAT IS THE POINT. Gap 5.4 classifies these as `contradicts`: the
+ * IFC prescribes no pay-period conversion at all, and states determine a monthly figure
+ * through existing MAGI methodology under 42 CFR 435.603. So they are HourKeep's own
+ * invention, and W7a owns deciding what replaces them.
+ *
+ * W2b relocates them into the profile-adjacent world without touching their values, because
+ * changing a number here changes every stored `monthlyEquivalent`. Two known biases, pinned
+ * by W0's characterization tests and pointing in OPPOSITE directions: `weekly` 4.33 rounds
+ * 52/12 down, `bi-weekly` 2.17 rounds 26/12 up. `daily` 30 ignores month length entirely.
+ *
+ * Note `4.33` here is NOT the Carnegie Unit from 42 CFR 435.552(d)'s
+ * `creditHours x 3 x 4.33`. That one is statutory arithmetic CMS publishes and belongs in
+ * the education module W6a creates. Same digits, unrelated meanings, and they must not be
+ * collapsed into one shared constant.
+ */
 export const PAY_PERIOD_MULTIPLIERS = {
-  daily: 30, // 30 days per month
-  weekly: 4.33, // 52 weeks ÷ 12 months
-  "bi-weekly": 2.17, // 26 pay periods ÷ 12 months
+  daily: 30, // 30 days per month // policy-literal-ok
+  weekly: 4.33, // 52 weeks ÷ 12 months, rounded DOWN // policy-literal-ok
+  "bi-weekly": 2.17, // 26 pay periods ÷ 12 months, rounded UP // policy-literal-ok
   monthly: 1, // No conversion needed
 } as const;
 

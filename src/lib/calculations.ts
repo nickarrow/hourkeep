@@ -1,5 +1,6 @@
 import { Activity, MonthlySummary } from "@/types";
 import { isValidMonth } from "@/lib/month";
+import { FEDERAL_DEFAULT, type PolicyProfile } from "@/lib/policy";
 
 /**
  * Total a single month's logged hours.
@@ -33,11 +34,13 @@ import { isValidMonth } from "@/lib/month";
  *
  * @param activities Any activities; only those in `month` are counted.
  * @param month The calendar month to total, as `YYYY-MM`.
+ * @param policy Thresholds. Optional, defaulting to the federal statutory floor.
  * @throws if `month` is not a well-formed `YYYY-MM`.
  */
 export function calculateMonthlySummary(
   activities: Activity[],
   month: string,
+  policy: PolicyProfile = FEDERAL_DEFAULT,
 ): MonthlySummary {
   if (!isValidMonth(month)) {
     throw new Error(
@@ -74,11 +77,27 @@ export function calculateMonthlySummary(
   // Calculate total hours
   const totalHours = workHours + volunteerHours + educationHours;
 
-  // Determine compliance (80 hours required)
-  const isCompliant = totalHours >= 80;
+  /**
+   * The monthly hours threshold — 42 CFR 435.552(a)(1)-(3), (5), 91 FR 33470: the
+   * individual "works not less than 80 hours", with the same figure governing community
+   * service, work programs, and any combination.
+   *
+   * From the profile, not a literal (ADR-0001). W2b: the `80` used to be written twice on
+   * the two lines below.
+   */
+  const threshold = policy.requiredHours;
 
-  // Calculate hours needed (0 if compliant)
-  const hoursNeeded = isCompliant ? 0 : 80 - totalHours;
+  // "Not less than", so the boundary is inside.
+  const isCompliant = totalHours >= threshold;
+
+  /**
+   * The shortfall. Neutral arithmetic, not a verdict — `compliance-copy-standards.md`
+   * keeps `hoursNeeded` on exactly that ground: "a difference is not a verdict".
+   *
+   * Floored at 0 rather than left as `isCompliant ? 0 : …`. Same result, but the
+   * expression no longer depends on the boolean above, which W7b removes.
+   */
+  const hoursNeeded = Math.max(threshold - totalHours, 0);
 
   return {
     month,

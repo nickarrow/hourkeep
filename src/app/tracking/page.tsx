@@ -226,18 +226,16 @@ export default function TrackingPage() {
   }));
 
   /**
-   * The monthly hours threshold, WITHOUT writing the number down.
+   * The monthly hours threshold — 42 CFR 435.552(a), from the policy profile.
    *
-   * `hoursNeeded` for a month with no activities *is* the threshold, so this reads it
-   * out of the compliance module rather than restating it. ADR-0001 forbids policy
-   * literals outside `src/lib/policy/`, which does not exist until W2b — and a
-   * literal `80` here would be one more site for W2b to find. When W2b injects the
-   * threshold, this picks the new value up with no edit.
+   * W2b REPLACED A TRICK HERE. This used to be
+   * `calculateMonthlySummary([], selectedMonth).hoursNeeded`, which avoided writing `80`
+   * but only worked because `hoursNeeded` was `isCompliant ? 0 : 80 - totalHours`. W5's
+   * domain reviewer flagged it as relocating the literal rather than removing it, and it
+   * would have gone silently wrong the moment `hoursNeeded` gained a zero-activity special
+   * case. It also ran a whole summary calculation to read one constant.
    */
-  const monthlyThreshold = calculateMonthlySummary(
-    [],
-    selectedMonth,
-  ).hoursNeeded;
+  const monthlyThreshold = FEDERAL_DEFAULT.requiredHours;
 
   /**
    * The real current month, read once and passed down.

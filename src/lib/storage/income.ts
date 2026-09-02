@@ -6,7 +6,11 @@
 
 import { db } from "@/lib/db";
 import { IncomeEntry, MonthlyIncomeSummary } from "@/types/income";
-import { INCOME_THRESHOLD } from "@/lib/utils/payPeriodConversion";
+import {
+  FEDERAL_DEFAULT,
+  incomeThreshold,
+  type PolicyProfile,
+} from "@/lib/policy";
 import {
   getDocumentsByIncomeEntry,
   deleteIncomeDocument,
@@ -194,11 +198,24 @@ function getLast6Months(currentMonth: string): string[] {
 
 /**
  * Calculate monthly income summary with compliance status
+ *
+ * W2b: the threshold comes from the injected profile (ADR-0001), replacing an import of
+ * `INCOME_THRESHOLD` fixed to the federal default. 42 CFR 435.552(a)(6), 91 FR 33470 — the
+ * FLSA wage under 29 U.S.C. 206(a)(1)(C) multiplied by the monthly hours figure.
+ *
+ * Two things this still gets wrong, both W7a's and both left alone deliberately so that
+ * wave's diff carries the behaviour change rather than this one:
+ *   - gap 5.5: `totalIncome` sums `monthlyEquivalent` across every entry, so four weekly
+ *     paychecks report about four times the real monthly gross.
+ *   - gap 5.8: seasonal averaging includes the assessed month, which 42 CFR 435.552(g)
+ *     excludes.
  */
 export async function getMonthlyIncomeSummary(
   userId: string,
   month: string,
+  policy: PolicyProfile = FEDERAL_DEFAULT,
 ): Promise<MonthlyIncomeSummary> {
+  const threshold = incomeThreshold(policy);
   const entries = await getIncomeEntriesByMonth(userId, month);
 
   const totalIncome = entries.reduce(
@@ -237,8 +254,8 @@ export async function getMonthlyIncomeSummary(
     month,
     totalIncome,
     entryCount: entries.length,
-    isCompliant: effectiveIncome >= INCOME_THRESHOLD,
-    amountNeeded: Math.max(0, INCOME_THRESHOLD - effectiveIncome),
+    isCompliant: effectiveIncome >= threshold,
+    amountNeeded: Math.max(0, threshold - effectiveIncome),
     isSeasonalWorker,
     seasonalAverage: seasonalData?.average,
     seasonalHistory: seasonalData?.history,

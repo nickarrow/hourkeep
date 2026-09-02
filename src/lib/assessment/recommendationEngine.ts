@@ -4,17 +4,45 @@ import {
   ComplianceMethod,
 } from "@/types/assessment";
 import { calculateExemption } from "@/lib/exemptions/calculator";
+import {
+  FEDERAL_DEFAULT,
+  incomeThreshold,
+  type PolicyProfile,
+} from "@/lib/policy";
 
 /**
  * Calculate the best compliance method recommendation based on assessment responses
+ *
+ * Thresholds come from the injected profile (ADR-0001). Optional, defaulting to the federal
+ * statutory floor — W2b removed ten literals from this file, four of them threshold
+ * comparisons and six inside user-facing sentences.
+ *
  * @param responses - Complete assessment responses
+ * @param policy - Thresholds. Defaults to the federal statutory floor
  * @returns Recommendation with primary method, reasoning, and alternatives
  */
 export function calculateRecommendation(
   responses: AssessmentResponses,
+  policy: PolicyProfile = FEDERAL_DEFAULT,
 ): Recommendation {
+  /**
+   * 42 CFR 435.552(a), 91 FR 33470. `hours` is the monthly total across activities;
+   * `income` is the FLSA wage under 29 U.S.C. 206(a)(1)(C) multiplied by it.
+   *
+   * `seasonalMonths` is 42 CFR 435.552(a)(7)/(g)'s averaging window. It reads from the
+   * profile because a state electing the 435.603(h)(3) reasonably-predictable-changes
+   * methodology prorates over a different span — so promising "6 months" unconditionally
+   * would be wrong for most states.
+   */
+  const hoursThreshold = policy.requiredHours;
+  const incomeMinimum = incomeThreshold(policy);
+  const seasonalMonths =
+    policy.seasonalMethod.kind === "preceding-average"
+      ? policy.seasonalMethod.months
+      : policy.seasonalMethod.windowMonths;
+
   // 1. Check exemption status first (easiest path)
-  const exemptionResult = calculateExemption(responses.exemption);
+  const exemptionResult = calculateExemption(responses.exemption, policy);
 
   if (exemptionResult.isExempt) {
     return {
@@ -31,18 +59,18 @@ export function calculateRecommendation(
 
   // Check income tracking viability
   const monthlyIncome = responses.monthlyIncome || 0;
-  if (monthlyIncome >= 580) {
+  if (monthlyIncome >= incomeMinimum) {
     viableMethods.push("income-tracking");
   }
 
   // Check seasonal income tracking viability
-  if (responses.isSeasonalWork && monthlyIncome >= 580) {
+  if (responses.isSeasonalWork && monthlyIncome >= incomeMinimum) {
     viableMethods.push("seasonal-income-tracking");
   }
 
   // Check hour tracking viability
   const totalHours = calculateTotalHours(responses);
-  if (totalHours >= 80) {
+  if (totalHours >= hoursThreshold) {
     viableMethods.push("hour-tracking");
   }
 
@@ -67,17 +95,17 @@ export function calculateRecommendation(
     // $X") labelled a Deferred number as Computed. Under 435.552(g) the average
     // runs over the 6 months preceding the assessed month, which HourKeep does not
     // hold from one screening answer.
-    reasoning = `You told us about $${monthlyIncome} a month. Threshold: $580. For seasonal work your state can average the 6 months before the month it's reviewing rather than looking at one month alone, so its figure may differ from this one. Keep records across the whole year.`;
+    reasoning = `You told us about $${monthlyIncome} a month. Threshold: $${incomeMinimum}. For seasonal work your state can average the ${seasonalMonths} months before the month it's reviewing rather than looking at one month alone, so its figure may differ from this one. Keep records across the whole year.`;
     complianceStatus = "compliant";
     estimatedEffort = "low";
   } else if (viableMethods.includes("income-tracking")) {
     primaryMethod = "income-tracking";
-    reasoning = `Recorded: $${monthlyIncome} a month. Threshold: $580. Your state counts your whole household here, so its figure may be higher than yours — ask what it already has on file.`;
+    reasoning = `Recorded: $${monthlyIncome} a month. Threshold: $${incomeMinimum}. Your state counts your whole household here, so its figure may be higher than yours — ask what it already has on file.`;
     complianceStatus = "compliant";
     estimatedEffort = "low";
   } else if (viableMethods.includes("hour-tracking")) {
     primaryMethod = "hour-tracking";
-    reasoning = `Recorded: ${totalHours} hours this month. Threshold: 80 hours. Keep recording as you go — the hours are what your state will look for if its own records don't already show them.`;
+    reasoning = `Recorded: ${totalHours} hours this month. Threshold: ${hoursThreshold} hours. Keep recording as you go — the hours are what your state will look for if its own records don't already show them.`;
     complianceStatus = "compliant";
     estimatedEffort = totalHours > 100 ? "low" : "medium";
   } else {
@@ -95,17 +123,17 @@ export function calculateRecommendation(
     // 435.552(e)(2)(i) requires the state to allocate credited hours between
     // household members by a method we cannot know. Hence "up to", never "about".
     primaryMethod = "hour-tracking";
-    const hoursNeeded = 80 - totalHours;
-    const incomeNeeded = 580 - monthlyIncome;
+    const hoursNeeded = hoursThreshold - totalHours;
+    const incomeNeeded = incomeMinimum - monthlyIncome;
 
     if (totalHours > 0 && monthlyIncome > 0) {
-      reasoning = `Recorded: ${totalHours} hours and $${monthlyIncome} this month. Thresholds: 80 hours / $580. Difference: ${hoursNeeded} hours / $${incomeNeeded}. These are not separate races — some states can credit income as hours and count both together, so keep recording both.`;
+      reasoning = `Recorded: ${totalHours} hours and $${monthlyIncome} this month. Thresholds: ${hoursThreshold} hours / $${incomeMinimum}. Difference: ${hoursNeeded} hours / $${incomeNeeded}. These are not separate races — some states can credit income as hours and count both together, so keep recording both.`;
     } else if (totalHours > 0) {
-      reasoning = `Recorded: ${totalHours} hours this month. Threshold: 80 hours. Difference: ${hoursNeeded}. Work, volunteering, school, and job training all count toward the same total, and income can be counted alongside them.`;
+      reasoning = `Recorded: ${totalHours} hours this month. Threshold: ${hoursThreshold} hours. Difference: ${hoursNeeded}. Work, volunteering, school, and job training all count toward the same total, and income can be counted alongside them.`;
     } else if (monthlyIncome > 0) {
-      reasoning = `Recorded: $${monthlyIncome} this month. Threshold: $580. Difference: $${incomeNeeded}. Income under the threshold isn't wasted — some states credit it as hours, which you can then add other activities on top of. Your state counts your whole household, so its figure may be higher than yours.`;
+      reasoning = `Recorded: $${monthlyIncome} this month. Threshold: $${incomeMinimum}. Difference: $${incomeNeeded}. Income under the threshold isn't wasted — some states credit it as hours, which you can then add other activities on top of. Your state counts your whole household, so its figure may be higher than yours.`;
     } else {
-      reasoning = `Nothing recorded yet. There are two ways to get there and they work together: 80 hours a month across work, volunteering, school, and job training, or household income of at least $580. Start with whatever you already have.`;
+      reasoning = `Nothing recorded yet. There are two ways to get there and they work together: ${hoursThreshold} hours a month across work, volunteering, school, and job training, or household income of at least $${incomeMinimum}. Start with whatever you already have.`;
     }
 
     complianceStatus = "needs-increase";
@@ -180,7 +208,15 @@ export function getComplianceMethodLabel(method: ComplianceMethod): string {
  */
 export function getComplianceMethodDescription(
   method: ComplianceMethod,
+  policy: PolicyProfile = FEDERAL_DEFAULT,
 ): string {
+  const hoursThreshold = policy.requiredHours;
+  const incomeMinimum = incomeThreshold(policy);
+  const seasonalMonths =
+    policy.seasonalMethod.kind === "preceding-average"
+      ? policy.seasonalMethod.months
+      : policy.seasonalMethod.windowMonths;
+
   switch (method) {
     // 42 CFR 435.554 and 435.553. Some categories mean the state is prohibited
     // from assessing compliance at all (435.556(c)); others mean the month counts
@@ -193,14 +229,14 @@ export function getComplianceMethodDescription(
     // contradicted the household framing W2a established everywhere else, and
     // read as not applying to a married user whose spouse works.
     case "income-tracking":
-      return "Keep your pay stubs. Household income counts here, not just yours, so a spouse's earnings count too — the threshold is $580 a month.";
+      return `Keep your pay stubs. Household income counts here, not just yours, so a spouse's earnings count too — the threshold is $${incomeMinimum} a month.`;
     // 42 CFR 435.552(g): the average runs over the 6 months PRECEDING the month
     // being reviewed, excluding it.
     case "seasonal-income-tracking":
-      return "Keep records across the year. Your state can average the 6 months before the month it's reviewing, against a $580 threshold.";
+      return `Keep records across the year. Your state can average the ${seasonalMonths} months before the month it's reviewing, against a $${incomeMinimum} threshold.`;
     // 42 CFR 435.552(a)(1)-(a)(5): work program is a pathway too, and the old
     // string omitted it. Work includes in-kind and unpaid work under (b).
     case "hour-tracking":
-      return "Record work, volunteering, school, and job training. They add up to one monthly total of 80 hours, and income can count alongside them.";
+      return `Record work, volunteering, school, and job training. They add up to one monthly total of ${hoursThreshold} hours, and income can count alongside them.`;
   }
 }

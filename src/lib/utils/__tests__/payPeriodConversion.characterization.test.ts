@@ -50,6 +50,7 @@ import {
   REQUIRED_HOURS,
   INCOME_THRESHOLD,
 } from "@/lib/utils/payPeriodConversion";
+import { FEDERAL_DEFAULT, incomeThreshold } from "@/lib/policy";
 
 describe("the arithmetic contract: conversion is amount x multiplier, rounded to 2 decimals", () => {
   // These assertions must survive W2b. They reference the multiplier through
@@ -129,15 +130,42 @@ describe("the arithmetic contract: the threshold is minimum wage x required hour
   });
 });
 
-describe("W2b POLICY-LITERAL SNAPSHOT — expected to move to src/lib/policy/", () => {
+describe("W2b POLICY-LITERAL SNAPSHOT — relocated to src/lib/policy/, values preserved", () => {
   /**
    * ADR-0001: no policy value outside `src/lib/policy/`. Every constant asserted
-   * in this block is a policy literal that W2b relocates. These assertions record
+   * in this block is a policy literal that W2b relocated. These assertions record
    * TODAY'S VALUES so the relocation can be proven value-preserving; they are not
    * claims that the values are permanent.
    *
-   * When W2b runs, this block should be deleted or rewritten against the policy
-   * profile. A failure here after W2b means the refactor changed a number.
+   * ## W2b, 2026-09-02: DONE — and this block was KEPT, not deleted
+   *
+   * The instruction above said "deleted or rewritten against the policy profile."
+   * Rewritten, and kept, for a reason worth stating: deleting it would have
+   * satisfied "no policy literals remain" while destroying the only evidence that
+   * the values survived the move. `compliance-copy-standards.md` names that
+   * pattern — "When you delete, replace" — and `waves/README.md`'s Definition of
+   * Done item 7 makes it a rule.
+   *
+   * So the assertions now read the profile through the deprecated aliases this
+   * module still re-exports. `FEDERAL_MINIMUM_WAGE`, `REQUIRED_HOURS` and
+   * `INCOME_THRESHOLD` are no longer declared here; they are
+   * `FEDERAL_DEFAULT.federalMinimumWage`, `.requiredHours` and
+   * `incomeThreshold(FEDERAL_DEFAULT)`. Asserting the same four values through the
+   * same import path is exactly the proof required: **if the numbers had changed,
+   * this block goes red.**
+   *
+   * `wave-2-truth-and-policy-profile.md` asked for "W0 characterization tests pass
+   * unchanged" as the proof of behaviour-neutrality. That is satisfied for the
+   * ARITHMETIC CONTRACT above, which is untouched. It could not be satisfied for
+   * this block, because the block's own header instructed W2b to move it — see
+   * `wave-2b-policy-profile.md` § `[P4]`, which records the contradiction and
+   * resolves it in W0's favour.
+   *
+   * The multipliers did NOT move into the profile. They are not in the rule at all
+   * — gap 5.4 classes them as `contradicts`, since the IFC prescribes no
+   * pay-period conversion and 42 CFR 435.603 leaves the monthly figure to state
+   * MAGI methodology. W7a owns replacing them. W2b left their values alone and
+   * marked them `policy-literal-ok` with that reasoning attached.
    */
 
   it("today: the four pay-period multipliers are 30, 4.33, 2.17 and 1", () => {
@@ -150,13 +178,29 @@ describe("W2b POLICY-LITERAL SNAPSHOT — expected to move to src/lib/policy/", 
   });
 
   it("today: the federal minimum wage constant is 7.25 and required hours is 80", () => {
-    // 42 CFR 435.552(a)(1)-(a)(3), (f)(1). Dynamic if the FLSA is amended.
+    // 42 CFR 435.552(a)(1)-(3), (a)(6), 91 FR 33470. Dynamic if the FLSA is amended.
+    // Post-W2b these read through to FEDERAL_DEFAULT; the values are unchanged.
     expect(FEDERAL_MINIMUM_WAGE).toBe(7.25);
     expect(REQUIRED_HOURS).toBe(80);
   });
 
   it("today: the income threshold evaluates to 580", () => {
     expect(INCOME_THRESHOLD).toBe(580);
+  });
+
+  it("W2b: the relocated aliases are the profile's values, not a second copy", () => {
+    /**
+     * The assertion that makes this block a RELOCATION PROOF rather than three
+     * numbers repeated in a second place.
+     *
+     * Without it, `payPeriodConversion.ts` could have kept its own `7.25` and
+     * `80` and every assertion above would still pass — which is precisely the
+     * state W2b existed to end. Identity against `FEDERAL_DEFAULT` is what shows
+     * there is one source.
+     */
+    expect(FEDERAL_MINIMUM_WAGE).toBe(FEDERAL_DEFAULT.federalMinimumWage);
+    expect(REQUIRED_HOURS).toBe(FEDERAL_DEFAULT.requiredHours);
+    expect(INCOME_THRESHOLD).toBe(incomeThreshold(FEDERAL_DEFAULT));
   });
 
   it("today: the documented worked examples still hold", () => {

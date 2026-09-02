@@ -1,4 +1,9 @@
 import { ExemptionResponses, ExemptionResult } from "@/types/exemptions";
+import {
+  FEDERAL_DEFAULT,
+  incomeThreshold,
+  type PolicyProfile,
+} from "@/lib/policy";
 
 /**
  * Calculate age from date of birth
@@ -45,7 +50,16 @@ function calculateAge(dateOfBirth: Date): number {
  */
 export function calculateExemption(
   responses: ExemptionResponses,
+  policy: PolicyProfile = FEDERAL_DEFAULT,
 ): ExemptionResult {
+  /**
+   * Thresholds from the profile (ADR-0001). W2b: two literals lived in user-facing strings
+   * here, and one of them describes 42 CFR 435.554(c)(5)'s FUNCTIONAL gate — "whether it
+   * genuinely gets in the way of ... 80 hours a month" — so the number has to move with the
+   * profile, or the gate is described against a bar the user's state does not use.
+   */
+  const hoursThreshold = policy.requiredHours;
+  const incomeMinimum = incomeThreshold(policy);
   // 1. Age
   if (responses.dateOfBirth) {
     const age = calculateAge(responses.dateOfBirth);
@@ -209,8 +223,7 @@ export function calculateExemption(
       isExempt: true,
       exemptionCategory: "health-disability",
       exemptionReason: "Has a serious health condition or disability",
-      explanation:
-        "Serious health conditions and disabilities are one of the categories the rule sets aside. Two things decide it: whether your condition is on the list your state keeps, and whether it genuinely gets in the way of working or volunteering 80 hours a month.",
+      explanation: `Serious health conditions and disabilities are one of the categories the rule sets aside. Two things decide it: whether your condition is on the list your state keeps, and whether it genuinely gets in the way of working or volunteering ${hoursThreshold} hours a month.`,
       nextSteps:
         "Ask your state for its list of qualifying conditions. If yours isn't on it, ask how to request that it be considered anyway — states have to offer that route. A letter from your clinician describing what you can't manage, not just your diagnosis, is the useful document.",
     };
@@ -298,12 +311,10 @@ export function calculateExemption(
   // their first renewal initiated on or after the implementation date. It only
   // means this screening found nothing, which is different.
   //
-  // The 80 and $580 literals move to the policy profile in W2b.
   return {
     isExempt: false,
     explanation:
       "Nothing in your answers matched one of the categories that are set aside, so this requirement may apply to you. That isn't settled, though — your state has to check its own records first, and there are categories this screening doesn't ask about.",
-    nextSteps:
-      "Ask your state what it already has on file for you, and when your next renewal is due. In the meantime, record what you do: work, volunteering, school, or job training, 80 hours a month in total, or household income of at least $580. Both count, and they add together.",
+    nextSteps: `Ask your state what it already has on file for you, and when your next renewal is due. In the meantime, record what you do: work, volunteering, school, or job training, ${hoursThreshold} hours a month in total, or household income of at least $${incomeMinimum}. Both count, and they add together.`,
   };
 }
