@@ -284,19 +284,19 @@ export function HourTrackingHelpIcon() {
 
           The rule: standalone supervised job search or job-search training does
           not qualify as a work program, but it MAY count as a subsidiary activity
-          within a qualifying programme if it is under half that programme's
+          within a qualifying program if it is under half that program's
           required hours. Unemployment-insurance job search can also count where it
-          is conducted consistently with work-programme requirements.
+          is conducted consistently with work-program requirements.
 
           The old second sentence was worse than the first: it told a newly
           unemployed person their only routes were volunteering, school or a work
-          programme, omitting income, the proxy, and any set-aside category they
+          program, omitting income, the proxy, and any set-aside category they
           might fall into.
         */}
         <Typography variant="caption" color="text.secondary">
           Looking for work doesn&apos;t count on its own. But if job searching
-          is part of a job training programme you&apos;re in, it can count as
-          part of that — and job search you do as a condition of unemployment
+          is part of a job training program you&apos;re in, it can count as part
+          of that — and job search you do as a condition of unemployment
           benefits may count too. Losing a job also doesn&apos;t leave you with
           only volunteering: income counts, school at half-time or more counts,
           and some situations mean your state doesn&apos;t assess this at all.

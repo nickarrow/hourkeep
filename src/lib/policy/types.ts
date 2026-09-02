@@ -373,7 +373,7 @@ export const POLICY_FIELD_OWNERS: Record<
   },
   rehabMinimumTimeCommitmentHours: {
     wave: "W4",
-    why: "W4 adds the 42 CFR 435.554(c)(8) rehabilitation-programme question",
+    why: "W4 adds the 42 CFR 435.554(c)(8) rehabilitation-program question",
   },
   medicallyFrailConditionListUrl: {
     wave: "W4",
