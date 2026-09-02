@@ -4,6 +4,7 @@ import {
   normaliseForGuard,
   phraseMatcher,
 } from "../src/__tests__/support/verdictPhrases";
+import { FEDERAL_DEFAULT } from "../src/lib/policy";
 
 /**
  * Month scoping, in a real browser at phone size — W5 (ADR-0005).
@@ -50,6 +51,24 @@ import {
 /** Hours per month in the fixture. Distinct on purpose — see `seed`. */
 const CURRENT_MONTH_HOURS = 46;
 const PREVIOUS_MONTH_HOURS = 84;
+
+/**
+ * The monthly hours threshold the page renders — 42 CFR 435.552(a), read from the profile.
+ *
+ * W2b, 2026-09-02. Three assertions below said `/ 80 hours` literally, and W5's closeout
+ * predicted they "will fail when the threshold becomes dynamic".
+ *
+ * **They did not fail.** W2b relocated the value without changing it, so 80 is still 80.
+ * That is this wave's own gate working — the refactor is behaviour-neutral, which is exactly
+ * what W0's characterization tests exist to prove. But it means three policy literals would
+ * have sat here indefinitely and then failed, one FLSA amendment later, in a build nobody
+ * connected to the cause.
+ *
+ * Reading `FEDERAL_DEFAULT.requiredHours` ties the assertion to the value the page actually
+ * renders. If the two ever disagree, the failure is about the disagreement rather than about
+ * a number someone forgot to update here.
+ */
+const THRESHOLD_HOURS = FEDERAL_DEFAULT.requiredHours;
 
 /**
  * What the fixture's notice says. Drives the application lookback, since the page
@@ -209,7 +228,7 @@ test.describe("month scoping on a phone", () => {
     await expect(calendarHeading).toBeVisible();
     await expect(activityListMonth(fixture.thisMonthLabel)).toBeVisible();
     await expect(
-      page.getByText(`${CURRENT_MONTH_HOURS} / 80 hours`),
+      page.getByText(`${CURRENT_MONTH_HOURS} / ${THRESHOLD_HOURS} hours`),
     ).toBeVisible();
 
     // Page back through the navigator. Its label names the destination month rather
@@ -239,7 +258,7 @@ test.describe("month scoping on a phone", () => {
     ).toBeVisible();
     await expect(activityListMonth(fixture.lastMonthLabel)).toBeVisible();
     await expect(
-      page.getByText(`${PREVIOUS_MONTH_HOURS} / 80 hours`),
+      page.getByText(`${PREVIOUS_MONTH_HOURS} / ${THRESHOLD_HOURS} hours`),
     ).toBeVisible();
 
     // And the month we left is no longer claimed anywhere as the current view — for
@@ -352,10 +371,63 @@ test.describe("month scoping on a phone", () => {
       .first()
       .click();
     await expect(
-      page.getByText(`${PREVIOUS_MONTH_HOURS} / 80 hours`),
+      page.getByText(`${PREVIOUS_MONTH_HOURS} / ${THRESHOLD_HOURS} hours`),
     ).toBeVisible();
 
     await assertNoVerdict("at or over the threshold");
+  });
+
+  test("the hour-tracking help asserts no requirement and names every pathway", async ({
+    page,
+  }) => {
+    /**
+     * W2b. This exists because of HOW its subject escaped for two waves.
+     *
+     * `HourTrackingHelp` renders on the primary tracking surface via `Dashboard.tsx`, and
+     * its copy said "To meet Medicaid work requirements, you need to complete 80 hours per
+     * month" — asserting the requirement APPLIES, which under 42 CFR 435.554 it may not:
+     * a specified excluded individual is not an applicable individual, and § 435.556(c)
+     * prohibits the state from assessing them. It also said "Job searching does NOT count",
+     * contradicting W2a's own correction two clicks away in the same tooltip.
+     *
+     * It was in no site table and no guard. Its content lives inside a `HelpTooltip` that
+     * mounts nothing until the icon is clicked, so a component whose output nobody rendered
+     * was a component whose copy nobody checked — W5 wrote that sentence about
+     * `CompletionMessage`, and it was true twice.
+     *
+     * ADR-0007 Tier 3b asks whether jsdom could do this, and it can — the render guard now
+     * does. This spec is here anyway for one reason the unit test cannot give: it proves the
+     * icon is REACHABLE on a real 375px tracking page, next to real content, rather than
+     * rendered in isolation. A tooltip nobody can open is as good as absent.
+     */
+    await seed(page);
+    await page.goto("/tracking", { waitUntil: "networkidle" });
+
+    await page.getByRole("button", { name: /help for hour tracking/i }).click();
+
+    const dialog = page.getByRole("dialog");
+    await expect(dialog).toBeVisible();
+    const text = normaliseForGuard(await dialog.innerText());
+
+    // The two errors, in the wording that shipped.
+    expect(text).not.toMatch(/you need to complete/i);
+    expect(text).not.toMatch(/job searching does NOT count/i);
+
+    // Positive twins: the condition is stated rather than assumed, and every pathway
+    // 42 CFR 435.552(a) makes available is named.
+    expect(text).toMatch(/if this requirement applies to you/i);
+    expect(text).toMatch(/household income/i);
+    expect(text).toMatch(/half-time/i);
+    expect(text).toMatch(/part of a job training program/i);
+
+    // And the panel fits the phone it is being read on. `delete-all-mobile.spec.ts` makes
+    // the same argument: horizontal overflow is a layout bug, not a preference.
+    const overflows = await page.evaluate(
+      () => document.documentElement.scrollWidth > window.innerWidth + 1,
+    );
+    expect(overflows, "the opened help panel overflows at this viewport").toBe(
+      false,
+    );
   });
 
   test("the review-period anchor round-trips a reload without bumping the Dexie version", async ({
