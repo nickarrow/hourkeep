@@ -23,7 +23,6 @@
 
 import { describe, it, expect } from "vitest";
 import {
-  FEDERAL_DEFAULT_REVIEW_PERIOD,
   applicationReviewPeriod,
   renewalReviewPeriod,
   renewalReviewPeriodEndingAt,
@@ -35,39 +34,55 @@ import {
   includesMonth,
   type ReviewPeriod,
 } from "@/lib/reviewPeriod";
+import { FEDERAL_DEFAULT } from "@/lib/policy";
 
-describe("FEDERAL_DEFAULT_REVIEW_PERIOD", () => {
-  // ADR-0001: every policy value is a state election or statutory-but-dynamic, and
-  // all of them belong in src/lib/policy/. That module does not exist yet — W2b
-  // creates it, and W2b is sequenced AFTER W5 — so this is the single named
-  // constant the wave file authorises, and W2b moves it.
+describe("FEDERAL_DEFAULT", () => {
+  // ADR-0001: every policy value is a state election or statutory-but-dynamic, and all of
+  // them belong in src/lib/policy/.
+  //
+  // W2b DID THAT — 2026-09-02. These assertions are unchanged in substance and now read
+  // the real profile rather than W5's stand-in constant, which is the point: the values
+  // moved without changing. `ReviewPeriodPolicy` is now `Pick<PolicyProfile, …>`, so a
+  // whole profile satisfies it structurally and the spreads below still work.
+  //
+  // Two names changed, both recorded in reviewPeriod.ts's header:
+  // `renewalPeriodMonths` merged into the schema's `renewalIntervalMonths` (they were one
+  // quantity under two names), and `source` went from a bare string to
+  // `{ citation, url?, retrievedAt }` because ADR-0001 wants provenance to record when it
+  // was checked.
 
   it("42 CFR 435.556(a)(1): defaults the application lookback to 1 month, the statutory minimum", () => {
     // "at least one, but not more than 3 consecutive months, as specified in the
     // State plan" — 91 FR 33473. state-options.md records 1 as the pending
     // assumption because it is the least restrictive election and what most
     // states chose.
-    expect(FEDERAL_DEFAULT_REVIEW_PERIOD.applicationLookbackMonths).toBe(1);
+    expect(FEDERAL_DEFAULT.applicationLookbackMonths).toBe(1);
   });
 
   it("42 CFR 435.556(a)(2): defaults renewal and verification to 1 month each", () => {
     // "demonstration of community engagement for 1 or more months, as specified in
     // the State plan" — 91 FR 33473-74.
-    expect(FEDERAL_DEFAULT_REVIEW_PERIOD.renewalMonthsRequired).toBe(1);
-    expect(FEDERAL_DEFAULT_REVIEW_PERIOD.verificationMonthsRequired).toBe(1);
+    expect(FEDERAL_DEFAULT.renewalMonthsRequired).toBe(1);
+    expect(FEDERAL_DEFAULT.verificationMonthsRequired).toBe(1);
   });
 
   it("42 CFR 435.556(a)(1): bounds the elected lookback at 1 to 3", () => {
-    expect(FEDERAL_DEFAULT_REVIEW_PERIOD.applicationLookbackBounds).toEqual({
+    expect(FEDERAL_DEFAULT.applicationLookbackBounds).toEqual({
       min: 1,
       max: 3,
     });
   });
 
-  it("carries a citation, because a policy value without one is a guess", () => {
-    // ADR-0001 makes `source` mandatory on the profile for this reason. The
-    // constant is a stand-in for a profile, so it carries the same obligation.
-    expect(FEDERAL_DEFAULT_REVIEW_PERIOD.source).toMatch(/435\.556/);
+  it("carries a citation naming 42 CFR 435.556, because a policy value without one is a guess", () => {
+    // ADR-0001 makes `source` mandatory for this reason.
+    //
+    // Still asserts § 435.556 specifically rather than relaxing to the section family
+    // when `source` became an object. The profile covers 42 CFR 435.550-435.563, so a
+    // range alone would have satisfied a weaker regex while telling a reader nothing
+    // about where the review-period numbers came from. The citation names each section
+    // with its FR page instead, which keeps this assertion meaningful.
+    expect(FEDERAL_DEFAULT.source.citation).toMatch(/435\.556/);
+    expect(FEDERAL_DEFAULT.source.retrievedAt).toMatch(/^\d{4}-\d{2}-\d{2}$/);
   });
 });
 
@@ -78,7 +93,7 @@ describe("applicationReviewPeriod — 42 CFR 435.556(a)(1)", () => {
     // off-by-one class as the seasonal-averaging bug W7a fixes, where HourKeep
     // includes the assessed month and § 435.552(g) excludes it.
     const period = applicationReviewPeriod("2027-01", {
-      ...FEDERAL_DEFAULT_REVIEW_PERIOD,
+      ...FEDERAL_DEFAULT,
       applicationLookbackMonths: 3,
     });
 
@@ -100,7 +115,7 @@ describe("applicationReviewPeriod — 42 CFR 435.556(a)(1)", () => {
     // applicant in January 2027 is assessed on December 2026. That is why
     // PRD.md § 10 puts the operative date at ~December 1, 2026.
     const period = applicationReviewPeriod("2027-02", {
-      ...FEDERAL_DEFAULT_REVIEW_PERIOD,
+      ...FEDERAL_DEFAULT,
       applicationLookbackMonths: 3,
     });
     expect(monthsInReviewPeriod(period)).toEqual([
@@ -112,7 +127,7 @@ describe("applicationReviewPeriod — 42 CFR 435.556(a)(1)", () => {
 
   it("returns months in ascending calendar order", () => {
     const period = applicationReviewPeriod("2026-07", {
-      ...FEDERAL_DEFAULT_REVIEW_PERIOD,
+      ...FEDERAL_DEFAULT,
       applicationLookbackMonths: 3,
     });
     expect(monthsInReviewPeriod(period)).toEqual([
@@ -128,13 +143,13 @@ describe("applicationReviewPeriod — 42 CFR 435.556(a)(1)", () => {
     // no state can lawfully impose.
     expect(() =>
       applicationReviewPeriod("2027-01", {
-        ...FEDERAL_DEFAULT_REVIEW_PERIOD,
+        ...FEDERAL_DEFAULT,
         applicationLookbackMonths: 0,
       }),
     ).toThrow(/435\.556/);
     expect(() =>
       applicationReviewPeriod("2027-01", {
-        ...FEDERAL_DEFAULT_REVIEW_PERIOD,
+        ...FEDERAL_DEFAULT,
         applicationLookbackMonths: 4,
       }),
     ).toThrow(/435\.556/);
@@ -150,7 +165,7 @@ describe("applicationReviewPeriod — 42 CFR 435.556(a)(1)", () => {
     // months", and rule-extract.md § 6 reads that as all of the state-elected
     // months. There is no "any one of these will do" here.
     const period = applicationReviewPeriod("2027-01", {
-      ...FEDERAL_DEFAULT_REVIEW_PERIOD,
+      ...FEDERAL_DEFAULT,
       applicationLookbackMonths: 3,
     });
     expect(monthsRequiredFor(period)).toBe(3);
@@ -159,7 +174,7 @@ describe("applicationReviewPeriod — 42 CFR 435.556(a)(1)", () => {
 
   it("42 CFR 435.556(a)(1): the application months must be consecutive", () => {
     const period = applicationReviewPeriod("2027-01", {
-      ...FEDERAL_DEFAULT_REVIEW_PERIOD,
+      ...FEDERAL_DEFAULT,
       applicationLookbackMonths: 3,
     });
     expect(requiresConsecutiveMonths(period)).toBe(true);
@@ -192,7 +207,7 @@ describe("renewalReviewPeriod — 42 CFR 435.556(a)(2)(i)", () => {
     // This is user-favourable and under-communicated, which is why W5's UI states
     // it. Any qualifying month in the period counts.
     const period = renewalReviewPeriod("2026-07", "2026-12", {
-      ...FEDERAL_DEFAULT_REVIEW_PERIOD,
+      ...FEDERAL_DEFAULT,
       renewalMonthsRequired: 3,
     });
     expect(requiresConsecutiveMonths(period)).toBe(false);
@@ -210,7 +225,7 @@ describe("renewalReviewPeriod — 42 CFR 435.556(a)(2)(i)", () => {
     // (a)(2)(i), (ii), or (iii)" — 91 FR 33474. A state electing 6 months against
     // a 3-month eligibility period cannot require 6.
     const period = renewalReviewPeriod("2026-10", "2026-12", {
-      ...FEDERAL_DEFAULT_REVIEW_PERIOD,
+      ...FEDERAL_DEFAULT,
       renewalMonthsRequired: 6,
     });
     expect(monthsInReviewPeriod(period)).toHaveLength(3);
@@ -219,7 +234,7 @@ describe("renewalReviewPeriod — 42 CFR 435.556(a)(2)(i)", () => {
 
   it("42 CFR 435.556(a)(2): requires at least 1 month even if a caller asks for fewer", () => {
     const period = renewalReviewPeriod("2026-07", "2026-12", {
-      ...FEDERAL_DEFAULT_REVIEW_PERIOD,
+      ...FEDERAL_DEFAULT,
       renewalMonthsRequired: 0,
     });
     expect(monthsRequiredFor(period)).toBe(1);
@@ -247,7 +262,7 @@ describe("verificationReviewPeriod — 42 CFR 435.556(a)(2)(ii)", () => {
 
   it("42 CFR 435.556(b): is capped by the period length like the renewal arm", () => {
     const period = verificationReviewPeriod("2027-01", "2027-02", {
-      ...FEDERAL_DEFAULT_REVIEW_PERIOD,
+      ...FEDERAL_DEFAULT,
       verificationMonthsRequired: 5,
     });
     expect(monthsRequiredFor(period)).toBe(2);
@@ -278,14 +293,14 @@ describe("newlyApplicableReviewPeriod — 42 CFR 435.556(a)(2)(iii)", () => {
     // effect, and worth its own test because this arm is the one where the period
     // is most often shorter than the election.
     const short = newlyApplicableReviewPeriod("2027-03", "2027-04", {
-      ...FEDERAL_DEFAULT_REVIEW_PERIOD,
+      ...FEDERAL_DEFAULT,
       renewalMonthsRequired: 3,
     });
     expect(monthsInReviewPeriod(short)).toEqual(["2027-03"]);
     expect(monthsRequiredFor(short)).toBe(1);
 
     const long = newlyApplicableReviewPeriod("2027-01", "2027-06", {
-      ...FEDERAL_DEFAULT_REVIEW_PERIOD,
+      ...FEDERAL_DEFAULT,
       renewalMonthsRequired: 3,
     });
     expect(monthsInReviewPeriod(long)).toHaveLength(5);
@@ -311,7 +326,7 @@ describe("newlyApplicableReviewPeriod — 42 CFR 435.556(a)(2)(iii)", () => {
 describe("includesMonth", () => {
   it("answers set membership for every arm", () => {
     const application = applicationReviewPeriod("2027-01", {
-      ...FEDERAL_DEFAULT_REVIEW_PERIOD,
+      ...FEDERAL_DEFAULT,
       applicationLookbackMonths: 3,
     });
     expect(includesMonth(application, "2026-11")).toBe(true);
@@ -417,8 +432,8 @@ describe("renewalReviewPeriodEndingAt — deriving a renewal period from the due
 
   it("follows the policy when a state's renewal frequency is different", () => {
     const period = renewalReviewPeriodEndingAt("2027-06", {
-      ...FEDERAL_DEFAULT_REVIEW_PERIOD,
-      renewalPeriodMonths: 12,
+      ...FEDERAL_DEFAULT,
+      renewalIntervalMonths: 12,
     });
     expect(monthsInReviewPeriod(period)).toHaveLength(12);
     expect(monthsInReviewPeriod(period)[0]).toBe("2026-07");
@@ -443,15 +458,13 @@ describe("renewalReviewPeriodEndingAt — deriving a renewal period from the due
 
   it("records the § 435.916 / § 1902(e)(14)(L) conflict in the policy source", () => {
     // The assumption must not be able to travel without its caveat. If someone
-    // later reads `renewalPeriodMonths: 6` and takes it for a finding of this rule,
+    // later reads `renewalIntervalMonths: 6` and takes it for a finding of this rule,
     // that is the failure this test exists to prevent.
-    expect(FEDERAL_DEFAULT_REVIEW_PERIOD.renewalPeriodMonths).toBe(6);
-    expect(FEDERAL_DEFAULT_REVIEW_PERIOD.renewalPeriodMonthsSource).toMatch(
+    expect(FEDERAL_DEFAULT.renewalIntervalMonths).toBe(6);
+    expect(FEDERAL_DEFAULT.renewalIntervalMonthsSource).toMatch(
       /1902\(e\)\(14\)\(L\)/,
     );
-    expect(FEDERAL_DEFAULT_REVIEW_PERIOD.renewalPeriodMonthsSource).toMatch(
-      /435\.916/,
-    );
+    expect(FEDERAL_DEFAULT.renewalIntervalMonthsSource).toMatch(/435\.916/);
   });
 
   it("rejects a malformed due month", () => {

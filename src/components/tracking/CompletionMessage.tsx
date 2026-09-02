@@ -138,7 +138,7 @@ export function CompletionMessage({
             overstated in the one direction that costs someone coverage.
 
             Under the federal default a renewal period is six months long and
-            requires one (`renewalPeriodMonths: 6`, `renewalMonthsRequired: 1`), so
+            requires one (`renewalIntervalMonths: 6`, `renewalMonthsRequired: 1`), so
             a user with one month at 80 hours and five at zero satisfied the render
             gate and was told their record covered every month. It covered one of
             six. Worse, `monthsRequired` is a state election we do not know, so a

@@ -27,85 +27,40 @@ import {
   parseMonth,
   previousMonth,
 } from "@/lib/month";
+import { FEDERAL_DEFAULT, type ReviewPeriodPolicy } from "@/lib/policy";
+
+export type { ReviewPeriodPolicy };
 
 /**
- * The state elections that determine a review period's length.
- *
  * ─────────────────────────────────────────────────────────────────────────────
- * W2b: MOVE THIS WHOLE BLOCK TO `src/lib/policy/`.
+ * THE POLICY VALUES MOVED TO `src/lib/policy/` IN W2b. Done — 2026-09-02.
  *
- * ADR-0001 requires every policy value to come from an injected profile, and
- * `src/lib/policy/` does not exist yet — W2b creates it, and `waves/README.md`
- * sequences W2b *after* W5. `wave-5-month-scoping.md` therefore authorises exactly
- * one named federal-default constant here, on the understanding that W2b moves it.
+ * This file used to declare a `ReviewPeriodPolicy` interface and a
+ * `FEDERAL_DEFAULT_REVIEW_PERIOD` constant, because `src/lib/policy/` did not exist
+ * yet and `waves/README.md` sequences W2b after W5. `wave-5-month-scoping.md`
+ * authorised exactly one named federal-default constant here on the understanding
+ * that W2b would move it.
  *
- * Keep it a single object with a single default export so that move stays a
- * two-line diff. Every consumer already takes it as an optional parameter, so W2b
- * changes what is passed in, not who reads it.
+ * `ReviewPeriodPolicy` is now `Pick<PolicyProfile, …>` — see `lib/policy/types.ts`.
+ * It is re-exported above so W5's callers keep their import, and because the name
+ * still says something useful: these seven fields are what review-period arithmetic
+ * depends on, out of the profile's thirty-five.
+ *
+ * A `Pick` rather than a parallel interface plus an adapter, so there is exactly one
+ * declaration of each field's type and no mapping between two shapes that could
+ * drift. A whole `PolicyProfile` satisfies it structurally and passes straight in,
+ * which is why the default parameters below name `FEDERAL_DEFAULT` directly.
+ *
+ * Two things changed shape rather than just moving:
+ *
+ *   - `renewalPeriodMonths` was the same quantity as the schema's
+ *     `renewalIntervalMonths` under a second name. Merged; the schema's name
+ *     survives. `renewalPeriodMonthsSource` became `renewalIntervalMonthsSource`.
+ *   - `source` was a bare string here; on the profile it is
+ *     `{ citation, url?, retrievedAt }`, because ADR-0001 wants provenance to
+ *     include when it was checked.
  * ─────────────────────────────────────────────────────────────────────────────
  */
-export interface ReviewPeriodPolicy {
-  /**
-   * § 435.556(a)(1). How many consecutive months immediately preceding the month
-   * of application a state assesses. 1 to 3.
-   */
-  applicationLookbackMonths: number;
-  /** § 435.556(a)(1)'s statutory range for the above. Not itself an election. */
-  applicationLookbackBounds: { min: number; max: number };
-  /** § 435.556(a)(2)(i). Months required within the eligibility period. At least 1. */
-  renewalMonthsRequired: number;
-  /** § 435.556(a)(2)(ii). Months required between more-frequent verifications. */
-  verificationMonthsRequired: number;
-  /**
-   * How LONG the eligibility period is assumed to be, in months.
-   *
-   * The weakest number in this object, and it does not come from this rule. See
-   * `renewalPeriodMonthsSource` and `renewalReviewPeriodEndingAt`.
-   */
-  renewalPeriodMonths: number;
-  /**
-   * Its own separate citation, because it has a different and worse provenance
-   * than everything else here and must not travel without the caveat.
-   */
-  renewalPeriodMonthsSource: string;
-  /**
-   * Where these numbers come from. Mandatory, per ADR-0001: "a profile without a
-   * citation is a guess, and guesses don't belong in compliance logic."
-   */
-  source: string;
-}
-
-/**
- * The least-restrictive statutory floor, which is also what most states elected.
- *
- * `state-options.md` records 1 month as the pending assumption for both the
- * application lookback and the renewal months required, on the grounds that it is
- * the statutory minimum. Idaho, Indiana and New Hampshire legislated longer
- * lookbacks; Indiana and New Hampshire also verify quarterly.
- *
- * This is a **Conditional** value in ADR-0003's sense: real, derived, and
- * dependent on a state election we do not know. UI built on it must name the
- * election rather than presenting the result as settled.
- */
-export const FEDERAL_DEFAULT_REVIEW_PERIOD: ReviewPeriodPolicy = {
-  applicationLookbackMonths: 1,
-  applicationLookbackBounds: { min: 1, max: 3 },
-  renewalMonthsRequired: 1,
-  verificationMonthsRequired: 1,
-  renewalPeriodMonths: 6,
-  renewalPeriodMonthsSource:
-    "NOT from CMS-2454-IFC. The IFC amends 42 CFR 435.916 to say MAGI renewals " +
-    "occur every 12 months and no more often, while its own preamble states the " +
-    "adult group is subject to 6-month renewals from January 1, 2027 under SSA " +
-    "1902(e)(14)(L) — a different section of PL 119-21 that this rule does not " +
-    "implement, and which does not reach American Indians or most 1115 enrollees. " +
-    "The two do not agree and no reconciling rulemaking has issued. 6 is treated as " +
-    "operative for the adult group per .kiro/steering/medicaid-domain-knowledge.md, " +
-    "flagged as sourced elsewhere.",
-  source:
-    "42 CFR 435.556(a)(1) and (a)(2), CMS-2454-IFC, 91 FR 33473-74 (June 3, 2026); " +
-    "statutory minimum, pending per-state election data",
-};
 
 /**
  * One of the four review periods 42 CFR 435.556(a) defines.
@@ -186,7 +141,7 @@ function requiredWithinPeriod(elected: number, available: number): number {
  */
 export function applicationReviewPeriod(
   applicationMonth: string,
-  policy: ReviewPeriodPolicy = FEDERAL_DEFAULT_REVIEW_PERIOD,
+  policy: ReviewPeriodPolicy = FEDERAL_DEFAULT,
 ): ReviewPeriod {
   parseMonth(applicationMonth); // throws on malformed input
 
@@ -222,7 +177,7 @@ export function applicationReviewPeriod(
 export function renewalReviewPeriod(
   periodStart: string,
   periodEnd: string,
-  policy: ReviewPeriodPolicy = FEDERAL_DEFAULT_REVIEW_PERIOD,
+  policy: ReviewPeriodPolicy = FEDERAL_DEFAULT,
 ): ReviewPeriod {
   parseMonth(periodStart);
   parseMonth(periodEnd);
@@ -251,8 +206,8 @@ export function renewalReviewPeriod(
  * be expected to know the second date. Almost nobody knows the first, and HourKeep
  * never stored it.
  *
- * So the start is **assumed**, from `policy.renewalPeriodMonths`, and that figure
- * does not come from this rule — see `renewalPeriodMonthsSource`, which records the
+ * So the start is **assumed**, from `policy.renewalIntervalMonths`, and that figure
+ * does not come from this rule — see `renewalIntervalMonthsSource`, which records the
  * § 435.916 versus § 1902(e)(14)(L) conflict in full. Treat the resulting month list
  * as Conditional in ADR-0003's sense, and the weakest such value in the app: the
  * user's state decides, and the user should be told to ask which months.
@@ -263,11 +218,11 @@ export function renewalReviewPeriod(
  */
 export function renewalReviewPeriodEndingAt(
   renewalDueMonth: string,
-  policy: ReviewPeriodPolicy = FEDERAL_DEFAULT_REVIEW_PERIOD,
+  policy: ReviewPeriodPolicy = FEDERAL_DEFAULT,
 ): ReviewPeriod {
   parseMonth(renewalDueMonth);
 
-  const span = Math.max(policy.renewalPeriodMonths, 1);
+  const span = Math.max(policy.renewalIntervalMonths, 1);
   const periodStart = addMonths(renewalDueMonth, -(span - 1));
 
   return renewalReviewPeriod(periodStart, renewalDueMonth, policy);
@@ -283,7 +238,7 @@ export function renewalReviewPeriodEndingAt(
 export function verificationReviewPeriod(
   since: string,
   until: string,
-  policy: ReviewPeriodPolicy = FEDERAL_DEFAULT_REVIEW_PERIOD,
+  policy: ReviewPeriodPolicy = FEDERAL_DEFAULT,
 ): ReviewPeriod {
   parseMonth(since);
   parseMonth(until);
@@ -319,7 +274,7 @@ export function verificationReviewPeriod(
 export function newlyApplicableReviewPeriod(
   periodStart: string,
   becameApplicableMonth: string,
-  policy: ReviewPeriodPolicy = FEDERAL_DEFAULT_REVIEW_PERIOD,
+  policy: ReviewPeriodPolicy = FEDERAL_DEFAULT,
 ): ReviewPeriod {
   parseMonth(periodStart);
   parseMonth(becameApplicableMonth);

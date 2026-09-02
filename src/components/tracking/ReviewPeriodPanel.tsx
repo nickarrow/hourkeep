@@ -400,7 +400,7 @@ function describePeriod(period: ReviewPeriod): string {
       );
     case "renewal":
       // § 435.556(a)(2)(i). The SPAN is an assumption, not a finding — say so out
-      // loud. See `renewalPeriodMonthsSource` for why the number is uncertain.
+      // loud. See `renewalIntervalMonthsSource` for why the number is uncertain.
       //
       // The span is INTERPOLATED from the period, not spelled as a word. A first
       // version wrote "We've assumed six", which review caught: it is the contested

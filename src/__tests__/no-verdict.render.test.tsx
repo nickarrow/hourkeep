@@ -32,8 +32,8 @@ import { ReviewPeriodPanel } from "@/components/tracking/ReviewPeriodPanel";
 import {
   applicationReviewPeriod,
   renewalReviewPeriodEndingAt,
-  FEDERAL_DEFAULT_REVIEW_PERIOD,
 } from "@/lib/reviewPeriod";
+import { FEDERAL_DEFAULT } from "@/lib/policy";
 
 import { requirementFacts } from "@/content/helpText";
 import type { AssessmentResult } from "@/types/assessment";
@@ -499,7 +499,7 @@ describe("ADR-0003 no-verdict guard: W5 month-scoped surfaces", () => {
       render(
         <ReviewPeriodPanel
           reviewPeriod={applicationReviewPeriod("2026-07", {
-            ...FEDERAL_DEFAULT_REVIEW_PERIOD,
+            ...FEDERAL_DEFAULT,
             applicationLookbackMonths: 2,
           })}
           monthHours={hours}
@@ -644,7 +644,7 @@ describe("ADR-0003 no-verdict guard: W5 month-scoped surfaces", () => {
       render(
         <ReviewPeriodPanel
           reviewPeriod={applicationReviewPeriod("2026-07", {
-            ...FEDERAL_DEFAULT_REVIEW_PERIOD,
+            ...FEDERAL_DEFAULT,
             applicationLookbackMonths: 3,
           })}
           monthHours={hours}

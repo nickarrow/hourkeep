@@ -48,12 +48,12 @@ import { currentMonth } from "@/lib/month";
 import {
   applicationReviewPeriod,
   renewalReviewPeriodEndingAt,
-  FEDERAL_DEFAULT_REVIEW_PERIOD,
   includesMonth,
   monthsInReviewPeriod,
   monthsRequiredFor,
   type ReviewPeriod,
 } from "@/lib/reviewPeriod";
+import { FEDERAL_DEFAULT } from "@/lib/policy";
 import { MonthNavigator } from "@/components/tracking/MonthNavigator";
 import { ReviewPeriodPanel } from "@/components/tracking/ReviewPeriodPanel";
 import { format, parseISO } from "date-fns";
@@ -150,7 +150,7 @@ export default function TrackingPage() {
   const monthsRequiredFromNotice =
     userProfile?.onboardingContext?.monthsRequired;
 
-  const bounds = FEDERAL_DEFAULT_REVIEW_PERIOD.applicationLookbackBounds;
+  const bounds = FEDERAL_DEFAULT.applicationLookbackBounds;
 
   /**
    * Whether the notice figure exceeds what § 435.556(a)(1) allows at application.
@@ -185,7 +185,7 @@ export default function TrackingPage() {
   try {
     if (anchor?.kind === "application") {
       reviewPeriod = applicationReviewPeriod(anchor.month, {
-        ...FEDERAL_DEFAULT_REVIEW_PERIOD,
+        ...FEDERAL_DEFAULT,
         applicationLookbackMonths: Math.min(
           Math.max(monthsRequiredFromNotice ?? bounds.min, bounds.min),
           bounds.max,
@@ -193,10 +193,9 @@ export default function TrackingPage() {
       });
     } else if (anchor?.kind === "renewal") {
       reviewPeriod = renewalReviewPeriodEndingAt(anchor.month, {
-        ...FEDERAL_DEFAULT_REVIEW_PERIOD,
+        ...FEDERAL_DEFAULT,
         renewalMonthsRequired:
-          monthsRequiredFromNotice ??
-          FEDERAL_DEFAULT_REVIEW_PERIOD.renewalMonthsRequired,
+          monthsRequiredFromNotice ?? FEDERAL_DEFAULT.renewalMonthsRequired,
       });
     }
   } catch (err) {
