@@ -44,14 +44,32 @@ export interface PolicyProfile {
   interpretiveRisk?: Array<{ field: string; basis: string; watch: string }>;
 
   // --- Thresholds (statutory, but dynamic) ---
-  federalMinimumWage: number;        // 7.25 — from 29 U.S.C. 206(a)(1)(C)
-  requiredHours: number;             // 80
-  /** Derived: federalMinimumWage * requiredHours. Never hardcode 580. */
-  readonly incomeThreshold: number;
+  /** 7.25 — 29 U.S.C. 206(a)(1)(C), via § 435.552(a)(6) at 91 FR 33470. */
+  federalMinimumWage: number;
+  /** 80 — § 435.552(a)(1)-(3), (5)-(7) at 91 FR 33470. */
+  requiredHours: number;
+  //
+  // NO `incomeThreshold` FIELD. Corrected on the W2b dry run, 2026-09-02 — see
+  // `wave-2b-policy-profile.md` § 2.1.1 `[S1]`. This was
+  // `readonly incomeThreshold: number` with the comment "Derived: never hardcode 580",
+  // which does not do what it says: `readonly` means "not reassignable after
+  // construction", not "derived". Nothing stopped a per-State profile from setting it to
+  // a value other than wage x hours — the exact failure the comment was trying to
+  // prevent. It is a FUNCTION instead, `incomeThreshold(profile)`, with no stored field.
 
   // --- Review periods (§ 435.556) ---
-  applicationLookbackMonths: 1 | 2 | 3;
-  renewalMonthsRequired: number;              // >= 1
+  /**
+   * § 435.556(a)(1). 1 to 3. Deliberately `number` and not `1 | 2 | 3` — corrected on
+   * the W2b dry run, `[S2]`. A literal union is a compile-time check only, and profiles
+   * will be loaded from storage where `tsc` cannot help. W5 chose a runtime bounds check
+   * that throws with the statutory range named, and that survives untrusted input.
+   */
+  applicationLookbackMonths: number;
+  /** § 435.556(a)(1)'s statutory range for the above. Not itself an election. */
+  applicationLookbackBounds: { min: number; max: number };
+  renewalMonthsRequired: number;              // >= 1, § 435.556(a)(2)(i)
+  /** § 435.556(a)(2)(ii). Months required between more-frequent verifications. */
+  verificationMonthsRequired: number;
   moreFrequentVerification: false | { intervalMonths: number; monthsRequired: number };
 
   // --- Options affecting what counts (§ 435.552) ---
@@ -78,11 +96,34 @@ export interface PolicyProfile {
   documentationRequiredFrom: string;
   /** § 435.560. Non-null means the State is NOT enforcing yet. Expires no later than 2028-12-31. */
   goodFaithEffortExemptionThrough: string | null;
-  noncomplianceResponseDays: number;          // 30
-  noticeReceiptPresumptionDays: number;       // 5
+  /** § 435.558(a)(2), 91 FR 33476. 30 calendar days from RECEIPT, not from the notice date. */
+  noncomplianceResponseDays: number;
+  /** § 435.558(c)(4), 91 FR 33477. "considered to be received 5 days after the date on the notice". */
+  noticeReceiptPresumptionDays: number;
   /** § 435.916(a)(3)(iii). 90 is a FEDERAL FLOOR for MAGI; the only election is to elect longer. */
   reconsiderationDays: number;
-  renewalIntervalMonths: number;              // 6 for adult group; 12 for AI/AN and most 1115
+  /**
+   * How long the eligibility period is: 6 for the adult group, 12 for AI/AN and most 1115.
+   *
+   * ALSO the assumed span of a renewal review period, which is what
+   * `renewalReviewPeriodEndingAt` derives its month list from. W5 declared this
+   * separately as `renewalPeriodMonths`; the two were the same quantity under two names
+   * and were merged on the W2b dry run, 2026-09-02 (`[P6]`).
+   *
+   * The weakest number in this profile. See `renewalIntervalMonthsSource`, which must
+   * travel with it.
+   */
+  renewalIntervalMonths: number;
+  /**
+   * Its own separate citation, because this one value has a different and WORSE
+   * provenance than everything else here and must not travel without the caveat.
+   *
+   * From W5. `source` is one citation for the whole profile (ADR-0001); this is the
+   * exception that needed its own, because the figure does not come from CMS-2454-IFC at
+   * all. Indexed in `interpretiveRisk` as well, so the UI can hedge from structured data
+   * rather than parsing prose — a test asserts the two name the same field.
+   */
+  renewalIntervalMonthsSource: string;
   submissionModalities: Array<"online" | "phone" | "mail" | "in-person" | "fax" | "electronic">;
 
   // --- Added on validation (§ 435.558(b), § 435.557) ---
@@ -103,13 +144,39 @@ export interface PolicyProfile {
 
 Design notes:
 
-- `incomeThreshold` is **derived**, never stored. The FLSA can be amended.
+- `incomeThreshold` is **derived**, never stored — and since 2026-09-02 it is a **function**, not a
+  field, so that is enforced rather than requested. `incomeThreshold(profile)`.
 - `confidence` exists so the UI can hedge honestly. A `statutory-floor` profile should produce copy
   like "your state may require more than this."
 - `source` is mandatory. A profile without a citation is a guess, and guesses do not belong in
-  compliance logic.
+  compliance logic. **`renewalIntervalMonthsSource` is the one field-level exception**, because that
+  value alone does not come from this rule.
 - `seasonalMethod` is a discriminated union because the two paths produce genuinely different numbers,
   and most States elect the second.
+- **`ReviewPeriodPolicy` is `Pick<PolicyProfile, …>`**, not a separate type. W5 shipped it standalone
+  because `src/lib/policy/` did not exist yet. It now selects `applicationLookbackMonths`,
+  `applicationLookbackBounds`, `renewalMonthsRequired`, `verificationMonthsRequired`,
+  `renewalIntervalMonths`, `renewalIntervalMonthsSource` and `source`. A `Pick` rather than a parallel
+  interface plus an adapter, so there is one declaration of each field's type and nothing to drift; a
+  `PolicyProfile` satisfies it structurally and passes straight in.
+
+> ### Four corrections made on the W2b dry run, 2026-09-02
+>
+> Recorded here because this document is the schema of record and a reader should see what moved.
+> Reasoning in [`../../hr1-readiness/waves/wave-2b-policy-profile.md`](../../hr1-readiness/waves/wave-2b-policy-profile.md)
+> § 2.1.1.
+>
+> 1. **`incomeThreshold` is a function, no field** — `readonly` does not mean derived. `[S1]`
+> 2. **`applicationLookbackMonths` is `number` plus `applicationLookbackBounds`**, not `1 | 2 | 3` — a
+>    literal union cannot check a value loaded from storage. `[S2]`
+> 3. **Three fields added**, all real parameters this tracker should already have carried:
+>    `applicationLookbackBounds`, `verificationMonthsRequired`, `renewalIntervalMonthsSource`. `[S3]`
+> 4. **`renewalIntervalMonths` absorbed W5's `renewalPeriodMonths`** — the same quantity under two
+>    names. `[P6]`
+>
+> **The interface declares 33 fields; 35 are implemented** (33, less `incomeThreshold`, plus the three
+> additions). An earlier plan for W2b said 30, which was a slip from "at least sixteen parameters to
+> State election" — a count of *elections*, which is a different quantity from a count of *fields*.
 
 ---
 
@@ -119,11 +186,13 @@ The least-restrictive statutory floor. Safe to show any user, and honest as long
 
 | Parameter | Value | Basis |
 |---|---|---|
-| `federalMinimumWage` | 7.25 | 29 U.S.C. 206(a)(1)(C) |
-| `requiredHours` | 80 | § 435.552(a) |
-| `incomeThreshold` | 580 | derived |
+| `federalMinimumWage` | 7.25 | 29 U.S.C. 206(a)(1)(C), via § 435.552(a)(6) — 91 FR 33470 |
+| `requiredHours` | 80 | § 435.552(a)(1)–(3), (5)–(7) — 91 FR 33470 |
+| *`incomeThreshold(profile)`* | *580* | *Derived, not a field. `federalMinimumWage × requiredHours`* |
 | `applicationLookbackMonths` | 1 | § 435.556(a)(1) minimum |
-| `renewalMonthsRequired` | 1 | § 435.556(a)(2) minimum |
+| `applicationLookbackBounds` | `{ min: 1, max: 3 }` | § 435.556(a)(1) statutory range. Not an election |
+| `renewalMonthsRequired` | 1 | § 435.556(a)(2)(i) minimum |
+| `verificationMonthsRequired` | 1 | § 435.556(a)(2)(ii) minimum. Only reachable if more-frequent verification is elected |
 | `moreFrequentVerification` | false | State option, default decline |
 | `incomeToHoursProxyAvailable` | true | § 435.552(e)(2), user-favorable |
 | `seasonalMethod` | preceding-average, 6 months | § 435.552(g) statutory fallback |
@@ -138,7 +207,8 @@ The least-restrictive statutory floor. Safe to show any user, and honest as long
 | `noncomplianceResponseDays` | 30 | § 435.558(a)(2) |
 | `noticeReceiptPresumptionDays` | 5 | § 435.558(c)(4) |
 | `reconsiderationDays` | 90 | § 435.916(a)(3)(iii) — federal floor |
-| `renewalIntervalMonths` | 6 | § 1902(e)(14)(L), adult group |
+| `renewalIntervalMonths` | 6 | **SSA § 1902(e)(14)(L), NOT this rule.** See the next row |
+| `renewalIntervalMonthsSource` | *(the caveat, in full)* | The IFC amends § 435.916 to say MAGI renewals happen every 12 months and no more often, while its own preamble says the adult group is subject to 6-month renewals from January 1, 2027 under § 1902(e)(14)(L) — a different section of PL 119-21 that this rule does not implement, and which does not reach American Indians or most § 1115 enrollees. No reconciling rulemaking has issued. 6 is treated as operative and flagged as sourced elsewhere |
 | `submissionModalities` | `["online","phone","mail","in-person","fax","electronic"]` | § 435.907(a). **Fax is real** — Missouri accepts it |
 | `unableToVerifyAtRenewal` | `option-2-sequential` | § 435.558(b)(2). Assumed because it is more protective — two windows rather than one |
 | `unableToVerifyAtVerification` | null | No more-frequent verification assumed |
@@ -148,8 +218,19 @@ The least-restrictive statutory floor. Safe to show any user, and honest as long
 | `presumptiveEligibilityForAdultGroup` | null | Unknown per State |
 
 > **Note on `incomeToHoursProxyAvailable: true`.** This is a State option we default to *on* because it
-> can only help the user, and because HourKeep never adjudicates — it surfaces the possibility and
-> tells the user to raise it with their agency. If a State declines it, the user has lost nothing.
+> surfaces a real, user-favourable possibility, and because HourKeep never adjudicates — it raises the
+> possibility and tells the user to take it to their agency.
+>
+> **Corrected 2026-09-02.** This note previously ended "If a State declines it, the user has lost
+> nothing." That is wrong, and wrong in the direction that costs coverage. ADR-0001 was corrected on
+> validation on exactly this point and this document was not: **they lose the hours they didn't go
+> find.** Someone shown "your state may credit 52, you need 28 more", who logs 28 and is then denied
+> because their State declined the option, has lost coverage.
+>
+> Keep the default on, but the copy is belt-and-braces: *if you can reach 80 without counting on this,
+> do — and log the income too.* Per ADR-0003 this is a **Conditional** value, shown with the State
+> election named, and § 435.552(e)(2)(i) makes any figure an **upper bound** because the State must
+> allocate hours between household members by a method we cannot know. "Up to", never "about".
 
 ---
 

@@ -39,6 +39,37 @@ deliberate:
 - `confidence` is `"statutory-floor" | "state-published" | "third-party-reported"`, so the UI can hedge
   honestly. A `statutory-floor` profile should produce copy like "your state may require more."
 
+> ### Amended at execution — 2026-09-02, W2b
+>
+> Four things this ADR asserted turned out to need a mechanism rather than a statement. None reverses
+> the decision; all four make it enforceable. Full reasoning in
+> [`../waves/wave-2b-policy-profile.md`](../waves/wave-2b-policy-profile.md) § 2.1.1.
+>
+> 1. **"`incomeThreshold` is derived, never stored" needs to be a function, not a `readonly` field.**
+>    `state-options.md` encoded it as `readonly incomeThreshold: number` with that sentence as a
+>    comment. `readonly` means "not reassignable after construction" — it does **not** mean derived, and
+>    nothing stopped a per-State profile from storing a value other than wage × hours. It is now
+>    `incomeThreshold(profile)` with no field, which is the only form where this bullet is enforced.
+> 2. **"Every compliance function grows a profile parameter" is an *optional* parameter defaulting to
+>    `FEDERAL_DEFAULT`.** W5 established the pattern in `reviewPeriod.ts` and it is what keeps W0's
+>    characterization tests callable unchanged — which is the gate proving the refactor is
+>    behaviour-neutral. A required parameter would have forced every one of those tests to change,
+>    destroying the signal.
+> 3. **`source` being mandatory once per profile was not sufficient.** One value —
+>    `renewalIntervalMonths` — has materially worse provenance than the rest, because it comes from
+>    SSA § 1902(e)(14)(L) rather than from this rule, which says 12 months at § 435.916. It carries its
+>    own `renewalIntervalMonthsSource`, and `interpretiveRisk` indexes the same fact for the UI.
+>    A field-level exception to a profile-level rule, deliberately.
+> 4. **`ReviewPeriodPolicy` is `Pick<PolicyProfile, …>`.** W5 shipped a standalone
+>    `FEDERAL_DEFAULT_REVIEW_PERIOD` because this module did not exist yet, on the understanding that
+>    W2b would move it. It is folded in as a `Pick` rather than a parallel interface plus an adapter, so
+>    there is one declaration of each field's type and no bridge to drift. This ADR's "per-State
+>    profiles are purely additive" property is unaffected.
+>
+> Also corrected in `state-options.md` at the same time: its note on `incomeToHoursProxyAvailable` still
+> carried "the user has lost nothing", which **this ADR's own accepted-risk section had already
+> retracted** on validation. Two documents, one retraction, applied to one of them. Fixed.
+
 ## Consequences
 
 **Good**

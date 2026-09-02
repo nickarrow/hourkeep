@@ -105,7 +105,7 @@ becomes `renewalIntervalMonthsSource`. `renewalReviewPeriodEndingAt` reads the m
 
 **So `[S3]` adds three fields, not four:** `applicationLookbackBounds`, `verificationMonthsRequired`, and
 `renewalIntervalMonthsSource`. **Implemented field count: 33 − 1 (`incomeThreshold` becomes a function,
-`[S1]`) + 3 = 35.**
+`[S1]`) + 3 = 35** — and `state-options.md`, amended, now declares exactly those 35.
 
 ### Verified citations
 
@@ -131,9 +131,11 @@ found two without it.
 ### 2.1.1 The policy profile module (ADR-0001)
 
 Create `src/lib/policy/` with `PolicyProfile` and `FEDERAL_DEFAULT`. Schema from
-`../../domain/cms-2454-ifc/state-options.md` — **all 33 declared fields**, becoming **35 implemented**
-after the corrections below — with four schema corrections agreed before implementation and folded back
-into that document.
+`../../domain/cms-2454-ifc/state-options.md`, which declared **33** fields before this wave and declares
+**35** after — the four corrections below were agreed before implementation and are folded back into that
+document, so it stays the schema of record rather than a stale copy of one.
+
+`grep -cE '^  [a-zA-Z]+\??:'` over its `PolicyProfile` block returns 35, which is the implemented count.
 
 #### The four schema corrections
 
@@ -339,9 +341,10 @@ being guarded against is that "no literal says 80" is satisfied by deleting the 
 
 - [ ] `src/lib/policy/` exists, exports `PolicyProfile` and `FEDERAL_DEFAULT`, and a test asserts
       `FEDERAL_DEFAULT.source.citation` is non-empty and matches `/435\.55/`
-- [ ] **Every one of the 35 fields** (33 declared, less `incomeThreshold` per `[S1]`, plus the three `[S3]`
-      additions) is present, and a test enumerates them against a manifest so a field cannot be silently
-      dropped
+- [ ] **Every one of the 35 fields `state-options.md` declares** is present, and a test enumerates them
+      against a manifest so a field cannot be silently dropped. Checked against the document, not against
+      this list — `grep -cE '^  [a-zA-Z]+\??:'` over its `PolicyProfile` block must equal the manifest
+      length
 - [ ] **Positive twin for "all 35 fields":** a test asserts every field has **either** a live consumer
       **or** a named owning wave, so the currently-unread fields are documented speculation rather than
       silent speculation
