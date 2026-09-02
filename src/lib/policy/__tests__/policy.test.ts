@@ -403,10 +403,20 @@ describe("the field manifest: a field cannot be dropped silently", () => {
     );
   });
 
-  it("declares 35 fields — 33 before W2b, less incomeThreshold, plus three additions", () => {
-    // A bare count, deliberately, as the cheap tripwire. The three assertions above
-    // check correspondence; this one catches "all three agree and all three are wrong".
-    expect(POLICY_PROFILE_FIELDS).toHaveLength(35);
+  it("declares 36 fields", () => {
+    /**
+     * A bare count, deliberately, as the cheap tripwire. The assertions above check
+     * correspondence between three places; this one catches "all three agree and all three
+     * are wrong".
+     *
+     * The arithmetic: `state-options.md` declared **33** before this wave. `incomeThreshold`
+     * left as a field and became a function (−1). Three were added to absorb W5's
+     * review-period constant — `applicationLookbackBounds`, `verificationMonthsRequired`,
+     * `renewalIntervalMonthsSource` (+3). One more was added for gap 15.7,
+     * `renewalInitiationLeadDays`, because § 435.559(c) turns on when a renewal is
+     * initiated and that lead time is a policy value like any other (+1). 33 − 1 + 3 + 1 = 36.
+     */
+    expect(POLICY_PROFILE_FIELDS).toHaveLength(36);
   });
 });
 

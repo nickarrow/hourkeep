@@ -131,6 +131,23 @@ export interface PolicyProfile {
    */
   implementationDate: string;
   /**
+   * How far ahead of a renewal's due date the state begins its ex parte review, in days.
+   *
+   * PREAMBLE, 91 FR 33416, and the weakest tier of anything in this profile: it is not an
+   * interpretation of the rule, it is CMS reporting that "many States have a renewal
+   * process that takes between 60 to 90 days" — a range ACROSS states, told to CMS by
+   * state systems staff. So it is per-state and largely unknown, not a constant.
+   *
+   * It is here rather than in `transition.ts` because it decides a user-visible answer
+   * (42 CFR 435.559(c): whether a renewal is the first "initiated" on or after the
+   * implementation date), and ADR-0001 admits no policy value outside this module.
+   *
+   * A range and not a single number, because collapsing it to a point estimate would
+   * manufacture certainty CMS does not claim. A state with a 30-day process gets a
+   * different answer for the same renewal month.
+   */
+  renewalInitiationLeadDays: { min: number; max: number };
+  /**
    * 42 CFR 435.557(b)(2)(ii) — 91 FR 33474. PER-STATE, not a constant. Federally
    * 2028-01-01, but eight states require medical-frailty documentation from January 2027:
    * AR, ID, IN, IA, NC, ND, OH, UT.
@@ -251,6 +268,7 @@ export const POLICY_PROFILE_FIELDS = [
   "shortTermHardshipOffered",
   "unemploymentHardshipEffectuated",
   "implementationDate",
+  "renewalInitiationLeadDays",
   "documentationRequiredFrom",
   "goodFaithEffortExemptionThrough",
   "noncomplianceResponseDays",
@@ -370,8 +388,12 @@ export const POLICY_FIELD_OWNERS: Record<
     why: "The second, independent election at 42 CFR 435.555(d)(3)",
   },
   implementationDate: {
-    wave: "W2b",
-    why: "Gaps 15.6 and 15.7 — 42 CFR 435.915 and 435.559(c) both compare against it. Becomes a consumer when transition.ts lands later in this wave",
+    consumer: "src/lib/policy/transition.ts",
+    why: "Gaps 15.6 and 15.7 — 42 CFR 435.915 and 435.559(c) both compare against it",
+  },
+  renewalInitiationLeadDays: {
+    consumer: "src/lib/policy/transition.ts",
+    why: "42 CFR 435.559(c) triggers on when a renewal is INITIATED, which runs 60-90 days ahead of its due date",
   },
   documentationRequiredFrom: {
     wave: "W6a",

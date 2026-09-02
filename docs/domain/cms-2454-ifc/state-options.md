@@ -90,6 +90,20 @@ export interface PolicyProfile {
   // --- Process (§§ 435.557–435.559) ---
   implementationDate: string;
   /**
+   * How far ahead of a renewal's due date the State begins its ex parte review, in days.
+   *
+   * Added 2026-09-02 for gap 15.7. § 435.559(c) triggers the first assessment on when a
+   * renewal is **initiated**, not when it is due, so this figure decides whether a given
+   * renewal is reached at all.
+   *
+   * PREAMBLE, 91 FR 33416, and the weakest tier in this profile — not an interpretation of
+   * the rule but CMS reporting that "many States have a renewal process that takes between
+   * 60 to 90 days", from discussions with State systems staff. Per-State and unpublished.
+   * A range, not a point estimate, because collapsing it would manufacture certainty CMS
+   * does not claim.
+   */
+  renewalInitiationLeadDays: { min: number; max: number };
+  /**
    * PER-STATE, not a constant. Federally 2028-01-01 (§ 435.557(b)(2)(ii)), but eight States
    * require medical-frailty documentation from January 2027: AR, ID, IN, IA, NC, ND, OH, UT.
    */
@@ -201,7 +215,8 @@ The least-restrictive statutory floor. Safe to show any user, and honest as long
 | `medicallyFrailConditionListUrl` | null | unknown per State |
 | `shortTermHardshipOffered` | false | State option |
 | `unemploymentHardshipEffectuated` | false | requires State request + CMS approval |
-| `implementationDate` | 2027-01-01 | § 435.559(a) |
+| `implementationDate` | 2027-01-01 | § 435.559(a) — 91 FR 33478. (b) is the election to go earlier |
+| `renewalInitiationLeadDays` | `{ min: 60, max: 90 }` | **Preamble, 91 FR 33416.** Note which way it cuts: CMS rejected an end-date trigger *because* a 60–90 day process would have pulled January 2027 renewals into review by November 2026. Choosing initiation instead pushes a user's first assessment **later** |
 | `documentationRequiredFrom` | 2028-01-01 | § 435.557(b)(2)(ii) — **but 2027-01-01 in eight States** |
 | `goodFaithEffortExemptionThrough` | null | § 435.560. CMS expects ~10 States to request one |
 | `noncomplianceResponseDays` | 30 | § 435.558(a)(2) |

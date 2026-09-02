@@ -105,7 +105,8 @@ becomes `renewalIntervalMonthsSource`. `renewalReviewPeriodEndingAt` reads the m
 
 **So `[S3]` adds three fields, not four:** `applicationLookbackBounds`, `verificationMonthsRequired`, and
 `renewalIntervalMonthsSource`. **Implemented field count: 33 − 1 (`incomeThreshold` becomes a function,
-`[S1]`) + 3 = 35** — and `state-options.md`, amended, now declares exactly those 35.
+`[S1]`) + 3 = 35**, plus `renewalInitiationLeadDays` for gap 15.7 = **36**. `state-options.md`,
+amended, declares exactly those 36.
 
 ### Verified citations
 
@@ -132,10 +133,10 @@ found two without it.
 
 Create `src/lib/policy/` with `PolicyProfile` and `FEDERAL_DEFAULT`. Schema from
 `../../domain/cms-2454-ifc/state-options.md`, which declared **33** fields before this wave and declares
-**35** after — the four corrections below were agreed before implementation and are folded back into that
+**36** after — the four corrections below were agreed before implementation and are folded back into that
 document, so it stays the schema of record rather than a stale copy of one.
 
-`grep -cE '^  [a-zA-Z]+\??:'` over its `PolicyProfile` block returns 35, which is the implemented count.
+`grep -cE '^  [a-zA-Z]+\??:'` over its `PolicyProfile` block returns 36, which is the implemented count.
 
 #### The four schema corrections
 
@@ -284,15 +285,66 @@ this file.
 verified "at the applicable individual's **first renewal initiated on or after**" it.
 
 **The trap, also from W5.** `ReviewPeriodAnchor` with `kind: "renewal"` stores the month the renewal is
-**due**, because that is what a user knows. § 435.559(c) triggers on **initiation**, which CMS notes can
-precede the due date by 60–90 days. Comparing the stored due month directly against an implementation date
-gives the wrong answer **in the user-unfavourable direction** — it would tell someone they are not being
-assessed when initiation may already have happened. So the comparison must widen the window by the
-initiation lead time, and the lead time is a State behaviour we do not know, which makes the result
-**Conditional** and the copy obliged to name the uncertainty.
+**due**, because that is what a user knows. § 435.559(c) triggers on **initiation**, which CMS notes runs
+60–90 days ahead of the due date.
+
+> #### Corrected at execution, 2026-09-02: this paragraph had the direction of harm backwards
+>
+> It previously said that comparing the stored due month directly "gives the wrong answer **in the
+> user-unfavourable direction** — it would tell someone they are not being assessed when initiation may
+> already have happened." **That is inverted**, and checking the raw preamble is what showed it.
+>
+> CMS considered triggering on the eligibility period's **end date** and rejected it, at 91 FR 33416,
+> precisely because a 60–90 day process would have pulled renewals due January 31, 2027 into review "as
+> early as November 2026" — before the rules existed. Choosing **initiation** instead means the lead time
+> pushes a user's first assessment **later**, not earlier.
+>
+> So the naive due-month comparison **over-warns**: it says "assessed" for a January 2027 renewal that was
+> almost certainly initiated in October or November 2026 and therefore is not reached at all. And the
+> lead-adjusted answer is the one that risks **under**-warning, if a State's real process is faster than 60
+> days. The dangerous error is the reassuring one, which is the opposite of what this file assumed.
+>
+> **Consequence for the design:** the answer must not be a boolean in either direction. It is a three-valued
+> relation — `before` / `straddles` / `on-or-after` — carrying the lead range it used, and its copy states a
+> probability rather than an outcome. A user who stops gathering evidence on the strength of an overstated
+> reassurance is worse off than one who gathers it unnecessarily.
 
 The copy half of 15.7 is already closed by W2a (`requirementFacts.already-enrolled-timing`). W2b owns the
 data half only, and must not weaken what W2a shipped.
+
+#### What was actually built, and two findings
+
+`src/lib/policy/transition.ts`. `applicationRuleset(filedOn, profile)` for 15.6 and
+`renewalInitiationWindow(dueMonth, profile)` for 15.7. Neither returns a boolean; both name their source
+tier, and § 435.559(c)'s rule-text trigger is cited separately from the preamble lead time because they are
+not equally solid.
+
+**The granularity decision for 15.6, recorded as § 2.1.3 required.** `applicationRuleset` accepts **either**
+`YYYY-MM-DD` or `YYYY-MM`, and **month granularity is sufficient today**. Every implementation date we have
+data for is the first of a month — the federal 2027-01-01, Nebraska 2026-05-01, Montana and Arkansas
+2026-07-01, Iowa 2026-12-01 — and against a first-of-month boundary a whole filing month falls on one side,
+so a month is exactly as good as a date. Where a State elects a **mid-month** date under § 435.559(b), the
+month-granular call returns `"uncertain"` and names what would settle it, rather than picking a side; the
+day-granular call resolves it. A date-granular *stored* field was considered and **not** added: nothing in
+the app collects a filing date yet, so it would have had no writer, and W2b has already been criticised for
+fields with no reader. The function accepts one the day something does.
+
+**The `straddles` arm is unreachable under `FEDERAL_DEFAULT`, and that is arithmetic rather than design.**
+A 60-to-90-day window is 30 days wide, and against first-of-month due dates it never lands either side of a
+first-of-month implementation date: due 2027-03 gives 2026-12-01 to 2026-12-31, due 2027-04 gives 2027-01-01
+to 2027-01-31. The gap falls exactly on the boundary. Two consequences, both pinned by tests:
+
+- **The reassuring answer runs through March 2027**, one month further than the steering doc's "January or
+  February". Computed, not assumed — the first version of that test asserted March straddled, and it does not.
+- The arm is still needed, because a State slower than CMS's reported range does straddle. It is tested with
+  an explicit `{ min: 60, max: 120 }` profile rather than left as prose nobody executes — W5 shipped two
+  review-period arms with no caller and its semantic reviewer was right to flag them.
+
+**A 36th profile field was added:** `renewalInitiationLeadDays: { min, max }`. It is a policy value in
+ADR-0001's sense — it decides a user-visible answer — and it is per-State, since CMS describes "many States"
+rather than all of them. A range and not a point estimate, because collapsing it would manufacture certainty
+CMS does not claim. Field count is therefore **36**: 33 declared before this wave, less `incomeThreshold`,
+plus the three `[S3]` additions, plus this.
 
 ### 2.1.4 Harden the gate and the guards
 
@@ -341,11 +393,11 @@ being guarded against is that "no literal says 80" is satisfied by deleting the 
 
 - [ ] `src/lib/policy/` exists, exports `PolicyProfile` and `FEDERAL_DEFAULT`, and a test asserts
       `FEDERAL_DEFAULT.source.citation` is non-empty and matches `/435\.55/`
-- [ ] **Every one of the 35 fields `state-options.md` declares** is present, and a test enumerates them
+- [ ] **Every one of the 36 fields `state-options.md` declares** is present, and a test enumerates them
       against a manifest so a field cannot be silently dropped. Checked against the document, not against
       this list — `grep -cE '^  [a-zA-Z]+\??:'` over its `PolicyProfile` block must equal the manifest
       length
-- [ ] **Positive twin for "all 35 fields":** a test asserts every field has **either** a live consumer
+- [ ] **Positive twin for "all 36 fields":** a test asserts every field has **either** a live consumer
       **or** a named owning wave, so the currently-unread fields are documented speculation rather than
       silent speculation
 - [ ] `renewalPeriodMonths` does **not** exist — `[P6]`'s duplicate is merged into `renewalIntervalMonths`,

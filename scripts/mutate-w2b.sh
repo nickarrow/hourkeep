@@ -126,3 +126,60 @@ echo
 echo "caught: $pass   insensitive: $insensitive"
 echo "--- git status must be clean below this line ---"
 git status --short
+
+# --- Appended for task 6: the transition rules (gaps 15.6, 15.7) --------------
+TR=src/lib/policy/transition.ts
+
+echo "== 435.915, application ruleset =="
+mutate "$TR" 's|const prior = isBefore(parseISO(filedOn), implementation);|const prior = !isBefore(parseISO(filedOn), implementation);|' \
+  "day-granular comparison inverted" src/lib/policy
+mutate "$TR" 's|const prior = filedOn < implementationMonth;|const prior = filedOn <= implementationMonth;|' \
+  "month comparison includes the implementation month (435.559(a) is on-or-after)" src/lib/policy
+mutate "$TR" 's|if (filedOn === implementationMonth \&\& !implementationIsFirstOfMonth) {|if (false) {|' \
+  "straddling filing month guesses instead of returning uncertain" src/lib/policy
+mutate "$TR" 's|ruleset: "uncertain",|ruleset: "prior-rules",|' \
+  "uncertain silently becomes the user-favourable answer" src/lib/policy
+mutate "$TR" 's|Ask your state to confirm which rules they applied to your application.||' \
+  "prior-rules answer loses its next action" src/lib/policy
+# Re-targeted. The first version removed only ONE of two tier labels in this citation, so
+# the test rightly kept passing. Removing the definitive one is the real mutation.
+mutate "$TR" 's|apply. PREAMBLE, not regulatory text.|apply.|' \
+  "435.915 citation drops its source-tier label" src/lib/policy
+mutate "$TR" 's|`applicationRuleset needs a filing date as YYYY-MM-DD or YYYY-MM, got ` +|`bad input ` +|' \
+  "malformed-input error stops naming the expected format" src/lib/policy
+
+echo "== 435.559(c), renewal initiation window =="
+mutate "$TR" 's|const earliest = addDays(dueDate, -leadDays.max);|const earliest = addDays(dueDate, leadDays.max);|' \
+  "initiation window runs FORWARD from the due date" src/lib/policy
+mutate "$TR" 's|const earliest = addDays(dueDate, -leadDays.max);|const earliest = addDays(dueDate, -leadDays.min);|' \
+  "earliest uses min instead of max (window collapses)" src/lib/policy
+mutate "$TR" 's|const latest = addDays(dueDate, -leadDays.min);|const latest = addDays(dueDate, -leadDays.max);|' \
+  "latest uses max instead of min (bounds swapped)" src/lib/policy
+mutate "$TR" 's|const leadDays = profile.renewalInitiationLeadDays;|const leadDays = { min: 60, max: 90 };|' \
+  "lead time hardcoded instead of read from the profile (ADR-0001)" src/lib/policy
+mutate "$TR" 's|: earliestIsBefore$|: false|' \
+  "straddles arm removed" src/lib/policy
+mutate "$TR" 's|const relationToImplementation = latestIsBefore|const relationToImplementation = earliestIsBefore|' \
+  "relation keys off earliest, so straddling reports as before" src/lib/policy
+# CHECKED AND DROPPED, not fixed. Removing "likely" leaves "States usually start looking at
+# your records 60 to 90 days before that, so yours started around 2026-10 or 2026-11" - one
+# sentence carrying both "usually" and "around", which is adequate hedging. Tightening the
+# guard to fire here would be guard over-reach of the kind that killed the repo-wide policy
+# grep. Left in the harness, expected INSENSITIVE, so the count does not quietly improve.
+mutate "$TR" 's|so yours likely |so yours |' \
+  "reassuring answer drops 'likely' (EXPECTED INSENSITIVE - see comment)" src/lib/policy
+# Re-targeted. Replacing "probably won't" with "will not" left the sentence opening "If
+# so,", which is a legitimate hedge and which the per-sentence guard correctly accepts -
+# "if X, then Y will not happen" is a conditional, not an absolute. Removing the antecedent
+# too is what makes it an unhedged claim.
+mutate "$TR" 's|If so, this requirement probably won.t be checked|This requirement will not be checked|' \
+  "reassurance becomes an unhedged absolute" src/lib/policy
+mutate "$TR" 's|Ask your state when they.ll start reviewing ` +|`` +|' \
+  "before-answer loses its next action" src/lib/policy
+mutate "$TR" 's|RULE TEXT: for a |for a |' \
+  "435.559(c) citation drops the RULE TEXT label" src/lib/policy
+mutate "$TR" 's|CMS-2454-IFC PREAMBLE, 91 FR 33416|CMS-2454-IFC, 91 FR 33416|' \
+  "lead-time citation drops the PREAMBLE label" src/lib/policy
+
+echo
+echo "TRANSITION TOTALS  caught: $pass   insensitive: $insensitive"

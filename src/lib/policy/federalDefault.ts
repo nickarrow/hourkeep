@@ -145,6 +145,16 @@ export const FEDERAL_DEFAULT: PolicyProfile = {
   // --- Process, 42 CFR 435.557-435.560 -------------------------------------
   // 42 CFR 435.559(a), 91 FR 33478. (b) is the election to implement earlier.
   implementationDate: "2027-01-01",
+  // PREAMBLE, 91 FR 33416: "many States have a renewal process that takes between 60 to
+  // 90 days". A range across states, reported to CMS by state systems staff — not a rule,
+  // and not a value any state has published for itself.
+  //
+  // Note which way this cuts. CMS considered triggering the first assessment on the
+  // eligibility period's END date and REJECTED it, because with a 60-90 day process that
+  // would have pulled renewals due in January 2027 into review as early as November 2026,
+  // before the rules existed. Choosing initiation instead means the lead time pushes a
+  // user's first assessment LATER. Easy to reason about backwards.
+  renewalInitiationLeadDays: { min: 60, max: 90 },
   // 42 CFR 435.557(b)(2)(ii), 91 FR 33474 — but 2027-01-01 in eight states.
   documentationRequiredFrom: "2028-01-01",
   // 42 CFR 435.560. CMS expects roughly ten states to request one.
