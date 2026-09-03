@@ -49,6 +49,16 @@ zero production callers; see the outcome note under § 15.
 > been backfilled here, because doing it from memory is exactly the bookkeeping this document was
 > corrected for once already. **W3 should reconcile W0's and W5's rows against their wave files** —
 > and each wave should write its own line here at closeout.
+>
+> **Backfilled 2026-09-02, and the result is not what the missing annotations implied.** W5 closed
+> **five** rows (6.4, 7.1–7.4) and W0 closed **none** — because W0's scope was audit sections rather
+> than numbered rows, which is correct rather than a miss. Each of W5's five was checked against the
+> code, not against its wave file. Lines added below; W3 no longer needs to do this.
+
+**W5 (2026-09-02) closed:** 6.4, 7.1, 7.2, 7.3, 7.4 — **5 rows**. Backfilled 2026-09-02 and verified
+against the tree.
+**W0 (2026-09-01) closed:** no numbered rows. Its scope was the audit's §§ 4.2, 4.6, 4.9, 4.14, 5 and 7.
+It also **added** the 15.27 risk: `deleteAll` exists and no import path does.
 
 > **Row 5.7 was itself wrong and is corrected above.** It described the seasonal-worker test as an
 > "objective test", which is the framing `validation-findings-2026-08.md` § I7 **retracted** from the
@@ -60,16 +70,44 @@ zero production callers; see the outcome note under § 15.
 
 ## Summary
 
-Counts corrected on validation (2026-08-16). The originals in this table were all understated.
+**Recounted 2026-09-02. Every total in this table was still understated, and the cause is specific:
+the counts were "corrected on validation" while § 15 — the 27 rows validation itself added — was
+never included in them.** 108 − 27 = 81, which is exactly the old total. So the correction covered
+sections 1–11 and skipped its own output.
 
-| | Count |
-|---|---|
-| Total rows | **81** (75 real gaps, 6 `ok`) |
-| `contradicts` | **16** — and **every one is also `harmful`**, so the two categories are identical |
-| `missing` + `blocks` | **15** |
-| `stricter` + `harmful` | **3** |
-| `partial` | **26** |
-| **Total `harmful`** | **31** |
+Counted by parsing the `Gap` and `Impact` columns of every row whose first cell matches
+`N.N`, over the whole file:
+
+| | Count | Was | |
+|---|---|---|---|
+| Total rows | **108** (102 real gaps, 6 `ok`) | 81 | § 15's 27 rows were uncounted |
+| `contradicts` | **18** — and **every one is also `harmful`**, so the two categories are identical | 16 | The old 16 was the `contradicts`+`harmful` **pair** count, not the `contradicts` count. The "every one is also harmful" claim does hold — verified, 0 exceptions |
+| `missing` | **54** | — | not previously reported |
+| `missing` + `blocks` | **15** | 15 | correct |
+| `stricter` + `harmful` | **3** | 3 | correct |
+| `partial` | **27** | 26 | off by one |
+| **Total `harmful`** | **46** | 31 | several `harmful` cells carry a trailing clause (`harmful — produces false negatives for married users`) and were missed by exact matching |
+| `blocks` | **18** | — | not previously reported |
+| `incomplete` | **30** | — | not previously reported |
+| `cosmetic` | **8** | — | not previously reported |
+
+> **Two counting traps, recorded because they will recur.** One row escapes naive column
+> splitting because a cell contains an escaped `\|`. And `harmful` is not always the whole cell —
+> matching the impact column exactly undercounts it by 3. Count with a substring match and
+> normalise the escape first.
+
+### Progress against the 108
+
+| Wave | Closed | Partial | Verified how |
+|---|---|---|---|
+| W2a | 10 | 5 | Annotated in place at closeout |
+| W0 | **0** | 0 | Its scope was the audit's §§ 4.2, 4.6, 4.9, 4.14, 5, 7 — infrastructure, not numbered rows. Not a miss. It also *created* the 15.27 risk by adding `deleteAll` without an import path |
+| W5 | 5 | 0 | 6.4, 7.1, 7.2, 7.3, 7.4 — each checked against the code on 2026-09-02, not taken from the wave file: `month` is now a required parameter in `calculateMonthlySummary`, and `reviewPeriod.ts` exports `applicationReviewPeriod`, `renewalReviewPeriod`, `requiresConsecutiveMonths` and `newlyApplicableReviewPeriod` (§ 435.556(a)(2)(iii), which is 7.4) |
+| W2b | 1 | 2 | 5.6 closed; 15.6 and 15.7 partial → W9a |
+| **Total** | **16** | **7** | **85 rows untouched** |
+
+The pre-date plan does not attempt all 108. W6a targets 13 rows, W7a 7, W8a 6 — so roughly **41 of
+108** is the realistic position by December 1, and the remainder is deliberately post-date.
 | **Total `blocks`** | **17** |
 
 The 16 `contradicts` rows: 1.1, 1.3, 2.9, 2.10, 4.1, 4.3, 5.1, 5.2, 5.3, 5.4, 5.5, 5.8, 6.3, 8.8, 8.9,
@@ -195,16 +233,16 @@ priority. Two whole regimes required by the rule (hardship, noncompliance respon
 | 6.1 | Seven pathways, **all** must be available, combinable | Per-month binary mode: `"hours"` or `"income"` | `stricter` | **harmful** |
 | 6.2 | — | A user with 40 hours and $300 fails both modes; the app never evaluates both to pick the qualifying one | `stricter` | harmful |
 | 6.3 | Exclusions and exceptions determine whether compliance is assessed at all | Neither `calculateMonthlySummary` nor `getMonthlyIncomeSummary` consults exclusion or assessment state | `contradicts` | harmful |
-| 6.4 | Compliance is assessed **per month across a review period** | Pinned to `new Date()` in seven call sites; `Calendar` owns month state and never lifts it | `missing` | **blocks** |
+| 6.4 | Compliance is assessed **per month across a review period** | ~~Pinned to `new Date()` in seven call sites; `Calendar` owns month state and never lifts it~~ · **CLOSED W5** — `calculateMonthlySummary(activities, month, policy)` takes `month` as a **required** parameter and throws on an invalid one; the wall-clock fallback is gone. `Calendar` is controlled and the month is lifted. Annotation backfilled 2026-09-02 and checked against the code | `missing` | **blocks** |
 
 ## 7. Review periods and lookback (§ 435.556)
 
 | # | Rule | HourKeep today | Gap | Impact |
 |---|---|---|---|---|
-| 7.1 | Application: 1–3 **consecutive** months **immediately preceding** the application month | `monthsRequired` captured from the notice question (1/2/3/6) with "not sure" silently mapped to 1; never used as a review period | `partial` | blocks |
-| 7.2 | Renewal: ≥ 1 month, **not necessarily consecutive**, and States may **not** dictate which months | Not modeled. Nothing tells the user any qualifying month counts | `missing` | **blocks** |
-| 7.3 | Multi-month goal tracking | `monthlyCompliance` holds a single current-month entry (`"For now, just check current month"`), so `CompletionMessage` is unreachable for `monthsRequired > 1` | `partial` | incomplete |
-| 7.4 | Mid-period transition review period ends the month before entering the CE group | Not modeled | `missing` | incomplete |
+| 7.1 | Application: 1–3 **consecutive** months **immediately preceding** the application month | ~~`monthsRequired` captured from the notice question (1/2/3/6) with "not sure" silently mapped to 1; never used as a review period~~ · **CLOSED W5** — `applicationReviewPeriod()` in `src/lib/reviewPeriod.ts`, reading the lookback from the policy profile with runtime bounds. Annotation backfilled 2026-09-02 | `partial` | blocks |
+| 7.2 | Renewal: ≥ 1 month, **not necessarily consecutive**, and States may **not** dictate which months | ~~Not modeled. Nothing tells the user any qualifying month counts~~ · **CLOSED W5** — `renewalReviewPeriod()` plus `requiresConsecutiveMonths()`, which returns `false` for renewal so the user-favourable "any qualifying month counts" reading is expressed in code rather than prose. Annotation backfilled 2026-09-02 | `missing` | **blocks** |
+| 7.3 | Multi-month goal tracking | ~~`monthlyCompliance` holds a single current-month entry (`"For now, just check current month"`), so `CompletionMessage` is unreachable for `monthsRequired > 1`~~ · **CLOSED W5** — that `Map<string, boolean>` is replaced; see `src/app/tracking/page.tsx:213`. Note the **boolean** it held was also a stored verdict, which is W7b's concern. Annotation backfilled 2026-09-02 | `partial` | incomplete |
+| 7.4 | Mid-period transition review period ends the month before entering the CE group | ~~Not modeled~~ · **CLOSED W5** — `newlyApplicableReviewPeriod(becameApplicableMonth)`, citing § 435.556(a)(2)(iii) and ending the period at `previousMonth(becameApplicableMonth)`. Annotation backfilled 2026-09-02 | `missing` | incomplete |
 
 ## 8. Verification and evidence (§ 435.557)
 
@@ -305,7 +343,8 @@ Three findings drive the wave sequence:
 > very end** (ADR-0009). The three findings above are what drove that inversion and still hold; the
 > ordering they were paired with did not.
 
-The order actually being executed, pre-date: **W0-slice → W2a → W0 → W5 → W2b → W6a → W8a → W7a**, then
+The order actually being executed, pre-date: **W0-slice → W2a → W0 → W5 → W2b → W6a → W7a → W8a**
+(W7a and W8a swapped 2026-09-02 — gap 5.5 is a live false reassurance and outranks a new export), then
 W3 → W4 → W7b → W9a/W9b → W8b → W6b → W10 → W1 after it.
 
 **`waves/README.md` § Sequence is authoritative** — check it rather than this paragraph.
