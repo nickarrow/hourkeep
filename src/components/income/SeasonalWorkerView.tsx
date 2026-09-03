@@ -20,6 +20,20 @@ import { FEDERAL_DEFAULT, incomeThreshold } from "@/lib/policy";
  * `INCOME_THRESHOLD` alias (ADR-0001).
  */
 const INCOME_THRESHOLD = incomeThreshold(FEDERAL_DEFAULT);
+
+/**
+ * 42 CFR 435.552(g)'s statutory averaging window — the 6 months PRECEDING the month being
+ * assessed, which that month is excluded from.
+ *
+ * A state election, not a constant: 42 CFR 435.603(h)(3) lets a state prorate over a
+ * different span and CMS says most elect it. Interpolated from the federal fallback and the
+ * copy names the uncertainty. W7a owns the seasonal arithmetic itself, including the
+ * off-by-one where this component's average still INCLUDES the assessed month (gap 5.8).
+ */
+const SEASONAL_MONTHS =
+  FEDERAL_DEFAULT.seasonalMethod.kind === "preceding-average"
+    ? FEDERAL_DEFAULT.seasonalMethod.months
+    : FEDERAL_DEFAULT.seasonalMethod.windowMonths;
 import { SeasonalWorkerHelpIcon } from "@/components/help/SeasonalWorkerHelp";
 
 export interface SeasonalWorkerViewProps {
@@ -157,7 +171,33 @@ export function SeasonalWorkerView({
           </Box>
         </Box>
 
-        {/* Compliance Status Alert */}
+        {/*
+          THE COMPARISON, NOT A VERDICT.
+
+          FOUND BY THE W2b REVIEW, by three of four reviewers independently. This rendered:
+
+            "Meets $580 threshold / Your 6-month average meets work requirements."
+            "Below $580 threshold / …$X below the requirement. You may need to track
+             hours or increase your income."
+
+          Four separate problems, and W2b was the wave that made the last one worse:
+
+          1. A DETERMINATION. "meets work requirements" asserts compliance, which
+             42 CFR 435.557 and 435.558 give the state. None of the 31 banned phrases caught
+             it — the list has "already meets" and "you meet work requirements", and this
+             said "average meets", with no pronoun.
+          2. "work requirements" is the term `medicaid-domain-knowledge.md` reserves for copy
+             where it genuinely aids comprehension. A status alert is not that.
+          3. Two hardcoded thresholds, invisible to W2b's own literal scan because `$580`
+             never matched its pattern — see `policyInjection.test.ts`'s POLICY_LITERAL note.
+          4. The under-threshold branch said "you may need to track hours or increase your
+             income", omitting 42 CFR 435.552(e)(2)'s proxy: income BELOW the threshold can
+             be credited AS hours and combined with activities. So the shortfall reads as
+             wasted when the rule says it is not.
+
+          Also: this is the seasonal surface, and the averaging window is a state election
+          (42 CFR 435.603(h)(3)), so the span is named as an assumption rather than stated.
+        */}
         <Box sx={{ mt: 2 }}>
           {isCompliant ? (
             <Alert
@@ -166,9 +206,17 @@ export function SeasonalWorkerView({
               sx={{ alignItems: "center" }}
             >
               <Typography variant="body2">
-                <strong>Meets $580 threshold</strong>
+                <strong>
+                  Average: {formatCurrency(average)} · Threshold:{" "}
+                  {formatCurrency(INCOME_THRESHOLD)}
+                </strong>
                 <br />
-                Your 6-month average meets work requirements.
+                That&apos;s at or over the threshold for these {
+                  SEASONAL_MONTHS
+                }{" "}
+                months. Your state counts your whole household&apos;s income
+                here, not just yours, and it may work the average out over a
+                different stretch — ask what it has on file.
               </Typography>
             </Alert>
           ) : (
@@ -178,12 +226,17 @@ export function SeasonalWorkerView({
               sx={{ alignItems: "center" }}
             >
               <Typography variant="body2">
-                <strong>Below $580 threshold</strong>
-                <br />
-                Your 6-month average is{" "}
-                {formatCurrency(INCOME_THRESHOLD - average)} below the
-                requirement. You may need to track hours or increase your
-                income.
+                <strong>
+                  Average: {formatCurrency(average)} · Threshold:{" "}
+                  {formatCurrency(INCOME_THRESHOLD)} · Difference:{" "}
+                  {formatCurrency(INCOME_THRESHOLD - average)}
+                </strong>
+                <br />A shortfall here isn&apos;t wasted: some states credit
+                income below the threshold as hours, which you can add other
+                activities on top of. Your state counts your whole
+                household&apos;s income too, which is often more than your own.
+                Ask them what they have on file and how they work out your
+                average.
               </Typography>
             </Alert>
           )}

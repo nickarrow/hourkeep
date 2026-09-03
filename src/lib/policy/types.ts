@@ -80,9 +80,35 @@ export interface PolicyProfile {
   applicationLookbackBounds: { min: number; max: number };
   /** 42 CFR 435.556(a)(2)(i) — 91 FR 33474. At least 1, whether or not consecutive. */
   renewalMonthsRequired: number;
-  /** 42 CFR 435.556(a)(2)(ii). Months required between more-frequent verifications. */
+  /**
+   * 42 CFR 435.556(a)(2)(ii). Months required between more-frequent verifications.
+   *
+   * ── KNOWN DUPLICATION, FOUND ON THE W2b REVIEW. Owner: W9a. ──
+   * This is the same quantity as `moreFrequentVerification.monthsRequired` below, declared
+   * twice with nothing reconciling them, and `verificationReviewPeriod` reads only THIS one.
+   * A state electing `{ intervalMonths: 3, monthsRequired: 2 }` while this stays at the
+   * floor of 1 would silently get a one-month verification period.
+   *
+   * It is exactly the defect W2b removed on the renewal side, where `renewalPeriodMonths`
+   * and `renewalIntervalMonths` were merged for being one quantity under two names. Not
+   * merged here because the two fields have different owners and different readers:
+   * `reviewPeriod.ts` reads this one today, `moreFrequentVerification` has no reader at all
+   * and is assigned to W9a. Collapsing them now would change a live signature to accommodate
+   * a field nothing uses.
+   *
+   * Latent while `moreFrequentVerification` is `false`, which is the federal default. **W9a
+   * must reconcile these before it reads either.** A test in `policy.test.ts` pins the
+   * duplication so it cannot be forgotten.
+   */
   verificationMonthsRequired: number;
-  /** 42 CFR 435.557(d). `false` means the state verifies only at renewal. */
+  /**
+   * 42 CFR 435.557(d). `false` means the state verifies only at renewal.
+   *
+   * See `verificationMonthsRequired` above for the duplication between that field and this
+   * one's `monthsRequired`. Note also that "not applicable" is `false` here and `null` on
+   * `unableToVerifyAtVerification` — one fact, two encodings, adjacent fields. W9a's to
+   * settle.
+   */
   moreFrequentVerification:
     | false
     | { intervalMonths: number; monthsRequired: number };

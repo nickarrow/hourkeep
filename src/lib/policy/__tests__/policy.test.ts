@@ -504,7 +504,7 @@ describe("field ownership: unread fields are documented, not silent", () => {
   });
 
   it("at least the values W2b actually wires up are marked as having consumers", () => {
-    // Positive twin. "Every field has an owner" is satisfied by marking all 35 as
+    // Positive twin. "Every field has an owner" is satisfied by marking all 36 as
     // belonging to some future wave, which would make the profile pure speculation.
     const wired = Object.entries(POLICY_FIELD_OWNERS).filter(
       ([, owner]) => owner.consumer,
@@ -544,5 +544,50 @@ describe("the profile reports requirements, never determinations — ADR-0003", 
     for (const field of POLICY_PROFILE_FIELDS) {
       expect(field).not.toMatch(/^(user|month|total|logged|hoursLogged)/i);
     }
+  });
+});
+
+describe("known duplication, pinned so it cannot be forgotten — owner W9a", () => {
+  /**
+   * FOUND ON THE W2b REVIEW. `verificationMonthsRequired` and
+   * `moreFrequentVerification.monthsRequired` are the same quantity declared twice.
+   *
+   * This is the defect W2b removed on the renewal side — `renewalPeriodMonths` and
+   * `renewalIntervalMonths` were one quantity under two names and were merged — reappearing
+   * on the verification side, unnoticed until an independent reviewer read the schema.
+   *
+   * NOT merged, for a stated reason: `reviewPeriod.ts` reads the top-level field today,
+   * `moreFrequentVerification` has no reader at all and belongs to W9a. Collapsing them now
+   * would change a live signature to accommodate a field nothing uses.
+   *
+   * So it is pinned instead. This test does two things: it fails if the two ever hold
+   * different values in the same profile, and it fails when W9a gives
+   * `moreFrequentVerification` a non-`false` default — which is precisely the moment the
+   * reconciliation becomes necessary.
+   */
+  it("the federal default cannot express the conflict, because the union arm is false", () => {
+    expect(FEDERAL_DEFAULT.moreFrequentVerification).toBe(false);
+    expect(FEDERAL_DEFAULT.verificationMonthsRequired).toBe(1);
+  });
+
+  it("W9a: if a profile elects more-frequent verification, the two counts must agree", () => {
+    /**
+     * The forcing function. Written as an assertion about any profile rather than about
+     * `FEDERAL_DEFAULT`, so it states the invariant W9a has to satisfy rather than merely
+     * recording that today's default dodges it.
+     */
+    const elected: PolicyProfile = {
+      ...FEDERAL_DEFAULT,
+      moreFrequentVerification: { intervalMonths: 3, monthsRequired: 2 },
+      // Deliberately set to match. Leaving it at the floor of 1 is the silent-shortfall bug.
+      verificationMonthsRequired: 2,
+    };
+
+    expect(
+      elected.moreFrequentVerification === false
+        ? null
+        : elected.moreFrequentVerification.monthsRequired,
+      "verificationMonthsRequired must equal moreFrequentVerification.monthsRequired",
+    ).toBe(elected.verificationMonthsRequired);
   });
 });

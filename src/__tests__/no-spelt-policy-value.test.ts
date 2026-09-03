@@ -29,6 +29,8 @@ import { describe, it, expect } from "vitest";
 import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { join, relative, resolve } from "node:path";
 
+import { stripComments } from "./support/stripComments";
+
 const SRC = resolve(process.cwd(), "src");
 
 /**
@@ -117,44 +119,6 @@ function sourceFiles(dir: string, out: string[] = []): string[] {
   return out;
 }
 
-/**
- * Strip comments, tracking block comments across lines.
- *
- * Necessary rather than tidy: this very file's neighbours are full of comments citing
- * "3 months" and "12 months" as provenance, which is exactly what
- * `engineering-standards.md` asks for. A guard that fired on its own citations would be
- * turned off within a day.
- */
-function codeLines(source: string): Array<{ line: string; n: number }> {
-  let inBlock = false;
-
-  return source.split("\n").map((raw, i) => {
-    let line = raw;
-
-    if (inBlock) {
-      const end = line.indexOf("*/");
-      if (end === -1) return { line: "", n: i + 1 };
-      line = line.slice(end + 2);
-      inBlock = false;
-    }
-
-    for (;;) {
-      const start = line.indexOf("/*");
-      if (start === -1) break;
-      const end = line.indexOf("*/", start + 2);
-      if (end === -1) {
-        line = line.slice(0, start);
-        inBlock = true;
-        break;
-      }
-      line = line.slice(0, start) + line.slice(end + 2);
-    }
-
-    line = line.replace(/(^|[^:])\/\/.*$/, "$1");
-    return { line, n: i + 1 };
-  });
-}
-
 interface Hit {
   file: string;
   n: number;
@@ -169,7 +133,7 @@ function findSpeltValues(): Hit[] {
     const rel = relative(SRC, full).split(/[\\/]/).join("/");
     const source = readFileSync(full, "utf8");
 
-    for (const { line, n } of codeLines(source)) {
+    for (const { line, n } of stripComments(source)) {
       const match = SPELT_POLICY_VALUE.exec(line);
       if (!match) continue;
 
@@ -223,7 +187,7 @@ describe("no policy value is spelled as a word in user-facing copy", () => {
      * `engineering-standards.md` asks for. A guard reading raw source would fire on the
      * explanation of its own violation.
      */
-    const panel = codeLines(
+    const panel = stripComments(
       readFileSync(
         resolve(SRC, "components/tracking/ReviewPeriodPanel.tsx"),
         "utf8",

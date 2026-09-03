@@ -31,6 +31,7 @@ import { MonthNavigator } from "@/components/tracking/MonthNavigator";
 import { ReviewPeriodPanel } from "@/components/tracking/ReviewPeriodPanel";
 import { HourTrackingHelpIcon } from "@/components/help/HourTrackingHelp";
 import { IncomeStatusIndicator } from "@/components/income/IncomeStatusIndicator";
+import { SeasonalWorkerView } from "@/components/income/SeasonalWorkerView";
 import {
   applicationReviewPeriod,
   renewalReviewPeriodEndingAt,
@@ -851,5 +852,109 @@ describe("components W2b added to the render guard", () => {
       // And it must not read as a spouse's income being a problem.
       expect(text).not.toMatch(/spouse'?s income (may|could|might) disqualif/i);
     });
+  });
+});
+
+/**
+ * `SeasonalWorkerView` — added after the W2b review, and the omission is the point.
+ *
+ * W2b's own stated structural lesson was W5's: five components created, none guarded, two
+ * verdicts through. W2b then added two components to this guard on exactly that reasoning —
+ * and edited a THIRD, `SeasonalWorkerView`, without guarding it. That third one was
+ * rendering a verdict the whole time:
+ *
+ *     "Meets $580 threshold / Your 6-month average meets work requirements."
+ *
+ * Three of four independent reviewers found it. None of the 31 banned phrases matched:
+ * the list carries "already meets" and "you meet work requirements", and this said
+ * "average meets", with no pronoun. So the phrase list gained `average meets` and
+ * `meets work requirements`, and this component gained coverage on both branches.
+ */
+describe("SeasonalWorkerView — 42 CFR 435.552(g), the seasonal averaging surface", () => {
+  /**
+   * `SeasonalWorkerView` takes `{ history, average, isCompliant }` — not a
+   * `MonthlyIncomeSummary`. Worth stating because my first version of this fixture passed a
+   * summary and `tsc` caught it: the component predates the summary type and its caller
+   * destructures before rendering.
+   *
+   * `isCompliant` is computed here from the threshold rather than passed as a bare boolean,
+   * so the two branches cannot be exercised with a value that contradicts the average shown.
+   */
+  function seasonalProps(average: number) {
+    return {
+      average,
+      isCompliant: average >= incomeThreshold(FEDERAL_DEFAULT),
+      history: [
+        { month: "2026-01", total: average },
+        { month: "2026-02", total: average },
+        { month: "2026-03", total: average },
+        { month: "2026-04", total: average },
+        { month: "2026-05", total: average },
+        { month: "2026-06", total: average },
+      ],
+    };
+  }
+
+  it("renders no verdict at or over the threshold", () => {
+    render(<SeasonalWorkerView {...seasonalProps(700)} />);
+    expectNoVerdict("SeasonalWorkerView (at or over)");
+  });
+
+  it("renders no verdict below the threshold", () => {
+    render(<SeasonalWorkerView {...seasonalProps(300)} />);
+    expectNoVerdict("SeasonalWorkerView (below)");
+  });
+
+  it("states the comparison rather than the conclusion, on both branches", () => {
+    // Positive twin for the two above. "No verdict" is satisfiable by rendering nothing.
+    for (const average of [700, 300]) {
+      const { unmount } = render(
+        <SeasonalWorkerView {...seasonalProps(average)} />,
+      );
+      const text = normaliseForGuard(document.body.textContent ?? "");
+
+      expect(text, `average ${average}`).toMatch(/Average: \$[\d,.]+/);
+      expect(text, `average ${average}`).toMatch(/Threshold: \$[\d,.]+/);
+      unmount();
+    }
+  });
+
+  it("42 CFR 435.552(e)(2): tells a short user their income is not wasted", () => {
+    /**
+     * The substantive half of the fix, not just the wording.
+     *
+     * The old under-threshold copy said "You may need to track hours or increase your
+     * income", which omits the income-to-hours proxy: income BELOW the threshold can be
+     * credited AS hours and combined with other activities. So a shortfall read as wasted
+     * when the rule says it is not — the same class of harm ADR-0003 § Context describes,
+     * sending someone after hours they may not need.
+     */
+    render(<SeasonalWorkerView {...seasonalProps(300)} />);
+    const text = normaliseForGuard(document.body.textContent ?? "");
+
+    expect(text).not.toMatch(
+      /you may need to track hours or increase your income/i,
+    );
+    expect(text).toMatch(/isn'?t wasted/i);
+    expect(text).toMatch(/credit income below the threshold as hours/i);
+    // And the household basis, which is what makes the figure shown not the state's figure.
+    expect(text).toMatch(/whole household'?s income/i);
+    // Named actor plus a next action.
+    expect(text).toMatch(/ask them what they have on file/i);
+  });
+
+  it("names the averaging span as something the state may work out differently", () => {
+    // 42 CFR 435.603(h)(3) is a state election and CMS says most states elect it, so a flat
+    // "your 6-month average" states as settled a span we do not know. Both branches hedge.
+    for (const average of [700, 300]) {
+      const { unmount } = render(
+        <SeasonalWorkerView {...seasonalProps(average)} />,
+      );
+      const text = normaliseForGuard(document.body.textContent ?? "");
+      expect(text, `average ${average}`).toMatch(
+        /(work the average out over a different stretch|how they work out your average)/i,
+      );
+      unmount();
+    }
   });
 });

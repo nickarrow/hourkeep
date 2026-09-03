@@ -36,6 +36,7 @@ import { calculateRecommendation } from "@/lib/assessment/recommendationEngine";
 import { calculateExemption } from "@/lib/exemptions/calculator";
 import type { Activity } from "@/types";
 import type { AssessmentResponses } from "@/types/assessment";
+import { stripComments } from "@/__tests__/support/stripComments";
 
 /**
  * A profile with a raised wage and a lowered hours threshold.
@@ -264,6 +265,8 @@ describe("no policy literal survives in the Tier-1 modules", () => {
     "src/app/settings/page.tsx",
     "src/components/onboarding/GettingStartedContextual.tsx",
     "src/components/help/HourTrackingHelp.tsx",
+    // Added after the W2b review: it holds $7.25 and was in no list at all.
+    "src/components/help/IncomeTrackingHelp.tsx",
     "src/components/assessment/EstimationTools.tsx",
     "src/components/assessment/NoticeQuestion.tsx",
     "src/components/income/IncomeEntryForm.tsx",
@@ -288,52 +291,68 @@ describe("no policy literal survives in the Tier-1 modules", () => {
   ];
 
   /**
-   * Strip comments before scanning, tracking block comments across lines.
+   * A policy value written as a literal.
    *
-   * A line-prefix test is not enough, and this was found by running the scan: the second and
-   * later lines of a `/* … *\/` or `{/* … *\/}` block start with ordinary prose, so
-   * `IncomeStatusIndicator.tsx`, `ReviewPeriodPanel.tsx`, `CompletionMessage.tsx` and
-   * `HourTrackingHelp.tsx` all reported hits that were explanatory comments quoting the very
-   * standard being enforced.
+   * ## THE `$` BUG, AND WHY IT IS RECORDED HERE RATHER THAN QUIETLY FIXED
    *
-   * Tracking depth is better than allowlisting each one. An allowlist would have grown by
-   * four entries for a single cause, and every future comment mentioning a threshold would
-   * add another — which is how a guard becomes something people switch off.
+   * The first version of this pattern was inherited from `scripts/compliance-gate.sh` and
+   * W2a's handoff table:
+   *
+   *     /(^|[^0-9._$A-Za-z])(80|580|7\.25|4\.33|2\.17)([^0-9%A-Za-z]|$)/
+   *
+   * `$` sits inside the excluded preceding-character class, so **`$580` never matched.**
+   * That exclusion is correct for its original purpose — `$` is a valid JavaScript
+   * identifier character, so it stops the scan firing inside a name like `$80`. It is
+   * exactly wrong in copy files, where the dominant written form of the income threshold
+   * *is* `$580`.
+   *
+   * Three of four independent reviewers found this on the W2b review, and it was the most
+   * consequential finding of the wave: **22 live literals across 4 files**, every one of
+   * them in the list this test iterates, under an assertion named "states no threshold as a
+   * literal". The instrument also shaped the work — the site table, the "60 literals across
+   * 14 files" count, and the acceptance criterion "the grep returns 0" were all readings
+   * from a blind gauge. And the 61-case mutation harness could not have caught it: every
+   * re-hardcoding mutation writes a bare literal, never `$580` into a string.
+   *
+   * The fix keeps the identifier guard and adds an explicit currency arm, so both forms are
+   * caught. The currency arm carries the SAME leading guard, which the fixtures below forced:
+   * a first version was `\$(580|7\.25)\b` with no prefix check and fired on the identifier
+   * `price$580`. Guard over-reach found by the guard's own fixtures, one commit after being
+   * written — which is the argument for writing them first.
    */
-  function stripComments(
-    source: string,
-  ): Array<{ line: string; raw: string; n: number }> {
-    let inBlock = false;
+  const POLICY_LITERAL =
+    /(^|[^0-9._$A-Za-z])(80|580|7\.25|4\.33|2\.17)([^0-9%A-Za-z]|$)|(^|[^0-9._$A-Za-z])\$(580|7\.25)\b/;
 
-    return source.split("\n").map((raw, i) => {
-      let line = raw;
+  it("the pattern catches a dollar-denominated literal, which the inherited one could not", () => {
+    // The regression test for the bug above. Without the currency arm the first four of
+    // these are all false, which is the state the wave shipped in until review.
+    for (const s of [
+      "Threshold: $580.",
+      "the $580 income threshold",
+      "a $580 threshold",
+      "based on the federal minimum wage ($7.25)",
+      "580 hours",
+      "Threshold: 80 hours",
+      "const t = 580;",
+    ]) {
+      expect(POLICY_LITERAL.test(s), s).toBe(true);
+    }
+  });
 
-      if (inBlock) {
-        const end = line.indexOf("*/");
-        if (end === -1) return { line: "", raw, n: i + 1 };
-        line = line.slice(end + 2);
-        inBlock = false;
-      }
-
-      // Repeatedly remove complete block comments on this line.
-      for (;;) {
-        const start = line.indexOf("/*");
-        if (start === -1) break;
-        const end = line.indexOf("*/", start + 2);
-        if (end === -1) {
-          line = line.slice(0, start);
-          inBlock = true;
-          break;
-        }
-        line = line.slice(0, start) + line.slice(end + 2);
-      }
-
-      // Line comments. `[^:]` guards `https://`, per the no-verdict guard's own note.
-      line = line.replace(/(^|[^:])\/\/.*$/, "$1");
-
-      return { line, raw, n: i + 1 };
-    });
-  }
+  it("the pattern still does not fire on an identifier or an unrelated number", () => {
+    // Why `$` was excluded in the first place. Keeping this narrow is what stops the scan
+    // becoming the repo-wide grep that got disabled by day three.
+    for (const s of [
+      "const $80 = 1;",
+      "const price$580 = 1;",
+      "maxWidth: 480,",
+      "const year = 1980;",
+      "camera: { width: 1920, height: 1080 },",
+      "opacity: 0.80,",
+    ]) {
+      expect(POLICY_LITERAL.test(s), s).toBe(false);
+    }
+  });
 
   async function scan(file: string): Promise<string[]> {
     const { readFileSync } = await import("node:fs");
@@ -345,11 +364,7 @@ describe("no policy literal survives in the Tier-1 modules", () => {
         // stripper has already removed it from `line`. Found by running the scan.
         .filter(({ raw }) => !raw.includes("policy-literal-ok"))
         .filter(({ line }) => !NOT_A_POLICY_VALUE.some((ok) => ok.test(line)))
-        .filter(({ line }) =>
-          /(^|[^0-9._$A-Za-z])(80|580|7\.25|4\.33|2\.17)([^0-9%A-Za-z]|$)/.test(
-            line,
-          ),
-        )
+        .filter(({ line }) => POLICY_LITERAL.test(line))
         .map(({ line, n }) => `${file}:${n}: ${line.trim()}`)
     );
   }
@@ -372,11 +387,7 @@ describe("no policy literal survives in the Tier-1 modules", () => {
         "const url = 'https://example.com/80';",
       ].join("\n"),
     )
-      .filter(({ line }) =>
-        /(^|[^0-9._$A-Za-z])(80|580|7\.25|4\.33|2\.17)([^0-9%A-Za-z]|$)/.test(
-          line,
-        ),
-      )
+      .filter(({ line }) => POLICY_LITERAL.test(line))
       .map(({ n }) => n);
 
     // Lines 6 and 7 are code; 8 is a URL containing 80 and is also code, so it is expected

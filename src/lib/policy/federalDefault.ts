@@ -12,9 +12,14 @@
  *
  * WHAT "DEFAULT" DOES AND DOES NOT MEAN. The rule states no defaults. Every value below is
  * either a statutory floor, a statutory constant, or **our assumption pending state data**
- * — and two of the assumptions are affirmatively counter-indicated by CMS's own preamble
- * (it says documentation "will generally be available" and encourages states to require
- * it). Treating any of this as settled is the error this profile exists to prevent.
+ * — and two of the assumptions are affirmatively counter-indicated by CMS's own preamble.
+ * On documentation, 91 FR 33395: "We anticipate that, for the new community engagement
+ * criteria, there will generally be documentation **reasonably available** for individuals to
+ * verify their compliance"; and at 91 FR 33399 states "are encouraged to do so in the
+ * interest of program integrity". An earlier version of this comment paraphrased the first as
+ * documentation "will generally be available" inside quotation marks, which made a paraphrase
+ * look like source text and dropped "reasonably" — the qualifier § 435.557 turns on
+ * throughout. Treating any of this as settled is the error this profile exists to prevent.
  */
 
 import type { PolicyProfile } from "./types";
@@ -70,8 +75,10 @@ export const FEDERAL_DEFAULT: PolicyProfile = {
     {
       field: "renewalMonthsRequired",
       basis:
-        "PREAMBLE, 91 FR 33389, not rule text. 42 CFR 435.556(a)(2) says months need " +
-        "'not be consecutive'; CMS reads that clause as not granting the state " +
+        "PREAMBLE, 91 FR 33389, not rule text. 42 CFR 435.556(a)(2) says the months are " +
+        "required 'whether or not consecutive' — the rule's own words, which appear four " +
+        "times in the IFC; the phrase 'not be consecutive' is the preamble's paraphrase and " +
+        "is not in the rule. CMS reads that clause as not granting the state " +
         "discretion, so states may neither require consecutive months nor dictate which " +
         "months count. User-favourable, and the app states it on screen.",
       watch:
@@ -93,8 +100,10 @@ export const FEDERAL_DEFAULT: PolicyProfile = {
       field: "frailtyListStructure",
       basis:
         "42 CFR 435.554(c)(5) gates the medically-frail exclusion on FUNCTIONAL " +
-        "impairment, not diagnosis, and requires states to publish an auditable " +
-        "condition list plus an off-list request path. Both the functional gate and the " +
+        "impairment, not diagnosis, and (c)(5)(ii) requires states to DEVELOP an auditable " +
+        "condition list, revise it regularly, and offer an off-list request path. Note " +
+        "'develop', not 'publish' — the rule does not require publication, so a user told to " +
+        "ask for the list may find it is not available. Both the functional gate and the " +
         "narrowing of attestation are under challenge.",
       watch:
         "Massachusetts v. Oz (D. Mass.), summary judgment hearing October 20, 2026. " +

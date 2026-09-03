@@ -75,6 +75,65 @@ describe("42 CFR 435.915: applications filed before implementation — gap 15.6"
     expect(answer.why).toMatch(/filed|submitt/i);
   });
 
+  it("ADR-0003: the on-or-after answer does not assert the requirement APPLIES", () => {
+    /**
+     * ADDED AFTER THE W2b REVIEW, which found this file doing the thing the same wave banned
+     * twice elsewhere. The copy said:
+     *
+     *     "so this requirement applies to your application."
+     *
+     * Filing on or after the implementation date decides WHICH BODY OF RULES governs the
+     * determination. It does not decide whether the person is an applicable individual —
+     * 42 CFR 435.556 gives the state that threshold question, § 435.554 makes a specified
+     * excluded individual not an applicable individual at all, and § 435.556(c) PROHIBITS the
+     * state from assessing them. A § 435.553 mandatory exception deems the month demonstrated
+     * regardless.
+     *
+     * None of the 33 banned phrases matched it — the reviewer verified that by running every
+     * matcher against the file — because the list targets claims about compliance and
+     * exclusion, not claims about applicability. The wave diagnosed exactly this error in
+     * `HourTrackingHelp.tsx`, wrote a guard entry for it, and then wrote a fresh instance in a
+     * new file. Mutation testing then showed no test caught the reintroduction, which is why
+     * this assertion exists rather than only the fix.
+     */
+    for (const filed of ["2027-03-04", "2027-03"]) {
+      const { why } = applicationRuleset(filed, FEDERAL_DEFAULT);
+
+      expect(why, filed).not.toMatch(
+        /this requirement applies to your application/i,
+      );
+      // Positive twins: it says what the date DOES settle, and says what it does not.
+      expect(why, filed).toMatch(/the new rules cover your application/i);
+      expect(why, filed).toMatch(
+        /doesn'?t settle whether this requirement applies/i,
+      );
+      expect(why, filed).toMatch(/ask your state whether it applies to you/i);
+    }
+  });
+
+  it("ADR-0003: the prior-rules answer is hedged and still points at gathering", () => {
+    /**
+     * The mirror image, also from the review. The prior-rules branch was FLAT — "the months
+     * before you applied should not be reviewed for this" — while resting on PREAMBLE
+     * (91 FR 33415-33416), and it ended without any reason to keep records.
+     *
+     * That is the dangerous direction for this particular answer. The module's own header says
+     * so: "telling someone their state may not assess months it will assess is how a person
+     * stops gathering evidence they need." A December-2026 filer reading a flat reassurance
+     * gets no signal that § 435.559(c) reaches them at their first renewal initiated on or
+     * after implementation.
+     */
+    for (const filed of ["2026-12-15", "2026-12"]) {
+      const { why } = applicationRuleset(filed, FEDERAL_DEFAULT);
+
+      expect(why, filed).toMatch(/usually|probably/i);
+      expect(why, filed).not.toMatch(/should not be reviewed/i);
+      // The forward-looking half: this application is not the end of the story.
+      expect(why, filed).toMatch(/reach you at a later renewal/i);
+      expect(why, filed).toMatch(/keep any records you already have/i);
+    }
+  });
+
   it("an application filed on the implementation date itself is under the new rules", () => {
     // § 435.559(a): eligibility "for medical assistance furnished on or after January 1,
     // 2027". On-or-after, so the boundary day is inside.
@@ -356,6 +415,48 @@ describe("42 CFR 435.559(c): the first renewal initiated on or after implementat
     // And the lead-time citation must say it is not even an interpretation of the rule,
     // because that is what makes it the weakest thing in the profile.
     expect(window.leadDaysCitation).toMatch(/not regulatory text/i);
+  });
+
+  it("the first-of-month anchor biases toward the reassuring answer — pinned, not hidden", async () => {
+    /**
+     * FOUND BY THE W2b REVIEW, computed independently by two of four reviewers.
+     *
+     * The function anchors on the 1st of the due month because `YYYY-MM` is all the app
+     * stores. That puts initiation as early as possible, which makes `latest < implementation`
+     * true more often, which returns `"before"` — the REASSURING branch — more often than a
+     * mid- or late-month due date warrants. The module's comment used to call the 1st "the
+     * conservative end", which is backwards.
+     *
+     * This test exists because the caveat is otherwise only prose. It pins the divergence, so
+     * nobody can "fix" the comment by deleting it, and so a later wave adding a day-granular
+     * due date gets a failing test telling it exactly what changed.
+     *
+     * The day-granular arithmetic is replicated rather than exported: the point is to compare
+     * what the function returns against what a real due date would have given.
+     */
+    const { addDays, isBefore, parseISO } = await import("date-fns");
+    const impl = parseISO(FEDERAL_DEFAULT.implementationDate);
+    const { min, max } = FEDERAL_DEFAULT.renewalInitiationLeadDays;
+
+    const relationFor = (dueDate: string) => {
+      const due = parseISO(dueDate);
+      return isBefore(addDays(due, -min), impl)
+        ? "before"
+        : isBefore(addDays(due, -max), impl)
+          ? "straddles"
+          : "on-or-after";
+    };
+
+    // What the function says for March 2027, anchored on the 1st.
+    expect(
+      renewalInitiationWindow("2027-03", FEDERAL_DEFAULT)
+        .relationToImplementation,
+    ).toBe("before");
+
+    // What a real due date later in the same month would give.
+    expect(relationFor("2027-03-01")).toBe("before");
+    expect(relationFor("2027-03-15")).toBe("straddles");
+    expect(relationFor("2027-03-31")).toBe("straddles");
   });
 
   it("throws on a malformed due month", () => {

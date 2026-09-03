@@ -154,6 +154,26 @@ export const VERDICT_PHRASES: readonly VerdictPhrase[] = [
 
   // --- Softer verdicts, still verdicts -------------------------------------
   {
+    // ADDED IN W2b, AFTER REVIEW. `SeasonalWorkerView` rendered "Your 6-month average meets
+    // work requirements" in green beside a tick, and none of the then-31 entries matched:
+    // "already meets" needs the adverb, "you meet work requirements" needs the pronoun, and
+    // this had neither — the subject was the average, not the person.
+    //
+    // Third time this list has been extended by a verdict phrased around a non-personal
+    // subject. W5 found `Compliant` as a bare adjective; W2b found "you need to" and now
+    // "average meets". The pattern worth remembering: a determination does not need a
+    // pronoun to be a determination.
+    phrase: "average meets",
+    why: "ADR-0003: declares a threshold met, with the average as subject rather than the person. State Average / Threshold / Difference instead",
+  },
+  {
+    // Same string, second half. Also the wrong TERM — medicaid-domain-knowledge.md reserves
+    // "work requirements" for copy where it genuinely aids comprehension, and a green status
+    // alert is not that.
+    phrase: "meets work requirements",
+    why: "ADR-0003: asserts compliance, which 42 CFR 435.557-435.558 give the State. Also the wrong term — the domain model says community engagement requirement",
+  },
+  {
     phrase: "you qualify",
     why: "ADR-0003: qualification is the State's determination",
   },

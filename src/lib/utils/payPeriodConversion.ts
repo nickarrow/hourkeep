@@ -15,10 +15,16 @@ import { FEDERAL_DEFAULT, incomeThreshold } from "@/lib/policy";
  * `src/lib/utils/payPeriodConversion.ts`". They are re-exported rather than deleted because
  * `INCOME_THRESHOLD` had three live importers at the start of W2b — `lib/storage/income.ts`,
  * `components/income/IncomeStatusIndicator.tsx` and `components/income/SeasonalWorkerView.tsx`.
- * `storage/income.ts` now takes a profile instead, leaving **two**, both components. The
- * aliases survive because W7a repositions income entirely and this export surface is its to
- * retire; breaking every consumer inside a wave whose gate is "behaviour did not change"
- * would have mixed two kinds of diff.
+ * **By the end of W2b there are ZERO production importers.** `storage/income.ts` took a
+ * profile parameter, and both components now derive their own
+ * `incomeThreshold(FEDERAL_DEFAULT)` — so the reason recorded here for keeping the aliases
+ * described consumers this same wave removed. Caught on review; the count is corrected rather
+ * than the comment left to rot, which is the "re-read the target before claiming a change is
+ * done" rule applied to a comment.
+ *
+ * They survive anyway, deliberately: W0's characterization test imports all three to assert
+ * `INCOME_THRESHOLD === FEDERAL_MINIMUM_WAGE x REQUIRED_HOURS`, and that RELATIONSHIP is
+ * worth keeping through W7a, which repositions income and owns retiring this surface.
  *
  * `codebase-audit-2026-08.md` § 6 claims `REQUIRED_HOURS` and `INCOME_THRESHOLD` "sit
  * unused" here. That is wrong for `INCOME_THRESHOLD`, as W0's characterization test already

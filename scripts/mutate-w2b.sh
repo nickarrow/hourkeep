@@ -233,3 +233,39 @@ mutate "src/lib/__tests__/policyInjection.test.ts" 's|/fontSize/,|/neverAppearsA
 
 echo
 echo "GUARD TOTALS  caught: $pass   insensitive: $insensitive"
+
+# --- Appended after the W2b review -------------------------------------------
+# THE MUTATION THE HARNESS WAS MISSING, and the reason the `$` blind spot survived
+# 61 mutations: every re-hardcoding case above writes a BARE literal (`= 80;`,
+# `= 580;`). None wrote `$580` into a string, which is the form the income
+# threshold almost always takes on screen. Three of four reviewers found the gap
+# by reading the regex; no mutation could have.
+echo "== dollar-denominated literals, the reviewed blind spot =="
+mutate "$HT" 's|Threshold: \$\${INCOME}|Threshold: $580|' \
+  "helpText re-hardcodes \$580 INSIDE A STRING" src/lib/__tests__/policyInjection
+mutate "src/components/onboarding/GettingStartedContextual.tsx" 's|Threshold: \$\${INCOME_MINIMUM}|Threshold: $580|' \
+  "GettingStarted re-hardcodes \$580 inside a string" src/lib/__tests__/policyInjection
+# Was `(\$\${WAGE})` — two literal dollars, so it matched nothing. The JSX has ONE.
+mutate "src/components/help/IncomeTrackingHelp.tsx" 's|(\${WAGE})|($7.25)|' \
+  "IncomeTrackingHelp re-hardcodes \$7.25" src/lib/__tests__/policyInjection
+
+echo "== the SeasonalWorkerView verdict, now guarded =="
+SWV=src/components/income/SeasonalWorkerView.tsx
+mutate "$SWV" 's|That\&apos;s at or over the threshold for these|Your average meets work requirements for these|' \
+  "reintroduce an 'average meets' verdict" src/__tests__/no-verdict.render
+mutate "src/components/income/SeasonalWorkerView.tsx" 's|A shortfall here isn\&apos;t wasted|You may need to track hours or increase your income|' \
+  "restore the copy omitting the 435.552(e)(2) proxy" src/__tests__/no-verdict.render
+mutate "src/components/income/SeasonalWorkerView.tsx" 's|it may work the|it works the|' \
+  "state the seasonal averaging span as settled" src/__tests__/no-verdict.render
+
+echo "== transition.ts copy corrected after review =="
+mutate "$TR" 's|so the new rules cover your application. That doesn|so this requirement applies to your application. That does not doesn|' \
+  "reassert that the requirement applies" src/lib/policy/__tests__/transition
+# BOTH hedges have to go. Removing only "probably" left "usually" earlier in the same
+# string, so the test's /usually|probably/ still matched and the mutation read as insensitive
+# when it was really incomplete.
+mutate "$TR" 's|are usually decided|are decided|;s|probably shouldn|shouldn|' \
+  "unhedge the prior-rules reassurance (both hedges)" src/lib/policy/__tests__/transition
+
+echo
+echo "POST-REVIEW TOTALS  caught: $pass   insensitive: $insensitive"

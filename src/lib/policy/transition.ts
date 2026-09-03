@@ -141,12 +141,16 @@ export function applicationRuleset(
       ruleset: prior ? "prior-rules" : "community-engagement",
       why: prior
         ? `You filed on ${filedOn}, before your state's start date of ${implementationDate}. ` +
-          `Applications filed first are decided under the older rules, even if the decision ` +
-          `comes later — so the months before you applied should not be reviewed for this. ` +
-          `Ask your state to confirm which rules they applied to your application.`
+          `Applications filed first are usually decided under the older rules, even if the ` +
+          `decision comes later — so the months before you applied probably shouldn't be ` +
+          `reviewed for this. That's about this application only: once you're enrolled, the ` +
+          `requirement can reach you at a later renewal. Ask your state to confirm which ` +
+          `rules they applied, and keep any records you already have.`
         : `You filed on ${filedOn}, on or after your state's start date of ${implementationDate}, ` +
-          `so this requirement applies to your application. Ask your state which months ` +
-          `they will look at.`,
+          `so the new rules cover your application. That doesn't settle whether this ` +
+          `requirement applies to you — some situations mean your state doesn't assess it ` +
+          `at all. Ask your state whether it applies to you, and if so which months they ` +
+          `will look at.`,
     };
   }
 
@@ -181,12 +185,16 @@ export function applicationRuleset(
     ruleset: prior ? "prior-rules" : "community-engagement",
     why: prior
       ? `You filed in ${filedOn}, before your state's start date of ${implementationDate}. ` +
-        `Applications filed first are decided under the older rules, even if the decision ` +
-        `comes later — so the months before you applied should not be reviewed for this. ` +
-        `Ask your state to confirm which rules they applied to your application.`
+        `Applications filed first are usually decided under the older rules, even if the ` +
+        `decision comes later — so the months before you applied probably shouldn't be ` +
+        `reviewed for this. That's about this application only: once you're enrolled, the ` +
+        `requirement can reach you at a later renewal. Ask your state to confirm which ` +
+        `rules they applied, and keep any records you already have.`
       : `You filed in ${filedOn}, on or after your state's start date of ` +
-        `${implementationDate}, so this requirement applies to your application. Ask your ` +
-        `state which months they will look at.`,
+        `${implementationDate}, so the new rules cover your application. That doesn't ` +
+        `settle whether this requirement applies to you — some situations mean your state ` +
+        `doesn't assess it at all. Ask your state whether it applies to you, and if so ` +
+        `which months they will look at.`,
   };
 }
 
@@ -216,9 +224,23 @@ export function applicationRuleset(
  * assessed". A user who stops gathering evidence on the strength of an overstated
  * reassurance is worse off than one who gathered it unnecessarily.
  *
- * Months are `YYYY-MM`; the arithmetic runs on the FIRST of the due month, which is the
- * conservative end — a renewal due later in the month was initiated later too, so this
- * reports the earliest plausible initiation.
+ * Months are `YYYY-MM`, and the arithmetic runs on the FIRST of the due month.
+ *
+ * THAT IS THE USER-FAVOURABLE END, NOT THE CONSERVATIVE ONE. An earlier version of this
+ * comment called it conservative and had the direction backwards; two reviewers computed the
+ * same counter-example independently. Anchoring on the 1st puts initiation as early as
+ * possible, which makes `latest < implementation` true more often, which returns `"before"`
+ * — the reassuring branch — more often than a mid- or late-month due date warrants:
+ *
+ *     due 2027-03-01  ->  2026-12-01 .. 2026-12-31  ->  "before"
+ *     due 2027-03-15  ->  2026-12-15 .. 2027-01-14  ->  "straddles"
+ *     due 2027-03-31  ->  2026-12-31 .. 2027-01-30  ->  "straddles"
+ *
+ * Left as the 1st rather than changed, for one reason: a `YYYY-MM` anchor is all the app
+ * stores, and picking the last day instead would bias the other way for a user whose renewal
+ * really is due on the 1st. The honest fix is a day-granular due date, which nothing collects
+ * yet — the same conclusion gap 15.6 reached about filing dates. Until then the copy hedges
+ * and this caveat is recorded rather than hidden. A test pins the divergence.
  *
  * @throws if `renewalDueMonth` is not `YYYY-MM`.
  */

@@ -17,6 +17,10 @@ import {
 } from "@mui/icons-material";
 import { HelpTooltip } from "@/components/help/HelpTooltip";
 import { incomeDefinitions } from "@/content/helpText";
+import { FEDERAL_DEFAULT } from "@/lib/policy";
+
+/** 29 U.S.C. 206(a)(1)(C) via 42 CFR 435.552(a)(6), 91 FR 33470. From the profile (ADR-0001). */
+const WAGE = FEDERAL_DEFAULT.federalMinimumWage;
 
 /**
  * IncomeTrackingHelpIcon Component
@@ -45,7 +49,7 @@ export function IncomeTrackingHelpIcon() {
         </Typography>
         <Alert severity="info" sx={{ mt: 1 }}>
           <Typography variant="caption">
-            Note: This threshold is based on the federal minimum wage ($7.25)
+            Note: This threshold is based on the federal minimum wage (${WAGE})
             and may change if the federal minimum wage changes.
           </Typography>
         </Alert>

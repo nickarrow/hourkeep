@@ -36,6 +36,15 @@ import { FEDERAL_DEFAULT, incomeThreshold } from "@/lib/policy";
  */
 const HOURS = FEDERAL_DEFAULT.requiredHours;
 const INCOME_MINIMUM = incomeThreshold(FEDERAL_DEFAULT);
+/**
+ * 42 CFR 435.552(g)'s statutory averaging window. Unlike the two above this IS a state
+ * election — 42 CFR 435.603(h)(3) lets a state prorate over a different span, and CMS says
+ * most elect it — so the copy names the uncertainty rather than stating the span flatly.
+ */
+const SEASONAL_MONTHS =
+  FEDERAL_DEFAULT.seasonalMethod.kind === "preceding-average"
+    ? FEDERAL_DEFAULT.seasonalMethod.months
+    : FEDERAL_DEFAULT.seasonalMethod.windowMonths;
 
 interface GettingStartedContextualProps {
   hasNotice: boolean;
@@ -85,19 +94,19 @@ export function GettingStartedContextual({
       const income = responses?.monthlyIncome || 0;
       const needed = INCOME_MINIMUM - income;
       if (needed <= 0) {
-        return `Recorded: $${income} a month. Threshold: $580. Your state counts your whole household here, so its figure may be higher than yours.`;
+        return `Recorded: $${income} a month. Threshold: $${INCOME_MINIMUM}. Your state counts your whole household here, so its figure may be higher than yours.`;
       } else if (income > 0 && needed <= 100) {
-        return `Recorded: $${income} a month. Threshold: $580. Difference: $${needed}. Household income counts toward this, not just yours, so you may be closer than this looks.`;
+        return `Recorded: $${income} a month. Threshold: $${INCOME_MINIMUM}. Difference: $${needed}. Household income counts toward this, not just yours, so you may be closer than this looks.`;
       } else if (income > 0) {
-        return `Recorded: $${income} a month. Threshold: $580. Difference: $${needed}. Income under the threshold may still be credited as hours, so it isn't wasted.`;
+        return `Recorded: $${income} a month. Threshold: $${INCOME_MINIMUM}. Difference: $${needed}. Income under the threshold may still be credited as hours, so it isn't wasted.`;
       }
-      return "No income recorded. This route uses household income against a $580 threshold, so a spouse's earnings count too.";
+      return `No income recorded. This route uses household income against a $${INCOME_MINIMUM} threshold, so a spouse's earnings count too.`;
     }
     if (method === "seasonal-income-tracking") {
       if (isAlternative) {
         return "This route is open to you as well, if your work comes and goes with the season.";
       }
-      return "This route averages your income over the 6 months before the month being reviewed, against a $580 threshold.";
+      return `This route averages your income over the ${SEASONAL_MONTHS} months before the month being reviewed, against a $${INCOME_MINIMUM} threshold. Your state may work it out over a different stretch — ask which.`;
     }
     if (method === "hour-tracking") {
       if (isAlternative) {

@@ -294,7 +294,7 @@ territories** (§ 435.550).
    without specifics.
 2. **Hardship elections.** No State's election is confirmed. This is the largest gap, because it
    determines whether an entire feature is relevant to a given user.
-3. **Medically frail condition lists.** Every State must publish one. None catalogued.
+3. **Medically frail condition lists.** Every State must **develop** one — § 435.554(c)(5)(ii) requires it be auditable, regularly revised, and paired with an off-list request path, but does **not** require publication. None catalogued, and a user told to ask for the list may find their State has not published it. *(Corrected 2026-09-02: this said "publish".)*
 4. **Reasonably-predictable-changes elections.** CMS says most States elect it and most elect both
    directions, but per-State values are unknown — and this changes the seasonal calculation outright.
 5. **SPA / State plan election material.** CMS said the template was "currently under development."

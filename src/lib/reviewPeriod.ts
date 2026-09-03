@@ -44,7 +44,7 @@ export type { ReviewPeriodPolicy };
  * `ReviewPeriodPolicy` is now `Pick<PolicyProfile, …>` — see `lib/policy/types.ts`.
  * It is re-exported above so W5's callers keep their import, and because the name
  * still says something useful: these seven fields are what review-period arithmetic
- * depends on, out of the profile's thirty-five.
+ * depends on, out of the profile's thirty-six.
  *
  * A `Pick` rather than a parallel interface plus an adapter, so there is exactly one
  * declaration of each field's type and no mapping between two shapes that could

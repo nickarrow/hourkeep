@@ -7,9 +7,9 @@
  * ## Thresholds are interpolated, never written down — ADR-0001, W2b
  *
  * Every `${HOURS}` and `${INCOME}` below reads from `src/lib/policy/`. Twelve literals used
- * to be spelled out here, and `compliance-copy-standards.md` requires the opposite: "No
- * policy literals in strings — interpolate from the policy profile so `$580` updates with
- * the minimum wage."
+ * to be spelled out here, and `compliance-copy-standards.md` requires the opposite: `No
+ * policy literals in strings — interpolate from the policy profile so `$${INCOME}` updates with
+ * the minimum wage.`
  *
  * WHY THESE BIND TO `FEDERAL_DEFAULT` RATHER THAN TAKING A PROFILE. The exports here are
  * const objects consumed by eight components, and `no-verdict.content.test.ts` RECURSIVELY
@@ -435,11 +435,10 @@ export const incomeDefinitions: Record<string, IncomeDefinition> = {
     title: "Income",
     // 42 CFR 435.552(a)(6) and (f): income is one of seven pathways, and the
     // threshold is the applicable federal minimum wage x 80. In 2026 that is
-    // $7.25 x 80 = $580. Statutory but dynamic if the FLSA is amended; states may
+    // ${WAGE} x 80 = ${INCOME}. Statutory but dynamic if the FLSA is amended; states may
     // not substitute the tipped wage, the youth wage, or a higher state wage.
-    // The $580, 80, and $7.25 literals here move to the policy profile in W2b.
-    definition:
-      "Income is one way to meet the requirement. If your household's monthly income is at least $580, that may be enough on its own, with no hours to track. Your state makes that decision.",
+    // The ${INCOME}, 80, and ${WAGE} literals here move to the policy profile in W2b.
+    definition: `Income is one way to meet the requirement. If your household's monthly income is at least $${INCOME}, that may be enough on its own, with no hours to track. Your state makes that decision.`,
     calculation: `$${INCOME} = ${HOURS} hours × $${WAGE}, the federal minimum wage`,
     whatCounts: {
       title: "What kinds of income usually count?",
@@ -494,8 +493,7 @@ export const incomeDefinitions: Record<string, IncomeDefinition> = {
       {
         scenario: "I earn $600 per month from my job",
         counts: true,
-        explanation:
-          "$600 is above the $580 threshold. Your state still makes the decision, and it counts your whole household, so the figure it uses may be higher than yours. Bring your pay stubs.",
+        explanation: `$600 is above the $${INCOME} threshold. Your state still makes the decision, and it counts your whole household, so the figure it uses may be higher than yours. Bring your pay stubs.`,
       },
       {
         // This edge case was wrong twice over. (1) Unemployment compensation is
@@ -506,8 +504,7 @@ export const incomeDefinitions: Record<string, IncomeDefinition> = {
         // that with other activities. Hours and income are not either/or.
         scenario: "I earn $400 from work and $200 from unemployment",
         counts: true,
-        explanation:
-          "Unemployment benefits do count, so that is $600 in total, above the $580 threshold. Worth knowing either way: even when income is under the threshold, your state may be allowed to credit it as hours and add other activities on top. Income and hours are not an either/or choice.",
+        explanation: `Unemployment benefits do count, so that is $600 in total, above the $${INCOME} threshold. Worth knowing either way: even when income is under the threshold, your state may be allowed to credit it as hours and add other activities on top. Income and hours are not an either/or choice.`,
       },
       {
         scenario:
@@ -554,32 +551,29 @@ export const incomeDefinitions: Record<string, IncomeDefinition> = {
     // reintroduce a months-per-year threshold: there isn't one in the rule.
     whoQualifies:
       "Seasonal work means work that comes and goes with the season. Farm and harvest work, holiday retail, and summer tourism are the usual examples, but the rule is not limited to a fixed list or to a set number of months per year. If your work is seasonal, say so and ask your state.",
-    calculation:
-      "Average monthly income over the 6 months before the reviewed month, compared against $580",
+    calculation: `Average monthly income over the 6 months before the reviewed month, compared against $${INCOME}`,
     howToCalculate: [
       "Add up your income from the 6 months before the month your state is reviewing",
       "Divide by 6 to get your average monthly income",
-      "Compare that average against the $580 threshold",
+      `Compare that average against the $${INCOME} threshold`,
     ],
     example: {
       scenario: "You earned $3,480 across those 6 months",
-      calculation: "$3,480 ÷ 6 months = $580 per month average",
-      result: "Average: $580. Threshold: $580. Your state decides from here.",
+      calculation: `$3,480 ÷ 6 months = $${INCOME} per month average`,
+      result: `Average: $${INCOME}. Threshold: $${INCOME}. Your state decides from here.`,
     },
     edgeCases: [
       {
         scenario:
           "I work at a ski resort and only earn income 4 months per year",
         counts: "varies",
-        explanation:
-          "Seasonal work like this is what the 6-month average is for. Add up the 6 months before the month being reviewed, divide by 6, and compare that against $580. Your state runs the calculation and decides.",
+        explanation: `Seasonal work like this is what the 6-month average is for. Add up the 6 months before the month being reviewed, divide by 6, and compare that against $${INCOME}. Your state runs the calculation and decides.`,
       },
       {
         scenario:
           "I earned $4,000 in the summer but nothing the rest of the year",
         counts: "varies",
-        explanation:
-          "It depends which 6 months your state looks at, and that changes every month. $4,000 ÷ 6 is about $667 a month, which is above $580 — but a later 6-month window that misses the summer looks different. Keep the whole year recorded.",
+        explanation: `It depends which 6 months your state looks at, and that changes every month. $4,000 ÷ 6 is about $667 a month, which is above $${INCOME} — but a later 6-month window that misses the summer looks different. Keep the whole year recorded.`,
       },
     ],
     source: "42 CFR 435.552(a)(7), (g); 26 U.S.C. 45R(d)(5)(B)",
@@ -599,19 +593,17 @@ export const incomeDefinitions: Record<string, IncomeDefinition> = {
     options: [
       {
         option: "Income",
-        description:
-          "Household income of at least $580 a month may be enough on its own",
+        description: `Household income of at least $${INCOME} a month may be enough on its own`,
         benefit: "No hours to track",
       },
       {
         option: "Hours",
         description: `${HOURS} hours a month in total across work, volunteering, school, or job training`,
-        benefit: "Counts when income is under $580",
+        benefit: `Counts when income is under $${INCOME}`,
       },
       {
         option: "Both together",
-        description:
-          "When income is under $580, your state may be able to credit it as hours and let you add other activities on top",
+        description: `When income is under $${INCOME}, your state may be able to credit it as hours and let you add other activities on top`,
         benefit: "Partial income and partial hours can still add up",
       },
     ],
@@ -623,7 +615,7 @@ export const incomeDefinitions: Record<string, IncomeDefinition> = {
         explanation: `Logged: 100 hours. Threshold: ${HOURS} hours. Income under $${INCOME} does not undo that — the hours pathway stands on its own.`,
       },
       {
-        // CMS worked example, 42 CFR 435.552(e)(2): $380 / $7.25 = 52 hours,
+        // CMS worked example, 42 CFR 435.552(e)(2): $380 / ${WAGE} = 52 hours,
         // needing 28 more. Conditional, and an upper bound: (e)(2)(i) requires
         // the state to allocate hours between household members by a method we
         // cannot know, so this is always "up to", never "about".
@@ -662,8 +654,7 @@ export const incomeDefinitions: Record<string, IncomeDefinition> = {
       {
         scenario: "I drive for Uber and made $650 this month",
         counts: true,
-        explanation:
-          "Logged: $650. Threshold: $580. Keep the earnings summary from the app — your state may not see platform income in its own records.",
+        explanation: `Logged: $650. Threshold: $${INCOME}. Keep the earnings summary from the app — your state may not see platform income in its own records.`,
       },
       {
         scenario:
@@ -711,7 +702,7 @@ export const combinationRules: CombinationRules = {
     `40 hours work + 40 hours community service = ${HOURS}`,
     `30 hours work + 30 hours community service + 20 hours job training = ${HOURS}`,
     "Less-than-half-time school converts to hours and adds in alongside the rest",
-    "Income under $580 may be credited as hours and added too, if your state does that",
+    `Income under $${INCOME} may be credited as hours and added too, if your state does that`,
   ],
   note: `Add up everything for the month and compare the total against ${HOURS}. School at half-time or more is the exception: it counts on its own and is not combined with anything.`,
   source: "42 CFR 435.552(a)(5), (e)",
