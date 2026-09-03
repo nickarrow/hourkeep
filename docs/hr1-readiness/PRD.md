@@ -202,7 +202,7 @@ Grouped by capability. Each maps to gap-analysis rows and a wave.
 
 | ID | Requirement | Gaps | Wave |
 |---|---|---|---|
-| R8.1 | Policy profile module; no policy literals outside it | audit §6 | W2 |
+| R8.1 | Policy profile module; no policy literals outside it | audit §6 | **W2b** — satisfied 2026-09-02 |
 | R8.2 | Executable tests on the five compliance-critical modules; TDD for all domain changes | audit §7 | W0 |
 | R8.3 | Delete dead code | audit §5 | W0 |
 | R8.4 | Fix confirmed data-loss defects | audit 4.2, 4.14 | W0 |

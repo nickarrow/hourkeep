@@ -38,6 +38,18 @@ that intended to close it finished.
 **W2a (2026-08-17) closed:** 4.9, 4.10, 5.2, 11.1, 11.2, 11.4, 11.5, 15.7, 15.8, 15.20 — **10 rows**.
 **W2a marked partial:** 4.1, 5.1, 5.3, 5.7, 11.3 — **5 rows**.
 
+**W2b (2026-09-02) closed:** 5.6 — **1 row**. Requirement **R8.1** in `PRD.md` § 6.8 is satisfied by the
+same work.
+**W2b marked partial:** 15.6, 15.7 — **2 rows**, both reassigned to **W9a**. The functions exist and have
+zero production callers; see the outcome note under § 15.
+
+> **W0 and W5 left no annotations in this file at all** — grep for `CLOSED W0`, `CLOSED W5`, `PARTIAL W0`,
+> `PARTIAL W5` returns **0**. That is the mechanism by which 15.6 and 15.7 sat assigned to a wave that
+> never mentioned them: the convention above exists, and two waves did not use it. Their rows have not
+> been backfilled here, because doing it from memory is exactly the bookkeeping this document was
+> corrected for once already. **W3 should reconcile W0's and W5's rows against their wave files** —
+> and each wave should write its own line here at closeout.
+
 > **Row 5.7 was itself wrong and is corrected above.** It described the seasonal-worker test as an
 > "objective test", which is the framing `validation-findings-2026-08.md` § I7 **retracted** from the
 > steering doc as unsupported and restrictive in the user-hostile direction. 26 U.S.C. 45R(d)(5)(B) gives
@@ -139,12 +151,42 @@ priority. Two whole regimes required by the rule (hardship, noncompliance respon
 | 5.3 | Household-wide: a spouse's income counts; a tax dependent uses the claiming taxpayer's household | No household concept · **PARTIAL W2a** — the married-spouse false negative is now surfaced as an explicit edge case, and the two-sided message (floor for this pathway, separate 133% FPL ceiling → Marketplace) is stated. **Still open:** the screener questions themselves (→ **W4**) | `contradicts` | **harmful** — produces false negatives for married users |
 | 5.4 | No pay-period conversion exists in the rule. States determine a monthly figure via existing MAGI methodology | `PAY_PERIOD_MULTIPLIERS` = `{daily: 30, weekly: 4.33, "bi-weekly": 2.17, monthly: 1}`, applied per entry | `contradicts` | **harmful** |
 | 5.5 | — | Monthly total sums `monthlyEquivalent` **across every entry**, so four weekly paychecks report ~$2,598 instead of ~$650 | `contradicts` | **harmful** |
-| 5.6 | Threshold = `federalMinimumWage × 80`, dynamic; tipped/youth/State wages prohibited | `INCOME_THRESHOLD` derives correctly from constants, but `580` is also hardcoded in the engine, results page, `GettingStartedContextual`, and export | `partial` | incomplete |
+| 5.6 | Threshold = `federalMinimumWage × 80`, dynamic; tipped/youth/State wages prohibited | ~~`INCOME_THRESHOLD` derives correctly from constants, but `580` is also hardcoded in the engine, results page, `GettingStartedContextual`, and export~~ · **CLOSED W2b** — the threshold is now `incomeThreshold(profile)`, a function over `federalMinimumWage × requiredHours`, so it tracks a mutated wage rather than merely equalling 580 (a test asserts exactly that). **This row's own site list was short by ten files:** the real count was **60 lines across 14 files**, and the scan that verified it was blind to `$` so it missed a further **22 literals across 4 files** — see the note below. Zero policy literals now remain in non-test `src/`, pinned by an in-CI scan over 20 files plus `scripts/compliance-gate.sh` (17 → **0**). The tipped/youth/higher-State prohibition is recorded at `federalDefault.ts:118` and `derive.ts:28` but **not surfaced to users**, deliberately: it constrains the State, not the user | `partial` | incomplete |
 | 5.7 | Seasonal worker per 26 U.S.C. 45R(d)(5)(B) / 29 CFR 500.20(s)(1) — seasonal-basis labour **and** holiday retail, as **inclusive examples, not a closed test**. The IFC sets **no verification rule** for seasonal-worker status | ~~Self-declared toggle plus a question about "seasonal work (construction, agriculture, tourism)"~~ · **PARTIAL W2a** — `SeasonalWorkerToggle.tsx:47` invented a "6 months or less per year" threshold that is nowhere in the rule; removed. **Still open:** the averaging window includes the assessed month (→ **W7a**, rows 5.4/5.5) | `partial` | harmful |
 | 5.8 | Average over the **6 months preceding** the assessed month — assessed month **excluded** | `getLast6Months` returns the current month **plus five prior** | `contradicts` | **harmful** |
 | 5.9 | Divisor is 6, but most States instead use a **reasonably-predictable-changes proration** | Always divides by 6, including months with no data — a 6× understatement in month one, shown as `$0.00` rows as though verified | `partial` | harmful |
 | 5.10 | Income evaluated **per month of the review period** | Only the current month | `partial` | blocks |
 | 5.11 | **Income-to-hours proxy**: `income ÷ FMW` credited as work hours, combinable | Not implemented. Hours and income are mutually exclusive per month | `stricter` | **harmful** |
+
+> ### Row 5.6 closed, and the instrument that verified it was broken — W2b, 2026-09-02
+>
+> Recorded here rather than in the row, because the failure is about **how this document gets
+> counts** and it will recur.
+>
+> Row 5.6 named four locations. Re-verifying against the tree before writing code gave **60 lines
+> across 14 files** — four of them in no site table anywhere, including `HourTrackingHelp.tsx`,
+> which is live via `Dashboard.tsx:88`. W2a's own handoff table for this work said **42 lines across
+> 7 files**, so it was short by 18 lines and 7 files. Together with W2a's 11 sites turning out to be
+> 78 lines across 14 files, that is **two waves running** where a site list in the planning
+> documents undercounted the tree. Verify one before trusting it.
+>
+> **Worse, the scan that certified the fix could not see a dollar sign.** The pattern excluded `$`
+> as a preceding character, so `$580` never matched. The wave's acceptance criterion read green
+> while **22 literals were still live across four files** — three of which were inside the scan's
+> own file list. It was caught by three of four reviewers reading the regex, not by any run of it.
+>
+> The site table, the "60 across 14" figure and the acceptance test were all readings from that one
+> gauge. **A criterion whose observable is produced by the same instrument as the work cannot be
+> self-checked** — no amount of care in re-running it would have helped. Corrected pattern, now in
+> `src/lib/__tests__/policyInjection.test.ts`:
+>
+> ```
+> (^|[^0-9._$A-Za-z])(80|580|7\.25|4\.33|2\.17)([^0-9%A-Za-z]|$)|(^|[^0-9._$A-Za-z])\$(580|7\.25)\b
+> ```
+>
+> It now runs over **20 files** in CI with a block-comment stripper, alongside
+> `scripts/compliance-gate.sh` over 6 — and the gate's own comment states its limits, because it
+> reaches 6 files while W2b touched 14 and the 9 outside `src/lib/` are invisible to it.
 
 ## 6. Compliance evaluation
 
@@ -240,7 +282,7 @@ Worth preserving deliberately.
 - **Softened language from v7.1.0** ("you may be exempt"). Already moving toward the non-adjudication posture.
 - **Nine of the ten exclusion categories** have a question, even if several need correcting.
 - **Dexie schema versioning** is clean and additive, so a v7 migration is straightforward.
-- **`INCOME_THRESHOLD` derived from constants** rather than a literal — the right instinct, just not used consistently.
+- **`INCOME_THRESHOLD` derived from constants** rather than a literal — the right instinct, just not used consistently. **W2b made it consistent** (2026-09-02): the value is now `incomeThreshold(profile)`, a function over the profile so it tracks a changed wage, and the old constant survives only as a `@deprecated` re-export with zero non-test importers.
 
 ---
 
@@ -255,11 +297,18 @@ Three findings drive the wave sequence:
 3. **The factually-wrong copy is cheap to fix and the highest harm-per-hour.** Section 5.2 alone is a
    content edit that removes a materially misleading statement.
 
-That yields: safety net → modernize → correct the copy → policy profile → status model → screening →
-month scoping → activity model → income repositioning → unified compliance → export → noncompliance and
-hardship → accessibility and privacy.
+> **This section's original sequence is superseded and was left stale until 2026-09-02.** It read
+> "safety net → **modernize** → correct the copy → policy profile → status model → screening → **month
+> scoping** → …", which is the pre-validation order. The 2026-08-16 validation **inverted it**: copy
+> corrections come first because they are the highest harm-per-hour, month scoping moves up to third
+> because it gates roughly a third of the remaining rows, and dependency modernization moves to **the
+> very end** (ADR-0009). The three findings above are what drove that inversion and still hold; the
+> ordering they were paired with did not.
 
-Detail in `waves/README.md`.
+The order actually being executed, pre-date: **W0-slice → W2a → W0 → W5 → W2b → W6a → W8a → W7a**, then
+W3 → W4 → W7b → W9a/W9b → W8b → W6b → W10 → W1 after it.
+
+**`waves/README.md` § Sequence is authoritative** — check it rather than this paragraph.
 
 ---
 
@@ -274,8 +323,8 @@ Full detail in `../audit/validation-findings-2026-08.md`.
 | 15.3 | § 435.555(d)(3) unemployment hardship is a **second independent State election** on top of electing hardship | Not modeled; earlier docs said all-four-or-none | `missing` | harmful | W9 |
 | 15.4 | § 435.558(b)(2)/(b)(3): "unable to verify" is a **binary State-plan election** (notice concurrent with the renewal form, or after it) | Not modeled. Determines whether the user gets one ~35-day window or two | `missing` | **blocks** | W9 |
 | 15.5 | **Option 2 carve-out**: if the renewal form isn't returned and other factors are also unverified, the § 435.558(a) protections **do not apply** | Not modeled. Undercuts the "coverage continues" reassurance | `missing` | **harmful** | W9 |
-| 15.6 | § 435.915: applications filed **before** implementation are adjudicated under prior rules | Not modeled. **Reassigned W5 → W2b on 2026-09-02**, see note below | `missing` | incomplete | ~~W5~~ **W2b** |
-| 15.7 | § 435.559(c): "renewal **initiated**" = when ex parte review begins; existing enrollees aren't assessed until then | ~~Not modeled, not stated to users. One of the most reassuring facts in the rule~~ · **CLOSED W2a (copy)** — `requirementFacts.already-enrolled-timing`, rendered above the tracking UI. Data modelling **reassigned W5 → W2b on 2026-09-02**, see note below | `missing` | **harmful** | W2a (copy) · **W2b** (data) |
+| 15.6 | § 435.915: applications filed **before** implementation are adjudicated under prior rules | ~~Not modeled~~ · **PARTIAL W2b** — `applicationRuleset(filedOn, profile)` in `src/lib/policy/transition.ts` answers it, cited and tested. **Zero production callers, and the app collects no filing date.** Answerable, not closed → **W9a** | `missing` | incomplete | ~~W5~~ ~~W2b~~ **W9a** |
+| 15.7 | § 435.559(c): "renewal **initiated**" = when ex parte review begins; existing enrollees aren't assessed until then | ~~Not modeled, not stated to users. One of the most reassuring facts in the rule~~ · **CLOSED W2a (copy)** — `requirementFacts.already-enrolled-timing`, rendered above the tracking UI · **PARTIAL W2b (data)** — `renewalInitiationWindow(dueMonth, profile)` widens the due month by the 60–90 day initiation lead instead of comparing it directly. **Zero production callers, and no renewal due month exists outside W5's anchor** → **W9a** | `missing` | **harmful** | W2a (copy) · ~~W2b~~ **W9a** (data) |
 
 > ### 15.6 and 15.7 were assigned to W5 and W5 could not do them — reassigned to W2b, 2026-09-02
 >
@@ -307,7 +356,51 @@ Full detail in `../audit/validation-findings-2026-08.md`.
 >    *due*, which is what a user knows. § 435.559(c) triggers on *initiation*, which CMS
 >    notes can precede the due date by 60–90 days — so a January 2027 due date can mean a
 >    November 2026 initiation. Comparing the stored anchor directly against an
->    implementation date would give the wrong answer in the user-unfavourable direction.
+>    implementation date would give the wrong answer.
+>
+> ### Outcome — W2b, 2026-09-02: answerable, not closed. Reassigned to W9a
+>
+> **Both rows are `PARTIAL`, not struck.** `src/lib/policy/transition.ts` implements
+> `applicationRuleset(filedOn, profile)` for 15.6 and `renewalInitiationWindow(dueMonth, profile)`
+> for 15.7 — cited, tested at 31 assertions, and neither returns a boolean (ADR-0003). They also
+> have **zero production callers**, and both need inputs the app does not collect: no filing date
+> exists anywhere in the data model, and no renewal due month exists outside W5's anchor.
+>
+> Two reviewers reached the same phrase independently — *answerable, not closed*. Marking them
+> struck would repeat precisely the mistake this note was written to record.
+>
+> **Reassigned to W9a**, which owns the notice workflow and is the first wave with a surface to
+> render either answer on.
+>
+> **The direction of harm in note 2 above was stated backwards, and the correction matters.**
+> Verified against the raw preamble at **91 FR 33416** (`2026-11094.txt:2304`): CMS rejected the
+> end-date trigger *because* a 60–90 day process would have forced States to verify renewals
+> "initiated as early as November 2026", i.e. **before their own implementation date**. So
+> choosing *initiation* pushes first assessment **later**, not earlier. It follows that:
+>
+> - comparing the stored **due month** directly **over-warns** — it tells a user the requirement
+>   applies when it does not yet; and
+> - the **lead-adjusted** answer is the reassuring one, so it is the answer that risks
+>   **under-warning**, and under-warning is the error that costs somebody coverage.
+>
+> The dangerous error here is the comforting one. `transition.test.ts` pins the hedging
+> per-sentence for that reason.
+>
+> **Two findings computed during execution, both worth carrying:**
+>
+> 1. **The reassuring answer runs through March 2027**, one month further than
+>    `medicaid-domain-knowledge.md`'s "January or February 2027". Under `FEDERAL_DEFAULT` the
+>    60–90 day window is 30 days wide and so never crosses a first-of-month boundary: a renewal
+>    due 2027-03 initiates 2026-12-01…2026-12-31 (before implementation), while 2027-04 initiates
+>    2027-01-01…2027-01-31 (on or after). The `straddles` arm is therefore **unreachable under the
+>    federal default** and is tested with an explicit wider-lead profile so it is not a dead branch.
+> 2. **Month granularity is sufficient for 15.6 today, and design note 1 above is answered rather
+>    than implemented.** Every implementation date on record is the first of a month — federal
+>    2027-01-01, NE 2026-05-01, MT/AR 2026-07-01, IA 2026-12-01 — so a `YYYY-MM` filing month
+>    decides the comparison in every known case. A mid-month State election returns
+>    **`"uncertain"`** rather than guessing. **No date-granular stored field was added**, because
+>    nothing writes one; adding it would have been speculation, and W9a can add it alongside the
+>    caller that needs it.
 | 15.8 | § 435.557(b): **ex parte first** — States must require SNAP/TANF, incarceration, and education data before asking the individual | ~~Never explained. Users may over-collect, or panic unnecessarily~~ · **CLOSED W2a** — `requirementFacts.ex-parte-first`, citing **§ 435.557(a)–(b)** as a pair because the June 29 2026 correction (91 FR 39028) shifted paragraph designations. Also printed on the export artifact | `missing` | harmful | W2a |
 | 15.9 | Medical-frailty documentation may be signed by physicians, NPs, PAs, psychologists, counselors, therapists, clinical social workers, and others credentialed by the State | Not surfaced. Most actionable "what do I go get?" line in the rule | `missing` | harmful | W4 |
 | 15.10 | **Absence of claims cannot defeat** the frailty exclusion; States may not consider information older than 12 months | Not surfaced | `missing` | harmful | W4 |

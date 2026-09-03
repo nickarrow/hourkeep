@@ -2,8 +2,8 @@
 
 **The holistic home for this effort.** Open this file to remember where we are.
 
-**Last updated:** 2026-09-02 (W5 closed out)
-**Current wave:** none in progress — **W2b (Policy Profile)** is next. W5 landed 2026-09-02
+**Last updated:** 2026-09-02 (W2b closed out)
+**Current wave:** none in progress — **W6a (Evidence Capture)** is next. W2b landed 2026-09-02
 
 > A first version of this line said W1 was next. Wrong: ADR-0009's reordering moved **W1 to the very end**,
 > after the December date. `waves/README.md` § Sequence is authoritative — the pre-date order is
@@ -13,14 +13,33 @@
 >
 > Recorded here because they are the kind of thing that disappears if it only lives in a closed wave file.
 >
-> 1. **Offline behaviour, and a human read of the copy on a phone.** Reduced 2026-09-01. The
->    **phone-viewport half is now automated** — `@playwright/test` runs every route at 375×812 and drives
->    the destructive delete-all flow there (ADR-0007 Tier 3b). What remains: no spec exercises the
->    **service worker offline** yet, and nobody has read W2a's corrected copy on a phone with a human eye.
->    Setting this up found two bugs that had been shipping — see the Playwright section below.
+> 1. **Offline behaviour.** Narrowed twice. The **phone-viewport half is automated** since 2026-09-01 —
+>    `@playwright/test` runs every route at 375×812 and drives the destructive delete-all flow there
+>    (ADR-0007 Tier 3b). W2b then did the **human read**: the rewritten hour-tracking help panel was read
+>    at 375×812 in a real browser via the Playwright MCP, which is how five British "programme" spellings
+>    got caught before they shipped, and how six pre-existing ones from W2a were found and handed to W7a.
+>    **What remains is only the service worker.** No spec exercises offline, and nobody has driven the app
+>    with the network off. Open since W0 — five waves. It is the last unautomated item in the Definition of
+>    Done, which is why it keeps surviving: nothing fails when it is skipped.
 > 2. ~~**The review protocol has now failed twice, and is getting worse.**~~ — **CLOSED
 >    2026-09-02. All four reviewers ran independently on W5**, including data integrity and
->    semantic review, which had never once run independently across W2a and W0.
+>    semantic review, which had never once run independently across W2a and W0. **W2b made it two
+>    consecutive waves**, and found four more blocking defects in work that had already passed 655
+>    tests, seven mechanical gates, a 61-case mutation sweep and a browser pass.
+>
+>    **The W2b run says something the W5 run did not.** Two of its four findings were the same
+>    shape: *this wave diagnosed a defect, wrote a guard for it, then committed a fresh instance of
+>    that same defect where the guard did not look.* The verdict phrase found in
+>    `HourTrackingHelp`, added to `VERDICT_PHRASES`, then written into `transition.ts`. The
+>    "component created but not guarded" lesson taken from W5, applied to two components, missed on
+>    a third. **Writing the rule down is not the same as being subject to it** — so check the new
+>    files against the guard you just extended, not only the old ones.
+>
+>    And the single most consequential finding was **an instrument, not a defect**: the
+>    policy-literal scan could not see a dollar sign, so its own acceptance criterion read green
+>    while 22 literals were live. Three of four reviewers found it by reading the regex; no run of
+>    it could have. **A criterion whose observable is produced by the same instrument as the work
+>    cannot be self-checked.**
 >
 >    It was worth the wait. The four found **four blocking defects** in work that had
 >    already passed 509 tests, six mechanical gates and a manual browser pass — including
@@ -50,33 +69,51 @@
 >    the meta-test inverted to assert emptiness rather than being deleted with the entries.
 > 2. **`npm test` gates deployment**, and now runs 423 tests rather than 196.
 >
-> ### What W2b should read first — added 2026-09-02
+> ### What W6a should read first — added 2026-09-02
 >
-> W5's **Found during execution** and **Review protocol outcome** sections in
-> [`waves/wave-5-month-scoping.md`](waves/wave-5-month-scoping.md). Directly load-bearing
-> for W2b:
+> W2b's **Closeout** section in
+> [`waves/wave-2b-policy-profile.md`](waves/wave-2b-policy-profile.md), particularly
+> *Recorded, not fixed*. Directly load-bearing for W6a:
 >
-> - **`FEDERAL_DEFAULT_REVIEW_PERIOD` in `src/lib/reviewPeriod.ts` is the constant to
->   move.** One object, one export, every consumer already takes it as an optional
->   parameter, so the move is a two-line diff. It carries a `source` string *and* a
->   separate `renewalPeriodMonthsSource`, because that one value has worse provenance than
->   the rest — the IFC amends § 435.916 to say 12-month renewals while its own preamble
->   says 6 for the adult group under § 1902(e)(14)(L). Keep them separate.
-> - **`monthlyThreshold` is derived, not literal — and that is a trick, not a fix.**
->   `tracking/page.tsx` computes it as `calculateMonthlySummary([], month).hoursNeeded`,
->   which avoids writing `80` but only works because `hoursNeeded` is
->   `isCompliant ? 0 : 80 - totalHours`. **W2b should export a named threshold from the
->   policy profile and delete that derivation.** The real `80` still lives at
->   `calculations.ts:78,81`.
-> - **`Dashboard` now takes `threshold` as a required prop**, so W2b reaches it without
->   editing it. Three literals of `80` went with it.
-> - **Three `/ 80 hours` literals remain in `e2e/month-scoping.spec.ts`** and will fail
->   when the threshold changes. That is the intended signal, but budget for it.
-> - **The compliance-gate script scans five files for policy literals and `reviewPeriod.ts`
->   is not one of them.** Worth adding when W2b creates `src/lib/policy/`.
-> - **A policy value can hide as an English word.** W5 shipped "We've assumed six" in
->   user-facing copy, invisible to every numeric scan, and review caught it. Grep for spelt
->   numbers as well as digits.
+> - **The profile has no education field, and W6a needs one.** § 435.552(d)'s
+>   `creditHours × 3 × 4.33` is nowhere in `src/lib/policy/`, deliberately — W2b adds no field
+>   without a consumer. **Add it with the module that reads it.**
+> - **`4.33` already exists in the codebase meaning something else, and the two must not be
+>   collapsed.** `PAY_PERIOD_MULTIPLIERS.weekly` is 52/12 rounded *down*, HourKeep's own
+>   invention, classified `contradicts` at gap 5.4 and owned by W7a. The Carnegie Unit is
+>   statutory arithmetic CMS published. Same digits, unrelated meanings — the warning is at
+>   `payPeriodConversion.ts:42-59`. **`EstimationTools` already couples its hours converter to
+>   `PAY_PERIOD_MULTIPLIERS.weekly`**, which W7a is expected to replace or delete.
+> - **The half-time cliff is a cliff, and the arithmetic is Computed, not Deferred.** At least
+>   half-time means compliant at zero hours and **may not be combined**; below half-time
+>   converts and combines. Enrollment status is **determined by the school**. Per
+>   `compliance-copy-standards.md`, show the formula and the citation — refusing to show
+>   arithmetic CMS published is withholding, not humility.
+> - **Take a threshold from the profile, never a literal.** `FEDERAL_DEFAULT.requiredHours` and
+>   `incomeThreshold(profile)`. Every module that reads policy takes an optional
+>   `policy: PolicyProfile = FEDERAL_DEFAULT` final parameter — follow that shape, and add the
+>   new file to the scan list in `src/lib/__tests__/policyInjection.test.ts` **and** to
+>   `POLICY_FIELD_OWNERS` in `src/lib/policy/types.ts`.
+> - **Extending a guard does not exempt the file that extends it.** Two of W2b's four blocking
+>   findings were fresh instances of defects W2b had just written guards for. Add new components
+>   to the no-verdict render guard in the same commit that creates them, and check your own new
+>   copy against `VERDICT_PHRASES` — the list has now been extended three times by verdicts
+>   phrased without a pronoun (`Compliant`, `you need to`, `average meets`).
+> - **A policy value can hide as an English word**, and now there is a test for it:
+>   `src/__tests__/no-spelt-policy-value.test.ts`. `SPELT_ALLOWLIST` has 3 entries, all `W3`.
+>   If W6a needs to spell a number in copy, expect that test to fire.
+>
+> **How W5's six predictions to W2b actually fared — four held, two were wrong.** Worth knowing
+> because handoff notes get trusted more than they earn.
+>
+> | Prediction | Outcome |
+> |---|---|
+> | `FEDERAL_DEFAULT_REVIEW_PERIOD` is "a two-line diff" | **Wrong.** 27 references across 4 files |
+> | `monthlyThreshold`'s `hoursNeeded` derivation is a trick to delete | Held. Deleted |
+> | `Dashboard` takes `threshold` as a prop, so W2b needn't edit it | Held |
+> | The three `/ 80 hours` e2e literals "will fail when the threshold becomes dynamic" | **Wrong.** They passed — the relocation changed no value, which is the behaviour-neutral signal working. They were rewritten anyway so a real FLSA change fails loudly instead of silently years later |
+> | `reviewPeriod.ts` is missing from the compliance gate | Held. Added, 5 → 6 targets |
+> | A policy value can hide as an English word | Held, and now pinned by a test |
 >
 > ### W5's two blockers are resolved — 2026-09-01
 >
@@ -89,10 +126,15 @@
 >
 > ### Playwright is available, and you should use it
 >
-> `npm run test:e2e` — 62 specs against the real static export (ADR-0007 **Tier 3b**). The rule for adding
-> one: only if it is impossible in jsdom. W5 rewrites month navigation and makes `Calendar` controlled,
-> which is heavily visual, so this is the wave where a browser earns its keep. The Playwright MCP also
-> lets you *look* at the app while building rather than after.
+> `npm run test:e2e` — **74 specs** across 5 files against the real static export (ADR-0007 **Tier 3b**).
+> The rule for adding one: only if it is impossible in jsdom. The Playwright MCP also lets you *look* at
+> the app while building rather than after, and **that is where it has paid off most.** W2b used it to read
+> the rewritten help panel at 375×812 and caught five British spellings before they shipped; the committed
+> suite would not have.
+>
+> One trap W2b hit and W5 recorded: when mutation-testing an e2e assertion, **rebuild and grep `out/` to
+> prove the mutation reached the shipped bundle.** `reuseExistingServer` will otherwise serve a stale
+> export and the test passes against code you did not change.
 >
 > Setting it up found two bugs that had been shipping and were invisible to all 423 Vitest tests and to
 > `next dev`: a dead PWA manifest link (`/hourkeep/manifest.json` → 404, so the app was not installable)
@@ -197,8 +239,8 @@ Sequence and dependencies: [`waves/README.md`](waves/README.md).
 | **W0-slice** | Test runner only — Vitest, a `test` script, nothing else | **Done** 2026-08-17 |
 | **W2a** | Truth in copy | **Done** 2026-08-17 — 10 gap rows closed, 5 partial |
 | [W0](waves/wave-0-safety-net.md) | Safety net, deletion, 4 data-loss fixes | **Done** 2026-09-01 — 4 data-loss fixes, delete-all-data, 14 files deleted, 196 → 423 tests. 1 criterion unmet (phone viewport) |
-| [W5](waves/wave-5-month-scoping.md) | Month scoping + review periods | **Done** 2026-09-02 — `ReviewPeriod` model, month required and validated, `Calendar` controlled, 423 → 525 tests, 62 → 72 e2e. All 9 live criteria met; 1 struck to W3. First wave with 4/4 reviewers |
-| W2b | Policy profile | Not started |
+| [W5](waves/wave-5-month-scoping.md) | Month scoping + review periods | **Done** 2026-09-02 — `ReviewPeriod` model, month required and validated, `Calendar` controlled, 423 → **526** tests (this row said 525; `npm test` at W5's tip `ad8ac87` returned 526), 62 → 72 e2e. All 9 live criteria met; 1 struck to W3. First wave with 4/4 reviewers. **Did not close gaps 15.6/15.7, which were assigned to it** |
+| [W2b](waves/wave-2b-policy-profile.md) | Policy profile | **Done** 2026-09-02 — `src/lib/policy/` with `FEDERAL_DEFAULT` over 36 fields, `incomeThreshold()` a function so it tracks the wage, `ReviewPeriodPolicy` a `Pick` of the profile, zero policy literals in non-test `src/`, 526 → 668 tests, 72 → 74 e2e. **30 of 33 criteria**; 4/4 reviewers. Gaps 15.6/15.7 answerable but uncalled → W9a |
 | W6a | Evidence capture | Not started |
 | W8a | Print evidence export | Not started |
 | W7a | Seasonal + income corrections | Not started |
@@ -279,10 +321,10 @@ Deliberately left open. Not defects — decisions to close later.
    execution; clean up before W3.
 3. **Ten specific acceptance criteria are still weak.** A global rule is in the Definition of Done; the
    individual criteria in W3–W10 were not rewritten. Fix each at its wave's start.
-4. **Split wave files don't exist** for W2b, W6a/W6b, W7a/W7b, W8a/W8b, W9a/W9b. The combined `wave-2`,
+4. **Split wave files don't exist** for W6a/W6b, W7a/W7b, W8a/W8b, W9a/W9b. The combined `wave-2`,
    `wave-6`, `wave-7`, `wave-8`, `wave-9` files are the source.
-   **W2b is next and needs its file written first** — `wave-2-truth-and-policy-profile.md` is the source,
-   and W2a's precedent below is the reason to verify its site tables before trusting them.
+   **W6a is next and needs its file written first** — `wave-6-activity-model.md` is the source, and the
+   precedents below are the reason to verify its site tables before trusting them.
 
    > **A related mismatch W5 surfaced, 2026-09-02.** Closing a wave against its own acceptance criteria is
    > not the same as closing the `gap-analysis.md` rows assigned to it. W5 met every live criterion in its
@@ -291,6 +333,18 @@ Deliberately left open. Not defects — decisions to close later.
    > to W2b with the reasoning recorded in `gap-analysis.md`. **When a wave closes, check the gap rows
    > assigned to it as well as its own criteria**, and reassign with a reason rather than leaving them
    > looking abandoned.
+   >
+   > **W2b then hit the same wall from the other side, 2026-09-02, and the resolution is different.** It
+   > built both functions, cited and tested them — and they have **zero production callers**, because
+   > § 435.915 needs a filing date the app never collects and § 435.559(c) needs a renewal due month that
+   > exists nowhere outside W5's anchor. So the rows are **`PARTIAL`, not struck**, and reassigned to
+   > **W9a**, the first wave with a surface to render either answer on. **"The logic exists" is not
+   > "the gap is closed"** — a user still cannot learn either fact from the app. Two reviewers landed on
+   > the same phrase independently: *answerable, not closed.*
+   >
+   > Mechanically: **the closure convention in `gap-analysis.md` only works if every wave uses it.** W0
+   > and W5 left **no** annotations in that file at all, which is how 15.6 and 15.7 came to look
+   > abandoned. Each wave writes its own closure line at closeout; W3 owns backfilling W0's and W5's.
    **W2a now has its own file** — [`waves/wave-2a-truth-in-copy.md`](waves/wave-2a-truth-in-copy.md),
    written 2026-08-17. Worth reading before the next split: re-verifying wave-2's § 2.5 site table against
    the code found **nine** errors before any code was written, and running the guard test found **seven
@@ -304,13 +358,21 @@ Deliberately left open. Not defects — decisions to close later.
 
 ## Open questions to watch
 
-1. **A final rule is coming.** 79,718 comments were filed. Interpretations may shift. The policy profile is
-   versioned so a change is new data, not a rewrite.
+1. **A final rule is coming.** Interpretations may shift. The policy profile is versioned so a change is new
+   data, not a rewrite — `effectiveFrom`, `source` and `confidence` are on every profile.
+
+   > **The "79,718 comments" figure is unverified.** It is repeated in `src/lib/policy/types.ts` and appears
+   > nowhere in the rule text or anywhere else in this repository. Flagged at W2b closeout rather than
+   > removed, because it may well be right — but nothing here establishes it. Cite it or drop it.
 2. **§ 435.916 renewal conflict.** The IFC text says 12-month MAGI renewals; its own preamble says 6 months
    for the adult group under § 1902(e)(14)(L). Separate rulemaking presumably pending.
 3. **Most States' elections are unknown**, especially whether hardship is offered — which determines whether
    a whole feature is relevant to a given user.
-4. **State medically frail condition lists.** Each State must publish one. None catalogued.
+4. **State medically-frail condition lists.** Only **Georgia's** is published, and it is **two-tier**
+   (automatic plus case-by-case), so "is my condition on the list?" is not a yes/no question. Note the rule
+   says States must **develop** the list (§ 435.554(c)(5)(ii)), not publish it — a distinction that matters
+   because the app tells users to ask for it. *Merged 2026-09-02 with a duplicate item that said "none
+   catalogued", which this one contradicted.*
 5. **CMS SPA / election templates** were "under development." Once published, they are the authoritative
    source for most of `state-options.md`.
 6. **Emmy's survival.** CMS calls it "a prototype… currently being piloted," and there are credible reports
@@ -318,8 +380,16 @@ Deliberately left open. Not defects — decisions to close later.
    depend on it. **Recheck before W8a.**
 7. ***Massachusetts v. Oz*** — summary judgment hearing **October 20, 2026**, aimed at the medically-frail
    functional gate. Could land before the deadline.
-8. **State medically-frail condition lists.** Only Georgia's is published, and it is **two-tier** (automatic
-   plus case-by-case), which means "is my condition on the list?" is not a yes/no question.
+
+   > **Needs a real citation.** The venue, the June 2026 filing, the July 2026 injunction denial and the
+   > October 20 hearing date now sit in `src/lib/policy/federalDefault.ts` as the `watch` condition on a
+   > **Tier-1 field** (`frailtyListStructure`), and they trace only to
+   > `.kiro/steering/medicaid-domain-knowledge.md`. Absent from the IFC and from `rule-extract.md`. Flagged
+   > at W2b closeout. **Verify before W4**, which is the wave that acts on it.
+8. **The eight-State January 2027 frailty-documentation list** (AR, ID, IN, IA, NC, ND, OH, UT).
+   `state-options.md` attributes it to Politico and to state agencies; nothing federal confirms it. The
+   **federal 2028-01-01 date is confirmed** in rule text (§ 435.557(b)(2), 91 FR 33474). Treat the
+   eight-State claim as secondary-source until checked.
 
 ---
 

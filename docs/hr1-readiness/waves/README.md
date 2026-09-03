@@ -65,14 +65,21 @@ W5   Month Scoping                    ← W0          ✅ DONE 2026-09-02
        │   src/lib/reviewPeriod.ts — one object, one export, W2b moves it.
        │   423 → 526 tests, 62 → 72 e2e. First wave with 4/4 reviewers
        ▼
-W2b  Policy Profile                   ← W0, W5        ◀ NEXT
-       │   FEDERAL_DEFAULT, remove every policy literal.
-       │   Its wave file does not exist yet — wave-2-truth-and-policy-profile.md
-       │   is the source. Start by writing the split file, as W2a did.
-       │   Inherits gaps 15.6 and 15.7 from W5 (§ 435.915 / § 435.559(c) both
-       │   need a State implementation date) — see gap-analysis.md
+W2b  Policy Profile                   ← W0, W5      ✅ DONE 2026-09-02
+       │   src/lib/policy/ with FEDERAL_DEFAULT, 36 fields, and
+       │   incomeThreshold() as a function so it tracks the wage.
+       │   Zero policy literals left in non-test src/ — but the scan that
+       │   first certified that was blind to `$`, and review caught 22 live
+       │   literals behind it. Corrected pattern now runs over 20 files in CI.
+       │   ReviewPeriodPolicy is now Pick<PolicyProfile, …>; the standalone
+       │   FEDERAL_DEFAULT_REVIEW_PERIOD is gone (grep returns 0).
+       │   NO Dexie version bump — git diff src/lib/db.ts empty, browser
+       │   confirms HourKeepDB still at version 60.
+       │   526 → 668 tests, 72 → 74 e2e. 30 of 33 criteria; 4/4 reviewers.
+       │   Gaps 15.6/15.7 are ANSWERABLE, NOT CLOSED — transition.ts has both
+       │   functions and zero callers → reassigned to W9a
        ▼
-W6a  Evidence Capture                 ← W2b
+W6a  Evidence Capture                 ← W2b          ◀ NEXT
        │   community service record schema, caregiving log,
        │   education half-time cliff + credit-hour conversion,
        │   workProgram type, work broadened
@@ -106,7 +113,7 @@ W1   Dependency Modernization ← W0
 | W2a | **W0-slice** | Text edits need no arithmetic preserved, but W2a ships the no-verdict guard test and touches two Tier-1 modules |
 | W0 | W0-slice | Independent otherwise |
 | W5 | W0 | W0's characterization tests are what make it safe to change `calculations.ts` — whose optional `month` parameter is the defect W5 exists to fix. **Corrected 2026-09-01:** this said "migration test before touching the schema", which wrongly implied W5 touches schema. It does not; the compound indexes moved to W3's v7. **Confirmed at execution 2026-09-02:** W5 bumped no version and `git diff src/lib/db.ts` is empty |
-| W2b | W0, W5 | Tests prove the refactor is behavior-neutral; W5 first avoids a second pass over the same call sites |
+| W2b | W0, W5 | Tests prove the refactor is behavior-neutral; W5 first avoids a second pass over the same call sites. **Confirmed at execution 2026-09-02:** both held. The relocation changed no value, so W5's three `/ 80 hours` e2e assertions **did not fail** as W5 predicted they would — which is the behaviour-neutral signal working, not a missed step. They now read the threshold from the profile so a real FLSA change fails them loudly |
 | W6a | W2b | Thresholds and the credit-hour constant come from the profile |
 | W8a | W6a | Export must carry the corrected record shapes |
 | W7a | W6a | Income corrections sit alongside the activity model |
@@ -208,8 +215,8 @@ detail decays with distance, and pretending otherwise produces documents that dr
 | **W0-slice** | **Test runner** | Vitest, `fake-indexeddb`, testing-library, a `test` script, the orphaned test made to run | — (unblocks W2a) |
 | **W2a** | **Truth in copy** | Every wrong statement corrected; every verdict string gone; ex parte explained; § 435.559(c) reassurance; no-verdict render test | 5.2, 11.1–11.5, 15.7, 15.8, 15.20, part of 4.1/4.9/4.10, **part of 5.1/5.3** (household framing) |
 | **[W0](wave-0-safety-net.md)** | Safety net, deletion, **4** data-loss fixes | Test harness incl. migration test; ~2,700 lines gone; delete-all-data; `/test-compression` out | audit §4.2, §4.6, §4.9, §4.14, §5, §7 |
-| **[W5](wave-5-month-scoping.md)** | Month scoping + review periods | Any month viewable, editable, evaluable; review-period model | 6.4, 7.1–7.4, 15.6 |
-| **W2b** | **Policy profile** | `FEDERAL_DEFAULT`; zero policy literals | 5.6, R8.1 |
+| **[W5](wave-5-month-scoping.md)** | Month scoping + review periods | Any month viewable, editable, evaluable; review-period model | 6.4, 7.1–7.4, ~~15.6~~ — **15.6 was never in W5's scope or criteria**; reassigned W2b, then W9a |
+| **[W2b](wave-2b-policy-profile.md)** | **Policy profile** | `FEDERAL_DEFAULT` over 36 fields; `incomeThreshold()` tracks the wage; `ReviewPeriodPolicy` a `Pick` of it; zero policy literals in non-test `src/`; § 435.915 / § 435.559(c) transition functions | 5.6, R8.1 · **15.6, 15.7 partial → W9a** |
 | **W6a** | **Evidence capture** | Community service record schema; caregiving log; education half-time cliff + credit conversion; `workProgram`; work broadened | 4.1–4.7, 4.9–4.11, 8.4, 15.23, 15.24 |
 | **W8a** | **Print evidence export** | Period-scoped, includes documents, one evaluation path, survives print and fax | 8.1, 8.4, 8.5, 8.7–8.9 |
 | **W7a** | **Seasonal + income corrections** | Seasonal window fix; double-counting fix; income repositioned to evidence; household framing | 5.1, 5.4, 5.5, 5.7–5.10 |
@@ -223,9 +230,12 @@ detail decays with distance, and pretending otherwise produces documents that dr
 | **[W10](wave-10-accessibility-privacy.md)** | Accessibility + privacy | Keyboard operability, WCAG AA text/large-text/non-text, encryption posture | audit §4.5, §4.14, R8.8, R8.9, 15.26 |
 | **[W1](wave-1-modernization.md)** | Dependency modernization | MUI 9, Next 16.3, Tailwind removed, Inter loaded | audit §7, dark-mode bug |
 
-> Wave files for W2a, W2b, W6a, W6b, W7a, W7b, W8a, W8b, W9a, W9b are not yet written — the existing
+> Wave files for W6a, W6b, W7a, W7b, W8a, W8b, W9a, W9b are not yet written — the existing
 > `wave-2`, `wave-6`, `wave-7`, `wave-8`, `wave-9` files hold the combined scope and are the source for the
-> split. Write each half when it starts.
+> split. Write each half when it starts. **W2a and W2b now have their own files**
+> ([`wave-2a-truth-in-copy.md`](wave-2a-truth-in-copy.md),
+> [`wave-2b-policy-profile.md`](wave-2b-policy-profile.md)), and both were written by re-verifying the
+> combined file's site tables first. Both found them short — **do that before trusting one.**
 
 ---
 
