@@ -9,7 +9,7 @@
 > after the December date. `waves/README.md` § Sequence is authoritative — the pre-date order is
 > W0-slice → W2a → **W0** → **W5** → W2b → W6a → W8a → W7a.
 
-> ### Carried forward — three items still open
+> ### Carried forward — four items still open
 >
 > Recorded here because they are the kind of thing that disappears if it only lives in a closed wave file.
 >
@@ -25,7 +25,7 @@
 >    2026-09-02. All four reviewers ran independently on W5**, including data integrity and
 >    semantic review, which had never once run independently across W2a and W0. **W2b made it two
 >    consecutive waves**, and found four more blocking defects in work that had already passed 655
->    tests, seven mechanical gates, a 61-case mutation sweep and a browser pass.
+>    tests, seven mechanical gates, a 62-case mutation sweep and a browser pass.
 >
 >    **The W2b run says something the W5 run did not.** Two of its four findings were the same
 >    shape: *this wave diagnosed a defect, wrote a guard for it, then committed a fresh instance of
@@ -61,6 +61,26 @@
 >    violations in `ActivityForm`, `IncomeEntryForm`, `DocumentViewer`, `IncomeDashboard` and
 >    `StorageInfo` will go unreported while W5, W6a and W7a rewrite exactly those files. Details in
 >    [`waves/wave-0-safety-net.md`](waves/wave-0-safety-net.md) § Handoffs.
+> 4. **Two toolchain problems `npm ci` surfaced at W2b close, 2026-09-02.** Both belong to **W1**, which is
+>    sequenced last — so both sit for most of this plan, and that is the reason to write them here.
+>
+>    **The test suite runs on a Node version jsdom declares unsupported.** `npm ci` emits **10
+>    `EBADENGINE` warnings**: `jsdom@30.0.1` wants `^22.22.2 || ^24.15.0 || >=26.0.0` and `undici@8.10.0`
+>    wants `>=22.19.0`; this machine is on **v22.18.0**. No `.npmrc` exists, so `engine-strict` is off, npm
+>    does not fail, and all 668 tests pass. **They pass on an unsupported engine, which is luck rather
+>    than verification.** `engines.node` is `">=22"`, which admits 22.18.0 — and the CHANGELOG entry that
+>    set that floor **names `^22.22.2` in its own text** before writing `>=22`, so the fix for the previous
+>    Node-version CI break left a weaker version of the same hole. CI's `node-version: "22"` resolves to
+>    the latest 22.x and is probably fine, but it is **unpinned**, which is the objection that same entry
+>    raises against caret ranges for linters. **Raise the floor to `>=22.22.2` and pin CI exactly.** Not
+>    done at W2b close because tightening `engines` constrains the developer's own machine, and that is a
+>    deliberate decision rather than a side effect of closing a wave.
+>
+>    **`next@16.0.1` has a published advisory — CVE-2025-66478 — and it is recorded nowhere in this
+>    project.** `npm audit` reports 9 vulnerabilities, 8 high and 1 critical. Grepping `docs/`,
+>    `CHANGELOG.md` and `ROADMAP.md` for the CVE returns nothing. Deferring features past December is a
+>    defensible call; **deferring a known-vulnerable framework is a different question**, and it deserves
+>    an explicit answer rather than inheriting W1's position at the end of the queue.
 >
 > ### Both things W0 inherited from W2a are now closed
 >

@@ -512,7 +512,7 @@ checkbox could not say so.*
 | The reconciliation | 3 | **3** | `grep -c FEDERAL_DEFAULT_REVIEW_PERIOD src e2e` = **0**; W5's 11 review-period assertions intact and green |
 | The literals | 8 | **6** | The corrected scan returns **0** across 20 files; the shell gate exits 0 with **0** output lines, down from 17 |
 | The transition dates | 4 | **3** | `transition.test.ts` 31 tests; both functions exist, neither has a production caller |
-| The guards | 6 | **6** | `no-spelt-policy-value.test.ts` 22 tests; render guard 47; **68 mutations caught, 1 insensitive by design** |
+| The guards | 6 | **6** | `no-spelt-policy-value.test.ts` 22 tests; render guard 47; **70 mutation cases, 69 caught, 1 insensitive by design** |
 | Wave hygiene | 5 | **5** | `git diff src/lib/db.ts` empty; four of four reviewers ran |
 
 ### The three unmet
@@ -556,7 +556,7 @@ network off. Carried forward, as it has been since W0.
 ### Review protocol outcome
 
 **Four of four reviewers ran, the second consecutive wave.** They found **four blocking
-defects** in work that had already passed 655 tests, seven mechanical gates, a 61-case
+defects** in work that had already passed 655 tests, seven mechanical gates, a 62-case
 mutation sweep and a browser pass.
 
 The full write-up is in the commit message for `4870b19`. In brief:
@@ -675,5 +675,73 @@ patterns that removed one of two hedges and so read as insensitive when they wer
 Every one was fixed, because an unapplied mutation looks exactly like a test that does not
 care. W0 recorded that lesson; this wave supplied seven more instances of it.
 
-Final: **68 mutations caught, 1 insensitive and documented in the harness as
+Final: **70 mutation cases, 69 caught, 1 insensitive and documented in the harness as
 `EXPECTED INSENSITIVE` with its reason.**
+
+> **This number was 68 an hour earlier, and the correction is the point.** Counting the
+> harness's `mutate` invocations before deleting it returned **70 active cases** (plus one
+> commented out), against a closeout that claimed 68 caught and 1 insensitive — 69. One case
+> unaccounted for.
+>
+> It reconciles now, and it reconciles at every checkpoint the harness prints, which is why the
+> corrected figure is a reading rather than a second guess: **28 cases** after the module
+> section, **46** after transition, **62** after the guards, **70** after the post-review
+> additions. Against the running tallies recorded at each of those points — 28 caught, then 45
+> caught + 1 insensitive, then 61 + 1, then 69 + 1 — every checkpoint adds up. The post-review
+> section had been logged as 7 cases when it holds 8.
+>
+> **A count accumulated across sessions is not a count.** Each figure was right when written and
+> the sum was wrong, which is precisely the failure `engineering-standards.md` was written for —
+> and it survived a four-reviewer pass, because reviewers checked the work and not the tally.
+
+### Task 14 — the full Definition of Done
+
+Run against the committed tree after `npm ci` rebuilt `node_modules` from the lockfile.
+
+| Gate | Result |
+|---|---|
+| `npm ci` | **exit 0**, 789 packages, 790 audited. Lockfile resolvable; `npm ls --all` reports **0** `invalid` or `missing` |
+| `npx tsc --noEmit` | clean |
+| `npm test` | **668 passed**, 29 files |
+| `npm run lint` | **0 errors**, 3 warnings — all pre-existing, and `git diff --name-only ad8ac87..HEAD` confirms neither `PrivacyNotice.tsx` nor `ProfileForm.tsx` is in this wave's diff |
+| `npm run format:check` | clean |
+| `npm run build` | 12 static pages, manifest basePath rewritten |
+| `npm run test:e2e` | **74 passed** in 1.6m |
+| `scripts/compliance-gate.sh` | exit 0, **0** output lines |
+| `git diff ad8ac87..HEAD -- src/lib/db.ts` | **0 lines** — no schema change, Dexie stays at v6 |
+
+**Two findings `npm ci` surfaced, neither in scope to fix here and both recorded rather than
+waved past.**
+
+**1. The tests have been running on a Node version jsdom declares unsupported.** `npm ci` emits
+**10 `EBADENGINE` warnings**: `jsdom@30.0.1` requires `^22.22.2 || ^24.15.0 || >=26.0.0` and
+`undici@8.10.0` requires `>=22.19.0`, while this machine is on **v22.18.0**. There is no
+`.npmrc`, so `engine-strict` is off and npm does not fail — the install looks clean and all 668
+tests pass. That they pass is luck, not verification.
+
+The floor is too loose to catch it: `package.json` declares `engines.node: ">=22"`, which admits
+22.18.0. **The CHANGELOG entry that set that floor names `^22.22.2` as jsdom's requirement in its
+own text** and then wrote `>=22` anyway — so the fix for the last Node-version CI break
+reintroduced a weaker version of the same hole. CI is on `node-version: "22"`, which `setup-node`
+resolves to the latest 22.x and so is very likely above the floor, but it is **unpinned**: the
+same "a gate that moves on its own is not a gate" objection the CHANGELOG raises against caret
+ranges for linters applies to it.
+
+Not changed here, because tightening `engines` constrains the developer's own machine and that is
+a decision to take deliberately, not as a side effect of closing a wave. **Recommended for W1**,
+which owns dependency modernization — raise the floor to `>=22.22.2` and pin CI to an exact
+version.
+
+**2. `next@16.0.1` carries a published security advisory** (CVE-2025-66478), reported by npm
+during install. `npm audit` reports **9 vulnerabilities, 8 high and 1 critical**. Grepping
+`docs/`, `CHANGELOG.md` and `ROADMAP.md` for the CVE returns nothing, so this is **not recorded
+anywhere in the project**. W1 owns the upgrade and **W1 is sequenced last, after the December
+date** — which is a defensible ordering for features and a poor one for a known-vulnerable
+framework. Flagged for a decision rather than silently deferred.
+
+### Wave hygiene at close
+
+`scripts/mutate-w2b.sh` **deleted** — it was always temporary, and it had a recorded defect
+(interrupt between `sed` and the `cp` restore leaves a mutated file). Its case inventory is
+preserved above, which is the part worth keeping. `test-results/` holds only Playwright's
+`.last-run.json` and is gitignored.
