@@ -491,3 +491,189 @@ being guarded against is that "no literal says 80" is satisfied by deleting the 
 | 15.6/15.7 get squeezed at the end | Sequenced third, before the 60-line mechanical sweep |
 | § 435.559(c) answered in the user-unfavourable direction | A test asserts the initiation window is widened, not the due month compared. This is the direction that costs coverage |
 | Interpolating a threshold into prose breaks a sentence | Read the rendered copy at 375px, not the template. W5's two worst findings were invisible to 509 passing tests |
+
+---
+
+## Closeout — 2026-09-02
+
+**30 of 33 acceptance criteria met.** Three are recorded unmet rather than rounded up.
+Every verdict below names the observable it was checked against, re-checked at closeout rather
+than marked from memory. Figures are computed: `git rev-list --count ad8ac87..HEAD` = **10
+commits**, `git diff --shortstat` = **42 files, +5056/−326**, `npm test` = **668 tests across
+29 files**, `npx playwright test --list` = **74 specs**.
+
+*33, not the 31 originally written: closeout split two criteria that bundled a negative with
+its positive twin, because in each case one half was met and the other was not, and a single
+checkbox could not say so.*
+
+| Group | Criteria | Met | Observable used |
+|---|---|---|---|
+| The module | 7 | **7** | `policy.test.ts` 40 tests; manifest and `state-options.md` both **36**, compared by a test that reads the document |
+| The reconciliation | 3 | **3** | `grep -c FEDERAL_DEFAULT_REVIEW_PERIOD src e2e` = **0**; W5's 11 review-period assertions intact and green |
+| The literals | 8 | **6** | The corrected scan returns **0** across 20 files; the shell gate exits 0 with **0** output lines, down from 17 |
+| The transition dates | 4 | **3** | `transition.test.ts` 31 tests; both functions exist, neither has a production caller |
+| The guards | 6 | **6** | `no-spelt-policy-value.test.ts` 22 tests; render guard 47; **68 mutations caught, 1 insensitive by design** |
+| Wave hygiene | 5 | **5** | `git diff src/lib/db.ts` empty; four of four reviewers ran |
+
+### The three unmet
+
+**1. "The § 2.1.2 grep returns **zero** across all 14 files" — met only after the criterion
+itself was found to be unfalsifiable.**
+
+The scan pattern excluded `$` as a preceding character, so `$580` never matched. The criterion
+was satisfied while **22 literals were live across four files** — three of them inside the
+scan's own list, and a fourth (`IncomeTrackingHelp.tsx`) in no list at all. The pattern is
+fixed, the literals are gone, and the count is now real. Recorded as unmet because *as
+written, and as originally verified, it was false*, and the honest form of that is not a tick.
+
+The deeper problem is that this criterion measured itself. The site table, the "60 literals
+across 14 files" figure, and the acceptance test were all readings from one blind gauge, so no
+amount of care in checking the criterion could have surfaced it. What surfaced it was three
+independent reviewers reading the regex. **The lesson for the next wave: a criterion whose
+observable is produced by the same instrument as the work cannot be self-checked.**
+
+**2. "Gaps 15.6 and 15.7 are struck in `gap-analysis.md`" — the data functions exist and
+nothing calls them.**
+
+`applicationRuleset` and `renewalInitiationWindow` are complete, cited, and tested at 31
+assertions. They also have **zero production callers**, and both need inputs the app does not
+collect: no filing date anywhere, and no renewal due month outside W5's anchor. Two reviewers
+made the same point in the same words — *answerable, not closed*.
+
+So the rows are marked **PARTIAL W2b**, not closed. § 435.559(c) is called "the single most
+reassuring fact in the rule for currently-enrolled users, and nothing in the app told them
+before now." After this wave, still nothing does. Reassigned to **W9a**, which owns the notice
+workflow and is the first wave with a surface for it.
+
+Closing them would have repeated exactly the mistake W2b inherited: W5 met every criterion
+while leaving these two rows untouched.
+
+**3. Manual smoke test on a phone viewport, offline.** The phone half is done — the help panel
+was read at 375×812 in a real browser, and that is where the British spelling was caught. The
+**service-worker offline** half still has no spec and nobody has driven the app with the
+network off. Carried forward, as it has been since W0.
+
+### Review protocol outcome
+
+**Four of four reviewers ran, the second consecutive wave.** They found **four blocking
+defects** in work that had already passed 655 tests, seven mechanical gates, a 61-case
+mutation sweep and a browser pass.
+
+The full write-up is in the commit message for `4870b19`. In brief:
+
+1. **The policy-literal scan could not see a dollar sign** — found independently by three of
+   four. The most consequential finding of the wave, and it was my own instrument.
+2. **`GettingStartedContextual` contradicted its own arithmetic** — profile-computed difference
+   printed beside a literal threshold. Correct at $7.25, self-refuting at any other wage.
+3. **`SeasonalWorkerView` rendered a verdict while W2b certified it clean** — "Your 6-month
+   average meets work requirements", plus an under-threshold branch omitting § 435.552(e)(2)'s
+   proxy, so a shortfall read as wasted.
+4. **`transition.ts` asserted the requirement applies** — the claim this wave banned twice in
+   other files, written fresh in a new one.
+
+**Two findings dropped after checking, so the count is honest.** Reviewer 4 reported the
+`straddles` arm "unreachable under any real profile"; it is unreachable under `FEDERAL_DEFAULT`
+specifically, which the code and a test already say, and reachable for a state slower than
+CMS's reported range. Reviewer 2 flagged `HourTrackingHelp`'s "Your state decides which of
+these it uses for you" as understating pathway availability; on re-reading, the sentence's
+dominant effect is deferring to the state and the phrase is genuinely ambiguous rather than
+wrong — recorded below rather than counted as a finding.
+
+**Why two of the four got through**, which matters more than the fixes. Both are the same
+shape: **W2b diagnosed a defect, wrote a guard for it, and then committed a fresh instance of
+the same defect somewhere the guard did not look.** The "asserts the requirement applies"
+error was found in `HourTrackingHelp`, given a `VERDICT_PHRASES` entry, and then written into
+`transition.ts`. The "component created but not guarded" lesson was taken from W5, applied to
+two components, and then missed on the third file this wave edited. Writing the rule down is
+not the same as being subject to it.
+
+### Findings accepted and fixed beyond the blocking four
+
+- Three citation wordings, each verified against the raw text: § 435.554(c)(5)(ii) says states
+  must **develop** the frailty list, not publish it (it matters — the app tells users to ask
+  for it); the rule says "whether or not consecutive", 4 occurrences, not "not be consecutive",
+  0; CMS's words are "there will generally be documentation **reasonably** available", and
+  "reasonably" is the qualifier § 435.557 turns on.
+- `transition.ts`'s first-of-month anchor biases toward the **reassuring** answer, and the
+  comment called it "the conservative end". Two reviewers computed the same counter-example.
+  Left anchored on the 1st, because `YYYY-MM` is all the app stores and the last day would bias
+  the other way; the caveat is recorded and pinned by a test.
+- `verificationMonthsRequired` duplicates `moreFrequentVerification.monthsRequired` — the
+  defect this wave removed on the renewal side, reappearing on the verification side.
+  Documented at the declaration and pinned by a test that fails when W9a gives the union a
+  non-`false` default.
+- Stale counts: "thirty-five" and "all 35" against a 36-field manifest.
+- `payPeriodConversion`'s comment claimed two remaining importers; this same diff had removed
+  both. Zero, and the aliases survive for a different and honest reason.
+- `stripComments` extracted to `src/__tests__/support/` — 30 near-identical lines in two files.
+- Two `VERDICT_PHRASES` entries: `average meets`, `meets work requirements`. **Third time this
+  list has been extended by a verdict phrased around a non-personal subject** — W5 found bare
+  `Compliant`, W2b found "you need to" and now "average meets". A determination does not need a
+  pronoun to be a determination.
+
+### Recorded, not fixed
+
+| Finding | Owner |
+|---|---|
+| `recommendation.reasoning` is persisted whole and rendered beside a live recomputation of the same thresholds; they agree today and diverge the moment a profile's numbers move. `AssessmentResult.version` exists as the invalidation hook and has zero readers | **W7b** |
+| `POLICY_FIELD_OWNERS`' 13 `consumer` entries resolve to only **three** unique paths, all in or beside the policy module. None of the 15 files this wave wired appear, so the import check verifies three files. The `wave` arm has no expiry test, unlike `SPELT_ALLOWLIST` | **W3** |
+| 19 module-scope constants across 9 files bind policy values at import time and cannot follow a per-state profile. Justified for the two statutory values; `SEASONAL_MONTHS` is a § 435.603(h)(3) election and is bound in three files | **W3** / **W7a** |
+| `seasonalMethod`'s `windowMonths` fallback describes proration as a *trailing average*; § 435.603(h)(3) spreads income **forward** across up to 12 months. Dormant while the default is `preceding-average` | **W7a** |
+| Six pre-existing user-facing "programme" spellings from W2a, in a US Medicaid app | **W7a** |
+| `FEDERAL_DEFAULT` is a mutable module singleton — no `readonly`, no `Object.freeze`. Nothing mutates it; one in-place write would silently change every module-level capture | **W10** |
+| `transition.ts` interpolates raw `YYYY-MM` / `YYYY-MM-DD` into user-facing prose ("your renewal is due 2027-01"). `date-fns` is already imported | **W9a** |
+| `VERDICT_PHRASES` has no pinned length assertion, so the list can shrink silently. Every other allowlist in this wave has one | **W3** |
+| `HourTrackingHelp`'s "Your state decides which of these it uses for you" — income and half-time education are pathways states **must** make available, not elections. Ambiguous rather than wrong | **W7b** |
+| `EstimationTools`' hours converter reads `PAY_PERIOD_MULTIPLIERS.weekly`, coupling it to a value W7a is expected to replace or delete | **W7a** |
+| `scripts/mutate-w2b.sh` leaves a mutated file if interrupted between `sed` and the `cp` restore, and prints `git status` without asserting on it | — deleted at close |
+
+### Unverified, flagged rather than asserted
+
+- ***Massachusetts v. Oz*** — the venue, the June 2026 filing, the July 2026 injunction denial
+  and the **October 20, 2026 summary-judgment hearing** appear in `federalDefault.ts`'s
+  `interpretiveRisk` and trace only to `.kiro/steering/medicaid-domain-knowledge.md`. Absent
+  from the IFC and from `rule-extract.md`. It is the `watch` condition on a Tier-1 field and
+  deserves a real citation.
+- The **eight-state January 2027 frailty-documentation list** (AR, ID, IN, IA, NC, ND, OH, UT).
+  `state-options.md` attributes it to Politico and state agencies; nothing federal confirms it.
+  The federal 2028-01-01 date **is** confirmed.
+- **"79,718 comments"** in `types.ts`. Not in the rule text and not anywhere else in the repo.
+- Whether the corrected `transition.ts` copy reads well **to a real user**. It is asserted by
+  tests and unrendered by anything.
+- `npm ci` — run at task 14, recorded there.
+
+### Negative-criterion check
+
+Five criteria could have been satisfied by deletion. None were.
+
+- **"Zero policy literals"** is satisfiable by deleting the sentences that state thresholds.
+  Positive twin: the scan asserts the **12 noise lines are still present**, and the injection
+  test asserts the *injected* figures appear in copy while the federal ones do not.
+- **"W0's snapshot block relocated"** is satisfiable by deleting it. It survives, asserting the
+  same four values plus a new identity check against the profile.
+- **"`CompletionMessage` renders no verdict"**-style criteria on the two newly-guarded
+  components are satisfiable by rendering nothing. Positive twins assert the comparison text on
+  both branches of each.
+- **"No spelt policy value"** is satisfiable by deleting the disclosure that the renewal span
+  is an assumption. A test asserts the panel still says "We've assumed ${…}".
+- **The `NOT_A_POLICY_VALUE` allowlist** is satisfiable by growing. A test asserts every entry
+  is still exercised somewhere in the scanned tree.
+
+### Mechanical checks
+
+`npx tsc --noEmit` clean · `npm test` **668/668** across 29 files · `npm run lint` 0 errors and
+3 pre-existing warnings (`PrivacyNotice.tsx`, `ProfileForm.tsx`, neither in this diff) ·
+`npm run format:check` clean · `npm run build` 12 static pages · `npm run test:e2e` **74/74** ·
+`scripts/compliance-gate.sh` exit 0 with **0** output lines · `git diff src/lib/db.ts` **empty**
+· browser confirms `HourKeepDB` still at version **60** (Dexie v6) after this wave's changes.
+
+### Process note worth keeping
+
+**A SKIP is not a pass.** Seven of my mutation cases failed to apply on first run — a wrong
+file variable, four sed-escaping errors against JSX `&apos;` entities and doubled `$`, and two
+patterns that removed one of two hedges and so read as insensitive when they were incomplete.
+Every one was fixed, because an unapplied mutation looks exactly like a test that does not
+care. W0 recorded that lesson; this wave supplied seven more instances of it.
+
+Final: **68 mutations caught, 1 insensitive and documented in the harness as
+`EXPECTED INSENSITIVE` with its reason.**
