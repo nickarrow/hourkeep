@@ -79,10 +79,21 @@ W2b  Policy Profile                   ← W0, W5      ✅ DONE 2026-09-02
        │   Gaps 15.6/15.7 are ANSWERABLE, NOT CLOSED — transition.ts has both
        │   functions and zero callers → reassigned to W9a
        ▼
-W6a  Evidence Capture                 ← W2b          ◀ NEXT
+W6a  Evidence Capture                 ← W2b, W5, W0   ◀ NEXT — UNBLOCKED
        │   community service record schema, caregiving log,
        │   education half-time cliff + credit-hour conversion,
        │   workProgram type, work broadened
+       │
+       │   NO Dexie bump. .stores() declares indexes, not stored fields, so
+       │   every field W6a adds is unindexed data on an existing row, and
+       │   workProgram is a new VALUE in an already-indexed field. Holds only
+       │   while W6a adds no new table and no new index — if either becomes
+       │   necessary, stop and renumber (W6a v7, W3 v8, W6b v9).
+       │   Caregiving: capture hours directly, do NOT wait for W4's screening.
+       │   Education backfill is W6b's v8, not this wave's. Missing status is
+       │   UNKNOWN and gets asked for, never inferred from an hours figure.
+       │   Its wave file does not exist yet — wave-6-activity-model.md is the
+       │   source, and both prior splits found the source's tables short.
        ▼
 W7a  Seasonal + Income Corrections    ← W6a       ⇄ SWAPPED WITH W8a 2026-09-02
        │   seasonal window fix, double-counting fix,
