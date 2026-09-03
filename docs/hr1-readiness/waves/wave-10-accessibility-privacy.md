@@ -1,6 +1,13 @@
 # Wave 10 — Accessibility and Privacy Hardening
 
-**Depends on:** W1 (MUI 9's accessibility work lands first, reducing scope)
+**Depends on:** ~~W1 (MUI 9's accessibility work lands first, reducing scope)~~ — **this inverts the executed
+order and must not be treated as a hard dependency.** ADR-0009 moved **W1 to the very end**, *after* W10, so
+W10 runs first. `wave-1-modernization.md` states the relationship correctly as "W10 **benefits from** MUI 9's
+accessibility work" — a benefit, not a prerequisite. **W10 does not wait for W1.** Corrected 2026-09-02.
+
+The consequence worth planning for: W10 does its accessibility work against **MUI 7**, and W1 later upgrades
+to MUI 9 underneath it. Expect to re-check contrast and focus behaviour after W1, and treat that re-check as
+part of W1's scope rather than a W10 regression.
 **Detail level:** goals and scope. Task breakdown when the wave starts.
 
 ## Goal

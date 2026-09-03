@@ -1,7 +1,9 @@
 # Wave 5 — Month Scoping and Review Periods
 
 **Depends on:** W0 only.
-**Blocks:** W6, W7, W8, and W2b
+**Blocks:** ~~W6, W7, W8, and W2b~~ → **W6a**, **W7a**, **W7b**, **W8a**. **W2b is done** (2026-09-02) and
+absorbed this wave's `FEDERAL_DEFAULT_REVIEW_PERIOD` into `src/lib/policy/`. Corrected 2026-09-02 for the
+splits.
 **Decision record:** ADR-0005
 **Detail level:** goals and scope. Task breakdown when the wave starts.
 

@@ -2,12 +2,14 @@
 
 **The holistic home for this effort.** Open this file to remember where we are.
 
-**Last updated:** 2026-09-02 (W2b closed out)
-**Current wave:** none in progress — **W6a (Evidence Capture)** is next. W2b landed 2026-09-02
+**Last updated:** 2026-09-02 (W2b closed out, then pre-W6a preparation)
+**Current wave:** none in progress — **W6a (Evidence Capture)** is next and is **unblocked**. W2b landed
+2026-09-02. Progress against the gap analysis: **16 of 108 rows closed, 7 partial** — and note the total is
+**108, not the 81** that document's summary claimed until it was recounted
 
 > A first version of this line said W1 was next. Wrong: ADR-0009's reordering moved **W1 to the very end**,
 > after the December date. `waves/README.md` § Sequence is authoritative — the pre-date order is
-> W0-slice → W2a → **W0** → **W5** → W2b → W6a → W8a → W7a.
+> W0-slice → W2a → **W0** → **W5** → W2b → W6a → **W7a → W8a** (swapped 2026-09-02, see below).
 
 > ### Carried forward — four items still open
 >
@@ -82,6 +84,39 @@
 >    defensible call; **deferring a known-vulnerable framework is a different question**, and it deserves
 >    an explicit answer rather than inheriting W1's position at the end of the queue.
 >
+> ### The order-dependency sweep — done once, 2026-09-02, after the third instance
+>
+> Three separate documents had been found stating a wave relationship that the **2026-08-16 validation
+> inversion** or the **W2/W6/W7/W8/W9 splits** had already invalidated: W5's header predated the W2 split,
+> `gap-analysis.md` § 14's ordering paragraph predated the inversion, and `data-migration-standards.md`'s
+> version table assumed the status model ran before the activity model. Same root cause each time —
+> **the reordering was applied to the sequence and not to the documents that depend on the sequence.**
+> Rather than wait for a fourth, every `Depends on:` and `Blocks:` header was checked at once. Six were
+> stale:
+>
+> | File | Was | Now |
+> |---|---|---|
+> | `wave-6-activity-model.md` | Depends on W2; Blocks W7 | W2b + W5 + W0; blocks W7a, W7b, W8a |
+> | `wave-7-unified-compliance.md` | Depends on W4, W5, W6 | **Split-dependent.** W7a needs W6a + W5 only — *this is why it can run pre-date*. W7b needs W3 + W4 |
+> | `wave-8-evidence-package.md` | Depends on W7 | W6a + W7a. **And one real unresolved item** — see below |
+> | `wave-3-status-model.md` | Depends on W2; Blocks W4, W7 | W2b; blocks W4 and **W7b only** |
+> | `wave-5-month-scoping.md` | Blocks W6, W7, W8, **and W2b** | W2b is done and absorbed W5's constant |
+> | `wave-2-truth-and-policy-profile.md` | Blocks W3, **W5** | W5 was never blocked by it and **ran first** |
+> | `wave-10-accessibility-privacy.md` | **Depends on W1** | W1 runs *after* W10 (ADR-0009). A benefit, not a prerequisite |
+>
+> Two of these mattered beyond tidiness. **W7a's pre-date feasibility rests on it not needing W4** — the
+> combined header said it did, which would have made the seasonal and income fixes impossible before
+> December. And **W10's stated dependency on W1 inverts the executed order**, so following it would have
+> stalled accessibility work behind a wave deliberately sequenced last.
+>
+> **One thing the sweep found that is not a documentation fix.** `evaluateMonth` does not exist — `grep -rn
+> "evaluateMonth" src/` returns nothing — yet W8a's scope says to call it and `waves/README.md` lists "one
+> evaluation path" among its deliverables. It is W7b's, and W7b is post-date. The defect behind it is real:
+> the export recomputes totals independently of the UI, so they can disagree about the same month. Proposed
+> resolution is recorded in `waves/wave-8-evidence-package.md` — a thin single entry point that both callers
+> share, wrapping today's functions, leaving W7b to replace the internals. **Confirm it when W8a starts;
+> don't let W8a build ADR-0004's combination logic.**
+>
 > ### Both things W0 inherited from W2a are now closed
 >
 > 1. **The dead-chain allowlist is empty by construction.** Deleting the chain turned the suite red exactly
@@ -91,7 +126,25 @@
 >
 > ### What W6a should read first — added 2026-09-02
 >
-> W2b's **Closeout** section in
+> **Start with the resolved-blockers note at the top of
+> [`waves/wave-6-activity-model.md`](waves/wave-6-activity-model.md).** Three things were settled before the
+> wave starts, and the first would otherwise have looked like a hard stop:
+>
+> - **W6a needs no Dexie version bump.** `.stores()` declares the primary key and indexes, *not* stored
+>   fields — `activities: "++id, date, type"` while `Activity` already persists `hours`, `organization`,
+>   `createdAt` and `updatedAt` unindexed and unmigrated. So every field W6a adds is unindexed data on an
+>   existing row. `workProgram` is a new *value* in an already-indexed field, not a new field. **Two
+>   conditions keep this true: no new table, no new index.** If either becomes necessary, stop and renumber
+>   (W6a v7, W3 v8, W6b v9) — that touches eight documents, so it is worth avoiding deliberately rather
+>   than by accident.
+> - **The caregiving bullet's "wire this from the W4 screening answers" cannot happen** — W4 is post-date.
+>   Capture caregiving hours directly as unpaid work; CMS's 55 + 25 = 80 example works from logged hours
+>   alone.
+> - **Existing education entries have hours and no status: ask, don't migrate.** The old plan marked them
+>   less-than-half-time, which guesses in the direction that *understates* the user, since at-least-half-time
+>   qualifies on zero hours. The school determines status, so it cannot be inferred from an hours figure.
+>
+> Then W2b's **Closeout** section in
 > [`waves/wave-2b-policy-profile.md`](waves/wave-2b-policy-profile.md), particularly
 > *Recorded, not fixed*. Directly load-bearing for W6a:
 >
@@ -261,9 +314,9 @@ Sequence and dependencies: [`waves/README.md`](waves/README.md).
 | [W0](waves/wave-0-safety-net.md) | Safety net, deletion, 4 data-loss fixes | **Done** 2026-09-01 — 4 data-loss fixes, delete-all-data, 14 files deleted, 196 → 423 tests. 1 criterion unmet (phone viewport) |
 | [W5](waves/wave-5-month-scoping.md) | Month scoping + review periods | **Done** 2026-09-02 — `ReviewPeriod` model, month required and validated, `Calendar` controlled, 423 → **526** tests (this row said 525; `npm test` at W5's tip `ad8ac87` returned 526), 62 → 72 e2e. All 9 live criteria met; 1 struck to W3. First wave with 4/4 reviewers. **Did not close gaps 15.6/15.7, which were assigned to it** |
 | [W2b](waves/wave-2b-policy-profile.md) | Policy profile | **Done** 2026-09-02 — `src/lib/policy/` with `FEDERAL_DEFAULT` over 36 fields, `incomeThreshold()` a function so it tracks the wage, `ReviewPeriodPolicy` a `Pick` of the profile, zero policy literals in non-test `src/`, 526 → 668 tests, 72 → 74 e2e. **30 of 33 criteria**; 4/4 reviewers. Gaps 15.6/15.7 answerable but uncalled → W9a |
-| W6a | Evidence capture | Not started |
-| W8a | Print evidence export | Not started |
-| W7a | Seasonal + income corrections | Not started |
+| W6a | Evidence capture | **Next.** Not started. Three blockers resolved ahead of it 2026-09-02 — see `waves/wave-6-activity-model.md`. Needs **no Dexie bump** |
+| W7a | Seasonal + income corrections | Not started. **Moved ahead of W8a** 2026-09-02 on harm grounds |
+| W8a | Print evidence export | Not started. One open scope item: "one evaluation path" needs `evaluateMonth`, which does not exist |
 
 **After the date**
 

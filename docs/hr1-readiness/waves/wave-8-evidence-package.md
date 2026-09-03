@@ -1,8 +1,28 @@
 # Wave 8 — Evidence Package Export
 
-**Depends on:** W7 (single evaluation path)
-**Blocks:** W9
+**Depends on:** ~~W7 (single evaluation path)~~ → **W8a** needs **W6a** (the export must carry the corrected
+record shapes) and, as of the 2026-09-02 reordering, **W7a** runs before it. **W8b** is post-date.
+Corrected 2026-09-02 for the splits.
+**Blocks:** ~~W9~~ → **W9a** reuses the package as a notice response.
 **Decision record:** ADR-0006
+
+> ### `evaluateMonth` does not exist, and W8a's scope assumes it — 2026-09-02
+>
+> The scope below says "Call `evaluateMonth` rather than recomputing, so the report can no longer contradict
+> the UI", and `waves/README.md` lists **one evaluation path** among W8a's deliverables. **`grep -rn
+> "evaluateMonth" src/` returns nothing.** It is W7b's deliverable, and **W7b is post-date** — so W8a as
+> written cannot deliver that bullet, and this is the one dependency the W7/W8 split did not resolve when it
+> reassigned W8a to W6a.
+>
+> It is a genuine problem rather than a wording one, because the defect it addresses is real: the export
+> recomputes totals independently of the UI, so the two can disagree on the same month.
+>
+> **Recommended resolution, to confirm when W8a starts.** W8a introduces a single thin entry point — one
+> function the export and the UI both call, wrapping today's `calculateMonthlySummary` and
+> `getMonthlyIncomeSummary` as they stand. That delivers "one evaluation path" honestly, meaning one call
+> site rather than unified combination logic, and leaves W7b free to replace the internals without touching
+> either caller. **Do not** let W8a implement ADR-0004's combination and proxy logic — that is W7b's, it
+> needs W3 and W4, and half-building it pre-date is how the export ends up asserting a verdict.
 **Detail level:** goals and scope. Task breakdown when the wave starts.
 
 ## Goal

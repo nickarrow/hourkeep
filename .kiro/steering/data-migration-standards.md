@@ -58,6 +58,36 @@ draft of this plan; three consecutive waves each thought they owned v7.
 | v7 | **W3** | One consolidated bump: status model tables plus month-scoping columns |
 | v8 | **W6b** | Activity model remainder, including the education backfill |
 
+### Most changes need no version at all
+
+**`.stores()` declares the primary key and the indexes. It does not declare stored fields.** Dexie persists
+whatever properties an object has, so **adding a field needs no version bump and no `.upgrade()`.** Only these
+do:
+
+- a **new table**,
+- a **new index** on an existing table,
+- a **backfill or transform** of existing rows.
+
+`activities: "++id, date, type"` indexes three properties while `Activity` already persists `hours`,
+`organization`, `createdAt` and `updatedAt` — none indexed, none ever migrated. Adding a **value** to an
+already-indexed field (a fourth `Activity["type"]`, a new `documents.type`) is likewise free; it is a new
+value, not a new field.
+
+**This is worth stating because the wave files keep getting it wrong while the decision records get it right.**
+ADR-0002 already says adding `"workProgram"` to `Activity["type"]` is "a TypeScript union change, not a schema
+change" — and `wave-6-activity-model.md` said "Dexie migration plus a form option" anyway, which read as a hard
+blocker for W6a until it was checked on 2026-09-02. ADR-0005 instructed W5 to do a v7 migration and had to be
+corrected. W5 then got it right and wrote the reasoning into `ReviewPeriodAnchor`'s doc comment in
+`src/types/index.ts`.
+
+**So when a wave file and an ADR disagree about schema, check the ADR first** — and check `db.ts` before
+either.
+
+**The corollary is the discipline, not a licence.** Because adding a field is free, the expensive decision is
+a *backfill* — so prefer leaving old rows alone and treating a missing field as **unknown**, which is both
+cheaper and more honest than inferring a value. Guessing during a migration is how you end up asserting
+something the user never told you. When a field is genuinely absent, say so in the UI and ask.
+
 `complianceMode` stays until **W7b**. Four files reference it — `src/lib/db.ts`,
 `src/lib/storage/income.ts`, `src/app/tracking/page.tsx`, `src/app/export/page.tsx` — and removing it before
 unified compliance exists breaks reads. Don't tidy it early.

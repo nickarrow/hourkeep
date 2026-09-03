@@ -84,13 +84,24 @@ W6a  Evidence Capture                 ← W2b          ◀ NEXT
        │   education half-time cliff + credit-hour conversion,
        │   workProgram type, work broadened
        ▼
-W8a  Print Evidence Export            ← W6a
-       │   period-scoped, includes documents, one evaluation path,
-       │   survives print and fax
+W7a  Seasonal + Income Corrections    ← W6a       ⇄ SWAPPED WITH W8a 2026-09-02
+       │   seasonal window fix, double-counting fix,
+       │   income repositioned to evidence, household framing
+       │
+       │   Moved ahead of W8a on harm grounds. Gap 5.5 is LIVE and reassuring:
+       │   getMonthlyIncomeSummary sums monthlyEquivalent across every entry,
+       │   so four weekly $150 paychecks read $2,598 against a real ~$650,
+       │   and that figure feeds isCompliant against the $580 threshold.
+       │   It tells someone who is short that they are comfortably over, so
+       │   they don't log hours. W8a adds a capability; W7a stops a wrong
+       │   number. They are siblings under W6a, so the swap costs nothing.
        ▼
-W7a  Seasonal + Income Corrections    ← W6a
-           seasonal window fix, double-counting fix,
-           income repositioned to evidence, household framing
+W8a  Print Evidence Export            ← W6a, W7a
+           period-scoped, includes documents, one evaluation path,
+           survives print and fax
+
+           CAUTION: "one evaluation path" assumes evaluateMonth, which does
+           not exist and is W7b's (post-date). See wave-8-evidence-package.md
 
 ═══════════ AFTER THE DATE ═══════════
 
@@ -115,8 +126,8 @@ W1   Dependency Modernization ← W0
 | W5 | W0 | W0's characterization tests are what make it safe to change `calculations.ts` — whose optional `month` parameter is the defect W5 exists to fix. **Corrected 2026-09-01:** this said "migration test before touching the schema", which wrongly implied W5 touches schema. It does not; the compound indexes moved to W3's v7. **Confirmed at execution 2026-09-02:** W5 bumped no version and `git diff src/lib/db.ts` is empty |
 | W2b | W0, W5 | Tests prove the refactor is behavior-neutral; W5 first avoids a second pass over the same call sites. **Confirmed at execution 2026-09-02:** both held. The relocation changed no value, so W5's three `/ 80 hours` e2e assertions **did not fail** as W5 predicted they would — which is the behaviour-neutral signal working, not a missed step. They now read the threshold from the profile so a real FLSA change fails them loudly |
 | W6a | W2b | Thresholds and the credit-hour constant come from the profile |
-| W8a | W6a | Export must carry the corrected record shapes |
-| W7a | W6a | Income corrections sit alongside the activity model |
+| W7a | W6a | Income corrections sit alongside the activity model. **Moved ahead of W8a on 2026-09-02**: gap 5.5 is live and reassuring in the dangerous direction, and W8a adds a capability rather than removing a wrong number |
+| W8a | W6a, **W7a** | Export must carry the corrected record shapes — **and the corrected income arithmetic**, since exporting a 4× overstated monthly total onto the artifact a caseworker reads is worse than showing it on screen. **Open item:** its "one evaluation path" needs `evaluateMonth`, which does not exist and belongs to W7b (post-date) |
 | W3 | W2b | Status resolution reads the profile. **Owns the consolidated Dexie v7** |
 | W4 | W3 | Screening writes into the status model |
 | W7b | W3, W4, **W6a** | Combination needs status, and the caregiving-hours-as-work rule needs W4's answers |
@@ -218,8 +229,8 @@ detail decays with distance, and pretending otherwise produces documents that dr
 | **[W5](wave-5-month-scoping.md)** | Month scoping + review periods | Any month viewable, editable, evaluable; review-period model | 6.4, 7.1–7.4, ~~15.6~~ — **15.6 was never in W5's scope or criteria**; reassigned W2b, then W9a |
 | **[W2b](wave-2b-policy-profile.md)** | **Policy profile** | `FEDERAL_DEFAULT` over 36 fields; `incomeThreshold()` tracks the wage; `ReviewPeriodPolicy` a `Pick` of it; zero policy literals in non-test `src/`; § 435.915 / § 435.559(c) transition functions | 5.6, R8.1 · **15.6, 15.7 partial → W9a** |
 | **W6a** | **Evidence capture** | Community service record schema; caregiving log; education half-time cliff + credit conversion; `workProgram`; work broadened | 4.1–4.7, 4.9–4.11, 8.4, 15.23, 15.24 |
-| **W8a** | **Print evidence export** | Period-scoped, includes documents, one evaluation path, survives print and fax | 8.1, 8.4, 8.5, 8.7–8.9 |
 | **W7a** | **Seasonal + income corrections** | Seasonal window fix; double-counting fix; income repositioned to evidence; household framing | 5.1, 5.4, 5.5, 5.7–5.10 |
+| **W8a** | **Print evidence export** | Period-scoped, includes documents, one evaluation path, survives print and fax | 8.1, 8.4, 8.5, 8.7–8.9 |
 | **[W3](wave-3-status-model.md)** | Three-tier status model | Per-month status; **consolidated Dexie v7**; tracking suppressed for excluded users | 1.1–1.7, 3.6, 6.3, 15.15, 15.21 |
 | **[W4](wave-4-screening-rebuild.md)** | Screening rebuild | 10 exclusions incl. former foster care and **TDIU**; caregiver cluster; medically frail; SNAP/TANF split; household screener; **who signs frailty docs**; **reasonable modifications** | 2.1–2.12, 3.3, 3.4, 5.3, 15.2, 15.9–15.14, 15.22 |
 | **W7b** | **Unified compliance** | Mode fork removed; combination + **provenance-guarded** proxy | 5.11, 6.1, 6.2, 15.1 |

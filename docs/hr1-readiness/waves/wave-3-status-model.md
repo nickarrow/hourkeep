@@ -1,7 +1,9 @@
 # Wave 3 — Three-Tier Status Model
 
-**Depends on:** W2 (status resolution reads the policy profile)
-**Blocks:** W4, W7
+**Depends on:** ~~W2~~ → **W2b** (status resolution reads the policy profile). **Done** 2026-09-02.
+**Blocks:** W4, ~~W7~~ → **W7b** only. **W7a does not wait for W3.** Corrected 2026-09-02 for the splits.
+**Owns Dexie v7** — the consolidated bump. Confirmed still v7 on 2026-09-02: W6a needs no version of its
+own, because Dexie indexes rather than fields are what `.stores()` declares. See `wave-6-activity-model.md`.
 **Decision record:** ADR-0002
 **Detail level:** goals and scope. Task breakdown when the wave starts.
 

@@ -4,7 +4,10 @@
 full (characterization tests prove the threshold refactor changes nothing) and W5.
 **Superseded header:** this file originally declared "Depends on: W0, W1." W1 is now sequenced **last**, so
 neither half depends on it. Write against MUI 7 and migrate in W1.
-**Blocks:** W3, W5 — both read policy values from the profile
+**Blocks:** ~~W3, W5 — both read policy values from the profile~~ → **W3**, **W6a**, **W7a**, **W7b**, **W9a**.
+**W5 was NOT blocked by this wave and ran before it**, deriving its review period from a single named federal
+default that W2b later folded into `src/lib/policy/`; resolved 2026-09-01, executed 2026-09-02. Both halves are
+now **done** — W2a 2026-08-17, W2b 2026-09-02.
 **Decision records:** ADR-0001, ADR-0003
 **User-visible outcome:** the app stops telling users things that are false. Highest harm-reduction per
 hour in the whole plan.

@@ -1,7 +1,13 @@
 # Wave 7 — Unified Compliance and Income Repositioning
 
-**Depends on:** W4 (status), W5 (months), W6 (activity types)
-**Blocks:** W8
+**Depends on:** ~~W4 (status), W5 (months), W6 (activity types)~~ — **the split divides this, and the
+combined line is only true of W7b.** Corrected 2026-09-02.
+· **W7a** (seasonal + income corrections, **pre-date**) needs **W6a** and **W5** only. It does *not* need
+W4, which is why it can run before December at all.
+· **W7b** (unified compliance, post-date) needs **W3** (status), **W4** (the caregiving-hours answers),
+**W5** and **W6a**.
+**Blocks:** ~~W8~~ → **W7b** blocks **W9a/W9b**. **W8a does not wait for W7b** — see the note below, which
+is a real unresolved item rather than a wording fix.
 **Decision records:** ADR-0003, ADR-0004
 **Detail level:** goals and scope. Task breakdown when the wave starts.
 
