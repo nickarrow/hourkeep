@@ -7,6 +7,78 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed - Four more places the app decided something it isn't allowed to decide (W2b)
+
+Found by review after the rest of this wave was already green. Details in
+`docs/hr1-readiness/waves/wave-2b-policy-profile.md` § Closeout.
+
+**The hour-tracking help panel asserted that the requirement applies to you.** It said "you need to
+complete 80 hours per month" — but under 42 CFR 435.554 a specified excluded individual is not subject
+to community engagement at all, and § 435.556(c) *prohibits* the state from assessing their compliance.
+Now conditional: "if this requirement applies to you". This panel is reachable from the tracking page
+and had never appeared in any of this project's copy audits.
+
+**The same panel said job searching does not count.** Under § 435.552 a supervised job search does not
+qualify *on its own*, but it does count as a **subsidiary** activity when it is under half a work
+program's required hours — and unemployment-insurance job search can count when conducted consistently
+with work program requirements. The panel also implied volunteering, school, and job training were the
+only routes, omitting work, in-kind and unpaid work, income, and half-time education. It had been
+contradicting a correction W2a made in the same codebase.
+
+**The seasonal view announced a verdict.** "Your 6-month average meets work requirements" is a
+determination the state makes, not the app (ADR-0003). And its under-threshold branch omitted
+§ 435.552(e)(2)'s income-to-hours proxy, so a shortfall read as wasted when those dollars can be
+credited as hours and combined with other activities.
+
+**One panel contradicted its own arithmetic.** `GettingStartedContextual` computed the difference from
+the profile while printing the threshold as a literal, so the two agreed only at $7.25 and the panel
+would have refuted itself at any other minimum wage.
+
+Also fixed: five British "programme" spellings introduced by this wave, caught by reading the panel in a
+real browser at 375×812 rather than reading the template. Six pre-existing ones remain and are recorded
+against W7a.
+
+### Added - Policy profile (W2b)
+
+Every threshold, lookback length, and averaging window in the rule is either statutory-but-dynamic or a
+state election, so none of them belong scattered through the code. They now live in one place —
+`src/lib/policy/` — with a `FEDERAL_DEFAULT` profile of **36 fields**, each carrying its citation and a
+confidence marker distinguishing a statutory floor from a state's own published choice. Decision record:
+`docs/hr1-readiness/decisions/ADR-0001-policy-profile-architecture.md`.
+
+- **The income threshold is a function, not a stored number.** `incomeThreshold(profile)` computes
+  `federalMinimumWage × requiredHours`, so it follows a changed wage instead of going quietly stale. A
+  test asserts it tracks a *mutated* wage rather than merely equalling $580 today. Per § 435.552(a)(6),
+  which ties the figure to 29 U.S.C. 206(a)(1)(C), states may not substitute the tipped wage, the $4.25
+  youth wage, or a higher state minimum wage.
+- **No policy literal is left in non-test application code.** Verified by a scan that runs in CI over 20
+  files and by `scripts/compliance-gate.sh` over 6, which went from warning on 17 to reporting nothing.
+- **A policy value can also hide as an English word**, so there is now a test for spelled-out numbers
+  next to `hours`, `months`, `days`, and `weeks`.
+- **The § 435.915 and § 435.559(c) transition rules are now answerable in code** — whether an application
+  filed before a state's implementation date is adjudicated under the prior rules, and when a renewal
+  counts as *initiated* rather than *due*. Neither returns a boolean, and neither is wired to the UI yet;
+  both need inputs the app does not yet collect, and both are reassigned to the notice-response wave.
+
+No database change: this wave touched no Dexie version, and the stored schema is untouched at version 6.
+Behaviour is unchanged for users — every value kept its current number, which is the point of moving them
+before changing them. 526 → 668 tests, 72 → 74 browser specs.
+
+> **The scan that certified "no policy literals" could not see a dollar sign.** Its pattern excluded `$`
+> as a preceding character, so `$580` never matched, and the wave's own acceptance criterion read green
+> while 22 literals were still live across four files — three of them inside the scan's own file list.
+> Three of four reviewers caught it by reading the regex; no run of it could have. The site table, the
+> literal count, and the test that verified them were all readings from that one instrument. **A
+> criterion whose observable is produced by the same instrument as the work cannot be self-checked.**
+
+> **Housekeeping note, recorded rather than fixed.** W0 and W5 shipped without CHANGELOG entries for
+> their own work — W0 only corrected a wrong date here, and W5 added nothing — even though "CHANGELOG
+> updated" is item 10 of the definition of done. Their records live in
+> `docs/hr1-readiness/waves/wave-0-safety-net.md` and `wave-5-month-scoping.md`. Not reconstructed here,
+> because writing two waves' history from memory is how this project got its bookkeeping wrong before.
+> The pattern is worth naming: **the last items on a checklist get skipped because nothing fails when
+> they are.** The same thing happened to the gap-analysis closure annotations.
+
 ### Fixed - CI build (follow-up to the W0-slice)
 
 `npm ci` failed on GitHub Actions with `Missing: yaml@2.9.0 from lock file`. Two defects, both
