@@ -51,3 +51,9 @@ next-env.d.ts
 
 # Semantic review output, written by the review sub-agent. Scratch.
 /semantic-review
+# Review-workflow working directories: the multi-model semantic review writes under
+# .agents/reviews/, and the per-lens investigate reviewers write ad-hoc reports under
+# docs/hr1-readiness/reviews/. Both are review scratch — a lead to act on during a wave,
+# not a wave deliverable. The durable record is the wave file's Convergence section.
+/.agents/
+/docs/hr1-readiness/reviews/
