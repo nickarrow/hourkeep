@@ -255,6 +255,33 @@ export default function ExportPage() {
         </Button>
       </Paper>
 
+      {/* Evidence Package (W8a) — the print-ready artifact for the agency. */}
+      <Paper sx={{ p: 3, mb: 3 }}>
+        <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+          <DescriptionIcon sx={{ mr: 1 }} />
+          <Typography variant="h6">Evidence Package</Typography>
+        </Box>
+        <Divider sx={{ mb: 2 }} />
+        <Typography variant="body2" color="text.secondary" paragraph>
+          A print-ready record you can hand to your state. This format is best
+          for:
+        </Typography>
+        <Typography variant="body2" color="text.secondary" component="ul">
+          <li>Printing or saving as a PDF</li>
+          <li>Mailing, faxing, or bringing in person</li>
+          <li>Including your pay stubs and other documents as attachments</li>
+        </Typography>
+        <Button
+          variant="contained"
+          startIcon={<DescriptionIcon />}
+          onClick={() => router.push("/export/package")}
+          fullWidth
+          sx={{ mt: 2 }}
+        >
+          Build Evidence Package
+        </Button>
+      </Paper>
+
       {/* Readable Text Export */}
       <Paper sx={{ p: 3 }}>
         <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>

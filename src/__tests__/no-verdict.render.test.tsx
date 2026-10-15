@@ -35,6 +35,9 @@ import { SeasonalWorkerView } from "@/components/income/SeasonalWorkerView";
 import { ActivityForm } from "@/components/ActivityForm";
 import { IncomeEntryList } from "@/components/income/IncomeEntryList";
 import { IncomeEntryForm } from "@/components/income/IncomeEntryForm";
+import { PiiWarning } from "@/components/export/PiiWarning";
+import { EvidencePackageView } from "@/components/export/EvidencePackageView";
+import { buildEvidencePackage } from "@/lib/export/buildEvidencePackage";
 import type { IncomeEntry } from "@/types/income";
 import {
   applicationReviewPeriod,
@@ -1162,6 +1165,126 @@ describe("Income entry surfaces — W7a changed copy here, so they join the rend
       const text = renderedText();
       expect(text).toMatch(/estimate/i);
       expectNoVerdict("IncomeEntryForm (editing)");
+    });
+  });
+});
+
+/**
+ * W8a's print surface — the two components the evidence-package wave creates.
+ *
+ * Added in the SAME commit that creates them, per the W2b/W5 lesson: a new user-facing
+ * component left out of this guard is how verdicts ship. The package is the one artifact a
+ * caseworker reads, so ADR-0003 matters most here (ADR-0006, compliance-copy-standards.md).
+ */
+describe("ADR-0003 no-verdict guard: W8a evidence-package surfaces", () => {
+  const NOW_W8A = new Date("2026-08-17T12:00:00Z");
+
+  describe("PiiWarning", () => {
+    it("renders no verdict", () => {
+      render(<PiiWarning onConfirm={noop} onCancel={noop} />);
+      expectNoVerdict("PiiWarning");
+    });
+
+    it("states what is in the file and names the next action, asserting no status", () => {
+      render(<PiiWarning onConfirm={noop} onCancel={noop} />);
+      const text = normaliseForGuard(document.body.textContent ?? "");
+      // It warns about the PII the package carries (ADR-0006 § Non-negotiables)…
+      expect(text).toMatch(/name, date of birth, and Medicaid ID/i);
+      // …and offers a way forward and a way back — never a determination.
+      expect(text).toMatch(/continue/i);
+      expect(text).toMatch(/cancel/i);
+    });
+  });
+
+  describe("EvidencePackageView", () => {
+    function packageWith(totalHours: number) {
+      const month = "2026-07";
+      return buildEvidencePackage({
+        profile: {
+          id: "u1",
+          name: "Sam Rivera",
+          state: "OH",
+          dateOfBirth: "1990-04-01",
+          medicaidId: "OH-12345",
+          createdAt: NOW_W8A,
+          updatedAt: NOW_W8A,
+          privacyNoticeAcknowledged: true,
+          privacyNoticeAcknowledgedAt: NOW_W8A,
+          version: 2,
+        },
+        months: [month],
+        evaluations: {
+          [month]: {
+            month,
+            hours: {
+              month,
+              totalHours,
+              workHours: totalHours,
+              volunteerHours: 0,
+              educationHours: 0,
+              workProgramHours: 0,
+              hasStandaloneEducation: false,
+              isCompliant: totalHours >= 80,
+              hoursNeeded: Math.max(80 - totalHours, 0),
+            },
+            income: {
+              month,
+              totalIncome: 0,
+              entryCount: 0,
+              isCompliant: false,
+              amountNeeded: 580,
+              isSeasonalWorker: false,
+            },
+            thresholds: { hours: 80, income: 580 },
+          },
+        },
+        activities: [
+          {
+            date: "2026-07-05",
+            type: "work",
+            hours: totalHours,
+            createdAt: NOW_W8A,
+            updatedAt: NOW_W8A,
+          },
+        ],
+        incomeEntries: [],
+        documents: [],
+        incomeDocuments: [],
+        exclusionScreenings: [],
+        exclusionDocuments: [],
+        policy: FEDERAL_DEFAULT,
+        generatedAt: NOW_W8A,
+      });
+    }
+
+    it("renders no verdict when the month is OVER the threshold", () => {
+      // The branch where a verdict is most tempting — the package must still say
+      // Logged / Threshold / Difference, never "compliant".
+      render(<EvidencePackageView pkg={packageWith(90)} />);
+      expectNoVerdict("EvidencePackageView (over threshold)");
+    });
+
+    it("renders no verdict when the month is UNDER the threshold", () => {
+      render(<EvidencePackageView pkg={packageWith(46)} />);
+      expectNoVerdict("EvidencePackageView (under threshold)");
+    });
+
+    it("prints Logged / Threshold / Difference and names the state as decider", () => {
+      render(<EvidencePackageView pkg={packageWith(46)} />);
+      const text = renderedText();
+      expect(text).toMatch(/Logged: 46 hours/);
+      expect(text).toMatch(/Threshold: 80 hours/);
+      expect(text).toMatch(/Difference: 34 hours/);
+      expect(text).toMatch(/your state decides/i);
+    });
+
+    it("self-identifies each month block for fax (name + case reference)", () => {
+      // Faxed pages arrive separated, so a month block that only says "July 2026" is
+      // unattributable. ADR-0006: every page self-identifies.
+      render(<EvidencePackageView pkg={packageWith(46)} />);
+      const text = renderedText();
+      expect(text).toMatch(/Sam Rivera/);
+      expect(text).toMatch(/Medicaid ID OH-12345/);
     });
   });
 });
