@@ -23,27 +23,21 @@ import { evaluateMonth, type MonthEvaluation } from "@/lib/evaluateMonth";
 import {
   buildEvidencePackage,
   type EvidencePackage,
+  type TaggedDocument,
 } from "@/lib/export/buildEvidencePackage";
 import { FEDERAL_DEFAULT } from "@/lib/policy";
 import { PiiWarning } from "@/components/export/PiiWarning";
 import { EvidencePackageView } from "@/components/export/EvidencePackageView";
 import type { Activity, UserProfile } from "@/types";
-import type { IncomeEntry } from "@/types/income";
+import type {
+  IncomeEntry,
+  ComplianceMode,
+  IncomeDocument,
+} from "@/types/income";
 import type { Document } from "@/types/documents";
 import type { ExemptionScreening } from "@/types/exemptions";
 
 type Stage = "loading" | "empty" | "error" | "warning" | "ready";
-
-/** All months that have a record, newest first — the default scope. */
-function monthsFromRecords(
-  activities: Activity[],
-  incomeEntries: IncomeEntry[],
-): string[] {
-  const set = new Set<string>();
-  activities.forEach((a) => set.add(a.date.substring(0, 7)));
-  incomeEntries.forEach((i) => set.add(i.date.substring(0, 7)));
-  return Array.from(set).sort().reverse();
-}
 
 /** Inclusive list of YYYY-MM between two months, or [] if the range is invalid. */
 function monthRange(from: string, to: string): string[] {
@@ -55,7 +49,6 @@ function monthRange(from: string, to: string): string[] {
   const [ey, em] = end.split("-").map(Number);
   let y = sy;
   let m = sm;
-  // Guard against a runaway loop on malformed input.
   for (let i = 0; i < 240; i++) {
     out.push(`${y}-${String(m).padStart(2, "0")}`);
     if (y === ey && m === em) break;
@@ -68,148 +61,205 @@ function monthRange(from: string, to: string): string[] {
   return out;
 }
 
+/**
+ * The lightweight metadata loaded on mount — enough to decide the empty state and the
+ * default month scope WITHOUT decoding any blob. Blobs are loaded only after the user
+ * confirms the PII warning and for the selected months only (semantic review #3).
+ */
+interface LoadedMeta {
+  profile: UserProfile;
+  activities: Activity[];
+  incomeEntries: IncomeEntry[];
+  complianceModes: ComplianceMode[];
+  activityDocuments: Document[];
+  incomeDocuments: IncomeDocument[];
+  exclusionScreenings: ExemptionScreening[];
+  exclusionDocuments: Document[];
+  /** Every month that has an activity or income record, newest first. */
+  recordMonths: string[];
+}
+
 export default function EvidencePackagePage() {
   const router = useRouter();
   const [stage, setStage] = useState<Stage>("loading");
   const [error, setError] = useState<string | null>(null);
+  const [meta, setMeta] = useState<LoadedMeta | null>(null);
 
-  const [profile, setProfile] = useState<UserProfile | undefined>();
-  const [activities, setActivities] = useState<Activity[]>([]);
-  const [incomeEntries, setIncomeEntries] = useState<IncomeEntry[]>([]);
-  const [documents, setDocuments] = useState<Document[]>([]);
-  const [incomeDocuments, setIncomeDocuments] = useState<Document[]>([]);
-  const [exclusionScreenings, setExclusionScreenings] = useState<
-    ExemptionScreening[]
-  >([]);
-  const [exclusionDocuments, setExclusionDocuments] = useState<Document[]>([]);
-  const [attachmentUrls, setAttachmentUrls] = useState<Record<number, string>>(
-    {},
-  );
-
-  const recordMonths = useMemo(
-    () => monthsFromRecords(activities, incomeEntries),
-    [activities, incomeEntries],
-  );
   const [rangeFrom, setRangeFrom] = useState("");
   const [rangeTo, setRangeTo] = useState("");
 
   const [pkg, setPkg] = useState<EvidencePackage | null>(null);
+  const [attachmentUrls, setAttachmentUrls] = useState<Record<string, string>>(
+    {},
+  );
 
+  // Metadata-only load. No blob is decoded here, so narrowing the period later genuinely
+  // reduces memory cost, and nothing is decrypted-and-held before consent.
   useEffect(() => {
-    const revoked: string[] = [];
+    let cancelled = false;
     async function load() {
       try {
         const profiles = await db.profiles.toArray();
         if (profiles.length === 0) {
+          if (!cancelled) setStage("empty");
+          return;
+        }
+        const profile = await getProfile(profiles[0].id);
+        if (!profile) {
+          if (!cancelled) setStage("empty");
+          return;
+        }
+        const activities = await db.activities.toArray();
+        const incomeEntries = await db.incomeEntries.toArray();
+        const complianceModes = await db.complianceModes.toArray();
+        const allDocs = await db.documents.toArray();
+        const incomeDocuments = await db.incomeDocuments.toArray();
+        const exclusionScreenings = await db.exemptions.toArray();
+
+        const exclusionDocuments = allDocs.filter(
+          (d) => d.exemptionId !== undefined,
+        );
+        const activityDocuments = allDocs.filter(
+          (d) => d.exemptionId === undefined,
+        );
+
+        const monthSet = new Set<string>();
+        activities.forEach((a) => monthSet.add(a.date.substring(0, 7)));
+        incomeEntries.forEach((i) => monthSet.add(i.date.substring(0, 7)));
+        const recordMonths = Array.from(monthSet).sort().reverse();
+
+        // Exclusion-only evidence must be able to open the package (semantic review #7):
+        // the empty stage requires BOTH no record months AND no exclusion material.
+        const hasAnything =
+          recordMonths.length > 0 ||
+          exclusionScreenings.length > 0 ||
+          exclusionDocuments.length > 0;
+
+        if (cancelled) return;
+        if (!hasAnything) {
           setStage("empty");
           return;
         }
-        // Decrypt via getProfile — never read db.profiles for display (gap 8.8, ADR-0006).
-        const decrypted = await getProfile(profiles[0].id);
-        const allActivities = await db.activities.toArray();
-        const allIncome = await db.incomeEntries.toArray();
-        const allDocs = await db.documents.toArray();
-        const allIncomeDocs = await db.incomeDocuments.toArray();
-        const screenings = await db.exemptions.toArray();
-
-        // Documents carrying an exemptionId are exclusion documents (gap 8.5); the rest are
-        // activity documents.
-        const exclusionDocs = allDocs.filter(
-          (d) => d.exemptionId !== undefined,
-        );
-        const activityDocs = allDocs.filter((d) => d.exemptionId === undefined);
-
-        // Income documents are typed with incomeEntryId; the package reads it defensively,
-        // so pass them straight through as Document for a uniform manifest.
-        const incomeDocsAsDocuments = allIncomeDocs as unknown as Document[];
-
-        // Resolve attachment image URLs, keyed by document id (the manifest reference).
-        const urls: Record<number, string> = {};
-        for (const doc of activityDocs) {
-          if (doc.id === undefined) continue;
-          const blob = await db.documentBlobs.get(doc.blobId);
-          if (blob?.blob) {
-            const url = URL.createObjectURL(blob.blob);
-            urls[doc.id] = url;
-            revoked.push(url);
-          }
-        }
-        for (const doc of exclusionDocs) {
-          if (doc.id === undefined) continue;
-          const blob = await db.documentBlobs.get(doc.blobId);
-          if (blob?.blob) {
-            const url = URL.createObjectURL(blob.blob);
-            urls[doc.id] = url;
-            revoked.push(url);
-          }
-        }
-        for (const doc of incomeDocsAsDocuments) {
-          if (doc.id === undefined) continue;
-          const blob = await db.incomeDocumentBlobs.get(doc.blobId);
-          if (blob?.blob) {
-            const url = URL.createObjectURL(blob.blob);
-            urls[doc.id] = url;
-            revoked.push(url);
-          }
-        }
-
-        setProfile(decrypted);
-        setActivities(allActivities);
-        setIncomeEntries(allIncome);
-        setDocuments(activityDocs);
-        setIncomeDocuments(incomeDocsAsDocuments);
-        setExclusionScreenings(screenings);
-        setExclusionDocuments(exclusionDocs);
-        setAttachmentUrls(urls);
-
-        if (allActivities.length === 0 && allIncome.length === 0) {
-          setStage("empty");
-        } else {
-          setStage("warning");
-        }
+        setMeta({
+          profile,
+          activities,
+          incomeEntries,
+          complianceModes,
+          activityDocuments,
+          incomeDocuments,
+          exclusionScreenings,
+          exclusionDocuments,
+          recordMonths,
+        });
+        setStage("warning");
       } catch (e) {
         console.error("Error loading evidence package data:", e);
-        setError("Failed to load your records. Please try again.");
-        setStage("error");
+        if (!cancelled) {
+          setError("Failed to load your records. Please try again.");
+          setStage("error");
+        }
       }
     }
     load();
     return () => {
-      revoked.forEach((u) => URL.revokeObjectURL(u));
+      cancelled = true;
     };
   }, []);
 
+  // Object URLs created for the current package; revoked when the package is rebuilt or the
+  // component unmounts (semantic review #14 — no leak, no cross-run overwrite).
+  useEffect(() => {
+    const urls = Object.values(attachmentUrls);
+    return () => {
+      urls.forEach((u) => URL.revokeObjectURL(u));
+    };
+  }, [attachmentUrls]);
+
+  const defaultMonths = useMemo(() => meta?.recordMonths ?? [], [meta]);
+
   async function assemble(months: string[]) {
-    if (!profile) return;
+    if (!meta) return;
+    const scope = new Set(months);
+
+    // Evaluate every selected month. Required (no fallback) — the export must not print a
+    // pre-evaluation total (semantic review #10).
     const evaluations: Record<string, MonthEvaluation> = {};
     for (const month of months) {
       evaluations[month] = await evaluateMonth({
         month,
-        userId: profile.id,
-        activities,
+        userId: meta.profile.id,
+        activities: meta.activities,
         policy: FEDERAL_DEFAULT,
       });
     }
-    setPkg(
-      buildEvidencePackage({
-        profile,
-        months,
-        evaluations,
-        activities,
-        incomeEntries,
-        documents,
-        incomeDocuments,
-        exclusionScreenings,
-        exclusionDocuments,
-        policy: FEDERAL_DEFAULT,
-      }),
-    );
+
+    // Scope documents to the selected months (semantic review #3). Activity docs by their
+    // activity's month; income docs by their entry's month; exclusion docs are always
+    // included (they are not month-scoped evidence).
+    const activityMonth = new Map<number, string>();
+    meta.activities.forEach((a) => {
+      if (a.id !== undefined) activityMonth.set(a.id, a.date.substring(0, 7));
+    });
+    const incomeMonth = new Map<number, string>();
+    meta.incomeEntries.forEach((i) => {
+      if (i.id !== undefined) incomeMonth.set(i.id, i.date.substring(0, 7));
+    });
+
+    const taggedDocuments: TaggedDocument[] = [];
+    for (const doc of meta.activityDocuments) {
+      if (
+        doc.activityId !== undefined &&
+        scope.has(activityMonth.get(doc.activityId) ?? "")
+      ) {
+        taggedDocuments.push({ kind: "activity", doc });
+      }
+    }
+    for (const doc of meta.incomeDocuments) {
+      const entryId = doc.incomeEntryId;
+      if (entryId !== undefined && scope.has(incomeMonth.get(entryId) ?? "")) {
+        taggedDocuments.push({ kind: "income", doc });
+      }
+    }
+    for (const doc of meta.exclusionDocuments) {
+      taggedDocuments.push({ kind: "exclusion", doc });
+    }
+
+    // Load blobs ONLY for the scoped documents, keyed by the same namespaced reference the
+    // package mints (semantic review #1 + #3).
+    const urls: Record<string, string> = {};
+    for (const t of taggedDocuments) {
+      if (t.doc.id === undefined) continue;
+      const prefix =
+        t.kind === "activity" ? "ACT" : t.kind === "income" ? "INC" : "EXC";
+      const reference = `${prefix}-${t.doc.id}`;
+      const blob =
+        t.kind === "income"
+          ? await db.incomeDocumentBlobs.get(t.doc.blobId)
+          : await db.documentBlobs.get(t.doc.blobId);
+      if (blob?.blob) {
+        urls[reference] = URL.createObjectURL(blob.blob);
+      }
+    }
+
+    const built = buildEvidencePackage({
+      profile: meta.profile,
+      months,
+      evaluations,
+      activities: meta.activities,
+      incomeEntries: meta.incomeEntries,
+      complianceModes: meta.complianceModes,
+      taggedDocuments,
+      exclusionScreenings: meta.exclusionScreenings,
+      policy: FEDERAL_DEFAULT,
+    });
+
+    // Replacing attachmentUrls triggers the revoke effect for the previous set.
+    setAttachmentUrls(urls);
+    setPkg(built);
   }
 
   async function handleConfirmWarning() {
-    const months =
-      rangeFrom && rangeTo ? monthRange(rangeFrom, rangeTo) : recordMonths;
-    await assemble(months.length > 0 ? months : recordMonths);
+    await assemble(defaultMonths);
     setStage("ready");
   }
 
@@ -236,7 +286,6 @@ export default function EvidencePackagePage() {
 
   return (
     <Container maxWidth="md" sx={{ py: 4 }}>
-      {/* The controls are hidden on print, so only the record itself prints. */}
       <Box sx={{ mb: 3, "@media print": { display: "none" } }}>
         <Button
           startIcon={<ArrowBackIcon />}
@@ -277,13 +326,7 @@ export default function EvidencePackagePage() {
 
       {stage === "ready" && pkg && (
         <>
-          <Paper
-            sx={{
-              p: 2,
-              mb: 3,
-              "@media print": { display: "none" },
-            }}
-          >
+          <Paper sx={{ p: 2, mb: 3, "@media print": { display: "none" } }}>
             <Typography variant="subtitle2" gutterBottom>
               Choose the months to include
             </Typography>

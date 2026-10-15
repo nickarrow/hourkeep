@@ -128,6 +128,16 @@ export async function archiveScreening(screeningId: number): Promise<void> {
 
     await db.exemptionHistory.add(historyRecord);
 
+    // Cascade any exclusion documents before dropping the screening — W8a (semantic review
+    // #8). The reduced history row carries no documents, so documents attached to the live
+    // screening (an `exemptionId` link added in W8a) would otherwise be stranded: invisible
+    // to the UI once their parent is gone, and skipped by `cleanupOrphanedDocuments` (which
+    // deliberately ignores documents with no `activityId`). The archive decision is that
+    // exclusion evidence is deleted with the screening it belonged to.
+    // `.kiro/steering/data-migration-standards.md`: deletes cascade; orphaned blobs are
+    // invisible and unbounded, and every deleter of a changed field needs the sweep.
+    await deleteDocumentsByExemption(screeningId);
+
     // Remove from current screenings
     await db.exemptions.delete(screeningId);
   } catch (error) {

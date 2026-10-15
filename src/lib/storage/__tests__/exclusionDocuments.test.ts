@@ -23,6 +23,7 @@ import {
 import {
   saveScreening,
   deleteExclusionScreeningWithDocuments,
+  archiveScreening,
 } from "@/lib/storage/exemptions";
 import { cleanupOrphanedDocuments } from "@/lib/storage/activities";
 import type { ExemptionResponses, ExemptionResult } from "@/types/exemptions";
@@ -190,6 +191,28 @@ describe("cleanupOrphanedDocuments must NOT delete exclusion documents (data-los
     expect(deleted).toBe(0);
     expect(await getDocumentsByExemption(screening.id!)).toHaveLength(1);
     expect(await db.documentBlobs.count()).toBe(1);
+  });
+
+  it("archiveScreening cascades exclusion documents, so re-screening strands nothing (semantic review #8)", async () => {
+    // archiveScreening is what the app actually calls when a user re-screens. Before W8a's
+    // fix it deleted the screening row with no document handling, and because
+    // cleanupOrphanedDocuments deliberately skips documents with no activityId, an archived
+    // screening's exclusion documents became permanently unreclaimable. The archive decision
+    // is that exclusion evidence is deleted with the screening it belonged to.
+    const screening = await saveScreening("u1", RESPONSES, RESULT);
+    await saveExclusionDocument(
+      screening.id!,
+      new Blob(["va"], { type: "image/jpeg" }),
+      { ...META },
+    );
+
+    await archiveScreening(screening.id!);
+
+    // The screening is gone, archived to history, and its document + blob are reclaimed.
+    expect(await db.exemptions.get(screening.id!)).toBeUndefined();
+    expect(await db.exemptionHistory.count()).toBe(1);
+    expect(await getDocumentsByExemption(screening.id!)).toHaveLength(0);
+    expect(await db.documentBlobs.count()).toBe(0);
   });
 
   it("positive twin: it still deletes a genuinely orphaned ACTIVITY document", async () => {

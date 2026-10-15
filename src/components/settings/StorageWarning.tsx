@@ -31,7 +31,9 @@ export function StorageWarning() {
           <CloseIcon fontSize="inherit" />
         </IconButton>
       }
-      sx={{ mb: 2 }}
+      // W8a (semantic review #12): suppress on print so a low-storage banner never lands on
+      // a faxed evidence package, obscuring the record with device state.
+      sx={{ mb: 2, "@media print": { display: "none" } }}
     >
       <AlertTitle>Storage Space Running Low</AlertTitle>
       You&apos;re using {usageMB} MB with only {availableMB} MB available.{" "}

@@ -113,16 +113,19 @@ export default function ExportPage() {
       activities.forEach((a) => months.add(a.date.substring(0, 7)));
       incomeEntries.forEach((i) => months.add(i.date.substring(0, 7)));
 
+      // Always evaluate, with or without a profile (semantic review #10): if evaluations
+      // were skipped when no profile exists, buildTextReport's fallback would print the raw
+      // logged-hours sum — the exact pre-evaluation divergence gap 8.9 removes. A missing
+      // profile means no income records to scope, so a sentinel userId is safe.
       const evaluations: Record<string, MonthEvaluation> = {};
-      if (profile) {
-        for (const month of months) {
-          evaluations[month] = await evaluateMonth({
-            month,
-            userId: profile.id,
-            activities,
-            policy: FEDERAL_DEFAULT,
-          });
-        }
+      const userId = profile?.id ?? "__no-profile__";
+      for (const month of months) {
+        evaluations[month] = await evaluateMonth({
+          month,
+          userId,
+          activities,
+          policy: FEDERAL_DEFAULT,
+        });
       }
 
       // The report itself is built by a pure function in lib/export so it can be

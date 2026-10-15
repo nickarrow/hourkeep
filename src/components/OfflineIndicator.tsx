@@ -54,6 +54,10 @@ export function OfflineIndicator() {
         justifyContent: "center",
         gap: 1,
         zIndex: 9999,
+        // W8a (semantic review #12): never print the device banner on a faxed evidence
+        // package — it would land on top of the record and tell the caseworker about the
+        // user's connection, not their evidence.
+        "@media print": { display: "none" },
       }}
     >
       <WifiOffIcon fontSize="small" />

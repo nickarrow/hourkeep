@@ -1240,6 +1240,7 @@ describe("ADR-0003 no-verdict guard: W8a evidence-package surfaces", () => {
         },
         activities: [
           {
+            id: 1,
             date: "2026-07-05",
             type: "work",
             hours: totalHours,
@@ -1248,10 +1249,17 @@ describe("ADR-0003 no-verdict guard: W8a evidence-package surfaces", () => {
           },
         ],
         incomeEntries: [],
-        documents: [],
-        incomeDocuments: [],
+        complianceModes: [
+          {
+            userId: "u1",
+            month,
+            mode: "hours",
+            createdAt: NOW_W8A,
+            updatedAt: NOW_W8A,
+          },
+        ],
+        taggedDocuments: [],
         exclusionScreenings: [],
-        exclusionDocuments: [],
         policy: FEDERAL_DEFAULT,
         generatedAt: NOW_W8A,
       });

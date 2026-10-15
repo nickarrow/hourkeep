@@ -38,6 +38,11 @@ const ROUTES = [
   "/tracking",
   "/settings",
   "/export",
+  // W8a: the evidence-package print route. Added so a hydration failure here is caught —
+  // the bug class that shipped to production once and was invisible to Vitest and `next dev`
+  // (semantic review #9). Without a profile it renders the loading→empty states, which is
+  // enough to exercise hydration of the route shell.
+  "/export/package",
   "/how-to-hourkeep",
 ];
 

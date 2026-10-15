@@ -159,7 +159,7 @@ function monthKey(isoDate: string): string {
 
 /**
  * Format an hours figure: whole numbers print cleanly ("46"), fractional ones keep two
- * decimals ("77.94"). The credit-hour conversion (42 CFR 435.552(d), 91 FR 33471) produces
+ * decimals ("77.94"). The credit-hour conversion (42 CFR 435.552(d), 91 FR 33470) produces
  * fractional monthly hours, so a bare integer cast would misrepresent them.
  */
 function formatHours(hours: number): string {
@@ -304,29 +304,32 @@ export function buildTextReport(input: TextReportInput): string {
       );
 
       if (isSeasonal && seasonalAverage !== undefined) {
-        // 42 CFR 435.552(g), 91 FR 33470: the seasonal comparison is the average of the six
-        // months before the month under review, not this month's pay. Name the span and the
-        // citation on the artifact so a caseworker reads the right figure, and distinguish a
-        // month with no record from a verified $0 (W7a honesty — never impute $0).
-        out +=
-          "  This is the average of the 6 months before the month under review\n";
-        out += "  (seasonal workers). 42 CFR 435.552(g)\n";
+        // 42 CFR 435.552(g), 91 FR 33471: the seasonal comparison is the average of the
+        // months before the month under review, not this month's pay. The window length is
+        // the number of history rows the evaluation carries (not a literal — semantic
+        // review #13). A month with no record is NOT asserted as $0 (semantic review #6);
+        // it is flagged as a gap the state can fill from its own records.
         const history = evaluation?.income.seasonalHistory ?? [];
+        const windowMonths = history.length;
+        out += `  This is the average of the ${windowMonths} months before the month under\n`;
+        out += "  review (seasonal workers). 42 CFR 435.552(g)\n";
         history.forEach((h) => {
           const label = format(new Date(h.month + "-01T00:00:00"), "MMM yyyy");
           out += h.hasData
             ? `    ${label}: $${h.total.toFixed(2)}\n`
-            : `    ${label}: No record (counts as $0 until added)\n`;
+            : `    ${label}: No record — ask your state what it has on file\n`;
         });
         out += "\n";
       }
       // 42 CFR 435.552(f)(2) -> 435.603(d)-(f): the threshold is measured against
       // MAGI-based income for the MAGI-based HOUSEHOLD, not the individual. This
-      // figure is one person's records, so the state's number may be higher.
-      // Saying so prevents the report reading as a shortfall it may not be.
+      // figure is one person's records, so the state's number may be higher. Naming the
+      // next action (ask the agency) completes the hedge (semantic review #15).
       out +=
         "  Note: your state counts your whole tax household here, so its\n";
-      out += "  figure may be higher than this one. 42 CFR 435.603(d)-(f)\n";
+      out +=
+        "  figure may be higher than this one — ask your state what income it\n";
+      out += "  already has on file. 42 CFR 435.603(d)-(f)\n";
       out += "\n";
 
       if (monthIncomeEntries.length > 0) {

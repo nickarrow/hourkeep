@@ -33,7 +33,7 @@
  * CFR anchors resolved from `docs/domain/cms-2454-ifc/2026-11094.txt`:
  *   - hours threshold & pathways — 42 CFR 435.552(a)(1)-(5), 91 FR 33470
  *   - income threshold = FLSA wage × hours — 42 CFR 435.552(a)(6), (f), 91 FR 33470
- *   - seasonal average over the 6 preceding months — 42 CFR 435.552(g), 91 FR 33470
+ *   - seasonal average over the 6 preceding months — 42 CFR 435.552(g), 91 FR 33471
  */
 
 import type { Activity, MonthlySummary } from "@/types";
