@@ -251,6 +251,9 @@ describe("no policy literal survives in the Tier-1 modules", () => {
     // Added by W8a: the single evaluation path surfaces both thresholds (42 CFR
     // 435.552(a)(1)-(6)) and must take them from the injected profile, not literals.
     "src/lib/evaluateMonth.ts",
+    // Added by W8a: the evidence package assembles threshold comparisons and reads
+    // submissionModalities / documentationRequiredFrom from the profile, never literals.
+    "src/lib/export/buildEvidencePackage.ts",
   ] as const;
 
   /**

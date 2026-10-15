@@ -5,6 +5,7 @@ import {
   ExemptionResult,
   ExemptionHistory,
 } from "@/types/exemptions";
+import { deleteDocumentsByExemption } from "@/lib/storage/documents";
 
 /**
  * Save a completed exemption screening
@@ -76,6 +77,31 @@ export async function getScreeningHistory(
   } catch (error) {
     console.error("Error getting screening history:", error);
     throw new Error("Failed to retrieve screening history");
+  }
+}
+
+/**
+ * Delete an exclusion screening together with any documents attached to it — W8a, gap 8.5.
+ *
+ * Exclusion documents (`exemptionId` on a `Document` row) must not survive the screening
+ * they belong to, or their blobs orphan. `.kiro/steering/data-migration-standards.md`:
+ * deletes cascade explicitly. Documents first, screening last, and the screening is NOT
+ * deleted if any document failed — mirroring `deleteActivityWithDocuments` so a user left
+ * with a visible error can retry rather than lose the handle to unreachable blobs.
+ *
+ * @param screeningId - ID of the screening to remove.
+ * @throws If any attached document could not be deleted; the screening is left in place.
+ */
+export async function deleteExclusionScreeningWithDocuments(
+  screeningId: number,
+): Promise<void> {
+  try {
+    // Documents first — if this throws (naming how many failed), the screening survives.
+    await deleteDocumentsByExemption(screeningId);
+    await db.exemptions.delete(screeningId);
+  } catch (error) {
+    console.error("Error deleting exclusion screening with documents:", error);
+    throw error;
   }
 }
 

@@ -60,9 +60,17 @@ export async function cleanupOrphanedDocuments(): Promise<number> {
         .filter((id): id is number => id !== undefined),
     );
 
-    // Find orphaned documents
+    // Find orphaned documents — ACTIVITY documents whose activity no longer exists.
+    //
+    // W8a: a document may instead be an EXCLUSION document (`exemptionId` set, no
+    // `activityId`). Those are owned by a screening, not an activity, so they must be
+    // skipped here — otherwise their `activityId === undefined` is "not in the activity
+    // set" and this routine would delete them as orphans, destroying evidence the screening
+    // still points at. Only documents that have an `activityId` are candidates for
+    // activity-orphan cleanup. (`.kiro/steering/data-migration-standards.md`: a reader of a
+    // changed field must be found and corrected, not just made to compile.)
     const orphanedDocuments = allDocuments.filter(
-      (doc) => !activityIds.has(doc.activityId),
+      (doc) => doc.activityId !== undefined && !activityIds.has(doc.activityId),
     );
 
     // Delete orphaned documents

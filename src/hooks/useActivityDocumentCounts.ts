@@ -53,9 +53,13 @@ export function useActivityDocumentCounts(
           .anyOf(ids)
           .toArray();
 
-        // Count documents per activity
+        // Count documents per activity. The `.anyOf(ids)` query only matches rows whose
+        // `activityId` is in the set, so an exclusion document (W8a: no `activityId`) is
+        // never returned here — the guard is for the type checker, since activityId became
+        // optional when documents gained an exemptionId link.
         const countMap = new Map<number, number>();
         for (const doc of documents) {
+          if (doc.activityId === undefined) continue;
           const currentCount = countMap.get(doc.activityId) || 0;
           countMap.set(doc.activityId, currentCount + 1);
         }
