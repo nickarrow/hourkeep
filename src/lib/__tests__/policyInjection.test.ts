@@ -248,6 +248,9 @@ describe("no policy literal survives in the Tier-1 modules", () => {
     // Added by W6a: it reads educationCreditHourConversion (42 CFR 435.552(d)(1)) and
     // must take the threshold constants from the profile, not from literals.
     "src/lib/education.ts",
+    // Added by W8a: the single evaluation path surfaces both thresholds (42 CFR
+    // 435.552(a)(1)-(6)) and must take them from the injected profile, not literals.
+    "src/lib/evaluateMonth.ts",
   ] as const;
 
   /**

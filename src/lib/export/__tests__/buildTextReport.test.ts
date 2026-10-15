@@ -429,3 +429,135 @@ describe("W7a: the export sums actual amounts received, not monthly projections"
     expect(report).not.toContain("649.50"); // the projection stays off the agency artifact
   });
 });
+
+describe("W8a: the export reads the single evaluation path, it does not recompute (gap 8.9)", () => {
+  // 42 CFR 435.552(d), 91 FR 33470-33471. The divergence gap 8.9 names: a
+  // less-than-half-time education row stores raw `hours` (99 here), but the canonical
+  // `calculateMonthlySummary` derives the credit-hour contribution (6 × 3 × 4.33 = 77.94).
+  // The export used to sum the stored 99 with its own inline reduce. Now it reads the
+  // evaluation's hours total, so the artifact matches the dashboard.
+  function educationActivity(): Activity {
+    return {
+      date: "2026-07-05",
+      type: "education",
+      hours: 99,
+      enrollmentStatus: "less-than-half-time",
+      creditHours: 6,
+      createdAt: NOW,
+      updatedAt: NOW,
+    };
+  }
+
+  // A hand-built evaluation standing in for evaluateMonth's output. The point of the test
+  // is that buildTextReport PRINTS this number rather than re-reducing the activities.
+  function evaluationFor(
+    month: string,
+    totalHours: number,
+  ): import("@/lib/evaluateMonth").MonthEvaluation {
+    return {
+      month,
+      hours: {
+        month,
+        totalHours,
+        workHours: 0,
+        volunteerHours: 0,
+        educationHours: totalHours,
+        workProgramHours: 0,
+        hasStandaloneEducation: false,
+        isCompliant: totalHours >= 80,
+        hoursNeeded: Math.max(80 - totalHours, 0),
+      },
+      income: {
+        month,
+        totalIncome: 0,
+        entryCount: 0,
+        isCompliant: false,
+        amountNeeded: 580,
+        isSeasonalWorker: false,
+      },
+      thresholds: { hours: 80, income: 580 },
+    };
+  }
+
+  it("§ 435.552(d): prints the evaluation's derived hours total, not the raw stored sum", () => {
+    const report = build({
+      activities: [educationActivity()],
+      complianceModes: [mode("2026-07", "hours")],
+      evaluations: { "2026-07": evaluationFor("2026-07", 77.94) },
+    });
+
+    expect(report).toContain("Logged: 77.94 hours");
+    // The raw-sum number the old inline reduce would have printed must be absent.
+    expect(report).not.toContain("Logged: 99 hours");
+  });
+
+  it("the difference line is computed from the evaluation total too", () => {
+    const report = build({
+      activities: [educationActivity()],
+      complianceModes: [mode("2026-07", "hours")],
+      evaluations: { "2026-07": evaluationFor("2026-07", 77.94) },
+    });
+    // 80 - 77.94 = 2.06
+    expect(report).toContain("Difference: 2.06 hours");
+  });
+
+  it("§ 435.552(g): a seasonal worker's income block prints the preceding-6-month average, not the assessed month's own total", () => {
+    // W7a finding 6, deferred to W8a. The export previously never received seasonal status.
+    const seasonalEval: import("@/lib/evaluateMonth").MonthEvaluation = {
+      month: "2026-07",
+      hours: {
+        month: "2026-07",
+        totalHours: 0,
+        workHours: 0,
+        volunteerHours: 0,
+        educationHours: 0,
+        workProgramHours: 0,
+        hasStandaloneEducation: false,
+        isCompliant: false,
+        hoursNeeded: 80,
+      },
+      income: {
+        month: "2026-07",
+        totalIncome: 5000, // the assessed month's own large paycheck
+        entryCount: 1,
+        isCompliant: false,
+        amountNeeded: 80,
+        isSeasonalWorker: true,
+        seasonalAverage: 500, // $3,000 over 6 months — 42 CFR 435.552(g)
+        seasonalMonthsWithData: 2,
+        seasonalHistory: [
+          { month: "2026-01", total: 0, hasData: false },
+          { month: "2026-02", total: 1500, hasData: true },
+          { month: "2026-03", total: 1500, hasData: true },
+          { month: "2026-04", total: 0, hasData: false },
+          { month: "2026-05", total: 0, hasData: false },
+          { month: "2026-06", total: 0, hasData: false },
+        ],
+      },
+      thresholds: { hours: 80, income: 580 },
+    };
+
+    const report = build({
+      incomeEntries: [income("2026-07-15", 5000)],
+      complianceModes: [mode("2026-07", "income")],
+      evaluations: { "2026-07": seasonalEval },
+    });
+
+    // The compared figure is the seasonal average, not the $5,000 assessed-month total.
+    expect(report).toContain("$500.00");
+    expect(report).toMatch(/seasonal/i);
+    expect(report).toContain("435.552(g)");
+    // "No record" months are distinguished from verified $0 (W7a honesty).
+    expect(report).toMatch(/No record/i);
+  });
+
+  it("prints no verdict with an evaluation present", () => {
+    const report = build({
+      activities: [educationActivity()],
+      complianceModes: [mode("2026-07", "hours")],
+      evaluations: { "2026-07": evaluationFor("2026-07", 77.94) },
+    });
+    const hits = findVerdictPhrases(report, "buildTextReport with evaluation");
+    expect(hits, formatHits(hits)).toEqual([]);
+  });
+});

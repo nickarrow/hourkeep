@@ -2,6 +2,7 @@ import { format } from "date-fns";
 
 import type { Activity, UserProfile } from "@/types";
 import type { ComplianceMode, IncomeEntry } from "@/types/income";
+import type { MonthEvaluation } from "@/lib/evaluateMonth";
 import { ACTIVITY_TYPE_LABELS } from "@/lib/activityDisplay";
 
 /**
@@ -128,6 +129,22 @@ export interface TextReportInput {
   incomeEntries: IncomeEntry[];
   complianceModes: ComplianceMode[];
   thresholds: ReportThresholds;
+  /**
+   * Per-month computed facts from the single evaluation path (`evaluateMonth`) — W8a.
+   *
+   * Keyed by `YYYY-MM`. When a month's evaluation is present the report reads its hours
+   * total, its income total, and its seasonal average from here INSTEAD of recomputing —
+   * which is what makes the artifact unable to contradict the UI (gap 8.9, ADR-0006 § One
+   * evaluation path). The per-activity and per-entry DETAIL lines still iterate the raw
+   * records; that is rendering, not a compliance computation.
+   *
+   * Optional, and the builder falls back to its own sums when a month is absent, for two
+   * reasons: `buildTextReport` stays a pure synchronous function (the caller does the async
+   * `evaluateMonth` work and passes the result in), and the fallback keeps the function
+   * usable and tested in isolation. The export page always supplies evaluations, so the
+   * fallback is not the shipped path.
+   */
+  evaluations?: Record<string, MonthEvaluation>;
   /** Injected so output is deterministic under test. */
   generatedAt?: Date;
 }
@@ -138,6 +155,15 @@ const SUBRULE = "-".repeat(50);
 /** `YYYY-MM` for a date string, without constructing a Date. */
 function monthKey(isoDate: string): string {
   return isoDate.substring(0, 7);
+}
+
+/**
+ * Format an hours figure: whole numbers print cleanly ("46"), fractional ones keep two
+ * decimals ("77.94"). The credit-hour conversion (42 CFR 435.552(d), 91 FR 33471) produces
+ * fractional monthly hours, so a bare integer cast would misrepresent them.
+ */
+function formatHours(hours: number): string {
+  return Number.isInteger(hours) ? String(hours) : hours.toFixed(2);
 }
 
 /**
@@ -163,6 +189,7 @@ export function buildTextReport(input: TextReportInput): string {
     incomeEntries,
     complianceModes,
     thresholds,
+    evaluations,
     generatedAt = new Date(),
   } = input;
 
@@ -204,18 +231,27 @@ export function buildTextReport(input: TextReportInput): string {
     out += SUBRULE + "\n";
     out += `Recorded as: ${mode === "hours" ? "Hours" : "Income"}\n\n`;
 
+    const evaluation = evaluations?.[month];
+
     if (mode === "hours") {
       const monthActivities = activities.filter(
         (a) => monthKey(a.date) === month,
       );
-      const totalHours = monthActivities.reduce((sum, a) => sum + a.hours, 0);
+      // W8a (gap 8.9): read the total from the single evaluation path when present, so the
+      // artifact cannot contradict the UI. `calculateMonthlySummary` derives education's
+      // contribution (the half-time cliff and credit-hour conversion), which a naive sum of
+      // stored `hours` would get wrong. Fall back to the raw sum only when no evaluation was
+      // supplied — never the shipped path (the export page always evaluates).
+      const totalHours =
+        evaluation?.hours.totalHours ??
+        monthActivities.reduce((sum, a) => sum + a.hours, 0);
       const difference = Math.max(0, thresholds.hours - totalHours);
 
       out += comparisonLine(
         "Hours",
-        `${totalHours} hours`,
-        `${thresholds.hours} hours`,
-        `${difference} hours`,
+        `${formatHours(totalHours)} hours`,
+        `${formatHours(thresholds.hours)} hours`,
+        `${formatHours(difference)} hours`,
       );
       out += "\n";
 
@@ -240,18 +276,50 @@ export function buildTextReport(input: TextReportInput): string {
       // W7a (gap 5.5): the month's income is the sum of ACTUAL amounts received, not of
       // per-paycheck monthly projections. Summing monthlyEquivalent here 4x-overstated the
       // figure onto the artifact a caseworker reads — worse than on screen.
-      const totalIncome = monthIncomeEntries.reduce(
-        (sum, i) => sum + i.amount,
-        0,
-      );
-      const difference = Math.max(0, thresholds.income - totalIncome);
+      // W8a: read the total from the single evaluation path when present (fallback is the
+      // same actual-amounts sum, so a month without an evaluation is still correct).
+      const totalIncome =
+        evaluation?.income.totalIncome ??
+        monthIncomeEntries.reduce((sum, i) => sum + i.amount, 0);
+
+      // W8a (gap 8.9 / W7a finding 6): for a seasonal worker the figure COMPARED against the
+      // threshold is 42 CFR 435.552(g)'s average over the 6 months PRECEDING the assessed
+      // month — not the assessed month's own total. The export previously never received
+      // seasonal status, so it printed the wrong comparison. The seasonal average is only
+      // available from the evaluation (it needs a DB read); without one, fall back to the
+      // month total, matching the pre-W8a non-seasonal behaviour.
+      const isSeasonal = evaluation?.income.isSeasonalWorker ?? false;
+      const seasonalAverage = evaluation?.income.seasonalAverage;
+      const comparedIncome =
+        isSeasonal && seasonalAverage !== undefined
+          ? seasonalAverage
+          : totalIncome;
+      const difference = Math.max(0, thresholds.income - comparedIncome);
 
       out += comparisonLine(
-        "Income",
-        `$${totalIncome.toFixed(2)}`,
+        isSeasonal ? "Income (seasonal 6-month average)" : "Income",
+        `$${comparedIncome.toFixed(2)}`,
         `$${thresholds.income.toFixed(2)}`,
         `$${difference.toFixed(2)}`,
       );
+
+      if (isSeasonal && seasonalAverage !== undefined) {
+        // 42 CFR 435.552(g), 91 FR 33470: the seasonal comparison is the average of the six
+        // months before the month under review, not this month's pay. Name the span and the
+        // citation on the artifact so a caseworker reads the right figure, and distinguish a
+        // month with no record from a verified $0 (W7a honesty — never impute $0).
+        out +=
+          "  This is the average of the 6 months before the month under review\n";
+        out += "  (seasonal workers). 42 CFR 435.552(g)\n";
+        const history = evaluation?.income.seasonalHistory ?? [];
+        history.forEach((h) => {
+          const label = format(new Date(h.month + "-01T00:00:00"), "MMM yyyy");
+          out += h.hasData
+            ? `    ${label}: $${h.total.toFixed(2)}\n`
+            : `    ${label}: No record (counts as $0 until added)\n`;
+        });
+        out += "\n";
+      }
       // 42 CFR 435.552(f)(2) -> 435.603(d)-(f): the threshold is measured against
       // MAGI-based income for the MAGI-based HOUSEHOLD, not the individual. This
       // figure is one person's records, so the state's number may be higher.

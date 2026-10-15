@@ -19,6 +19,7 @@ import {
 } from "@mui/icons-material";
 import { db } from "@/lib/db";
 import { buildTextReport } from "@/lib/export/buildTextReport";
+import { evaluateMonth, type MonthEvaluation } from "@/lib/evaluateMonth";
 import { FEDERAL_DEFAULT, incomeThreshold } from "@/lib/policy";
 
 export default function ExportPage() {
@@ -103,16 +104,38 @@ export default function ExportPage() {
       const incomeEntries = await db.incomeEntries.toArray();
       const complianceModes = await db.complianceModes.toArray();
 
+      // W8a: run every month present through the single evaluation path, so the report
+      // reads the same totals the UI does and cannot contradict it (gap 8.9, ADR-0006).
+      // The async work lives here, in the caller; `buildTextReport` stays a pure function
+      // over the resolved facts. The profile id scopes income/seasonal reads.
+      const profile = profiles[0];
+      const months = new Set<string>();
+      activities.forEach((a) => months.add(a.date.substring(0, 7)));
+      incomeEntries.forEach((i) => months.add(i.date.substring(0, 7)));
+
+      const evaluations: Record<string, MonthEvaluation> = {};
+      if (profile) {
+        for (const month of months) {
+          evaluations[month] = await evaluateMonth({
+            month,
+            userId: profile.id,
+            activities,
+            policy: FEDERAL_DEFAULT,
+          });
+        }
+      }
+
       // The report itself is built by a pure function in lib/export so it can be
       // asserted directly — see that module's header for why W2a extracted it.
       // Thresholds come from the policy profile (ADR-0001). `buildTextReport` already
       // took them as a parameter, which is why W2b changes one call site rather than
       // the module — the structural improvement W2a banked for this wave.
       const textContent = buildTextReport({
-        profile: profiles[0],
+        profile,
         activities,
         incomeEntries,
         complianceModes,
+        evaluations,
         thresholds: {
           hours: FEDERAL_DEFAULT.requiredHours,
           income: incomeThreshold(FEDERAL_DEFAULT),
