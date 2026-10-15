@@ -7,6 +7,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added - Evidence capture that matches the rule (W6a)
+
+What a user can see:
+
+- **Job training now counts.** You can log a job-training or work program (SNAP E&T, WIOA, a
+  governor-approved program, a VA/DOL veterans program) as its own activity type, and the hours count
+  toward your monthly total. Before, there was nowhere to put them — they were silently dropped.
+  42 CFR 435.552(a)(3).
+- **School asks the right question.** Instead of "how many hours do you attend school?", the form asks
+  how your school says you're enrolled. If it's at least half-time, that may be enough on its own — no
+  hours to add up, and your state decides what counts. If it's less than half-time, you enter your
+  credit hours and the app shows the conversion the way your state will compute it: "6 credit hours × 3
+  × 4.33 = 77.94 hours this month". 42 CFR 435.552(a)(4), (c), (d).
+- **Community service captures what a caseworker will ask for.** Organization name and address, what you
+  did, and a contact who can confirm your hours — because without that contact the record may not be
+  accepted. Court-ordered service counts, and your state can't limit it to registered charities.
+  42 CFR 435.552(b), § II.I.6.b.
+- **Work is broader than a paycheck.** You can mark work as paid, in-kind (housing, meals, utilities
+  instead of money), or unpaid — the kinds that often won't show up in records your state checks.
+  42 CFR 435.552(b).
+- **Two more document types:** VA disability documents and SNAP/TANF approval notices, both named by CMS
+  as documents a state should accept.
+
+Under the hood: no database change — every new field is unindexed data on an existing row, so your
+records survive untouched. Thresholds and the credit-hour conversion come from the policy profile, never
+hardcoded. The half-time cliff is enforced where you enter data, so the app never folds half-time school
+into a total and tells you you're short when you're not. Details and the CFR/FR citations are in
+`docs/hr1-readiness/waves/wave-6a-evidence-capture.md`.
+
+### Changed - Node engine floor and a recorded security advisory (W6a)
+
+- `engines.node` raised from `>=22` to `>=22.22.2`, and CI Node pinned to `22.23.2` exactly — the test
+  toolchain (jsdom 30) declares the old floor unsupported, so the suite had been passing on an engine it
+  shouldn't.
+- The `next@16.0.1` advisories (GHSA-9qr9-h5gf-34mp and others) are now recorded in `ROADMAP.md` with the
+  reasoning for deferring the fix to the dependency wave: HourKeep is a static export with no Next.js
+  server, so the exposure is the build machine, not the deployed app.
+
 ### Fixed - Four more places the app decided something it isn't allowed to decide (W2b)
 
 Found by review after the rest of this wave was already green. Details in

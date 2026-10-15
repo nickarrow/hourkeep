@@ -2,10 +2,10 @@
 
 **The holistic home for this effort.** Open this file to remember where we are.
 
-**Last updated:** 2026-09-03 (W6a in progress)
-**Current wave:** **W6a (Evidence Capture)** in progress — wave file written, engines/CI and the `next`
-advisory handled up front. W2b landed 2026-09-02. Progress against the gap analysis: **16 of 108 rows
-closed, 7 partial** — and note the total is **108, not the 81** that document's summary claimed until it
+**Last updated:** 2026-09-03 (W6a closed)
+**Current wave:** none in progress — **W6a (Evidence Capture)** closed 2026-09-03. **W7a (Seasonal +
+income corrections)** is next and is unblocked. Progress against the gap analysis: **25 of 108 rows
+closed, 8 partial** — and note the total is **108, not the 81** that document's summary claimed until it
 was recounted
 
 > A first version of this line said W1 was next. Wrong: ADR-0009's reordering moved **W1 to the very end**,
@@ -43,6 +43,20 @@ was recounted
 >    while 22 literals were live. Three of four reviewers found it by reading the regex; no run of
 >    it could have. **A criterion whose observable is produced by the same instrument as the work
 >    cannot be self-checked.**
+>
+>    **W6a, 2026-09-03, made it three consecutive waves — and taught the sharpest lesson yet about
+>    reviewer composition.** All four ran. The three narrow reviewers (domain, non-adjudication,
+>    data integrity) each PASSED W6a within their lens. The **two-model semantic review returned
+>    NEEDS_CHANGES with 21 findings**, and both its models independently reproduced the headline
+>    harm in a 375px browser: a half-time student saw "80 hours needed" because the activity model
+>    landed *at capture but not at read* — the cliff was enforced in the form and in
+>    `education.ts`, but no summary or dashboard read `enrollmentStatus`. **The narrow reviewers
+>    could not have caught it**: each checked a layer, and the defect lived in the *join* between
+>    layers (form → summary → report). The lesson: a lens-partitioned review misses lifecycle
+>    defects by construction, so the design-level semantic pass is not redundant with the targeted
+>    ones — it is the only one that follows the data. Six findings were High; all fixed and
+>    verified against the primary source and in the browser before being believed, two deferred
+>    with reasons recorded in `waves/wave-6a-evidence-capture.md` § Convergence.
 >
 >    It was worth the wait. The four found **four blocking defects** in work that had
 >    already passed 509 tests, six mechanical gates and a manual browser pass — including
@@ -332,8 +346,8 @@ Sequence and dependencies: [`waves/README.md`](waves/README.md).
 | [W0](waves/wave-0-safety-net.md) | Safety net, deletion, 4 data-loss fixes | **Done** 2026-09-01 — 4 data-loss fixes, delete-all-data, 14 files deleted, 196 → 423 tests. 1 criterion unmet (phone viewport) |
 | [W5](waves/wave-5-month-scoping.md) | Month scoping + review periods | **Done** 2026-09-02 — `ReviewPeriod` model, month required and validated, `Calendar` controlled, 423 → **526** tests (this row said 525; `npm test` at W5's tip `ad8ac87` returned 526), 62 → 72 e2e. All 9 live criteria met; 1 struck to W3. First wave with 4/4 reviewers. **Did not close gaps 15.6/15.7, which were assigned to it** |
 | [W2b](waves/wave-2b-policy-profile.md) | Policy profile | **Done** 2026-09-02 — `src/lib/policy/` with `FEDERAL_DEFAULT` over 36 fields, `incomeThreshold()` a function so it tracks the wage, `ReviewPeriodPolicy` a `Pick` of the profile, zero policy literals in non-test `src/`, 526 → 668 tests, 72 → 74 e2e. **30 of 33 criteria**; 4/4 reviewers. Gaps 15.6/15.7 answerable but uncalled → W9a |
-| W6a | Evidence capture | **Next.** Not started. Three blockers resolved ahead of it 2026-09-02 — see `waves/wave-6-activity-model.md`. Needs **no Dexie bump** |
-| W7a | Seasonal + income corrections | Not started. **Moved ahead of W8a** 2026-09-02 on harm grounds |
+| W6a | Evidence capture | **Done** 2026-09-03 — `workProgram` type, work sub-kinds, education half-time cliff + credit conversion, community-service record schema, VA/SNAP-TANF document types. 9 gap rows closed, 1 partial (4.11→W7b), 4.5→W6b. **No Dexie bump** (`git diff db.ts` empty, still v6). 668 → **721** tests; 74 e2e. 4/4 reviewers; the multi-model semantic review caught a half-time false-shortfall at the form→summary join, since fixed. engines floor raised, `next` advisory recorded |
+| W7a | Seasonal + income corrections | **Next.** Not started. **Moved ahead of W8a** 2026-09-02 on harm grounds |
 | W8a | Print evidence export | Not started. One open scope item: "one evaluation path" needs `evaluateMonth`, which does not exist |
 
 **After the date**

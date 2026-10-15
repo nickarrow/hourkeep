@@ -580,11 +580,17 @@ The upgrade is owned by the dependency-modernization wave (W1 in `docs/hr1-readi
 sequenced after the December implementation date. If that wave slips, the isolated `next` minor bump
 should be lifted out and shipped on its own — it does not depend on the MUI 7→9 work W1 also carries.
 
-### Test toolchain Node floor — resolved 2026-09-03
+### Test toolchain Node floor — CI enforced 2026-09-03, local still advisory
 
 Previously `engines.node` was `>=22`, which admitted 22.18.0, a version `jsdom@30` declares unsupported
 (`^22.22.2 || ^24.15.0 || >=26.0.0`). The suite passed on it by luck, not verification. The floor is now
-`>=22.22.2` and CI Node is pinned to `22.23.2` exactly.
+`>=22.22.2` and CI Node is pinned to `22.23.2` exactly, so CI runs on a supported engine.
+
+**What is NOT yet done, stated plainly:** there is no `.npmrc` with `engine-strict=true`, so the raised
+floor is advisory on developer machines — `npm ci` still exits 0 on 22.18.0 with only an `EBADENGINE`
+warning. Enforcing it locally would currently break the active dev environment (this repo was developed on
+22.18.0), so the floor was raised for CI first and local enforcement deferred until developers upgrade.
+A jsdom-specific failure can still be masked on an unsupported local engine until then.
 
 ---
 

@@ -249,6 +249,47 @@ Every claim below carries its CFR paragraph and FR page, resolved from
 - **`buildTextReport` sharing `calculateMonthlySummary`** touches W8a's territory. Confirm the minimal
   shared-total change is enough for W6a and leave the full single-entry-point to W8a/W7b.
 
+## Convergence — what the review protocol found, 2026-09-03
+
+Four reviewers ran in parallel (domain fidelity, non-adjudication, data integrity via
+`bundled://investigate`; a two-model semantic review via
+`bundled://semantic-review-multi-model`). The three narrow reviewers passed W6a; **the
+semantic review returned NEEDS_CHANGES with 21 de-duplicated findings, and it was right.**
+Each narrow reviewer checked within its lens and none traced the form → summary → report
+lifecycle. The semantic review did, and both its models independently reproduced the
+headline harm in a 375px browser.
+
+**The core finding, verified against the code before being believed:** the activity model
+landed *at capture but not at read*. A half-time student's row stored `hours: 0`, and the
+Dashboard — reading only hours — showed "80 hours needed / Keep logging". That is the exact
+ADR-0003 false negative this wave's own risk register names as its highest-harm risk, and
+my "enforce the cliff at capture" design had stopped over-counting while introducing
+under-communication. Fixed by deriving education from source facts at read time
+(`calculateMonthlySummary`) and surfacing a standalone-education panel on the Dashboard.
+
+Fixed in the convergence commit (`9889608`), each verified against the primary source and,
+for the user-visible ones, in the browser: findings 1–13, 15, 16, 17, 18 (half-time read,
+non-credit reachability, monthly-figure-on-daily-row, export evidence, org-name regression,
+type-aware duplication/edit normalization, unknown-status consistency, policy-literal
+interpolation, render-guard coverage, work-program doc guidance, chip contrast, shared
+label/colour maps, corrected comment). 694 → 721 tests; a behavioral test now exists for
+each lifecycle join the review named.
+
+**Two items deliberately deferred, recorded rather than silently dropped:**
+
+- **Finding 14 — no explicit warning before a status switch to at-least-half-time discards
+  typed hours.** Judged a UX refinement, not a correctness bug: education now stores
+  `hours: 0` regardless, the standalone panel explains why no hours are needed, and the
+  non-credit fix (finding 2) restored the way back. A confirmation dialog is reasonable
+  polish for W6b or W10, not a blocker.
+- **Finding 20 — the Node floor is advisory on local machines.** CI is pinned to a
+  supported engine; local enforcement via `.npmrc engine-strict=true` would break the
+  current dev environment (22.18.0). The `ROADMAP.md` claim was narrowed to "CI enforced,
+  local advisory" so the record is honest. Revisit when developers upgrade.
+
+Finding 21 (the `next` advisory) is the decision recorded above and in `ROADMAP.md`: a minor
+bump deferred to W1, exposure limited to the build machine because the app ships no server.
+
 ## Definition of done (from `waves/README.md`, with W6a specifics)
 
 `npm run build` + `npx tsc --noEmit` clean · `npm test` green, domain changes TDD-first · `npm run lint` /

@@ -43,6 +43,21 @@ same work.
 **W2b marked partial:** 15.6, 15.7 — **2 rows**, both reassigned to **W9a**. The functions exist and have
 zero production callers; see the outcome note under § 15.
 
+**W6a (2026-09-03) closed:** 4.1, 4.2, 4.3, 4.4, 4.6, 4.7, 8.4, 15.23, 15.24 — **9 rows**. Each checked
+against the code, not the wave file: `Activity["type"]` now stores `workProgram` and
+`calculateMonthlySummary` counts it (4.2); `src/lib/education.ts` converts credit hours at `× 3 × 4.33`
+and returns a half-time-cliff union (4.3, 4.4); the activity form captures the paid/in-kind/unpaid work
+distinction (4.1), education program type (4.6), and the structured community-service record with a
+confirming point of contact (4.7, 15.24); `documents.ts` adds `va-disability` and `snap-tanf-approval`
+(8.4); the work-program definition already surfaced the DOL/VA-any-program rule in help text, now
+storable (15.23).
+**W6a marked partial:** 4.11 — **1 row**. The four combinable inputs are now modeled correctly, but the
+combination engine and the income-to-hours proxy are **W7b** (gaps 5.11, 6.1, 6.2, 15.1). Modeling the
+inputs is not building the combiner; calling 4.11 closed would repeat W2b's "answerable, not closed".
+**W6a reassigned:** 4.5 → **W6b** (enrollment term/recess/end rules, § 435.552(c)(1)–(3)) and 4.1's
+`→ W6b, v8` annotation was wrong (it assumed a migration that the no-bump resolution disproved); 4.1 is
+closed here with no v8.
+
 > **W0 and W5 left no annotations in this file at all** — grep for `CLOSED W0`, `CLOSED W5`, `PARTIAL W0`,
 > `PARTIAL W5` returns **0**. That is the mechanism by which 15.6 and 15.7 sat assigned to a wave that
 > never mentioned them: the convention above exists, and two waves did not use it. Their rows have not
@@ -104,10 +119,14 @@ Counted by parsing the `Gap` and `Impact` columns of every row whose first cell 
 | W0 | **0** | 0 | Its scope was the audit's §§ 4.2, 4.6, 4.9, 4.14, 5, 7 — infrastructure, not numbered rows. Not a miss. It also *created* the 15.27 risk by adding `deleteAll` without an import path |
 | W5 | 5 | 0 | 6.4, 7.1, 7.2, 7.3, 7.4 — each checked against the code on 2026-09-02, not taken from the wave file: `month` is now a required parameter in `calculateMonthlySummary`, and `reviewPeriod.ts` exports `applicationReviewPeriod`, `renewalReviewPeriod`, `requiresConsecutiveMonths` and `newlyApplicableReviewPeriod` (§ 435.556(a)(2)(iii), which is 7.4) |
 | W2b | 1 | 2 | 5.6 closed; 15.6 and 15.7 partial → W9a |
-| **Total** | **16** | **7** | **85 rows untouched** |
+| W6a | 9 | 1 | 4.1, 4.2, 4.3, 4.4, 4.6, 4.7, 8.4, 15.23, 15.24 closed; 4.11 partial → W7b. 4.5 reassigned → W6b. Each checked against the code 2026-09-03, not the wave file |
+| **Total** | **25** | **8** | **75 rows untouched** |
 
-The pre-date plan does not attempt all 108. W6a targets 13 rows, W7a 7, W8a 6 — so roughly **41 of
-108** is the realistic position by December 1, and the remainder is deliberately post-date.
+The pre-date plan does not attempt all 108. W6a closed **9** of the 12 live rows it owned (4.9/4.10 were
+already W2a's, 4.8 was `ok`), W7a targets 7, W8a 6 — so roughly **38 of 108** is the realistic position
+by December 1, and the remainder is deliberately post-date. (W6a's own range in `waves/README.md` printed
+"4.1–4.7, 4.9–4.11, 8.4, 15.23, 15.24"; 4.5 moved to W6b and 4.11 is partial, so the closed count is 9,
+not 13.)
 | **Total `blocks`** | **17** |
 
 The 16 `contradicts` rows: 1.1, 1.3, 2.9, 2.10, 4.1, 4.3, 5.1, 5.2, 5.3, 5.4, 5.5, 5.8, 6.3, 8.8, 8.9,
@@ -168,17 +187,17 @@ priority. Two whole regimes required by the rule (hardship, noncompliance respon
 
 | # | Rule | HourKeep today | Gap | Impact |
 |---|---|---|---|---|
-| 4.1 | **Work** = for money + **in-kind** + **unpaid** (non-community-service) | ~~`activityDefinitions.work` says "Paid employment"; help text lists unpaid internships as **not** counting~~ · **PARTIAL W2a** — definition now names all three components, "Unpaid internships" removed from `counterExamples` and moved to `examples`, in-kind example added. **Still open:** `Activity["type"]` cannot store in-kind or unpaid work distinctly (→ **W6b**, v8) | `contradicts` | **harmful** |
-| 4.2 | **Work program** is a qualifying activity type | `Activity["type"]` is `work \| volunteer \| education`. `workProgram` exists in help text, labels, and colors but **cannot be stored** | `missing` | **blocks** |
-| 4.3 | **Education at least half-time = compliant with zero hours**, and may **not** be combined | Asks "How many hours per month do you attend school?" — wrong question for most students | `contradicts` | **harmful** |
-| 4.4 | Less-than-half-time education: `creditHours × 3 × 4.33` | No conversion exists | `missing` | **blocks** |
-| 4.5 | Enrollment status determined **by the school**; term/recess/end rules | Not modeled | `missing` | incomplete |
-| 4.6 | Educational program includes high school and State-approved HS equivalency | Help text covers GED loosely; no program-type model | `partial` | incomplete |
-| 4.7 | Community service requires a **structured program**, non-partisan, with org tracking incl. **POC who can confirm hours** | Optional free-text `organization` field only | `partial` | **harmful** (evidence will be rejected) |
+| 4.1 | **Work** = for money + **in-kind** + **unpaid** (non-community-service) | ~~`activityDefinitions.work` says "Paid employment"~~ · PARTIAL W2a · **CLOSED W6a** — `Activity.workKind` (`paid \| in-kind \| unpaid`) captured in the form and stored. The `→ W6b, v8` annotation was wrong: no migration is needed, the field is unindexed data on an existing row | `contradicts` | **harmful** |
+| 4.2 | **Work program** is a qualifying activity type | ~~`Activity["type"]` is `work \| volunteer \| education`; `workProgram` cannot be stored~~ · **CLOSED W6a** — `workProgram` added to the union (a new value in the already-indexed `type` field, no migration), counted in `calculateMonthlySummary`'s new `workProgramHours` bucket | `missing` | **blocks** |
+| 4.3 | **Education at least half-time = compliant with zero hours**, and may **not** be combined | ~~Asks "How many hours per month do you attend school?"~~ · **CLOSED W6a** — the form asks enrollment status, not hours; at-least-half-time shows a standalone panel with no hours field, and `educationContribution` returns `combinableHours: 0` so it cannot be summed (§ 435.552(a)(4), (e)(1)) | `contradicts` | **harmful** |
+| 4.4 | Less-than-half-time education: `creditHours × 3 × 4.33` | ~~No conversion exists~~ · **CLOSED W6a** — `convertCreditHoursToMonthly` in `src/lib/education.ts`, constants from the `educationCreditHourConversion` policy field; the form shows the arithmetic live (6 → 77.94) with its citation | `missing` | **blocks** |
+| 4.5 | Enrollment status determined **by the school**; term/recess/end rules | Status captured in W6a; the **term/recess/end-of-month rules (§ 435.552(c)(1)–(3)) are → W6b** | `partial` | incomplete |
+| 4.6 | Educational program includes high school and State-approved HS equivalency | ~~Help text covers GED loosely; no program-type model~~ · **CLOSED W6a** — `EducationProgramType` (`higher-education \| career-technical \| high-school \| high-school-equivalency`) captured in the form | `partial` | incomplete |
+| 4.7 | Community service requires a **structured program**, non-partisan, with org tracking incl. **POC who can confirm hours** | ~~Optional free-text `organization` field only~~ · **CLOSED W6a** — `CommunityServiceDetails`: org name + address, POC name + phone/email who can confirm hours, activity description, court-ordered flag (§ 435.552(b), § II.I.6.b at 91 FR 33400) | `partial` | **harmful** (evidence will be rejected) |
 | 4.8 | States **may not** restrict community service to § 501(c)(3) | Not asserted either way | `ok` | — |
 | 4.9 | Court-ordered community service counts | ~~Help text says nothing; a user may assume it doesn't~~ · **CLOSED W2a** — stated in `activityDefinitions.volunteer.definition` and listed in `examples`. Also added: not restricted to § 501(c)(3), and the point-of-contact requirement that makes evidence acceptable | `missing` | incomplete |
 | 4.10 | Work program excludes standalone job search but allows it as **subsidiary** under half the hours | ~~Help text flatly says job searching doesn't count — right conclusion, missing nuance~~ · **CLOSED W2a** — the subsidiary-under-half-the-hours nuance and the unemployment-insurance job search route are both stated, in `activityDefinitions.work.edgeCases` and `.workProgram`. Also added: health-provider-operated and Medicaid § 1915(c)/(i) supported employment do **not** qualify | `partial` | incomplete |
-| 4.11 | Combination: hours determined separately then summed | `calculateMonthlySummary` sums work/volunteer/education — structurally close | `partial` | incomplete |
+| 4.11 | Combination: hours determined separately then summed | `calculateMonthlySummary` now sums all four combinable types incl. `workProgram` · **PARTIAL W6a** — the inputs are modeled correctly, but the combination engine and the income-to-hours proxy are **W7b** (5.11, 6.1, 6.2, 15.1). "Answerable, not closed" | `partial` | incomplete |
 
 ## 5. Income (§ 435.552(f)–(g)) — the largest cluster
 
@@ -251,7 +270,7 @@ priority. Two whole regimes required by the rule (hardship, noncompliance respon
 | 8.1 | Must accept submissions via online, phone, mail, in person, other electronic | Export produces JSON and a plain-text report only. No print-ready or mail-ready artifact | `partial` | incomplete |
 | 8.2 | An adult in the household or family, or an authorized representative, may submit | Single-profile app, no representative concept | `missing` | incomplete |
 | 8.3 | **From Jan 1, 2028** documentation is required when reasonably available | No awareness of the date; no escalation of document prompting | `missing` | incomplete |
-| 8.4 | Named reasonably-available documents: paystubs, community service letter, transcript/class schedule, VA document, SNAP/TANF approval | Document types are `pay-stub`, `volunteer-verification`, `school-enrollment`, `medical-documentation`, `other` — close but missing VA and SNAP/TANF types | `partial` | incomplete |
+| 8.4 | Named reasonably-available documents: paystubs, community service letter, transcript/class schedule, VA document, SNAP/TANF approval | ~~missing VA and SNAP/TANF types~~ · **CLOSED W6a** — `va-disability` and `snap-tanf-approval` added to `DocumentType` and the metadata form (§ II.I.3 / § II.I.6, 91 FR 33399) | `partial` | incomplete |
 | 8.5 | Exclusion documentation | No exclusion-linked document capture. The `exemption-documentation` spec is 0/12 complete | `missing` | **blocks** |
 | 8.6 | Ex parte first; user only asked when data is unavailable | HourKeep can't know what the State has, but it also never explains ex parte, so users may over-collect | `missing` | cosmetic |
 | 8.7 | Export must carry the evidence | `assessmentResults`, all four document tables, `exemptionHistory`, and `seasonalWorkerStatus` are **absent from both export paths** | `missing` | **blocks** |
@@ -455,8 +474,8 @@ Full detail in `../audit/validation-findings-2026-08.md`.
 | 15.20 | Self-reported **noncompliance** at application can be accepted at face value and support a denial | ~~The app could encourage casual self-reporting of a "no"~~ · **CLOSED W2a** — `requirementFacts.careful-what-you-report`, rendered before the tracking UI. `NoticeQuestion.tsx:358` reframed so the reason to screen first is protective rather than time-saving | `missing` | **harmful** | W2a |
 | 15.21 | **Outside § 435.551 entirely** (age 65+) is neither exclusion nor exception | ADR-0002's four-variant union cannot express it | `missing` | cosmetic | W3 |
 | 15.22 | § 435.557(f): medically-frail reverification at least every 12 months; attestation once per enrollment period from 2028 | No expiry modeled | `missing` | incomplete | W4 |
-| 15.23 | § 435.552(b) work program (iv): **any** DOL or VA veterans program qualifies — CMS dropped the USDA-approval condition | Not surfaced | `missing` | incomplete | W6 |
-| 15.24 | Community service must be verifiable **in an auditable manner** | Not modeled | `missing` | incomplete | W6 |
+| 15.23 | § 435.552(b) work program (iv): **any** DOL or VA veterans program qualifies — CMS dropped the USDA-approval condition | ~~Not surfaced~~ · **CLOSED W6a** — stated in `activityDefinitions.workProgram` help text and now a storable activity type (91 FR 33470) | `missing` | incomplete | ~~W6~~ W6a |
+| 15.24 | Community service must be verifiable **in an auditable manner** | ~~Not modeled~~ · **CLOSED W6a** — `CommunityServiceDetails` captures the auditable schema CMS names at § II.I.6.b (91 FR 33400): org name/address, POC + contact who can confirm hours, activity, dates, hours | `missing` | incomplete | ~~W6~~ W6a |
 | 15.25 | **Presumptive eligibility**: CE applies to PE/HPE but determinations must rest on **attested** information | Entire pathway unaddressed | `missing` | incomplete | later |
 | 15.26 | Noncompliance notice must meet § 435.905(b) accessibility and § 435.918(b) if electronic | Reinforces that accessibility is legal, not polish | `missing` | cosmetic | W10 |
 | 15.27 | No **import** path exists, so "export before deleting" is not a recovery mitigation | `deleteAll` in W0 is mitigated by an export that cannot be restored | `missing` | harmful | W0 / W8 |
