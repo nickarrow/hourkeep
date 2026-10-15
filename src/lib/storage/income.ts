@@ -133,7 +133,13 @@ export async function getIncomeEntriesByMonth(
 }
 
 /**
- * Get all income entries for the past 6 months (including current month)
+ * All income entries across the seasonal averaging window — the 6 months PRECEDING the
+ * assessed month, which it EXCLUDES (42 CFR 435.552(g); corrected in W7a, gap 5.8).
+ *
+ * No production caller as of W7a: the dashboard entry list moved to the SELECTED month
+ * (`getIncomeEntriesByMonth`) so it follows W5's month scoping, since this window now
+ * excludes the assessed month. Retained — tested, and the natural source for W7b's
+ * per-month review-period income roll-up.
  */
 export async function getIncomeEntriesForLast6Months(
   userId: string,
@@ -151,42 +157,70 @@ export async function getIncomeEntriesForLast6Months(
 }
 
 /**
- * Calculate 6-month seasonal average
+ * Seasonal average over the 6 months PRECEDING the assessed month — 42 CFR 435.552(g),
+ * 91 FR 33470.
+ *
+ * W7a corrected two defects here (gaps 5.8, 5.9):
+ *   - the window now EXCLUDES the assessed month (see `getLast6Months`); CMS's example
+ *     averages the six months before the month being assessed;
+ *   - a month total is the sum of ACTUAL amounts received, not of per-paycheck monthly
+ *     projections (gap 5.5), and the divisor is the number of months that actually hold
+ *     records, not a hardcoded 6. HourKeep holds only what the user typed, so a month with
+ *     no entries is "no record" (`hasData: false`), NOT a verified $0 — imputing $0 for
+ *     missing months is what produced the 6x understatement.
+ *
+ * The reasonably-predictable-changes alternative (42 CFR 435.603(h)(3)) is a state election
+ * surfaced in copy, not computed here.
  */
 export async function calculateSeasonalAverage(
   userId: string,
   currentMonth: string,
 ): Promise<{
   average: number;
-  history: Array<{ month: string; total: number }>;
+  monthsWithData: number;
+  history: Array<{ month: string; total: number; hasData: boolean }>;
 }> {
   const months = getLast6Months(currentMonth);
-  const history: Array<{ month: string; total: number }> = [];
+  const history: Array<{ month: string; total: number; hasData: boolean }> = [];
   let totalIncome = 0;
+  let monthsWithData = 0;
 
   for (const month of months) {
     const entries = await getIncomeEntriesByMonth(userId, month);
-    const monthTotal = entries.reduce(
-      (sum, entry) => sum + entry.monthlyEquivalent,
-      0,
-    );
-    history.push({ month, total: monthTotal });
-    totalIncome += monthTotal;
+    // Actual amounts received, not monthlyEquivalent projections (gap 5.5).
+    const monthTotal = entries.reduce((sum, entry) => sum + entry.amount, 0);
+    const hasData = entries.length > 0;
+    history.push({ month, total: monthTotal, hasData });
+    if (hasData) {
+      totalIncome += monthTotal;
+      monthsWithData += 1;
+    }
   }
 
-  const average = totalIncome / 6;
+  // Average over months WITH data (gap 5.9). Empty history → 0, never NaN.
+  const average = monthsWithData > 0 ? totalIncome / monthsWithData : 0;
 
-  return { average, history };
+  return { average, monthsWithData, history };
 }
 
 /**
- * Get last 6 months including current month
+ * The 6 months PRECEDING the assessed month, EXCLUSIVE of it — 42 CFR 435.552(g).
+ *
+ * W7a fixed the off-by-one (gap 5.8). The old version returned the assessed month plus five
+ * prior (e.g. July → Feb..Jul), which both included the assessed month the rule excludes and
+ * dropped the sixth preceding month. For an assessed month of July the window is now
+ * January through June.
+ *
+ * `new Date(year, month - 1 - i, 1)` relies on JS Date normalising a negative month index
+ * into the previous year, which is the one piece of date arithmetic here and is covered by a
+ * cross-year test.
  */
 function getLast6Months(currentMonth: string): string[] {
   const months: string[] = [];
   const [year, month] = currentMonth.split("-").map(Number);
 
-  for (let i = 5; i >= 0; i--) {
+  // i from 6 down to 1 → the six months before the assessed month, oldest first.
+  for (let i = 6; i >= 1; i--) {
     const date = new Date(year, month - 1 - i, 1);
     const y = date.getFullYear();
     const m = String(date.getMonth() + 1).padStart(2, "0");
@@ -203,12 +237,12 @@ function getLast6Months(currentMonth: string): string[] {
  * `INCOME_THRESHOLD` fixed to the federal default. 42 CFR 435.552(a)(6), 91 FR 33470 — the
  * FLSA wage under 29 U.S.C. 206(a)(1)(C) multiplied by the monthly hours figure.
  *
- * Two things this still gets wrong, both W7a's and both left alone deliberately so that
- * wave's diff carries the behaviour change rather than this one:
- *   - gap 5.5: `totalIncome` sums `monthlyEquivalent` across every entry, so four weekly
- *     paychecks report about four times the real monthly gross.
- *   - gap 5.8: seasonal averaging includes the assessed month, which 42 CFR 435.552(g)
- *     excludes.
+ * W7a corrected the two defects this used to carry:
+ *   - gap 5.5: `totalIncome` now sums the ACTUAL `amount` received each month, not the
+ *     per-paycheck `monthlyEquivalent` projection — four weekly paychecks are the real
+ *     monthly gross, not four times it.
+ *   - gap 5.8: seasonal averaging now excludes the assessed month (see
+ *     `calculateSeasonalAverage` / `getLast6Months`).
  */
 export async function getMonthlyIncomeSummary(
   userId: string,
@@ -218,24 +252,23 @@ export async function getMonthlyIncomeSummary(
   const threshold = incomeThreshold(policy);
   const entries = await getIncomeEntriesByMonth(userId, month);
 
-  const totalIncome = entries.reduce(
-    (sum, entry) => sum + entry.monthlyEquivalent,
-    0,
-  );
+  // 42 CFR 435.552(f)(2): the month's MAGI-based income is the actual amount received, not
+  // a sum of whole-month projections of each paycheck's pay period (gap 5.5).
+  const totalIncome = entries.reduce((sum, entry) => sum + entry.amount, 0);
 
-  // Calculate income breakdown by source
+  // Income breakdown by source, by actual amount received (the third summing site; gap 5.5).
   const incomeBySource = entries.reduce(
     (acc, entry) => {
       const source = entry.source || "Unspecified";
       const existing = acc.find((item) => item.source === source);
       if (existing) {
-        existing.monthlyEquivalent += entry.monthlyEquivalent;
+        existing.amount += entry.amount;
       } else {
-        acc.push({ source, monthlyEquivalent: entry.monthlyEquivalent });
+        acc.push({ source, amount: entry.amount });
       }
       return acc;
     },
-    [] as Array<{ source: string; monthlyEquivalent: number }>,
+    [] as Array<{ source: string; amount: number }>,
   );
 
   // Check user-level seasonal worker status for this month
@@ -259,6 +292,7 @@ export async function getMonthlyIncomeSummary(
     isSeasonalWorker,
     seasonalAverage: seasonalData?.average,
     seasonalHistory: seasonalData?.history,
+    seasonalMonthsWithData: seasonalData?.monthsWithData,
     incomeBySource,
   };
 }

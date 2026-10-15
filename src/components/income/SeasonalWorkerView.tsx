@@ -37,9 +37,11 @@ const SEASONAL_MONTHS =
 import { SeasonalWorkerHelpIcon } from "@/components/help/SeasonalWorkerHelp";
 
 export interface SeasonalWorkerViewProps {
-  history: Array<{ month: string; total: number }>;
+  history: Array<{ month: string; total: number; hasData: boolean }>;
   average: number;
   isCompliant: boolean;
+  /** How many of the window months hold records — W7a (gap 5.9). */
+  monthsWithData: number;
 }
 
 /**
@@ -59,9 +61,14 @@ export function SeasonalWorkerView({
   history,
   average,
   isCompliant,
+  monthsWithData,
 }: SeasonalWorkerViewProps) {
-  // Calculate total income across 6 months
+  // Total across the months that actually hold records (gap 5.9) — not an imputed
+  // sum over zero-filled months.
   const totalIncome = history.reduce((sum, month) => sum + month.total, 0);
+  // Fewer than all six window months have records, so the average rests on partial
+  // evidence. The copy must say so rather than present a thin average as verified.
+  const incompleteHistory = monthsWithData < history.length;
 
   // Format month string (YYYY-MM) to readable format (e.g., "October 2026")
   const formatMonth = (monthStr: string): string => {
@@ -118,12 +125,17 @@ export function SeasonalWorkerView({
                 <Typography
                   variant="body1"
                   sx={{
-                    fontWeight: monthData.total > 0 ? 600 : 400,
-                    color:
-                      monthData.total > 0 ? "text.primary" : "text.disabled",
+                    fontWeight: monthData.hasData ? 600 : 400,
+                    color: monthData.hasData ? "text.primary" : "text.disabled",
+                    fontStyle: monthData.hasData ? "normal" : "italic",
                   }}
                 >
-                  {formatCurrency(monthData.total)}
+                  {/* W7a (gap 5.9): a month with no entries is "No record", not "$0".
+                      Showing $0.00 for a month the user never filled in presented an
+                      imputed value as verified income. */}
+                  {monthData.hasData
+                    ? formatCurrency(monthData.total)
+                    : "No record"}
                 </Typography>
               </Box>
               {index < history.length - 1 && <Divider />}
@@ -169,6 +181,18 @@ export function SeasonalWorkerView({
               {formatCurrency(average)}
             </Typography>
           </Box>
+
+          {incompleteHistory && (
+            <Typography variant="caption" color="text.secondary">
+              {/* W7a (gap 5.9): the average is over the {monthsWithData} month(s) you've
+                  recorded, not all {history.length}. Say so rather than dividing a thin
+                  history by six and showing it as settled. */}
+              This average is based on the {monthsWithData} month
+              {monthsWithData === 1 ? "" : "s"} you&apos;ve recorded, not a full{" "}
+              {history.length}. Add the other months if you have them, or ask
+              your state how it works your average out.
+            </Typography>
+          )}
         </Box>
 
         {/*

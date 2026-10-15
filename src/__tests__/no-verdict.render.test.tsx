@@ -905,13 +905,14 @@ describe("SeasonalWorkerView — 42 CFR 435.552(g), the seasonal averaging surfa
     return {
       average,
       isCompliant: average >= incomeThreshold(FEDERAL_DEFAULT),
+      monthsWithData: 6, // W7a: a full window; the sparse-history branch is exercised below
       history: [
-        { month: "2026-01", total: average },
-        { month: "2026-02", total: average },
-        { month: "2026-03", total: average },
-        { month: "2026-04", total: average },
-        { month: "2026-05", total: average },
-        { month: "2026-06", total: average },
+        { month: "2026-01", total: average, hasData: true },
+        { month: "2026-02", total: average, hasData: true },
+        { month: "2026-03", total: average, hasData: true },
+        { month: "2026-04", total: average, hasData: true },
+        { month: "2026-05", total: average, hasData: true },
+        { month: "2026-06", total: average, hasData: true },
       ],
     };
   }
@@ -977,6 +978,29 @@ describe("SeasonalWorkerView — 42 CFR 435.552(g), the seasonal averaging surfa
       );
       unmount();
     }
+  });
+
+  it("W7a: a sparse history shows 'No record' and flags incompleteness, with no verdict", () => {
+    // gap 5.9: only two of the six window months hold records. The empty months must read
+    // "No record" (not "$0"), and the average must be flagged as based on partial history.
+    const sparse = {
+      average: 650,
+      isCompliant: true,
+      monthsWithData: 2,
+      history: [
+        { month: "2026-01", total: 0, hasData: false },
+        { month: "2026-02", total: 0, hasData: false },
+        { month: "2026-03", total: 0, hasData: false },
+        { month: "2026-04", total: 0, hasData: false },
+        { month: "2026-05", total: 700, hasData: true },
+        { month: "2026-06", total: 600, hasData: true },
+      ],
+    };
+    render(<SeasonalWorkerView {...sparse} />);
+    const text = normaliseForGuard(document.body.textContent ?? "");
+    expect(text).toMatch(/No record/);
+    expect(text).toMatch(/based on the 2 months you'?ve recorded/i);
+    expectNoVerdict("SeasonalWorkerView (sparse history)");
   });
 });
 

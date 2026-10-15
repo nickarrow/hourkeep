@@ -64,12 +64,21 @@ export interface ComplianceMode {
 // Monthly Income Summary (calculated, not stored)
 export interface MonthlyIncomeSummary {
   month: string; // YYYY-MM format
-  totalIncome: number; // Sum of all monthly equivalents
+  // W7a (gap 5.5): the SUM OF ACTUAL AMOUNTS received this month, not of per-paycheck
+  // monthly projections. 42 CFR 435.552(f)(2), 91 FR 33470 — MAGI-based monthly income.
+  totalIncome: number;
   entryCount: number; // Number of income entries
-  isCompliant: boolean; // totalIncome >= INCOME_THRESHOLD
-  amountNeeded: number; // INCOME_THRESHOLD - totalIncome (if not compliant)
-  isSeasonalWorker: boolean; // If any entry is marked seasonal
-  seasonalAverage?: number; // 6-month average if seasonal
-  seasonalHistory?: Array<{ month: string; total: number }>; // 6 months of data
-  incomeBySource?: Array<{ source: string; monthlyEquivalent: number }>; // Breakdown by source
+  isCompliant: boolean; // effective income >= threshold. NAME IS A VERDICT — W7b renames it with MonthlySummary.isCompliant (ADR-0003)
+  amountNeeded: number; // threshold - effective income (if below)
+  isSeasonalWorker: boolean; // If this month is marked seasonal for the user
+  // 42 CFR 435.552(g): average over the 6 months PRECEDING the assessed month (excluded).
+  seasonalAverage?: number;
+  // W7a (gap 5.9): `hasData` distinguishes a month with no record from a $0 month, so the
+  // UI never presents an imputed $0 as verified.
+  seasonalHistory?: Array<{ month: string; total: number; hasData: boolean }>;
+  // W7a (gap 5.9): how many of the 6 window months hold records — lets the UI flag an
+  // incomplete history rather than dividing a thin history by 6.
+  seasonalMonthsWithData?: number;
+  // W7a (gap 5.5): breakdown by source of ACTUAL amounts received, not projections.
+  incomeBySource?: Array<{ source: string; amount: number }>;
 }

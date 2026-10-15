@@ -477,15 +477,21 @@ export function IncomeEntryForm({
               }}
             >
               <Typography variant="subtitle2" color="primary.main" gutterBottom>
-                Monthly Equivalent
+                Rough monthly estimate
               </Typography>
               <Typography variant="h5" color="primary.main">
                 {formatCurrency(monthlyEquivalent)}
               </Typography>
               <Typography variant="caption" color="text.secondary">
-                Calculated: {formatCurrency(parseFloat(amount))} ×{" "}
-                {PAY_PERIOD_MULTIPLIERS[payPeriod]}{" "}
-                {getPayPeriodLabel(payPeriod).toLowerCase()} periods/month
+                {/* W7a (gap 5.4): the rule prescribes no pay-period conversion — your
+                    state works out a monthly figure its own way. This is just a personal
+                    estimate of what a paycheck this size works out to in a month; what
+                    counts for the month is the actual amounts you were paid. */}
+                A personal estimate only — {formatCurrency(parseFloat(amount))}{" "}
+                × {PAY_PERIOD_MULTIPLIERS[payPeriod]}{" "}
+                {getPayPeriodLabel(payPeriod).toLowerCase()} periods/month. Your
+                state works out the month its own way; what you&apos;ll show is
+                the actual amounts you were paid.
               </Typography>
             </Box>
           )}

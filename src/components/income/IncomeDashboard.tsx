@@ -27,7 +27,7 @@ import {
   saveIncomeEntry,
   updateIncomeEntry,
   deleteIncomeEntryWithDocuments,
-  getIncomeEntriesForLast6Months,
+  getIncomeEntriesByMonth,
   getMonthlyIncomeSummary,
 } from "@/lib/storage/income";
 import { getDocumentsByIncomeEntry } from "@/lib/storage/incomeDocuments";
@@ -82,8 +82,14 @@ export function IncomeDashboard({
   const loadIncomeData = async () => {
     setLoading(true);
     try {
+      // W7a: the entry list follows the SELECTED month, like the rest of the W5-scoped
+      // page. It previously loaded a rolling 6-month window, which happened to include the
+      // selected month only because of the seasonal off-by-one (gap 5.8); correcting that
+      // window to exclude the assessed month would otherwise have hidden the current
+      // month's own entries from the list. The seasonal average uses the preceding window
+      // separately, inside getMonthlyIncomeSummary.
       const [incomeEntries, incomeSummary] = await Promise.all([
-        getIncomeEntriesForLast6Months(userId, currentMonth),
+        getIncomeEntriesByMonth(userId, currentMonth),
         getMonthlyIncomeSummary(userId, currentMonth),
       ]);
 
@@ -255,6 +261,7 @@ export function IncomeDashboard({
             history={summary.seasonalHistory}
             average={summary.seasonalAverage}
             isCompliant={summary.isCompliant}
+            monthsWithData={summary.seasonalMonthsWithData ?? 0}
           />
         )}
 

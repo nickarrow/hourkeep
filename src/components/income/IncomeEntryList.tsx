@@ -136,11 +136,14 @@ export function IncomeEntryList({
                           {formattedDate}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                          {formatCurrency(entry.amount)} (
-                          {getPayPeriodLabel(entry.payPeriod)}){" → "}
+                          {/* W7a (gap 5.4/5.5): the ACTUAL amount received is what counts
+                              and what the month totals; the monthly projection is a
+                              de-emphasised personal estimate, not a compliance figure. */}
                           <strong>
-                            {formatCurrency(entry.monthlyEquivalent)}/month
-                          </strong>
+                            {formatCurrency(entry.amount)} received
+                          </strong>{" "}
+                          ({getPayPeriodLabel(entry.payPeriod)}) · ~
+                          {formatCurrency(entry.monthlyEquivalent)}/mo estimate
                         </Typography>
                         {entry.source && (
                           <Typography

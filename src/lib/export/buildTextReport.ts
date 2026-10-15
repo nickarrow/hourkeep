@@ -237,8 +237,11 @@ export function buildTextReport(input: TextReportInput): string {
       const monthIncomeEntries = incomeEntries.filter(
         (i) => monthKey(i.date) === month,
       );
+      // W7a (gap 5.5): the month's income is the sum of ACTUAL amounts received, not of
+      // per-paycheck monthly projections. Summing monthlyEquivalent here 4x-overstated the
+      // figure onto the artifact a caseworker reads — worse than on screen.
       const totalIncome = monthIncomeEntries.reduce(
-        (sum, i) => sum + i.monthlyEquivalent,
+        (sum, i) => sum + i.amount,
         0,
       );
       const difference = Math.max(0, thresholds.income - totalIncome);
@@ -262,8 +265,11 @@ export function buildTextReport(input: TextReportInput): string {
         [...monthIncomeEntries]
           .sort((a, b) => a.date.localeCompare(b.date))
           .forEach((entry) => {
+            // W7a: the actual amount received on the payday, which is what the month
+            // total sums. The pay-period monthly projection is a personal estimate, not a
+            // compliance figure (gap 5.4), so it is not shown on the agency artifact.
             out += `  ${format(new Date(entry.date + "T00:00:00"), "MMM d, yyyy")} - `;
-            out += `$${entry.amount.toFixed(2)} (${entry.payPeriod}) → $${entry.monthlyEquivalent.toFixed(2)}/month`;
+            out += `$${entry.amount.toFixed(2)} received (${entry.payPeriod})`;
             if (entry.source) {
               out += ` - ${entry.source}`;
             }

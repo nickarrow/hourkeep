@@ -232,33 +232,36 @@ describe("getIncomeEntriesByMonth: string-range query scoped by user", () => {
   });
 });
 
-describe("DEFECT 1 — monthlyEquivalent is summed across entries (audit § 4.1)", () => {
-  // CHARACTERIZATION: current behaviour is incorrect.
+describe("W7a: the month's income is the SUM OF ACTUAL AMOUNTS RECEIVED, not of projections", () => {
+  // ───────────────────────────────────────────────────────────────────────────
+  // INVERTED BY W7a, 2026-09-03. This block used to pin the DEFECT (audit § 4.1):
+  // `getMonthlyIncomeSummary` summed each row's `monthlyEquivalent` — a whole-month
+  // PROJECTION of one paycheck's pay period — so two bi-weekly $400 paychecks read
+  // $1,736 and four weekly $150 paychecks read $2,598. That OVERSTATED income and
+  // told a user they cleared the $580 threshold when they had not: the reassuring
+  // false positive this project cannot absorb.
   //
-  // Each row's `monthlyEquivalent` is already a whole-month projection of that
-  // pay period. Adding two of them projects the month twice. 42 CFR 435.552(f)(2)
-  // measures MAGI-based income for the MAGI-based household for the month; it does
-  // not sum per-paycheck monthly projections. CMS-2454-IFC, 91 FR 33348
-  // (June 3, 2026).
+  // THE FIX (ADR-0003): entries are evidence of payment RECEIVED. The month's income
+  // is Σ amount of the paychecks received that month, which is the real monthly
+  // gross and what 42 CFR 435.552(f)(2), 91 FR 33470 measures as MAGI-based monthly
+  // income. `monthlyEquivalent` is no longer summed for any compliance figure; it
+  // survives only as a labeled personal estimate on the entry form (gap 5.4).
   //
-  // Direction of harm: this OVERSTATES income, so it tells a user they clear the
-  // threshold when they may not. That is the failure mode this project cannot
-  // absorb — someone told they are fine, who then does not respond to a notice.
-  //
-  // Corrected in **W7a** (gap 5.4, 5.5 / audit § 4.1).
+  // Turning these red/updated was the signal the fix landed. Updated rather than
+  // deleted so the record of what was wrong survives in the file that proved it.
+  // ───────────────────────────────────────────────────────────────────────────
 
-  it("currently reports $1,736 for two bi-weekly $400 paychecks, projecting the month twice", async () => {
+  it("gap 5.5: two bi-weekly $400 paychecks report $800 — the actual gross, not $1,736", async () => {
     await saveIncomeEntry(entry("2026-07-03", 400, "bi-weekly"));
     await saveIncomeEntry(entry("2026-07-17", 400, "bi-weekly"));
 
     const summary = await getMonthlyIncomeSummary(USER, "2026-07");
 
-    // Each row stores 400 x 2.17 = 868. The month's real gross is $800.
-    expect(summary.totalIncome).toBe(1736);
+    expect(summary.totalIncome).toBe(800);
     expect(summary.entryCount).toBe(2);
   });
 
-  it("currently reports $2,598 for four weekly $150 paychecks, where the real gross is $600", async () => {
+  it("gap 5.5: four weekly $150 paychecks report $600 — the real gross, not ~$2,598", async () => {
     for (const date of [
       "2026-07-03",
       "2026-07-10",
@@ -270,26 +273,24 @@ describe("DEFECT 1 — monthlyEquivalent is summed across entries (audit § 4.1)
 
     const summary = await getMonthlyIncomeSummary(USER, "2026-07");
 
-    // 150 x 4.33 = 649.5, summed four times.
-    expect(summary.totalIncome).toBe(2598);
+    expect(summary.totalIncome).toBe(600);
   });
 
-  it("crosses the threshold on inflated income: $150/week reads as compliant, though the real gross is $600", async () => {
-    // The user-visible consequence, stated plainly. Real monthly gross of $600
-    // does clear $580 here — so pick a case where the inflation is what crosses it:
-    // a single weekly $100 paycheck projects to $433 and does not clear, but two
-    // of them project to $866 and do, while the real gross is $200.
+  it("gap 5.5: the inflation no longer crosses the threshold — $100/week × 2 reads $200, not $866", async () => {
+    // The exact case the old DEFECT test used to show crossing $580 on inflation:
+    // two weekly $100 paychecks. Real gross is $200; it must read $200 and NOT clear
+    // the threshold.
     await saveIncomeEntry(entry("2026-07-03", 100, "weekly"));
     await saveIncomeEntry(entry("2026-07-10", 100, "weekly"));
 
     const summary = await getMonthlyIncomeSummary(USER, "2026-07");
 
-    expect(summary.totalIncome).toBe(866);
-    expect(summary.isCompliant).toBe(true); // real gross was $200
-    expect(summary.amountNeeded).toBe(0);
+    expect(summary.totalIncome).toBe(200);
+    expect(summary.isCompliant).toBe(false); // real gross was $200, below $580
+    expect(summary.amountNeeded).toBe(380);
   });
 
-  it("does NOT double-count a single monthly entry, so the defect scales with entry count", async () => {
+  it("a single monthly entry is unchanged — the fix is 'sum actual amounts', not 'divide by n'", async () => {
     await saveIncomeEntry(entry("2026-07-10", 800, "monthly"));
 
     const summary = await getMonthlyIncomeSummary(USER, "2026-07");
@@ -309,6 +310,9 @@ describe("DEFECT 1 — monthlyEquivalent is summed across entries (audit § 4.1)
     // still inflated — and the breakdown is what a user reads when deciding which
     // employer's pay stub to photograph. Grep `monthlyEquivalent` in the module,
     // do not trust the type checker.
+    // THE THIRD SUMMING SITE. `incomeBySource` accumulates through `+=` and `push`,
+    // not a reduce, so a fix applied only to the two reduces would leave this inflated.
+    // The breakdown is what a user reads when deciding which pay stub to photograph.
     await saveIncomeEntry(
       entry("2026-07-03", 400, "bi-weekly", { source: "Diner" }),
     );
@@ -318,9 +322,8 @@ describe("DEFECT 1 — monthlyEquivalent is summed across entries (audit § 4.1)
 
     const summary = await getMonthlyIncomeSummary(USER, "2026-07");
 
-    expect(summary.incomeBySource).toEqual([
-      { source: "Diner", monthlyEquivalent: 1736 },
-    ]);
+    // Actual amounts received, grouped by source: $400 + $400 = $800, not $1,736.
+    expect(summary.incomeBySource).toEqual([{ source: "Diner", amount: 800 }]);
   });
 
   it("groups a missing source under 'Unspecified' rather than dropping the row", async () => {
@@ -333,62 +336,56 @@ describe("DEFECT 1 — monthlyEquivalent is summed across entries (audit § 4.1)
 
     expect(summary.incomeBySource).toEqual(
       expect.arrayContaining([
-        { source: "Unspecified", monthlyEquivalent: 300 },
-        { source: "Diner", monthlyEquivalent: 200 },
+        { source: "Unspecified", amount: 300 },
+        { source: "Diner", amount: 200 },
       ]),
     );
   });
 });
 
-describe("DEFECT 2 — the seasonal window includes the assessed month (42 CFR 435.552(g))", () => {
-  // CHARACTERIZATION: current behaviour is incorrect per 42 CFR 435.552(g).
+describe("W7a: the seasonal window is the 6 months PRECEDING the assessed month, exclusive", () => {
+  // ───────────────────────────────────────────────────────────────────────────
+  // INVERTED BY W7a, 2026-09-03. This block used to pin the DEFECT: the window
+  // INCLUDED the assessed month and dropped the sixth preceding month — off by one
+  // in both directions. 42 CFR 435.552(g), 91 FR 33470: the average is over the 6
+  // months PRECEDING the month being assessed, which that month is excluded from.
+  // CMS's worked example (rule-extract.md § 2.7): assessed month June → average
+  // December through May.
   //
-  // The rule averages the 6 months PRECEDING the month being assessed, and the
-  // assessed month is EXCLUDED. CMS's own worked example: an application filed in
-  // July with a 1-month review period assesses June, and averages December
-  // through May.
-  //
-  // `getLast6Months("2026-07")` returns 2026-02 .. 2026-07. It includes the
-  // assessed month and drops the sixth preceding month, so it is off by one in
-  // both directions — not merely shifted.
-  //
-  // Note also that 42 CFR 435.603(h)(3) gives states a "reasonably predictable
-  // changes" methodology as an ALTERNATIVE to averaging, which most states elect
-  // and which prorates across up to 12 months. So the corrected window is itself
-  // Conditional on a state election. Owned by **W7a** (gaps 5.4, 5.5).
+  // Fixed in getLast6Months: for an assessed month of July the window is now
+  // January–June. The assessed month cannot inflate the average it is compared to.
+  // The reasonably-predictable-changes alternative (42 CFR 435.603(h)(3)) remains a
+  // state election surfaced in copy, not computed.
+  // ───────────────────────────────────────────────────────────────────────────
 
-  it("currently returns February through July for an assessed month of July", async () => {
-    // getLast6Months is module-private; observed through seasonalHistory.
+  it("gap 5.8: returns January through June for an assessed month of July — the assessed month excluded", async () => {
     await setSeasonalWorkerStatus(USER, "2026-07", true);
 
     const { history } = await calculateSeasonalAverage(USER, "2026-07");
 
     expect(history.map((h) => h.month)).toEqual([
+      "2026-01",
       "2026-02",
       "2026-03",
       "2026-04",
       "2026-05",
       "2026-06",
-      "2026-07",
     ]);
   });
 
-  it("currently INCLUDES the assessed month, which 42 CFR 435.552(g) excludes", async () => {
+  it("gap 5.8: the assessed month is excluded", async () => {
     const { history } = await calculateSeasonalAverage(USER, "2026-07");
-
-    expect(history.map((h) => h.month)).toContain("2026-07");
+    expect(history.map((h) => h.month)).not.toContain("2026-07");
   });
 
-  it("currently DROPS the sixth preceding month, so it is off by one in both directions", async () => {
-    // Correct window for an assessed month of July is January through June.
+  it("gap 5.8: the sixth preceding month is included", async () => {
     const { history } = await calculateSeasonalAverage(USER, "2026-07");
-
-    expect(history.map((h) => h.month)).not.toContain("2026-01");
+    expect(history.map((h) => h.month)).toContain("2026-01");
   });
 
-  it("lets the assessed month's own income raise the average that is compared against it", async () => {
-    // The circularity the off-by-one creates: a good July inflates the July
-    // average. With the correct window, July's income could not influence it.
+  it("the assessed month's own income cannot raise the average it is compared against", async () => {
+    // The circularity the old off-by-one created, now closed: a big July does not
+    // enter the July-assessed window at all.
     await setSeasonalWorkerStatus(USER, "2026-07", true);
     await saveIncomeEntry(entry("2026-07-10", 6000, "monthly"));
 
@@ -397,82 +394,118 @@ describe("DEFECT 2 — the seasonal window includes the assessed month (42 CFR 4
       "2026-07",
     );
 
-    expect(history.find((h) => h.month === "2026-07")?.total).toBe(6000);
-    expect(average).toBe(1000); // 6000 / 6, entirely from the assessed month
+    expect(history.find((h) => h.month === "2026-07")).toBeUndefined();
+    expect(average).toBe(0); // July's $6,000 is outside the window
   });
 
   it("crosses month boundaries correctly when the window spans a year change", async () => {
-    // `new Date(year, month - 1 - i, 1)` relies on JS Date normalising a negative
-    // month index into the previous year. This is correct today and must stay
-    // correct — it is the one piece of date arithmetic in the module.
+    // Assessed January 2027 → the six preceding months are July–December 2026.
     const { history } = await calculateSeasonalAverage(USER, "2027-01");
 
     expect(history.map((h) => h.month)).toEqual([
+      "2026-07",
       "2026-08",
       "2026-09",
       "2026-10",
       "2026-11",
       "2026-12",
-      "2027-01",
     ]);
   });
 
-  it("getIncomeEntriesForLast6Months spans the same off-by-one window", async () => {
+  it("getIncomeEntriesForLast6Months spans the same corrected window", async () => {
     await saveIncomeEntry(entry("2026-01-15", 100, "monthly"));
-    await saveIncomeEntry(entry("2026-02-15", 200, "monthly"));
+    await saveIncomeEntry(entry("2026-06-15", 600, "monthly"));
     await saveIncomeEntry(entry("2026-07-15", 700, "monthly"));
 
     const found = await getIncomeEntriesForLast6Months(USER, "2026-07");
 
-    // January is outside the window; July is inside it.
+    // January and June are inside the Jan–Jun window; July (assessed) is excluded.
     expect(found.map((e) => e.date).sort()).toEqual([
-      "2026-02-15",
-      "2026-07-15",
+      "2026-01-15",
+      "2026-06-15",
     ]);
   });
 });
 
-describe("DEFECT 3 — the seasonal divisor is a hardcoded 6", () => {
-  // CHARACTERIZATION: current behaviour divides by 6 unconditionally, whatever
-  // number of months actually hold records.
+describe("W7a: sparse seasonal history averages over months WITH DATA, and flags insufficiency", () => {
+  // ───────────────────────────────────────────────────────────────────────────
+  // INVERTED BY W7a, 2026-09-03. This block used to pin the DEFECT: the divisor was
+  // a hardcoded 6 regardless of how many months held records, so one month of
+  // $3,000 read as a $500 average — a 6x UNDERSTATEMENT that sends a user looking
+  // for hours they may not need.
   //
-  // Direction of harm: this UNDERSTATES income for a user with a partial history,
-  // which sends someone looking for hours they may not need. It is the mirror of
-  // defect 1 and it is user-unfavourable.
-  //
-  // 42 CFR 435.552(g) does specify a 6-month average, so a fixed divisor of 6 is
-  // not obviously wrong as a matter of law — the defect is that HourKeep holds only
-  // what the user typed, so a missing month is indistinguishable from a zero-income
-  // month. Whether a sparse history should be averaged over 6, over the months
-  // present, or refused as insufficient evidence is a W7a decision. Pinned here so
-  // that decision is visible as a change.
+  // The design decision (recorded in the wave file): HourKeep holds only what the
+  // user typed, so a month with no entries is "no record", NOT "$0 earned".
+  // Imputing $0 for missing months is what produced the understatement. So the
+  // average is over the months that actually hold data, each history row carries a
+  // `hasData` flag, and `monthsWithData` lets the UI say the history is incomplete
+  // rather than presenting a thin average as if it were verified.
+  // ───────────────────────────────────────────────────────────────────────────
 
-  it("divides by 6 even when only one month holds any income", async () => {
+  it("gap 5.9: one month of $3,000 averages to $3,000, not $500", async () => {
     await saveIncomeEntry(entry("2026-05-10", 3000, "monthly"));
 
-    const { average } = await calculateSeasonalAverage(USER, "2026-07");
+    const { average, monthsWithData } = await calculateSeasonalAverage(
+      USER,
+      "2026-07",
+    );
 
-    expect(average).toBe(500); // 3000 / 6, not 3000 / 1
+    expect(average).toBe(3000); // 3000 / 1, not 3000 / 6
+    expect(monthsWithData).toBe(1);
   });
 
-  it("returns an average of 0 for a completely empty history rather than NaN", async () => {
-    const { average, history } = await calculateSeasonalAverage(
+  it("gap 5.9: a month with no entries is marked hasData:false, distinct from a $0 month", async () => {
+    await saveIncomeEntry(entry("2026-06-10", 600, "monthly"));
+
+    const { history } = await calculateSeasonalAverage(USER, "2026-07");
+
+    const june = history.find((h) => h.month === "2026-06");
+    const may = history.find((h) => h.month === "2026-05");
+    expect(june).toMatchObject({ total: 600, hasData: true });
+    expect(may).toMatchObject({ total: 0, hasData: false });
+  });
+
+  it("a full six-month history averages over six", async () => {
+    // Positive twin: when every month has data, the divisor is 6.
+    for (const m of [
+      "2026-01",
+      "2026-02",
+      "2026-03",
+      "2026-04",
+      "2026-05",
+      "2026-06",
+    ]) {
+      await saveIncomeEntry(entry(`${m}-10`, 600, "monthly"));
+    }
+
+    const { average, monthsWithData } = await calculateSeasonalAverage(
+      USER,
+      "2026-07",
+    );
+
+    expect(average).toBe(600); // 3600 / 6
+    expect(monthsWithData).toBe(6);
+  });
+
+  it("an empty history reports a 0 average and monthsWithData 0, not NaN", async () => {
+    const { average, monthsWithData, history } = await calculateSeasonalAverage(
       USER,
       "2026-07",
     );
 
     expect(average).toBe(0);
+    expect(monthsWithData).toBe(0);
     expect(history).toHaveLength(6);
-    expect(history.every((h) => h.total === 0)).toBe(true);
+    expect(history.every((h) => h.hasData === false)).toBe(true);
   });
 
-  it("always reports exactly 6 history rows, zero-filling months with no entries", async () => {
+  it("still reports exactly 6 history rows, so the UI can show each month explicitly", async () => {
     await saveIncomeEntry(entry("2026-06-10", 600, "monthly"));
 
     const { history } = await calculateSeasonalAverage(USER, "2026-07");
 
     expect(history).toHaveLength(6);
-    expect(history.filter((h) => h.total === 0)).toHaveLength(5);
+    expect(history.filter((h) => h.hasData)).toHaveLength(1);
   });
 });
 
@@ -500,16 +533,29 @@ describe("getMonthlyIncomeSummary: threshold comparison and the seasonal fork", 
     expect(summary.isCompliant).toBe(false);
   });
 
-  it("compares the seasonal AVERAGE, not the month total, once seasonal status is set", async () => {
+  it("compares the seasonal AVERAGE of the preceding window, not the assessed month's total", async () => {
+    // W7a: income in the assessed month (July) does NOT enter the July-assessed
+    // seasonal window — only the six preceding months do. Put $3,600 across the
+    // Jan–Jun window and $9,000 in July; the average is $600 (3600/6), and July's
+    // own $9,000 is irrelevant to the comparison.
     await setSeasonalWorkerStatus(USER, "2026-07", true);
-    await saveIncomeEntry(entry("2026-07-10", 3000, "monthly"));
+    for (const m of [
+      "2026-01",
+      "2026-02",
+      "2026-03",
+      "2026-04",
+      "2026-05",
+      "2026-06",
+    ]) {
+      await saveIncomeEntry(entry(`${m}-10`, 600, "monthly"));
+    }
+    await saveIncomeEntry(entry("2026-07-10", 9000, "monthly"));
 
     const summary = await getMonthlyIncomeSummary(USER, "2026-07");
 
-    expect(summary.totalIncome).toBe(3000);
-    expect(summary.seasonalAverage).toBe(500); // 3000 / 6
-    expect(summary.isCompliant).toBe(false); // 500 < 580, despite $3,000 recorded
-    expect(summary.amountNeeded).toBe(80);
+    expect(summary.totalIncome).toBe(9000); // the assessed month's own recorded income
+    expect(summary.seasonalAverage).toBe(600); // 3600 / 6, from the preceding window only
+    expect(summary.isCompliant).toBe(true); // 600 >= 580 on the preceding average
   });
 
   it("omits seasonalAverage and seasonalHistory entirely when not a seasonal worker", async () => {
@@ -531,6 +577,8 @@ describe("getMonthlyIncomeSummary: threshold comparison and the seasonal fork", 
     const august = await getMonthlyIncomeSummary(USER, "2026-08");
 
     expect(july.isSeasonalWorker).toBe(true);
+    // August is non-seasonal, so it compares August's own actual total ($3,000) and
+    // clears the threshold.
     expect(august.isSeasonalWorker).toBe(false);
     expect(august.isCompliant).toBe(true);
   });

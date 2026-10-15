@@ -224,7 +224,7 @@ export function IncomeStatusIndicator({ summary }: IncomeStatusIndicatorProps) {
                   • {source.source}
                 </Typography>
                 <Typography variant="body2" fontWeight="medium">
-                  {formatCurrency(source.monthlyEquivalent)}/month
+                  {formatCurrency(source.amount)}
                 </Typography>
               </Box>
             ))}

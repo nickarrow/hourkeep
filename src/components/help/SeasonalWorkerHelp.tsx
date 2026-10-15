@@ -47,10 +47,15 @@ export function SeasonalWorkerHelpIcon() {
           IRS Definition (Section 45R(d)(5)(B))
         </Typography>
         <Typography variant="caption">
-          A seasonal worker is someone who works in an industry where work is
-          typically available for 6 months or less per year. Examples include
-          farm work, holiday retail, summer tourism, ski resorts, and the
-          fishing industry.
+          {/* W7a (gap 5.7): 26 U.S.C. 45R(d)(5)(B) gives INCLUSIVE EXAMPLES, not a
+              closed test, and the rule sets no verification standard for who is a
+              seasonal worker. The old copy invented a "6 months or less per year"
+              threshold that is nowhere in the rule. State decides. */}
+          Seasonal work means work that by its nature happens in certain seasons
+          and may not run all year — the law gives examples like farm work and
+          holiday retail rather than a fixed test. If your work is seasonal,
+          your state looks at your income across several months instead of just
+          one. Not sure if this fits you? Ask your state.
         </Typography>
       </Alert>
 
