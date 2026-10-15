@@ -2,11 +2,11 @@
 
 **The holistic home for this effort.** Open this file to remember where we are.
 
-**Last updated:** 2026-09-03 (W6a closed)
-**Current wave:** none in progress — **W6a (Evidence Capture)** closed 2026-09-03. **W7a (Seasonal +
-income corrections)** is next and is unblocked. Progress against the gap analysis: **25 of 108 rows
-closed, 8 partial** — and note the total is **108, not the 81** that document's summary claimed until it
-was recounted
+**Last updated:** 2026-09-03 (W7a closed)
+**Current wave:** none in progress — **W7a (Seasonal + income corrections)** closed 2026-09-03.
+**W8a (Print evidence export)** is next, the last pre-date wave. Progress against the gap analysis:
+**30 of 108 rows closed, 9 partial** — and note the total is **108, not the 81** that document's summary
+claimed until it was recounted
 
 > A first version of this line said W1 was next. Wrong: ADR-0009's reordering moved **W1 to the very end**,
 > after the December date. `waves/README.md` § Sequence is authoritative — the pre-date order is
@@ -57,6 +57,20 @@ was recounted
 >    ones — it is the only one that follows the data. Six findings were High; all fixed and
 >    verified against the primary source and in the browser before being believed, two deferred
 >    with reasons recorded in `waves/wave-6a-evidence-capture.md` § Convergence.
+>
+>    **W7a, 2026-09-03, made it four consecutive waves, and showed convergence working as
+>    designed.** Non-adjudication APPROVED, data-integrity clean, domain-fidelity 5/6, the
+>    two-model semantic review NEEDS_CHANGES — and the single most important finding, the seasonal
+>    average dividing by months-with-data instead of the statutory six, was reached **independently
+>    by the domain reviewer, both semantic models, and the implementer** before any of them saw the
+>    others. It overstated the average in the compliance-favourable direction (CMS's own example
+>    divides $3,000 by 6 = $500; the code returned $3,000), which is the reassuring-false-positive
+>    harm `getting-started.md` says the project cannot absorb. Fixed to ÷6 with the honesty moved to
+>    the display. Three items deferred with reasons (W7b ×2, W8a ×1) in
+>    `waves/wave-7a-seasonal-income-corrections.md` § Convergence. The recurring shape across W6a
+>    and W7a: the narrow reviewers verify a layer, the semantic review follows the data between
+>    layers, and the hardest findings sit in the arithmetic or the joins — exactly where a lens
+>    cannot look.
 >
 >    It was worth the wait. The four found **four blocking defects** in work that had
 >    already passed 509 tests, six mechanical gates and a manual browser pass — including
@@ -347,8 +361,8 @@ Sequence and dependencies: [`waves/README.md`](waves/README.md).
 | [W5](waves/wave-5-month-scoping.md) | Month scoping + review periods | **Done** 2026-09-02 — `ReviewPeriod` model, month required and validated, `Calendar` controlled, 423 → **526** tests (this row said 525; `npm test` at W5's tip `ad8ac87` returned 526), 62 → 72 e2e. All 9 live criteria met; 1 struck to W3. First wave with 4/4 reviewers. **Did not close gaps 15.6/15.7, which were assigned to it** |
 | [W2b](waves/wave-2b-policy-profile.md) | Policy profile | **Done** 2026-09-02 — `src/lib/policy/` with `FEDERAL_DEFAULT` over 36 fields, `incomeThreshold()` a function so it tracks the wage, `ReviewPeriodPolicy` a `Pick` of the profile, zero policy literals in non-test `src/`, 526 → 668 tests, 72 → 74 e2e. **30 of 33 criteria**; 4/4 reviewers. Gaps 15.6/15.7 answerable but uncalled → W9a |
 | W6a | Evidence capture | **Done** 2026-09-03 — `workProgram` type, work sub-kinds, education half-time cliff + credit conversion, community-service record schema, VA/SNAP-TANF document types. 9 gap rows closed, 1 partial (4.11→W7b), 4.5→W6b. **No Dexie bump** (`git diff db.ts` empty, still v6). 668 → **721** tests; 74 e2e. 4/4 reviewers; the multi-model semantic review caught a half-time false-shortfall at the form→summary join, since fixed. engines floor raised, `next` advisory recorded |
-| W7a | Seasonal + income corrections | **Next.** Not started. **Moved ahead of W8a** 2026-09-02 on harm grounds |
-| W8a | Print evidence export | Not started. One open scope item: "one evaluation path" needs `evaluateMonth`, which does not exist |
+| W7a | Seasonal + income corrections | **Done** 2026-09-03 — income sums actual amounts received (the live 4× false positive is gone, verified $600 not $2,598), pay-period multiplication demoted to a labeled estimate, seasonal window fixed to the 6 months preceding the assessed month, sparse history flagged. 5 gap rows closed, 2 partial. **No Dexie bump** (`git diff db.ts` empty, v6). 721 → **732** tests; 74 e2e. 4/4 reviewers; both semantic models caught the seasonal divisor (÷months-with-data overstated vs CMS's ÷6), since corrected |
+| W8a | Print evidence export | **Next** — the last pre-date wave. Open scope item: "one evaluation path" needs `evaluateMonth`, which does not exist (W7b's). Also inherits W7a's deferral: the export has no seasonal path yet (a seasonal worker's artifact prints a single-month comparison, not § 435.552(g)'s average) |
 
 **After the date**
 
