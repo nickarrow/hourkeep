@@ -415,8 +415,11 @@ describe("the field manifest: a field cannot be dropped silently", () => {
      * `renewalIntervalMonthsSource` (+3). One more was added for gap 15.7,
      * `renewalInitiationLeadDays`, because § 435.559(c) turns on when a renewal is
      * initiated and that lead time is a policy value like any other (+1). 33 − 1 + 3 + 1 = 36.
+     *
+     * W6a added `educationCreditHourConversion` for 42 CFR 435.552(d)(1)'s credit-hour
+     * conversion, with its reader `src/lib/education.ts` (+1). 36 + 1 = 37.
      */
-    expect(POLICY_PROFILE_FIELDS).toHaveLength(36);
+    expect(POLICY_PROFILE_FIELDS).toHaveLength(37);
   });
 });
 

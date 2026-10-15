@@ -55,6 +55,9 @@ targets=(
   # Added by W2b, 2026-09-02. It holds review-period policy values and was never
   # scanned — `wave-5-month-scoping.md` flagged the omission at its close.
   src/lib/reviewPeriod.ts
+  # Added by W6a, 2026-09-03. It reads 42 CFR 435.552(d)(1)'s credit-hour conversion
+  # from the profile; the 3 and 4.33 must not reappear as literals here.
+  src/lib/education.ts
 )
 
 # NOTE ON THIS GATE'S LIMITS, so nobody mistakes silence for proof.

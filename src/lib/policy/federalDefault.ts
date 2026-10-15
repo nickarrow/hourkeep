@@ -120,6 +120,17 @@ export const FEDERAL_DEFAULT: PolicyProfile = {
   federalMinimumWage: 7.25, // policy-literal-ok
   requiredHours: 80, // policy-literal-ok
   // No incomeThreshold. `incomeThreshold(profile)` derives it — see derive.ts.
+  //
+  // 42 CFR 435.552(d)(1), 91 FR 33470-33471: "Multiply the number of each one credit hour
+  // of instruction by 3 to get the total of education hours in a week ... Multiply the
+  // weekly total ... by 4.33 weeks to get total hours in a 1-month period." The Carnegie
+  // Unit (1 hour instruction + 2 hours out-of-class) and 52/12. 6 x 3 x 4.33 = 77.94
+  // (91 FR 33359). These two numbers are NOT PAY_PERIOD_MULTIPLIERS.weekly — see the field
+  // doc in types.ts.
+  educationCreditHourConversion: {
+    hoursPerCreditPerWeek: 3, // policy-literal-ok
+    weeksPerMonth: 4.33, // policy-literal-ok
+  },
 
   // --- Review periods, 42 CFR 435.556 ---------------------------------------
   // (a)(1) at 91 FR 33473: "at least one, but not more than 3 consecutive months, as

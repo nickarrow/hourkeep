@@ -48,6 +48,15 @@ export interface PolicyProfile {
   federalMinimumWage: number;
   /** 80 — § 435.552(a)(1)-(3), (5)-(7) at 91 FR 33470. */
   requiredHours: number;
+  /**
+   * § 435.552(d)(1) at 91 FR 33470-33471. Carnegie-Unit conversion for less-than-half-time
+   * education: monthly hours = creditHours x hoursPerCreditPerWeek x weeksPerMonth. CMS's
+   * worked example 6 x 3 x 4.33 = 77.94 (91 FR 33359). Added by W6a with its reader,
+   * `src/lib/education.ts`. The 4.33 here is the Carnegie Unit, NOT the income-side
+   * `PAY_PERIOD_MULTIPLIERS.weekly` (52/12 rounded down, gap 5.4, W7a) — same digits,
+   * different meaning.
+   */
+  educationCreditHourConversion: { hoursPerCreditPerWeek: number; weeksPerMonth: number };
   //
   // NO `incomeThreshold` FIELD. Corrected on the W2b dry run, 2026-09-02 — see
   // `wave-2b-policy-profile.md` § 2.1.1 `[S1]`. This was

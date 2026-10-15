@@ -59,6 +59,27 @@ export interface PolicyProfile {
   federalMinimumWage: number;
   /** 42 CFR 435.552(a)(1)-(3), (5)-(7) — 91 FR 33470. */
   requiredHours: number;
+  /**
+   * The Carnegie-Unit conversion for less-than-half-time education — 42 CFR 435.552(d)(1),
+   * 91 FR 33470-33471. One credit hour counts as `hoursPerCreditPerWeek` education hours
+   * per week; a month is `weeksPerMonth` weeks. So monthly hours =
+   * `creditHours × hoursPerCreditPerWeek × weeksPerMonth`.
+   *
+   * Added by W6a, which is the first wave to read it — W2b adds no field without a
+   * consumer. Statutory arithmetic, dynamic only if CMS revises the standard, so it is a
+   * policy value and not a literal (ADR-0001). CMS's worked example at 91 FR 33359:
+   * `6 × 3 × 4.33 = 77.94`.
+   *
+   * `weeksPerMonth` is `4.33` here and that is NOT the same `4.33` as
+   * `PAY_PERIOD_MULTIPLIERS.weekly` in `payPeriodConversion.ts`. That one is 52/12 rounded
+   * DOWN, HourKeep's own invention for income conversion (gap 5.4, `contradicts`, owned by
+   * W7a). This one is the Carnegie Unit CMS publishes. Same digits, unrelated meanings;
+   * they must not be collapsed into one shared constant.
+   */
+  educationCreditHourConversion: {
+    hoursPerCreditPerWeek: number;
+    weeksPerMonth: number;
+  };
   //
   // THERE IS NO `incomeThreshold` FIELD, DELIBERATELY. See `incomeThreshold()` in
   // `derive.ts`. `state-options.md` used to declare `readonly incomeThreshold: number`
@@ -281,6 +302,7 @@ export const POLICY_PROFILE_FIELDS = [
   "interpretiveRisk",
   "federalMinimumWage",
   "requiredHours",
+  "educationCreditHourConversion",
   "applicationLookbackMonths",
   "applicationLookbackBounds",
   "renewalMonthsRequired",
@@ -364,6 +386,10 @@ export const POLICY_FIELD_OWNERS: Record<
   requiredHours: {
     consumer: "src/lib/policy/derive.ts",
     why: "Operand of incomeThreshold, and the monthly hours threshold read by calculations.ts",
+  },
+  educationCreditHourConversion: {
+    consumer: "src/lib/education.ts",
+    why: "42 CFR 435.552(d)(1) credit-hour conversion for less-than-half-time education, added with its reader by W6a",
   },
   applicationLookbackMonths: {
     consumer: "src/lib/reviewPeriod.ts",

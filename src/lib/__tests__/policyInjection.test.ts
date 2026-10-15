@@ -245,6 +245,9 @@ describe("no policy literal survives in the Tier-1 modules", () => {
     "src/lib/assessment/recommendationEngine.ts",
     // Added by W2b: it holds policy values and the shell gate never scanned it.
     "src/lib/reviewPeriod.ts",
+    // Added by W6a: it reads educationCreditHourConversion (42 CFR 435.552(d)(1)) and
+    // must take the threshold constants from the profile, not from literals.
+    "src/lib/education.ts",
   ] as const;
 
   /**
