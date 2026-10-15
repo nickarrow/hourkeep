@@ -5,6 +5,11 @@ export type DocumentType =
   | "volunteer-verification"
   | "school-enrollment"
   | "medical-documentation"
+  // W6a (gap 8.4): CMS names these among reasonably-available documents —
+  // § II.I.3 / § II.I.6, 91 FR 33399. New VALUES in the already-indexed documents.type
+  // field, so no schema change (db.ts).
+  | "va-disability"
+  | "snap-tanf-approval"
   | "other";
 
 // Document Metadata

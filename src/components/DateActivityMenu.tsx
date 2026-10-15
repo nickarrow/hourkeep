@@ -13,12 +13,15 @@ import {
 import {
   Add as AddIcon,
   Work as WorkIcon,
+  WorkOutline as WorkOutlineIcon,
   VolunteerActivism as VolunteerIcon,
   School as SchoolIcon,
   Edit as EditIcon,
   ContentCopy as ContentCopyIcon,
 } from "@mui/icons-material";
+import React from "react";
 import { Activity } from "@/types";
+import { ACTIVITY_TYPE_LABELS } from "@/lib/activityDisplay";
 
 interface DateActivityMenuProps {
   anchorEl: HTMLElement | null;
@@ -31,16 +34,19 @@ interface DateActivityMenuProps {
   selectedDateStr: string;
 }
 
-const activityIcons = {
+const activityIcons: Record<Activity["type"], React.ReactElement> = {
   work: <WorkIcon fontSize="small" />,
   volunteer: <VolunteerIcon fontSize="small" />,
   education: <SchoolIcon fontSize="small" />,
+  // 42 CFR 435.552(a)(3). WorkOutline distinguishes a job-training program from paid work.
+  workProgram: <WorkOutlineIcon fontSize="small" />,
 };
 
 const activityColors = {
   work: "primary",
   volunteer: "success",
   education: "info",
+  workProgram: "secondary",
 } as const;
 
 export function DateActivityMenu({
@@ -127,10 +133,9 @@ export function DateActivityMenu({
                   }}
                 >
                   <Chip
-                    label={activity.type}
+                    label={ACTIVITY_TYPE_LABELS[activity.type]}
                     color={activityColors[activity.type]}
                     size="small"
-                    sx={{ textTransform: "capitalize" }}
                   />
                   <Typography variant="body2" fontWeight="medium">
                     {activity.hours}h

@@ -59,6 +59,7 @@ export function calculateMonthlySummary(
   let workHours = 0;
   let volunteerHours = 0;
   let educationHours = 0;
+  let workProgramHours = 0;
 
   monthActivities.forEach((activity) => {
     switch (activity.type) {
@@ -69,13 +70,22 @@ export function calculateMonthlySummary(
         volunteerHours += activity.hours;
         break;
       case "education":
+        // 42 CFR 435.552(e)(1): only less-than-half-time education carries hours here.
+        // At-least-half-time demonstrates on its own (a)(4) and is not logged as an hours
+        // entry — the cliff is enforced at capture, see src/lib/education.ts.
         educationHours += activity.hours;
+        break;
+      case "workProgram":
+        // 42 CFR 435.552(a)(3), 91 FR 33470. W6a: before this branch existed the switch
+        // had no `default`, so a workProgram row silently contributed nothing.
+        workProgramHours += activity.hours;
         break;
     }
   });
 
-  // Calculate total hours
-  const totalHours = workHours + volunteerHours + educationHours;
+  // Calculate total hours — the four combinable pathways, 42 CFR 435.552(e).
+  const totalHours =
+    workHours + volunteerHours + educationHours + workProgramHours;
 
   /**
    * The monthly hours threshold — 42 CFR 435.552(a)(1)-(3), (5), 91 FR 33470: the
@@ -105,6 +115,7 @@ export function calculateMonthlySummary(
     workHours,
     volunteerHours,
     educationHours,
+    workProgramHours,
     isCompliant,
     hoursNeeded,
   };

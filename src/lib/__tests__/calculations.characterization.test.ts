@@ -74,24 +74,37 @@ describe("calculateMonthlySummary: per-type sums", () => {
       workHours: 0,
       volunteerHours: 0,
       educationHours: 0,
+      workProgramHours: 0, // W6a: 42 CFR 435.552(a)(3) bucket
       isCompliant: false,
       hoursNeeded: 80,
     });
   });
 
-  it("handles exactly the three types it knows about, and only those three", () => {
-    // CHARACTERIZATION: the switch has no `default`, so an unrecognised type is
-    // silently contributed to NO bucket and NO total. W6a adds `workProgram`
-    // (42 CFR 435.552(a)(3)) and must add a branch, not rely on a fallthrough.
-    // Deliberately cast: the point is to record what happens off-contract.
-    const rogue = activity("2026-07-01", "workProgram" as Activity["type"], 40);
-
+  it("W6a: workProgram is now a counted type, no longer silently dropped", () => {
+    // ───────────────────────────────────────────────────────────────────────────
+    // INVERTED BY W6a, 2026-09-03. Was:
+    //
+    //   it("handles exactly the three types it knows about, and only those three")
+    //
+    // and it pinned the CHARACTERIZATION that the `switch` had no `default`, so a
+    // `workProgram` row contributed to NO bucket and NO total — asserting
+    // `totalHours === 10` and `workHours === 10` for a 40-hour workProgram entry
+    // plus a 10-hour work entry. W6a adds `workProgram` to `Activity["type"]`
+    // (42 CFR 435.552(a)(3), 91 FR 33470) and gives the switch a branch for it, so
+    // those 40 hours now count. The behaviour this test used to pin is the bug the
+    // wave fixed; turning it red was the signal the fix landed. The corrected
+    // behaviour is asserted in full in `calculations.workProgram.test.ts`.
+    // ───────────────────────────────────────────────────────────────────────────
     const summary = calculateMonthlySummary(
-      [rogue, activity("2026-07-02", "work", 10)],
+      [
+        activity("2026-07-01", "workProgram", 40),
+        activity("2026-07-02", "work", 10),
+      ],
       "2026-07",
     );
 
-    expect(summary.totalHours).toBe(10);
+    expect(summary.totalHours).toBe(50);
+    expect(summary.workProgramHours).toBe(40);
     expect(summary.workHours).toBe(10);
   });
 });
@@ -304,17 +317,27 @@ describe("calculateMonthlySummary: threshold comparison and difference arithmeti
     expect(summary.isCompliant).toBe(true);
   });
 
-  it("CHARACTERIZATION: education hours are combined, which 42 CFR 435.552(e) forbids at half-time", () => {
-    // Current behaviour is incorrect per 42 CFR 435.552(a)(4) and (e).
-    // Enrolment at least half-time qualifies with ZERO hours under (a)(4), and
-    // § 435.552(e) then forbids combining it — because (a)(4) is already satisfied.
-    // Less-than-half-time converts at `creditHours x 3 x 4.33` (42 CFR 435.552(d))
-    // and may be combined.
+  it("W6a: logged education hours still combine — because only less-than-half-time hours are logged", () => {
+    // ───────────────────────────────────────────────────────────────────────────
+    // REFRAMED BY W6a, 2026-09-03 — the assertion is UNCHANGED, the meaning is not.
     //
-    // This module has one undifferentiated `education` bucket and always combines
-    // it, so it cannot express the half-time cliff at all. That is a model gap,
-    // not an arithmetic slip. Owned by W6a (education half-time cliff and
-    // credit-hour conversion). CMS-2454-IFC, 91 FR 33348.
+    // This used to be pinned as a CHARACTERIZATION of a bug: "education hours are
+    // combined, which 42 CFR 435.552(e) forbids at half-time", on the reasoning that
+    // the module has one undifferentiated `education` bucket and always combines it,
+    // so it cannot express the cliff.
+    //
+    // W6a resolved the cliff at CAPTURE, not here. 42 CFR 435.552(a)(4): at-least-
+    // half-time education demonstrates on its own with ZERO hours and may not combine
+    // (e)(1). So the form no longer logs half-time education as an hours entry at all
+    // — it records a status (see src/lib/education.ts, `educationContribution`). The
+    // only `education` activities that carry hours are now less-than-half-time, whose
+    // converted hours (435.552(d)) ARE combinable (e). So summing them here is
+    // correct, and this test now pins correct behaviour rather than a bug.
+    //
+    // calculateMonthlySummary intentionally stays a pure sum over logged hours: it
+    // does not know enrolment status, because by the time an education row has hours,
+    // the cliff has already been applied upstream. CMS-2454-IFC, 91 FR 33470.
+    // ───────────────────────────────────────────────────────────────────────────
     const summary = calculateMonthlySummary(
       [
         activity("2026-07-01", "education", 40),

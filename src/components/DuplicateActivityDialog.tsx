@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import { Activity } from "@/types";
 import { format, parseISO, addDays, startOfWeek } from "date-fns";
+import { ACTIVITY_TYPE_LABELS } from "@/lib/activityDisplay";
 
 interface DuplicateActivityDialogProps {
   open: boolean;
@@ -74,7 +75,8 @@ export function DuplicateActivityDialog({
           </Typography>
           <Typography variant="body1">
             {format(activityDate, "MMM d, yyyy")} • {activity.hours}{" "}
-            {activity.hours === 1 ? "hour" : "hours"} • {activity.type}
+            {activity.hours === 1 ? "hour" : "hours"} •{" "}
+            {ACTIVITY_TYPE_LABELS[activity.type]}
           </Typography>
           {activity.organization && (
             <Typography variant="body2" color="text.secondary">

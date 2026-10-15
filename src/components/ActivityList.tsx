@@ -17,6 +17,10 @@ import {
 import { Activity } from "@/types";
 import { format, parseISO } from "date-fns";
 import { useActivityDocumentCounts } from "@/hooks/useActivityDocumentCounts";
+import {
+  ACTIVITY_TYPE_LABELS,
+  ACTIVITY_TYPE_CHIP_COLORS,
+} from "@/lib/activityDisplay";
 
 interface ActivityListProps {
   activities: Activity[];
@@ -25,19 +29,8 @@ interface ActivityListProps {
   onDuplicate: (activity: Activity) => void;
 }
 
-const activityTypeColors = {
-  work: "primary",
-  volunteer: "success",
-  education: "info",
-  workProgram: "secondary",
-} as const;
-
-const activityTypeLabels = {
-  work: "Work",
-  volunteer: "Volunteer",
-  education: "Education",
-  workProgram: "Work Program",
-} as const;
+const activityTypeColors = ACTIVITY_TYPE_CHIP_COLORS;
+const activityTypeLabels = ACTIVITY_TYPE_LABELS;
 
 export function ActivityList({
   activities,

@@ -43,6 +43,8 @@ type ActivityDocumentType =
   | "volunteer-verification"
   | "school-enrollment"
   | "medical-documentation"
+  | "va-disability"
+  | "snap-tanf-approval"
   | "other";
 
 const INCOME_DOCUMENT_TYPE_LABELS: Record<IncomeDocumentType, string> = {
@@ -57,6 +59,9 @@ const ACTIVITY_DOCUMENT_TYPE_LABELS: Record<ActivityDocumentType, string> = {
   "volunteer-verification": "Volunteer Verification Letter",
   "school-enrollment": "School Enrollment",
   "medical-documentation": "Medical Documentation",
+  // W6a (gap 8.4), 42 CFR § II.I.3 / § II.I.6 (91 FR 33399).
+  "va-disability": "VA Disability Document",
+  "snap-tanf-approval": "SNAP or TANF Approval Notice",
   other: "Other",
 };
 

@@ -8,7 +8,7 @@ import { HelpTooltip } from "@/components/help/HelpTooltip";
 import { documentVerificationHelp } from "@/content/helpText";
 
 export interface DocumentVerificationHelpIconProps {
-  activityType?: "work" | "volunteer" | "education";
+  activityType?: "work" | "volunteer" | "education" | "workProgram";
   context?: "income" | "gig-work";
 }
 
@@ -38,6 +38,10 @@ export function DocumentVerificationHelpIcon({
         return documentVerificationHelp.volunteerExamples;
       case "education":
         return documentVerificationHelp.educationExamples;
+      case "workProgram":
+        // 42 CFR 435.552(b): SNAP E&T approval, WIOA enrollment letters, etc. Falls back
+        // to the work examples until a dedicated list exists (help content, not W6a).
+        return documentVerificationHelp.workExamples;
       default:
         return [];
     }

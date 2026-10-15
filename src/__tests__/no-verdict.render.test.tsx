@@ -379,6 +379,7 @@ describe("ADR-0003 no-verdict guard: W5 month-scoped surfaces", () => {
     workHours: totalHours,
     volunteerHours: 0,
     educationHours: 0,
+    workProgramHours: 0, // W6a: 42 CFR 435.552(a)(3) bucket
     isCompliant: totalHours >= 80,
     hoursNeeded: Math.max(80 - totalHours, 0),
   });

@@ -2,6 +2,7 @@ import { format } from "date-fns";
 
 import type { Activity, UserProfile } from "@/types";
 import type { ComplianceMode, IncomeEntry } from "@/types/income";
+import { ACTIVITY_TYPE_LABELS } from "@/lib/activityDisplay";
 
 /**
  * Builds the human-readable evidence report a user hands to their agency.
@@ -156,7 +157,9 @@ export function buildTextReport(input: TextReportInput): string {
           .sort((a, b) => a.date.localeCompare(b.date))
           .forEach((activity) => {
             out += `  ${format(new Date(activity.date + "T00:00:00"), "MMM d, yyyy")} - `;
-            out += `${activity.type.charAt(0).toUpperCase() + activity.type.slice(1)} - `;
+            // W6a: shared label so `workProgram` reads "Job Training", not "WorkProgram".
+            // The capitalize-first-char trick produced the raw union value for the new type.
+            out += `${ACTIVITY_TYPE_LABELS[activity.type]} - `;
             out += `${activity.hours} hours`;
             if (activity.organization) {
               out += ` - ${activity.organization}`;

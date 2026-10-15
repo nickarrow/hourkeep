@@ -50,8 +50,14 @@ interface DashboardProps {
 }
 
 export function Dashboard({ summary, threshold }: DashboardProps) {
-  const { totalHours, workHours, volunteerHours, educationHours, hoursNeeded } =
-    summary;
+  const {
+    totalHours,
+    workHours,
+    volunteerHours,
+    educationHours,
+    workProgramHours,
+    hoursNeeded,
+  } = summary;
 
   const meetsThreshold = totalHours >= threshold;
 
@@ -225,6 +231,31 @@ export function Dashboard({ summary, threshold }: DashboardProps) {
               sx={{ fontSize: { xs: "1.1rem", sm: "1.25rem" } }}
             >
               {educationHours}
+            </Typography>
+            <Typography variant="caption" color="text.secondary">
+              hours
+            </Typography>
+          </Box>
+          {/* 42 CFR 435.552(a)(3). W6a: work-program hours were counted in the total but
+              had no breakdown chip, so they appeared to vanish from the by-type view. */}
+          <Box
+            sx={{
+              textAlign: "center",
+              flex: 1,
+              minWidth: { xs: "80px", sm: "auto" },
+            }}
+          >
+            <Chip
+              label="Job Training"
+              color="secondary"
+              size="small"
+              sx={{ mb: 1 }}
+            />
+            <Typography
+              variant="h6"
+              sx={{ fontSize: { xs: "1.1rem", sm: "1.25rem" } }}
+            >
+              {workProgramHours}
             </Typography>
             <Typography variant="caption" color="text.secondary">
               hours
