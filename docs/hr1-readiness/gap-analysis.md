@@ -150,7 +150,17 @@ Counted by parsing the `Gap` and `Impact` columns of every row whose first cell 
 | W6a | 9 | 1 | 4.1, 4.2, 4.3, 4.4, 4.6, 4.7, 8.4, 15.23, 15.24 closed; 4.11 partial → W7b. 4.5 reassigned → W6b. Each checked against the code 2026-09-03, not the wave file |
 | W7a | 5 | 2 | 5.4, 5.5, 5.7, 5.8, 5.9 closed; 5.1 and 5.10 partial. Checked against the code and in the browser 2026-09-03. 5.11 and the mode-fork/rename work are W7b |
 | W8a | 4 | 2 | 8.1, 8.3, 8.7, 8.9 closed; 8.8 and 8.5 partial. Checked against the code and in a 375px browser 2026-10-15. 8.4 consumed (W6a closed it). 8.2 → W9a. Four reviewers; the two-model semantic review caught the cross-table attachment-reference collision and the one-comparison-per-month regression, since fixed |
-| **Total** | **34** | **11** | **63 rows untouched** |
+| **Total** | **34** | **12** | **62 rows untouched** |
+
+> **Partial-column note (corrected 2026-10-15).** This column sums the rows each wave marked partial **at
+> its own closeout**: 5 (W2a) + 2 (W2b) + 1 (W6a) + 2 (W7a) + 2 (W8a) = **12**. An earlier Total printed
+> **11** — an off-by-one, the same count-drift class this document has already been corrected for once (the
+> `partial` type-count "27 vs 26" above). Note these are *per-wave partial actions*, not the count of rows
+> that are partial *now*: some rows marked partial by one wave (e.g. 5.7, which W2a marked partial) were
+> later **closed** by a subsequent wave (W7a closed 5.7), so the net number of still-partial rows today is
+> lower than 12. The two figures answer different questions; this table reports actions-at-closeout, which
+> is what each wave verified. Untouched = 108 − 34 closed − (rows that are currently partial). Stated as
+> **62** on the actions basis (108 − 34 − 12); the net-partial basis would make it slightly higher.
 
 The pre-date plan does not attempt all 108. W6a closed 9 of its 12 live rows, W7a closed 5 of its cluster
 (5.11 and the mode-fork work are W7b), W8a closed 4 (8.5 and the JSON half of 8.8 are post-date) — so
