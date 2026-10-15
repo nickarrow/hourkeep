@@ -67,6 +67,6 @@
     "eslint-plugin-react-hooks": "7.0.1"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=22.22.2"
   }
 }

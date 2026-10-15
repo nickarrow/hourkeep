@@ -2,10 +2,11 @@
 
 **The holistic home for this effort.** Open this file to remember where we are.
 
-**Last updated:** 2026-09-02 (W2b closed out, then pre-W6a preparation)
-**Current wave:** none in progress — **W6a (Evidence Capture)** is next and is **unblocked**. W2b landed
-2026-09-02. Progress against the gap analysis: **16 of 108 rows closed, 7 partial** — and note the total is
-**108, not the 81** that document's summary claimed until it was recounted
+**Last updated:** 2026-09-03 (W6a in progress)
+**Current wave:** **W6a (Evidence Capture)** in progress — wave file written, engines/CI and the `next`
+advisory handled up front. W2b landed 2026-09-02. Progress against the gap analysis: **16 of 108 rows
+closed, 7 partial** — and note the total is **108, not the 81** that document's summary claimed until it
+was recounted
 
 > A first version of this line said W1 was next. Wrong: ADR-0009's reordering moved **W1 to the very end**,
 > after the December date. `waves/README.md` § Sequence is authoritative — the pre-date order is
@@ -78,11 +79,28 @@
 >    done at W2b close because tightening `engines` constrains the developer's own machine, and that is a
 >    deliberate decision rather than a side effect of closing a wave.
 >
->    **`next@16.0.1` has a published advisory — CVE-2025-66478 — and it is recorded nowhere in this
->    project.** `npm audit` reports 9 vulnerabilities, 8 high and 1 critical. Grepping `docs/`,
->    `CHANGELOG.md` and `ROADMAP.md` for the CVE returns nothing. Deferring features past December is a
->    defensible call; **deferring a known-vulnerable framework is a different question**, and it deserves
->    an explicit answer rather than inheriting W1's position at the end of the queue.
+>    **Done in W6a, 2026-09-03.** `engines.node` is now `>=22.22.2` and CI Node is pinned to `22.23.2`
+>    exactly (the current 22.x LTS security release). Taken in W6a rather than left to W1 because the
+>    suite runs hundreds of times this wave and running it on a jsdom-unsupported engine is luck. No
+>    `.npmrc`, so the raised floor stays advisory on 22.18.0 and `npm ci` still exits 0 locally; CI now
+>    installs a version both `jsdom` and `undici` declare supported.
+>
+>    **`next@16.0.1` has published advisories and they are recorded nowhere in this project.**
+>    `npm audit` reports 9 vulnerabilities, 8 high and 1 critical. Grepping `docs/`, `CHANGELOG.md` and
+>    `ROADMAP.md` returned nothing. Deferring features past December is a defensible call; **deferring a
+>    known-vulnerable framework is a different question**, and it deserves an explicit answer rather than
+>    inheriting W1's position at the end of the queue.
+>
+>    **Answered in W6a, 2026-09-03 — recorded, not bumped.** Two corrections to the item above. First,
+>    the "CVE-2025-66478" label could not be reproduced anywhere in `npm audit`'s output; the findings
+>    surface as GHSA ids, the critical being **GHSA-9qr9-h5gf-34mp** (RCE in the React flight protocol).
+>    Use the GHSA id. Second, the fix is `next@16.3.0`, a **minor** bump (the vulnerable range ends at
+>    `16.3.0-preview.10`), separable from W1's MUI 7→9 major. The deferral stands on a narrower ground
+>    than "it's not December yet": HourKeep is `output: "export"` with `images.unoptimized`, no
+>    middleware, no Server Actions, no route handlers (verified in `next.config.ts` and by search), so it
+>    ships **no Next.js server**. Nearly every advisory in the set is server-side, so the exposed surface
+>    is the build machine and `next dev`, not hourkeep.app — a developer-environment issue, not a
+>    user-coverage one. Written up in `ROADMAP.md` § Known Security Debt; the bump stays with W1.
 >
 > ### The order-dependency sweep — done once, 2026-09-02, after the third instance
 >
@@ -394,10 +412,13 @@ Deliberately left open. Not defects — decisions to close later.
    execution; clean up before W3.
 3. **Ten specific acceptance criteria are still weak.** A global rule is in the Definition of Done; the
    individual criteria in W3–W10 were not rewritten. Fix each at its wave's start.
-4. **Split wave files don't exist** for W6a/W6b, W7a/W7b, W8a/W8b, W9a/W9b. The combined `wave-2`,
+4. **Split wave files don't exist** for W6b, W7a/W7b, W8a/W8b, W9a/W9b. The combined `wave-2`,
    `wave-6`, `wave-7`, `wave-8`, `wave-9` files are the source.
-   **W6a is next and needs its file written first** — `wave-6-activity-model.md` is the source, and the
-   precedents below are the reason to verify its site tables before trusting them.
+   **W6a now has its own file** — [`waves/wave-6a-evidence-capture.md`](waves/wave-6a-evidence-capture.md),
+   written 2026-09-03 by re-verifying `wave-6-activity-model.md`'s claims against the tree. As the
+   precedents below predicted, the source was short: the `workProgram` change is **42 lines across 11
+   files**, not "a type-union change plus a form option", and `waves/README.md` assigned gap **4.5 to both
+   W6a and W6b** (resolved to W6b) and 4.1's remainder to a non-existent v8 (resolved to W6a, no bump).
 
    > **A related mismatch W5 surfaced, 2026-09-02.** Closing a wave against its own acceptance criteria is
    > not the same as closing the `gap-analysis.md` rows assigned to it. W5 met every live criterion in its

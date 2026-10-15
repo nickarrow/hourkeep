@@ -558,4 +558,34 @@ To keep HourKeep simple, privacy-focused, and offline-first, we're explicitly NO
 
 ---
 
-**Last Updated:** November 2025
+## Known Security Debt
+
+Recorded openly rather than left in `npm audit` output alone.
+
+### Next.js framework advisories — tracked, deferred to the dependency-modernization wave
+
+**Status as of 2026-09-03:** `npm audit` reports 9 vulnerabilities (8 high, 1 critical) against
+`next@16.0.1`, the most serious being an RCE in the React flight protocol (advisory
+GHSA-9qr9-h5gf-34mp). The fix is `next@16.3.0` — a minor upgrade, since the vulnerable range ends at
+`16.3.0-preview.10`.
+
+**Why it is deferred and why that is defensible for this app specifically:** HourKeep is a fully static
+export (`output: "export"`, `images.unoptimized`) with no middleware, no Server Actions, and no route
+handlers. It ships no Next.js server. Nearly every advisory in the set is server-side — Server Actions
+CSRF, Middleware/Proxy bypass, Image Optimizer DoS, RSC cache poisoning, dev HMR websocket. For a static
+site these affect the build machine and the local `next dev` server, not the deployed app at
+hourkeep.app. The exposure is a developer-environment concern, not a user-coverage one.
+
+The upgrade is owned by the dependency-modernization wave (W1 in `docs/hr1-readiness/`), which is
+sequenced after the December implementation date. If that wave slips, the isolated `next` minor bump
+should be lifted out and shipped on its own — it does not depend on the MUI 7→9 work W1 also carries.
+
+### Test toolchain Node floor — resolved 2026-09-03
+
+Previously `engines.node` was `>=22`, which admitted 22.18.0, a version `jsdom@30` declares unsupported
+(`^22.22.2 || ^24.15.0 || >=26.0.0`). The suite passed on it by luck, not verification. The floor is now
+`>=22.22.2` and CI Node is pinned to `22.23.2` exactly.
+
+---
+
+**Last Updated:** September 2026

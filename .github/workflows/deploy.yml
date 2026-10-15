@@ -31,16 +31,20 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          # Node 22, not 20. The test toolchain requires it: @testing-library/jest-dom 7
-          # declares `>=22`, undici 8 (via jsdom) declares `>=22.19.0`, and jsdom 30
-          # declares `^22.22.2 || ^24.15.0 || >=26.0.0` — stricter still, though the
-          # suite is verified passing on 22.18.0, so `engines` in package.json states
-          # the `>=22` floor we have actually tested rather than jsdom's declaration.
+          # Pinned EXACTLY, not `"22"`. The test toolchain's floor is jsdom 30, which
+          # declares `^22.22.2 || ^24.15.0 || >=26.0.0`; undici 8 (via jsdom) declares
+          # `>=22.19.0`. `package.json` `engines.node` is `>=22.22.2` to match.
           #
-          # On Node 20 all of these were EBADENGINE *warnings*, which npm does not
-          # fail on — so `npm ci` looked fine while `npm test` would break at runtime.
-          # Node 20 is also now deprecated on Actions runners.
-          node-version: "22"
+          # Raised from `"22"` in W6a (2026-09-03). The old floor was `>=22`, which
+          # admits 22.18.0 — the version this repo was developed on — so all 668 tests
+          # passed on an engine jsdom declares UNSUPPORTED. That is luck, not
+          # verification: an EBADENGINE is a warning npm does not fail on (no `.npmrc`,
+          # so `engine-strict` is off), so `npm ci` looked clean while the suite ran on
+          # an unsupported runtime. `"22"` on the runner also resolved to the latest
+          # 22.x unpinned, which is the same moving-target objection the CHANGELOG
+          # raises against caret ranges for linters. 22.23.2 is the current 22.x LTS
+          # security release (2026-07-29) and satisfies both declarations.
+          node-version: "22.23.2"
           cache: "npm"
 
       - name: Setup Pages
