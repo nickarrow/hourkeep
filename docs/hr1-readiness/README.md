@@ -2,13 +2,13 @@
 
 **The holistic home for this effort.** Open this file to remember where we are.
 
-**Last updated:** 2026-10-15 (W8a in progress)
-**Current wave:** **W8a (Print evidence export)** in progress since 2026-10-15 — the last pre-date wave.
-Its file is [`waves/wave-8a-print-evidence-export.md`](waves/wave-8a-print-evidence-export.md), written by
-re-verifying the combined `wave-8` file against the tree (which resolved the `evaluateMonth` open item: W8a
-delivers one call site, not W7b's combination logic). **W7a (Seasonal + income corrections)** closed
-2026-09-03. Progress against the gap analysis:
-**30 of 108 rows closed, 9 partial** — and note the total is **108, not the 81** that document's summary
+**Last updated:** 2026-10-15 (W8a closed)
+**Current wave:** none in progress — **W8a (Print evidence export)** closed 2026-10-15, the last pre-date
+wave. Everything above the line in `waves/README.md` § Sequence has now shipped. Its file is
+[`waves/wave-8a-print-evidence-export.md`](waves/wave-8a-print-evidence-export.md), written by re-verifying
+the combined `wave-8` file against the tree (which resolved the `evaluateMonth` open item: W8a delivers one
+call site, not W7b's combination logic). Progress against the gap analysis:
+**34 of 108 rows closed, 11 partial** — and note the total is **108, not the 81** that document's summary
 claimed until it was recounted
 
 > A first version of this line said W1 was next. Wrong: ADR-0009's reordering moved **W1 to the very end**,
@@ -365,7 +365,7 @@ Sequence and dependencies: [`waves/README.md`](waves/README.md).
 | [W2b](waves/wave-2b-policy-profile.md) | Policy profile | **Done** 2026-09-02 — `src/lib/policy/` with `FEDERAL_DEFAULT` over 36 fields, `incomeThreshold()` a function so it tracks the wage, `ReviewPeriodPolicy` a `Pick` of the profile, zero policy literals in non-test `src/`, 526 → 668 tests, 72 → 74 e2e. **30 of 33 criteria**; 4/4 reviewers. Gaps 15.6/15.7 answerable but uncalled → W9a |
 | W6a | Evidence capture | **Done** 2026-09-03 — `workProgram` type, work sub-kinds, education half-time cliff + credit conversion, community-service record schema, VA/SNAP-TANF document types. 9 gap rows closed, 1 partial (4.11→W7b), 4.5→W6b. **No Dexie bump** (`git diff db.ts` empty, still v6). 668 → **721** tests; 74 e2e. 4/4 reviewers; the multi-model semantic review caught a half-time false-shortfall at the form→summary join, since fixed. engines floor raised, `next` advisory recorded |
 | W7a | Seasonal + income corrections | **Done** 2026-09-03 — income sums actual amounts received (the live 4× false positive is gone, verified $600 not $2,598), pay-period multiplication demoted to a labeled estimate, seasonal window fixed to the 6 months preceding the assessed month, sparse history flagged. 5 gap rows closed, 2 partial. **No Dexie bump** (`git diff db.ts` empty, v6). 721 → **732** tests; 74 e2e. 4/4 reviewers; both semantic models caught the seasonal divisor (÷months-with-data overstated vs CMS's ÷6), since corrected |
-| W8a | Print evidence export | **Next** — the last pre-date wave. Open scope item: "one evaluation path" needs `evaluateMonth`, which does not exist (W7b's). Also inherits W7a's deferral: the export has no seasonal path yet (a seasonal worker's artifact prints a single-month comparison, not § 435.552(g)'s average) |
+| W8a | Print evidence export | **Done** 2026-10-15 — print-ready `/export/package` artifact (survives fax), a thin `evaluateMonth` single call site so the export cannot contradict the UI (gap 8.9), the seasonal average carried onto the artifact, exclusion-document storage + export, a PII warning, and 2028 document-gap flagging. 4 gap rows closed (8.1, 8.3, 8.7, 8.9), 2 partial (8.8 print-only → W8b; **8.5** storage+export only, capture UI → W4). **No Dexie bump** (`git diff db.ts` empty, v6 — `exemptionId` is unindexed). 770 → **778** tests; 74 → **88** e2e. 4/4 reviewers; the two-model semantic review returned NEEDS_CHANGES with 18 findings — the cross-table attachment-reference collision and the one-comparison-per-month regression were defects in the joins between layers, both fixed and re-verified in a 375px browser |
 
 **After the date**
 

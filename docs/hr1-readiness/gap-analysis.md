@@ -67,6 +67,25 @@ the arithmetic change) and 5.10 (per-month input works; the multi-month review-p
 5.11 (income-to-hours proxy) is untouched — **W7b**. The combined `wave-7` file's mode-fork removal and the
 `isCompliant`/`complianceStatus` renames are all **W7b**.
 
+**W8a (2026-10-15) closed:** 8.1, 8.3, 8.7, 8.9 — **4 rows** — and 8.8 PARTIAL. Each checked against the
+code and re-verified in a 375px browser. 8.1: the print-ready `/export/package` artifact plus the
+`submissionModalities` list read from the profile (§ 435.907(a), 91 FR 33396). 8.3: per-month document-gap
+flagging driven by `documentationRequiredFrom`, two-sided with § 435.557(b)(2)(iii)'s accept-other-info
+protection. 8.7: the package carries documents as real attachments with a namespaced manifest, apparent
+status with its citation, and the seasonal average — the evidence that was absent from both legacy paths.
+8.9: the export routes through the single evaluation path `evaluateMonth` and recomputes nothing (verified:
+a less-than-half-time education month prints 77.94h, not the raw 99). **8.8 PARTIAL** — the print surface
+decrypts via `getProfile` (no ciphertext), but the legacy JSON path still ships `dateOfBirth`/`medicaidId`
+as ciphertext; that path is **W8b**'s, left live by the owner's decision.
+**W8a marked partial:** 8.8 (print surface only; JSON → W8b) and **8.5** — the exclusion-document storage
+and export plumbing is complete and tested, but no UI writes `db.exemptions` or attaches an exclusion
+document, so the feature is not reachable end-to-end. The capture surface is **W4**'s (screening rebuild,
+post-date). Verified by grep: `saveScreening`/`saveExclusionDocument` have no production callers. Closing
+8.5 would repeat W2b's "answerable, not closed".
+**W8a consumed, not closed:** 8.4 (VA/SNAP-TANF document types) was closed by W6a; W8a renders them.
+**Not W8a:** 8.2 (representative may submit) → W9a; 8.6 (ex parte explanation) substantially met by W2a's
+`RequirementFacts`.
+
 > **W0 and W5 left no annotations in this file at all** — grep for `CLOSED W0`, `CLOSED W5`, `PARTIAL W0`,
 > `PARTIAL W5` returns **0**. That is the mechanism by which 15.6 and 15.7 sat assigned to a wave that
 > never mentioned them: the convention above exists, and two waves did not use it. Their rows have not
@@ -130,11 +149,13 @@ Counted by parsing the `Gap` and `Impact` columns of every row whose first cell 
 | W2b | 1 | 2 | 5.6 closed; 15.6 and 15.7 partial → W9a |
 | W6a | 9 | 1 | 4.1, 4.2, 4.3, 4.4, 4.6, 4.7, 8.4, 15.23, 15.24 closed; 4.11 partial → W7b. 4.5 reassigned → W6b. Each checked against the code 2026-09-03, not the wave file |
 | W7a | 5 | 2 | 5.4, 5.5, 5.7, 5.8, 5.9 closed; 5.1 and 5.10 partial. Checked against the code and in the browser 2026-09-03. 5.11 and the mode-fork/rename work are W7b |
-| **Total** | **30** | **9** | **70 rows untouched** |
+| W8a | 4 | 2 | 8.1, 8.3, 8.7, 8.9 closed; 8.8 and 8.5 partial. Checked against the code and in a 375px browser 2026-10-15. 8.4 consumed (W6a closed it). 8.2 → W9a. Four reviewers; the two-model semantic review caught the cross-table attachment-reference collision and the one-comparison-per-month regression, since fixed |
+| **Total** | **34** | **11** | **63 rows untouched** |
 
 The pre-date plan does not attempt all 108. W6a closed 9 of its 12 live rows, W7a closed 5 of its cluster
-(5.11 and the mode-fork work are W7b), W8a targets ~6 — so roughly **36–38 of 108** is the realistic
-position by December 1, and the remainder is deliberately post-date.
+(5.11 and the mode-fork work are W7b), W8a closed 4 (8.5 and the JSON half of 8.8 are post-date) — so
+**34 of 108 closed, 11 partial** is the position reached by December 1, and the remainder is deliberately
+post-date.
 | **Total `blocks`** | **17** |
 
 The 16 `contradicts` rows: 1.1, 1.3, 2.9, 2.10, 4.1, 4.3, 5.1, 5.2, 5.3, 5.4, 5.5, 5.8, 6.3, 8.8, 8.9,
@@ -275,15 +296,15 @@ priority. Two whole regimes required by the rule (hardship, noncompliance respon
 
 | # | Rule | HourKeep today | Gap | Impact |
 |---|---|---|---|---|
-| 8.1 | Must accept submissions via online, phone, mail, in person, other electronic | Export produces JSON and a plain-text report only. No print-ready or mail-ready artifact | `partial` | incomplete |
-| 8.2 | An adult in the household or family, or an authorized representative, may submit | Single-profile app, no representative concept | `missing` | incomplete |
-| 8.3 | **From Jan 1, 2028** documentation is required when reasonably available | No awareness of the date; no escalation of document prompting | `missing` | incomplete |
+| 8.1 | Must accept submissions via online, phone, mail, in person, other electronic | ~~Export produces JSON and a plain-text report only~~ · **CLOSED W8a** — the print-ready `/export/package` artifact (print → PDF, mail, fax, in person) names the channels from `profile.submissionModalities` (§ 435.907(a), 91 FR 33396) | `partial` | incomplete |
+| 8.2 | An adult in the household or family, or an authorized representative, may submit | Single-profile app, no representative concept. **→ W9a** (who-may-submit belongs with the notice-response workflow) | `missing` | incomplete |
+| 8.3 | **From Jan 1, 2028** documentation is required when reasonably available | ~~No awareness of the date; no escalation~~ · **CLOSED W8a** — the package flags months lacking documents, keyed to `documentationRequiredFrom`, two-sided with § 435.557(b)(2)(iii)'s accept-other-info protection | `missing` | incomplete |
 | 8.4 | Named reasonably-available documents: paystubs, community service letter, transcript/class schedule, VA document, SNAP/TANF approval | ~~missing VA and SNAP/TANF types~~ · **CLOSED W6a** — `va-disability` and `snap-tanf-approval` added to `DocumentType` and the metadata form (§ II.I.3 / § II.I.6, 91 FR 33399) | `partial` | incomplete |
-| 8.5 | Exclusion documentation | No exclusion-linked document capture. The `exemption-documentation` spec is 0/12 complete | `missing` | **blocks** |
+| 8.5 | Exclusion documentation | **PARTIAL W8a** — storage + export plumbing complete and tested (`Document.exemptionId`, `saveExclusionDocument`, cascade through `archiveScreening`/`deleteExclusionScreeningWithDocuments`, the package's exclusion section). **Not reachable end-to-end:** no UI writes `db.exemptions` or attaches an exclusion document → **W4** (screening rebuild) owns the capture surface | `missing` | **blocks** |
 | 8.6 | Ex parte first; user only asked when data is unavailable | HourKeep can't know what the State has, but it also never explains ex parte, so users may over-collect | `missing` | cosmetic |
-| 8.7 | Export must carry the evidence | `assessmentResults`, all four document tables, `exemptionHistory`, and `seasonalWorkerStatus` are **absent from both export paths** | `missing` | **blocks** |
-| 8.8 | — | JSON reads `db.profiles` directly, shipping `dateOfBirth` and `medicaidId` as ciphertext with no key | `contradicts` | harmful |
-| 8.9 | — | Readable report re-hardcodes `>= 80` / `>= 580`, **skips seasonal averaging**, and renders only one mode per month — so the report can contradict the UI | `contradicts` | **harmful** |
+| 8.7 | Export must carry the evidence | ~~`assessmentResults`, all four document tables, `exemptionHistory`, and `seasonalWorkerStatus` absent from both export paths~~ · **CLOSED W8a** — the print package carries documents as real attachments with a namespaced manifest, exclusion responses + their documents, apparent status with its citation, and the seasonal average. (Assessment-results projection and the JSON path's document tables stay with **W8b**) | `missing` | **blocks** |
+| 8.8 | — | **PARTIAL W8a** — the print surface decrypts `dateOfBirth`/`medicaidId` via `getProfile` (no ciphertext). The legacy **JSON** path still ships them as ciphertext → **W8b** (left live by the owner's decision) | `contradicts` | harmful |
+| 8.9 | — | ~~Readable report re-hardcodes `>= 80` / `>= 580`, skips seasonal averaging, and renders only one mode per month~~ · **CLOSED W8a** — both exports route through the single evaluation path `evaluateMonth`; a less-than-half-time education month prints the derived 77.94h (not raw 99), the seasonal average reaches the artifact, and the package renders both comparisons when both record types exist | `contradicts` | **harmful** |
 
 ## 9. Noncompliance (§ 435.558)
 

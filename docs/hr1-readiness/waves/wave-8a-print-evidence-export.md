@@ -312,3 +312,84 @@ source and in the browser before they count · gap rows struck with the wave num
 written in `gap-analysis.md`** (W0 and W5 skipped it, to real confusion) and the running total updated ·
 `git diff src/lib/db.ts` empty, `HourKeepDB` still v6 · `CHANGELOG.md` updated, led by what a user can see ·
 phone-viewport smoke test.
+
+## Convergence — what the review protocol found, 2026-10-15
+
+Four reviewers ran in parallel (non-adjudication, domain-fidelity, data-integrity via
+`bundled://investigate`; a two-model semantic review via `bundled://semantic-review-multi-model`,
+since `invoke_sub_agent` is unavailable in this environment). **Non-adjudication APPROVED;
+data-integrity APPROVED; domain-fidelity found the substance sound; the two-model semantic review
+returned NEEDS_CHANGES with 18 de-duplicated findings — and it was right.** Every finding was verified
+against the code before being acted on, and every user-visible fix was re-verified in a 375px browser via
+the Playwright MCP.
+
+**The recurring shape held a third time.** As on W6a and W7a, the three narrow reviewers each passed within
+their lens and the semantic review found the defects in the **joins between layers** — the artifact's
+rendering contract, the attachment-reference identity across two tables, the blob lifecycle across the
+consent boundary. A lens-partitioned review cannot see those by construction; the design-level pass follows
+the data. My own browser pass before the review missed all five High findings because the seed I used
+happened not to exercise them (one document per table, no month with both record types) — a reminder that a
+green manual check proves only what the fixture reached.
+
+**The five High findings, each verified then fixed:**
+
+- **Attachment references collided across two Dexie tables.** `documentReference` minted `DOC-${id}` for
+  both `db.documents` and `db.incomeDocuments`, which have independent `++id` sequences, so an activity
+  pay-stub and an income pay-stub both id `1` produced one reference, one React key, and one URL slot — the
+  agency artifact rendering one image twice and dropping the other, on the one surface whose purpose is
+  matching documents to claims. Fixed with a discriminated `TaggedDocument` and namespaced references
+  (`ACT-`/`INC-`/`EXC-`) threaded through the model, the URL map, and the renderer. Verified in-browser: an
+  activity doc id 1 and an income doc id 1 render as two distinct images under `ACT-1` and `INC-1`. Pinned
+  by an e2e spec with real `Blob` bytes — the exact thing jsdom cannot check.
+- **One comparison per month, mode heuristic, seasonal hid hours.** The package took no `complianceModes`
+  (while `buildTextReport` read the stored row — two sources of truth), rendered one branch, and tested
+  `isSeasonalWorker` before `mode`, so a seasonal worker's logged hours never reached the printed
+  comparison. Gap 8.9's "one mode per month" clause was reproduced in the new surface. Fixed: the package
+  takes `complianceModes`, renders both neutral comparisons when both record types exist, and seasonal is an
+  income-block modifier. Verified in-browser.
+- **Scope and consent.** Documents and exclusions were not period-scoped, and every blob was decoded on
+  mount before the PII warning. Fixed: metadata-only load on mount, blobs loaded for the selected months
+  after confirm.
+- **W6a's structured evidence was dropped from the artifact.** The HTML rows carried date/type/hours and at
+  most one organization name — not the community-service verification fields, work sub-kind, or education
+  status W6a added, which is exactly what a caseworker verifies against. The empty manifest vanished rather
+  than saying so, and there was no signature line. All fixed via a shared detail projection; honest empty
+  manifest; a plain signature-and-date line (ADR-0006's corrected shape — no attestation language).
+- **The text report's pre-evaluation fallback.** A no-profile database could still print the raw logged-hours
+  sum. The export page now always evaluates.
+
+**Medium/Low fixed, each recorded rather than waved through:** the "No record" line no longer asserts `$0`
+(#6); the empty stage lets exclusion-only evidence open the package (#7); `archiveScreening` now cascades
+exclusion documents, a real data-loss guard pinned by a test (#8); the federal-floor profile hedges its
+state elections on the artifact (#11); `OfflineIndicator`/`StorageWarning` are print-suppressed so a device
+banner never lands on a faxed record (#12); the seasonal window is interpolated, not a `6` literal (#13); the
+object-URL teardown no longer races an in-flight load (#14); the household hedge names its next action (#15);
+all dates are formatted (#16); a discriminated union replaced the `as unknown as Document[]` cast (#17).
+
+**Domain-fidelity's three FR-page corrections** (comments only, no user-facing effect), each re-checked
+against `2026-11094.txt`'s `[[FR p.NNNNN]]` markers: the credit-hour conversion is `91 FR 33470` not 33471
+(§ 435.552(d)(1)'s formula sits before the 33471 marker); the seasonal average is `91 FR 33471` not 33470
+(§ 435.552(g)); documentation hardening re-anchored to the **regulatory** pages `91 FR 33474-33475` rather
+than the preamble `33395`, matching the policy module (regulatory beats preamble, `engineering-standards.md`).
+
+**Verification coverage added (#9/#13).** `/export/package` joined `e2e/console-clean.spec.ts`'s route list
+(hydration + console — the bug class that shipped once, invisible to Vitest and `next dev`), and a focused
+`e2e/evidence-package.spec.ts` covers the PII gate ordering, the cross-table reference collision with real
+blobs, both comparisons for a month holding hours and income, print-media control suppression, and per-block
+fax self-identification. **74 → 88 e2e specs.**
+
+**Deliberately deferred, recorded rather than silently dropped:**
+
+- **Gap 8.5 is PARTIAL, not closed.** The storage and export plumbing is complete and tested
+  (`saveExclusionDocument`, `getDocumentsByExemption`, the cascade, the package's exclusion section), but
+  **nothing in the app writes `db.exemptions` and no UI attaches an exclusion document** — both semantic
+  models confirmed this by grep. The capture surface belongs to **W4** (the screening rebuild, post-date).
+  Closing 8.5 on this diff would repeat W2b's "answerable, not closed" error. The empty-stage fix means that
+  once W4 supplies the writer, exclusion-only evidence already opens and prints correctly.
+- **The legacy JSON/text exports** keep the W8b-owned ciphertext/documents gaps, left live by the owner's
+  decision (recorded above). The `deleteDocument` blob-then-metadata non-atomicity the data-integrity
+  reviewer flagged is **pre-existing** (verified against `917bcd1`), low-severity (a dangling metadata row,
+  not an unbounded orphan blob), and belongs to a future hardening ticket, not W8a.
+- **The `MonthSummary`/`MonthlyIncomeSummary.isCompliant` fields** remain on the nested summaries
+  `evaluateMonth` exposes; the export never reads them (verified: 0 `.isCompliant` reads in the export). The
+  rename is **W7b**'s, as the non-adjudication reviewer noted.

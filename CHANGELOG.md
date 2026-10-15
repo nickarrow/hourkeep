@@ -7,6 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added - An evidence package you can hand to your state (W8a)
+
+What a user can see:
+
+- **A print-ready record built for your state.** A new "Evidence Package" on the Export screen puts
+  everything together into one document you can print, save as a PDF, mail, fax, or bring in person — the
+  ways your state has to accept (42 CFR 435.907(a)). It's laid out to stay readable in black and white, and
+  every page repeats your name and case reference so a faxed packet can't get scrambled.
+- **Your pay stubs and letters travel with the record.** The package lists every document you added and
+  includes the photos themselves, so the evidence arrives with the month it supports instead of being left
+  behind by a "backup."
+- **The numbers match what the app shows you.** The record now works out your monthly totals the same way
+  the tracking screen does — including the school half-time rule and the seasonal six-month average — so the
+  page you hand in can't disagree with the page you looked at. For a seasonal worker it shows the average of
+  the months before the one under review, not that month's own pay (42 CFR 435.552(g)).
+- **It never says you passed or failed.** The package shows what you logged, the threshold, and the
+  difference, and says plainly that your state decides and that you can appeal. Where a month has no
+  documents, it says your state must still accept other information and can't turn you down just because a
+  document doesn't exist — the case that matters most for unpaid caregiving (42 CFR 435.557(b)(2)).
+- **A heads-up before you download.** Because the package includes your name, date of birth, and Medicaid
+  ID — your agency needs them — the app warns you first and reminds you to keep the file private.
+
+Under the hood: no database change — the one new link (attaching a document to an exclusion response) is
+unindexed data on an existing row, so your records survive untouched. A single evaluation path now feeds
+both the record and the screen. The ZIP and JSON formats, importing a backup, and attaching documents to an
+exclusion screening are deliberately left for later waves. Details and CFR/FR citations in
+`docs/hr1-readiness/waves/wave-8a-print-evidence-export.md`.
+
 ### Fixed - Income is now what you were actually paid (W7a)
 
 What a user can see:
