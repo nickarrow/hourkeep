@@ -78,10 +78,12 @@ export function DuplicateIncomeDialog({
             }}
           >
             <Typography variant="body1" fontWeight="bold">
-              {formatCurrency(entry.amount)} ({entry.payPeriod})
+              {formatCurrency(entry.amount)} received ({entry.payPeriod})
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Monthly equivalent: {formatCurrency(entry.monthlyEquivalent)}
+              {/* W7a (gap 5.4): the monthly figure is a personal estimate, not the
+                  compliance figure — label it so, matching the entry form and list. */}
+              ~{formatCurrency(entry.monthlyEquivalent)}/mo estimate
             </Typography>
             {entry.source && (
               <Typography variant="body2" color="text.secondary">

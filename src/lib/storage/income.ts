@@ -175,12 +175,21 @@ export async function getIncomeEntriesForLast6Months(
 export async function calculateSeasonalAverage(
   userId: string,
   currentMonth: string,
+  policy: PolicyProfile = FEDERAL_DEFAULT,
 ): Promise<{
   average: number;
   monthsWithData: number;
   history: Array<{ month: string; total: number; hasData: boolean }>;
 }> {
-  const months = getLast6Months(currentMonth);
+  // Window length from the profile, not a literal (ADR-0001; semantic review finding 8).
+  // The statutory fallback is 6 (42 CFR 435.552(g)); a state electing the
+  // reasonably-predictable-changes method (435.603(h)(3)) uses a different span, which is
+  // surfaced in copy. `seasonalMethod` is a discriminated union — both arms carry a span.
+  const windowMonths =
+    policy.seasonalMethod.kind === "preceding-average"
+      ? policy.seasonalMethod.months
+      : policy.seasonalMethod.windowMonths;
+  const months = getLast6Months(currentMonth, windowMonths);
   const history: Array<{ month: string; total: number; hasData: boolean }> = [];
   let totalIncome = 0;
   let monthsWithData = 0;
@@ -191,14 +200,23 @@ export async function calculateSeasonalAverage(
     const monthTotal = entries.reduce((sum, entry) => sum + entry.amount, 0);
     const hasData = entries.length > 0;
     history.push({ month, total: monthTotal, hasData });
-    if (hasData) {
-      totalIncome += monthTotal;
-      monthsWithData += 1;
-    }
+    totalIncome += monthTotal;
+    if (hasData) monthsWithData += 1;
   }
 
-  // Average over months WITH data (gap 5.9). Empty history → 0, never NaN.
-  const average = monthsWithData > 0 ? totalIncome / monthsWithData : 0;
+  // 42 CFR 435.552(g): the divisor is the WINDOW LENGTH (the preceding months in the
+  // window), not the number of months that happen to hold records. CMS's worked example
+  // divides $3,000 by 6 (= $500) even though only two months held income — the off-season
+  // months are genuine $0 months in the average. rule-extract.md § 2.7.
+  //
+  // The gap-5.9 defect was NOT the divisor — it was presenting unrecorded months as
+  // verified $0 rows. HourKeep cannot tell "the user earned $0" from "the user hasn't
+  // entered this month", so a thin history produces a low average that may understate a
+  // user who simply has not finished logging. The fix is honesty, not a different divisor:
+  // `monthsWithData` and each row's `hasData` let the UI mark blanks as "No record" and warn
+  // that they count as $0 until filled in, so the figure is the state's method AND the user
+  // is told how to make it right. Empty window → 0, never NaN.
+  const average = months.length > 0 ? totalIncome / months.length : 0;
 
   return { average, monthsWithData, history };
 }
@@ -215,12 +233,13 @@ export async function calculateSeasonalAverage(
  * into the previous year, which is the one piece of date arithmetic here and is covered by a
  * cross-year test.
  */
-function getLast6Months(currentMonth: string): string[] {
+function getLast6Months(currentMonth: string, windowMonths = 6): string[] {
   const months: string[] = [];
   const [year, month] = currentMonth.split("-").map(Number);
 
-  // i from 6 down to 1 → the six months before the assessed month, oldest first.
-  for (let i = 6; i >= 1; i--) {
+  // i from windowMonths down to 1 → the preceding months before the assessed month,
+  // oldest first. The default of 6 is the statutory fallback window (42 CFR 435.552(g)).
+  for (let i = windowMonths; i >= 1; i--) {
     const date = new Date(year, month - 1 - i, 1);
     const y = date.getFullYear();
     const m = String(date.getMonth() + 1).padStart(2, "0");
@@ -276,7 +295,7 @@ export async function getMonthlyIncomeSummary(
 
   let seasonalData;
   if (isSeasonalWorker) {
-    seasonalData = await calculateSeasonalAverage(userId, month);
+    seasonalData = await calculateSeasonalAverage(userId, month, policy);
   }
 
   const effectiveIncome = isSeasonalWorker

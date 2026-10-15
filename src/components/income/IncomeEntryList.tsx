@@ -45,11 +45,14 @@ export function IncomeEntryList({
           px: 2,
         }}
       >
+        {/* W7a (finding 12): the list is scoped to the viewed month, so "yet" / "first
+            entry" misleads a user with records in other months. Say it's this month. */}
         <Typography variant="h6" color="text.secondary" gutterBottom>
-          No income entries yet
+          No income recorded for this month
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Click the + button below to add your first income entry
+          Use the + button to add income for this month, or use the month arrows
+          above to look at another month.
         </Typography>
       </Box>
     );

@@ -91,8 +91,10 @@ removes the trap: the compliance figure is derived from the stored input at read
 - **Pay-period multiplication is no longer a compliance input.** `monthlyEquivalent` remains on the row and
   is shown on the entry form as a clearly-labeled personal estimate, not a compliance total. (gap 5.4)
 - **Seasonal averaging window excludes the assessed month** (gap 5.8): `getLast6Months` returns the 6
-  months *preceding* the assessed month, not the assessed month plus five. CMS's example: assessed July →
-  average December–May... (the review-period note below).
+  months *preceding* the assessed month, not the assessed month plus five. For an **assessed month of
+  July** the window is **January–June**. (CMS's December–May example is for *application* in July →
+  *assessed* month June → the six before June; see the two-step in "The seasonal off-by-one" below. Don't
+  conflate the two.)
 - **Sparse seasonal history is stated, not silently averaged** (gap 5.9): a month with no records is
   "no record", distinct from "$0 earned". The divisor and the copy handle an incomplete history explicitly
   rather than dividing by 6 and rendering `$0.00` rows as though verified.
@@ -157,6 +159,65 @@ build the multi-month review-period roll-up. Mark 5.10 partial.
 | Removing `monthlyEquivalent` from compliance reads *feels* like lost functionality | Keep it as a labeled personal estimate on the form; the entry still stores it. Explain why it is not the compliance figure |
 | Seasonal sparse-history handling could overstate (treating "no record" as a real low month pulls the average down, which is user-unfavourable) OR understate | Decide one semantics and state it in copy; a missing month is "we don't have this", not "$0 earned". Lean toward not averaging over months with no evidence rather than imputing $0 |
 | The `incomeBySource` third summing site is easy to miss | A test that stays green under a reduce-only fix (the characterization test already demonstrates this) |
+
+## Convergence — the review protocol, 2026-09-03
+
+Four reviewers ran in parallel (domain, non-adjudication, data-integrity via
+`bundled://investigate`; a two-model semantic review). **Non-adjudication APPROVED;
+data-integrity clean; domain-fidelity passed 5 of 6; the two-model semantic review returned
+NEEDS_CHANGES.** Both semantic models independently converged on the top findings, and the
+domain reviewer and I had independently reached the same conclusion on the biggest one.
+
+**The headline finding, and it was right: the seasonal divisor.** My first implementation
+divided the average by months-with-data rather than the statutory six, to avoid imputing $0
+for unrecorded months. The domain reviewer caught — and I had caught in parallel — that CMS's
+own worked example divides $3,000 by **6** (= $500) with only two months of income, so
+dividing by months-with-data overstates in the compliance-favourable direction, the harm
+ADR-0003 names. Fixed: the divisor is the window length; the *honesty* lives in the display
+("No record" for unrecorded months, a notice that they count as $0 and adding them raises the
+average), not in the arithmetic. A characterization test now pins CMS's exact example.
+
+Also fixed in convergence (each verified against the primary source and in the browser):
+- The sparse-history caption and its render-guard assertion, which had described the
+  abandoned months-with-data arithmetic.
+- `IncomeStatusIndicator` now carries incomplete-history provenance on the comparison
+  surface, not only the history card (finding 4).
+- The seasonal headline vs. source-period confusion: the breakdown is labeled "This month's
+  income sources" to distinguish it from the preceding-window average (finding 3).
+- The export regression test now uses a weekly fixture where `amount ≠ monthlyEquivalent`,
+  so a revert to summing the projection fails (finding 7).
+- The averaging window length reads from `policy.seasonalMethod`, not a literal `6`
+  (findings 8/9; ADR-0001).
+- The entry form defaults a new entry's date into the viewed month, and the empty state says
+  "this month" — the month-scoped list no longer saves silently outside the view (finding 12).
+- `DuplicateIncomeDialog` and the entry list label the monthly figure a personal estimate
+  (findings 5/11).
+
+**Deliberately deferred, recorded rather than dropped:**
+
+- **Finding 10 — the assessment projection still feeds the recommendation.**
+  `EstimationTools`' paycheck→monthly converter populates `responses.monthlyIncome`, which
+  `recommendationEngine` compares to the threshold. W7a **relabeled** the converter's output
+  as a personal estimate (copy, in scope), but the structural coupling — a projection used as
+  a compliance input — needs `recommendationEngine`'s input semantics changed, which is the
+  mode-fork rebuild **W7b** owns (ADR-0004). The wave file's open question is now decided:
+  relabel in W7a, re-plumb in W7b.
+- **Finding 2 (deeper half) — "confirmed $0" vs "unrecorded".** W7a makes the display honest
+  (blanks are "No record", counted as $0, with a notice) and stops an incomplete window
+  reading as a settled result. But modeling a *confirmed* zero-income month — letting a user
+  assert "I earned nothing in May" distinct from "I haven't entered May" — is a data-model
+  addition (the form rejects $0 today). That belongs with **W7b**'s status model, not W7a's
+  arithmetic. Recorded.
+- **Finding 6 — the export has no seasonal path.** `buildTextReport` prints the assessed
+  month's own total against the threshold, which is not § 435.552(g)'s comparison for a
+  seasonal worker. Carrying the seasonal average onto the artifact needs the single evaluation
+  path, which is **W8a**'s "one evaluation path" item (and W7a's non-seasonal export fix is
+  what W8a builds on). Both semantic reviewers agree it is W8a-scoped.
+
+**One correction to this file itself:** an earlier draft of the scope bullet said "assessed
+July → average December–May", conflating the two steps. For an **assessed month of July** the
+window is **January–June**; December–May is for *application* July → *assessed* June → the six
+before June. Corrected above (finding 7, GPT reviewer).
 
 ## Definition of done (from `waves/README.md`, with W7a specifics)
 

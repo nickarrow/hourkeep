@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed - Income is now what you were actually paid (W7a)
+
+What a user can see:
+
+- **Your monthly income is the money you actually received, not a projection.** Before, logging four
+  weekly $150 paychecks showed ~$2,598 for the month and told you that you were well over the $580
+  threshold — when your real income was $600. That was a reassuring error in the most dangerous
+  direction: it could tell someone who is short that they are fine, so they stop logging and miss a
+  notice. Now the month totals the actual amounts you were paid ($600), which is what your state measures.
+  42 CFR 435.552(f).
+- **The pay-period "monthly equivalent" is now clearly a personal estimate.** It still shows on an entry
+  so you can see what a paycheck this size works out to, but it is labeled as an estimate — your state
+  works the month out its own way, and what counts is the amounts you were paid.
+- **Seasonal averaging covers the right months.** For seasonal workers the average now looks at the six
+  months *before* the month being checked, not including it (the rule excludes the month under review).
+  And a month you have not recorded reads "No record" rather than "$0", so a partial history is not
+  silently treated as low income — the app says the average is based on the months you have and points you
+  to your state. 42 CFR 435.552(g).
+- **Seasonal work is described the way the law describes it** — with examples (farm work, holiday retail)
+  rather than an invented "6 months or less per year" rule that was never in the regulation.
+
+Under the hood: no database change. The fix is in how income is read, not stored. The hours/income mode
+fork, the income-to-hours proxy, and the verdict-field renames are deliberately left for a later wave
+(W7b). Details and CFR/FR citations in `docs/hr1-readiness/waves/wave-7a-seasonal-income-corrections.md`.
+
 ### Added - Evidence capture that matches the rule (W6a)
 
 What a user can see:

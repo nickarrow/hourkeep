@@ -27,9 +27,20 @@ export function IncomeStatusIndicator({ summary }: IncomeStatusIndicatorProps) {
     amountNeeded,
     isSeasonalWorker,
     seasonalAverage,
+    seasonalHistory,
+    seasonalMonthsWithData,
     incomeBySource,
     entryCount,
   } = summary;
+
+  // W7a (semantic review finding 4): the headline comparison is the seasonal average, but
+  // this surface previously had no way to say the average rests on a partial history. An
+  // incomplete window counts unrecorded months as $0, so the figure is a floor.
+  const seasonalHistoryIncomplete =
+    isSeasonalWorker &&
+    seasonalHistory !== undefined &&
+    seasonalMonthsWithData !== undefined &&
+    seasonalMonthsWithData < seasonalHistory.length;
 
   // Use seasonal average if applicable, otherwise use total income
   const effectiveIncome =
@@ -167,7 +178,19 @@ export function IncomeStatusIndicator({ summary }: IncomeStatusIndicatorProps) {
             sx={{ mb: 1 }}
           />
           <Typography variant="caption" color="text.secondary" display="block">
-            Your income is averaged over the past 6 months
+            {/* W7a: the window is the 6 months BEFORE the month being reviewed, not
+                "the past 6 months" (which reads as including it). 42 CFR 435.552(g). */}
+            Your income is averaged over the 6 months before the one being
+            reviewed. Your state may work this out over a different stretch.
+            {seasonalHistoryIncomplete && (
+              <>
+                {" "}
+                {/* finding 4: the comparison surface, not only the history card,
+                    acknowledges that unrecorded months count as $0 here. */}
+                You&apos;ve recorded {seasonalMonthsWithData} of those months,
+                so this is a floor — adding the rest can only raise it.
+              </>
+            )}
           </Typography>
         </Box>
       )}
@@ -207,8 +230,13 @@ export function IncomeStatusIndicator({ summary }: IncomeStatusIndicatorProps) {
       {incomeBySource && incomeBySource.length > 0 && (
         <Box>
           <Typography variant="subtitle2" gutterBottom color="text.secondary">
-            Income Sources: {entryCount}{" "}
-            {entryCount === 1 ? "entry" : "entries"}
+            {/* W7a: in seasonal mode the headline above is the preceding-window AVERAGE,
+                but this breakdown is THIS MONTH's recorded sources. Name the period so the
+                two figures are not read as the same thing (semantic review finding 3). */}
+            {isSeasonalWorker
+              ? "This month's income sources"
+              : "Income Sources"}
+            : {entryCount} {entryCount === 1 ? "entry" : "entries"}
           </Typography>
           <Box sx={{ pl: 2 }}>
             {incomeBySource.map((source, index) => (

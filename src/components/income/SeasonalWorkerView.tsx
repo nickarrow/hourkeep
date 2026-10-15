@@ -51,8 +51,8 @@ export interface SeasonalWorkerViewProps {
  * Uses a simple list view for mobile-friendliness and accessibility.
  *
  * Features:
- * - Shows income for each of the past 6 months
- * - Displays calculated 6-month average
+ * - Shows income for each of the 6 months preceding the assessed month (which is excluded)
+ * - Displays the average over that window
  * - Shows compliance status based on average
  * - Help text explaining 6-month averaging
  * - Mobile-optimized layout
@@ -184,13 +184,13 @@ export function SeasonalWorkerView({
 
           {incompleteHistory && (
             <Typography variant="caption" color="text.secondary">
-              {/* W7a (gap 5.9): the average is over the {monthsWithData} month(s) you've
-                  recorded, not all {history.length}. Say so rather than dividing a thin
-                  history by six and showing it as settled. */}
-              This average is based on the {monthsWithData} month
-              {monthsWithData === 1 ? "" : "s"} you&apos;ve recorded, not a full{" "}
-              {history.length}. Add the other months if you have them, or ask
-              your state how it works your average out.
+              {/* W7a (gap 5.9): the divisor is the full window (42 CFR 435.552(g) and
+                  CMS's ÷6 example), so months with no record count as $0 and pull the
+                  average DOWN — honest about the arithmetic without imputing income. */}
+              You&apos;ve recorded {monthsWithData} of these {history.length}{" "}
+              months. The ones marked &quot;No record&quot; count as $0 in this
+              average, so adding any income you haven&apos;t logged will raise
+              it. Ask your state how it works your average out.
             </Typography>
           )}
         </Box>
@@ -241,6 +241,16 @@ export function SeasonalWorkerView({
                 months. Your state counts your whole household&apos;s income
                 here, not just yours, and it may work the average out over a
                 different stretch — ask what it has on file.
+                {incompleteHistory && (
+                  <>
+                    {" "}
+                    {/* W7a (semantic review finding 2): an incomplete window counts the
+                        unrecorded months as $0, so this average is a floor, not a settled
+                        figure — do not let the "at or over" read as certain. */}
+                    This counts the months you haven&apos;t recorded as $0, so
+                    it may change once you add them.
+                  </>
+                )}
               </Typography>
             </Alert>
           ) : (
@@ -255,12 +265,21 @@ export function SeasonalWorkerView({
                   {formatCurrency(INCOME_THRESHOLD)} · Difference:{" "}
                   {formatCurrency(INCOME_THRESHOLD - average)}
                 </strong>
-                <br />A shortfall here isn&apos;t wasted: some states credit
-                income below the threshold as hours, which you can add other
-                activities on top of. Your state counts your whole
-                household&apos;s income too, which is often more than your own.
-                Ask them what they have on file and how they work out your
-                average.
+                <br />
+                {incompleteHistory && (
+                  <>
+                    {/* W7a (semantic review finding 2): the unrecorded months count as $0,
+                        so a user who simply hasn't logged everything can look short when
+                        they are not. Say so before the shortfall framing. */}
+                    This counts the months you haven&apos;t recorded as $0, so
+                    adding them may raise it.{" "}
+                  </>
+                )}
+                A shortfall here isn&apos;t wasted: some states credit income
+                below the threshold as hours, which you can add other activities
+                on top of. Your state counts your whole household&apos;s income
+                too, which is often more than your own. Ask them what they have
+                on file and how they work out your average.
               </Typography>
             </Alert>
           )}

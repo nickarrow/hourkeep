@@ -33,6 +33,9 @@ import { HourTrackingHelpIcon } from "@/components/help/HourTrackingHelp";
 import { IncomeStatusIndicator } from "@/components/income/IncomeStatusIndicator";
 import { SeasonalWorkerView } from "@/components/income/SeasonalWorkerView";
 import { ActivityForm } from "@/components/ActivityForm";
+import { IncomeEntryList } from "@/components/income/IncomeEntryList";
+import { IncomeEntryForm } from "@/components/income/IncomeEntryForm";
+import type { IncomeEntry } from "@/types/income";
 import {
   applicationReviewPeriod,
   renewalReviewPeriodEndingAt,
@@ -984,8 +987,9 @@ describe("SeasonalWorkerView — 42 CFR 435.552(g), the seasonal averaging surfa
     // gap 5.9: only two of the six window months hold records. The empty months must read
     // "No record" (not "$0"), and the average must be flagged as based on partial history.
     const sparse = {
-      average: 650,
-      isCompliant: true,
+      // $1,300 recorded over two months ÷ the full 6-month window = $216.67 (not ÷2).
+      average: 216.67,
+      isCompliant: false,
       monthsWithData: 2,
       history: [
         { month: "2026-01", total: 0, hasData: false },
@@ -999,7 +1003,8 @@ describe("SeasonalWorkerView — 42 CFR 435.552(g), the seasonal averaging surfa
     render(<SeasonalWorkerView {...sparse} />);
     const text = normaliseForGuard(document.body.textContent ?? "");
     expect(text).toMatch(/No record/);
-    expect(text).toMatch(/based on the 2 months you'?ve recorded/i);
+    expect(text).toMatch(/recorded 2 of these 6 months/i);
+    expect(text).toMatch(/count as \$0 in this average/i);
     expectNoVerdict("SeasonalWorkerView (sparse history)");
   });
 });
@@ -1071,5 +1076,92 @@ describe("ActivityForm — W6a's new capture surface, every activity type and br
     fireEvent.click(screen.getByText("Education", { exact: true }));
     fireEvent.click(screen.getByLabelText("I'm not sure"));
     expectNoVerdict("ActivityForm (education, unknown)");
+  });
+});
+
+describe("Income entry surfaces — W7a changed copy here, so they join the render guard", () => {
+  // The W7a non-adjudication review flagged that IncomeEntryList and IncomeEntryForm carry
+  // W7a's new strings ("$X received", "rough monthly estimate", "personal estimate only")
+  // but were only in the source scan, not the mounted guard. The W2b lesson: extending a
+  // guard does not exempt the files that newly carry copy. Mounted here in each state.
+  const incomeEntry = (over: Partial<IncomeEntry> = {}): IncomeEntry => ({
+    id: 1,
+    userId: "user-1",
+    date: "2026-07-10",
+    amount: 150,
+    payPeriod: "weekly",
+    monthlyEquivalent: 649.5,
+    source: "Diner",
+    createdAt: NOW,
+    updatedAt: NOW,
+    ...over,
+  });
+
+  describe("IncomeEntryList", () => {
+    it("renders no verdict for a populated list", () => {
+      render(
+        <IncomeEntryList
+          entries={[
+            incomeEntry(),
+            incomeEntry({ id: 2, payPeriod: "monthly" }),
+          ]}
+          onEdit={noop}
+          onDelete={noop}
+          onDuplicate={noop}
+        />,
+      );
+      expectNoVerdict("IncomeEntryList (populated)");
+    });
+
+    it("renders no verdict for the empty state", () => {
+      render(
+        <IncomeEntryList
+          entries={[]}
+          onEdit={noop}
+          onDelete={noop}
+          onDuplicate={noop}
+        />,
+      );
+      expectNoVerdict("IncomeEntryList (empty)");
+    });
+
+    it("shows the amount received, with the monthly figure marked an estimate", () => {
+      // W7a positive twin: the actual amount is the headline; the projection is labeled
+      // an estimate, not a compliance figure (gap 5.4).
+      render(
+        <IncomeEntryList
+          entries={[incomeEntry()]}
+          onEdit={noop}
+          onDelete={noop}
+          onDuplicate={noop}
+        />,
+      );
+      const text = renderedText();
+      expect(text).toMatch(/\$150(\.00)? received/i);
+      expect(text).toMatch(/estimate/i);
+    });
+  });
+
+  describe("IncomeEntryForm", () => {
+    const formProps = {
+      open: true,
+      onClose: noop,
+      onSave: async () => undefined,
+      selectedDate: new Date("2026-07-10T00:00:00"),
+      userId: "user-1",
+    };
+
+    it("renders no verdict when adding a new entry", () => {
+      render(<IncomeEntryForm {...formProps} />);
+      expectNoVerdict("IncomeEntryForm (new)");
+    });
+
+    it("labels the monthly equivalent a personal estimate, not a compliance figure", () => {
+      // gap 5.4: the pay-period projection must not read as the figure that counts.
+      render(<IncomeEntryForm {...formProps} existingEntry={incomeEntry()} />);
+      const text = renderedText();
+      expect(text).toMatch(/estimate/i);
+      expectNoVerdict("IncomeEntryForm (editing)");
+    });
   });
 });

@@ -58,6 +58,15 @@ inputs is not building the combiner; calling 4.11 closed would repeat W2b's "ans
 `→ W6b, v8` annotation was wrong (it assumed a migration that the no-bump resolution disproved); 4.1 is
 closed here with no v8.
 
+**W7a (2026-09-03) closed:** 5.4, 5.5, 5.7, 5.8, 5.9 — **5 rows**. Each checked against the code and in
+the browser: `getMonthlyIncomeSummary` sums actual `amount` (5.4, 5.5) at all four summing sites;
+`getLast6Months` returns the 6 months preceding the assessed month, exclusive (5.8); `calculateSeasonalAverage`
+divides by months-with-data and flags sparse history (5.9); `SeasonalWorkerHelp` dropped the invented closed
+test (5.7). **W7a marked partial:** 5.1 (household data model stays Deferred per ADR-0003 — the copy survives
+the arithmetic change) and 5.10 (per-month input works; the multi-month review-period roll-up is **W7b**).
+5.11 (income-to-hours proxy) is untouched — **W7b**. The combined `wave-7` file's mode-fork removal and the
+`isCompliant`/`complianceStatus` renames are all **W7b**.
+
 > **W0 and W5 left no annotations in this file at all** — grep for `CLOSED W0`, `CLOSED W5`, `PARTIAL W0`,
 > `PARTIAL W5` returns **0**. That is the mechanism by which 15.6 and 15.7 sat assigned to a wave that
 > never mentioned them: the convention above exists, and two waves did not use it. Their rows have not
@@ -120,13 +129,12 @@ Counted by parsing the `Gap` and `Impact` columns of every row whose first cell 
 | W5 | 5 | 0 | 6.4, 7.1, 7.2, 7.3, 7.4 — each checked against the code on 2026-09-02, not taken from the wave file: `month` is now a required parameter in `calculateMonthlySummary`, and `reviewPeriod.ts` exports `applicationReviewPeriod`, `renewalReviewPeriod`, `requiresConsecutiveMonths` and `newlyApplicableReviewPeriod` (§ 435.556(a)(2)(iii), which is 7.4) |
 | W2b | 1 | 2 | 5.6 closed; 15.6 and 15.7 partial → W9a |
 | W6a | 9 | 1 | 4.1, 4.2, 4.3, 4.4, 4.6, 4.7, 8.4, 15.23, 15.24 closed; 4.11 partial → W7b. 4.5 reassigned → W6b. Each checked against the code 2026-09-03, not the wave file |
-| **Total** | **25** | **8** | **75 rows untouched** |
+| W7a | 5 | 2 | 5.4, 5.5, 5.7, 5.8, 5.9 closed; 5.1 and 5.10 partial. Checked against the code and in the browser 2026-09-03. 5.11 and the mode-fork/rename work are W7b |
+| **Total** | **30** | **9** | **70 rows untouched** |
 
-The pre-date plan does not attempt all 108. W6a closed **9** of the 12 live rows it owned (4.9/4.10 were
-already W2a's, 4.8 was `ok`), W7a targets 7, W8a 6 — so roughly **38 of 108** is the realistic position
-by December 1, and the remainder is deliberately post-date. (W6a's own range in `waves/README.md` printed
-"4.1–4.7, 4.9–4.11, 8.4, 15.23, 15.24"; 4.5 moved to W6b and 4.11 is partial, so the closed count is 9,
-not 13.)
+The pre-date plan does not attempt all 108. W6a closed 9 of its 12 live rows, W7a closed 5 of its cluster
+(5.11 and the mode-fork work are W7b), W8a targets ~6 — so roughly **36–38 of 108** is the realistic
+position by December 1, and the remainder is deliberately post-date.
 | **Total `blocks`** | **17** |
 
 The 16 `contradicts` rows: 1.1, 1.3, 2.9, 2.10, 4.1, 4.3, 5.1, 5.2, 5.3, 5.4, 5.5, 5.8, 6.3, 8.8, 8.9,
@@ -206,13 +214,13 @@ priority. Two whole regimes required by the rule (hardship, noncompliance respon
 | 5.1 | Income = **MAGI-based income for the MAGI-based household** (§ 435.603(d)(e)(f)) | Individual earned income from pay stubs · **PARTIAL W2a** — copy now states the household basis, asks the three screener questions, and defers the total. **Still open:** no household concept in the data model, by design (→ **W4** questions, and the total stays Deferred permanently per ADR-0003) | `contradicts` | **harmful** |
 | 5.2 | Countable income includes **unearned** income — unemployment, taxable interest/dividends, rental, SSDI | ~~`helpText.ts:incomeDefinitions.threshold.whatDoesNotCount` lists SSDI, unemployment, investment, and rental income as **not counting**~~ · **CLOSED W2a** — all four moved to `whatCounts`, **plus tax-exempt interest**, which the rule text adds back under 26 U.S.C. 36B(d)(2)(B) and this row itself understated by saying only "taxable". `whatDoesNotCount` kept, fixed entry by entry, now exactly 3 entries | `contradicts` | **harmful** |
 | 5.3 | Household-wide: a spouse's income counts; a tax dependent uses the claiming taxpayer's household | No household concept · **PARTIAL W2a** — the married-spouse false negative is now surfaced as an explicit edge case, and the two-sided message (floor for this pathway, separate 133% FPL ceiling → Marketplace) is stated. **Still open:** the screener questions themselves (→ **W4**) | `contradicts` | **harmful** — produces false negatives for married users |
-| 5.4 | No pay-period conversion exists in the rule. States determine a monthly figure via existing MAGI methodology | `PAY_PERIOD_MULTIPLIERS` = `{daily: 30, weekly: 4.33, "bi-weekly": 2.17, monthly: 1}`, applied per entry | `contradicts` | **harmful** |
-| 5.5 | — | Monthly total sums `monthlyEquivalent` **across every entry**, so four weekly paychecks report ~$2,598 instead of ~$650 | `contradicts` | **harmful** |
+| 5.4 | No pay-period conversion exists in the rule. States determine a monthly figure via existing MAGI methodology | ~~`PAY_PERIOD_MULTIPLIERS` applied per entry as a compliance input~~ · **CLOSED W7a** — pay-period multiplication is no longer a compliance input; `totalIncome` sums actual `amount` received, and `monthlyEquivalent` survives only as a labeled personal estimate on the entry form/list | `contradicts` | **harmful** |
+| 5.5 | — | ~~Monthly total sums `monthlyEquivalent` **across every entry**, so four weekly paychecks report ~$2,598~~ · **CLOSED W7a** — `totalIncome` sums actual `amount` received (verified $600 in the browser), fixed at all **four** summing sites (two reduces + the `incomeBySource` accumulator + `buildTextReport`). The live reassuring false positive is gone | `contradicts` | **harmful** |
 | 5.6 | Threshold = `federalMinimumWage × 80`, dynamic; tipped/youth/State wages prohibited | ~~`INCOME_THRESHOLD` derives correctly from constants, but `580` is also hardcoded in the engine, results page, `GettingStartedContextual`, and export~~ · **CLOSED W2b** — the threshold is now `incomeThreshold(profile)`, a function over `federalMinimumWage × requiredHours`, so it tracks a mutated wage rather than merely equalling 580 (a test asserts exactly that). **This row's own site list was short by ten files:** the real count was **60 lines across 14 files**, and the scan that verified it was blind to `$` so it missed a further **22 literals across 4 files** — see the note below. Zero policy literals now remain in non-test `src/`, pinned by an in-CI scan over 20 files plus `scripts/compliance-gate.sh` (17 → **0**). The tipped/youth/higher-State prohibition is recorded at `federalDefault.ts:118` and `derive.ts:28` but **not surfaced to users**, deliberately: it constrains the State, not the user | `partial` | incomplete |
-| 5.7 | Seasonal worker per 26 U.S.C. 45R(d)(5)(B) / 29 CFR 500.20(s)(1) — seasonal-basis labour **and** holiday retail, as **inclusive examples, not a closed test**. The IFC sets **no verification rule** for seasonal-worker status | ~~Self-declared toggle plus a question about "seasonal work (construction, agriculture, tourism)"~~ · **PARTIAL W2a** — `SeasonalWorkerToggle.tsx:47` invented a "6 months or less per year" threshold that is nowhere in the rule; removed. **Still open:** the averaging window includes the assessed month (→ **W7a**, rows 5.4/5.5) | `partial` | harmful |
-| 5.8 | Average over the **6 months preceding** the assessed month — assessed month **excluded** | `getLast6Months` returns the current month **plus five prior** | `contradicts` | **harmful** |
-| 5.9 | Divisor is 6, but most States instead use a **reasonably-predictable-changes proration** | Always divides by 6, including months with no data — a 6× understatement in month one, shown as `$0.00` rows as though verified | `partial` | harmful |
-| 5.10 | Income evaluated **per month of the review period** | Only the current month | `partial` | blocks |
+| 5.7 | Seasonal worker per 26 U.S.C. 45R(d)(5)(B) / 29 CFR 500.20(s)(1) — seasonal-basis labour **and** holiday retail, as **inclusive examples, not a closed test**. The IFC sets **no verification rule** for seasonal-worker status | ~~Self-declared toggle; invented "6 months or less per year" threshold~~ · PARTIAL W2a (toggle) · **CLOSED W7a** — the residual "6 months or less per year" closed test in `SeasonalWorkerHelp.tsx` is replaced with the rule's inclusive-examples framing, and the averaging window is fixed (5.8) | `partial` | harmful |
+| 5.8 | Average over the **6 months preceding** the assessed month — assessed month **excluded** | ~~`getLast6Months` returns the current month **plus five prior**~~ · **CLOSED W7a** — the window is now the 6 months preceding the assessed month, exclusive (assessed October → April–September). Verified in the browser; the assessed month can no longer inflate its own average | `contradicts` | **harmful** |
+| 5.9 | Divisor is 6, but most States instead use a **reasonably-predictable-changes proration** | ~~Always divides by 6 while showing unrecorded months as verified `$0.00` rows~~ · **CLOSED W7a** — the divisor stays the window length (÷6, matching CMS's $3,000 ÷ 6 = $500 example, 42 CFR 435.552(g)); the fix is honesty, not a different divisor: unrecorded months read "No record" not "$0", and a notice says those months count as $0 and adding them raises the average. The reasonably-predictable-changes alternative is named as a state election in copy; the window length comes from `policy.seasonalMethod` | `partial` | harmful |
+| 5.10 | Income evaluated **per month of the review period** | Only the current month · **PARTIAL W7a** — the month is an explicit input and a past month evaluates correctly, but the multi-month review-period roll-up is the same shape as the combination engine → **W7b** | `partial` | blocks |
 | 5.11 | **Income-to-hours proxy**: `income ÷ FMW` credited as work hours, combinable | Not implemented. Hours and income are mutually exclusive per month | `stricter` | **harmful** |
 
 > ### Row 5.6 closed, and the instrument that verified it was broken — W2b, 2026-09-02

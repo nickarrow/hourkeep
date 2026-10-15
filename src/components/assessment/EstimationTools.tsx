@@ -235,18 +235,25 @@ export function IncomeConverter({ onUseValue }: IncomeConverterProps) {
               }}
             >
               <Typography variant="body2" color="text.secondary">
-                Monthly income:
+                {/* W7a (gap 5.4): this is a rough ESTIMATE for the assessment, not a
+                    compliance figure. The rule prescribes no pay-period conversion; your
+                    state works the month out its own way. The deeper coupling — this value
+                    feeds responses.monthlyIncome, which recommendationEngine compares to the
+                    threshold — is W7b's to unpick with the mode fork (ADR-0004). */}
+                Rough monthly estimate:
               </Typography>
               <Typography variant="h6" color="primary.main">
                 ${monthlyEquivalent}
               </Typography>
               <Typography variant="caption" color="text.secondary">
-                Calculated: ${paycheckAmount} × {multipliers[frequency]}{" "}
+                A personal estimate — ${paycheckAmount} ×{" "}
+                {multipliers[frequency]}{" "}
                 {frequency === "monthly"
                   ? ""
                   : frequency === "biweekly"
                     ? "pay periods/month"
                     : "weeks/month"}
+                . Your state works out the month its own way.
               </Typography>
             </Box>
           )}

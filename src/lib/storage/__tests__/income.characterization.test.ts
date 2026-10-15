@@ -442,7 +442,11 @@ describe("W7a: sparse seasonal history averages over months WITH DATA, and flags
   // rather than presenting a thin average as if it were verified.
   // ───────────────────────────────────────────────────────────────────────────
 
-  it("gap 5.9: one month of $3,000 averages to $3,000, not $500", async () => {
+  it("gap 5.9: the divisor is the window length (6), matching CMS's worked example", async () => {
+    // 42 CFR 435.552(g), rule-extract.md § 2.7: CMS divides $3,000 by 6 (= $500) even
+    // though only one/two months hold income — off-season months are genuine $0s in the
+    // average. The W7a fix is NOT a different divisor; it is the honesty layer below
+    // (`monthsWithData` + `hasData`) so an unrecorded month is not shown as a verified $0.
     await saveIncomeEntry(entry("2026-05-10", 3000, "monthly"));
 
     const { average, monthsWithData } = await calculateSeasonalAverage(
@@ -450,8 +454,8 @@ describe("W7a: sparse seasonal history averages over months WITH DATA, and flags
       "2026-07",
     );
 
-    expect(average).toBe(3000); // 3000 / 1, not 3000 / 6
-    expect(monthsWithData).toBe(1);
+    expect(average).toBe(500); // 3000 / 6, the state's method
+    expect(monthsWithData).toBe(1); // but only one month actually holds a record
   });
 
   it("gap 5.9: a month with no entries is marked hasData:false, distinct from a $0 month", async () => {
@@ -463,6 +467,22 @@ describe("W7a: sparse seasonal history averages over months WITH DATA, and flags
     const may = history.find((h) => h.month === "2026-05");
     expect(june).toMatchObject({ total: 600, hasData: true });
     expect(may).toMatchObject({ total: 0, hasData: false });
+  });
+
+  it("§ 435.552(g), 91 FR 33363: CMS's worked example — 2 months at $1,500 ÷ 6 = $500, below $580", async () => {
+    // The rule's own worked example (rule-extract.md § 2.7, 2026-11094.txt:702): a seasonal
+    // worker with two $1,500 months in the preceding window averages $3,000 ÷ 6 = $500,
+    // which is below the $580 threshold → not demonstrating for the assessed month. Pinning
+    // the divisor to CMS's example rather than to a house choice. Assessed July → the two
+    // income months fall in the Jan–Jun window.
+    await setSeasonalWorkerStatus(USER, "2026-07", true);
+    await saveIncomeEntry(entry("2026-05-10", 1500, "monthly"));
+    await saveIncomeEntry(entry("2026-06-10", 1500, "monthly"));
+
+    const summary = await getMonthlyIncomeSummary(USER, "2026-07");
+
+    expect(summary.seasonalAverage).toBe(500); // 3000 / 6, not 3000 / 2
+    expect(summary.isCompliant).toBe(false); // 500 < 580
   });
 
   it("a full six-month history averages over six", async () => {

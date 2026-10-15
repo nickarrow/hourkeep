@@ -385,3 +385,47 @@ describe("W6a: the export carries the structured evidence a caseworker needs", (
     expect(report).toMatch(/in-kind work/);
   });
 });
+
+describe("W7a: the export sums actual amounts received, not monthly projections", () => {
+  // The W7a semantic review (finding 6) caught that the shared income() helper sets
+  // amount === monthlyEquivalent, so the existing income-block tests could not tell a
+  // reverted reducer. This fixture makes them DIFFER.
+  function weekly(date: string): IncomeEntry {
+    return {
+      userId: "user-1",
+      date,
+      amount: 150,
+      payPeriod: "weekly",
+      monthlyEquivalent: 649.5, // the projection the old code summed
+      source: "Diner",
+      createdAt: NOW,
+      updatedAt: NOW,
+    };
+  }
+
+  it("gap 5.5: four weekly $150 paychecks log $600.00, never $2,598.00", async () => {
+    const report = build({
+      incomeEntries: [
+        weekly("2026-07-03"),
+        weekly("2026-07-10"),
+        weekly("2026-07-17"),
+        weekly("2026-07-24"),
+      ],
+      complianceModes: [mode("2026-07", "income")],
+    });
+
+    expect(report).toContain("Logged: $600.00"); // 4 × $150 actual
+    expect(report).not.toContain("2,598"); // 4 × $649.50 projection
+    expect(report).not.toContain("2598");
+  });
+
+  it("gap 5.4: a per-entry line shows the amount received, never the monthly projection", async () => {
+    const report = build({
+      incomeEntries: [weekly("2026-07-03")],
+      complianceModes: [mode("2026-07", "income")],
+    });
+
+    expect(report).toContain("$150.00 received");
+    expect(report).not.toContain("649.50"); // the projection stays off the agency artifact
+  });
+});

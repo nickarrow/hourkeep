@@ -39,6 +39,19 @@ interface IncomeDashboardProps {
   onSeasonalWorkerToggle: (checked: boolean) => void;
 }
 
+/**
+ * A sensible default date for a NEW entry in the viewed month — W7a (finding 12).
+ * Today when the user is on the real current month, otherwise the 1st of the viewed month,
+ * so a saved entry always lands inside the month-scoped list. Local time, no UTC parse.
+ */
+function defaultDateForMonth(month: string): Date {
+  const now = new Date();
+  const currentRealMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
+  if (month === currentRealMonth) return now;
+  const [y, m] = month.split("-").map(Number);
+  return new Date(y, m - 1, 1);
+}
+
 export function IncomeDashboard({
   userId,
   currentMonth,
@@ -356,7 +369,10 @@ export function IncomeDashboard({
         onClose={handleCloseForm}
         onSave={handleSaveEntry}
         onDelete={editingEntry ? handleDeleteFromForm : undefined}
-        selectedDate={new Date()} // Default to today
+        // W7a (semantic review finding 12): default a NEW entry's date into the month the
+        // user is viewing, not today. The list is now scoped to currentMonth, so defaulting
+        // to today would save an entry outside the list the user is looking at, silently.
+        selectedDate={defaultDateForMonth(currentMonth)}
         existingEntry={editingEntry}
         userId={userId}
       />
