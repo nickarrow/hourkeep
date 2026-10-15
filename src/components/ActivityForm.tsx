@@ -50,6 +50,7 @@ import {
 } from "@/types";
 import { ACTIVITY_TYPE_LABELS } from "@/lib/activityDisplay";
 import { educationContribution } from "@/lib/education";
+import { FEDERAL_DEFAULT } from "@/lib/policy";
 import { Document } from "@/types/documents";
 import { DocumentCapture } from "@/components/documents/DocumentCapture";
 import { DocumentViewer } from "@/components/documents/DocumentViewer";
@@ -93,6 +94,11 @@ export function ActivityForm({
   const [educationProgramType, setEducationProgramType] = useState<
     EducationProgramType | ""
   >("");
+  // 42 CFR 435.552(d)(1) credit programs vs (d)(2) non-credit programs — different
+  // less-than-half-time arithmetic (convert vs count 1:1).
+  const [educationBasis, setEducationBasis] = useState<"credit" | "non-credit">(
+    "credit",
+  );
   const [creditHours, setCreditHours] = useState("");
   const [communityService, setCommunityService] =
     useState<CommunityServiceDetails>({});
@@ -142,11 +148,18 @@ export function ActivityForm({
           : (existingActivity.enrollmentStatus ?? ""),
       );
       setEducationProgramType(existingActivity.educationProgramType ?? "");
+      setEducationBasis(
+        existingActivity.nonCreditHours !== undefined ? "non-credit" : "credit",
+      );
       setCreditHours(
         existingActivity.creditHours !== undefined
           ? existingActivity.creditHours.toString()
           : "",
       );
+      // A non-credit education row stores its class hours in nonCreditHours.
+      if (existingActivity.nonCreditHours !== undefined) {
+        setHours(existingActivity.nonCreditHours.toString());
+      }
       setCommunityService(existingActivity.communityService ?? {});
 
       // Load documents for existing activity
@@ -199,9 +212,17 @@ export function ActivityForm({
   const isHalfTimeStandalone =
     type === "education" && enrollmentStatus === "at-least-half-time";
 
-  /** Less-than-half-time credit-based education: credit hours drive the figure, not hours. */
+  /** Less-than-half-time credit-based education: credit hours drive the figure (§ 435.552(d)(1)). */
   const isCreditBasedEducation =
-    type === "education" && enrollmentStatus === "less-than-half-time";
+    type === "education" &&
+    enrollmentStatus === "less-than-half-time" &&
+    educationBasis === "credit";
+
+  /** Less-than-half-time non-credit education: actual class/activity hours count 1:1 (§ 435.552(d)(2)). */
+  const isNonCreditEducation =
+    type === "education" &&
+    enrollmentStatus === "less-than-half-time" &&
+    educationBasis === "non-credit";
 
   /**
    * The hours figure to store for this entry. For at-least-half-time education it is 0
@@ -210,14 +231,11 @@ export function ActivityForm({
    * number the user typed.
    */
   const resolvedHours = (): number => {
-    if (isHalfTimeStandalone) return 0;
-    if (isCreditBasedEducation && creditHours) {
-      const contribution = educationContribution({
-        status: "less-than-half-time",
-        creditHours: parseFloat(creditHours),
-      });
-      return contribution.combinableHours;
-    }
+    // Education stores source facts (enrollmentStatus + creditHours/nonCreditHours), and
+    // calculateMonthlySummary derives the monthly contribution — so the stored `hours` is
+    // not the figure that counts. Keep it 0 for every education row to avoid caching a
+    // value that could go stale against the policy conversion (W6a convergence, finding 3).
+    if (type === "education") return 0;
     return parseFloat(hours) || 0;
   };
 
@@ -231,13 +249,18 @@ export function ActivityForm({
         "Choose your enrollment status, or 'I'm not sure' to check with your school";
     }
 
-    if (isHalfTimeStandalone) {
-      // No hours to validate — half-time or more counts on its own (a)(4).
+    const educationNeedsNoHours =
+      type === "education" &&
+      (isHalfTimeStandalone || enrollmentStatus === "unknown");
+
+    if (educationNeedsNoHours) {
+      // No hours to validate. At-least-half-time counts on its own (a)(4); unknown status
+      // means we store nothing and prompt the user to ask the school (c).
     } else if (isCreditBasedEducation) {
-      // Credit hours drive the figure for less-than-half-time credit programs.
+      // Credit hours drive the figure for less-than-half-time credit programs (d)(1).
       if (!creditHours || parseFloat(creditHours) <= 0) {
         newErrors.creditHours =
-          "Enter your credit hours, or switch to hours below";
+          "Enter your credit hours, or switch to class hours above";
       }
     } else {
       // Hours validation (work, community service, work program, non-credit education)
@@ -273,21 +296,20 @@ export function ActivityForm({
   };
 
   /**
-   * The extra W6a fields to persist, built once so the three save paths cannot diverge.
-   * Each is only attached for the relevant activity type.
+   * The W6a fields to persist, built once so create / edit / multi-date / duplicate cannot
+   * diverge. EXHAUSTIVE and type-aware: every W6a field is set to a value or explicitly to
+   * `undefined`, so an edit that changes an activity's type CLEARS the fields that no longer
+   * belong to it. A Dexie `update` merges, so omitting a key would leave a stale
+   * `communityService` or `creditHours` behind (W6a convergence review, finding 5).
+   *
+   * Education stores SOURCE FACTS, not a cached converted figure: `enrollmentStatus` plus
+   * either `creditHours` or `nonCreditHours`. `calculateMonthlySummary` derives the monthly
+   * contribution from these (finding 3), so a changed policy conversion recomputes old rows.
    */
   const extraFields = (): Partial<Activity> => {
-    const extra: Partial<Activity> = {};
-    if (type === "work" && workKind) extra.workKind = workKind;
-    if (type === "education") {
-      if (enrollmentStatus) extra.enrollmentStatus = enrollmentStatus;
-      if (educationProgramType)
-        extra.educationProgramType = educationProgramType;
-      if (isCreditBasedEducation && creditHours)
-        extra.creditHours = parseFloat(creditHours);
-    }
-    if (type === "volunteer") {
-      const cs: CommunityServiceDetails = {
+    const cs: CommunityServiceDetails | undefined = (() => {
+      if (type !== "volunteer") return undefined;
+      const details: CommunityServiceDetails = {
         organizationName:
           communityService.organizationName?.trim() || undefined,
         organizationAddress:
@@ -302,12 +324,32 @@ export function ActivityForm({
           communityService.activityDescription?.trim() || undefined,
         courtOrdered: communityService.courtOrdered || undefined,
       };
-      // Only attach if at least one field is set.
-      if (Object.values(cs).some((v) => v !== undefined)) {
-        extra.communityService = cs;
-      }
-    }
-    return extra;
+      return Object.values(details).some((v) => v !== undefined)
+        ? details
+        : undefined;
+    })();
+
+    return {
+      workKind: type === "work" && workKind ? workKind : undefined,
+      enrollmentStatus:
+        type === "education" && enrollmentStatus ? enrollmentStatus : undefined,
+      educationProgramType:
+        type === "education" && educationProgramType
+          ? educationProgramType
+          : undefined,
+      creditHours:
+        type === "education" && isCreditBasedEducation && creditHours
+          ? parseFloat(creditHours)
+          : undefined,
+      nonCreditHours:
+        type === "education" &&
+        isNonCreditEducation &&
+        hours &&
+        parseFloat(hours) > 0
+          ? parseFloat(hours)
+          : undefined,
+      communityService: cs,
+    };
   };
 
   const handleSave = async () => {
@@ -517,6 +559,7 @@ export function ActivityForm({
     setWorkKind("");
     setEnrollmentStatus("");
     setEducationProgramType("");
+    setEducationBasis("credit");
     setCreditHours("");
     setCommunityService({});
     setErrors({});
@@ -722,11 +765,43 @@ export function ActivityForm({
             <Alert severity="info" sx={{ "& a": { color: "inherit" } }}>
               At half-time or more, school may be enough on its own — there are
               no hours to add up, and it isn&apos;t combined with other
-              activities. Your state decides what counts.
+              activities. Your state decides what counts. Keep your enrollment
+              confirmation from your school so you can show it.
             </Alert>
           )}
 
-          {/* Less than half-time: credit hours convert — 42 CFR 435.552(d). */}
+          {/* Less than half-time: choose credit vs non-credit basis — 42 CFR 435.552(d). */}
+          {type === "education" &&
+            enrollmentStatus === "less-than-half-time" && (
+              <FormControl>
+                <FormLabel
+                  id="education-basis-label"
+                  sx={{ fontSize: "0.875rem", fontWeight: 600, mb: 0.5 }}
+                >
+                  How does your program measure your work?
+                </FormLabel>
+                <RadioGroup
+                  aria-labelledby="education-basis-label"
+                  value={educationBasis}
+                  onChange={(e) =>
+                    setEducationBasis(e.target.value as "credit" | "non-credit")
+                  }
+                >
+                  <FormControlLabel
+                    value="credit"
+                    control={<Radio size="small" />}
+                    label="In credit hours (most colleges)"
+                  />
+                  <FormControlLabel
+                    value="non-credit"
+                    control={<Radio size="small" />}
+                    label="In class hours, not credits (e.g. a GED or non-credit program)"
+                  />
+                </RadioGroup>
+              </FormControl>
+            )}
+
+          {/* Less than half-time, credit-based: credit hours convert — 42 CFR 435.552(d)(1). */}
           {isCreditBasedEducation && (
             <Box>
               <TextField
@@ -737,7 +812,7 @@ export function ActivityForm({
                 error={!!errors.creditHours}
                 helperText={
                   errors.creditHours ||
-                  "From your class schedule. Non-credit program? Use the hours field below instead."
+                  "From your class schedule — keep it, it's what the figure is based on."
                 }
                 fullWidth
                 slotProps={{
@@ -751,7 +826,14 @@ export function ActivityForm({
               {creditHours && parseFloat(creditHours) > 0 && (
                 <Alert severity="info" sx={{ mt: 1 }}>
                   {creditHours} credit hour
-                  {parseFloat(creditHours) === 1 ? "" : "s"} × 3 × 4.33 ={" "}
+                  {parseFloat(creditHours) === 1 ? "" : "s"} ×{" "}
+                  {
+                    FEDERAL_DEFAULT.educationCreditHourConversion
+                      .hoursPerCreditPerWeek
+                  }{" "}
+                  ×{" "}
+                  {FEDERAL_DEFAULT.educationCreditHourConversion.weeksPerMonth}{" "}
+                  ={" "}
                   <strong>
                     {educationContribution({
                       status: "less-than-half-time",
@@ -760,7 +842,8 @@ export function ActivityForm({
                     hours
                   </strong>{" "}
                   this month (42 CFR 435.552(d)). These can be combined with
-                  work or community service.
+                  work or community service. Keep your class schedule —
+                  it&apos;s what this figure is based on.
                 </Alert>
               )}
             </Box>
@@ -796,11 +879,13 @@ export function ActivityForm({
             </FormControl>
           )}
 
-          {/* Hours — hidden for half-time standalone and credit-based education. */}
-          {!isHalfTimeStandalone && !isCreditBasedEducation && (
+          {/* Hours — for non-education types, and for non-credit less-than-half-time
+              education (§ 435.552(d)(2), counted 1:1). Hidden for half-time standalone,
+              credit-based education, and before an education status is chosen. */}
+          {(type !== "education" || isNonCreditEducation) && (
             <TextField
               label={
-                type === "education"
+                isNonCreditEducation
                   ? "Class and activity hours this month"
                   : "Hours"
               }
@@ -810,8 +895,8 @@ export function ActivityForm({
               error={!!errors.hours}
               helperText={
                 errors.hours ||
-                (type === "education"
-                  ? "For a non-credit program, count actual class and activity hours."
+                (isNonCreditEducation
+                  ? "Count actual class and activity hours (§ 435.552(d)(2))."
                   : undefined)
               }
               required

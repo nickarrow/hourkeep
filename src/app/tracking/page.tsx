@@ -35,6 +35,7 @@ import { db } from "@/lib/db";
 import { Activity, MonthlySummary, UserProfile } from "@/types";
 import { AssessmentResult } from "@/types/assessment";
 import { calculateMonthlySummary } from "@/lib/calculations";
+import { copyEvidenceFields } from "@/lib/activityRecord";
 import { deleteActivityWithDocuments } from "@/lib/storage/activities";
 import { getLatestAssessmentResult } from "@/lib/storage/assessment";
 import {
@@ -540,12 +541,15 @@ export default function TrackingPage() {
 
     setSaving(true);
     try {
-      // Create a new activity for each selected date
+      // Create a new activity for each selected date. W6a: carry the type's evidence
+      // fields forward via the shared copier so duplication does not strip workKind,
+      // education source facts, or the community-service verification record.
+      const evidence = copyEvidenceFields(activityToDuplicate);
       const newActivities = dates.map((date) => ({
         date,
         type: activityToDuplicate.type,
         hours: activityToDuplicate.hours,
-        organization: activityToDuplicate.organization,
+        ...evidence,
         createdAt: new Date(),
         updatedAt: new Date(),
       }));

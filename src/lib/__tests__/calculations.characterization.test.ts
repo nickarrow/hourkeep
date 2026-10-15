@@ -75,6 +75,7 @@ describe("calculateMonthlySummary: per-type sums", () => {
       volunteerHours: 0,
       educationHours: 0,
       workProgramHours: 0, // W6a: 42 CFR 435.552(a)(3) bucket
+      hasStandaloneEducation: false, // W6a: 42 CFR 435.552(a)(4)
       isCompliant: false,
       hoursNeeded: 80,
     });

@@ -135,6 +135,8 @@ export interface Activity {
   educationProgramType?: EducationProgramType;
   /** Credit hours this month — used for less-than-half-time credit-based education. */
   creditHours?: number;
+  /** Non-credit class/activity hours — § 435.552(d)(2), counted 1:1 when the program is not credit-based. */
+  nonCreditHours?: number;
   /** Structured community-service record — only meaningful when `type === "volunteer"`. */
   communityService?: CommunityServiceDetails;
   createdAt: Date; // When entry was created
@@ -147,8 +149,16 @@ export interface MonthlySummary {
   totalHours: number; // Sum of all hours
   workHours: number; // Sum of work hours
   volunteerHours: number; // Sum of volunteer hours
-  educationHours: number; // Sum of education hours (less-than-half-time only; see src/lib/education.ts)
+  educationHours: number; // Combinable (less-than-half-time) education hours only, DERIVED from source facts — 42 CFR 435.552(d)
   workProgramHours: number; // Sum of work-program hours — 42 CFR 435.552(a)(3)
+  /**
+   * Whether any education row this month is enrolled at least half-time — 42 CFR
+   * 435.552(a)(4). Such enrolment demonstrates on its own with zero hours and may not be
+   * combined (e)(1), so it contributes nothing to the hours total; this flag lets the UI
+   * say "this may be enough on its own" instead of showing zero progress. NOT a verdict —
+   * it reports the enrolment pathway's statutory effect, and the state still decides.
+   */
+  hasStandaloneEducation: boolean;
   isCompliant: boolean; // totalHours >= threshold. NAME IS A VERDICT — renamed meetsHoursThreshold in W7b (ADR-0003). No production reader; see wave-6a notes.
   hoursNeeded: number; // threshold - totalHours (if not compliant)
 }

@@ -1,6 +1,7 @@
 import { Activity, MonthlySummary } from "@/types";
 import { isValidMonth } from "@/lib/month";
 import { FEDERAL_DEFAULT, type PolicyProfile } from "@/lib/policy";
+import { educationContribution } from "@/lib/education";
 
 /**
  * Total a single month's logged hours.
@@ -55,11 +56,13 @@ export function calculateMonthlySummary(
     activity.date.startsWith(month),
   );
 
-  // Calculate totals by type
+  // Work, community service, and work-program hours sum per 42 CFR 435.552(e)(2): each is
+  // "determined separately and based on the time spent on the specific activity in such
+  // month". Education is NOT summed per row — see below.
   let workHours = 0;
   let volunteerHours = 0;
-  let educationHours = 0;
   let workProgramHours = 0;
+  const educationRows: Activity[] = [];
 
   monthActivities.forEach((activity) => {
     switch (activity.type) {
@@ -70,10 +73,7 @@ export function calculateMonthlySummary(
         volunteerHours += activity.hours;
         break;
       case "education":
-        // 42 CFR 435.552(e)(1): only less-than-half-time education carries hours here.
-        // At-least-half-time demonstrates on its own (a)(4) and is not logged as an hours
-        // entry — the cliff is enforced at capture, see src/lib/education.ts.
-        educationHours += activity.hours;
+        educationRows.push(activity);
         break;
       case "workProgram":
         // 42 CFR 435.552(a)(3), 91 FR 33470. W6a: before this branch existed the switch
@@ -82,6 +82,51 @@ export function calculateMonthlySummary(
         break;
     }
   });
+
+  /**
+   * Education — DERIVED from source facts, not summed from a cached `hours` number.
+   *
+   * 42 CFR 435.552(c): enrolment is a monthly status set by the school, not a per-day
+   * quantity. Summing per-row `hours` across dated education entries double-counted a
+   * single month's enrolment (the multi-date save writes one row per date), and caching the
+   * converted figure meant a changed policy conversion could not recompute old rows. Both
+   * were flagged in the W6a convergence review.
+   *
+   * So: take the single strongest education status for the month and derive its
+   * contribution via `educationContribution` (which owns the half-time cliff).
+   *   - any at-least-half-time row  → standalone demonstration, 0 combinable hours (a)(4),(e)(1)
+   *   - else the largest less-than-half-time contribution → combinable hours (d),(e)
+   *   - a legacy row (hours, no status) → its hours count as-is (pre-W6a behaviour preserved)
+   */
+  let educationHours = 0;
+  let hasStandaloneEducation = false;
+
+  if (educationRows.some((a) => a.enrollmentStatus === "at-least-half-time")) {
+    hasStandaloneEducation = true; // 42 CFR 435.552(a)(4): demonstrates on its own
+  } else {
+    for (const a of educationRows) {
+      let contribution: number;
+      if (a.enrollmentStatus === "less-than-half-time") {
+        contribution = educationContribution(
+          a.creditHours !== undefined
+            ? { status: "less-than-half-time", creditHours: a.creditHours }
+            : {
+                status: "less-than-half-time",
+                nonCreditHours: a.nonCreditHours ?? a.hours,
+              },
+          policy,
+        ).combinableHours;
+      } else if (a.enrollmentStatus === "unknown") {
+        contribution = 0; // 42 CFR 435.552(c): the school decides; we do not infer
+      } else {
+        // Legacy row with no status: its stored hours count as-is. Not inferred as
+        // half-time (would overstate) and not discarded (would be a false shortfall).
+        contribution = a.hours;
+      }
+      // Monthly fact: the strongest enrolment, not a sum across dated rows.
+      educationHours = Math.max(educationHours, contribution);
+    }
+  }
 
   // Calculate total hours — the four combinable pathways, 42 CFR 435.552(e).
   const totalHours =
@@ -116,6 +161,7 @@ export function calculateMonthlySummary(
     volunteerHours,
     educationHours,
     workProgramHours,
+    hasStandaloneEducation,
     isCompliant,
     hoursNeeded,
   };

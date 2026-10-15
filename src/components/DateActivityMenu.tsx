@@ -21,7 +21,11 @@ import {
 } from "@mui/icons-material";
 import React from "react";
 import { Activity } from "@/types";
-import { ACTIVITY_TYPE_LABELS } from "@/lib/activityDisplay";
+import {
+  ACTIVITY_TYPE_LABELS,
+  ACTIVITY_TYPE_CHIP_COLORS,
+  activityOrganizationLabel,
+} from "@/lib/activityDisplay";
 
 interface DateActivityMenuProps {
   anchorEl: HTMLElement | null;
@@ -42,12 +46,7 @@ const activityIcons: Record<Activity["type"], React.ReactElement> = {
   workProgram: <WorkOutlineIcon fontSize="small" />,
 };
 
-const activityColors = {
-  work: "primary",
-  volunteer: "success",
-  education: "info",
-  workProgram: "secondary",
-} as const;
+const activityColors = ACTIVITY_TYPE_CHIP_COLORS;
 
 export function DateActivityMenu({
   anchorEl,
@@ -141,9 +140,9 @@ export function DateActivityMenu({
                     {activity.hours}h
                   </Typography>
                 </Box>
-                {activity.organization && (
+                {activityOrganizationLabel(activity) && (
                   <Typography variant="caption" color="text.secondary">
-                    {activity.organization}
+                    {activityOrganizationLabel(activity)}
                   </Typography>
                 )}
               </Box>

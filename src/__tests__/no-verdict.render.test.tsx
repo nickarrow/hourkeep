@@ -32,6 +32,7 @@ import { ReviewPeriodPanel } from "@/components/tracking/ReviewPeriodPanel";
 import { HourTrackingHelpIcon } from "@/components/help/HourTrackingHelp";
 import { IncomeStatusIndicator } from "@/components/income/IncomeStatusIndicator";
 import { SeasonalWorkerView } from "@/components/income/SeasonalWorkerView";
+import { ActivityForm } from "@/components/ActivityForm";
 import {
   applicationReviewPeriod,
   renewalReviewPeriodEndingAt,
@@ -380,6 +381,7 @@ describe("ADR-0003 no-verdict guard: W5 month-scoped surfaces", () => {
     volunteerHours: 0,
     educationHours: 0,
     workProgramHours: 0, // W6a: 42 CFR 435.552(a)(3) bucket
+    hasStandaloneEducation: false, // W6a: 42 CFR 435.552(a)(4)
     isCompliant: totalHours >= 80,
     hoursNeeded: Math.max(80 - totalHours, 0),
   });
@@ -399,6 +401,24 @@ describe("ADR-0003 no-verdict guard: W5 month-scoped surfaces", () => {
     it("renders no verdict at exactly the threshold", () => {
       render(<Dashboard summary={summary(80)} threshold={80} />);
       expectNoVerdict("Dashboard (exactly at threshold)");
+    });
+
+    it("renders no verdict on the standalone half-time education branch (W6a)", () => {
+      // 42 CFR 435.552(a)(4): a half-time student has zero logged hours but has
+      // demonstrated. The branch must say "may be enough on its own / your state decides",
+      // never a verdict and never "80 hours needed". This is the false-shortfall fix the
+      // convergence review required; it is also where the hours-based branch would wrongly
+      // fire if hasStandaloneEducation were ignored.
+      render(
+        <Dashboard
+          summary={{ ...summary(0), hasStandaloneEducation: true }}
+          threshold={80}
+        />,
+      );
+      const text = renderedText();
+      expect(text).toMatch(/may be enough on its own/i);
+      expect(text).not.toMatch(/80 hours needed/i);
+      expectNoVerdict("Dashboard (standalone half-time education)");
     });
   });
 
@@ -957,5 +977,75 @@ describe("SeasonalWorkerView — 42 CFR 435.552(g), the seasonal averaging surfa
       );
       unmount();
     }
+  });
+});
+
+describe("ActivityForm — W6a's new capture surface, every activity type and branch", () => {
+  /**
+   * ADDED IN W6a after the non-adjudication and domain-fidelity reviews both flagged that
+   * ActivityForm — which carries every new W6a string, including both education Alerts —
+   * sat only in the source scan (part 3), not the mounted render guard. The source scan is
+   * real coverage, but the render guard is the layer that caught the two verdicts the
+   * source scan missed in W5 (Dashboard's title-case "Compliant"). W2b's lesson was that
+   * extending a guard does not exempt the file that extends it, so the form is mounted here
+   * in each type and in both education branches — which is where the cliff copy lives.
+   *
+   * ActivityForm is a Dialog (MUI portal), so its content lands in document.body and
+   * `renderedText()` walks it. It writes to Dexie only on Save; mounting and switching type
+   * touches no storage, so no fake-indexeddb fixture is needed.
+   */
+  const baseProps = {
+    open: true,
+    onClose: noop,
+    onSave: async () => {},
+    selectedDate: new Date("2026-10-10T00:00:00"),
+  };
+
+  it("renders no verdict for a work activity, including the sub-kind helper", () => {
+    render(<ActivityForm {...baseProps} />);
+    expectNoVerdict("ActivityForm (work)");
+  });
+
+  it("renders no verdict for a work program activity", () => {
+    render(<ActivityForm {...baseProps} />);
+    fireEvent.click(screen.getByText("Job Training", { exact: true }));
+    expectNoVerdict("ActivityForm (workProgram)");
+  });
+
+  it("renders no verdict for community service, including the verification schema copy", () => {
+    render(<ActivityForm {...baseProps} />);
+    fireEvent.click(screen.getByText("Community Service", { exact: true }));
+    expectNoVerdict("ActivityForm (community service)");
+  });
+
+  it("renders no verdict for at-least-half-time education — the standalone cliff panel", () => {
+    // The highest-risk branch: a half-time student is demonstrated on their own, and the
+    // panel must say so without asserting eligibility. "may be enough on its own / your
+    // state decides" is the line being guarded.
+    render(<ActivityForm {...baseProps} />);
+    fireEvent.click(screen.getByText("Education", { exact: true }));
+    fireEvent.click(screen.getByLabelText("At least half-time"));
+    expectNoVerdict("ActivityForm (education, at-least-half-time)");
+  });
+
+  it("renders no verdict for less-than-half-time education, with the conversion arithmetic shown", () => {
+    render(<ActivityForm {...baseProps} />);
+    fireEvent.click(screen.getByText("Education", { exact: true }));
+    fireEvent.click(screen.getByLabelText("Less than half-time"));
+    fireEvent.change(screen.getByLabelText("Credit hours this month"), {
+      target: { value: "6" },
+    });
+    // The Computed disclosure must render, and it must carry no verdict.
+    const text = renderedText();
+    expect(text).toMatch(/77\.94/);
+    expectNoVerdict("ActivityForm (education, less-than-half-time)");
+  });
+
+  it("renders no verdict for the 'I'm not sure' enrollment branch", () => {
+    // § 435.552(c): the school decides, so "unknown" must ask, not guess or declare.
+    render(<ActivityForm {...baseProps} />);
+    fireEvent.click(screen.getByText("Education", { exact: true }));
+    fireEvent.click(screen.getByLabelText("I'm not sure"));
+    expectNoVerdict("ActivityForm (education, unknown)");
   });
 });

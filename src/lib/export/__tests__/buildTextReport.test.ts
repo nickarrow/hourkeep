@@ -257,3 +257,131 @@ describe("behaviour preserved from the inline version", () => {
     }
   });
 });
+
+describe("W6a: the export carries the structured evidence a caseworker needs", () => {
+  // Convergence review findings 4, 5, 7: the report is the artifact § 435.557 verification
+  // turns on. Dropping the community-service record, or printing half-time education as
+  // "0 hours", misrepresents the user on the page the agency reads.
+
+  it("§ 435.552(b), § II.I.6.b: renders the community-service verification record", () => {
+    const csActivity: Activity = {
+      date: "2026-07-05",
+      type: "volunteer",
+      hours: 10,
+      communityService: {
+        organizationName: "Riverside Food Bank",
+        organizationAddress: "12 Main St, Springfield",
+        activityDescription: "Sorted donations",
+        pointOfContactName: "Dana Lee",
+        pointOfContactPhone: "555-0100",
+        pointOfContactEmail: "dana@foodbank.org",
+        courtOrdered: true,
+      },
+      createdAt: NOW,
+      updatedAt: NOW,
+    };
+    const report = build({
+      activities: [csActivity],
+      complianceModes: [mode("2026-07", "hours")],
+    });
+
+    // Positive twin for "evidence won't be rejected": the POC contact line is present.
+    expect(report).toContain("Riverside Food Bank");
+    expect(report).toContain("12 Main St, Springfield");
+    expect(report).toContain("Sorted donations");
+    expect(report).toContain("court-ordered");
+    expect(report).toMatch(/confirm hours: Dana Lee/);
+    expect(report).toContain("dana@foodbank.org");
+  });
+
+  it("the community-service organization name regression is fixed (finding 5)", () => {
+    // A new volunteer row stores its org in communityService.organizationName, not the
+    // legacy `organization` field. The report must still show it.
+    const report = build({
+      activities: [
+        {
+          date: "2026-07-05",
+          type: "volunteer",
+          hours: 10,
+          communityService: { organizationName: "Parks Department" },
+          createdAt: NOW,
+          updatedAt: NOW,
+        },
+      ],
+      complianceModes: [mode("2026-07", "hours")],
+    });
+    expect(report).toContain("Parks Department");
+  });
+
+  it("§ 435.552(a)(4): half-time education reads as enrollment, not '0 hours'", () => {
+    const report = build({
+      activities: [
+        {
+          date: "2026-07-05",
+          type: "education",
+          hours: 0,
+          enrollmentStatus: "at-least-half-time",
+          educationProgramType: "higher-education",
+          createdAt: NOW,
+          updatedAt: NOW,
+        },
+      ],
+      complianceModes: [mode("2026-07", "hours")],
+    });
+    expect(report).toMatch(/enrolled at least half-time/i);
+    // It must NOT print the bare "0 hours" that misrepresents a demonstrated student.
+    expect(report).not.toMatch(/Education - 0 hours/);
+  });
+
+  it("§ 435.552(d): less-than-half-time education shows its source credit hours", () => {
+    const report = build({
+      activities: [
+        {
+          date: "2026-07-05",
+          type: "education",
+          hours: 0,
+          enrollmentStatus: "less-than-half-time",
+          creditHours: 6,
+          createdAt: NOW,
+          updatedAt: NOW,
+        },
+      ],
+      complianceModes: [mode("2026-07", "hours")],
+    });
+    expect(report).toMatch(/6 credit hours/);
+  });
+
+  it("§ 435.552(a)(3): a work program activity reads 'Job Training', never the raw union value", () => {
+    const report = build({
+      activities: [
+        {
+          date: "2026-07-05",
+          type: "workProgram",
+          hours: 20,
+          createdAt: NOW,
+          updatedAt: NOW,
+        },
+      ],
+      complianceModes: [mode("2026-07", "hours")],
+    });
+    expect(report).toContain("Job Training");
+    expect(report).not.toMatch(/WorkProgram/);
+  });
+
+  it("§ 435.552(b): a work activity shows its sub-kind", () => {
+    const report = build({
+      activities: [
+        {
+          date: "2026-07-05",
+          type: "work",
+          hours: 8,
+          workKind: "in-kind",
+          createdAt: NOW,
+          updatedAt: NOW,
+        },
+      ],
+      complianceModes: [mode("2026-07", "hours")],
+    });
+    expect(report).toMatch(/in-kind work/);
+  });
+});

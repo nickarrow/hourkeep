@@ -276,6 +276,10 @@ describe("no policy literal survives in the Tier-1 modules", () => {
     "src/components/income/IncomeStatusIndicator.tsx",
     "src/components/income/SeasonalWorkerView.tsx",
     "src/lib/exemptions/definitions.ts",
+    // Added by W6a: it renders the credit-hour conversion formula, whose operands must be
+    // interpolated from the policy profile, not written as literal "3" / "4.33" (MINOR-2,
+    // domain-fidelity review).
+    "src/components/ActivityForm.tsx",
   ] as const;
 
   /**

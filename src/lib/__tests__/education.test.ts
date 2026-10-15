@@ -34,7 +34,7 @@ import {
 import { FEDERAL_DEFAULT, type PolicyProfile } from "@/lib/policy";
 
 describe("convertCreditHoursToMonthly: 42 CFR 435.552(d)(1), 91 FR 33470-33471", () => {
-  it("§ 435.552(d)(1), 91 FR 33471: 6 credit hours convert to 77.94 monthly hours", () => {
+  it("§ 435.552(d)(1), 91 FR 33359: 6 credit hours convert to 77.94 monthly hours", () => {
     // CMS's worked example, 91 FR 33359: "6 credit hours converts to 77.94 hours of
     // monthly activity (6 credit hours x 3 x 4.33 = 77.94), which is close to, but
     // slightly less than, the 80 hours". The surprising near-miss the UI must explain.

@@ -836,6 +836,7 @@ export interface DocumentVerificationHelp {
   workExamples: string[];
   volunteerExamples: string[];
   educationExamples: string[];
+  workProgramExamples: string[];
   incomeExamples: string[];
   gigWorkExamples: string[];
   tips: string[];
@@ -860,6 +861,15 @@ export const documentVerificationHelp: DocumentVerificationHelp = {
     "Signed timesheet from volunteer coordinator",
     "Certificate of volunteer service",
     "Email confirmation of volunteer hours",
+  ],
+  // 42 CFR 435.552(a)(3), (b): proof of PARTICIPATION in a qualifying program, not ordinary
+  // employment records. The five-program closed list is in activityDefinitions.workProgram.
+  workProgramExamples: [
+    "SNAP Employment & Training (E&T) approval or enrollment notice",
+    "WIOA enrollment or participation letter",
+    "Letter from the program confirming your enrollment and hours",
+    "Attendance record or activity log from the program",
+    "A VA or Department of Labor veterans program enrollment document",
   ],
   educationExamples: [
     "Class schedule showing you're enrolled",

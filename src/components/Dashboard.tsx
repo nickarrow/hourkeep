@@ -8,6 +8,10 @@ import {
 import { MonthlySummary } from "@/types";
 import { formatMonthLong } from "@/lib/month";
 import { HourTrackingHelpIcon } from "@/components/help/HourTrackingHelp";
+import {
+  ACTIVITY_TYPE_LABELS,
+  ACTIVITY_TYPE_CHIP_COLORS,
+} from "@/lib/activityDisplay";
 
 /**
  * A month's logged hours against the threshold.
@@ -56,6 +60,7 @@ export function Dashboard({ summary, threshold }: DashboardProps) {
     volunteerHours,
     educationHours,
     workProgramHours,
+    hasStandaloneEducation,
     hoursNeeded,
   } = summary;
 
@@ -103,7 +108,27 @@ export function Dashboard({ summary, threshold }: DashboardProps) {
           mb: 3,
         }}
       >
-        {meetsThreshold ? (
+        {hasStandaloneEducation ? (
+          // 42 CFR 435.552(a)(4): at-least-half-time enrollment demonstrates on its own,
+          // with zero hours, and may not be combined (e)(1). Without this branch a half-time
+          // student's row stores 0 hours and the "hours needed" branch below would tell them
+          // they are failing — the false shortfall the W6a convergence review caught.
+          <>
+            <FactCheckIcon sx={{ fontSize: 40, color: "success.main" }} />
+            <Box>
+              <Typography variant="h6" color="success.main">
+                Enrolled at least half-time
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Being in school at least half-time may be enough on its own —
+                there are no hours to add up. Your state decides what counts.
+                {totalHours > 0
+                  ? ` You've also logged ${totalHours} hours of other activities.`
+                  : ""}
+              </Typography>
+            </Box>
+          </>
+        ) : meetsThreshold ? (
           <>
             {/* The icon still says "good news", because reaching the threshold IS
                 good news. What changed is that the words report the record rather
@@ -184,7 +209,12 @@ export function Dashboard({ summary, threshold }: DashboardProps) {
               minWidth: { xs: "80px", sm: "auto" },
             }}
           >
-            <Chip label="Work" color="primary" size="small" sx={{ mb: 1 }} />
+            <Chip
+              label={ACTIVITY_TYPE_LABELS.work}
+              color={ACTIVITY_TYPE_CHIP_COLORS.work}
+              size="small"
+              sx={{ mb: 1 }}
+            />
             <Typography
               variant="h6"
               sx={{ fontSize: { xs: "1.1rem", sm: "1.25rem" } }}
@@ -203,8 +233,8 @@ export function Dashboard({ summary, threshold }: DashboardProps) {
             }}
           >
             <Chip
-              label="Volunteer"
-              color="success"
+              label={ACTIVITY_TYPE_LABELS.volunteer}
+              color={ACTIVITY_TYPE_CHIP_COLORS.volunteer}
               size="small"
               sx={{ mb: 1 }}
             />
@@ -225,7 +255,12 @@ export function Dashboard({ summary, threshold }: DashboardProps) {
               minWidth: { xs: "80px", sm: "auto" },
             }}
           >
-            <Chip label="Education" color="info" size="small" sx={{ mb: 1 }} />
+            <Chip
+              label={ACTIVITY_TYPE_LABELS.education}
+              color={ACTIVITY_TYPE_CHIP_COLORS.education}
+              size="small"
+              sx={{ mb: 1 }}
+            />
             <Typography
               variant="h6"
               sx={{ fontSize: { xs: "1.1rem", sm: "1.25rem" } }}
@@ -246,8 +281,8 @@ export function Dashboard({ summary, threshold }: DashboardProps) {
             }}
           >
             <Chip
-              label="Job Training"
-              color="secondary"
+              label={ACTIVITY_TYPE_LABELS.workProgram}
+              color={ACTIVITY_TYPE_CHIP_COLORS.workProgram}
               size="small"
               sx={{ mb: 1 }}
             />

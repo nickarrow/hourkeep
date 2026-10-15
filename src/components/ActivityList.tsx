@@ -20,6 +20,7 @@ import { useActivityDocumentCounts } from "@/hooks/useActivityDocumentCounts";
 import {
   ACTIVITY_TYPE_LABELS,
   ACTIVITY_TYPE_CHIP_COLORS,
+  activityOrganizationLabel,
 } from "@/lib/activityDisplay";
 
 interface ActivityListProps {
@@ -149,13 +150,13 @@ export function ActivityList({
                           {activity.hours}{" "}
                           {activity.hours === 1 ? "hour" : "hours"}
                         </Typography>
-                        {activity.organization && (
+                        {activityOrganizationLabel(activity) && (
                           <Typography
                             variant="body2"
                             color="text.secondary"
                             sx={{ mt: 0.5 }}
                           >
-                            {activity.organization}
+                            {activityOrganizationLabel(activity)}
                           </Typography>
                         )}
                       </Box>

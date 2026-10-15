@@ -77,6 +77,20 @@ describe("Activity: W6a fields round-trip through IndexedDB with no schema chang
     expect(read?.creditHours).toBe(6);
   });
 
+  it("§ 435.552(d)(2): a non-credit less-than-half-time row stores nonCreditHours", async () => {
+    const id = await db.activities.add({
+      date: "2026-07-03b",
+      type: "education",
+      hours: 0,
+      enrollmentStatus: "less-than-half-time",
+      nonCreditHours: 50,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
+    const read = await db.activities.get(id);
+    expect(read?.nonCreditHours).toBe(50);
+  });
+
   it("§ 435.552(c): an at-least-half-time education row stores status with zero hours", async () => {
     // The cliff, persisted: half-time demonstrates on its own, so hours is 0 and the
     // status is what carries the meaning.

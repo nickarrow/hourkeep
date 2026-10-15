@@ -39,9 +39,9 @@ export function DocumentVerificationHelpIcon({
       case "education":
         return documentVerificationHelp.educationExamples;
       case "workProgram":
-        // 42 CFR 435.552(b): SNAP E&T approval, WIOA enrollment letters, etc. Falls back
-        // to the work examples until a dedicated list exists (help content, not W6a).
-        return documentVerificationHelp.workExamples;
+        // 42 CFR 435.552(a)(3), (b): participation evidence (SNAP E&T / WIOA enrollment),
+        // not ordinary employment records (W6a convergence review finding 15).
+        return documentVerificationHelp.workProgramExamples;
       default:
         return [];
     }
@@ -57,6 +57,8 @@ export function DocumentVerificationHelpIcon({
   const getContextLabel = () => {
     if (context === "income") return "income";
     if (context === "gig-work") return "gig work";
+    if (activityType === "workProgram") return "a job training program";
+    if (activityType === "volunteer") return "community service";
     return activityType;
   };
 

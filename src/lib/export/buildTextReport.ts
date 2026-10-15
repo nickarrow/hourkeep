@@ -55,6 +55,73 @@ export interface ReportThresholds {
   income: number;
 }
 
+/**
+ * The per-activity line detail for the agency-facing record — W6a.
+ *
+ * The caseworker reads this artifact, so the structured evidence W6a captures must appear
+ * here or it is lost (convergence review finding 7). In particular a half-time education row
+ * stores 0 hours, and printing "0 hours" with no context would misrepresent it — so
+ * enrollment status is named instead of an hours figure.
+ */
+function renderActivityDetail(activity: Activity): string {
+  const parts: string[] = [];
+
+  if (activity.type === "education") {
+    // 42 CFR 435.552(c): enrollment status is the meaningful fact, not an hours total.
+    switch (activity.enrollmentStatus) {
+      case "at-least-half-time":
+        parts.push("enrolled at least half-time (counts on its own)");
+        break;
+      case "less-than-half-time":
+        if (activity.creditHours !== undefined) {
+          parts.push(
+            `${activity.creditHours} credit hours (less than half-time)`,
+          );
+        } else if (activity.nonCreditHours !== undefined) {
+          parts.push(
+            `${activity.nonCreditHours} class/activity hours (less than half-time)`,
+          );
+        } else {
+          parts.push("less than half-time");
+        }
+        break;
+      case "unknown":
+        parts.push("enrollment status to confirm with the school");
+        break;
+      default:
+        parts.push(`${activity.hours} hours`);
+    }
+    if (activity.educationProgramType) {
+      parts.push(activity.educationProgramType.replace(/-/g, " "));
+    }
+  } else {
+    parts.push(`${activity.hours} hours`);
+    if (activity.type === "work" && activity.workKind) {
+      parts.push(`${activity.workKind} work`);
+    }
+  }
+
+  if (activity.type === "volunteer" && activity.communityService) {
+    const cs = activity.communityService;
+    if (cs.organizationName) parts.push(cs.organizationName);
+    if (cs.organizationAddress) parts.push(cs.organizationAddress);
+    if (cs.activityDescription) parts.push(cs.activityDescription);
+    if (cs.courtOrdered) parts.push("court-ordered");
+    const contact = [
+      cs.pointOfContactName,
+      cs.pointOfContactPhone,
+      cs.pointOfContactEmail,
+    ]
+      .filter(Boolean)
+      .join(", ");
+    if (contact) parts.push(`contact who can confirm hours: ${contact}`);
+  } else if (activity.organization) {
+    parts.push(activity.organization);
+  }
+
+  return parts.length > 0 ? ` - ${parts.join(" - ")}` : "";
+}
+
 export interface TextReportInput {
   profile?: UserProfile;
   activities: Activity[];
@@ -159,11 +226,8 @@ export function buildTextReport(input: TextReportInput): string {
             out += `  ${format(new Date(activity.date + "T00:00:00"), "MMM d, yyyy")} - `;
             // W6a: shared label so `workProgram` reads "Job Training", not "WorkProgram".
             // The capitalize-first-char trick produced the raw union value for the new type.
-            out += `${ACTIVITY_TYPE_LABELS[activity.type]} - `;
-            out += `${activity.hours} hours`;
-            if (activity.organization) {
-              out += ` - ${activity.organization}`;
-            }
+            out += `${ACTIVITY_TYPE_LABELS[activity.type]}`;
+            out += renderActivityDetail(activity);
             out += "\n";
           });
       } else {
