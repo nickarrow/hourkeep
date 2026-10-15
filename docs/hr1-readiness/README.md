@@ -2,9 +2,12 @@
 
 **The holistic home for this effort.** Open this file to remember where we are.
 
-**Last updated:** 2026-09-03 (W7a closed)
-**Current wave:** none in progress — **W7a (Seasonal + income corrections)** closed 2026-09-03.
-**W8a (Print evidence export)** is next, the last pre-date wave. Progress against the gap analysis:
+**Last updated:** 2026-10-15 (W8a in progress)
+**Current wave:** **W8a (Print evidence export)** in progress since 2026-10-15 — the last pre-date wave.
+Its file is [`waves/wave-8a-print-evidence-export.md`](waves/wave-8a-print-evidence-export.md), written by
+re-verifying the combined `wave-8` file against the tree (which resolved the `evaluateMonth` open item: W8a
+delivers one call site, not W7b's combination logic). **W7a (Seasonal + income corrections)** closed
+2026-09-03. Progress against the gap analysis:
 **30 of 108 rows closed, 9 partial** — and note the total is **108, not the 81** that document's summary
 claimed until it was recounted
 
