@@ -39,8 +39,9 @@ AI agent from reading that folder, which each person sets up on their own machin
 
 ## License
 
-HourKeep is licensed under the GNU General Public License, version 3 or later. See `LICENSE`. The bootstrap files carry
-the MIT License, reproduced in `NOTICE.md`. Whether the new version keeps this license is still open.
+HourKeep is licensed under the GNU General Public License, version 3 or later, so anyone may use, change or sell it,
+and nobody may make a closed version of it. See `LICENSE` and `docs/decisions/0002-keep-gpl-3.0-or-later.md`. The
+bootstrap files carry the MIT License, reproduced in `NOTICE.md`.
 
 ## Problems, questions and security
 
