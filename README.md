@@ -1,230 +1,52 @@
 # HourKeep
 
-**Keep Your Hours, Keep Your Coverage**
-
-HourKeep is a privacy-focused Progressive Web App that helps Medicaid beneficiaries track work, volunteer, and education hours to maintain their health coverage. All data stays on your device—no accounts, no servers, no tracking.
-
-[Live App](https://hourkeep.app) · [Roadmap](ROADMAP.md) · [Report an Issue](https://github.com/naretakis/hourkeep/issues)
-
----
-
-## Why HourKeep?
-
-Starting January 2027, Medicaid expansion adults must meet work requirements to maintain eligibility. HourKeep helps you:
-
-- Understand if you're exempt from requirements (many people are)
-- Track hours (80/month) or income ($580/month) to stay compliant
-- Capture and organize verification documents
-- Export your records when it's time to submit to your agency
-
-Everything runs locally in your browser. Your data never leaves your device.
-
----
-
-## Features
-
-### Guided Assessment
-
-A step-by-step questionnaire analyzes your situation and recommends the easiest path to maintain coverage—whether that's claiming an exemption, tracking income, or logging hours.
-
-### Exemption Screening
-
-Check if you qualify for an exemption based on age, family status, health conditions, program participation, or other criteria. If you're exempt, you don't need to track anything.
-
-### Flexible Tracking
-
-Choose what works for you:
-
-- **Hours mode**: Log work, volunteer, and education activities toward the 80-hour monthly requirement
-- **Income mode**: Track earnings toward the $580 monthly threshold with automatic pay period conversion
-- **Seasonal worker support**: 6-month income averaging for variable income
-
-### Document Management
-
-Photograph or upload pay stubs, volunteer letters, and other verification documents. Images are compressed automatically and linked to your entries.
-
-### Offline-First
-
-Works without internet. Install it on your phone like a native app. Your data persists in local storage.
-
-### Privacy by Design
-
-No accounts. No cloud sync. No analytics that track your personal information. Just a tool that helps you stay organized.
-
----
-
-## Getting Started
-
-### Requirements
-
-- Node.js 18+
-- npm
-
-### Installation
-
-```bash
-git clone https://github.com/naretakis/hourkeep.git
-cd hourkeep
-npm install
-npm run dev
-```
-
-Open http://localhost:3000 in your browser.
-
-### Production Build
-
-```bash
-npm run build
-npm start
-```
-
-### Deployment
-
-HourKeep deploys to GitHub Pages via GitHub Actions. See [DEPLOYMENT.md](DEPLOYMENT.md) for details.
-
----
-
-## Project Structure
-
-```
-src/
-├── app/                 # Next.js App Router pages
-│   ├── onboarding/      # Privacy notice and profile setup
-│   ├── how-to-hourkeep/ # Assessment flow
-│   ├── tracking/        # Activity and income logging
-│   ├── exemptions/      # Exemption screening
-│   ├── export/          # Data export
-│   └── settings/        # Configuration and profile management
-├── components/          # React components organized by feature
-├── lib/                 # Business logic, database, utilities
-│   ├── storage/         # Dexie database operations
-│   ├── exemptions/      # Exemption logic and definitions
-│   └── assessment/      # Recommendation engine
-├── types/               # TypeScript interfaces
-└── theme/               # Material-UI customization
-```
-
----
-
-## Tech Stack
-
-| Layer      | Technology              |
-| ---------- | ----------------------- |
-| Framework  | Next.js 16 (App Router) |
-| Language   | TypeScript              |
-| UI         | Material-UI v7          |
-| Storage    | Dexie.js (IndexedDB)    |
-| PWA        | next-pwa                |
-| Dates      | date-fns                |
-| Validation | Zod                     |
-
----
-
-## Configuration
-
-If you fork this repository, update these files with your own URLs:
-
-**package.json**
-
-```json
-{
-  "repository": {
-    "url": "https://github.com/YOUR_USERNAME/hourkeep.git"
-  },
-  "bugs": {
-    "url": "https://github.com/YOUR_USERNAME/hourkeep/issues"
-  },
-  "homepage": "https://YOUR_USERNAME.github.io/hourkeep"
-}
-```
-
-**src/config/app.ts**
-
-```typescript
-repository: {
-  url: "https://github.com/YOUR_USERNAME/hourkeep",
-  issuesUrl: "https://github.com/YOUR_USERNAME/hourkeep/issues",
-}
-```
-
----
-
-## Usage
-
-### First Time
-
-1. Read and acknowledge the privacy notice
-2. Enter basic profile information
-3. Take the "How to HourKeep" assessment to get personalized guidance
-4. Start tracking (if not exempt)
-
-### Logging Hours
-
-Select a date, choose an activity type (work, volunteer, education), enter hours, and optionally attach documents.
-
-### Logging Income
-
-Enter the amount, select the pay period, and the app calculates your monthly equivalent automatically.
-
-### Exporting Data
-
-Go to Settings and export your records as JSON or plain text for agency submission.
-
----
-
-## Browser Support
-
-| Browser     | Support              |
-| ----------- | -------------------- |
-| Chrome/Edge | Full                 |
-| Firefox     | Full                 |
-| Safari      | Limited PWA features |
-
----
-
-## Privacy
-
-HourKeep collects anonymous usage statistics (page views, device types, regions) via Plausible Analytics to understand where the tool is needed most. This does not include any personal information, activity logs, or documents.
-
-To opt out, enable "Do Not Track" in your browser settings.
-
-What we collect:
-
-- Page views, device type, browser, screen size, state/region
-
-What we never collect:
-
-- Names, dates of birth, Medicaid IDs
-- Activity logs or hours worked
-- Documents or images
-- IP addresses or cross-site tracking
-
----
-
-## Documentation
-
-- [CHANGELOG.md](CHANGELOG.md) — Version history
-- [ROADMAP.md](ROADMAP.md) — Current and planned features
-- [DEPLOYMENT.md](DEPLOYMENT.md) — Deployment instructions
-- [BRANDING.md](BRANDING.md) — Brand guidelines
-- [PWA-TESTING.md](PWA-TESTING.md) — Testing PWA functionality
-
----
-
-## Contributing
-
-HourKeep is an open-source project. Feel free to fork, customize, or submit issues.
-
----
+HourKeep is a free, open-source app, now being rebuilt, for people on Medicaid facing the new work requirements, also
+called community engagement. Starting no later than January 1, 2027, many adults on Medicaid have to show that they
+work, volunteer, go to school or job training, or earn enough, unless the rule does not apply to them. HourKeep will
+help a person gather that proof and put it into a package they can send their state.
+
+It will keep everything on the person's own device. It will not decide whether anyone meets the requirement. Their
+state makes that decision.
+
+There is no app code in this repository yet. [hourkeep.app](https://hourkeep.app) shows a placeholder until there is.
+
+## What is here
+
+- `docs/domain/` holds the law and regulation HourKeep is built on, with analysis written for this project. The rule
+  itself is CMS's interim final rule CMS-2454-IFC, at 42 CFR 435.550 to 435.563. The folder also holds the 42 CFR
+  435.603 household income text, the enrolled text of Public Law 119-21, the 2025 law that created the requirement,
+  and Code for America's service blueprints. Where the analysis and the regulation disagree, the regulation wins. A
+  verification pass on 2026-10-16 found errors in the analysis files that have not been corrected yet.
+- `docs/decisions/` holds the decision records. `docs/design.md` will hold the design once it is written.
+- `public/` holds the placeholder page and the icons.
+- `AGENTS.md` and `.kiro/skills/` hold the rules the AI agents working here follow. `HOW-TO-WORK.md`, `DATA-GUARD.md`
+  and `missions/` are for the people working with those agents. All of them come from the
+  [agentic engineering bootstrap](https://github.com/nickarrow/agentic-engineering-bootstrap), and `NOTICE.md` says so.
+
+## The first version
+
+The first version of HourKeep, built from November 2025 to October 2026, is kept on the
+[`experiment-1`](https://github.com/nickarrow/hourkeep/tree/experiment-1) branch and the `experiment-1-final` tag: its
+code, tests, plans, decision records and research. Its releases, tagged `v2.0.0` to `v7.0.0`, belong to it too.
+`docs/decisions/0001-set-aside-v1-in-the-same-repository.md` explains why it was set aside and where each part went.
+
+## Real data stays out
+
+Never put records about real people in this repository, in an issue, or in a pull request. Use made-up data. Building
+HourKeep should never need a real record. If one ever has to be on a developer's machine, it goes in `sensitive/`, which
+git ignores apart from one deliberately fake file that proves the guard works. `DATA-GUARD.md` explains how to stop an
+AI agent from reading that folder, which each person sets up on their own machine.
 
 ## License
 
-GNU General Public License v3.0
+HourKeep is licensed under the GNU General Public License, version 3 or later. See `LICENSE`. The bootstrap files carry
+the MIT License, reproduced in `NOTICE.md`. Whether the new version keeps this license is still open.
 
-This copyleft license requires that derivative works be distributed under the same license. See [LICENSE](LICENSE) for details.
+## Problems, questions and security
 
----
+Open an issue for a problem or a question. Report a security problem privately, through this repository's Security tab
+and "Report a vulnerability".
 
-## Support
-
-Questions or issues? [Open an issue on GitHub](https://github.com/naretakis/hourkeep/issues).
+HourKeep cannot see or change anyone's Medicaid case. For help with your own case, contact the office that sent your
+letter, or find your state's Medicaid agency on
+[medicaid.gov](https://www.medicaid.gov/about-us/where-can-people-get-help-medicaid-chip).

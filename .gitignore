@@ -1,59 +1,82 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Keeps real data out of your commits. Copy this into your own project, or add
+# its contents to the end of a .gitignore you already have.
+#
+# These rules are about LOCATION, not filenames. A filename cannot tell you
+# whether a real person is identifiable, so the folders below are the ones you
+# designate, and everything in them stays out. DATA-GUARD.md explains how to
+# make those same folders unreadable to the agent, which git cannot do.
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+# The designated folders, at any depth. Written with a trailing /* rather than a
+# bare / because git cannot re-include a file whose parent directory is
+# excluded, and the exception at the bottom of this file needs to work.
+sensitive/*
+**/sensitive/*
+phi/*
+**/phi/*
+pii/*
+**/pii/*
 
-# testing
-/coverage
+# One narrow exception, listed after the rules it overrides so that it wins. The
+# fake extract ships because it is what proves the guard fires, and it is
+# engineered to be obviously fake. Keep this exception exactly this specific.
+!sensitive/FAKE-*.csv
 
-# Playwright MCP scratch output — snapshots, console logs, screenshots.
-# Currently written to $HOME because the MCP server cds there on start, but it
-# lands in the cwd if that ever changes. Ignored pre-emptively; a committed
-# snapshot dump is noise, and screenshots are large.
-.playwright-mcp/
-/test-results
-/playwright-report
+# Agent scratch, and git worktrees if an agent makes them here. One folder per
+# piece of work under .agents/ is scratch and never the record. Neither belongs
+# in history.
+.agents/
+.worktrees/
 
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
+# Local environment
+.env
+.env.*
+!.env.example
 .DS_Store
-*.pem
-.vscode
+node_modules/
 
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
+# -----------------------------------------------------------------------------
+# Deliberately NOT enabled, because they would bite a normal project.
+#
+# A blunt rule against anything data-shaped is good defence where no such file
+# is ever legitimate, and quietly destructive where one is. A project with test
+# fixtures in CSV, or a data/ folder of public reference tables, would find them
+# silently uncommitted and hard to diagnose.
+#
+# So: uncomment any line below that is true of YOUR project, and leave the rest.
+# If you do uncomment the CSV line, add an exception for any fixture you need,
+# the way the fake extract above is handled.
+#
+# *.csv
+# *.xlsx
+# *.xls
+# *.mdb
+# *.accdb
+# data/
+# extracts/
+# *-internal.md
+# *-confidential.md
+# *-transcript.md
 
-# env files (can opt-in for committing if needed)
-.env*
+# -----------------------------------------------------------------------------
+# HourKeep. Everything above is the bootstrap starter's .gitignore, unchanged.
+# Below are the rules carried over from v1's .gitignore that still apply, plus
+# the Vite build output. v1's Next.js rules (.next/, out/, next-env.d.ts) went
+# with v1; see docs/decisions/0001-set-aside-v1-in-the-same-repository.md.
 
-# vercel
-.vercel
-
-# typescript
+# Build output and test scratch. Anchored to the repository root with a leading
+# slash, as v1 had them: unanchored, coverage/ would also hide a source folder
+# named after the Medicaid word.
+/dist/
+/coverage/
+/test-results/
+/playwright-report/
+.playwright-mcp/
 *.tsbuildinfo
-next-env.d.ts
 
-# Semantic review output, written by the review sub-agent. Scratch.
-/semantic-review
-# Review-workflow working directories: the multi-model semantic review writes under
-# .agents/reviews/, and the per-lens investigate reviewers write ad-hoc reports under
-# docs/hr1-readiness/reviews/. Both are review scratch — a lead to act on during a wave,
-# not a wave deliverable. The durable record is the wave file's Convergence section.
-/.agents/
-/docs/hr1-readiness/reviews/
+# Private keys, direnv files (v1's .env* rule covered these), and local editor settings
+*.pem
+.envrc
+.vscode/
+
+# Debug logs
+npm-debug.log*

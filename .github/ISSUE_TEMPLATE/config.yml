@@ -1,1 +1,11 @@
+# Shown on GitHub's "New issue" page. HourKeep has no issue templates while v2 is built; v1's templates described
+# v1's screens and went with it (docs/decisions/0001-set-aside-v1-in-the-same-repository.md). This link is here so
+# that someone looking for help with their own Medicaid case is pointed to their state before they post anything.
 blank_issues_enabled: true
+contact_links:
+  - name: Help with your own Medicaid case
+    url: https://www.medicaid.gov/about-us/where-can-people-get-help-medicaid-chip
+    about: HourKeep cannot see or change anyone's case. Contact your state's Medicaid agency, and never post personal details in an issue here.
+  - name: Report a security problem privately
+    url: https://github.com/nickarrow/hourkeep/security/advisories/new
+    about: Use GitHub's private vulnerability reporting rather than a public issue.

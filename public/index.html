@@ -1,0 +1,280 @@
+<!doctype html>
+<!--
+  HourKeep placeholder, shown while v2 is built. See docs/decisions/0001-set-aside-v1-in-the-same-repository.md.
+  The deploy workflow also publishes this file as 404.html, so old v1 links land here. Keep every path absolute.
+
+  This file has no scripts, no web fonts and no analytics, and loads nothing from any other site. hourkeep.app is
+  proxied through Cloudflare, which adds its own Web Analytics script and error-reporting headers at the edge unless
+  that is switched off in the Cloudflare dashboard. Decision record 0001 says what was observed.
+
+  Sources for the claims on this page (cited here rather than on screen):
+  - "work requirements, also called community engagement": SSA 1902(xx), added by Public Law 119-21 section 71119
+    (docs/domain/hr1/119hr1enr.md line 9013), which names the requirement community engagement; 42 CFR 435.552(a)
+    lists the ways to meet it (work, community service, work programs, education, a combination, and income).
+    CMS-2454-IFC, 91 FR 33348 (June 3, 2026).
+  - "Look for a deadline on the letter": a notice of noncompliance must state the deadline, 42 CFR
+    435.558(c)(1)(iii). Other letters vary, so the page says "look for" rather than "it will show".
+  - Appeal and fair hearing: 42 CFR 431.220(a)(1) (the right to a hearing over a denial or other action);
+    431.206(b)-(c) (the agency must explain the right and the method in writing when it acts);
+    431.210(d) and (e) (the notice must explain the right, and the circumstances in which Medicaid continues if a
+    hearing is requested); 431.221(d) (a reasonable time to ask, not more than 90 days from the date the notice is
+    mailed; states set their own, so the page gives no number); 431.230(a) (if the request comes before the date of
+    action, services continue until a decision is rendered after the hearing, with exceptions). Read on eCFR,
+    current as of 2026-10-01.
+  - "You don't need a lawyer": 42 CFR 431.206(b)(3) (represent yourself, or use legal counsel, a relative, a friend,
+    or another spokesman).
+  - "No letter yet? Make sure your state has your current address": plain advice from HourKeep, not a rule.
+  - Links checked on 2026-10-16: medicaid.gov's state contact page (a state picker with phone numbers; the
+    /index.html form of that URL returns "Page Not Found"), LawHelp.org's state chooser, and USAGov's Spanish legal
+    help page. medicaid.gov's own Spanish translation of its contact page is a two-page PDF with no state numbers,
+    so the Spanish section links the English page and says so.
+
+  The Spanish text was written by AI and checked by AI reviewers. It has not been reviewed by a native speaker.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#6B4E71" />
+    <meta
+      name="description"
+      content="HourKeep is being rebuilt. If you got a letter about your Medicaid, contact the office that sent it now."
+    />
+    <title>HourKeep is being rebuilt</title>
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <style>
+      :root {
+        --purple: #6b4e71;
+        --purple-dark: #4b2e51;
+        --tan: #d4a574;
+        --page: #faf9f7;
+        --paper: #ffffff;
+        --ink: #2d2d2d;
+        --ink-soft: #6b6b6b;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+      }
+      body {
+        margin: 0;
+        background: var(--page);
+        color: var(--ink);
+        font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-size: 1.125rem;
+        line-height: 1.6;
+      }
+      main,
+      footer {
+        max-width: 38rem;
+        margin: 0 auto;
+        padding: 0 1.25rem;
+      }
+      main {
+        padding-top: 1.5rem;
+      }
+      h1,
+      h2,
+      h3,
+      p,
+      a {
+        overflow-wrap: break-word;
+      }
+      .top {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1rem;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+      .mark {
+        display: block;
+        width: 3rem;
+        height: 3rem;
+      }
+      .lang {
+        font-size: 1rem;
+        padding: 0.5rem 0;
+      }
+      h1 {
+        font-size: 1.875rem;
+        line-height: 1.25;
+        margin: 0 0 1rem;
+      }
+      h2 {
+        font-size: 1.25rem;
+        line-height: 1.3;
+        margin: 2rem 0 0.5rem;
+      }
+      h3 {
+        font-size: 1.125rem;
+        line-height: 1.3;
+        margin: 1.5rem 0 0.5rem;
+      }
+      p {
+        margin: 0 0 1rem;
+      }
+      a {
+        color: var(--purple);
+        text-decoration-thickness: 0.08em;
+        text-underline-offset: 0.18em;
+      }
+      a:hover {
+        color: var(--purple-dark);
+        text-decoration-thickness: 0.14em;
+      }
+      a:focus-visible {
+        outline: 3px solid var(--purple-dark);
+        outline-offset: 3px;
+        border-radius: 2px;
+      }
+      .letter {
+        background: var(--paper);
+        border: 2px solid var(--purple);
+        border-radius: 0.75rem;
+        padding: 0.25rem 1.25rem 0.5rem;
+        margin: 1.5rem 0;
+      }
+      .letter h2,
+      .letter h3 {
+        margin-top: 1rem;
+      }
+      hr {
+        border: 0;
+        border-top: 1px solid var(--tan);
+        margin: 2.5rem 0 0;
+      }
+      footer {
+        padding-top: 1rem;
+        padding-bottom: 3rem;
+        color: var(--ink-soft);
+        font-size: 1rem;
+      }
+      @media print {
+        body {
+          background: #ffffff;
+          color: #000000;
+        }
+        .lang {
+          display: none;
+        }
+        .letter {
+          border-color: #000000;
+        }
+        a {
+          color: #000000;
+        }
+        a[href^="http"]::after {
+          content: " (" attr(href) ")";
+          font-size: 0.875em;
+          word-break: break-all;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="top">
+        <img class="mark" src="/icon.svg" alt="" width="64" height="64" />
+        <a class="lang" href="#es" lang="es">Leer en español</a>
+      </div>
+      <h1>HourKeep is being rebuilt</h1>
+      <p>
+        HourKeep is a free app, now being rebuilt, for keeping the records that Medicaid's new work requirements ask
+        for. These rules are also called community engagement. HourKeep is not ready to use yet, and it is not part of
+        Medicaid or any government agency.
+      </p>
+
+      <section class="letter" aria-labelledby="letter-heading">
+        <h2 id="letter-heading">Did you get a letter about your Medicaid?</h2>
+        <p>Don't wait for this app. Contact the office that sent your letter, using the phone number on it.</p>
+        <p>Look for a deadline on the letter, and contact them before that date. If you can't find a date, call and ask.</p>
+        <p>
+          <a href="https://www.medicaid.gov/about-us/where-can-people-get-help-medicaid-chip"
+            >Find your state's Medicaid phone number</a
+          >
+        </p>
+      </section>
+
+      <h2>If your state denies or ends your coverage</h2>
+      <p>
+        You can appeal. This is called asking for a fair hearing. There is a time limit for asking, so look for it on
+        the letter about that decision and ask soon. That letter also has to say in what cases your coverage can
+        continue while you wait for the hearing decision.
+      </p>
+      <p>
+        You don't need a lawyer. You can speak for yourself, or bring a friend, a relative, or a lawyer to help you.
+      </p>
+      <p><a href="https://www.lawhelp.org/">Find free legal help in your state</a></p>
+
+      <h2>No letter yet?</h2>
+      <p>Make sure your state has your current address, so its letters reach you.</p>
+
+      <section id="es" lang="es" aria-labelledby="es-heading">
+        <h2 id="es-heading">En español</h2>
+        <p>
+          HourKeep es una aplicación gratuita para guardar los documentos que piden los nuevos requisitos de trabajo
+          de Medicaid. Estas reglas también se conocen como “participación comunitaria”. Estamos renovando HourKeep y
+          por ahora no se puede usar.
+        </p>
+        <p>HourKeep no es parte de Medicaid ni de ninguna agencia del gobierno.</p>
+
+        <div class="letter">
+          <h3>¿Recibió una carta sobre su Medicaid?</h3>
+          <p>
+            No espere a que esta aplicación esté lista. Llame a la oficina que le envió la carta. Use el número de
+            teléfono que aparece en la carta.
+          </p>
+          <p>
+            Fíjese si la carta tiene una fecha límite y comuníquese con la oficina antes de esa fecha. Si no encuentra
+            una fecha, llame y pregunte.
+          </p>
+          <p>
+            <a href="https://www.medicaid.gov/about-us/where-can-people-get-help-medicaid-chip" hreflang="en"
+              >Busque el número de teléfono de Medicaid en su estado (página en inglés)</a
+            >
+          </p>
+        </div>
+
+        <h3>Si su estado le niega o le cancela la cobertura</h3>
+        <p>
+          Puede apelar. Esto se llama pedir una audiencia imparcial. Hay un plazo para pedir la audiencia. Busque ese
+          plazo en la carta donde le avisan de la decisión y pida la audiencia pronto. Esa carta también tiene que
+          explicar en qué casos puede mantener su cobertura mientras espera la decisión de la audiencia.
+        </p>
+        <p>
+          No necesita abogado. Puede presentar su propio caso o llevar a una amistad, a alguien de su familia o a un
+          abogado para que le ayude.
+        </p>
+        <p>
+          <a href="https://www.usa.gov/es/asistencia-legal-gratis" hreflang="es"
+            >Busque ayuda legal gratis o a bajo costo (USAGov en español)</a
+          >
+        </p>
+
+        <h3>¿Todavía no ha recibido una carta?</h3>
+        <p>Asegúrese de que su estado tenga su dirección actual, para que le lleguen las cartas de Medicaid.</p>
+        <p>
+          Para programadores y organizaciones: HourKeep es gratis y de código abierto.
+          <a href="https://github.com/nickarrow/hourkeep" hreflang="en">Vea el proyecto en GitHub (en inglés)</a>.
+        </p>
+        <p>Página actualizada en octubre de 2026.</p>
+      </section>
+
+      <hr />
+    </main>
+    <footer>
+      <p>
+        For developers and organizations: HourKeep is free and open source.
+        <a href="https://github.com/nickarrow/hourkeep">See the project on GitHub</a>.
+      </p>
+      <p>Page updated October 2026.</p>
+    </footer>
+  </body>
+</html>
