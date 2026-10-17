@@ -1,0 +1,536 @@
+{
+  "sources": [
+    {
+      "path": "docs/domain/blueprint-pdfs/Medicaid-Work-Requirements-Service-Blueprint-–-Code-for-America-11x17-1.pdf",
+      "sha256": "4b1eb4c7a3e5a357a41a6f320c67b7e6a58a152ae53279c99aaea9792344ebc9",
+      "kind": "verbatim",
+      "cited_url": "not recorded",
+      "retrievals": [
+        {
+          "served_url": "not recorded",
+          "command": "not recorded",
+          "retrieved": "not recorded"
+        },
+        {
+          "served_url": "https://files.codeforamerica.org/2025/09/09205711/Medicaid-Work-Requirements-Service-Blueprint-%E2%80%93-Code-for-America-11x17-1.pdf",
+          "command": "curl -sS --fail -L --max-time 300 -o .agents/corpus-increment-1/sources-step/refetch/medicaid-blueprint-11x17.pdf -w '%{http_code} %{content_type} %{size_download} %{num_redirects} %{url_effective}\\n' 'https://files.codeforamerica.org/2025/09/09205711/Medicaid-Work-Requirements-Service-Blueprint-%E2%80%93-Code-for-America-11x17-1.pdf'",
+          "retrieved": "2026-10-17T05:56:24Z"
+        }
+      ],
+      "superseded": [],
+      "note": "Added in the initial commit, 341200a (2025-11-01); where it came from was never recorded. Re-fetched on 2026-10-17 from the source_url in Code for America's WordPress media record 14194 (https://codeforamerica.org/wp-json/wp/v2/media?slug=medicaid-work-requirements-service-blueprint-11x17, uploaded 2025-09-10T03:57:00Z): identical bytes. The media page that record links, https://codeforamerica.org/media/medicaid-work-requirements-service-blueprint-11x17/, answered 403 to curl with and without a browser User-Agent."
+    },
+    {
+      "path": "docs/domain/blueprint-pdfs/SNAP-Work-Requirements-Service-Blueprint-–-Code-for-America-11x17-1.pdf",
+      "sha256": "0de415db2ee8f0b2303041b95a56044898f0342c9821bf1f6ae93bda55e91804",
+      "kind": "verbatim",
+      "cited_url": "not recorded",
+      "retrievals": [
+        {
+          "served_url": "not recorded",
+          "command": "not recorded",
+          "retrieved": "not recorded"
+        },
+        {
+          "served_url": "https://files.codeforamerica.org/2025/09/09204844/SNAP-Work-Requirements-Service-Blueprint-%E2%80%93-Code-for-America-11x17-1.pdf",
+          "command": "curl -sS --fail -L --max-time 300 -o .agents/corpus-increment-1/sources-step/refetch/snap-blueprint-11x17.pdf -w '%{http_code} %{content_type} %{size_download} %{num_redirects} %{url_effective}\\n' 'https://files.codeforamerica.org/2025/09/09204844/SNAP-Work-Requirements-Service-Blueprint-%E2%80%93-Code-for-America-11x17-1.pdf'",
+          "retrieved": "2026-10-17T05:56:27Z"
+        }
+      ],
+      "superseded": [],
+      "note": "Added in the initial commit, 341200a (2025-11-01); where it came from was never recorded. Re-fetched on 2026-10-17 from the source_url in Code for America's WordPress media record 14193 (https://codeforamerica.org/wp-json/wp/v2/media?slug=snap-work-requirements-service-blueprint-11x17, uploaded 2025-09-10T03:48:35Z): identical bytes. The media page that record links, https://codeforamerica.org/media/snap-work-requirements-service-blueprint-11x17/, answered 403 to curl with and without a browser User-Agent."
+    },
+    {
+      "path": "docs/domain/cms-2454-ifc/2026-11094.txt",
+      "sha256": "731608199872d71485174af0b1bd9d5348bc929d12c95dca8f7a723e60b19d0a",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [
+        {
+          "by": "docs/domain/sources/federal-register/C1-2026-11094.xml",
+          "scope": "42 CFR 435.557 and 435.558"
+        }
+      ],
+      "derived_from": "not recorded",
+      "derivation": "not recorded",
+      "note": "Added with the XML in commit 7c13f8a (2026-08-17), which calls both the rule as published, pinned. Its 135 [[FR p.N]] markers match the 135 PRTPAGE markers of docs/domain/cms-2454-ifc/2026-11094.xml in the same order (counted 2026-10-17), but no record says it was made from that file, or how."
+    },
+    {
+      "path": "docs/domain/cms-2454-ifc/2026-11094.xml",
+      "sha256": "6d8bce7ffa4d6af44f42ab82d1f0d2a237f433dac951fe1df0d826e4322cc430",
+      "kind": "verbatim",
+      "cited_url": "not recorded",
+      "retrievals": [
+        {
+          "served_url": "not recorded",
+          "command": "not recorded",
+          "retrieved": "not recorded"
+        },
+        {
+          "served_url": "https://www.federalregister.gov/documents/full_text/xml/2026/06/03/2026-11094.xml",
+          "command": "curl -sS -L -o .agents/corpus-increment-1/sources-step/refetch/2026-11094.xml -w '%{http_code} %{content_type} %{size_download} %{url_effective}\\n' 'https://www.federalregister.gov/documents/full_text/xml/2026/06/03/2026-11094.xml'",
+          "retrieved": "2026-10-17T05:15:31Z"
+        }
+      ],
+      "superseded": [
+        {
+          "by": "docs/domain/sources/federal-register/C1-2026-11094.xml",
+          "scope": "42 CFR 435.557 and 435.558"
+        }
+      ],
+      "note": "Federal Register document 2026-11094, 91 FR 33348, published 2026-06-03. Added in commit 7c13f8a (2026-08-17), which calls it the rule as published, pinned; how it was first fetched was never recorded. Re-fetched on 2026-10-17 from the full_text_xml_url of the API record https://www.federalregister.gov/api/v1/documents/2026-11094.json: identical bytes (SHA-256 and cmp). A re-fetch on 2026-10-16, which the epic design reports as matching too, kept no command or time and is not listed."
+    },
+    {
+      "path": "docs/domain/cms-2454-ifc/SECTION-INDEX.txt",
+      "sha256": "24196372d2930ab1248109942394e4d24dd4608ea571dd6e5f3463f8c910d2df",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [],
+      "derived_from": "not recorded",
+      "derivation": "not recorded",
+      "note": "Added in commit 7c13f8a (2026-08-17). Each of its 184 entries gives a line number of docs/domain/cms-2454-ifc/2026-11094.txt and the heading found on that line (checked 2026-10-17); no record says how it was made."
+    },
+    {
+      "path": "docs/domain/hr1/119hr1enr-hhs-sections.md",
+      "sha256": "65eb0d29b14ef633eb131381546a55eb415872d7189886881a236628b862fe4d",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [],
+      "derived_from": "not recorded",
+      "derivation": "not recorded",
+      "note": "How the file was first made, before the initial commit 341200a (2025-11-01), was never recorded. Commit 7984863 (2025-11-02) then rewrote it: that commit adds Prettier with the package.json script \"format\": \"prettier --write .\" and says \"Format all documentation files for consistency\"."
+    },
+    {
+      "path": "docs/domain/hr1/119hr1enr-title1.md",
+      "sha256": "60d508639f1bb1ab9c41ba72e3b65ed601558a9b8a81b4dbf6507b77fab8fccc",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [],
+      "derived_from": "not recorded",
+      "derivation": "not recorded",
+      "note": "How the file was first made, before the initial commit 341200a (2025-11-01), was never recorded. Commit 7984863 (2025-11-02) then rewrote it: that commit adds Prettier with the package.json script \"format\": \"prettier --write .\" and says \"Format all documentation files for consistency\"."
+    },
+    {
+      "path": "docs/domain/hr1/119hr1enr-title10.md",
+      "sha256": "fb8541e25bcb1dcdff21475811424eca626a1418a398e6a7eecf7e7b52c375fb",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [],
+      "derived_from": "not recorded",
+      "derivation": "not recorded",
+      "note": "How the file was first made, before the initial commit 341200a (2025-11-01), was never recorded. Commit 7984863 (2025-11-02) then rewrote it: that commit adds Prettier with the package.json script \"format\": \"prettier --write .\" and says \"Format all documentation files for consistency\"."
+    },
+    {
+      "path": "docs/domain/hr1/119hr1enr-title2.md",
+      "sha256": "5bb82f00c8577b05a6e145bf82a88475d74e06ebcb2061389166904756ced5b0",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [],
+      "derived_from": "not recorded",
+      "derivation": "not recorded",
+      "note": "How the file was first made, before the initial commit 341200a (2025-11-01), was never recorded. Commit 7984863 (2025-11-02) then rewrote it: that commit adds Prettier with the package.json script \"format\": \"prettier --write .\" and says \"Format all documentation files for consistency\"."
+    },
+    {
+      "path": "docs/domain/hr1/119hr1enr-title3.md",
+      "sha256": "0877385c37c20cfb6aed7b1060bd3768792a1093a2ef4e927feed6f10c723837",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [],
+      "derived_from": "not recorded",
+      "derivation": "not recorded",
+      "note": "How the file was first made, before the initial commit 341200a (2025-11-01), was never recorded. Commit 7984863 (2025-11-02) then rewrote it: that commit adds Prettier with the package.json script \"format\": \"prettier --write .\" and says \"Format all documentation files for consistency\"."
+    },
+    {
+      "path": "docs/domain/hr1/119hr1enr-title4.md",
+      "sha256": "aa53dd32853474c2afc5dbbba2cd795a519dd267f616ab00cf5a17b663d95cde",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [],
+      "derived_from": "not recorded",
+      "derivation": "not recorded",
+      "note": "How the file was first made, before the initial commit 341200a (2025-11-01), was never recorded. Commit 7984863 (2025-11-02) then rewrote it: that commit adds Prettier with the package.json script \"format\": \"prettier --write .\" and says \"Format all documentation files for consistency\"."
+    },
+    {
+      "path": "docs/domain/hr1/119hr1enr-title5.md",
+      "sha256": "5a348d621f81bef782f92d97473708856e4d11cee3cc918622ff2118cde1b550",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [],
+      "derived_from": "not recorded",
+      "derivation": "not recorded",
+      "note": "How the file was first made, before the initial commit 341200a (2025-11-01), was never recorded. Commit 7984863 (2025-11-02) then rewrote it: that commit adds Prettier with the package.json script \"format\": \"prettier --write .\" and says \"Format all documentation files for consistency\"."
+    },
+    {
+      "path": "docs/domain/hr1/119hr1enr-title6.md",
+      "sha256": "5844dd5536cddbc900d1ddbfb6650a347cf4cbf5a6a0a18e287adf9bdbd6afde",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [],
+      "derived_from": "not recorded",
+      "derivation": "not recorded",
+      "note": "How the file was first made, before the initial commit 341200a (2025-11-01), was never recorded. Commit 7984863 (2025-11-02) then rewrote it: that commit adds Prettier with the package.json script \"format\": \"prettier --write .\" and says \"Format all documentation files for consistency\"."
+    },
+    {
+      "path": "docs/domain/hr1/119hr1enr-title7-part1.md",
+      "sha256": "8243d8ebd27853beaf007055c75e64c8687a6993549557b2425bb8e762bc0cb5",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [],
+      "derived_from": "not recorded",
+      "derivation": "not recorded",
+      "note": "How the file was first made, before the initial commit 341200a (2025-11-01), was never recorded. Commit 7984863 (2025-11-02) then rewrote it: that commit adds Prettier with the package.json script \"format\": \"prettier --write .\" and says \"Format all documentation files for consistency\"."
+    },
+    {
+      "path": "docs/domain/hr1/119hr1enr-title7-part2.md",
+      "sha256": "423d4bd43bec606a60f1069e1227b32feaea5f03d1e3e55e1de05c08726ef384",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [],
+      "derived_from": "not recorded",
+      "derivation": "not recorded",
+      "note": "How the file was first made, before the initial commit 341200a (2025-11-01), was never recorded. Commit 7984863 (2025-11-02) then rewrote it: that commit adds Prettier with the package.json script \"format\": \"prettier --write .\" and says \"Format all documentation files for consistency\"."
+    },
+    {
+      "path": "docs/domain/hr1/119hr1enr-title7-part3.md",
+      "sha256": "8cae999ea1a1741ce8150637f490153e75f859e4c9681704fec3112fb041bccd",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [],
+      "derived_from": "not recorded",
+      "derivation": "not recorded",
+      "note": "How the file was first made, before the initial commit 341200a (2025-11-01), was never recorded. Commit 7984863 (2025-11-02) then rewrote it: that commit adds Prettier with the package.json script \"format\": \"prettier --write .\" and says \"Format all documentation files for consistency\"."
+    },
+    {
+      "path": "docs/domain/hr1/119hr1enr-title8.md",
+      "sha256": "2799f9d2c019de800f6087685b6f2015290c422eb5d9f1b83ccbb37cf7852d97",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [],
+      "derived_from": "not recorded",
+      "derivation": "not recorded",
+      "note": "How the file was first made, before the initial commit 341200a (2025-11-01), was never recorded. Commit 7984863 (2025-11-02) then rewrote it: that commit adds Prettier with the package.json script \"format\": \"prettier --write .\" and says \"Format all documentation files for consistency\"."
+    },
+    {
+      "path": "docs/domain/hr1/119hr1enr-title9.md",
+      "sha256": "2ca8896023c2cec587c31830efa36b03efecc4d734672eb01c9c54cea9a2335e",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [],
+      "derived_from": "not recorded",
+      "derivation": "not recorded",
+      "note": "How the file was first made, before the initial commit 341200a (2025-11-01), was never recorded. Commit 7984863 (2025-11-02) then rewrote it: that commit adds Prettier with the package.json script \"format\": \"prettier --write .\" and says \"Format all documentation files for consistency\"."
+    },
+    {
+      "path": "docs/domain/hr1/119hr1enr-toc.md",
+      "sha256": "dbd599cd737dc138fac412fed86f386a37127a09e82851e4b07fb7fe1e2e640b",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [],
+      "derived_from": "not recorded",
+      "derivation": "not recorded",
+      "note": "Its first 3 lines are [Congressional Bills 119th Congress], [From the U.S. Government Publishing Office] and [H.R. 1 Enrolled Bill (ENR)]; the address it came from was not recorded. How the file was first made, before the initial commit 341200a (2025-11-01), was never recorded. Commit 7984863 (2025-11-02) then rewrote it: that commit adds Prettier with the package.json script \"format\": \"prettier --write .\" and says \"Format all documentation files for consistency\"."
+    },
+    {
+      "path": "docs/domain/hr1/119hr1enr.md",
+      "sha256": "c7917dce4c13ad66a41995d0485a61d9b8f663b9677a73bb69a9cebc5246a554",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [],
+      "derived_from": "not recorded",
+      "derivation": "not recorded",
+      "note": "Its first 3 lines are [Congressional Bills 119th Congress], [From the U.S. Government Publishing Office] and [H.R. 1 Enrolled Bill (ENR)]; the address it came from was not recorded. How the file was first made, before the initial commit 341200a (2025-11-01), was never recorded. Commit 7984863 (2025-11-02) then rewrote it: that commit adds Prettier with the package.json script \"format\": \"prettier --write .\" and says \"Format all documentation files for consistency\"."
+    },
+    {
+      "path": "docs/domain/sources/cms/smd-26-001.pdf",
+      "sha256": "50f47fe6d3b6a0274fa7e5383c4ed7dfd574ddc478317f0a983853d6edd5bba2",
+      "kind": "verbatim",
+      "cited_url": "https://www.medicaid.gov/federal-policy-guidance/downloads/smd26001.pdf",
+      "retrievals": [
+        {
+          "served_url": "https://www.medicaid.gov/federal-policy-guidance/downloads/smd26001.pdf",
+          "command": "curl -sS --fail -L --max-time 120 -o docs/domain/sources/cms/smd-26-001.pdf -w '%{http_code} %{content_type} %{size_download} %{num_redirects} %{url_effective}\\n' 'https://www.medicaid.gov/federal-policy-guidance/downloads/smd26001.pdf'",
+          "retrieved": "2026-10-17T05:16:43Z"
+        }
+      ],
+      "superseded": [],
+      "note": "CMS letter SMD 26-001, dated 2026-03-06 (extraction line 11); docs/domain/research/2026-10-16-policy/L2-cms-guidance.md:49 cites this address. A plain request, with no User-Agent, answered 200 with no redirect. 14 pages."
+    },
+    {
+      "path": "docs/domain/sources/cms/smd-26-001.txt",
+      "sha256": "ad62f985a612d507c55ccc625011e551b7883bec44d7459a437383920068a5b1",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [],
+      "derived_from": "docs/domain/sources/cms/smd-26-001.pdf",
+      "derivation": "swift scripts/extract-pdf-text.swift docs/domain/sources/cms/smd-26-001.pdf > docs/domain/sources/cms/smd-26-001.txt, run from the repository root; script SHA-256 ba4a255b8bd66a24143ac26e5630e5a44fa625b62788c21647179a7f1401c0ef; macOS 26.7.1 (25G241); Apple Swift version 6.2 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)",
+      "note": "Made at 2026-10-17T07:23:40Z and again at 2026-10-17T07:23:40Z, to identical bytes; 14 pages, each opened by a line [[page N]]. PDFKit can separate a paragraph's label from its text, so read the cited paragraph on the rendered page."
+    },
+    {
+      "path": "docs/domain/sources/colorado/10-ccr-2505-10-8.000-effective-2026-07-10.pdf",
+      "sha256": "83b10d0fff318737e3a68e97e86a3fe37586e986628614ffb7383357b095c0ad",
+      "kind": "verbatim",
+      "cited_url": "not recorded",
+      "retrievals": [
+        {
+          "served_url": "https://www.coloradosos.gov/CCR/GenerateRulePdf.do?ruleVersionId=12612&fileName=10%20CCR%202505-10%208.000",
+          "command": "curl -sS --fail -L --max-time 300 -o docs/domain/sources/colorado/10-ccr-2505-10-8.000-effective-2026-07-10.pdf -w '%{http_code} %{content_type} %{size_download} %{num_redirects} %{url_effective}\\n' 'https://www.coloradosos.gov/CCR/GenerateRulePdf.do?ruleVersionId=12612&fileName=10%20CCR%202505-10%208.000'",
+          "retrieved": "2026-10-17T05:17:01Z"
+        }
+      ],
+      "superseded": [],
+      "note": "10 CCR 2505-10 8.000, ruleVersionId 12612, which the rule-information page stored beside it shows as the current version: effective 2026-07-10, Emergency Rule, adopted 2026-07-10, eDocket 2026-00296 and 2026-00357. That page builds this address in its OpenRuleWindow script. No HourKeep document cites an address for it. 135 pages; the PDF gives no history of its own and refers to the Editor's Notes in the first section of 10 CCR 2505-10 (extraction line 4821)."
+    },
+    {
+      "path": "docs/domain/sources/colorado/10-ccr-2505-10-8.000-effective-2026-07-10.txt",
+      "sha256": "92d085b32e577ac277118056312dcc06855cc57c45d82211e2ea4e546cdc491a",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [],
+      "derived_from": "docs/domain/sources/colorado/10-ccr-2505-10-8.000-effective-2026-07-10.pdf",
+      "derivation": "swift scripts/extract-pdf-text.swift docs/domain/sources/colorado/10-ccr-2505-10-8.000-effective-2026-07-10.pdf > docs/domain/sources/colorado/10-ccr-2505-10-8.000-effective-2026-07-10.txt, run from the repository root; script SHA-256 ba4a255b8bd66a24143ac26e5630e5a44fa625b62788c21647179a7f1401c0ef; macOS 26.7.1 (25G241); Apple Swift version 6.2 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)",
+      "note": "Made at 2026-10-17T07:23:41Z and again at 2026-10-17T07:23:41Z, to identical bytes; 135 pages, each opened by a line [[page N]]. PDFKit can separate a paragraph's label from its text, so read the cited paragraph on the rendered page. Section 8.057.4.B begins on line 2801 and its paragraph 1 is on lines 2803 and 2804; section 8.057.5.D begins on line 2923. Line 2765, with similar words, is 8.057.3.F.1, the informal dispute resolution conference."
+    },
+    {
+      "path": "docs/domain/sources/colorado/10-ccr-2505-10-8.000-rule-information-2026-10-17.html",
+      "sha256": "3a2e55a969f71e9fa568c5cf915e3072f81875dff56d23433d46e11b527457e2",
+      "kind": "verbatim",
+      "cited_url": "not recorded",
+      "retrievals": [
+        {
+          "served_url": "https://www.coloradosos.gov/CCR/DisplayRule.do?action=ruleinfo&ruleId=2917&deptID=7&agencyID=69&deptName=Department%20of%20Health%20Care%20Policy%20and%20Financing&agencyName=Medical%20Services%20Board%20(Volume%208;%20Medical%20Assistance,%20Children%27s%20Health%20Plan)&seriesNum=10%20CCR%202505-10%208.000",
+          "command": "curl -sS --fail -L --max-time 120 -o docs/domain/sources/colorado/10-ccr-2505-10-8.000-rule-information-2026-10-17.html -w '%{http_code} %{content_type} %{size_download} %{num_redirects} %{url_effective}\\n' 'https://www.coloradosos.gov/CCR/DisplayRule.do?action=ruleinfo&ruleId=2917&deptID=7&agencyID=69&deptName=Department%20of%20Health%20Care%20Policy%20and%20Financing&agencyName=Medical%20Services%20Board%20(Volume%208;%20Medical%20Assistance,%20Children%27s%20Health%20Plan)&seriesNum=10%20CCR%202505-10%208.000'",
+          "retrieved": "2026-10-17T05:16:54Z"
+        }
+      ],
+      "superseded": [],
+      "note": "The Colorado Secretary of State's rule-information page for 10 CCR 2505-10 8.000, served as ISO-8859-1. Its Current version table gives ruleVersionId 12612 (line 241), effective 2026-07-10 (line 241), Emergency Rule (line 248), adopted 2026-07-10 (line 252), and eDocket 2026-00296 and 2026-00357 (lines 267 and 271); the page writes each date month first, with slashes. No HourKeep document cites an address for it; the address is the one the Secretary of State's list of the Medical Services Board's rules links. A copy fetched minutes earlier differs from this one only in Cloudflare's per-request script tokens, so a re-fetch will not reproduce these bytes."
+    },
+    {
+      "path": "docs/domain/sources/colorado/10-ccr-2505-10-8.100-draft-2026-09-28.pdf",
+      "sha256": "8780c03fedccf720108361d8dae5859990daf79402770ee2adbfd171c8e57b3b",
+      "kind": "verbatim",
+      "cited_url": "https://drive.google.com/file/d/1CCPLCno0FQYZi8YtGPckXf2jYttU9HGy/view",
+      "retrievals": [
+        {
+          "served_url": "https://drive.usercontent.google.com/download?id=1CCPLCno0FQYZi8YtGPckXf2jYttU9HGy&export=download",
+          "command": "curl -sS --fail -L --max-time 300 -o docs/domain/sources/colorado/10-ccr-2505-10-8.100-draft-2026-09-28.pdf -w '%{http_code} %{content_type} %{size_download} %{num_redirects} %{url_effective}\\n' 'https://drive.google.com/uc?export=download&id=1CCPLCno0FQYZi8YtGPckXf2jYttU9HGy'",
+          "retrieved": "2026-10-17T05:18:02Z"
+        }
+      ],
+      "superseded": [],
+      "note": "Draft 10 CCR 2505-10 8.100, not adopted, which HCPF posted for its 2026-09-28 stakeholder meeting. docs/domain/research/2026-10-16-policy/L5-colorado.md:44 cites this Drive viewer link, and the meeting page https://hcpf.colorado.gov/events/eligibility-rule-updates-se-september still linked it on 2026-10-17. The bytes came from Drive's download link, which redirected once. Byte-identical to the copy research L5 kept on 2026-10-16 as scratch-L5/draft-rule-8100.pdf: the same SHA-256, and cmp found no difference. Its XMP metadata gives CreateDate 2026-09-09T23:15:34Z and ModifyDate 2026-09-14T18:43:55Z, converted here to UTC from the local time and offset it writes. 26 pages."
+    },
+    {
+      "path": "docs/domain/sources/colorado/10-ccr-2505-10-8.100-draft-2026-09-28.txt",
+      "sha256": "12043dea33872f0fd7f6d0c976de65c6a3a8f8b6a1a6cd5c3eb43a40808e8ae6",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [],
+      "derived_from": "docs/domain/sources/colorado/10-ccr-2505-10-8.100-draft-2026-09-28.pdf",
+      "derivation": "swift scripts/extract-pdf-text.swift docs/domain/sources/colorado/10-ccr-2505-10-8.100-draft-2026-09-28.pdf > docs/domain/sources/colorado/10-ccr-2505-10-8.100-draft-2026-09-28.txt, run from the repository root; script SHA-256 ba4a255b8bd66a24143ac26e5630e5a44fa625b62788c21647179a7f1401c0ef; macOS 26.7.1 (25G241); Apple Swift version 6.2 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)",
+      "note": "Made at 2026-10-17T07:23:42Z and again at 2026-10-17T07:23:43Z, to identical bytes; 26 pages, each opened by a line [[page N]]. PDFKit can separate a paragraph's label from its text, so read the cited paragraph on the rendered page. The draft numbers every line in its margin, and 995 lines of the extraction hold only such a number. Section 8.100.4.G.4.h begins on line 1766 and h.iii on line 1918."
+    },
+    {
+      "path": "docs/domain/sources/colorado/hcpf-appeals-2026-10-17.html",
+      "sha256": "726957eea5bdb641e099f50705e630cd5ab061ce6815223a968b547051796af8",
+      "kind": "verbatim",
+      "cited_url": "https://hcpf.colorado.gov/appeals",
+      "retrievals": [
+        {
+          "served_url": "https://www.healthfirstcolorado.gov/benefits-services/appeals/",
+          "command": "curl -sS --fail -L --max-time 120 -A 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Safari/605.1.15' -D - -o docs/domain/sources/colorado/hcpf-appeals-2026-10-17.html -w '%{http_code} %{content_type} %{size_download} %{num_redirects} %{url_effective}\\n' 'https://hcpf.colorado.gov/appeals'",
+          "retrieved": "2026-10-17T05:18:14Z"
+        }
+      ],
+      "superseded": [],
+      "note": "HCPF's appeals page, as docs/domain/research/2026-10-16-policy/L5-colorado.md:228 cites it. With a browser User-Agent and -L, the cited address answered 307 to https://www.healthfirstcolorado.com/appeals/, then 301 to https://www.healthfirstcolorado.gov/appeals/, then 301 to https://www.healthfirstcolorado.gov/benefits-services/appeals/, which served these bytes with 200. The page gives datePublished 2025-08-01T20:32:10Z and dateModified 2026-08-10T13:58:24Z (line 28, which writes each with a zero offset in place of the Z)."
+    },
+    {
+      "path": "docs/domain/sources/ecfr/2026-10-15/42-cfr-431.206.xml",
+      "sha256": "560f30b8ecabf0b4511c9c0ba7ecd12f96cac385af52d89705d5abee872a4793",
+      "kind": "verbatim",
+      "cited_url": "not recorded",
+      "retrievals": [
+        {
+          "served_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-15/title-42.xml?part=431&section=431.206",
+          "command": "curl -sS --fail --compressed -L --max-time 60 -o docs/domain/sources/ecfr/2026-10-15/42-cfr-431.206.xml -w '%{http_code} %{content_type} %{size_download} %{url_effective}\\n' 'https://www.ecfr.gov/api/versioner/v1/full/2026-10-15/title-42.xml?part=431&section=431.206'",
+          "retrieved": "2026-10-17T05:15:57Z"
+        }
+      ],
+      "superseded": [],
+      "ecfr_date": "2026-10-15",
+      "note": "eCFR date 2026-10-15 is title 42's up_to_date_as_of in https://www.ecfr.gov/api/versioner/v1/titles.json at 2026-10-17T05:15:39Z, where latest_amended_on and latest_issue_date were 2026-10-13. The XML names no date of its own (_SUBSTITUTE_DATE_). Asked at 2026-10-17T06:56:51Z for 2026-10-14, the date research L1 read, eCFR returned the same bytes. No HourKeep document cites an address for this file."
+    },
+    {
+      "path": "docs/domain/sources/ecfr/2026-10-15/42-cfr-431.210.xml",
+      "sha256": "8bc59aa2d06efed8cc580ed1d8f7b09e8149e30cfab51db3053c88f30fce9a70",
+      "kind": "verbatim",
+      "cited_url": "not recorded",
+      "retrievals": [
+        {
+          "served_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-15/title-42.xml?part=431&section=431.210",
+          "command": "curl -sS --fail --compressed -L --max-time 60 -o docs/domain/sources/ecfr/2026-10-15/42-cfr-431.210.xml -w '%{http_code} %{content_type} %{size_download} %{url_effective}\\n' 'https://www.ecfr.gov/api/versioner/v1/full/2026-10-15/title-42.xml?part=431&section=431.210'",
+          "retrieved": "2026-10-17T05:15:59Z"
+        }
+      ],
+      "superseded": [],
+      "ecfr_date": "2026-10-15",
+      "note": "eCFR date 2026-10-15 is title 42's up_to_date_as_of in https://www.ecfr.gov/api/versioner/v1/titles.json at 2026-10-17T05:15:39Z, where latest_amended_on and latest_issue_date were 2026-10-13. The XML names no date of its own (_SUBSTITUTE_DATE_). Asked at 2026-10-17T06:56:53Z for 2026-10-14, the date research L1 read, eCFR returned the same bytes. No HourKeep document cites an address for this file."
+    },
+    {
+      "path": "docs/domain/sources/ecfr/2026-10-15/42-cfr-431.211.xml",
+      "sha256": "5081cca1d6303c748172534f15b64d3ebac7e0425e818c649a770f7c306afd54",
+      "kind": "verbatim",
+      "cited_url": "not recorded",
+      "retrievals": [
+        {
+          "served_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-15/title-42.xml?part=431&section=431.211",
+          "command": "curl -sS --fail --compressed -L --max-time 60 -o docs/domain/sources/ecfr/2026-10-15/42-cfr-431.211.xml -w '%{http_code} %{content_type} %{size_download} %{url_effective}\\n' 'https://www.ecfr.gov/api/versioner/v1/full/2026-10-15/title-42.xml?part=431&section=431.211'",
+          "retrieved": "2026-10-17T05:16:04Z"
+        }
+      ],
+      "superseded": [],
+      "ecfr_date": "2026-10-15",
+      "note": "eCFR date 2026-10-15 is title 42's up_to_date_as_of in https://www.ecfr.gov/api/versioner/v1/titles.json at 2026-10-17T05:15:39Z, where latest_amended_on and latest_issue_date were 2026-10-13. The XML names no date of its own (_SUBSTITUTE_DATE_). Asked at 2026-10-17T06:56:56Z for 2026-10-14, the date research L1 read, eCFR returned the same bytes. No HourKeep document cites an address for this file."
+    },
+    {
+      "path": "docs/domain/sources/ecfr/2026-10-15/42-cfr-431.220.xml",
+      "sha256": "b740d81bba4991682b5b3ede98aa7f4eb095b3ab65250adce52b2e1535223915",
+      "kind": "verbatim",
+      "cited_url": "not recorded",
+      "retrievals": [
+        {
+          "served_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-15/title-42.xml?part=431&section=431.220",
+          "command": "curl -sS --fail --compressed -L --max-time 60 -o docs/domain/sources/ecfr/2026-10-15/42-cfr-431.220.xml -w '%{http_code} %{content_type} %{size_download} %{url_effective}\\n' 'https://www.ecfr.gov/api/versioner/v1/full/2026-10-15/title-42.xml?part=431&section=431.220'",
+          "retrieved": "2026-10-17T05:16:07Z"
+        }
+      ],
+      "superseded": [],
+      "ecfr_date": "2026-10-15",
+      "note": "eCFR date 2026-10-15 is title 42's up_to_date_as_of in https://www.ecfr.gov/api/versioner/v1/titles.json at 2026-10-17T05:15:39Z, where latest_amended_on and latest_issue_date were 2026-10-13. The XML names no date of its own (_SUBSTITUTE_DATE_). Asked at 2026-10-17T06:56:58Z for 2026-10-14, the date research L1 read, eCFR returned the same bytes. No HourKeep document cites an address for this file."
+    },
+    {
+      "path": "docs/domain/sources/ecfr/2026-10-15/42-cfr-431.221.xml",
+      "sha256": "15261152c4e9c3587f6b4c4c7e57d5e2b4d90c95cddb583804d39517b92ee47b",
+      "kind": "verbatim",
+      "cited_url": "not recorded",
+      "retrievals": [
+        {
+          "served_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-15/title-42.xml?part=431&section=431.221",
+          "command": "curl -sS --fail --compressed -L --max-time 60 -o docs/domain/sources/ecfr/2026-10-15/42-cfr-431.221.xml -w '%{http_code} %{content_type} %{size_download} %{url_effective}\\n' 'https://www.ecfr.gov/api/versioner/v1/full/2026-10-15/title-42.xml?part=431&section=431.221'",
+          "retrieved": "2026-10-17T05:16:09Z"
+        }
+      ],
+      "superseded": [],
+      "ecfr_date": "2026-10-15",
+      "note": "eCFR date 2026-10-15 is title 42's up_to_date_as_of in https://www.ecfr.gov/api/versioner/v1/titles.json at 2026-10-17T05:15:39Z, where latest_amended_on and latest_issue_date were 2026-10-13. The XML names no date of its own (_SUBSTITUTE_DATE_). Asked at 2026-10-17T06:57:01Z for 2026-10-14, the date research L1 read, eCFR returned the same bytes. No HourKeep document cites an address for this file."
+    },
+    {
+      "path": "docs/domain/sources/ecfr/2026-10-15/42-cfr-431.230.xml",
+      "sha256": "5090524a94924aa0a8c4e501cfb393c507d6b6f40fe0b43566df6cbc2d65a8b9",
+      "kind": "verbatim",
+      "cited_url": "not recorded",
+      "retrievals": [
+        {
+          "served_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-15/title-42.xml?part=431&section=431.230",
+          "command": "curl -sS --fail --compressed -L --max-time 60 -o docs/domain/sources/ecfr/2026-10-15/42-cfr-431.230.xml -w '%{http_code} %{content_type} %{size_download} %{url_effective}\\n' 'https://www.ecfr.gov/api/versioner/v1/full/2026-10-15/title-42.xml?part=431&section=431.230'",
+          "retrieved": "2026-10-17T05:16:14Z"
+        }
+      ],
+      "superseded": [],
+      "ecfr_date": "2026-10-15",
+      "note": "eCFR date 2026-10-15 is title 42's up_to_date_as_of in https://www.ecfr.gov/api/versioner/v1/titles.json at 2026-10-17T05:15:39Z, where latest_amended_on and latest_issue_date were 2026-10-13. The XML names no date of its own (_SUBSTITUTE_DATE_). Asked at 2026-10-17T06:57:06Z for 2026-10-14, the date research L1 read, eCFR returned the same bytes. No HourKeep document cites an address for this file."
+    },
+    {
+      "path": "docs/domain/sources/ecfr/2026-10-15/42-cfr-431.231.xml",
+      "sha256": "0ad8d2ef3f6dd756fe4ef95a376c9212d2a4222f57cbb432eacc222d74c5f360",
+      "kind": "verbatim",
+      "cited_url": "not recorded",
+      "retrievals": [
+        {
+          "served_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-15/title-42.xml?part=431&section=431.231",
+          "command": "curl -sS --fail --compressed -L --max-time 60 -o docs/domain/sources/ecfr/2026-10-15/42-cfr-431.231.xml -w '%{http_code} %{content_type} %{size_download} %{url_effective}\\n' 'https://www.ecfr.gov/api/versioner/v1/full/2026-10-15/title-42.xml?part=431&section=431.231'",
+          "retrieved": "2026-10-17T05:16:16Z"
+        }
+      ],
+      "superseded": [],
+      "ecfr_date": "2026-10-15",
+      "note": "eCFR date 2026-10-15 is title 42's up_to_date_as_of in https://www.ecfr.gov/api/versioner/v1/titles.json at 2026-10-17T05:15:39Z, where latest_amended_on and latest_issue_date were 2026-10-13. The XML names no date of its own (_SUBSTITUTE_DATE_). Asked at 2026-10-17T06:57:08Z for 2026-10-14, the date research L1 read, eCFR returned the same bytes. No HourKeep document cites an address for this file."
+    },
+    {
+      "path": "docs/domain/sources/ecfr/2026-10-15/42-cfr-435.558.xml",
+      "sha256": "b279c11d570f0fcd86aedffad1b523b9d087b402e615a6e19fb55fa3af7fc298",
+      "kind": "verbatim",
+      "cited_url": "not recorded",
+      "retrievals": [
+        {
+          "served_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-15/title-42.xml?part=435&section=435.558",
+          "command": "curl -sS --fail --compressed -L --max-time 60 -o docs/domain/sources/ecfr/2026-10-15/42-cfr-435.558.xml -w '%{http_code} %{content_type} %{size_download} %{url_effective}\\n' 'https://www.ecfr.gov/api/versioner/v1/full/2026-10-15/title-42.xml?part=435&section=435.558'",
+          "retrieved": "2026-10-17T05:15:54Z"
+        }
+      ],
+      "superseded": [],
+      "ecfr_date": "2026-10-15",
+      "note": "eCFR date 2026-10-15 is title 42's up_to_date_as_of in https://www.ecfr.gov/api/versioner/v1/titles.json at 2026-10-17T05:15:39Z, where latest_amended_on and latest_issue_date were 2026-10-13. The XML names no date of its own (_SUBSTITUTE_DATE_). Asked at 2026-10-17T06:56:48Z for 2026-10-14, the date research L1 read, eCFR returned the same bytes. No HourKeep document cites an address for this file."
+    },
+    {
+      "path": "docs/domain/sources/federal-register/C1-2026-11094.xml",
+      "sha256": "ecece41810ab13c3bd27fb38d2d175489456d37195ef7a7011626c57215e4347",
+      "kind": "verbatim",
+      "cited_url": "https://www.federalregister.gov/documents/full_text/xml/2026/06/29/C1-2026-11094.xml",
+      "retrievals": [
+        {
+          "served_url": "https://www.federalregister.gov/documents/full_text/xml/2026/06/29/C1-2026-11094.xml",
+          "command": "curl -sS -L -o docs/domain/sources/federal-register/C1-2026-11094.xml -w '%{http_code} %{content_type} %{size_download} %{url_effective}\\n' 'https://www.federalregister.gov/documents/full_text/xml/2026/06/29/C1-2026-11094.xml'",
+          "retrieved": "2026-10-17T05:15:15Z"
+        }
+      ],
+      "superseded": [],
+      "note": "Federal Register document C1-2026-11094, 91 FR 39028-39031, published 2026-06-29, which corrects 2026-11094. cited_url as docs/domain/research/2026-10-16-policy/L1-federal-rule-text.md:52 gives it. The address is the full_text_xml_url of the API record https://www.federalregister.gov/api/v1/documents/C1-2026-11094.json, read at 2026-10-17T05:15:09Z. Line 136 holds \"30 calendar days\", between PRTPAGE 39030 (line 100) and 39031 (line 147)."
+    },
+    {
+      "path": "docs/domain/supporting-regs/42cfr-supporting-sections.txt",
+      "sha256": "82b9986fd74f126797f4aa80e5a9812b39b1cea39b839d9070e13fd5953637d3",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [],
+      "derived_from": "not recorded",
+      "derivation": "not recorded",
+      "ecfr_date": "2026-08-13",
+      "note": "docs/domain/supporting-regs/README.md line 3 says the extract was retrieved from the eCFR API, snapshot date 2026-08-13, which is this entry's ecfr_date, and lines 11 and 12 say that this file holds 42 CFR 435.603, 435.4, 435.907, 435.916, 435.1010, 435.119 and 435.110; the addresses were not recorded, and neither was how the file was made. Line 3 also gives the day of the retrieval, in no stated time zone, so its UTC date was not recorded; commit b9b9594 added the file at 2026-08-17T01:48:38Z and says \"Extracted from the eCFR API at snapshot 2026-08-13\". The file puts a \"=====\" banner and a \"## §\" heading around each section."
+    },
+    {
+      "path": "docs/domain/supporting-regs/other-supporting-sections.txt",
+      "sha256": "5c243b6434e16fb4c324f1ba421f6d2fc372c055777079491a69e7e6e40fde75",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [],
+      "derived_from": "not recorded",
+      "derivation": "not recorded",
+      "ecfr_date": "2026-08-13",
+      "note": "docs/domain/supporting-regs/README.md line 3 says the extract was retrieved from the eCFR API, snapshot date 2026-08-13, which is this entry's ecfr_date, and line 12 says that this file holds 28 CFR 35.108 and 42 CFR 447.51; the addresses were not recorded, and neither was how the file was made. Line 3 also gives the day of the retrieval, in no stated time zone, so its UTC date was not recorded; commit b9b9594 added the file at 2026-08-17T01:48:38Z and says \"Extracted from the eCFR API at snapshot 2026-08-13\". The file puts a \"=====\" banner and a \"## §\" heading around each section."
+    }
+  ]
+}

@@ -1,0 +1,547 @@
+[[page 1]]
+DEPARTMENT OF HEALTH & HUMAN SERVICES
+Centers for Medicare & Medicaid Services
+7500 Security Boulevard, Mail Stop S2-26-12
+Baltimore, Maryland 21244-1850
+SMD #26-001
+RE: Implementation of “Eligibility
+Redeterminations,” Section 71107 of
+the “Working Families Tax Cut”
+Legislation (Public Law 119-21)
+March 6, 2026
+Dear State Medicaid Director:
+Introduction
+On July 4, 2025, President Trump signed Public Law 119-21, also known as the “One Big Beautiful
+Bill Act,” which CMS refers to as the “Working Families Tax Cut” (WFTC) legislation, into law.
+This State Medicaid Director letter (SMDL) is one of a series of guidance documents discussing
+implementation of specific sections of the WFTC legislation. The purpose of this letter is to describe
+the changes to eligibility redeterminations made by Section 71107 of the WFTC legislation. Section
+71107 amends section 1902(e)(14) of the Social Security Act (the Act) to require that the 50 states
+and the District of Columbia (hereinafter referred to as “states”) complete eligibility redeterminations
+once every six months, beginning with renewals scheduled on or after January 1, 2027, for most
+individuals enrolled in the Medicaid adult group under section 1902(a)(10)(A)(i)(VIII) of the Act.1
+This requirement also applies to those described under that section of the Act who are enrolled in
+coverage “under a waiver” of the state plan (including through a section 1115 demonstration) that
+provides coverage that is equivalent to minimum essential coverage (MEC)2 to all individuals
+described in section 1902(a)(10)(A)(i)(VIII) of the Act
+. This SMDL provides states with an overview
+of the changes to federal renewal requirements made by section 71107 of the WFTC legislation,
+reminds states of federal renewal requirements that continue to apply, and addresses operational
+considerations for states when implementing 6-month renewals for the affected population.
+CMS is committed to supporting states in implementing changes made by the WFTC legislation and
+anticipates that ongoing partnership and engagement with states and other stakeholders will inform
+1 Although section 2107(e)(1)(J) of the Act makes section 1902(e)(14) of the Act applicable in the Children’s Health
+Insurance Program (CHIP), for all practical purposes section 1902(e)(14)(L) of the Act, which requires states to conduct
+eligibility renewals once every 6 months for certain non-pregnant adults aged 19 through 64, does not apply to CHIP due
+to CHIP’s prohibition on coverage of non-pregnant adults aged 19 and above in CHIP (section 2111(a) of the Act).
+Sections 2110(b) and Section 2112 of the Act describe the populations (targeted low-income children and targeted low-
+income pregnant women) covered under the CHIP state plan.
+2 This refers to MEC as described in section 5000A(f)(1)(A) of the Internal Revenue Code of 1986 and determined in
+accordance with standards prescribed by the Secretary in regulations.
+[[page 2]]
+Page 2 – State Medicaid Director
+areas of need for additional guidance.3
+We recognize that planning must begin now, as states begin
+procurement of new systems and services to support implementation of the broad range of Medicaid
+provisions in the WFTC legislation, including conducting more frequent renewals as described in this
+letter.
+Table of Contents
+Introduction ............................................................................................................................................. 1
+Table of Contents .................................................................................................................................... 2
+Overview of Section 71107 .................................................................................................................... 3
+Current Federal Requirements for Certain Medicaid Beneficiaries .................................................. 3
+Populations Subject to 6-Month Renewals ......................................................................................... 3
+Exemptions for American Indians and Alaska Natives and Treatment of Other Eligibility
+Groups................................................................................................................................................. 4
+Implications for Requirement for States to Establish Medicaid Community Engagement
+Requirements for Certain Individuals per Section 71119 of the WFTC Legislation .......................... 5
+Federal Medicaid Renewal Requirements .............................................................................................. 5
+Transitioning to 6-Month Renewals ....................................................................................................... 6
+Option 1: Reschedule Renewal Initiation Dates for Beneficiaries Enrolled as of
+January 1, 2027 .................................................................................................................................. 8
+Option 2: Transition Beneficiaries Enrolled on January 1, 2027, at Their Next Scheduled
+Renewal ............................................................................................................................................. 10
+Special Considerations .......................................................................................................................... 10
+Households with Different Renewal Schedules................................................................................. 10
+Movement Between Eligibility Groups at Renewal .......................................................................... 11
+Coordination with Other Human Services Recertifications or Reviews ........................................... 12
+State Next Steps .................................................................................................................................... 12
+Application and Renewal Processing ............................................................................................... 12
+Fair Hearing Requests ...................................................................................................................... 12
+State Plan Amendment and Demonstration Changes ....................................................................... 12
+Medicaid Information Technology (IT) System Costs ...................................................................... 13
+Closing .................................................................................................................................................. 14
+3 For more information and guidance about the WFTC legislation, visit the Working Families Tax Cut Legislation page on
+Medicaid.gov: https://www.medicaid.gov/working-families-tax-cut-legislation.
+[[page 3]]
+Page 3 – State Medicaid Director
+Overview of Section 71107
+Current Federal Requirements for Certain Medicaid Beneficiaries
+Federal regulations at 42 C.F.R. § 435.916 (2023)4 outline the requirements for states to conduct
+periodic renewals of eligibility for all beneficiaries.
+These regulations require states to redetermine
+eligibility once every 12 months, and no more frequently than once every 12 months, for Medicaid
+beneficiaries whose financial eligibility is determined using methodologies based on modified
+adjusted gross income (MAGI) and at least once every 12 months for individuals enrolled in non-
+MAGI based eligibility groups.5
+Populations Subject to 6-Month Renewals
+Section 71107 amends section 1902(e)(14) of the Act to add a new subparagraph (L) that requires
+states6 to conduct renewals of eligibility once every 6 months, instead of once every 12 months, for
+two groups of beneficiaries whose financial eligibility is determined using MAGI methodologies.
+First, this requirement applies to almost all individuals enrolled under the state plan in the Medicaid
+adult group described at section 1902(a)(10)(A)(i)(VIII) of the Act. Second, this requirement applies
+to almost all individuals described in 1902(a)(10)(A)(i)(VIII) who are enrolled in coverage “under a
+waiver” of the state plan that provides coverage equivalent to MEC to all individuals described at
+section 1902(a)(10)(A)(i)(VIII) of the Act.7
+Generally, this second group consists of persons who are
+enrolled in coverage only through a section 1115 demonstration that provides MEC to the entire adult
+group population, but who would have been eligible in the state plan adult group if the state had
+chosen to cover it.
+4 Section 71102 of the WFTC legislation imposed a moratorium prohibiting CMS from implementing, administering, or
+enforcing certain amendments made by a CMS final rule entitled “Medicaid Program; Streamlining the Medicaid,
+Children’s Health Insurance Program, and Basic Health Program Application, Eligibility Determination, Enrollment, and
+Renewal Processes,” 89 Fed. Reg. 22,780 (April 2, 2024) (the “2024 E&E Final Rule”),
+https://www.federalregister.gov/documents/2024/04/02/2024-06566/medicaid-program-streamlining-the-medicaid-
+childrens-health-insurance-program-and-basic-health. The moratorium applies to certain provisions of the 2024 E&E
+Final Rule that had a compliance date after July 4, 2025, the date the WFTC legislation was enacted, and ends on
+September 30, 2034. To comply with the moratorium, CMS refers to the renewal requirements at 42 C.F.R. § 435.916 in
+effect as of 2023 in this SMDL, which are available at the following link: https://www.ecfr.gov/on/2024-06-02/title-
+42/chapter-IV/subchapter-C/part-435. For more information on the moratorium, see November 18, 2025, CMCS
+Informational Bulletin “‘Working Families Tax Cut’ Legislation, Public Law 119-21: Summary of Medicaid and
+Children’s Health Insurance Program (CHIP) Related Provisions.” Available at https://www.medicaid.gov/federal-policy-
+guidance/downloads/cib11182025.pdf.
+5 In this SMDL, we use the term “renewal” when specifically referring to a periodic renewal of eligibility in accordance
+with 42 C.F.R. § 435.916(a) and (b) (2023). We use “redetermination(s)” more generally, where the term encompasses
+changes in circumstances as described in 42 C.F.R. § 435.916(c) and (d) (2023) as well as renewals.
+6 Section 1902(e)(14)(L)(iii) of the Act, added by Section 71107 of the WFTC legislation, defines the term “State” to
+mean one of the 50 states or the District of Columbia.
+7 Section 1902(e)(14)(L) of the Act is not applicable in states that have not elected to provide coverage to all individuals
+described in section 1902(a)(10)(A)(i)(VIII) via the state plan or a section 1115 demonstration that provides them with
+MEC. In a state that does not cover the section 1902(a)(10)(A)(i)(VIII) group under its state plan, and that covers persons
+described in section 1902(a)(10)(A)(i)(VIII) only through a partial expansion under a section 1115 demonstration,
+individuals described in section 1902(a)(10)(A)(i)(VIII) would not be subject to the 6-month renewal requirement.
+[[page 4]]
+Page 4 – State Medicaid Director
+Except for certain individuals exempt from this requirement, any state that provides coverage to the
+groups described above must redetermine eligibility for individuals in these groups once every 6
+months, beginning with renewals scheduled on or after January 1, 2027. This means that, unless
+otherwise exempt from this requirement, persons who are determined or redetermined eligible in
+either of these two groups on or after January 1, 2027, will have their eligibility renewed every 6
+months. We describe how states should transition affected beneficiaries from a 12-month to a 6-
+month renewal schedule in more detail later in this letter.
+Exemptions for American Indians and Alaska Natives and Treatment of Other Eligibility Groups
+The 6-month renewal requirement in section 1902(e)(14)(L) of the Act does not apply to the
+individuals listed below.
+• Certain American Indians and Alaska Natives described in section 1902(xx)(9)(A)(ii)(II) of
+the Act8 who are enrolled under the state plan in the Medicaid adult group described at section
+1902(a)(10)(A)(i)(VIII) of the Act (these individuals are exempted under section
+1902(e)(14)(L)(ii) of the Act);
+• Certain American Indians and Alaska Natives described in section 1902(xx)(9)(A)(ii)(II) of
+the Act9 who are described in section 1902(a)(10)(A)(i)(VIII) of the Act and who are enrolled
+in coverage “under a waiver” of the state plan that provides coverage equivalent to MEC to all
+individuals described at section 1902(a)(10)(A)(i)(VIII) of the Act (these individuals are also
+exempted under section 1902(e)(14)(L)(ii) of the Act);
+• Individuals enrolled in other MAGI-based eligibility groups (including individuals described
+in section 1902(a)(10)(A)(i)(VIII) in a state that does not cover the entire section
+1902(a)(10)(A)(i)(VIII) group under its state plan or a section 1115 demonstration); and
+• Individuals enrolled in non-MAGI-based eligibility groups.
+In accordance with 42 C.F.R. § 435.916 (2023), states must continue to conduct renewals once every
+12 months for the American Indians and Alaska Natives discussed above. Similarly, states must
+continue to conduct renewals once every 12 months for all individuals enrolled in a MAGI-based
+eligibility group other than the two groups discussed above that are subject to the 6-month renewal
+requirement, and at least once every 12 months for individuals enrolled in non-MAGI based
+eligibility groups. For individuals enrolled in other MAGI-based eligibility groups, section
+1902(e)(14)(L) of the Act neither requires 6-month renewals, nor provides an option for states to
+conduct renewals once every 6 months for such individuals.
+For the purposes of this SMDL, we refer to the individuals subject to 6-month renewals under either
+the state plan or a demonstration collectively as the “adult expansion group.”
+8 American Indians and Alaska Natives exempt from the 6-month renewal requirement are: an Indian or Urban Indian (as
+such terms are defined in paragraphs (13) and (28) of section 4 of the Indian Health Care Improvement Act); a California
+Indian described in section 809(a) of such Act; or those who have otherwise been determined eligible as an Indian for the
+Indian Health Service under regulations promulgated by the Secretary.
+9 See Footnote 8.
+[[page 5]]
+Page 5 – State Medicaid Director
+Implications for Requirement for States to Establish Medicaid Community Engagement Requirements
+for Certain Individuals per Section 71119 of the WFTC Legislation10
+We note that many of the individuals who will be required to undergo renewals once every six
+months pursuant to section 1902(e)(14)(L) of the Act will also be required to demonstrate community
+engagement as further described in section 1902(xx) of the Act (added by section 71119 of the
+WFTC legislation) beginning January 1, 2027.11
+Thus, states will generally need to make policy,
+operational, and system updates to comply with sections 71107 and 71119, including a determination
+of compliance with community engagement, at each scheduled renewal on or after January 1, 2027.
+Regardless of whether a member of the “adult expansion group” is subject to community engagement
+requirements, all individuals enrolled in the “adult expansion group” will be subject to 6-month
+renewals. CMS plans to release future guidance to states on how to implement the community
+engagement requirements and implications of these requirements for renewals of eligibility.
+Federal Medicaid Renewal Requirements
+While section 1902(e)(14)(L) of the Act changes the frequency of renewals for individuals in the
+“adult expansion group” from once every 12 months to once every 6 months, the provision did not
+amend the steps states must take to complete renewals under CMS regulations. States must continue
+to complete renewals for all MAGI and non-MAGI beneficiaries as described in requirements at 42
+C.F.R. § 435.916 (2023), regardless of whether someone is subject to renewals once every 6 or 12
+months. To support states as they implement section 1902(e)(14)(L) of the Act, we focus below on
+the renewal requirements applicable to all MAGI-based groups, including the “adult expansion
+group” where individuals are subject to the 6-month renewal requirement.
+As described in 42 C.F.R. § 435.916(a)(2) (2023), all states must begin the renewal process by
+checking available, reliable information contained in the individual’s account or more current
+information available to the state (including information accessed through certain data sources) to
+attempt to redetermine eligibility without contacting the beneficiary, known as an ex parte renewal.
+When eligibility cannot be renewed based on available information, states must send a prepopulated
+renewal form to the beneficiary, and request the information needed to complete the redetermination
+of eligibility at renewal, including, as appropriate, documentation to verify information provided or
+updated by the beneficiary on the renewal form.12
+States must provide beneficiaries with a minimum
+of 30 days to return the prepopulated renewal form and any other requested information.13
+10 See the November 18, 2025, CMCS Informational Bulletin “‘Working Families Tax Cut Legislation,’ Public Law 119-
+21: Summary of Medicaid and Children’s Health Insurance Program (CHIP) Related Provisions” for general information
+on the Medicaid and CHIP provisions contained in the WFTC legislation, including additional information on section
+71119. Available at https://www.medicaid.gov/federal-policy-guidance/downloads/cib11182025.pdf.
+11 See the December 8, 2025, CMCS Informational Bulletin “Section 71119 of the WFTC legislation: Requirements for
+States to Establish Community Engagement Requirements for Certain Individuals” for additional information on the
+community engagement requirements. Available at https://www.medicaid.gov/federal-policy-
+guidance/downloads/cib12082025.pdf.
+12 See 42 C.F.R. §§ 435.916(a)(3) (2023) and 435.952(a)-(d).
+13 See 42 C.F.R. § 435.916(a)(3)(i)(B) (2023).
+[[page 6]]
+Page 6 – State Medicaid Director
+States must consider eligibility on all bases prior to making a determination of ineligibility14 and
+provide a minimum of 10 days advance notice and fair hearing rights prior to termination or other
+adverse action, in accordance with 42 C.F.R. §§ 435.917-918 and 42 C.F.R. Part 431 Subpart E.
+For
+individuals subject to the community engagement requirement who fail to demonstrate community
+engagement at renewal, states must follow the procedures and notice requirements for non-
+compliance at section 1902(xx)(6) of the Act. CMS reminds states that they generally must complete
+the renewal process by the end of the beneficiary’s eligibility period to comply with the requirement
+at section 1902(e)(14)(L) of the Act to redetermine eligibility once every 6 months for beneficiaries
+subject to 6-month renewals.
+Transitioning to 6-Month Renewals
+Section 1902(e)(14)(L)(i) of the Act requires that “with respect to redeterminations of eligibility for
+medical assistance … scheduled on or after the first day of the first quarter that begins after
+December 31, 2026, a State shall make such a redetermination once every 6 months” for individuals
+in the “adult expansion group.”
+For applicants who apply and their effective date of coverage in the “adult expansion group” is on or
+after January 1, 2027, the state must provide a 6-month eligibility period. CMS reminds states that an
+individual’s effective date of coverage (which marks the start of their eligibility period) is determined
+in accordance with the state plan and may be either the date of application or the first day of the
+month of application.15
+Any months of coverage provided prior to that date under the retroactive
+eligibility period, per sections 1902(a)(34) and 1905(a) of the Act, would not be included in an
+individual’s eligibility period.
+16
+The following is an illustrative example of how states must establish
+eligibility periods for new applicants subject to the new 6-month renewal requirement.
+• Example 1: David applies for Medicaid on June 5, 2027, and he is subject to the community
+engagement requirement. In his state, applicants must demonstrate compliance with community
+engagement one month before application. David demonstrates compliance with community
+engagement and meets all other eligibility criteria; thus, David is determined eligible for the
+“adult expansion group.” David’s eligibility period begins on June 1, 2027, consistent with the
+state’s election to begin coverage on the first day of the month of application, and extends for 6
+months through November 30, 2027. The state starts its renewal process approximately 90 days in
+advance of the end of an individual’s eligibility period end date and initiates David’s first renewal
+on September 1, 2027. The state must determine whether David meets or is not subject to the
+community engagement requirements, along with all other factors of eligibility for the “adult
+14 See 42 C.F.R. § 435.916(f)(1) (2023).
+15 See 42 C.F.R. § 435.915(b) and (c).
+16 Effective for applications made on or after January 1, 2027, section 71112 of the WFTC legislation amends sections
+1902(a)(34) and 1905(a) of the Act to shorten the retroactive eligibility period in Medicaid. Notably, individuals enrolled
+in the Medicaid adult group under section 1902(a)(10)(A)(i)(VIII) of the Act will be limited to a maximum of one month
+of retroactive eligibility prior to the month of application. CMS expects to issue additional guidance regarding section
+71112 of the WFTC legislation.
+[[page 7]]
+Page 7 – State Medicaid Director
+expansion group,” at renewal. If David remains eligible under the “adult expansion group” at
+renewal, the state would renew his coverage for another 6-month eligibility period (December 1,
+2027, through May 31, 2028).
+States have two options for implementing the new 6-month renewal requirement for individuals who
+are already enrolled in a 12-month eligibility period in the “adult expansion group” on January 1,
+2027, and whose annual renewals have already been scheduled to occur in 2027. CMS is offering
+states these two implementation options because the language in the statute, particularly the reference
+to redeterminations “scheduled on or after” January 1, 2027, is ambiguous with respect to eligibility
+periods that began before 2027 but end in 2027. Specifically, “with respect to redeterminations
+scheduled on or after” could describe the date on which a previously scheduled renewal is set to be
+initiated in 2027 or could instead refer to the act of setting a future initiation date for an individual’s
+next renewal. The statutory language could be read either way and does not expressly require states to
+reschedule renewal initiation dates that have already, as of January 1, 2027, been set to occur on or
+after January 1, 2027.
+Under both options, CMS interprets “scheduled” to refer to the date when the state initiates the
+renewal process, because the renewal process is not a single moment or day and can take several
+weeks or months. Under option 1, “scheduled” refers to a renewal initiation date, and under option 2,
+“scheduled” refers to the act of setting a future renewal initiation date.17
+Each state designs its
+renewal process to build in sufficient time to take all actions required to complete the renewal,
+including providing notice of the eligibility decision, by the end of an individual’s eligibility period.
+This also includes determining how far in advance to initiate renewals based on the state’s policies
+and processes. States typically begin renewals for a cohort of individuals at the same time based on
+the date those individuals’ eligibility periods end; however, the renewal for each individual in the
+cohort will be completed at different times depending on whether the state must request additional
+information from the individual and how long someone takes to return their renewal form or
+additional information that may be requested. The timing of when states initiate the renewal process
+drives the rest of the process and directly impacts the state’s ability to conduct a timely renewal,
+which results in setting a new start and end date for the subsequent eligibility period for individuals
+who remain eligible. We consider the key date to be the date on which renewals for the cohort are
+initiated, rather than the date on which a particular individual’s renewal is completed, because the
+initiation date generally is known in advance and is established consistently for all individuals with
+the same eligibility period, based on state processes. This differs from the actual, individual-specific
+renewal completion date, which is not known in advance and can be different for different
+individuals, as noted.
+Under Option 1, the state would shorten the eligibility period for beneficiaries enrolled in the “adult
+expansion group” whose renewal is set to be initiated on or after January 1, 2027, to provide the
+individual as close to a 6-month eligibility period as possible from the effective date of their last
+17 When a state determines an individual eligible for Medicaid and grants a new eligibility period, the state is considered
+to have scheduled the initiation date for the next renewal.
+[[page 8]]
+Page 8 – State Medicaid Director
+eligibility determination. The state would provide a 6-month eligibility period at that renewal, if
+applicable (i.e., if the individual is still eligible in the “adult expansion group”). States taking option 1
+would move an individual’s previously-set 2027 renewal initiation date to an earlier date, but the
+newly scheduled date could not be earlier than January 1, 2027. If the renewal were rescheduled to be
+initiated before January 1, 2027, it would no longer be a renewal “scheduled on or after” January 1,
+2027, and therefore section 1902(e)(14)(L)(i) would not apply. For this reason, the earliest a state
+could reschedule already-set 2027 renewal initiation dates would be January 1, 2027 (practically,
+January 4, 2027, which is the first business day of the year) to provide as close to a 6-month
+eligibility period as possible for affected individuals.
+Under Option 2, the state would not reschedule already-set 2027 renewal initiation dates, which
+would be considered to have been scheduled when the individual’s current eligibility period was
+established in 2026. During the first renewal that is initiated in 2027, the state would provide a 6-
+month eligibility period (if applicable).
+States are reminded that regardless of when a beneficiary transitions to a 6-month renewal schedule,
+the state must redetermine eligibility between regular renewals when someone experiences a change
+in circumstances that potentially affects eligibility, as further described in 42 C.F.R. § 435.916(d)
+(2023).
+Option 1: Reschedule Renewal Initiation Dates for Beneficiaries Enrolled as of January 1, 2027
+Under this option, states would reschedule previously set 2027 renewal initiation dates to transition
+beneficiaries already enrolled in the “adult expansion group” before 2027 to as close to a 6-month
+renewal cadence as possible, but would not reschedule these renewal initiation dates to a date before
+January 1, 2027. States will have to weigh several operational considerations if they take this option.
+Many individuals will have been enrolled for an extended time as of January 1, 2027, such that it is
+impossible to initiate and complete their renewals to give them a 6-month eligibility period. States
+taking option 1 would need to reschedule renewal initiation dates for these individuals promptly and
+shorten their eligibility periods to be as close to 6 months as is practically feasible. Other individuals
+will have been enrolled for a shorter time on January 1, 2027, but would need to have their previously
+scheduled 2027 renewal initiations rescheduled to a new date that would give them a 6-month
+eligibility period. Accordingly, states implementing this option would need to identify individuals
+whose renewal initiation dates would need to be rescheduled (and when), initiate a large volume of
+renewals as early as January 1, 2027, and maintain that renewal schedule into the future. States would
+also need to ensure they did not shorten an individual’s eligibility period in a manner that is
+inconsistent with Section 1902(e)(14)(L)(i) of the Act by renewing eligibility more frequently than
+once every 6 months (that is, states should not shorten the previously approved eligibility period of a
+person enrolled in the “adult expansion group” as of January 1, 2027 so that it is shorter than 6
+months).
+• Example 2: Jill is enrolled in the “adult expansion group” before January 1, 2027, and her
+eligibility period is May 1, 2026, to April 30, 2027. The state elects to immediately transition
+beneficiaries already enrolled in the “adult expansion group” on January 1, 2027, to a 6-month
+[[page 9]]
+Page 9 – State Medicaid Director
+renewal cycle. Because Jill’s eligibility period began more than 6 months before January 1, 2027,
+the state would initiate Jill’s renewal on January 4, 2027 (the first business day after the New
+Year’s Day holiday). If Jill continues to be eligible for the “adult expansion group” and meets all
+factors of eligibility, the state would grant Jill a 6-month eligibility period based on the date on
+which Jill’s eligibility is renewed.
+• Example 3: Max is enrolled in the “adult expansion group” before January 1, 2027, and his
+original 12-month eligibility period is November 1, 2026, to October 31, 2027. The state elects to
+immediately transition beneficiaries already enrolled in the “adult expansion group” on January 1,
+2027, to a 6-month renewal cycle. Because Max has not yet received 6 months of coverage, the
+state adjusts Max’s eligibility period from 12 to 6 months, and his eligibility period now ends
+April 30, 2027. The state notifies Max of his new renewal date and initiates the renewal on March
+1, 2027, with the cohort of renewals due in April 2027. If Max continues to be eligible for the
+“adult expansion group” and meets all factors of eligibility at his next renewal, the state would
+grant Max a 6-month eligibility period, May 1, 2027, through October 31, 2027.
+• Example 4: James is enrolled in the “adult expansion group” before January 1, 2027, and his
+original 12-month eligibility period is September 1, 2026, to August 31, 2027. The state elects to
+immediately transition beneficiaries already enrolled in the “adult expansion group” on January 1,
+2027, to a 6-month renewal cycle. The state adjusts James’ eligibility period from a 12-month to a
+6-month eligibility period. As a result, his eligibility period now ends February 28, 2027. Because
+the state takes about 60 days to complete all the steps in the renewal process, the state initiates
+renewals on January 4, 2027 (the first business day after the New Year’s Day holiday), for
+beneficiaries whose eligibility period ends on February 28, 2027. Accordingly, James is moved
+into the February 2027 renewal cohort and his renewal is initiated on January 4, 2027, so the state
+has sufficient time to complete his renewal by February 28 (the end of his eligibility period). If
+James continues to be eligible for the “adult expansion group” and meets all factors of eligibility
+at his next renewal, the state would grant James a 6-month eligibility period, March 1, 2027,
+through August 31, 2027.
+States that elect this option would need to notify individuals who were previously granted a 12-month
+eligibility period of the change to their eligibility period. In addition, CMS considers a reduction in
+the length of a beneficiary’s eligibility period to be an “action” under 42 C.F.R. § 431.201, because
+the state is reducing the individual’s eligibility.18
+Thus, the state must provide the beneficiary with a
+minimum of 10 days advance notice with fair hearing rights. States would also need to make the
+necessary system and process changes to handle the increased volume of renewals that will occur
+semi-annually.
+18 This eligibility reduction is similar to the scenario when a beneficiary transitions from the parents and other caretaker
+relatives eligibility group in Medicaid to time-limited transitional medical assistance (TMA). For more information, see
+frequently asked question (FAQ) # 11 of the November 22, 2023 Frequently Asked Questions to Support the Return to
+Normal Eligibility Operations: Transitional Medical Assistance and Medical Support, available at:
+https://www.medicaid.gov/federal-policy-guidance/downloads/faq11222023.pdf.
+[[page 10]]
+Page 10 – State Medicaid Director
+Option 2: Transition Beneficiaries Enrolled on January 1, 2027, at Their Next Scheduled Renewal
+Alternatively, because the language in section 1902(e)(14)(L) that reads “scheduled on or after”
+January 1, 2027, could also refer to the act of scheduling a renewal initiation date, states could retain
+an individual’s 12-month eligibility period granted before January 1, 2027, not reschedule that
+individual’s already scheduled 2027 renewal initiation date, and (if applicable) provide a 6-month
+eligibility period as part of that already-scheduled 2027 renewal for beneficiaries who remain eligible
+in the “adult expansion group.”
+• Example 5: Jane is enrolled in the “adult expansion group” before January 1, 2027, and her
+Medicaid eligibility period is August 1, 2026, through July 31, 2027. She is subject to the
+community engagement requirements that become applicable in January 2027, and her state elects
+to verify one month of community engagement at renewal. The state takes approximately 90 days
+to complete all steps in the renewal process before the end of an eligibility period and initiates
+Jane’s renewal on May 3, 2027, as was already planned. The state determines she continues to be
+eligible for the “adult expansion group,” and that she meets the community engagement
+requirements that became applicable on January 1, 2027. Because Jane’s previously scheduled
+renewal process was initiated in May 2027 based on the date her eligibility period ends (July 31,
+2027), the state schedules Jane’s next renewal for January 31, 2028, which is 6 months after the
+date on which her new eligibility period begins, August 1, 2027.
+Because this option allows states to continue processing renewals in 2027 based on (and without
+moving) already-scheduled renewal initiation dates, it enables states to avoid a large cluster of
+renewals in January 2027 due to having to redetermine eligibility for many beneficiaries enrolled in
+the “adult expansion group” at once, and thus would also enable states to retain a more even renewal
+distribution into the future.
+Special Considerations
+Households with Different Renewal Schedules
+Section 1902(e)(14)(L) of the Act does not modify states’ obligations to determine and redetermine
+Medicaid eligibility on an individual basis as required by 42 C.F.R. § 435.916 (2023).19
+However,
+CMS recognizes that section 1902(e)(14)(L) of the Act will in many instances result in members of
+the same household having different eligibility periods because they qualify for the program under
+different eligibility groups that have different eligibility periods (e.g., 6 months versus 12 months).
+States are reminded that, because of requirements regarding the frequency at which renewals must be
+19 The regulations require that for individuals whose Medicaid eligibility is based on MAGI states complete a
+redetermination of eligibility based on available information for each individual in the household, regardless of the
+eligibility of others in the household unit. 42 C.F.R. § 435.916(a)(2) (2023) (“[t]he agency must make a redetermination
+of eligibility without requiring information from the individual if able to do so based on reliable information contained in
+the individual's account or other more current information available to the agency” (emphasis added)). 42 C.F.R. §
+435.916(b) (2023) states that for individuals whose Medicaid eligibility is determined on a basis other than MAGI, that
+states must make a redetermination of eligibility in accordance with the provisions of paragraph (a)(2), if sufficient
+information is available to do so, and the regulations further specify that the agency must furnish Medicaid “[f]or each
+individual…whose eligibility is being renewed,” if found eligible, per 42 C.F.R. § 435.911(c) (2023).
+[[page 11]]
+Page 11 – State Medicaid Director
+conducted, they may neither shorten nor extend an individual’s eligibility period to align renewal
+dates across all members of a household in a manner that is inconsistent with section 1902(e)(14)(L)
+of the Act, 42 C.F.R. § 435.916(a) (2023), and a state’s election described in section 1902(e)(8) of the
+Act and 42 C.F.R. § 435.916(b) (2023).
+However, if the beneficiary whose eligibility is being renewed provides information that affects the
+eligibility of other household members, such as a change in income or household composition, then
+the state must promptly act on that information for the affected household member and redetermine
+eligibility per 42 C.F.R. § 435.916(d) (2023).
+Movement Between Eligibility Groups at Renewal
+When redetermining eligibility at renewal, states must consider all bases of eligibility prior to making
+a determination of ineligibility, as described in 42 C.F.R. § 435.916(f)(1) (2023). As a result,
+Medicaid beneficiaries might be redetermined eligible for a different eligibility group than the one in
+which they are enrolled. In some cases, this would result in an individual moving between eligibility
+groups that have different eligibility periods (e.g., 12 months or 6 months). For individuals who are
+potentially eligible on another basis, we remind states that they must account for any additional
+factors of eligibility during the redetermination process that are relevant for a group in which the
+individual is potentially eligible,
+20 including compliance with or exception from community
+engagement requirements, if applicable.
+States must notify an individual determined eligible for a
+different eligibility group of the decision as described in 42 C.F.R. §§ 435.917-918 and Part 431
+Subpart E, as applicable. When moving a beneficiary from an eligibility group with a 12-month
+eligibility period to a group with a 6-month eligibility period, the state must also provide a minimum
+of 10 days advance notice with fair hearing rights because CMS considers that to be a reduction in
+eligibility and therefore to be an “action” under 42 C.F.R. § 431.201.21
+Because the state is granting a
+new eligibility period following a successful renewal, the state will apply the appropriate eligibility
+period for the new group.
+• Example 6: Mary is enrolled in the eligibility group for pregnant women in a state that provides
+12 months of postpartum coverage (as authorized under section 1902(e)(16) of the Act). Her 12-
+month extended postpartum coverage period ends May 31, 2027, so the state initiates her renewal
+on March 1, 2027. At renewal, the state determines that Mary is no longer eligible for the
+pregnant women group and considers eligibility on all other bases. Mary is potentially eligible for
+the “adult expansion group,” which means the state must also evaluate whether Mary meets all
+factors of eligibility, including compliance with or exception from community engagement
+requirements (as applicable).
+The state determines that Mary is eligible for the “adult expansion group,” provides at least 10
+days advance notice and fair hearing rights prior to the effective date of this change and renews
+her eligibility for 6 months (June 1, 2027, through November 30, 2027).
+20 See section 1902(a)(10) of the Act and 42 C.F.R. §§ 435.916(f)(1) (2023) and 435.911(c)(2) and (d)(1) (2023).
+21 See Footnote 17 above.
+[[page 12]]
+Page 12 – State Medicaid Director
+Coordination with Other Human Services Recertifications or Reviews
+For some individuals, a 6-month Medicaid renewal may align with the 6-month review or
+recertification for another human services program. However, this does not change the new renewal
+requirements of section 1902(e)(14)(L) of the Act. For example, states may not delay the completion
+of a Medicaid renewal if the beneficiary did not complete a question on the form that is only needed
+to recertify eligibility for the Supplemental Nutrition Assistance Program (SNAP). In addition, while
+states may include information and questions only needed for other programs on a multi-benefit
+renewal form, they must ensure multi-benefit renewal forms include clear instructions on which
+questions must be answered and what information must be provided for purposes of renewing
+Medicaid eligibility.
+State Next Steps
+Application and Renewal Processing
+CMS recognizes that transitioning to a 6-month renewal schedule will result in a change in state
+operations and workload. States should make every effort now to maintain timely application and
+renewal processing or, if needed, resolve application and renewal backlogs. States that do not resolve
+existing application or renewal backlogs or develop new backlogs prior to implementation of section
+71107 will have reduced capacity to successfully implement the eligibility provisions of the WFTC
+legislation and be at greater risk of compliance action.22
+Fair Hearing Requests
+Similarly, CMS recognizes that transitioning to a 6-month renewal schedule could lead to an increase
+in fair hearing requests. States should make every effort now to maintain timely fair hearing request
+processing and plan for sufficient capacity to process additional requests or, if needed, resolve fair
+hearing request backlogs. States that do not resolve existing fair hearing backlogs or develop new
+backlogs prior to implementation of section 71107 will have challenges in successfully addressing the
+potential increase resulting from the implementation of the eligibility provisions of the WFTC
+legislation.
+State Plan Amendment and Demonstration Changes
+To comply with section 1902(e)(14)(L) of the Act, states that cover the adult group under section
+1902(a)(10)(A)(i)(VIII) in their Medicaid state plan must submit a state plan amendment (SPA)
+through MACPro attesting that the state will conduct eligibility redeterminations once every 6
+months for the relevant population. CMS is developing a MACPro reviewable unit, targeted for
+release in the second half of 2026, so that states may submit this SPA no later than March 31, 2027,
+to ensure compliance by January 1, 2027. States that do not provide coverage to the eligibility groups
+22 Section 71106 of the WFTC legislation amends section 1903(u)(1) of the Act to specify, beginning in Fiscal Year 2030,
+when the Secretary must issue eligibility-related disallowances and establishes new restrictions on the Secretary’s
+authority to issue good faith waivers for states with Medicaid eligibility-related error rates exceeding 3 percent. CMS
+expects to provide additional guidance to states on implementation of this provision.
+[[page 13]]
+Page 13 – State Medicaid Director
+subject to the 6-month renewal requirement do not need to submit a SPA to adjust the frequency of
+renewals in their state plan. States may contact their Medicaid state lead for technical assistance to
+complete the Medicaid SPA template when it becomes available.
+States with individuals described in 1902(a)(10)(A)(i)(VIII) who are enrolled in coverage “under a
+waiver” of the state plan that provides coverage equivalent to MEC to all individuals described in
+section 1902(a)(10)(A)(i)(VIII) should contact their section 1115 demonstration project officer.
+Medicaid Information Technology (IT) System Costs
+In addition to submitting a SPA, states will need to make process and system changes to
+operationalize 6-month renewals as well as other eligibility changes made by the WFTC legislation.
+These interconnected policy and system requirements should function seamlessly together. Equally
+important is ensuring the vendors supporting state implementation clearly understand their role and
+what is expected of them to enable the state to meet federal requirements and the state’s program
+goals. Without proper alignment between policy design and technological capabilities, states might
+create administrative burdens that undermine program effectiveness and cost-efficiency. When
+establishing state-specific policies, states should consult with their system implementation teams to
+ensure policies can be operationalized in their systems.
+CMS recognizes the program changes will require IT system work to fulfill policy implementation.
+State Medicaid agency IT system costs necessary to support requirements could be eligible for
+enhanced FFP. Approval of enhanced FFP requires the submission of an Advanced Planning
+Document (APD). A state may submit an APD requesting approval for enhanced FFP for the design,
+development, and installation of their Medicaid Enterprise Systems (MES) initiatives contributing to
+the economic and efficient operation of the program, or for the operations of these systems (including
+maintenance).
+23
+States should refer to 45 C.F.R. Part 95 Subpart F – Automatic Data Processing Equipment and
+Services-Conditions for FFP for the specifics related to APD submission. States should refer to 42
+C.F.R. Part 433 Subpart C –Mechanized Claims Processing and Information Retrieval Systems for
+the specifics related to systems approval.
+23 August 6, 2025, State Health Official Letter, “Streamlining Medicaid Enterprise Systems (MES) Templates to Improve
+Monitoring and Oversight to Ensure Fiscal Integrity.” Available at www.medicaid.gov/federal-policy-
+guidance/downloads/sho25003.pdf.
+[[page 14]]
+Page 14 – State Medicaid Director
+Closing
+CMS is committed to supporting state efforts to complete timely and accurate Medicaid renewals of
+eligibility. CMS is available to provide ongoing technical assistance and support to states to
+implement 6-month renewals for the “adult expansion group” and support eligibility and enrollment
+operations as states implement all Medicaid-related provisions of the WFTC legislation. For
+additional information about this SMDL, please email MedicaidReforms@cms.hhs.gov.
+Sincerely,
+/s/
+Dan Brillman
+Deputy Administrator, CMS
+Director, Center for Medicaid and CHIP Services

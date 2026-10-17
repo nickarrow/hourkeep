@@ -1,0 +1,2026 @@
+[[page 1]]
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+Page 1 of 26
+8.100 MEDICAL ASSISTANCE ELIGIBILITY
+8.100.1 Definitions
+300% Institutionalized Special Income Group is a Medical Assistance category that provides Long-Term
+Care Services to aged or disabled individuals.
+1619b is section 1619b of the Social Security Act which allows individuals who are eligible for
+Supplemental Security Income (SSI) to continue to be eligible for Medical Assistance coverage after they
+return to work.
+AB - Aid to the Blind is a program which provides financial assistance to low-income blind persons.
+ABD - Aged, Blind and Disabled Medical Assistance is a group of Medical Assistance categories for
+individuals that have been deemed to be aged, blind, or disabled by the Social Security Administration or
+the Department.
+Achieving a Better Life Experience (ABLE) accounts – Special savings accounts that are set up by (or for)
+certain individuals with disabilities in a qualified ABLE program that are exempt for eligibility. They can be
+established by any state’s qualified ABLE Program. Colorado’s ABLE program is administered by the
+Department of Higher Education.
+Adjusted Gross Income (AGI)-means “gross income”, as defined in federal tax rules, minus certain
+adjustments prescribed in the federal tax rules to derive the “Adjusted Gross Income” line on the tax
+return. These adjustments from gross income are taken before the taxpayer takes his or her Schedule A
+deductions or Standard Deduction.
+Adult MAGI Medical Assistance Group provides Medical Assistance to eligible adults from the age of 19
+through the end of the month that the individual turns 65, who do not receive or who are ineligible for
+Medicare.
+AND - Aid to Needy Disabled is a program which provides financial assistance to low-income persons
+over age 18 who have a total disability which is expected to last six months or longer and prevents them
+from working.
+AFDC - Aid to Families with Dependent Children is the Title IV federal assistance program in effect from
+1935 to 1997 which was administered by the United States Department of Health and Human Services.
+This program provided financial assistance to children whose families had low or no income.
+AP-5615 is the form used to determine the patient payment for clients in nursing facilities receiving Long
+Term Care.
+Alien is a person who was not born in the United States and who is not a naturalized citizen.
+Ambulatory Services is any medical care delivered on an outpatient basis.
+Annuity is an investment vehicle whereby an individual establishes a right to receive fixed periodic
+payments, either for life or a term of years.
+Applicant is an individual who is seeking an eligibility determination for Medical Assistance through the
+submission of an application.
+[[page 2]]
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+Page 2 of 26
+Application Date is the date the application is received and date-stamped by the eligibility site or the date
+the application was received and date-stamped by an Application Assistance site or Presumptive
+Eligibility site. In the absence of a date-stamp, the application date is the date that the application was
+signed by the client.
+Application for Public Assistance is the designated application used to determine eligibility for financial
+assistance. It can also be used to determine eligibility for Medical Assistance.
+Blindness is defined in this volume as the total lack of vision or vision in the better eye of 20/200 or less
+with the use of a correcting lens and/or tunnel vision to the extent that the field of vision is no greater than
+20 degrees.
+Burial Spaces are burial plots, gravesites, crypts, mausoleums, urns, niches and other customary and
+traditional repositories for the deceased's bodily remains provided such spaces are owned by the
+individual or are held for his or her use, including necessary and reasonable improvements or additions to
+or upon such burial spaces such as: vaults, headstones, markers, plaques, or burial containers and
+arrangements for opening and closing the gravesite for burial of the deceased.
+Burial Trusts are irrevocable pre-need funeral agreements with a funeral director or other entity to meet
+the expenses associated with burial for Medical Assistance applicants/recipients. The agreement can
+include burial spaces as well as the services of the funeral director.
+Caretaker Relative is a person who is related to the dependent child or any adult with whom the
+dependent child is living and who assumes responsibility for the dependent child’s care.
+Case Management Services are services provided by community mental health centers, clinics,
+community centered boards, and EPSDT case managers to assist in providing services to Medical
+Assistance clients in gaining access to needed medical, social, educational and other services.
+Cash Surrender Value is the amount the insurer will pay to the owner upon cancellation of the policy
+before the death of the insured or before maturity of the policy.
+Categorically Eligible means persons who are eligible for Medical Assistance due to their eligibility for one
+or more Federal categories of public assistance.
+Categorically Needy eligibility groups are specific populations which include but not limited to families with
+children, pregnant women, and aged, blind, or disabled individuals as defined in federal regulations 42
+CFR § 435.4.
+CBMS - Colorado Benefits Management System is the computer system that determines an applicant’s
+eligibility for public assistance in the state of Colorado.
+CDHS -Colorado Department of Human Services is the state department responsible for administering
+the social service and financial assistance programs for Colorado.
+Children MAGI Medical Assistance group provides Medical Assistance coverage to tax dependents or
+otherwise eligible applicants through the end of the month that the individual turns 19 years old.
+Child Support Services is a CDHS program that assures that all children receive financial and medical
+support from each parent. This is accomplished by locating each parent, establishing paternity and
+support obligations, and enforcing those obligations.
+Citizen is a person who was born in the United States or who has been naturalized.
+[[page 3]]
+Page 3 of 26
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+Client is a person who is eligible for the Medical Assistance Program. “Client” is used interchangeably
+with “recipient” when the person is eligible for the program.
+CMS - Centers for Medicare and Medicaid Services is the Federal agency within the US Department of
+Health and Human Services that partners with the states to administer Medicaid and CHP+ via State
+Plans in effect for each State. Colorado is in Region VIII.
+CHP+ - Child Health Plan Plus is low-cost health insurance for Colorado's uninsured children and
+pregnant women. CHP+ is public health insurance for children and pregnant women who earn too much
+to qualify for The Medical Assistance Program, but cannot afford private health insurance.
+COLA - Cost of Living Adjustment is an annual increase in the dollar value of benefits made automatically
+by the United States Department of Health and Human Services or the state in OASDI, SSI and OAP
+cases to account for rises in the cost of living due to inflation.
+Colorado State Plan is a written statement which describes the purpose, nature, and scope of the
+Colorado’s Medical Assistance Program. The Plan is submitted to the CMS and assures that the program
+is administered consistently within specific requirements set forth in both the Social Security Act and the
+Code of Federal Regulations (CFR) in order for a state to be eligible for Federal Financial Participation
+(FFP).
+Common Law Marriage is legally recognized as a marriage in the State of Colorado under certain
+circumstances even though no legally recognized marriage ceremony is performed or civil marriage
+contract is executed. Individuals declaring or publicly holding themselves out as a married couple through
+verbal or written methods may be recognized as legally married under state law. C.R.S. § 14-2-104(3).
+Community Centered Boards are private non-profit organizations designated in statute as the single entry
+point into the long-term service and support system for persons with developmental disabilities.
+Community Spouse is the spouse of an institutionalized spouse.
+Community Spouse Resource Allowance is the amount of resources that the Medical Assistance
+regulations permit the spouse staying at home to retain.
+Complete Application means an application in which all questions have been answered, which is signed,
+and for which all required verifications have been submitted.
+The Department is defined in this volume as the Colorado Department of Health Care Policy and
+Financing which is responsible for administering the Colorado Medical Assistance Program and Child
+Health Plan Plus programs as well as other State-funded health care programs.
+Dependent Child is a child who lives with a parent, legal guardian, caretaker relative or foster parent and
+is under the age of 18, or, is age 18 and a full-time student, and expected to graduate by age 19.
+Dependent Relative for purposes of this rule is defined as one who is claimed as a dependent by an
+applicant for federal income tax purposes.
+Difficulty of Care Payments is a payment to an applicant or member as compensation for providing live-in
+home care to an individual who qualifies for foster care or Home and Community Based Services (HCBS)
+waiver program and lives in the home of the care recipient. This additional care must be required due to a
+physical, mental, or emotional handicap.
+Disability as defined by Section 1614 of the Social Security Act (42 U.S.C 1382c), means the inability to
+engage in to do any substantial gainful activity (or, in the case of a child, having marked and severe
+[[page 4]]
+Page 4 of 26
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+functional limitations) because by reason of a medically determinable physical or mental impairment(s)
+thatwhich can be expected to result in death or thatwhich has lasted or can be expected to last for a
+continuous period of 1l2 months or more. For the purposes of the Family Caregiver Specified Excluded
+Individual, a care recipient’s disability is defined by both the Americans with Disabilities Act (ADA) and
+Section 1614 of the Social Security Act (42 U.S.C 1382c). See definition for Family Caregiver.
+Dual Eligible clients are Medicare beneficiaries who are also eligible for Medical Assistance.
+Earned Income is defined for purposes of this volume as any compensation from participation in a
+business, including wages, salary, tips, commissions and bonuses.
+Earned Income Disregards are the allowable deductions and exclusions subtracted from the gross
+earnings. Income disregards vary in amount and type, depending on the category of assistance.
+Electronic Data Source is an interface established with a federal or state agency, commercial entity, or
+other data sources obtained through data sharing agreements to verify data used in determining eligibility.
+The active interfaces are identified in the Department’s verification plan submitted to CMS.
+Eligibility Site is defined in this volume as a location outside of the Department that has been deemed by
+the Department as eligible to accept applications and determine eligibility for applicants.
+Employed means that an individual has earned income and is working part time, full time or is self-
+employed, and has proof of employment. Volunteer or in-kind work is not considered employment.
+EPSDT- Early Periodic Screening, Diagnosis and Treatment is the child health component of the Medical
+Assistance Program. It is required in every state and is designed to improve the health of low-income
+children by financing appropriate, medically necessary services and providing outreach and case
+management services for all eligible individuals.
+Equity Value is the fair market value of land or other asset less any encumbrances.
+Ex Parte Review is an administrative process used to redetermine eligibility for a member without
+requesting verification by utilizing available information from the member’s account, electronic sources,
+and other assistance programs. review of eligibility during a redetermination period in lieu of performing a
+redetermination from the client. This administrative review is performed by verifying current information
+obtained from another current aid program.The Ex Parte Review starts 90 days before the members
+redetermination period ends.
+Face Value of a Life Insurance Policy is the basic death benefit of the policy exclusive of dividend
+additions or additional amounts payable because of accidental death or other special provisions.
+Fair Market Value is the average price a similar property will sell for on the open market to a private
+individual in the particular geographic area involved. Also, the price at which the property would change
+hands between a willing buyer and a willing seller, neither being under any pressure to buy or to sell and
+both having reasonable knowledge of relevant facts.
+FBR - The Federal Benefit Rate is the monthly Supplemental Security Income payment amount for a
+single individual or a couple. The FBR is used by the Aged, Blind and Disabled Medical Assistance
+Programs as the eligibility income limits.
+FFP - Federal Financial Participation as defined in this volume is the amount or percentage of funds
+provided by the Federal Government to administer the Colorado Medical Assistance Program.
+[[page 5]]
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+Page 5 of 26
+FPL - Federal Poverty Level is a simplified version of the federal poverty thresholds used to determine
+financial eligibility for assistance programs. The thresholds are issued each year in the Federal Register
+by the Department of Health and Human Services (HHS).
+Good Cause is the client’s justification for needing additional time due to extenuating circumstances,
+usually used when extending deadlines for submittal of required documentation.
+Good Cause for Child Support is the specific process and criteria that can be applied when a client is
+refusing to cooperate in the establishment of paternity or establishment and enforcement of a child
+support order due to extenuating circumstances.
+HCBS are Home and Community Based Services are also referred to as “waiver programs”. HCBS
+provides services beyond those covered by the Medical Assistance Program that enable individuals to
+remain in a community setting rather than being admitted to a Long-Term Care institution.
+In-Kind Income is income a person receives in a form other than money. It may be received in exchange
+for work or service (earned income) or a non-cash gift or contribution (unearned income).
+Inpatient is an individual who has been admitted to a medical institution on recommendation of a
+physician or dentist and who receives room, board and professional services for 24 hours or longer, or is
+expected to receive these services for 24 hours or longer.
+Institution is an establishment that furnishes, in single or multiple facilities, food, shelter and some
+treatment or services to four or more persons unrelated to the proprietor.
+Institutionalization is the commitment of a patient to a health care facility for treatment.
+Institutionalized Individual is a person who is institutionalized in a medical facility, a Long-Term Care
+institution, or applying for or receiving Home and Community Based Services (HCBS) or the Program of
+All Inclusive Care for the Elderly (PACE).
+Institutionalized Spouse is a Medicaid eligible client who begins a stay in a medical institution or nursing
+facility on or after September 30, 1989, or is first enrolled as a Medical Assistance client in the Program of
+All Inclusive Care for the Elderly (PACE) on or after October 10, 1997, or receives Home and Community
+Based Services (HCBS) on or after July 1, 1999; and is married to a spouse who is not in a medical
+institution or nursing facility. An institutionalized spouse does not include any such individual who is not
+likely to be in a medical institution or nursing facility or to receive HCBS or PACE for at least 30
+consecutive days. Irrevocable means that the contract, trust, or other arrangement cannot be terminated,
+and that the funds cannot be used for any purpose other than outlined in the document.
+Insurance Affordability Program (IAP) refers to Medicaid, Child Health Plan Plus (CHP+), and premium
+and cost-sharing assistance for purchasing private health insurance through state insurance marketplace.
+Legal Immigrant is an individual who is not a citizen or national and has been permitted to remain in the
+United States by the United States Citizenship and Immigration Services (USCIS) either temporarily or as
+an actual or prospective permanent resident or whose extended physical presence in the United States is
+known to and allowed by USCIS.
+Legal Immigrant Prenatal is a medical program that provides medical coverage for pregnant legal
+immigrants who have been legal immigrants for less than five years.
+Limited Disability for the Medicaid Buy-In Program for Working Adults with Disabilities means that an
+individual has a disability that would meet the definition of disability under SSA without regard to
+Substantial Gainful Activity (SGA).
+[[page 6]]
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+Page 6 of 26
+Long-Term Care is Medical Assistance services that provides nursing-home care, home-health care,
+personal or adult day care for individuals aged at least 65 years or with a chronic or disabling condition.
+Long-Term Care Institution means class I nursing facilities, intermediate care facilities for intellectual and
+developmental disabilities (ICF/IDD) and swing bed facilities. Long-Term Care institutions can include
+hospitals.
+Long-Term Services and Supports Level of Care Eligibility Determination is the determination using the
+state prescribed assessment instrument that an individual does or does not meet institutional level of
+care.
+Long-Term Services and Supports Level of Care Eligibility Determination Screen is a comprehensive
+evaluation with an individual seeking services and appropriate collaterals (such as family members,
+friends, and/or caregivers) to determine the individual’s eligibility for long-term services and supports
+based on their need for institutional level of care as determined using the state prescribed assessment
+instrument.
+Managed care system is a system for providing health care services which integrates both the delivery
+and the financing of health care services in an attempt to provide access to medical services while
+containing the cost and use of medical care.
+Medical Assistance is defined as all medical programs administered by the Department of Health Care
+Policy and Financing. Medical Assistance/Medicaid is the joint state/federal health benefits program for
+individuals and families with low income and resources. It is an entitlement program that is jointly funded
+by the states and federal government and administered by the state. This program provides for payment
+of all or part of the cost of care for medical services.
+Medical Assistance Required Household is defined for purposes of this volume as all parents or caretaker
+relatives, spouses, and dependent children residing in the same home.
+Minimal Verification is defined in this volume as the minimum amount of information needed to process
+an application for benefits. No other verification can be requested from clients unless the information
+provided is questionable or inconsistent.
+Minimum Essential Coverage is the type of coverage one must maintain to be in compliance with the
+Affordable Care Act in order to avoid paying a penalty for being uninsured. Minimum essential coverage
+may include but not limited to: Medicaid; CHP+; private health plans through Connect for Health
+Colorado; Medicare; job-based insurance, and certain other coverage.
+MMMNA - Minimum Monthly Maintenance Needs Allowance is the calculation used to determine the
+amount of institutionalized spouse’s income that the community spouse is allowed to retain to meet their
+monthly living needs.
+MAGI - Modified Adjusted Gross Income refers to the methodology by which income and household
+composition are determined for the MAGI Medical Assistance groups under the Affordable Care Act.
+These MAGI groups include Parents and Caretaker Relatives, Pregnant Women, Children, and Adults.
+For a more complete description of the MAGI categories and pursuant rules, please refer to section
+8.100.4.
+MAGI Expansion Group refers to low-income adults ages 19–64 who are eligible for Medicaid under the
+Affordable Care Act (ACA). This category includes adults who are parents or caretaker relatives of
+dependent children whose income exceeds the income threshold to qualify for the Parents and Caretaker
+Relatives MAGI category and who meet all other eligibility criteria, please refer to section 8.100.4.G.4.
+[[page 7]]
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+Page 7 of 26
+MIA - Monthly Income Allowance is the amount of institutionalized spouse’s income that the community
+spouse is allowed to retain to meet their monthly living needs.
+MSP - Medicare Savings Program is a Medical Assistance Progrvam to assist in the payment of Medicare
+premium, coinsurance and deductible amounts. There are four groups that are eligible for payment or
+part-payment of Medicare premiums, coinsurance and deductibles: Qualified Medicare Beneficiaries
+(QMBs), Specified Low-Income Medicare Beneficiaries (SLIMBs), Qualified Disabled and Working
+Individuals (QDWIs), and Qualifying Individuals – 1 (QI-1s).
+Non-Filer is an individual who neither files a tax return nor is claimed as a tax dependent. For a more
+complete description of how household composition is determined for the MAGI Medical Assistance
+groups, please refer to the MAGI household composition section at 8.100.4.E.
+Nursing Facility is a facility or distinct part of a facility which is maintained primarily for the care and
+treatment of inpatients under the direction of a physician. The patients in such a facility require
+supportive, therapeutic, or compensating services and the availability of a licensed nurse for observation
+or treatment on a twenty-four-hour basis.
+OAP - Old Age Pension is a financial assistance program for low income adults age 60 or older.
+OASDI - Old Age, Survivors and Disability Insurance is the official term Social Security uses for Social
+Security Act Title II benefits including retirement, survivors, and disability. This does not include SSI
+payments.
+Outpatient is a patient who is not hospitalized overnight but who visits a hospital, clinic, or associated
+facility for diagnosis or treatment. Is a patient who does not require admittance to a facility to receive
+medical services.
+PACE - Program of All-inclusive Care for the Elderly is a unique, capitated managed care benefit for the
+frail elderly provided by a not-for-profit or public entity. The PACE program features a comprehensive
+medical and social service delivery system using an interdisciplinary team approach in an adult day
+health center that is supplemented by in-home and referral services in accordance with participants'
+needs.
+Parent and Caretaker Relative is a MAGI Medical Assistance group that provides Medical Assistance to
+adults who are parents or Caretaker Relatives of dependent children.
+Patient is an individual who is receiving needed professional services that are directed by a licensed
+practitioner of the healing arts toward maintenance, improvement, or protection of health, or lessening of
+illness, disability, or pain.
+PEAK – the Colorado Program Eligibility and Application Kit is a web-based portal used to apply for public
+assistance benefits in the State of Colorado, including Medical Assistance.
+PNA - Personal Needs Allowance means moneys received by any person admitted to a nursing care
+facility or Long-Term Care Institution which are received by said person to purchase necessary clothing,
+incidentals, or other personal needs items which are not reimbursed by a Federal or state program.
+Pregnant Women is a MAGI Medical Assistance group that provides Medical Assistance coverage to
+pregnant women whose MAGI-based income calculation is less than 195% FPL, including women who
+are in their 12 months post-partum.
+Premium means the monthly amount an individual pays to participate in a Medicaid Buy-In Program.
+[[page 8]]
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+Page 8 of 26
+Provider is any person, public or private institution, agency, or business concern enrolled under the state
+Medical Assistance program to provide medical care, services, or goods and holding a current valid
+license or certificate to provide such services or to dispense such goods.
+Psychiatric Facility is a facility that is licensed as a residential care facility or hospital and that provides
+inpatient psychiatric services for individuals under the direction of a licensed physician.
+Public Institution means an institution that is the responsibility of a governmental unit or over which a
+governmental unit exercises administrative control.
+Qualified Hospital Presumptive Eligibility Sites are hospitals that have voluntarily elected to serve as
+Presumptive Eligibility sites. Qualified Hospital Presumptive Eligibility Sites agree to make determinations
+in accordance with State policies and assist individuals with completing Medical Assistance applications
+and understanding documentation requirements.
+Questionable is defined as inconsistent or contradictory tangible information, statements, documents, or
+file records.
+Reasonable Compatibility refers to an allowable difference or discrepancy between the income an
+applicant self attests and the amount of income reported by an electronic data source. For a more
+complete description of how reasonable compatibility is used to determine an applicant’s financial
+eligibility for Medical Assistance, please refer to the MAGI Income section at 8.100.4.C
+Reasonable Explanation refers to the opportunity afforded an applicant to explain a discrepancy between
+self-attested income and income as reported by an electronic data source, when the difference is above
+the threshold percentage for reasonable compatibility.
+Recipient is any person who has been determined eligible to receive benefits.
+Resident is any individual who is living within the state and considers the state as their place of residence.
+Residents include any unemancipated child whose parent or other person exercising custody lives within
+the state.
+RRB - Railroad Retirement Benefits is a benefit program under Federal law 45 U.S.C. § 231 et seq that
+became effective in 1935. It provides retirement benefits to retired railroad workers and families from a
+special fund, which is separate from the Social Security fund.
+Secondary School is a school or educational program that provides instruction or training towards a high
+school diploma or an equivalent degree such as a High School Equivalency Diploma (HSED).
+SGA – Substantial Gainful Activity is defined by the Social Security Administration. SGA is the term used
+to describe a level of work activity and earnings. Work is “substantial” if it involves performance of
+significant physical or mental activities or a combination of both, which are productive in nature. For work
+activity to be substantial, it does not need to be performed on a full-time basis. Work activity performed on
+a part-time basis may also be substantial gainful activity. “Gainful” work activity is work performed for pay
+or profit; or work of a nature generally performed for pay or profit; or work intended for profit, whether or
+not a profit is realized.
+Single Entry Point Agency means the organization selected to provide case management functions for
+persons in need of Long-Term Care services within a Single Entry Point District.
+Single Streamlined Application or “SSAp” is the general application for health assistance benefits through
+which applicants will be screened for Medical Assistance programs including Medicaid, CHP+, or
+premium and cost-sharing assistance for purchasing private health insurance through a state insurance
+marketplace.
+[[page 9]]
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+Page 9 of 26
+SISC- Supplemental Income Status Codes are system codes used to distinguish the different types of
+state supplementary benefits (such as OAP) a recipient may receive. Supplemental Income Status Codes
+determine the FFP for benefits paid on behalf of groups covered under the Medical Assistance program.
+SSA - Social Security Administration is an agency of the United States federal government that
+administers Social Security, a social insurance program consisting of retirement, disability, and survivors'
+benefits.
+SSI - Supplemental Security Income is a Federal income supplement program funded by general tax
+revenues (not Social Security taxes) that provides income to aged, blind or disabled individuals with little
+or no income and resources.
+SSI Eligible means an individual who is eligible to receive Supplemental Security Income under Title XVI
+of the Social Security Act, and may or may not be receiving the monetary payment.
+TANF - Temporary Assistance to Needy Families is the Federal assistance program which provides
+supportive services and federal benefits to families with little or no income or resources. It is the Block
+Grant that was established under the Personal Responsibility and Work Opportunity Reconciliation Act in
+Title IV of the Social Security Act.
+Tax Dependent is anyone expected to be claimed as a dependent by a Tax-Filer.
+Tax-Filer is an individual, head of household or married couple who is required to and who files a
+personal income tax return.
+Third Party is an individual, institution, corporation, or public or private agency which is or may be liable to
+pay all or any part of the medical cost of an injury, a disease, or the disability of an applicant for or
+recipient of Medical Assistance.
+Title XIX is the portion of the federal Social Security Act which authorizes a joint federal/state Medicaid
+program. Title XIX contains federal regulations governing the Medicaid program.
+TMA - Transitional Medical Assistance is a Medical Assistance category for families that lost Medical
+Assistance coverage due to increased earned income or loss of earned income disregards.
+Unearned Income is the gross amount received in cash or kind that is not earned from employment or
+self-employment.
+VA - Veterans Affairs is The Department of Veterans Affairs which provides patient care and Federal
+benefits to veterans and their dependents.
+8.100.3. Medical Assistance General Eligibility Requirements
+8.100.3.N. Confidentiality
+1. All information obtained by the eligibility site concerning an applicant for or a recipient of Medical
+Assistance is confidential information.
+2. A signature on the Single Streamlined Application and the Application for Public Assistance
+allows an eligibility site worker to consult banks, employers, or any other agency or person to
+[[page 10]]
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+3. 4. 5. 6. 7. Page 10 of 26
+obtain information or verification to determine eligibility. The identification of the worker as an
+eligibility site employee will, in itself, disclose that an application for the Medical Assistance
+Program has been made by an individual. In this type of contact, as well as other community
+contacts, the eligibility site should strive to maintain confidentiality. The signature on the Single
+Streamlined Application and the Application for Public Assistance also provides permission for
+the release of the client's medical information to be provided by health care providers to the State
+and its agents for purpose of administration of the Medical Assistance Program.
+Eligibility site staff may release a client's Medical Assistance state identification number and
+approval eligibility spans to a Medical Assistance provider for billing purposes.
+Eligibility site staff may inform a Medical Assistance provider that an application has been denied
+but may not inform them of the reason why.
+Access to information concerning applicants or recipients must be restricted to persons or agency
+representatives who are subject to standards of confidentiality that are comparable to those of the
+State and the eligibility site.
+The eligibility site must obtain permission from a family, individual, or authorized representative,
+whenever possible, before responding to a request for information from an outside source, unless
+the information is to be used to verify income, eligibility and the amount of Medical Assistance
+payment. This permission must be obtained unless the request is from State authorities, federal
+authorities, or State contractors acting within the scope of their contract. If, because of an
+emergency situation, time does not permit obtaining consent before release, the eligibility site
+must notify the family or individual immediately after supplying the information.
+The eligibility site policies must apply to all requests for information from outside sources,
+including government bodies, the courts, or law enforcement officials. If a court issues a
+subpoena for a case record or for any eligibility site representative to testify concerning an
+applicant or recipient, the eligibility site must inform the court of the applicable statutory
+provisions, policies, and regulations restricting disclosure of information.
+The following types of information are confidential and shall be safeguarded:
+a. Names and addresses of applicants for and recipients of the Medical Assistance
+Program;
+b. Medical services provided;
+c. Social and economic conditions or circumstances;
+d. Agency evaluation of personal information;
+e. Medical data, including diagnosis and past history of disease or disability;
+f. All information obtained through the Income and Eligibility Verification System (IEVS), the
+Federal Data Services Hub (FDSH), Equifax The Work Number (TWN), Colorado
+Department of Labor and Employment, SSA or Internal Revenue Service, or National
+Student Clearinghouse (NSC);
+g. Any information received in connection with identification of legally liable third party
+resources;
+[[page 11]]
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+Page 11 of 26
+8. 9. h. Any information received for verifying income and resources if applicable, or other
+eligibility and the amount of Medical Assistance payments;
+i. Social Security Numbers.
+The confidential information listed above may be released to persons outside the eligibility site
+only as follows:
+a. In response to a valid subpoena or court order;
+b. To State or Federal auditors, investigators or others designated by the Federal or State
+departments on a need-to-know basis;
+c. To individuals executing Income and Eligibility Verification System;
+d. Child Support enforcement officials;
+e. To a recipient or applicant themselves or their designated representative.
+f. To a Long Term Care institution on the AP-5615 form.
+The applicant/recipient may give a formal written release for disclosure of information to other
+agencies, such as hospitals, or the permission may be implied by the action of the other agency
+in rendering service to the client. Before information is released, the eligibility site should be
+reasonably certain the confidential nature of information will be preserved, the information will be
+used only for purposes related to the function of the inquiring agency, and the standards of
+protection established by the inquiring agency are equal to those established by the State
+Department. If the standards for protection of information are unknown, a written consent from the
+recipient shall be obtained.
+8.100.3.R. 1. a. Presumptive Eligibility by Qualified Hospitals
+Hospital Presumptive Eligibility is for inpatient and/or outpatient services through a qualified
+hospital presumptive eligibility site that assists individuals in completing a medical assistance
+application. These presumptive eligibility services are for ambulatory services, state plan
+approved medical services, or limited family planning.
+A pregnant woman may apply for presumptive eligibility for ambulatory services through a
+qualified hospital presumptive eligibility site.
+b. A child or youth under the age of 19 may apply for themself or have an adult apply on
+their behalf for presumptive eligibility for state plan approved medical services through a
+qualified hospital presumptive eligibility site.
+c. An applicant aged 19-65, an applicant who is a parent or caretaker relative of dependent
+children, or an applicant age 16 or older who is currently employed and meet the Social
+Security Administration’s definition of disability or have a limited disability as determined
+[[page 12]]
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+2. Page 12 of 26
+by a state contractor may apply for presumptive eligibility for state plan approved medical
+services through a qualified hospital presumptive eligibility site.
+d. Presumptive eligibility is also available to applicants for limited family planning who are
+not pregnant. There are no age or gender restrictions under the limited family planning
+presumptive eligibility category.
+To be eligible for presumptive eligibility:
+a. b. c. d. A pregnant woman must have an attested pregnancy, declare that her household's
+income shall not exceed 195% of the federal poverty level and declare that she is a
+United States citizen or a lawfully residing immigrant unless they meet the exceptions
+outlined under 8.100.3.G. 1.g. viii.
+A child or youth under the age of 19 must have a declared household income that does
+not exceed 142% of federal poverty level and declare that the child or youth is a United
+States citizen or a documented immigrant unless they meet the exceptions outlined under
+8.100.3.G. 1.g.viii.
+To qualify for limited family planning presumptive eligibility, an applicant must have
+declared household income greater than 133% but not exceeding 260% of the federal
+poverty level. The applicant cannot be eligible for a Medicaid eligibility category that
+provides full coverage. The applicant must declare they are a United States citizen or a
+lawfully residing immigrant. An applicant applying for limited family planning presumptive
+eligibility will be counted individually as a household member of two.
+An applicant age 19 to 645, who is eligible under the MAGI Expansion Group as defined
+in section 8.100.4.G.4. must have a declared household income that does not exceed
+133% of the federal poverty level and declare themself as a United States citizen or a
+documented immigrant. This category includes adults who are parents or caretaker
+relatives of dependent children whose income exceeds the income threshold to qualify for
+the Parents and Caretaker Relatives MAGI category and who meet all other eligibility
+criteria.
+i) Adults eligible under the MAGI Expansion Group must also meet the Community
+Engagement requirements outlined at section 8.100.4.G.4.c. Compliance for
+Community Engagement requirements includes the evaluation of eligibility for a
+Specified Excluded Individual status, or if the individual is an Applicable
+Individual who qualifies for a Mandatory Exception. If the individual does not
+meet an exclusion or exception, they must complete at least 80 hours of
+approved Community Engagement Qualifying Activities. Eligibility will be
+determined based on the individual’s self-attestation at the time of the
+presumptive eligibility determination. Community Engagement requirements shall
+be fully evaluated as part of the Medical Assistance application process.
+e. f. An applicant who is a parent or caretaker relative or legally appointed guardian or
+conservator of dependent children, must have a declared household income that does
+not exceed 68% of the federal poverty level and declare themself as a United States
+citizen or a documented immigrant.
+An applicant age 16 or older who has declared they are currently employed with income
+less than or equal to 450% of FPL and declare they are a United States citizen or a
+documented immigrant unless they meet the exceptions outlined under 8.100.3.G. 1.g.
+viii. Only the applicant’s income will be considered. Resources are not counted in
+[[page 13]]
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+Page 13 of 26
+3. 4. 5. 6. 7. 8. 9. 8.100.4 determining eligibility. Applicants must also declare they have a disability as defined as
+Social Security Administration medical listing or a limited disability as determined by a
+state contractor.
+Qualified hospital presumptive eligibility sites must be certified by the Department to make
+presumptive eligibility determinations. Sites shall be re-certified by the Department every year to
+remain approved as a qualified hospital presumptive eligibility site.
+The qualified hospital presumptive eligibility site must forward the medical assistance application
+to the County Department of Human Services within five business days.
+The presumptive eligibility period begins on the date the applicant(s) is determined eligible and
+ends with the day an eligibility determination for Medical Assistance is made for the applicant(s).
+A presumptively eligible member may not appeal the end of a presumptive eligibility period.
+Medical Assistance applicants may appeal if a County Department of Human Services is unable
+to act within 45 days or 90 days (if a disability determination is required) of the medical assistance
+application date or the denial of a medical assistance application. Appeal procedures are outlined
+in the State Hearings section of this volume.
+Applicants cannot receive presumptive eligibility if they already are in receipt of another medical
+assistance program.
+An applicant may only receive presumptive eligibility once every 12 months with the exception of
+pregnant women who may receive presumptive eligibility once every pregnancy.
+MAGI Medical Assistance Eligibility [Eff. 01/01/2014]
+8.100.4.G. MAGI Covered Groups
+1. 2. 3. For MAGI Medical Assistance, any person who is determined to be eligible for Medical
+Assistance based on MAGI at any time during a calendar month shall be eligible for benefits
+during the entire month.
+Children applying for Medical Assistance whose total household income does not exceed 142%
+of the federal poverty level shall be determined financially eligible for Medical Assistance. Refer to
+the MAGI-Medicaid income guidelines chart available on the Department’s website.
+a. Children are eligible for Children’s MAGI Medical Assistance through the end of the
+month in which they turn 19 years old. After turning 19, the individual may be eligible for a
+different Medical Assistance category.
+Parents and Caretaker Relatives applying for Medical Assistance whose total household income
+does not exceed 68% of the federal poverty level (MAGI-equivalent) shall be determined
+financially eligible for Medical Assistance. Parents or Caretaker Relatives eligible for this category
+shall have a dependent child in the household.
+a. A dependent child is considered to be living in the home of the parent or caretaker
+relative as long as the parent or specified relative exercises responsibility for the care and
+control of the child even if:
+[[page 14]]
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+4. Page 14 of 26
+i) ii) iii) iv) v) vi) The child is under the jurisdiction of the court (for example, receiving probation
+services);
+Legal custody is held by an agency that does not have physical possession of
+the child;
+The child is in regular attendance at a school away from home;
+Either the child or the relative is away from the home to receive medical
+treatment;
+Either the child or the relative is temporarily absent from the home;
+The child is in voluntary foster care placement for a period not expected to
+exceed three months. Should the foster care plan change within the three
+months and the placement become court ordered, the child is no longer
+considered to be living in the home as of the time the foster care plan is changed.
+Adults ages 19-64 who are applying for or enrolled in Medical Assistance under the MAGI
+Expansion Group and whose total household income does not exceed 133% of the federal
+poverty level shall be determined financially eligible for Medical Assistance. This category
+includes adults who are parents or caretaker relatives of dependent children whose income
+exceeds the income threshold of 68% of the federal poverty level to qualify for the Parents and
+Caretaker Relatives MAGI category and who meet all other eligibility criteria.
+Effective January 1, 2027, adults applying for or enrolled in Medical Assistance under the MAGI
+Expansion Group, and whose household income does not exceed 133 % of the federal poverty
+level must meet the Community Engagement requirements, unless the individual is a Specified
+Excluded Individual or meets a Mandatory Exception described under this section.
+Ddependent child living in the household of a parent or caretaker relative shall ave
+minimum essential coverage, in order for the parent or caretaker relative to be eligible for
+Medical Assistance under this category. Refer to section 8.100.4.G.3.a on who is
+considered a dependent child.
+Due to the COVID-19 Public Health Emergency an applicant who is not eligible for
+Medical Assistance but has been impacted through exposure to or potential infection with
+COVID-19 may be eligible to receive services for COVID-19 testing only. To qualify for
+this limited benefit, the applicant must satisfy residency and immigration or citizenship
+status and not be enrolled in other health insurance.
+a. b. b. i) For the purpose of the Community Engagement rules the following definitions apply:
+Applicable Individuals are individuals who are generally eligible or enrolled under
+the state plan in the MAGI Expansion Group described in §1902(a)(10)(A)(i)(VIII)
+of the Act and do not meet the criteria for a Specified Excluded Individual, refer to
+Section 8.100.4.G.4.e for the covered group. For Applicable Individuals it will be
+determined if the individual demonstrates compliance with Community
+Engagement requirements as a condition of Medical Assistance eligibility.
+Community Engagement (known as Medicaid Work Requirements) is the
+participation of an Applicable Individual in one or more Qualifying Activities at
+least eighty (80) hours per calendar month or receiving $580 in countable earned
+ii) 
+[[page 15]]
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+iii) iv) v) vi) vii) viii) Page 15 of 26
+and/ or unearned gross income for the MAGI household, as further described in
+Section 8.100.4.G.4.c.
+Family Caregiver means a parent, guardian, caretaker or relative, an adult family
+member, or another individual who has a significant relationship with and
+provides a broad range of care and assistance (RAISE Family Caregivers Act) to
+a “care recipient.” (as defined in the Americans with Disabilities Act (ADA) and/or
+by Section 1614 of the Social Security Act (42 U.S.C 1382c). A care recipient is
+either:
+1) 2) Is a dependent child 13 years of age or younger, or
+A person of any age who has a disability or a serious complex medical
+condition that is life-threatening or makes performing daily activities
+difficult.
+Lookback Review Period means the period preceding an eligibility determination
+during which it is determined whether an individual is a Specified Excluded
+Individual or an Applicable Individual and, if applicable, whether the individual
+qualifies for a Mandatory Exception or meets, or is deemed to meet, Community
+Engagement requirements through a Qualifying Activity.
+Mandatory Exception are specific reasons that individuals are excluded from the
+definition of an “Applicable Individual” or are not subject to the Community
+Engagement requirements. These reasons are further described in section
+8.100.4.G.4.f.
+1) 2) Medically Frail, in the context of the H.R.1 Community Engagement requirement
+exclusion, includes individuals who have one or more of the following conditions:
+Individuals who are blind or disabled; or
+Have a substance use disorder and are in early (immediate to 1 year
+recovery stage) or sustained (1 to 5 years) recovery stage; or
+Have a disabling mental disorder; or
+Have a physical, intellectual or developmental disability that significantly
+impairs their ability to perform 1 or more activities of daily living; or
+Have a serious or complex medical condition; and
+Have special medical needs that cause significant impairment to work,
+volunteer, or attend school.
+3) 4) 5) 6) Qualifying Activity is any activity that satisfies the Community Engagement
+requirements, including employment, self-employment, participation in a work
+program, enrolled in education program, including higher education or a technical
+school, community service, or volunteer service.
+Specified Excluded Individuals are specific reasons that are excluded from the
+definition of an “Applicable Individual” or are not subject to demonstrating the
+Community Engagement requirements. These reasons are further described in
+section 8.100.4.G.4.e.
+[[page 16]]
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+c. d. Page 16 of 26
+Eligibility Criteria for Community Engagement Compliance.
+Compliance for Community Engagement requirements includes the evaluation of
+eligibility for a Specified Excluded Individual status, or if the individual is an Applicable
+Individual who qualifies for a Mandatory Exception. If the individual does not meet a
+Mandatory Exception, they must meet the Community Engagement requirements.
+The individual must meet one of the following requirements for each calendar
+month during the lookback review period, to meet the Community Engagement
+requirements:
+1) i) Receive at least $580 in countable earned or unearned gross income for
+their MAGI household; or
+2) Complete at least 80 hours of approved Community Engagement
+Qualifying Activities.
+Community Engagement Compliance for Applications, Reported Changes, and
+Renewals.
+This section describes the requirements for an individual to demonstrate compliance with
+Community Engagement when applying for, reporting changes to, or renewing Medical
+Assistance under the MAGI Expansion Group. It covers the criteria at each stage for new
+applications, changes, redeterminations, and retroactive coverage requests to maintain
+or receive coverage.
+i) New Applications
+Applicants eligible for Medical Assistance under the MAGI Expansion Group the
+Department will determine if the applicant is a Specified Excluded Individuals in
+the month of application or qualify for a Mandatory Exception in the month before
+the application or demonstrate compliance with the Community Engagement
+requirements in the month before the application month. Applicable Individuals
+who do not demonstrate compliance with Community Engagement requirements
+may be ineligible for Medical Assistance.
+ii) Changes in Circumstances
+When a change in circumstances is reported for a member enrolled in Medical
+Assistance under the MAGI Expansion Group, the Department shall determine
+whether the change affects the member's status as a Specified Excluded
+Individual, Mandatory Exception, or compliance with the Community Engagement
+Qualifying Activities. The review will be conducted during the lookback review
+period, which starts with the month the change in circumstance was reported and
+ends with the most recent eligibility determination.
+Member Becomes a Specified Excluded Individual
+If information received as a change in circumstances establishes that the
+member meets the criteria for a Specified Exclusion, the member is no
+longer an Applicable Individual and is not subject to the Community
+Engagement requirement. The Department shall not require the member
+to demonstrate Community Engagement while the member meets the
+criteria for a Specified Exclusion.
+1) 
+[[page 17]]
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+2) 3) 4) 5) Page 17 of 26
+Member Loses a Specified Exclusion and Becomes an Applicable
+Individual
+If a member enrolled in the MAGI Expansion Group no longer meets the
+criteria for a Specified Exclusion or Mandatory Exception and does not
+meet another Specified Exclusion or Mandatory Exception, the member
+becomes an Applicable Individual.
+The Department shall determine whether the member demonstrated, or
+is deemed to have demonstrated, Community Engagement during the
+lookback review period which begins with the effective date of the
+member's most recent determination or redetermination at renewal and
+ends on the last day of the month before the month in which the member
+becomes an Applicable Individual.
+A member who met the criteria for a Specified Exclusion for part or all of
+a month during the lookback review period is deemed to have
+demonstrated compliance with Community Engagement for that month
+under a Mandatory Exception.
+Member Transitions from Another Medical Assistance Eligibility Group
+into the MAGI Expansion Group
+When a change in circumstances causes a member enrolled in another
+Medical Assistance eligibility group to be determined eligible for the
+MAGI Expansion Group, the Department shall determine if the member
+qualifies for Specified Excluded Individual status or qualifies for a
+Mandatory Exception or whether the member demonstrated or is
+deemed to have demonstrated compliance during the lookback review
+period before enrolling the member in the MAGI Expansion Group.
+The lookback review period begins with the effective date of the
+member's most recent determination or redetermination at renewal and
+ends on the last day of the month before the month in which the member
+enrolls in the MAGI Expansion Group.
+A member who was enrolled in an eligibility group that qualifies for a
+Mandatory Exception for part or all of a month during the lookback
+review period is deemed to have demonstrated Community Engagement
+for that month.
+Member Remains an Applicable Individual
+When a member enrolled in the MAGI Expansion Group remains an
+Applicable Individual and reports a change to a Qualifying Activity,
+including the end or reduction of work or another Qualifying Activity, the
+reported change does not by itself establish a new Community
+Engagement review period.
+Community Engagement compliance shall be evaluated at the member's
+next scheduled renewal using the lookback review period, unless
+another change affects the member's eligibility or establishes that the
+member is a Specified Excluded Individual.
+[[page 18]]
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+Page 18 of 26
+e. iii) Redetermination of Eligibility
+Members eligible for Medical Assistance under the MAGI Expansion Group will
+go through the redetermination process to be determined if they meet an
+exclusion, exception or demonstrate compliance with the Community
+Engagement requirements in Section 8.100.4.G.4.c during the applicable
+lookback review period. The lookback review period begins with the month of the
+member's most recent eligibility determination and continues through the month
+in which the Ex Parte process begins.
+Eligibility Criteria for Specified Excluded Individuals
+An individual is excluded from the Community Engagement requirements if they
+meet one of the following Specified Exclusions:
+Family caregivers who are a parent, guardians, caretaker relatives caring
+for a care recipient. Family caregiving must occur on a regular basis and
+not as occasional assistance. Caregivers qualify when care recipients
+i) 1) are:
+a) b) c) d) A child age 13 or younger and the caregiver either:
+Resides with the care recipient regardless of the relationship; or
+Related by blood or marriage and does not reside with the care
+recipient; or
+Does not reside with and is not a relative of the care recipient
+and provides at least 80 hours of caregiving per month.
+Caregiving hours of less than 80 hours per month may be
+counted toward Community Engagement activities for Applicable
+Individuals as described in section 8.100.4.G.4.c.
+2) a) b) An individual of any age with a disability or serious complex medical
+condition that is life threatening or makes performing daily activities
+difficult and the caregivers either:
+Reside with the care recipient regardless of the relationship; or
+Related by blood or marriage and do not reside with the care
+recipient; or
+Does not reside with and is not a relative of the care recipient
+and provides at least 80 hours of caregiving per month.
+Caregiving hours of less than 80 hours per month may be
+counted toward Community Engagement activities for Applicable
+Individuals as described in section 8.100.4.G.4.c.
+c) 3) Former Foster Care Youth described in section 1902(a)(10)(A)(i)(IX) of
+the Act.
+4) American Indians and Alaska Natives.
+[[page 19]]
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+Page 19 of 26
+5) Veterans with a service-connected disability that meets either of the
+following criteria:
+a) b) Have a 100% disability rating from the U.S. Department of
+Veterans Affairs (VA), whether temporary or permanent; or
+Have been granted Total Disability based on Individual
+Unemployability (TDIU), even if combined disability rating is
+below 100%.
+6) 7) 8) 9) 10) 11) Individuals who are Medically Frail (defined in section 8.100.4.G.4.b.vi).
+Individuals in a household receiving Supplemental Nutrition Assistance
+Program (SNAP) and who are not exempt from SNAP work
+requirements.
+Individuals compliant with Colorado’s Temporary Assistance for Needy
+Families (TANF) work requirements.
+Individuals who are currently participating in a treatment or rehabilitation
+program for substance use disorder.
+Individuals who are currently inmates of a public institution.
+Pregnant individuals and individuals eligible for postpartum Medical
+Assistance.
+f. ii) iii) iv) v) g. Eligibility Criteria for Mandatory Exceptions
+If an Applicable Individual meets a Mandatory Exception for any part of a month during the
+lookback review period, the individual is considered to have met Community Engagement
+requirements. The following individuals meet Mandatory Exceptions for the Community
+Engagement requirements:
+i) Individuals under age 19.
+Mandatory categorically needy eligibility groups.
+Individuals entitled to or enrolled in benefits under Medicare Part A.
+Individuals enrolled in benefits under Medicare Part B.
+Individuals who were inmates of a public institution at any point during the three-
+month period prior to their application or during the renewal in their lookback
+review period.
+vi) Specified Excluded Individuals (if relevant during the lookback review period).
+Types of Community Engagement Qualifying Activities
+An individual may satisfy the Community Engagement requirements by having
+countable household income of at least $580 or more through the following types
+of work:
+i) 
+[[page 20]]
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793
+794
+795
+796
+797
+798
+799
+800
+801
+802
+803
+804
+805
+ii) iii) iv) Page 20 of 26
+1) Employment at a paid job, either part-time or full-time, or being self-
+employed.
+a) Seasonal workers can meet the average monthly 80-hour
+requirement or the average monthly income that equals at least
+$580 in countable gross earned income. For seasonal workers
+with different incomes, the average monthly hours over the
+course of 12 months will be looked at.
+2) Countable unearned income, in-kind income and all types of unearned
+income listed in section 8.100.3.K.11.
+If an individual's countable income is below the threshold of $580, they may
+satisfy the Community Engagement requirements by completing at least 80
+hours of qualifying activities in a calendar month. The individual may combine
+different types of activities to reach the 80-hour total. The following activities
+qualify for Community Engagement:
+Income that is less than $580 from work listed above may be converted
+to hours by using the current federal minimum wage in accordance with
+435.552(e).
+Unpaid work which provides hours that result from a service that can
+benefit a private entity or an individual including internships, trial-period
+work, and caregiving hours that were less than 80 hours in a given
+1) 2) month
+1) a) 2) Enrollment in an approved educational or vocational program for at least half
+time. An individual enrolled at least half-time is not required to demonstrate 80
+hours of educational activity or combine educational hours with another
+Community Engagement activity for that month. Qualifying programs include:
+Institutions of Higher Education: Enrollment in a professional degree
+institution, college, university, community college, or junior college.
+The Agency must obtain electronic or written consent from the
+eligible student before requesting data from the National Student
+Clearinghouse (NSC) to verify student enrollment data.
+Career or Technical Education: Enrollment in a vocational school, trade
+school, or technical training school.
+High School or GED: Enrollment or participation in secondary education,
+Adult Basic Education classes or other equivalent educational services.
+Enrollment in an approved educational or vocational program for less than half
+time. An individual who is enrolled in an educational program less than half-time
+does not meet the Community Engagement requirement based on enrollment
+status alone. The individual's educational program hours must be calculated in
+accordance with 42 CFR § 435.552(d) and may be combined with other
+qualifying Community Engagement activities to meet the 80-hour monthly
+requirement Qualifying programs include:
+Institutions of Higher Education: Enrollment in a professional degree
+institution, college, university, community college, or junior colleges.
+3) 1) 
+[[page 21]]
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831
+832
+833
+834
+835
+836
+837
+838
+839
+840
+841
+842
+843
+844
+845
+846
+847
+v) vii) Page 21 of 26
+a) 2) 3) The Agency must obtain electronic or written consent from the
+eligible student before requesting data from the National Student
+Clearinghouse (NSC) to verify student enrollment data.
+Career or Technical Education: Enrollment in a vocational school, trade
+school, or technical training school.
+Calculation of less than half time educational hours based on whether
+the educational program uses a credit hour system:
+Educational programs that use credit hours: The Department
+shall calculate monthly educational program hours by multiplying
+the number of credit hours by 3, then by 4.33 (Credit Hours × 3 ×
+4.33 = Monthly Educational Program Hours). The Department
+shall round the resulting monthly hours up to the nearest whole
+a) hour.
+b) Educational programs that do not use credit hours: The
+Department shall count the actual hours of attendance or
+participation in required educational activities, including
+instruction, hands-on training, laboratory work, clinical activities,
+or other required program activities.
+Community service or volunteering includes the following activities, which are
+performed without pay:
+1) 2) Volunteering at Nonprofits (not serving a partisan purpose): Providing
+volunteer services to recognized charities, food pantries, shelters,
+religious institutions, or hospitals.
+Public Service: Provide services to local government, schools, or public
+parks.
+Work programs that help individuals prepare for work by providing job training or
+work experience. These programs must be operated or pre- approved by federal
+or state government. Types of work programs include:
+Snap Em SNAP Employment and Training: Participation in Employment
+First or another qualifying SNAP employment and Training program that
+provides employment, training, job search, and other approved workforce
+activities.
+1) 2) WIOA (Workforce Innovation and Opportunity Act programs): These
+programs provide limited support for short-term training that leads
+directly to jobs in demand in the local area. Training options include
+classroom sessions, on-the-job training, internships, and
+apprenticeships.
+3) 4) Trade Adjustment Assistance: These programs help workers who have
+lost their jobs due to foreign trade.
+State Workfare or Training Programs: Any other structured job-
+readiness, job search (max of 39 monthly hours), or workforce
+preparation program run or recognized by the state.
+[[page 22]]
+848
+849
+850
+851
+852
+853
+854
+855
+856
+857
+858
+859
+860
+861
+862
+863
+864
+865
+866
+867
+868
+869
+870
+871
+872
+873
+874
+875
+876
+877
+878
+879
+880
+881
+882
+Page 22 of 26
+5) Veteran readiness and employment programs operated and monitored
+by the Department of Labor (DOL) or the Department of Veterans Affairs
+(VA).
+h. Compliance Reporting and Verification
+i) Community Engagement requirements shall be evaluated using the following
+verification hierarchy:
+1) 2) 3) 4) 5) 6) Determine whether the individual is a Specified Excluded Individual.
+If the individual is not a Specified Excluded Individual, determine whether
+the individual meets a Mandatory Exception.
+If the individual is not a Specified Excluded Individual and does not meet
+a Mandatory Exception, determine whether the individual has
+demonstrated a Qualifying Activity sufficient to satisfy the Community
+Engagement requirements.
+For all determinations under this section, available and reliable electronic
+data sources and information already available shall be used before
+requesting information from the individual.
+Once a Specified Exclusion, Mandatory Exception, or Qualifying Activity
+is verified through available and reliable information, no further
+verification is required for that application determination period.
+Self-attestation shall be accepted when:
+Available and reliable information is not available; or
+Verification cannot reasonably be obtained through electronic
+data sources; or
+a) b) c) No documentation requirement is specifically required under
+federal or state law
+7) Self-Attestation exception for Veterans with Service-Connected
+Disabilities
+a) b) i. Self-attestation shall not be accepted to verify the Specified
+Exclusion for a Veteran with a service-connected disability.
+Verification must be provided through
+A Veterans Administration benefits letter; or
+ii. iii. iv. A Veterans Administration disability determination; or
+Federal data sources available to the Department; or
+Other documentation approved by the Department
+demonstrating a service connected disability.
+[[page 23]]
+883
+884
+885
+886
+887
+888
+889
+890
+891
+892
+893
+894
+895
+896
+897
+898
+899
+900
+901
+902
+903
+904
+905
+906
+907
+908
+909
+910
+911
+912
+913
+914
+915
+916
+917
+918
+919
+920
+921
+Page 23 of 26
+8) Self-attestation may be supplemented by written, verbal, or electronic
+statements submitted by the individual.
+When unable to determine through available and reliable information that
+an individual meets the Community Engagement requirement or that the
+requirement does not apply, a Work Requirements Form (Notice of
+Noncompliance) shall be issued. The form shall provide the individual an
+opportunity to report information demonstrating compliance or that the
+Community Engagement requirement does not apply.
+ii) Verification at Application
+1) a) b) c) 2) 3) 4) At application, available and reliable data sources shall first be used to
+determine whether the applicant:
+Is a Specified Excluded Individual; or
+Meets a Mandatory Exception; or
+Has met a Qualifying Activity during the state-established
+Community Engagement lookback review period.
+If compliance, a Mandatory Exception, or a Specified Exclusion cannot
+be verified through available and reliable data sources, additional
+information shall be requested from the applicant
+The applicant shall have the standard Medical Assistance application
+verification period established in rule and federal eligibility regulations
+(42 CFR 435.557) to provide requested information.
+A Work Requirements Self-Reporting Form (Notice of Noncompliance)
+shall be issued when available and reliable information is insufficient to
+a) b) 5) a. b) c) 6) verify that the applicant:
+Meets a Qualifying Activity; or
+Qualifies for a Specified Exclusion or Mandatory Exception.
+The Notice of Noncompliance shall:
+Explain the Community Engagement requirements; and
+Explain how the applicant may demonstrate compliance; and
+Explain how the applicant may demonstrate that the requirement
+does not apply; and
+Provide the applicant 30- calendar days from receipt of the
+notice to make an effort to provide sufficient information. The
+notice shall be considered received 5 -days after the date on the
+notice, unless the applicant demonstrates that the notice was not
+received within the 5-day period.
+If the applicant does not provide sufficient information within the 30-calendar-
+day period, eligibility may be denied only after:
+d) 
+[[page 24]]
+922
+923
+924
+925
+926
+927
+928
+929
+930
+931
+932
+933
+934
+935
+936
+937
+938
+939
+940
+941
+942
+943
+944
+945
+946
+947
+948
+949
+950
+951
+952
+953
+954
+955
+956
+957
+958
+959
+Page 24 of 26
+iii_ Verification of Redetermination
+1) At redetermination, an Ex Parte review shall be conducted using all
+available and reliable information to determine whether the individual:
+a) b) c) 2) 3) A Specified Excluded Individual; or
+Meets a Mandatory Exception; or
+Has demonstrated a Qualifying Activity during the applicable
+compliance review period.
+If available and reliable information is insufficient to establish a Specified
+Exclusion, Mandatory Exception, or compliance through a Qualifying
+Activity, a Work Requirements Self-Reporting Form and any required
+verification requests shall be provided with the redetermination form. The
+individual shall be provided at least 30 calendar days to provide
+information establishing that
+Community Engagement requirements have been met; or
+The requirement does not apply.
+The due date for the Work Requirement Self-Reporting Form will align
+with the redetermination due date. Medical assistance will continue
+a) b) 4) 5) 6) during the 30-calendar-day period consistent with federal requirements.
+If the individual returns the redetermination form but the information is
+incomplete, inconsistent, or raises additional questions, the eligibility site
+worker will make reasonable efforts to obtain clarification, including
+written, telephonic, or electronic, where available.
+The individual will be provided at least 10 business days to submit additional
+requested verification
+If sufficient information is not provided during the 30-calendar day period,
+eligibility may be terminated only after:
+Determining whether the individual qualifies under another
+Medical Assistance program; and
+b) Providing adequate notice; and
+c) Providing fair hearing rights.
+a) 5. Pregnant Women whose household income does not exceed 195% of the federal poverty
+level (MAGI-equivalent) are eligible for the Pregnant Women MAGI Medical Assistance
+program. Medical Assistance shall be provided to a pregnant woman for a period beginning
+with the date of application for Medical Assistance through the last day of the 12th month
+following the date the pregnancy ends. Once eligibility has been approved, Medical
+[[page 25]]
+960
+961
+962
+963
+964
+a. Page 25 of 26
+Assistance coverage will be provided regardless of changes in the woman's financial
+circumstances once the income verification requirements are met.
+A pregnant women’s eligibility period will end effective the earliest possible month, if the
+following occurs:
+[[page 26]]
+965
+966
+967
+968
+969
+970
+971
+972
+973
+974
+975
+976
+977
+978
+979
+980
+981
+982
+983
+984
+985
+986
+987
+988
+989
+990
+991
+992
+993
+994
+995
+6. 7. 8. Page 26 of 26
+i) Fails to provide a reasonable explanation or paper documentation when self-
+attested income is not reasonably compatible with income information from an
+electronic data source, by the end of the 30day reasonable opportunity period.
+This exception only applies the first-time income is verified following an initial
+eligibility determination or an annual redetermination.
+A lawfully admitted non-citizen who is pregnant and who has been in the United States for less
+than five years is eligible for Medical Assistance if she meets all of the other eligibility
+requirements specified at 8.100.4.G.5 and fits into one of the immigration categories listed in
+8.100.3.G.1.g.iii.1-5 and 8.100.3.G.1.g.vi.1-15. This population is referenced as Legal Immigrant
+Prenatal.
+A child whose mother is receiving Medical Assistance at the time of the child's birth is
+continuously eligible for one year. This population is referred to as “Eligible Needy Newborn”. This
+coverage also applies in instances where the mother received Medical Assistance to cover the
+child’s birth through retroactive Medical Assistance. The child is not required to live with the
+mother receiving Medical Assistance to qualify as an Eligible Needy Newborn.
+a. To receive Medical Assistance under this category, the birth must be reported verbally or
+in writing to the County Department of Human Services or eligibility site. Information
+provided shall include the baby’s name, date of birth, and mother’s name or Medical
+Assistance number. A newborn can be reported at any time by any person. Once
+reported, a newborn meeting the above criteria shall be added to the mother’s Medical
+Assistance case, or his or her own case if the newborn does not reside with the mother,
+according to timelines defined by the Department. If adopted, the newborn’s agent does
+not need to file an application or provide a Social Security Number or proof of application
+for a Social Security Number for the newborn
+Applicants applying for Medical Assistance whose total household income is greater than 133%
+but does not exceed 260% of the federal poverty level shall be determined financially eligible for
+limited Family Planning Medical Assistance services. The applicant must satisfy residency and
+immigration or citizenship status to qualify for this limited benefit. The limited family planning
+services eligibility category has no age or gender restriction and is available for those not eligible
+for a Medicaid eligibility category that provides full coverage.

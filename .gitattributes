@@ -1,0 +1,26 @@
+# Stored sources are kept byte for byte, so git must never rewrite their line endings: their SHA-256 hashes are in
+# docs/domain/sources/MANIFEST.json. Older sources share folders with analysis files, so each gets its own line.
+# See docs/epics/0001-policy-corpus/design.md, "Stored sources and the manifest".
+docs/domain/sources/** -text
+docs/domain/blueprint-pdfs/Medicaid-Work-Requirements-Service-Blueprint-–-Code-for-America-11x17-1.pdf -text
+docs/domain/blueprint-pdfs/SNAP-Work-Requirements-Service-Blueprint-–-Code-for-America-11x17-1.pdf -text
+docs/domain/cms-2454-ifc/2026-11094.txt -text
+docs/domain/cms-2454-ifc/2026-11094.xml -text
+docs/domain/cms-2454-ifc/SECTION-INDEX.txt -text
+docs/domain/hr1/119hr1enr-hhs-sections.md -text
+docs/domain/hr1/119hr1enr-title1.md -text
+docs/domain/hr1/119hr1enr-title10.md -text
+docs/domain/hr1/119hr1enr-title2.md -text
+docs/domain/hr1/119hr1enr-title3.md -text
+docs/domain/hr1/119hr1enr-title4.md -text
+docs/domain/hr1/119hr1enr-title5.md -text
+docs/domain/hr1/119hr1enr-title6.md -text
+docs/domain/hr1/119hr1enr-title7-part1.md -text
+docs/domain/hr1/119hr1enr-title7-part2.md -text
+docs/domain/hr1/119hr1enr-title7-part3.md -text
+docs/domain/hr1/119hr1enr-title8.md -text
+docs/domain/hr1/119hr1enr-title9.md -text
+docs/domain/hr1/119hr1enr-toc.md -text
+docs/domain/hr1/119hr1enr.md -text
+docs/domain/supporting-regs/42cfr-supporting-sections.txt -text
+docs/domain/supporting-regs/other-supporting-sections.txt -text
