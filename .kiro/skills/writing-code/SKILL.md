@@ -101,6 +101,10 @@ starting with. A browser automation tool connected to the agent is the better ve
 accessibility tree rather than a picture, which means a question like whether a button carries its own accessible name
 becomes answerable. It needs setting up, so it is not part of these starter files.
 
+If you set one up, give each session its own browser, because two sessions sharing one can drive each other's pages.
+Playwright's MCP server does that with `--isolated`. It also saves page snapshots into a `.playwright-mcp` folder in
+whatever folder it runs from, often your home folder, and `--output-dir` puts them somewhere else.
+
 An automated check reaches part of the way and no further. Contrast, heading order and missing labels it can find.
 Whether the wording makes sense to a frightened person it cannot, and neither can you without asking one.
 
@@ -118,7 +122,7 @@ with enhanced federal funding, ownership and licensing conditions attach to it a
 A short file of **contributing guidance**: how to propose a change, how to run the checks, and one feature per pull
 request rather than six. This matters more than usual when contractors and vendors will be the ones contributing.
 
-A **changelog**, in the [Keep a Changelog](https://keepachangelog.com/) shape, newest version first, with entries
+A **changelog**, loosely in the [Keep a Changelog](https://keepachangelog.com/) shape, newest version first, with entries
 grouped under Added, Changed, Deprecated, Removed, Fixed and Security. That source makes a point of deprecations in
 particular, because they are what a reader most needs warning about. Written for a person deciding whether to upgrade,
 not generated from commit subjects.

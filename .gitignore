@@ -6,20 +6,25 @@
 # designate, and everything in them stays out. DATA-GUARD.md explains how to
 # make those same folders unreadable to the agent, which git cannot do.
 
-# The designated folders, at any depth. Written with a trailing /* rather than a
+# The designated folder, at any depth. Written with a trailing /* rather than a
 # bare / because git cannot re-include a file whose parent directory is
-# excluded, and the exception at the bottom of this file needs to work.
+# excluded, and the exception below needs to work.
+#
+# This name means "real data lives here" in every project on this machine,
+# because the deny rule in DATA-GUARD.md matches it everywhere. Never use it
+# for a code folder: code in a folder called sensitive/ is left out of commits
+# and hidden from the agent, with no warning. If you already keep real data
+# under another folder name, add that name here and to the deny rule, and keep
+# it out of your code too.
 sensitive/*
 **/sensitive/*
-phi/*
-**/phi/*
-pii/*
-**/pii/*
 
-# One narrow exception, listed after the rules it overrides so that it wins. The
-# fake extract ships because it is what proves the guard fires, and it is
-# engineered to be obviously fake. Keep this exception exactly this specific.
-!sensitive/FAKE-*.csv
+# One exception, listed after the rules it overrides so that it wins. The fake
+# extract ships because it is what proves the guard fires, and it is engineered
+# to be obviously fake. It is named exactly, with no wildcard, because Macs
+# ignore filename case: a wildcard here would also let through any real file
+# whose name starts with "fake", in any case.
+!sensitive/FAKE-eligibility-extract.csv
 
 # Agent scratch, and git worktrees if an agent makes them here. One folder per
 # piece of work under .agents/ is scratch and never the record. Neither belongs

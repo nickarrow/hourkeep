@@ -20,6 +20,10 @@ Invoke reviewers two at a time so they run in parallel, and keep going two at a 
 Give each one the file paths it needs. A reviewer that has to go looking will review the wrong thing. Cap each one's
 reply so it stays readable.
 
+A reviewer that drives something stateful runs on its own: a browser, a dev server on a fixed port, a local database.
+Reviewers running at the same time share whatever tools the session has, and two of them driving one browser have been
+seen to switch each other's pages.
+
 These mandates earned their place by finding things. They are not a fixed set and they are not a ceremony.
 
 Add one when you can name a source it checks against that none of the others does. Drop one when its source does not

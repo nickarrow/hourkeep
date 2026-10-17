@@ -3,10 +3,11 @@
 Rules for any AI agent working in this repository. Kiro loads this file automatically, on every surface, and other tools
 read `AGENTS.md` too, which is why the rules live here rather than somewhere tool-specific.
 
-Two things decide whether this file reaches a session. Kiro's documentation says a custom agent loads steering and
-skills only when its configuration asks for them, so when the rules go silent, suspect a custom agent first. And an
-`AGENTS.md` in a subfolder, such as a worktree or a copy of another repository, may not be in the session from its first
-message. It has been seen to arrive once a file in that folder was read.
+A few things decide whether this file reaches a session. Kiro's documentation says a newly opened folder is untrusted
+until you say otherwise, and an untrusted folder's steering files and skills are not loaded, so trust the folder first.
+It also says a custom agent loads steering and skills only when its configuration asks for them, so a custom agent is
+the next thing to suspect. And an `AGENTS.md` in a subfolder, such as a worktree or a copy of another repository, may
+not be in the session from its first message. It has been seen to arrive once a file in that folder was read.
 
 This file holds what is true in every session. Anything that only matters sometimes is a skill under `.kiro/skills/`,
 which loads when it is relevant. Counts and dated notes about this repository's own state stay out of this file and the
@@ -98,7 +99,8 @@ runs this properly and you should use it.
 For one person the git workflow is light. One branch per increment or per fix, in the checkout that is already open,
 not a worktree. The agent runs the git steps: branching, committing, merging. The person's part is to say when, and they
 can merge in the editor if they would rather. Show the commit message before committing. Push only when asked. No pull
-request for your own work. A team that reviews through pull requests says so here. Contributions from outside a public
+request for your own work: the review that replaces it is the fan-out above and the person's own read of the branch
+before it merges. A team that reviews through pull requests says so here. Contributions from outside a public
 repository still arrive as pull requests.
 
 ## How to write it down
