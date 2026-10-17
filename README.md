@@ -16,8 +16,11 @@ There is no app code in this repository yet. [hourkeep.app](https://hourkeep.app
   itself is CMS's interim final rule CMS-2454-IFC, at 42 CFR 435.550 to 435.563. The folder also holds the 42 CFR
   435.603 household income text, the enrolled text of Public Law 119-21, the 2025 law that created the requirement,
   and Code for America's service blueprints. Where the analysis and the regulation disagree, the regulation wins. A
-  verification pass on 2026-10-16 found errors in the analysis files that have not been corrected yet.
-- `docs/decisions/` holds the decision records. `docs/design.md` will hold the design once it is written.
+  verification pass on 2026-10-16 found errors in the analysis files that have not been corrected yet. The research
+  behind it is in `docs/domain/research/`.
+- `docs/design.md` is the design: what the new HourKeep is, who it is for, and what has to be true for it to work.
+  `docs/epics/` holds the plan for each body of work, starting with putting the policy corpus right, and
+  `docs/decisions/` holds the decision records.
 - `public/` holds the placeholder page and the icons.
 - `AGENTS.md` and `.kiro/skills/` hold the rules the AI agents working here follow. `HOW-TO-WORK.md`, `DATA-GUARD.md`
   and `missions/` are for the people working with those agents. All of them come from the
@@ -40,7 +43,7 @@ AI agent from reading that folder, which each person sets up on their own machin
 ## License
 
 HourKeep is licensed under the GNU General Public License, version 3 or later, so anyone may use, change or sell it,
-and nobody may make a closed version of it. See `LICENSE` and `docs/decisions/0002-keep-gpl-3.0-or-later.md`. The
+and nobody who passes it on may close it. See `LICENSE` and `docs/decisions/0002-keep-gpl-3.0-or-later.md`. The
 bootstrap files carry the MIT License, reproduced in `NOTICE.md`.
 
 ## Problems, questions and security
