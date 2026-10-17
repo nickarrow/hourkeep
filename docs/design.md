@@ -22,8 +22,10 @@ The requirement comes from section 71119 of Public Law 119-21, which added SSA 1
 CMS-2454-IFC (91 FR 33348, June 3, 2026; corrected at 91 FR 39028), at 42 CFR 435.550 to 435.563. It applies to adults
 in Medicaid's expansion group, and to adults aged 19 to 64 in a section 1115 demonstration that provides minimum
 essential coverage, if they are not pregnant, not on Medicare and not eligible another way. Either way, a person who
-fits one of the rule's exclusions is outside it (42 CFR 435.551, 435.554). States must start by January 1, 2027, and
-some already have. Montana's schedule had it enforcing by denial or disenrollment from October 1, 2026 (research
+fits one of the rule's exclusions is outside it (42 CFR 435.551, 435.554). States must start by January 1, 2027,
+unless CMS grants a state a good-faith exemption, which ends by December 31, 2028 at the latest (42 CFR 435.559(a),
+435.560(c); 91 FR 33478). None had been granted by September 18, 2026 (research L3-16). Some states already have
+started. Montana's schedule had it enforcing by denial or disenrollment from October 1, 2026 (research
 L6-12).
 
 The state checks the records it already has before asking the person for anything (42 CFR 435.557). CMS estimates
@@ -103,8 +105,10 @@ hearing, so HourKeep's first questions about a letter work out which kind it is.
 later topic of the corpus epic.
 
 If the state denies or ends coverage, the person can ask for a fair hearing, usually within a time limit their letter
-gives, up to 90 days (42 CFR 431.220(a)(1), 431.221(d)). Asked before the date of action, coverage can continue until
-the hearing decision (431.230(a)). HourKeep says this plainly and points to legal help.
+gives, up to 90 days from the date the notice of action is mailed (42 CFR 431.220(a)(1), 431.221(d)). Asked before
+the date of action, coverage can continue until the hearing decision (431.230(a)), and if the hearing upholds the
+state's action, the state may recover what that continued coverage cost (431.230(b)). HourKeep says both plainly and
+points to legal help.
 
 ### What may mean the rule does not apply
 
@@ -162,11 +166,11 @@ logged against the threshold without concluding anything. It has to work on pape
 every page names the person, the month and the page number, so loose pages still make sense.
 
 A person can also call their Medicaid office and talk the caseworker through the package. (Decided, 2026-10-16.) So
-its first page summarizes it, every page and document is numbered, and what the person sees on screen matches the
-printout page for page. (Proposed, 2026-10-16.) It ends with a plain signature and date line, not an attestation,
-because from 2028 a sworn statement of medical frailty can be accepted only once per period of enrollment (42 CFR
-435.557(f)(1)(ii)). Before a file with personal details is saved, HourKeep says what is in it. (Proposed, carried
-from v1's export decision, ADR-0006 on `experiment-1`.)
+its first page summarizes it and names the HourKeep release that made it, every page and document is numbered, and
+what the person sees on screen matches the printout page for page. (Proposed, 2026-10-16.) It ends with a plain
+signature and date line, not an attestation, because from 2028 a sworn statement of medical frailty can be accepted
+only once per period of enrollment (42 CFR 435.557(f)(1)(ii)). Before a file with personal details is saved, HourKeep
+says what is in it. (Proposed, carried from v1's export decision, ADR-0006 on `experiment-1`.)
 
 ### Keeping records safe
 
@@ -233,7 +237,9 @@ rules (42 CFR 435.554(c)(7); 91 FR 33377). It asks whether anyone at home gets S
 what their SNAP work-rules letter says about them, and when SNAP started or stopped. It never asks whether they are
 meeting SNAP's rules, and never shows a SNAP verdict or a count of SNAP months. It warns SNAP households that working
 fewer hours can cost SNAP even when it would satisfy Medicaid (7 CFR 273.7(a)(1)(vii); SNAP research, section 4.4). It
-stores activities as plain facts, so a SNAP view can be added later. (Decided, 2026-10-15.)
+stores activities as plain facts, so a SNAP view can be added later. (Decided, 2026-10-15.) TANF is its own question,
+because that exclusion needs the person to be meeting the state's TANF work requirements (42 CFR 435.554(c)(6)), where
+the SNAP exclusion needs only that they are subject to SNAP's.
 
 ## What it will not do
 
@@ -314,8 +320,8 @@ about what HourKeep is: not part of any government, and unable to see or change 
 A static progressive web app with no backend: TypeScript and React, built with Vite, styled with Tailwind, storing
 records in IndexedDB through Dexie, with a service worker so it works offline. It keeps v1's look: muted purple
 `#6B4E71`, warm tan `#D4A574`, earthy green `#5C8D5A`, warm orange `#D97D54`, warm red `#C85A54`, warm off-white
-background `#FAF9F7`, warm black text `#2D2D2D` and `#6B6B6B`, and Inter. Green and red never mean compliant and
-not compliant. (Decided, 2026-10-15.)
+background `#FAF9F7`, warm black text `#2D2D2D` and `#6B6B6B`, and Inter. (Decided, 2026-10-15.) Green and red
+never mean compliant and not compliant, because HourKeep never states anyone's status.
 
 Proposed and not yet decided: React Aria for accessible controls, especially date pickers and calendars; vite-plugin-pwa
 for the service worker; Vitest for logic and Playwright for what only a browser can show; exact pinned versions; and
@@ -324,8 +330,9 @@ credit hours is 77.94 monthly hours, 91 FR 33359; two seasonal months at $1,500 
 the $580 threshold, 91 FR 33363).
 
 HourKeep stays licensed GPL-3.0-or-later, so it can be sold or built on, and nobody who passes it on can close it
-(`docs/decisions/0002-keep-gpl-3.0-or-later.md`). Releases are numbered by year and month
-(`docs/decisions/0003-release-numbering.md`).
+(`docs/decisions/0002-keep-gpl-3.0-or-later.md`). Because the site sends its code to every visitor, the license asks
+for clear directions next to that code saying where its source is (GPLv3 section 6(d), in `LICENSE`), so the site
+links to its source. Releases are numbered by year and month (`docs/decisions/0003-release-numbering.md`).
 
 ## Open questions
 
@@ -340,6 +347,8 @@ Each says when it has to be answered.
 - The helper session on a shared device, and how the package and backup reach the person. Before the helper feature.
 - What an organization can offer someone who wants nothing digital at all. Before the first organization tries
   HourKeep.
+- Who with Medicaid policy knowledge reads the corpus's rows before HourKeep tells anyone anything, since every check so
+  far has been made by an AI agent. Before launch.
 - Who reads the Spanish, and which organization tries HourKeep first. Before launch; the owner can find an
   organization once there is something to try.
 - Which states follow Colorado. After Colorado's facts are in.

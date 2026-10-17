@@ -84,7 +84,9 @@ information. Specifically:
   rule names neither § 435.558(b)(2) choice and the research mapped it to sending the notice with the renewal form
   (research L5-3).
 - The skill, holding only this topic's rows, its precedence rules and the start of the watch list.
-- The checker, as the epic design describes it.
+- The checker, as the epic design describes it, and `tests/test_check_corpus.py`, written first.
+- The placeholder page, `public/index.html`, which is live and tells people about notices and fair hearings today,
+  checked against the new rows, with any difference corrected.
 - The pointers and corrections the standing constraints call for. Section 8 of `rule-extract.md` and section 9 of
   `what-matters-most.md` become pointers once every claim in them has a row; a claim this topic's rows do not cover,
   such as a cross-reference to another section, stays in place, corrected. `rule-extract.md` lines 5 to 7 and 12 get the
@@ -110,6 +112,8 @@ Register XML to a state PDF and a web page, so the formats meet all of them at o
 
 ### How you know it worked
 
+- `python3 -m unittest discover -s tests` passes under both Pythons, with a passing and a failing fixture for every
+  check the epic design lists.
 - `python3 scripts/check-corpus.py` and `/usr/bin/python3 scripts/check-corpus.py` both exit 0 and print how many
   rows were checked, how many of them say `Verified: no`, and how many sources, state facts and skill items. Then, one
   break at a time and restored after each, both exit non-zero and name the problem: a row's citation deleted, a
@@ -181,12 +185,17 @@ Approval of the decision record, which covers the retirements and moves in incre
   and the ledger finds six more lines in the Medicaid summary that conflict with the rule or the statute (research
   L8-10, L3-12).
 - `hr1/HR1-Impact-Summary.md` retired.
+- GovInfo's text of Public Law 119-21 stored as served, the statute extract made from it, and the other 15 files in
+  `hr1/` retired: 14 reformatted copies of the law and a list of its sections that touch HHS. The two eCFR text files
+  in `supporting-regs/` retired once the fresh snapshot is stored as eCFR XML and nothing cites them.
+- The two Code for America blueprint PDFs replaced by links in the prior-art note, unless Code for America's terms
+  allow keeping copies. Neither PDF states a license.
 - The lines that point at v1's files fixed. Decision record 0001 counted 32 on 2026-10-16; the pattern check below is
   the measure.
 
 ### Deliberately not
 
-New SNAP rules. The full HR1 text stays as it is.
+New SNAP rules, and extracts of the parts of Public Law 119-21 that HourKeep does not rely on.
 
 ### Why this shape
 
@@ -200,7 +209,8 @@ went, against the decision record.
 
 ### Needs from you
 
-Nothing beyond the decision record approved in increment 2.
+Nothing beyond the decision record approved in increment 2, unless Code for America's terms are unclear, in which case
+whether to keep the blueprint PDFs.
 
 ## 4. Federal and Colorado facts
 
@@ -230,7 +240,9 @@ findings 10 and 11), so its facts need a recheck date in the watch list, and som
 ### How you know it worked
 
 The checker passes, and every Colorado fact shows its source, its retrieval date, and whether it comes from the draft
-rule.
+rule. The checker's list of the corpus's own files names no retired file, and every file left in `docs/domain/` is a
+stored source in the manifest, the extract, a state facts file, the open questions, the § 435.603 extract, a research
+record or prior art marked as predating the rule.
 
 ### Needs from you
 
@@ -241,7 +253,8 @@ records.
 
 ### Delivers
 
-The skill with all its rows, the number labels, CMS's vocabulary, the error checklist and a dated watch list: the
+The skill with all its rows, the number labels, CMS's vocabulary in English and Spanish, with the Spanish renderings
+the research found wrong (research L5-19), the error checklist and a dated watch list: the
 Massachusetts v. Oz hearing on October 22, 2026, Taylor v. Kennedy, the IRS proposed rule open for comment until
 November 30, 2026, Colorado's rule, SNAP's pending rule, and the next eCFR check.
 

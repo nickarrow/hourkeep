@@ -63,9 +63,21 @@ America blueprint summaries move to `docs/domain/prior-art/` with a note that th
 already found in them gets a dated correction. One decision record sets out the whole restructure and says where each
 part goes.
 
+Three groups of stored copies go too, each replaced by something verbatim. The copies of Public Law 119-21 in `hr1/`,
+which a formatter rewrote in November 2025, give way to GovInfo's text of the law, stored as served, along with the list
+of its HHS sections kept beside them. The two eCFR text
+files in `supporting-regs/` give way to eCFR's XML. The two Code for America blueprint PDFs, which state no license,
+give way to links in the prior-art note, unless Code for America's terms allow keeping copies.
+
 The research this epic works from is kept as dated records in `docs/domain/research/`: the 2026-10-16 verification
 ledger with its eight lane reports, and the 2026-10-15 SNAP report. Rows and documents cite them by finding ID. They are
 evidence for what the corpus says, never authority in place of the sources they cite.
+
+When the epic is done, `docs/domain/` holds only these: stored sources, each listed in the manifest as verbatim or
+derived; the extract; the state facts; the open questions; the § 435.603 extract; the research records; and the prior
+art, marked as predating the rule. Nothing that is wrong or out of date survives outside a stored source or a dated
+record. The checker enforces it, because its list of the corpus's own files ends up naming nothing else, so any file
+left over fails.
 
 ## Formats
 
@@ -85,6 +97,7 @@ settles it and writes it here.
 | `docs/domain/prior-art/` | The Code for America summaries, from increment 3 |
 | `.kiro/skills/medicaid-community-engagement/SKILL.md` | The domain skill |
 | `scripts/check-corpus.py` | The checker |
+| `tests/test_check_corpus.py` | The checker's tests, using Python's built-in `unittest`, written before the checker |
 | `scripts/extract-pdf-text.swift` | The script that makes each PDF's text extraction, using macOS's PDFKit |
 
 Sources stored before this epic stay where they are, because the corpus cites them by file and line. Paths in the
@@ -201,7 +214,9 @@ loads at all.
 
 ### The checker
 
-`scripts/check-corpus.py` uses Python's standard library only and runs on Python 3.9 or later. It reads the extract,
+`scripts/check-corpus.py` uses Python's standard library only and runs on Python 3.9 or later. Its tests come first:
+`tests/test_check_corpus.py` holds, for each check below, a small fixture that passes and one that fails, and
+`python3 -m unittest discover -s tests` runs them with nothing installed. The checker reads the extract,
 the state facts files, the manifest and the skill, skips anything git ignores, and fails, naming each problem, when:
 
 - a row lacks a field, a value is outside its vocabulary, or an identifier is malformed or used twice
