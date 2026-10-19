@@ -14,8 +14,15 @@ is the authority, and where this file and a row differ, the row wins. State fact
 These items say what the rules are and where they come from. Whether a requirement applies to a person, whether they
 met it or should be deemed to have met it, whether a showing is satisfactory and when a notice was received are the
 agency's determinations, and software built on this skill never computes them. It labels each one Deferred, asks the
-screening question and names the agency as the one to ask. Where an answer turns on a choice the state makes, say
-which choice.
+screening question and names the agency as the one to ask. The hhs-benefits skill,
+`.kiro/skills/hhs-benefits/SKILL.md`, defines the three labels, Computed, Conditional and Deferred, under "Label
+every number shown to a person". (Added 2026-10-19; full review 2026-10-19, cold reader a3.) Where an answer turns
+on a choice the state makes, say which choice.
+
+When you answer a question from these items, name each row you relied on by its identifier, so the answer can be
+checked against the extract, and say which skills you loaded. The deadline a person meets is the one printed on their
+letter, as `docs/design.md` decides under "The letter"; a deadline counted from the date on the notice is only a
+cross-check.
 
 ## Rules
 
@@ -151,6 +158,11 @@ which choice.
   [notice-of-action-explains-hearing-right] 42 CFR 431.210(d); eCFR 2026-10-15
 - It must explain when Medicaid continues if a hearing is requested.
   [notice-of-action-explains-continued-coverage] 42 CFR 431.210(e); eCFR 2026-10-15
+
+The items below for 42 CFR 431.211, 431.230 and 431.231 use two terms the corpus has not stored or read: the date of
+action, which 42 CFR 431.201 defines, and the 5-day notice, which is 42 CFR 431.214. An answer that turns on either
+says so and names the agency as the one to ask. (Added 2026-10-19; full review 2026-10-19, cold reader a1 and a4.)
+
 - The agency must send the notice at least 10 days before the date of action, except where the regulations allow
   otherwise. [advance-notice-at-least-10-days] 42 CFR 431.211; eCFR 2026-10-15
 - The State agency must grant an opportunity for a hearing to anyone who asks because they believe it acted wrongly,
@@ -185,7 +197,7 @@ which choice.
 - If the agency acted without the required advance notice, the person asks for a hearing within 10 days of receiving
   the notice of action, and the agency determines the action came from something other than applying federal or
   state law or policy, it must reinstate and continue services until the hearing decision. The notice counts as
-  received 5 days after its date unless the person shows otherwise.
+  received 5 days after its date unless the person shows that they did not receive it within those 5 days.
   [must-reinstate-after-action-without-advance-notice] 42 CFR 431.231(c); eCFR 2026-10-15
 - If a person's whereabouts were unknown because agency mail came back unforwardable, discontinued services must be
   reinstated if their whereabouts become known while they are eligible. This paragraph sunsets on October 1, 2034.
@@ -234,8 +246,14 @@ When two sources disagree, this is the order. It comes from the epic design,
   state's draft rule chooses nothing until it is adopted.
 - Where two sources conflict, whatever their tiers, the row cites both, the question goes in
   `docs/domain/open-questions.md`, and this file says there is a conflict without picking a side. In this topic,
-  HCPF's appeals page has the Office of Administrative Courts receive a request within 10 days, where Colorado's rule
-  has the member request a hearing within 10 days. And for reschedule-2027-renewals-to-six-months,
+  Colorado's rule reinstates a member's services back to the date of action and continues them until a final agency
+  decision after the hearing "Where the member requests a hearing not more than ten (10) days after the date of
+  action", while HCPF's appeals page has the Office of Administrative Courts get the request no later than 10 days
+  after the date of action. Whether the 10 days run to the member's request or to the court's receipt of it is an
+  open question. The next action picks no side: make sure the request arrives within the 10 days. (Corrected
+  2026-10-19: said "HCPF's appeals page has the Office of Administrative Courts receive a request within 10 days,
+  where Colorado's rule has the member request a hearing within 10 days."; full review 2026-10-19, cold reader a2;
+  read in docs/domain/states/co.json:38.) And for reschedule-2027-renewals-to-six-months,
   keep-scheduled-2027-renewals and first-path-period-not-shorter-than-six-months, 42 CFR 435.916(a)(1), as the
   interim final rule reprints it, says MAGI-based eligibility is renewed once every 12 months and no more often,
   where SSA 1902(e)(14)(L) has the state redetermine, once every 6 months for redeterminations scheduled from 2027,

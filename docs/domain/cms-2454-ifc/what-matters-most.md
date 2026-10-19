@@ -1,4 +1,7 @@
 # What Matters Most in CMS-2454-IFC
+Status as of 2026-10-19: `docs/domain/community-engagement-extract.md` is the authority wherever it has rows. This
+file is corrected a topic at a time and will be retired by epic 0001, and its "Authority" and "Last verified" lines
+below predate that. (Added 2026-10-19; full review 2026-10-19, red team 8.)
 
 **A prioritized, cited reference to the provisions that change outcomes for a real person.**
 
@@ -572,8 +575,13 @@ disenroll-with-advance-notice-and-hearing-rights, no-restriction-on-reapplying, 
 advance-notice-at-least-10-days, hearing-required-on-request, must-reinstate-after-action-without-advance-notice in
 docs/domain/community-engagement-extract.md (2026-10-17).
 
-**The clock.** The timing is more generous than it first appears. The 30 days begin on the date of receipt, which is
-presumed 5 days after the date on the notice, **so roughly 35 days from the notice date**. CMS names
+**The clock.** The 30 days begin on the date of receipt, which is presumed 5 days after the date on the notice unless
+the person shows that they did not receive the notice within those 5 days, so they end about 34 or 35 days after the
+date on the notice, depending on how the 30
+days are counted, which is an open question in docs/domain/open-questions.md. The deadline printed on the letter is
+the one to meet. (Corrected 2026-10-19: said "The timing is more generous than it first appears." and "presumed 5
+days after the date on the notice, **so roughly 35 days from the notice date**."; full review 2026-10-19, cold
+reader b2; read in docs/domain/sources/federal-register/C1-2026-11094.xml:136 and :174.) CMS names
 hospitalization, mail on hold, and being away from home as examples of a notice not received within the 5 days, and
 calls the 5 days consistent with § 431.232(b), for an adverse local evidentiary hearing decision, as well as
 § 431.231(c)(2) (preamble, 91 FR 33413).
@@ -737,8 +745,11 @@ take three things from this document into copy:
    *initiated* on or after implementation, which for many is mid-2027."; L2-4; read in
    docs/domain/cms-2454-ifc/2026-11094.xml:3997 and :3998 and docs/domain/sources/cms/smd-26-001.txt:258 and
    :303.)
-3. **A person holding a notice has about 35 days and can answer either "here is my compliance" or "this
-   doesn't apply to me".** A person already enrolled keeps their Medicaid until they are determined ineligible
+3. **A person holding a notice has about 34 or 35 days after the date on the notice, depending on how the 30 days
+   are counted, which is an open question, and can answer either "here is my compliance" or "this doesn't apply to
+   me".** The deadline printed on the letter is the one to meet. (Corrected 2026-10-19: said "**A person holding a
+   notice has about 35 days and can answer"; full review 2026-10-19, cold reader b2; read in
+   docs/domain/sources/federal-register/C1-2026-11094.xml:136 and :174.) A person already enrolled keeps their Medicaid until they are determined ineligible
    (coverage-continues-during-noncompliance); an applicant who gets the notice at application has no coverage
    yet to keep. An enrollee whose eligibility is based on MAGI, disenrolled for not sending what the notice asked
    for, must have their eligibility reconsidered if they send it during the reconsideration period, which

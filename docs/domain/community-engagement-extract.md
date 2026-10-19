@@ -32,21 +32,27 @@ that person met it, is the agency's decision, and nothing here decides it.
 ### notice-response-period
 
 - Rule: The State must give the individual a period of 30 calendar days, beginning on the date the individual
-  receives the notice of noncompliance, with receipt fixed by paragraph (c)(4), to make a satisfactory showing to the
-  agency.
+  receives the notice of noncompliance, with receipt presumed under paragraph (c)(4) to be 5 days after the date on
+  the notice unless the individual shows that they did not receive it within those 5 days, to make a satisfactory
+  showing to the agency.
 - Citation: 42 CFR 435.558(a)(2); 91 FR 39030
 - Source: docs/domain/sources/federal-register/C1-2026-11094.xml:136 "a period of 30 calendar days beginning on the date on which such notice of noncompliance is received by the individual"
 - Source: docs/domain/sources/ecfr/2026-10-15/42-cfr-435.558.xml:6 "a period of 30 calendar days beginning on the date on which such notice of noncompliance is received by the individual"
 - Source: docs/domain/hr1/119hr1enr-title7-part3.md:638 "a period of 30 calendar days, beginning on the date on which such notice of noncompliance is received by the individual"
 - Tier: regulation
 - State election: no
-- Verified: 2026-10-17, read in source
+- Verified: 2026-10-19, read in source
 - Error direction: dangerous
 - Recheck: final rule; correction notice; eCFR amendment; court ruling
 - Note: A window shown as longer than 30 days, or counted from a later day, leads a person to answer late. The statute
   is SSA 1902(xx)(6)(A)(ii)(I). The preamble says the 30 days cannot be stretched to match a longer renewal-form
   period: docs/domain/cms-2454-ifc/2026-11094.xml:2032 "cannot be extended to align with a longer period"
-  (91 FR 33411).
+  (91 FR 33411). Whether the date of receipt is the first of the 30 calendar days is not said, and that is an open
+  question. (Added 2026-10-19; full review 2026-10-19, cold reader b2.)
+- Corrected: 2026-10-19: the Rule said "with receipt fixed by paragraph (c)(4)"; full review 2026-10-19, cold reader
+  b1, and read in docs/domain/sources/federal-register/C1-2026-11094.xml:174: paragraph (c)(4) presumes receipt 5
+  days after the date on the notice unless the person shows they did not receive it within the 5-day period, so
+  receipt is presumed and can be rebutted.
 
 ### showing-of-compliance-or-exception
 
@@ -519,8 +525,13 @@ that person met it, is the agency's decision, and nothing here decides it.
 - Recheck: final rule; correction notice; eCFR amendment; CMS guidance
 - Note: A missing or misread deadline leads a person to answer late. The paragraph does not say how the deadline is
   to be written. The period for the showing is set by paragraph (a)(2), in notice-response-period, and counts from
-  receipt, which paragraph (c)(4) fixes, in notice-presumed-received-after-5-days. The statute's notice paragraph,
-  SSA 1902(xx)(6)(B), names no deadline; this item is the regulation's.
+  receipt, which paragraph (c)(4) presumes is 5 days after the date on the notice unless the person shows that they
+  did not receive it within those 5 days, in
+  notice-presumed-received-after-5-days. The statute's notice paragraph, SSA 1902(xx)(6)(B), names no deadline; this
+  item is the regulation's.
+- Corrected: 2026-10-19: the Note said "which paragraph (c)(4) fixes"; full review 2026-10-19, cold reader b1, and read
+  in docs/domain/sources/federal-register/C1-2026-11094.xml:174: receipt under paragraph (c)(4) is presumed and can be
+  rebutted.
 
 ### notice-says-how-to-submit
 
@@ -644,10 +655,14 @@ that person met it, is the agency's decision, and nothing here decides it.
 - Recheck: final rule; correction notice; eCFR amendment; court ruling
 - Note: Could go either way, so dangerous: counting the 30 days from the date on the notice takes 5 days from a
   person, and counting from the day they open it, with no presumption, can make them late. The 30 calendar days in
-  notice-response-period begin on the date of receipt this paragraph fixes. The paragraph does not say whether the 5
-  days are calendar days, and that is an open question. The statute's paragraph (6) counts from receipt and sets no
-  presumption of when receipt happens; the 5 days are the regulation's. Whether a person showed they did not receive
-  the notice in time is the agency's determination.
+  notice-response-period begin on the date of receipt, which this paragraph presumes unless the person shows that
+  they did not receive the notice within the 5 days. The paragraph does not say whether the 5 days are calendar
+  days, and that is an open question. The
+  statute's paragraph (6) counts from receipt and sets no presumption of when receipt happens; the 5 days are the
+  regulation's. Whether a person showed they did not receive the notice in time is the agency's determination.
+- Corrected: 2026-10-19: the Note said "the date of receipt this paragraph fixes"; full review 2026-10-19, cold reader
+  b1: the Rule above presumes receipt and lets the person show that they did not receive the notice within the 5
+  days.
 
 ### consider-all-other-bases-before-denial
 
@@ -1170,10 +1185,14 @@ that person met it, is the agency's decision, and nothing here decides it.
 - State election: yes; the state chooses whether to assist applicants and beneficiaries in submitting and processing
   hearing requests; where it has not chosen, this paragraph requires no assistance
 - Verified: 2026-10-17, read in source
-- Error direction: neither
+- Error direction: dangerous
 - Recheck: eCFR amendment; final rule; state rule
-- Note: It says where help may come from and changes nothing a person must do. The paragraph says "his"; the Rule
-  says "their". Nothing read for this row says whether a given State assists, or how.
+- Note: It could go wrong either way, so dangerous. A false promise of help can lead a person to wait for it and miss
+  a deadline to ask for a hearing; being told wrongly that no help is available can make them do more alone. The
+  paragraph says "his"; the Rule says "their". Nothing read for this row says whether a given State assists, or how.
+- Corrected: 2026-10-19: Error direction said neither, and the Note began "It says where help may come from and
+  changes nothing a person must do."; full review 2026-10-19, against the source 2: an error can run either way, and
+  the Formats call that dangerous.
 
 ### hearing-request-window-at-most-90-days
 
@@ -1297,13 +1316,15 @@ that person met it, is the agency's decision, and nothing here decides it.
 - Note: A person cut off without advance notice who is not told of this may not ask within the 10 days. (c)(1) ends
   with a semicolon and (c)(2) with "; and", so all three conditions must hold (read in source). § 431.214 is not
   stored and was not read; the 10-day notice is advance-notice-at-least-10-days. The paragraph does not say whether
-  the 10 days are calendar days, or whether the 5 days before the notice counts as received are, and both are open
-  questions, the 10 days with the other 10-day and 90-day periods and the 5 days with the 5-day presumption of
+  the 10 days are calendar days, or whether the 5 days after which the notice counts as received are, and both are
+  open questions, the 10 days with the other 10-day and 90-day periods and the 5 days with the 5-day presumption of
   notice-presumed-received-after-5-days. The preamble calls the 5-day presumption in
   notice-presumed-received-after-5-days consistent with this one: "This is consistent with established timelines for
   receipt of a notice of action" (docs/domain/cms-2454-ifc/2026-11094.xml:2091, 91 FR 33413). Whether the action
   resulted from other than the application of law or policy is the agency's determination, by the paragraph's own
   words, and so is whether a person showed they did not receive the notice within the 5-day period.
+- Corrected: 2026-10-19: the Note said "the 5 days before the notice counts as received"; full review 2026-10-19,
+  cold reader b3: the words read as days before the notice exists.
 
 ### reinstate-when-whereabouts-become-known
 
@@ -1360,8 +1381,11 @@ that person met it, is the agency's decision, and nothing here decides it.
   one for certain American Indians and Alaska Natives (docs/domain/sources/cms/smd-26-001.txt:133 to :143), and the
   rows reschedule-2027-renewals-to-six-months, keep-scheduled-2027-renewals and
   first-path-period-not-shorter-than-six-months cite the letter for their own wording. The statute copy in hr1/ is a
-  derived copy whose origin is not recorded; increment 3 stores GovInfo's text of Public Law 119-21. Whether a person
-  is in this group is the agency's determination.
+  derived copy whose origin is not recorded; increment 3 stores GovInfo's text of Public Law 119-21. On 2026-10-19 the
+  words quoted in this row's five Sources were compared with GovInfo's text at
+  https://www.govinfo.gov/content/pkg/PLAW-119publ21/html/PLAW-119publ21.htm, not stored, and each was found once,
+  in the section it cites, allowing only for differences in quote marks, dashes and whitespace. (Added 2026-10-19;
+  full review 2026-10-19, red team 3.) Whether a person is in this group is the agency's determination.
 
 ### reschedule-2027-renewals-to-six-months
 

@@ -1,9 +1,9 @@
 # Epic 0001 delivery plan: a policy corpus HourKeep can rely on
 
-Status: Proposed, 2026-10-16. What the epic changes and why, and the formats every increment uses, are in `design.md`
-beside this file.
+Status: In progress, since 2026-10-17. What the epic changes and why, and the formats every increment uses, are in
+`design.md` beside this file.
 
-- [ ] 1. One topic, all the way through
+- [x] 1. One topic, all the way through
 - [ ] 2. The federal rule, verified
 - [ ] 3. The statute and the supporting rules
 - [ ] 4. Federal and Colorado facts
@@ -84,7 +84,9 @@ information. Specifically:
   rule names neither § 435.558(b)(2) choice and the research mapped it to sending the notice with the renewal form
   (research L5-3).
 - The skill, holding only this topic's rows, its precedence rules and the start of the watch list.
-- The checker, as the epic design describes it, and `tests/test_check_corpus.py`, written first.
+- The checker, as the epic design describes it, and its tests under `tests/`, written first. (Corrected 2026-10-19:
+  said "`tests/test_check_corpus.py`". The tests were split into one file for each part of the corpus during the
+  increment, as its Done entry records.)
 - The placeholder page, `public/index.html`, which is live and tells people about notices and fair hearings today,
   checked against the new rows, with any difference corrected.
 - The pointers and corrections the standing constraints call for. Section 8 of `rule-extract.md` and section 9 of
@@ -136,6 +138,159 @@ Register XML to a state PDF and a web page, so the formats meet all of them at o
 Nothing, unless a state site refuses automated requests, in which case a copy you download in a browser, or a workflow
 cannot run the fresh-session test, in which case you ask the question in a new Kiro chat.
 
+### Done, 2026-10-19
+
+Built on the branch `corpus-1-notices` from 2026-10-17 to 2026-10-19, in four commits. Against "How you know it
+worked":
+
+- `python3 -m unittest discover -s tests` ran 211 tests and passed under Python 3.14.6 (130 s) and 3.9.6 (107 s) on
+  2026-10-19. The checker's review rounds mapped every check the epic design lists to a passing and a failing
+  fixture, and each of the nine breaks has a named test.
+- `python3 scripts/check-corpus.py` and `/usr/bin/python3 scripts/check-corpus.py` both exit 0 and print
+  `Checked 64 rows (0 say Verified: no), 39 sources, 8 state facts (0 marked not published), 0 warnings, 64 skill
+  items.` Each of the nine breaks, applied one at a time to a scratch clone on 2026-10-19 and restored after each,
+  made both exit 1 and name the problem: the row lacks the Citation field; the citation holds the word TBD; the
+  quoted words are not on their line; the analysis file has no manifest entry; the stored source's hash differs; the
+  older source is neither in the manifest nor one of the corpus's own files; the fact's source lacks `source`; the
+  bracketed identifier names no row; the number is not in the row's Rule. The full review's do-it reviewer repeated
+  all nine and saw the same.
+- The claims in the two passages that became pointers are listed below, with where each went.
+- The fresh-session test ran four times as a one-step workflow whose whole prompt was the question, twice on Claude
+  Opus 5.5 and twice on GPT-5.6 Sol. All four loaded the skill unprompted, so there is no miss to carry into
+  increment 5, and all four covered the seven things § 435.558(c)(1) requires, hardship included where the state
+  offers it. The first run on each model cited no row identifiers and did not say which skills it loaded. A paragraph
+  was then added to the skill asking a session to name the rows and skills it used, and to treat the deadline printed
+  on the letter as the one to meet. The second run on each model met every criterion, so the second runs test the
+  skill as it now stands.
+
+Deviations from the plan:
+
+- The checker is `scripts/check-corpus.py` over the package `scripts/corpus_check/`, and its tests are ten files
+  under `tests/` with a shared fixture, where the plan named one `tests/test_check_corpus.py`. The checker was split
+  from one 1,157-line file for the writing-code skill's file length, and a check ran the old and new checker on the
+  real corpus and on each of the nine breaks, with byte-identical output.
+- The skill has a rule item for every row, 64 in all, at 296 lines and, by estimate, 5,000 to 6,500 tokens: about
+  the size limit the epic design sets, after one topic of five. How it holds the rest is a decision before
+  increment 2.
+- Rows the plan did not list: seven preamble rows, five of them split out on 2026-10-18 once the Formats section said
+  a row takes the tier of the source its Rule rests on; and a statute row for the six-month renewal exemption for
+  certain American Indians and Alaska Natives. Of increment 2's "SSA 1902(e)(14)(L) and SMD 26-001 for six-month
+  renewals", four SMD 26-001 rows, the SSA 1902(e)(14)(L)(ii) row and the open question on 12 months against 6
+  already exist.
+- Colorado's facts use the rule's words, "after the date of the Notice of Action" and "not more than ten (10) days
+  after the date of action", where this plan says "from the date on the Notice of Action" and "arrives within 10
+  days". Whether the 10 days run to the request, as the rule says, or to its receipt, as HCPF's page says, is an open
+  question.
+- `public/index.html` changed in two places, not one, in English and in Spanish: the hearing sentence now says
+  someone else may speak for a person, and the deadline sentence says to do what the letter asks before the date.
+- Six provisions the rows rely on were neither stored nor read: 42 CFR 431.201, 431.213, 431.214,
+  431.10(c)(1)(ii), 435.930(b) and 435.952(d). Increment 3 now takes them.
+- eCFR's date for the stored sections is 2026-10-15, from `titles.json` on 2026-10-17.
+
+Still unverified:
+
+- Every check of the rows, the facts and the skill was made by an AI agent. Nobody with Medicaid policy knowledge has
+  read them; who does, and what waits for them, is a decision before increment 2.
+- The Spanish on `public/index.html` has had no native speaker's read.
+- The 19 Source quotes taken from the derived statute copy in `hr1/` were compared with GovInfo's text of Public Law
+  119-21 on 2026-10-19 and all match; that text is stored only in increment 3.
+- Colorado's 8.000 is an emergency rule, version 12612, effective 2026-07-10. When it lapses, and whether § 8.057
+  differs in the archived permanent version 12578, were not checked, because the Secretary of State answered 500.
+- PDFKit on another macOS version, and a checkout on Windows itself. A clone with `core.autocrlf=true` passes the
+  checker, now that `.gitattributes` gives the corpus's own files `text eol=lf`.
+
+How the work ran, for the increments to come. Workflow steps stalled for long stretches, over two days of elapsed
+time in all. The Mac's power settings put it to sleep a minute after its display, which dropped model connections
+mid-reply, and runs stayed paused until resumed; keeping it awake with `caffeinate -is` ended that. Steps at the
+highest effort that planned a whole job in one reply hit the output limit, while steps that worked a checklist one
+small item at a time did not. Two steps finished without writing their output, and a loop's numeric stop condition
+never fired. So: keep the machine awake, split increments at policy boundaries, give each step one small item, and
+check that each report exists after each round.
+
+The claims, by the inventory's numbering (RE for `rule-extract.md` section 8, WMM for `what-matters-most.md`
+section 9). "Stays" means the claim is still in the passage after its pointer line, corrected and dated where it
+needed it.
+
+| Claim | Where it went |
+|---|---|
+| RE-1, at application, the State cannot verify after reviewing the application and reliable information | unable-to-verify-at-application |
+| RE-2, at renewal and between renewals, a choice between two options | the State election of renewal-notice-with-renewal-form, renewal-notice-after-renewal-form-period and the two more-frequent-check rows |
+| RE-3, the State records its choice in its State plan | renewal-notice-with-renewal-form, renewal-notice-after-renewal-form-period |
+| RE-4, Option 1, the notice comes with the renewal form | renewal-notice-with-renewal-form; notice-sent-with-renewal-form for the preamble's timing |
+| RE-5, Option 2, the notice comes after the form's period | renewal-notice-after-renewal-form-period; notice-sent-after-renewal-form-period, which adds the earlier case of a form returned without enough information |
+| RE-6, under Option 1 the 30 days start alongside the form | notice-sent-with-renewal-form, notice-response-period, notice-presumed-received-after-5-days, which count the 30 days from receipt |
+| RE-7, under Option 2, two windows of at least 30 days | renewal-form-and-notice-give-two-periods |
+| RE-8, paragraph (b)(3) has the same two options | the two more-frequent-check rows, no-separate-request-before-notice-after-data-check and notice-after-unanswered-information-request, which say the options are similar, not the same |
+| RE-9, the Option 2 carve-out removes the protection entirely | no-noncompliance-notice-when-other-factors-unanswered, which keeps the notice, the hearing rights and the reconsideration the old text left out; the overstatement and the last sentence, a reading, were dropped |
+| RE-10, self-reported noncompliance taken at face value | accept-applicant-declaration-of-noncompliance; its last sentence stays, corrected to the State option, every other basis first, and written notice with hearing rights |
+| RE-11, provide the notice of noncompliance | send-notice-of-noncompliance |
+| RE-12, 30 calendar days from receipt | notice-response-period |
+| RE-13, received 5 days after the notice's date unless shown otherwise | notice-presumed-received-after-5-days |
+| RE-14, about 35 days from the notice's date | stays, corrected on 2026-10-19 to about 34 or 35 days, with how the 30 are counted an open question |
+| RE-15, Medicaid continues until the person is found ineligible | coverage-continues-during-noncompliance |
+| RE-16, a showing of compliance for each month | showing-of-compliance-or-exception |
+| RE-17, a showing that the requirement does not apply | showing-requirement-does-not-apply |
+| RE-18 to RE-24, the seven things the notice must say | notice-says-how-to-show-compliance, notice-says-how-to-show-not-applicable, notice-states-the-deadline, notice-says-how-to-submit, notice-says-consequences-including-premium-tax-credit, notice-says-how-to-reapply, notice-gives-hardship-information-where-elected |
+| The section never said the notice follows §§ 435.905(b) and 435.918(b) (research L8-19) | notice-follows-section-435-905b, electronic-notice-follows-section-435-918b, added |
+| RE-25, every other basis first | consider-all-other-bases-before-denial |
+| RE-26, denial with notice and hearing rights, or disenrollment by the end of the next month | deny-application-with-notice-and-hearing-rights, disenroll-with-advance-notice-and-hearing-rights |
+| RE-27, at least 10 days' advance notice | disenroll-with-advance-notice-and-hearing-rights, advance-notice-at-least-10-days |
+| RE-28, the reasons name both failures | adverse-notice-names-both-failures |
+| RE-29, other insurance affordability programs | check-other-insurance-affordability-programs |
+| RE-30, no restriction on reapplying | no-restriction-on-reapplying |
+| RE-31, reconsideration under § 435.558(f) | reconsideration-after-disenrollment, which since 2026-10-19 also carries the 90 days and the State's longer period; "without a new application" stays, cited to § 435.916(a)(3)(iii) |
+| RE-32, § 435.912(e)(3)'s exception to the timeliness standards | stays, corrected to the regulation's limit, since no row covers § 435.912 |
+| RE-33, the headings | the section heading stays; the five subheadings went with their text |
+| "This materially changes the user's timeline." | dropped, framing that states no rule |
+| WMM-1, the timing is more generous than it first appears | stayed, then dropped on 2026-10-19 as advice that points toward waiting |
+| WMM-2, 30 calendar days from receipt | notice-response-period |
+| WMM-3, received 5 days after the notice's date unless shown otherwise | notice-presumed-received-after-5-days |
+| WMM-4, CMS's examples of a notice not received | stays, cited to the preamble, 91 FR 33413 |
+| WMM-5, roughly 35 days from the notice's date | stays, corrected as RE-14 |
+| WMM-6, the 5 days mirror §§ 431.231(c)(2) and 431.232(b) | must-reinstate-after-action-without-advance-notice for § 431.231(c)(2); the § 431.232(b) half stays, cited to the preamble |
+| WMM-7, Medicaid continues | coverage-continues-during-noncompliance |
+| WMM-8, two ways to respond | showing-of-compliance-or-exception, showing-requirement-does-not-apply; the wrong citation went |
+| WMM-9, what the notice must contain, with no hardship item (research L8-8) | the six notice-says rows and notice-gives-hardship-information-where-elected |
+| The section never said the notice follows §§ 435.905(b) and 435.918(b) (research L8-19) | the two cross-reference rows, added |
+| WMM-10, every other basis first | consider-all-other-bases-before-denial |
+| WMM-11, disenrollment by the end of the next month | disenroll-with-advance-notice-and-hearing-rights, advance-notice-at-least-10-days |
+| WMM-12, the reconsideration period | reconsideration-after-disenrollment, with the 90 days since 2026-10-19; "without a new application", the return treated as an application, and the period being optional for non-MAGI enrollees stay, cited to the June 3 printing |
+| WMM-13, no restriction on reapplying | no-restriction-on-reapplying |
+| WMM-14, determinations can be appealed under § 431.220(a)(1) | hearing-required-on-request, deny-application-with-notice-and-hearing-rights, disenroll-with-advance-notice-and-hearing-rights |
+| WMM-15, the Option 2 carve-out | no-noncompliance-notice-when-other-factors-unanswered; its sentence on the State plan's choice went to renewal-notice-with-renewal-form and renewal-notice-after-renewal-form-period |
+| WMM-16, the heading | stays |
+
+Review. Before the full review, five checks ran. GPT-5.6 Sol checked the rows' groundwork against the stored sources
+and found 9 problems, one of them an invented federal default, all fixed. The checker had six review rounds, GPT-5.6
+Sol and Claude Opus 5.5 each reviewing on their own and an aggregator confirming each finding against the code: no
+blocking finding, 3 or 4 should-fix findings a round, all fixed, with round 5's merge lost to an interrupted step and
+carried by round 6. The rows had three rounds of meaning review on both models, finding 1, 0 and 0 blocking and 14,
+5 and 5 should fix, all fixed, with round 2's Opus review lost to a stalled step. GPT-5.6 Sol ran the checker split
+and found 3 should fix, all fixed. GPT-5.6 Sol checked the last rows fixes and found 2 incomplete, both finished.
+
+The full review, on 2026-10-19, ran five mandates two at a time, each against its own source. Against the source,
+GPT-5.6 Sol, against the stored sources, the research records, and a search for anything published after 2026-10-16:
+3 should fix. The search found nothing that changes a conclusion in CMS's community engagement page, the Federal
+Register, eCFR, Colorado's rule page and HCPF's sitemap, the dockets of Massachusetts v. Oz and Taylor v. Kennedy,
+or the IRS proposed rule, each checked 2026-10-19. Red team, GPT-5.6 Sol, against the plan: 3 blocking and 7 should
+fix. Cold reader, Claude Opus 5.5, as a fresh agent, a legal aid attorney, a person on Medicaid on a phone, a new
+developer and the next session: 10 should fix and 7 notes. Against the mechanism, Claude Opus 5.5, against Kiro's,
+the Agent Skills specification's and git's documentation and live runs: 4 should fix and 7 notes. Do it, Claude
+Opus 5.5, carrying out the instructions in a clone: 1 should fix and 4 notes.
+
+That is 3 blocking, 25 should fix and 18 notes, six issues of them raised by more than one reviewer, and each was
+confirmed against the files. All 28 blocking and should-fix findings were accepted. Two of the blocking ones were
+this entry not yet existing; the third, that the statute row rests on a copy of unrecorded origin, was answered by
+the GovInfo comparison. Two should-fix findings became decisions before increment 2, the skill's shape and the policy
+reader; the rest were fixed. Four notes were rejected: the manifest's two Federal Register fetch commands lack
+`--fail`, but the manifest records the command that ran, and the next fetch adds it; whole-file problems are reported
+at line 0, as the checker's docstring says; an emptied fact source is reported at its fact's line, which names the
+fact and the key, so a finer line waits; and the page's "ask soon" before a hearing, which the reviewer called
+accurate. A GPT-5.6 Sol check of the fixes then found the receipt presumption stated as "unless the person shows
+otherwise" in seven passages, broader than § 435.558(c)(4), and a search found two more; all nine now say the person
+did not receive the notice within the 5-day period. That check's Python 3.9 run ended before a result, and the suite
+then passed under both.
+
 ## 2. The federal rule, verified
 
 ### Delivers
@@ -169,6 +324,10 @@ corrections that record it.
 
 Approval of the decision record, which covers the retirements and moves in increments 2 to 4.
 
+Two decisions before it starts, which increment 1 raised: how the skill holds the topics still to come, since this
+topic alone brings it to about its size limit; and who with Medicaid policy knowledge reads the rows, and what waits
+until they have. (Added 2026-10-19; full review 2026-10-19, red team 4 and 7.)
+
 ## 3. The statute and the supporting rules
 
 ### Delivers
@@ -178,6 +337,11 @@ Approval of the decision record, which covers the retirements and moves in incre
 - The rules for the other letters a person may hold: renewal forms (§ 435.916), what a decision notice must say
   (§ 435.917), plain language and access for people with limited English or a disability (§ 435.905(b)), and
   electronic notices (§ 435.918).
+- The provisions increment 1's rows rely on and nobody has read, stored as eCFR XML and carried as rows: 42 CFR
+  431.201 (definitions, among them the date of action), 431.213 and 431.214 (the exceptions to 10 days' notice, and
+  the 5-day notice), 431.10(c)(1)(ii) (hearings delegated to the Exchange), 435.930(b) (coverage until a person is
+  found ineligible) and 435.952(d) (requests for information). Each row that names one says so in its Note.
+  (Added 2026-10-19; full review 2026-10-19, red team 6.)
 - `supporting-regs/README.md` without its v1 notes and with a fresh eCFR snapshot.
 - The two Code for America summaries moved to `docs/domain/prior-art/` with a note that they predate the rule, and each
   error already found in them given a dated correction. The Medicaid summary's line 68 says "meeting" SNAP rules where

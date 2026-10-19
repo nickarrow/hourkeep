@@ -11,9 +11,12 @@
 // in docs/epics/0001-policy-corpus/design.md, under "Formats".
 //
 // Exits 2 when the arguments are wrong, and 1 when the PDF cannot be read or a
-// page has no extractable text, such as a scanned image or a blank page, so a run
-// that succeeds cannot leave a page's text out. It writes nothing to standard
-// output unless every page has text.
+// page has no extractable text at all, such as a scanned image or a blank page,
+// so a run that succeeds cannot leave a page out. It cannot tell when part of a
+// page is an image, and that part's words are then missing from the extraction.
+// It writes nothing to standard output unless every page has text. The shell
+// empties <txt> for the redirect above before the script runs, so a failed run
+// leaves <txt> empty; for a stored extraction, git restores it.
 
 import Foundation
 import PDFKit
@@ -42,7 +45,7 @@ guard document.pageCount > 0 else {
     fail("the PDF has no pages: \(path)", status: 1)
 }
 
-// Read every page before printing any, so a failure leaves no partial extraction.
+// Read every page before printing any, so a failure prints no partial extraction.
 var pageTexts: [String] = []
 for index in 0..<document.pageCount {
     guard let page = document.page(at: index) else {

@@ -1,6 +1,6 @@
 # Epic 0001: a policy corpus HourKeep can rely on
 
-Status: Proposed, 2026-10-16
+Status: In progress, since 2026-10-17
 
 `docs/design.md` says HourKeep tells nobody anything until its policy corpus is right. This epic makes it right and
 keeps it checkable. It changes `docs/domain/`, adds one skill and two scripts, and writes no app code.
@@ -232,7 +232,9 @@ derived copies and are listed that way. The manifest, and not the file, marks th
 The hash proves a stored copy has not been edited since it was stored. It says nothing about whether the source has
 changed since; recheck triggers cover that. A `.gitattributes` file at the repository root marks every stored source
 `-text`, so git never rewrites its line endings and breaks the hash: `docs/domain/sources/** -text` for the new folder,
-and one line for each older source, which shares its folder with analysis files.
+and one line for each older source, which shares its folder with analysis files. It marks the corpus's own files that
+the checker parses, the extract, the open questions, the state files and the skill, `text eol=lf`, so a checkout that
+converts line endings, as Git for Windows does by default, still gives the checker lines that end in a bare newline.
 
 `MANIFEST.json` is a JSON object whose one key, `sources`, holds the entries, sorted by path. Every entry has these
 keys, each a string unless it says otherwise:
@@ -357,9 +359,11 @@ identifier in square brackets, a space, and the row's Citation exactly as the ro
 `- ... beginning on the day they receive it. [notice-response-period] 42 CFR 435.558(a)(2); 91 FR 39030`. A number
 is a run of digits, with any comma or decimal point inside it, so `30`, `8.8` and `1,000` are numbers. Each number in
 a rule item before its identifier must equal a number in the row's Rule, whole against whole, so a `3` does not match
-inside a `30`. Anywhere in the skill, frontmatter included, a word in square brackets that has the shape of an
-identifier and is not followed by `(` must name a row, so `[x]` fails too. A skill of more than 500 lines fails.
-Numbers written as words, and items outside `## Rules`, are left to review.
+inside a `30`. A number in parentheses that follows a letter, a digit or a closing parenthesis with no space between,
+as in `(c)(4)` or `1902(e)(14)`, is part of a citation and counts on neither side, while one after a space, as in
+`sixty (60)`, still counts. Anywhere in the skill, frontmatter included, a word in square brackets that has the shape
+of an identifier and is not followed by `(` must name a row, so `[x]` fails too. A skill of more than 500 lines
+fails. Numbers written as words, and items outside `## Rules`, are left to review.
 
 ### Pointers and dated corrections
 
@@ -388,7 +392,8 @@ the state facts files, the manifest and the skill, skips anything git ignores, a
 - a stored source's hash differs from the manifest, a manifest entry's file is missing, or git does not treat a
   manifest path as `-text`
 - a file in `docs/domain/` outside `research/` is neither in the manifest nor one of the corpus's own files, which the
-  checker names: the extract, the state facts, the open questions, the analysis files still in use, and any README
+  checker names: the extract, the state facts, the open questions, the analysis files still in use, and
+  `supporting-regs/README.md`
 - a state fact lacks a key or names a row that does not exist
 - the skill passes 500 lines, names a row that does not exist, gives it a different citation, or states a number its
   row's Rule does not
@@ -402,10 +407,12 @@ It finds the repository root from its own path, so it runs from any working dire
 `git ls-files -z --cached --others --exclude-standard`, which leaves out what git ignores, and asks
 `git check-attr -z text` about each manifest path, which must answer `unset`. A missing extract, manifest,
 `states/federal.json` or `states/co.json` fails, and one that git ignores counts as missing, as an ignored skill counts
-as absent. It keeps the list of the corpus's own files as one constant. In this
-increment that is the extract, `open-questions.md`, every `.json` file directly in `states/`,
-`sources/MANIFEST.json`, any `README.md`, and the six analysis files named under "Stored sources and the manifest".
-The count of sources it prints is the number of manifest entries.
+as absent. A file counts as present when git lists it, tracked or not yet added, so a source nobody has added passes
+here and is missing in a clone. It keeps the list of the corpus's own files as one constant. In this increment that
+is the extract, `open-questions.md`, every `.json` file directly in `states/`, `sources/MANIFEST.json`,
+`supporting-regs/README.md`, and the six analysis files named under "Stored sources and the manifest", so a README
+anywhere else in `docs/domain/` outside `research/` fails as unlisted. The count of sources it prints is the number of
+manifest entries.
 
 ## What has to be true of every rule
 

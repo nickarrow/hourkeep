@@ -28,7 +28,7 @@ Policy questions that only CMS, a state or a policy person can answer, each with
 - Note: The question arises only in a state that verifies compliance more often than at renewal under
   42 CFR 435.557(d). No stored source sets a default between the two options of 42 CFR 435.558(b)(3).
 
-### Are the 5 days before a notice of noncompliance, or a notice of action, counts as received calendar days?
+### Are the 5 days after which a notice of noncompliance or a notice of action counts as received counted as calendar days?
 
 - Who can answer: CMS
 - Raised: 2026-10-17, by row notice-presumed-received-after-5-days and the federal fact for it; 2026-10-18, by row
@@ -40,7 +40,22 @@ Policy questions that only CMS, a state or a policy person can answer, each with
   431.231(c)(2) presumes a notice of action received 5 days after the date on it and does not say calendar days
   either. The preamble calls the first presumption consistent with established timelines for receipt of a notice of
   action (docs/domain/cms-2454-ifc/2026-11094.xml:2091, 91 FR 33413), so one answer may cover both; that is
-  inference.
+  inference. (Corrected 2026-10-19: the heading said "Are the 5 days before a notice of noncompliance, or a notice of
+  action, counts as received calendar days?"; full review 2026-10-19, cold reader b3.)
+
+### Is the date a notice of noncompliance is received the first of the 30 calendar days to answer it?
+
+- Who can answer: CMS
+- Raised: 2026-10-19, by rows notice-response-period and notice-presumed-received-after-5-days, and the federal fact
+  for notice-response-period
+- Source: docs/domain/sources/federal-register/C1-2026-11094.xml:136 "a period of 30 calendar days beginning on the date on which such notice of noncompliance is received by the individual"
+- Source: docs/domain/sources/federal-register/C1-2026-11094.xml:174 "Is considered to be received 5 days after the date on the notice"
+- Note: 42 CFR 435.558(a)(2) has the 30 calendar days begin on the date of receipt, and (c)(4) presumes receipt 5
+  days after the date on the notice unless the person shows that they did not receive it within the 5-day period.
+  Neither says whether the date of receipt is
+  day 1 of the 30. Counted with it as day 1, the period ends 34 days after the date on the notice; counted from the
+  next day, 35. The deadline printed on the letter is the one to meet. (Added 2026-10-19; full review 2026-10-19,
+  cold reader b2.)
 
 ### Are the 10 days of advance notice and of reinstatement, and the 90 days to ask for a hearing, calendar days?
 
@@ -82,7 +97,7 @@ Policy questions that only CMS, a state or a policy person can answer, each with
   says whether an Exchange or Exchange appeals entity hears an appeal of a denial or disenrollment under
   42 CFR 435.558(d). § 431.10 was not read.
 
-### Which SMD 26-001 transition path did Colorado take for renewals already scheduled in 2027, and has any state said which it took?
+### Which SMD 26-001 transition path did Colorado take for renewals already scheduled in 2027?
 
 - Who can answer: Colorado's HCPF, or CMS
 - Raised: 2026-10-17, by rows reschedule-2027-renewals-to-six-months and keep-scheduled-2027-renewals
@@ -91,10 +106,12 @@ Policy questions that only CMS, a state or a policy person can answer, each with
 - Source: docs/domain/sources/cms/smd-26-001.txt:305 "Under Option 2, the state would not reschedule already-set 2027 renewal initiation dates, which"
 - Note: No stored Colorado source answers it. On 2026-10-17 the 8.000 and draft 8.100 extractions, HCPF's appeals
   page and the 8.000 rule-information page were searched, ignoring case, for 26-001, reschedul, six-month and
-  6-month; the only hits were two eDocket numbers on the rule-information page that contain 26-001 by chance. For the
-  second part, the 2026-10-16 research records Montana as taking the first path, SMD 26-001's Option 1, in its open
-  question 13 (docs/domain/research/2026-10-16-policy/ledger.md:232, "Montana's table shows Option 1"), from a
-  Montana agency page that is not stored and so is not cited as a Source.
+  6-month; the only hits were two eDocket numbers on the rule-information page that contain 26-001 by chance. As a
+  research lead only: the 2026-10-16 research records Montana as taking the first path, SMD 26-001's Option 1, in its
+  open question 13 (docs/domain/research/2026-10-16-policy/ledger.md:232, "Montana's table shows Option 1"), from a
+  Montana agency page that is not stored and so is not cited as a Source. (Corrected 2026-10-19: the heading said
+  "Which SMD 26-001 transition path did Colorado take for renewals already scheduled in 2027, and has any state said
+  which it took?" and the Note said "For the second part,"; full review 2026-10-19, against the source 3.)
 
 ### Must a state publish which SMD 26-001 transition path it took?
 

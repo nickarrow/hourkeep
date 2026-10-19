@@ -16,8 +16,12 @@ There is no app code in this repository yet. [hourkeep.app](https://hourkeep.app
   itself is CMS's interim final rule CMS-2454-IFC, at 42 CFR 435.550 to 435.563. The folder also holds the 42 CFR
   435.603 household income text, the enrolled text of Public Law 119-21, the 2025 law that created the requirement,
   and Code for America's service blueprints. Where the analysis and the regulation disagree, the regulation wins. A
-  verification pass on 2026-10-16 found errors in the analysis files that have not been corrected yet. The research
-  behind it is in `docs/domain/research/`.
+  verification pass on 2026-10-16 found errors in the analysis files. They are corrected a topic at a time, as each
+  topic's rows land in `docs/domain/community-engagement-extract.md`, which is the authority wherever it has rows;
+  notices of noncompliance and fair hearings came first. Each row quotes a source stored in `docs/domain/sources/`,
+  which `docs/domain/sources/MANIFEST.json` lists with its hash. The research behind it is in
+  `docs/domain/research/`.
+- `scripts/` holds the checker that keeps the corpus consistent, and `tests/` its tests.
 - `docs/design.md` is the design: what the new HourKeep is, who it is for, and what has to be true for it to work.
   `docs/epics/` holds the plan for each body of work, starting with putting the policy corpus right, and
   `docs/decisions/` holds the decision records.
@@ -25,6 +29,20 @@ There is no app code in this repository yet. [hourkeep.app](https://hourkeep.app
 - `AGENTS.md` and `.kiro/skills/` hold the rules the AI agents working here follow. `HOW-TO-WORK.md`, `DATA-GUARD.md`
   and `missions/` are for the people working with those agents. All of them come from the
   [agentic engineering bootstrap](https://github.com/nickarrow/agentic-engineering-bootstrap), and `NOTICE.md` says so.
+
+## Checking the corpus
+
+In a git clone of this repository, from its root, with git and Python 3.9 or later and nothing else installed:
+
+```
+python3 -m unittest discover -s tests
+python3 scripts/check-corpus.py
+```
+
+The first runs the checker's tests, which take a few minutes. The second checks the corpus itself and names each
+problem it finds. Run both after any change to `docs/domain/`, the skill, the checker or its tests. The Formats
+section of `docs/epics/0001-policy-corpus/design.md` sets the form each problem is measured against. Neither command
+can tell whether a row says what its source means; review does that.
 
 ## The first version
 

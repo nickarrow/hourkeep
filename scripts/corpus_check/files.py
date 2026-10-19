@@ -32,8 +32,9 @@ def split_lines(data: bytes) -> List[bytes]:
 def read_listed(root: Path, path: str, files: Optional[List[str]]) -> Optional[bytes]:
     """One of the corpus's fixed files, the extract, the manifest, a state file or the skill, as bytes, or None
     when it is missing. When git could list the files, `files`, one git does not list, because it is ignored or
-    absent, is missing whatever the disk holds, so a local run answers as a clone would; when git could not list
-    them, `files` is None and the disk alone answers."""
+    absent, is missing whatever the disk holds, so for an ignored file a local run answers as a clone would. An
+    untracked file git does not ignore is listed and counts as present, though a clone would not have it. When git
+    could not list them, `files` is None and the disk alone answers."""
     if files is not None and path not in files:
         return None
     try:

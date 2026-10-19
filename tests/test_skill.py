@@ -189,6 +189,35 @@ class SkillTest(CorpusTestCase):
         corpus.files[SKILL] = skill_with("more than 90 days", "more than 1 day")
         self.assertFails(run_checker(corpus), SKILL, 12, "1")
 
+    def notice_item(self, words: str) -> str:
+        """The valid skill with a second rule item, at line 14, for notice-response-period, `words` before it."""
+        return skill_with(RULE_ITEM, RULE_ITEM + "- " + words + "\n  [notice-response-period] 42 CFR 435.558(a)(2); "
+                          "91 FR 39030\n")
+
+    def test_a_number_in_a_citation_paragraph_in_the_rule_does_not_count(self):
+        # do-it review 2026-10-19: the Rule's "(c)(4)" let a skill item say 4 where the Rule says 30.
+        corpus = Corpus()
+        corpus.files[EXTRACT] = extract_with("respond to a notice of noncompliance.",
+                                             "respond to a notice of noncompliance under paragraph (c)(4).")
+        corpus.files[SKILL] = self.notice_item("You have 30 calendar days to respond.")
+        self.assertPasses(run_checker(corpus))
+        corpus.files[SKILL] = self.notice_item("You have 4 calendar days to respond.")
+        self.assertFails(run_checker(corpus), SKILL, 14, "the number 4 is not in notice-response-period's Rule")
+
+    def test_a_number_in_a_citation_paragraph_in_the_skill_does_not_count(self):
+        # A number in parentheses straight after a letter, a digit or a closing parenthesis is part of a citation.
+        for words in ("You have 30 calendar days to respond, under paragraph (c)(4).",
+                      "You have 30 calendar days to respond, under subsection e(14).",
+                      "You have 30 calendar days to respond, under section 30(14)."):
+            with self.subTest(words=words):
+                self.assertPasses(self.check_skill(self.notice_item(words)))
+
+    def test_a_number_in_parentheses_after_a_space_still_counts(self):
+        result = self.check_skill(self.notice_item("You have thirty (31) calendar days to respond."))
+        self.assertFails(result, SKILL, 14, "the number 31 is not in notice-response-period's Rule")
+        result = self.check_skill(self.notice_item("You have thirty (30) calendar days to respond."))
+        self.assertPasses(result)
+
     def test_numbers_after_the_identifier_are_not_checked(self):
         self.assertPasses(self.check_skill(SKILL_TEXT))  # the citation holds 42, 431.221 and 2026, not in the Rule
 

@@ -80,7 +80,7 @@ OWN_FILES = (
     "docs/domain/open-questions.md",
     "docs/domain/states/*.json",
     MANIFEST,
-    "**/README.md",
+    "docs/domain/supporting-regs/README.md",
     # The analysis files still in use, named under "Stored sources and the manifest".
     "docs/domain/cms-2454-ifc/rule-extract.md",
     "docs/domain/cms-2454-ifc/state-options.md",
@@ -120,6 +120,10 @@ LIST_ITEM = re.compile(r"^\s*(?:[-*+]|\d+[.)])\s+")
 SKILL_ITEM_END = re.compile(r"^(.*)\[([a-z0-9]+(?:-[a-z0-9]+)*)\] (\S.*)$")
 BRACKETED = re.compile(r"\[([a-z0-9]+(?:-[a-z0-9]+)*)\](?!\()")
 NUMBER = re.compile(r"\d+(?:[.,]\d+)*")
+# A number in parentheses straight after a letter, a digit or a closing parenthesis, as in (c)(4) or 1902(e)(14), is
+# part of a citation and is no number for that check, in the Rule or in the skill item. One after a space, as in
+# "sixty (60)", still counts.
+CITATION_PARAGRAPH = re.compile(r"(?<=[A-Za-z0-9)])\(\d+\)")
 # A fenced code block opens with three or more backticks or tildes, indented at most three spaces, and closes with a
 # line of the same character, at least as many, and nothing else. A line inside one is neither a heading nor a rule
 # item.

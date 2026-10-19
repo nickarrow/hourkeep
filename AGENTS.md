@@ -156,3 +156,31 @@ that applies, and the skills the work needs. A session opened elsewhere does not
 
 Deleting a skill is a supported thing to do, including the domain one. Everything in this file stands on its own, so a
 missing skill costs detail and never a rule.
+
+## This repository
+
+HourKeep is a free, open-source web app, being rebuilt, for people on Medicaid facing the new work requirements, which
+CMS calls community engagement. What it relies on lives here:
+
+- `docs/design.md` is the design, `docs/epics/` holds a numbered folder for each epic with its delivery plan, and
+  `docs/decisions/` holds the decision records. The Formats section of `docs/epics/0001-policy-corpus/design.md` sets
+  the form of everything in `docs/domain/`.
+- `docs/domain/` is the policy corpus. Its rows, in `community-engagement-extract.md`, are the authority for Medicaid
+  community engagement wherever a row exists. Each quotes a source stored under `docs/domain/sources/`, which
+  `docs/domain/sources/MANIFEST.json` lists with its hash. State facts are in `states/`, policy questions nobody has
+  answered yet are in `open-questions.md`, and the research is in `research/`.
+- `.kiro/skills/medicaid-community-engagement/` restates the rows for agents, and the row wins wherever the two differ.
+- `scripts/check-corpus.py`, with the package `scripts/corpus_check/`, checks the corpus, and `tests/` holds its tests.
+
+After any change to `docs/domain/`, the skill, the checker or its tests, run both checks from the repository root:
+
+```
+python3 -m unittest discover -s tests
+python3 scripts/check-corpus.py
+```
+
+Both must pass under `python3` and under Python 3.9, the oldest the checker supports. The checker exits 0 when the
+corpus is consistent and names each problem when it is not. It cannot tell whether a row says what its source means;
+review does that. The tests build a git repository for each test, so give that command a timeout of several minutes.
+A PDF's text extraction is made on macOS with `swift scripts/extract-pdf-text.swift <pdf> > <txt>`; the redirect
+empties `<txt>` before the script runs, so after a failed run, restore it from git.

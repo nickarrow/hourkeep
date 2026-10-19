@@ -7,8 +7,8 @@ from pathlib import Path
 from typing import List, Optional, Tuple
 
 from .constants import (
-    BRACKETED, FENCE, FRONTMATTER_KEY, HEADING, LIST_ITEM, NUMBER, RULES_HEADING, SKILL, SKILL_HEADINGS, SKILL_ITEM_END,
-    SKILL_MAX_LINES,
+    BRACKETED, CITATION_PARAGRAPH, FENCE, FRONTMATTER_KEY, HEADING, LIST_ITEM, NUMBER, RULES_HEADING, SKILL,
+    SKILL_HEADINGS, SKILL_ITEM_END, SKILL_MAX_LINES,
 )
 from .files import read_listed, split_lines
 from .report import Counts, Problem
@@ -148,8 +148,8 @@ def check_skill(root: Path, files: Optional[List[str]], rows: List[Row], problem
             problems.append(Problem(SKILL, first, "the citation {!r} is not {}'s citation, {!r}".format(
                 citation, identifier, row_citation)))
             matched = False
-        in_rule = set(NUMBER.findall(" ".join(row.values("Rule"))))
-        for number in NUMBER.findall(before):
+        in_rule = set(NUMBER.findall(CITATION_PARAGRAPH.sub(" ", " ".join(row.values("Rule")))))
+        for number in NUMBER.findall(CITATION_PARAGRAPH.sub(" ", before)):
             if number not in in_rule:
                 problems.append(Problem(SKILL, first, "the number {} is not in {}'s Rule".format(number, identifier)))
                 matched = False

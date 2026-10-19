@@ -23,8 +23,7 @@ UNLISTED = "neither in the manifest nor one of the corpus's own files"
 OWN_FILES = (
     "docs/domain/open-questions.md",
     TEXAS,
-    "docs/domain/README.md",
-    "docs/domain/sources/cms/README.md",
+    "docs/domain/supporting-regs/README.md",
     "docs/domain/cms-2454-ifc/state-options.md",
     "docs/domain/cms-2454-ifc/what-matters-most.md",
     "docs/domain/hr1/HR1-Impact-Summary.md",
@@ -43,6 +42,15 @@ class UnlistedFileTest(CorpusTestCase):
             with self.subTest(path=path):
                 corpus = Corpus()
                 corpus.files[path] = "Not a source.\n"
+                self.assertFails(run_checker(corpus), path, 0, UNLISTED)
+
+    def test_a_readme_other_than_supporting_regs_fails(self):
+        # against-the-mechanism review 2026-10-19, F5: only supporting-regs/README.md is one of the corpus's own files.
+        for path in ("docs/domain/README.md", "docs/domain/states/README.md", "docs/domain/sources/cms/README.md",
+                     "docs/domain/hr1/README.md"):
+            with self.subTest(path=path):
+                corpus = Corpus()
+                corpus.files[path] = "# A README\n"
                 self.assertFails(run_checker(corpus), path, 0, UNLISTED)
 
     def test_the_corpus_own_files_pass(self):

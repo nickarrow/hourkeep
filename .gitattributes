@@ -24,3 +24,9 @@ docs/domain/hr1/119hr1enr-toc.md -text
 docs/domain/hr1/119hr1enr.md -text
 docs/domain/supporting-regs/42cfr-supporting-sections.txt -text
 docs/domain/supporting-regs/other-supporting-sections.txt -text
+# The checker reads the corpus's own files as lines split on LF only, so a checkout that turned their line endings
+# into CRLF (core.autocrlf=true, Git for Windows' usual setting) would fail a consistent corpus. These stay LF.
+docs/domain/community-engagement-extract.md text eol=lf
+docs/domain/open-questions.md text eol=lf
+docs/domain/states/*.json text eol=lf
+.kiro/skills/medicaid-community-engagement/SKILL.md text eol=lf

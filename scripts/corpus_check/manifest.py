@@ -139,7 +139,8 @@ def check_pdf_extractions(stored: List[Tuple[str, int, object]], seen: dict, fir
 
 
 def check_text_attribute(root: Path, stored: List[Tuple[str, int]], problems: List[Problem]) -> None:
-    """`git check-attr -z text` must answer unset for every manifest path, so git never rewrites its bytes."""
+    """`git check-attr -z text` must answer unset for every manifest path, so git never rewrites its line endings.
+    Unset text stops only line-ending conversion; the hash check catches any other rewrite, such as a filter's."""
     if not stored:
         return
     command = ["git", "-C", str(root), "check-attr", "-z", "text", "--"] + [path for path, _ in stored]

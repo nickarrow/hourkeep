@@ -1,4 +1,7 @@
 # CMS-2454-IFC — Authoritative Rule Extract
+Status as of 2026-10-19: `docs/domain/community-engagement-extract.md` is the authority wherever it has rows. This
+file is corrected a topic at a time and will be retired by epic 0001, and the word "Authoritative" in its title
+predates that. (Added 2026-10-19; full review 2026-10-19, red team 8.)
 
 **Source:** Medicaid Program; Community Engagement Requirement for Certain Individuals
 **Citation:** 91 FR 33348–33482 (June 3, 2026) · FR Doc. 2026-11094 · RIN 0938-AV98
@@ -737,9 +740,14 @@ advance-notice-at-least-10-days in docs/domain/community-engagement-extract.md (
   consider-all-other-bases-before-denial, deny-application-with-notice-and-hearing-rights)."; read in
   docs/domain/sources/federal-register/C1-2026-11094.xml:178 and :182 and
   docs/domain/sources/ecfr/2026-10-15/42-cfr-431.206.xml:11.)
-- Effective window ≈ **35 days from the notice date**: the 30 days of notice-response-period begin on the receipt
-  date that notice-presumed-received-after-5-days fixes. Whether the 5 are calendar days is an open question in
-  docs/domain/open-questions.md.
+- Effective window: about 34 or 35 days after the date on the notice, depending on how the 30 days are counted, which
+  is an open question. The 30 calendar days of notice-response-period begin on the date of receipt, which
+  notice-presumed-received-after-5-days presumes is 5 days after the date on the notice unless the person shows that
+  they did not receive the notice within those 5 days. Whether the date of receipt is the first of the 30 days, and whether the 5 are calendar days, are open
+  questions in docs/domain/open-questions.md. The deadline printed on the letter is the one to meet. (Corrected
+  2026-10-19: said "Effective window ≈ **35 days from the notice date**" and "date that
+  notice-presumed-received-after-5-days fixes"; full review 2026-10-19, cold reader b2 and b1; read in
+  docs/domain/sources/federal-register/C1-2026-11094.xml:136 and :174.)
 - **§ 435.558(f)** reconsideration is consistent with § 435.916(a)(3)(iii), which gives **90 days** after
   termination, or longer if the State elects, and reconsideration **without a new application** (91 FR 33481, in
   the June 3 printing's reprint of § 435.916).

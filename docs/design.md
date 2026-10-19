@@ -107,8 +107,8 @@ later topic of the corpus epic.
 If the state denies or ends coverage, the person can ask for a fair hearing, usually within a time limit their letter
 gives, up to 90 days from the date the notice of action is mailed (42 CFR 431.220(a)(1), 431.221(d)). Asked before
 the date of action, coverage can continue until the hearing decision (431.230(a)), and if the hearing upholds the
-state's action, the state may recover what that continued coverage cost (431.230(b)). HourKeep says both plainly and
-points to legal help.
+state's action, the state may recover the cost of services it furnished only because the request kept them going
+(431.230(b)). HourKeep says both plainly and points to legal help.
 
 ### What may mean the rule does not apply
 
@@ -277,14 +277,16 @@ the SNAP exclusion needs only that they are subject to SNAP's.
 The policy corpus has to be right and stay right. Research on 2026-10-16 reported 39 findings of wrong or out-of-date
 passages in it. An AI agent then rechecked each one against its sources, which for four of them were partly or wholly
 secondary, a news report for one and a KFF brief for three, and confirmed 36, confirmed 2 in part and partly rejected
-1 (research ledger, Ledger A). Some of the errors would lead a person to do less than the rule requires. None has been
-corrected yet. Before HourKeep tells anyone anything, `docs/domain/` becomes one verified extract, files of state facts
-each with its source and date, and a HourKeep domain skill, the instructions AI agents working on HourKeep load,
-listing each rule with its citation, the date it was verified, the direction an error would cost a person, and what
-should trigger a recheck. Already on that watch list: the
-Massachusetts v. Oz summary judgment hearing on October 22, 2026 (research L1-11), and Taylor v. Kennedy in Maryland
-(L1-12), both challenging the medically frail rules; an IRS proposed rule on the tax credit bar, open for comment until
-November 30, 2026 (L1-9); Colorado's rule, due to take effect January 1, 2027 (L5-1); and SNAP's pending rule (L7-10).
+1 (research ledger, Ledger A). Some of the errors would lead a person to do less than the rule requires. Those on
+notices of noncompliance and fair hearings were corrected on 2026-10-17 to 2026-10-19, when that topic's rows landed
+(epic 0001, increment 1); the rest wait for their own topics. Before HourKeep tells anyone anything, `docs/domain/`
+becomes one verified extract, files of state facts each with its source and date, and a HourKeep domain skill, the
+instructions AI agents working on HourKeep load. The skill lists each rule with its citation and points to its row in
+the extract, which carries the date it was verified, the direction an error would cost a person, and what should
+trigger a recheck. Already on the skill's watch list: the Massachusetts v. Oz summary judgment hearing on October 22,
+2026 (research L1-11), and Taylor v. Kennedy in Maryland (L1-12), both challenging the medically frail rules; an IRS
+proposed rule on the tax credit bar, open for comment until November 30, 2026 (L1-9); Colorado's rule, due to take
+effect January 1, 2027 (L5-1); and SNAP's pending rule (L7-10).
 
 That sets the pace. Work on the app that no person reads, such as storage, backup, capture and the package's
 plumbing, can start once the corpus epic's first increment has landed. Anything a person reads waits until the rules
@@ -368,8 +370,11 @@ Coverage Compass is both open source and local-only, and it covers one state wit
 
 ## Sources
 
-The rule as printed on June 3, 2026, the statute and the supporting regulations are in `docs/domain/`; the June 29
-correction is not stored there yet. The research is in `docs/domain/research/`: a report on SNAP from 2026-10-15, and
+The rule as printed on June 3, 2026, the statute and the supporting regulations are in `docs/domain/`. Since
+2026-10-17, `docs/domain/sources/` also holds the June 29 correction, eCFR's text of 42 CFR 435.558 and of the part 431
+hearing sections, CMS's letter SMD 26-001 and Colorado's rules, each listed with its hash in
+`docs/domain/sources/MANIFEST.json`, and the rows built from them are in `docs/domain/community-engagement-extract.md`.
+The research is in `docs/domain/research/`: a report on SNAP from 2026-10-15, and
 eight research lanes from 2026-10-16 with the ledger in which a separate AI agent rechecked 105 of their findings
 against their sources. A tag such as "research L6-12" names a finding that ledger rechecked; "research L5, section 11"
 names a lane's own evidence, which the ledger did not recheck; "SNAP research, section 7" names a section of the SNAP

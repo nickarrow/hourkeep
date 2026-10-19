@@ -6,9 +6,9 @@
       "row": "notice-response-period",
       "setting": "after a notice of noncompliance under 42 CFR 435.558(a)(1)",
       "value": "a period of 30 calendar days beginning on the date on which such notice of noncompliance is received by the individual",
-      "counts_from": "the date on which the notice of noncompliance is received by the individual, fixed by 42 CFR 435.558(c)(4)",
+      "counts_from": "the date on which the notice of noncompliance is received by the individual, presumed under 42 CFR 435.558(c)(4) to be 5 days after the date on the notice unless the individual shows that they did not receive it within the 5-day period",
       "status": "known",
-      "note": "The correction's only date of its own is its filing line, docs/domain/sources/federal-register/C1-2026-11094.xml:201 \"Filed 6-26-26\", so its source_date is 2026-06-26; it was published 2026-06-29. The eCFR XML prints no date of its own; the eCFR date, 2026-10-15, is in the manifest. When a person received the notice is the agency's determination.",
+      "note": "The correction's only date of its own is its filing line, docs/domain/sources/federal-register/C1-2026-11094.xml:201 \"Filed 6-26-26\", so its source_date is 2026-06-26; it was published 2026-06-29. The eCFR XML prints no date of its own; the eCFR date, 2026-10-15, is in the manifest. When a person received the notice is the agency's determination. Whether the date of receipt is the first of the 30 calendar days is an open question. (Corrected 2026-10-19: counts_from said \"fixed by 42 CFR 435.558(c)(4)\"; full review 2026-10-19, cold reader b1; read in docs/domain/sources/federal-register/C1-2026-11094.xml:174.)",
       "citation": "42 CFR 435.558(a)(2); 91 FR 39030",
       "sources": [
         {
@@ -24,7 +24,7 @@
           "source_date": "not stated"
         }
       ],
-      "checked": "2026-10-17"
+      "checked": "2026-10-19"
     },
     {
       "row": "notice-presumed-received-after-5-days",
