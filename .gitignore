@@ -75,6 +75,8 @@ node_modules/
 /coverage/
 /test-results/
 /playwright-report/
+# Python's bytecode cache, which running the corpus checker and its tests leaves behind
+__pycache__/
 .playwright-mcp/
 *.tsbuildinfo
 

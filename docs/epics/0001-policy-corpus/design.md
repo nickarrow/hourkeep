@@ -96,8 +96,10 @@ settles it and writes it here.
 | `docs/domain/research/` | The research records |
 | `docs/domain/prior-art/` | The Code for America summaries, from increment 3 |
 | `.kiro/skills/medicaid-community-engagement/SKILL.md` | The domain skill |
-| `scripts/check-corpus.py` | The checker |
-| `tests/test_check_corpus.py` | The checker's tests, using Python's built-in `unittest`, written before the checker |
+| `scripts/check-corpus.py` | The checker's entry point: its command line, output and exit codes |
+| `scripts/corpus_check/` | The checker, one module for each part of the corpus it reads, with the constants, file listing and report they share |
+| `tests/test_*.py` | The checker's tests, using Python's built-in `unittest`, written before the checker, one file for each part of the corpus |
+| `tests/corpus_fixture.py` | The small valid corpus the tests build in a temporary git repository, and the helpers they share |
 | `scripts/extract-pdf-text.swift` | The script that makes each PDF's text extraction, using macOS's PDFKit |
 
 Sources stored before this epic stay where they are, because the corpus cites them by file and line. Paths in the
@@ -106,16 +108,17 @@ manifest, the rows and the state facts are relative to the repository root.
 Dates of this corpus's own work, such as when a source was fetched, a row verified or a fact checked, are UTC dates
 written YYYY-MM-DD, and times are UTC in ISO 8601 with a `Z`, such as `2026-10-17T03:10:00Z`, because the research
 records give UTC times. A date a document gives itself, such as its publication, effective or meeting date, is the
-calendar date it states, written YYYY-MM-DD and never moved between time zones. A file stored under `docs/domain/sources/` gets a
-lowercase name joined by hyphens that says what it is. It keeps the publisher's document number as the publisher
-writes it, and carries the version or date where the publisher serves more than one: `federal-register/C1-2026-11094.xml`,
-`ecfr/2026-10-14/42-cfr-435.558.xml` for one section on one eCFR date, `cms/smd-26-001.pdf`. A web page's name ends
-with the date it was fetched. A PDF's text extraction sits beside the PDF under the same name, with `.txt` in place of
-`.pdf`.
+calendar date it states, written YYYY-MM-DD and never moved between time zones. A file stored under
+`docs/domain/sources/` gets a lowercase name joined by hyphens that says what it is. It keeps the publisher's document
+number as the publisher writes it, and carries the version or date where the publisher serves more than one:
+`federal-register/C1-2026-11094.xml`, `ecfr/2026-10-15/42-cfr-435.558.xml` for one section on one eCFR date,
+`cms/smd-26-001.pdf`. A web page's name ends with the date it was fetched. A PDF's text extraction sits beside the PDF
+under the same name, with `.txt` in place of `.pdf`.
 
 In `open-questions.md` each question is a `###` heading in plain words, followed by a list: `- Who can answer:` CMS,
-Colorado's HCPF or a policy person; `- Raised:` the date and the rows that depend on the answer; and `- Source:`
-once for each source in conflict, in the form of a row's Source.
+Colorado's HCPF or another Colorado office, or a policy person; `- Raised:` the date and the rows that depend on the
+answer; and `- Source:` once for each source the question rests on, one for each side where two conflict, in the form
+of a row's Source. A `- Note:` may come last, for context that is neither a source nor who can answer.
 
 ### A rule row
 
@@ -154,7 +157,10 @@ The fields, all required, and a field with an empty value counts as missing:
   its text extraction, which can separate a paragraph's label from its text, so the paragraph in the Citation is read
   on the rendered page. The field repeats when a rule rests on more than one source. A row whose source is not stored
   yet says `Source: not stored, <URL>` and must also say `Verified: no`.
-- Tier: one of the tiers below.
+- Tier: one of the tiers below, the tier of the source the Rule rests on. Where a lower source adds to a rule, such
+  as the preamble's reading of when a notice is sent, the addition is a row of its own with its own tier, so nobody
+  takes one tier's words for another's. A row may still cite a source of another tier that conflicts with it, as
+  "What has to be true of every rule" asks.
 - State election: `no`, or `yes` followed by what the state chooses and what applies where it has not chosen.
 - Verified: a date and a method, or `no`. The methods are `read in source`, meaning the quoted words were read at the
   cited place on that date, and `ledger <finding ID>`, meaning the 2026-10-16 verification ledger confirmed it and
@@ -162,7 +168,8 @@ The fields, all required, and a field with an empty value counts as missing:
   method.
 - Error direction: `dangerous` if getting the rule wrong would lead a person to do less than it requires, `burdensome`
   if more, and `neither` if it changes only a citation, a date or context. These are the research ledger's
-  definitions. A rule that could go wrong either way is `dangerous`.
+  definitions. A rule that could go wrong either way is `dangerous`. The value is the word alone; a reason goes in
+  `Note:`.
 - Recheck: one or more triggers, separated by semicolons, from this list: `final rule`, `correction notice`,
   `court ruling`, `CMS guidance`, `state plan amendment`, `state rule`, `federal minimum wage`, `eCFR amendment`, or
   `date YYYY-MM-DD` for a known event such as a board meeting. A trigger may add detail after a colon.
@@ -178,12 +185,13 @@ The tiers, highest first in each group:
 
 The checker reads a row this way:
 
-- The extract opens with a `#` title and a short introduction, and prose is allowed only there, before the first `##`
-  heading. Each topic is a `##` heading that holds only rows. This increment's is `## Notices of noncompliance and fair
-  hearings`.
+- The extract's first line is its `#` title, at least one line of introduction follows, and prose is allowed only
+  there, before the first `##` heading. Each topic is a `##` heading that holds only rows. This increment's is
+  `## Notices of noncompliance and fair hearings`.
 - An identifier is one or more words of lowercase letters and digits, joined by single hyphens.
 - Each field is a list item, `- Name: value`. The required fields come in the order listed above, each once, except
-  that Source may repeat; `Corrected:`, which may repeat, and `Note:` come last. A field name not listed fails.
+  that Source may repeat; `Corrected:`, which may repeat, and `Note:` come last, in either order. A field name not
+  listed fails.
 - Verified is `no`, or a date, a comma and a method: `2026-10-17, read in source` or `2026-10-17, ledger L1-4`. A
   person who checked it follows as `, by <name>`.
 - State election is `no`, or `yes; the state chooses <what>; where it has not chosen, <what applies>`.
@@ -191,14 +199,18 @@ The checker reads a row this way:
 - Recheck triggers are separated by semicolons. Each is one from the list, or `date YYYY-MM-DD`, and may add detail
   after a colon, as in `state rule: 10 CCR 2505-10 8.100 adopted`.
 - A citation names a section by its number when it holds a section such as `435.558` or `8.057` (digits, a period,
-  digits), or a number after `§`, `section`, `SSA` or `U.S.C.`. `91 FR 39030` alone names a page, so a regulation row
+  digits), or a number after `§`, after `section` or `sec.` in any case, or after `SSA` or `U.S.C.`. So
+  `Pub. L. 119-21, sec. 71119` names one. `91 FR 39030` alone names a page, so a regulation row
   citing only that fails. The tiers that need a section number are `statute`, `regulation`, `state statute` and
   `state regulation`. A citation of any tier fails when it is empty or holds the word TBD or TODO, in capitals or not.
+  A paragraph that runs onto the next page cites both pages, as `91 FR 39030-39031`.
 - A Source is a path, a colon, a line number counted from 1, a space, and at least one character of quoted words in
   straight double quotes. The file is read as bytes and split on `\n` only, so line N is the line `grep -n` numbers N,
   and the quoted words, encoded as UTF-8, must occur within that line's bytes. The file must have a manifest entry, so
-  a row cannot rest on an analysis file.
-- A value that continues onto further lines is read with its lines joined by single spaces.
+  a row cannot rest on an analysis file. A row with any `not stored` Source says `Verified: no`, even when another of
+  its sources is stored.
+- A continuation line starts with exactly two spaces, here and in the skill, and a value that continues is read with
+  its lines joined by single spaces.
 
 ### Stored sources and the manifest
 
@@ -241,9 +253,21 @@ it, and either may say `not recorded`. For a PDF's extraction the derivation is
 `swift scripts/extract-pdf-text.swift <pdf> > <txt>` run from the repository root, followed by the script's SHA-256
 and the macOS and Swift versions it ran on. The extraction starts each page with a line `[[page N]]`, counting from 1.
 An entry for eCFR text adds `ecfr_date`, whether the text is stored or derived, and the checker requires it for every
-path under `docs/domain/sources/ecfr/`. Any entry may add `note`. The checker fails an entry that lacks a key, holds an empty
-string or a `kind` outside the two, or repeats a path. These entries illustrate the shape and have not been checked
-against the files:
+path under `docs/domain/sources/ecfr/`. Any entry may add `note`. An entry, a retrieval and a superseded item each
+hold no key but their own, and only a derived entry holds `derived_from` and `derivation`. A path is relative to the
+repository root, lies in `docs/domain/` outside `research/`, has no `..` segment, and is never one of the corpus's own
+files, so a manifest entry cannot turn an analysis file or a research record into a source. A stored source is
+present only when git lists a file at exactly its path, so on a Mac's case-insensitive disk a path in the wrong case
+fails, and it is never a symlink. `cited_url` and `served_url` are each `not recorded` or an address beginning
+`http://` or `https://`, and a superseded item's `by` names another manifest entry. A PDF under
+`docs/domain/sources/` has an entry for its extraction, whose path is the PDF's with `.txt` in place of `.pdf`, whose
+`kind` is `derived`, whose `derived_from` is the PDF's path, and whose derivation is the script's command for that
+PDF; the extraction's first line is `[[page 1]]`, and each later `[[page N]]` line is one more than the last. The
+checker fails an entry that breaks any of this, lacks a key, holds an empty string or a value of the wrong type, holds
+a `kind` outside the two, or repeats a path, and reports a path it cannot open or hash as a problem rather than
+stopping. Left to review: sorting by path, the order of retrievals, whether a `command` is the one that ran, and
+whether an extraction is what the script makes from its PDF. These entries illustrate the shape and have not been
+checked against the files:
 
 ```json
 {"sources": [
@@ -294,15 +318,21 @@ dates written as YYYY-MM-DD:
 JSON, because Python's standard library reads it. A fact whose sources include a state agency page or a secondary
 source dated before June 3, 2026 prints a warning that it may predate the rule; it does not fail.
 
-Its shape is `{"state": ..., "name": ..., "facts": [...]}`. Its `state` is the file's name without `.json`, either
+Its shape is `{"state": ..., "name": ..., "facts": [...]}`, with no other key and at least one fact. The checker reads
+every `.json` file directly in `states/` by these rules, `federal.json` and `co.json` must exist, and any other kind
+of file in `states/` fails as unlisted. Its `state` is the file's name without `.json`, either
 `federal` or a state's two-letter code in lowercase, such as `co`, and its `name` is the plain name, such as
 `Colorado`. Every value is a string except `sources` and `facts`, which are lists. Each fact has `row`, `setting`,
 `value`, `status`, `citation`, `sources` and `checked`, and a `note` as well when its status is `inferred` or
 `not published`. A key whose value is empty, or an empty list, counts as missing. A fact marked `not published` has
-the value `not published`. Each source has all four of its keys, its Source is checked as a row's is, and its tier is
-one of the tiers above. A fact's citation is checked as a row's is, taking the tier of its first source. A source on
-a state agency page or a secondary source whose date is `not stated` gets the same warning, because it too may predate
-the rule.
+the value `not published`. Each source has all four of its keys, its Source is checked as a row's is, its `url` is an
+address beginning `http://` or `https://`, and its tier is one of the tiers above. A fact's citation is checked as a
+row's is, taking the tier of its first source. A source on a state agency page or a secondary source whose date is
+`not stated` gets the same warning, because it too may predate the rule. The checker cannot tell whether a value is a
+period, so it never requires `counts_from`; review checks that every period has one. A source's `url` is the address
+a document in this repository gives for it or, where none does, the address that served it. The federal file's `name`
+is `Federal default`. A fact that records a state's own choice, such as making a federal "may" a "must", says so in
+its `note`. A fact's value uses the source's words, so a period counts from the event the source names.
 
 ### The skill
 
@@ -316,21 +346,40 @@ loads at all.
 
 Its frontmatter holds `name` and `description` between `---` lines, as the other skills here do. Rule items sit
 under a `## Rules` heading, with a `###` heading for each topic, and every list item there is a rule item, so one
-without an identifier fails. Its other sections in this increment are `## Precedence`, which says which source wins
-when two disagree, and `## Watch list`, each item a date or an event and the rows it could change. A rule item may
-continue on lines indented by two spaces, and is read with its lines joined by single spaces. It ends with the
+without an identifier fails. The headings `## Rules`, `## Precedence` and `## Watch list` must each appear, written
+exactly so, `## Rules` must hold at least one rule item, and each rule item sits under a `###` heading and has words
+before its identifier. A misspelled heading would otherwise switch the rule checks off without a sound. A line inside
+a fenced code block is neither a heading nor a rule item, so a fence cannot end `## Rules` or stand in for it. Its other
+sections in this increment are `## Precedence`, which says which source wins when two disagree, and `## Watch list`,
+each item a date or an event and the rows it could change. A rule item may continue on lines indented by exactly two
+spaces, and is read with its lines joined by single spaces. It ends with the
 identifier in square brackets, a space, and the row's Citation exactly as the row gives it:
 `- ... beginning on the day they receive it. [notice-response-period] 42 CFR 435.558(a)(2); 91 FR 39030`. A number
 is a run of digits, with any comma or decimal point inside it, so `30`, `8.8` and `1,000` are numbers. Each number in
 a rule item before its identifier must equal a number in the row's Rule, whole against whole, so a `3` does not match
-inside a `30`. Anywhere in the skill, a word in square brackets that has the shape of an identifier and is not
-followed by `(` must name a row. Numbers written as words, and items outside `## Rules`, are left to review.
+inside a `30`. Anywhere in the skill, frontmatter included, a word in square brackets that has the shape of an
+identifier and is not followed by `(` must name a row, so `[x]` fails too. A skill of more than 500 lines fails.
+Numbers written as words, and items outside `## Rules`, are left to review.
+
+### Pointers and dated corrections
+
+When a passage in an older analysis file becomes a pointer, its heading stays and its text gives way to one line,
+`Now rows <identifier>, <identifier> in docs/domain/community-engagement-extract.md (YYYY-MM-DD).`, followed by any
+claim that stays because no row covers it yet. A correction made in place leaves the corrected text and adds, right
+after it, `(Corrected YYYY-MM-DD: said "<the old words>"; <finding ID>.)`, so the change and its reason stay where a
+reader meets them. Where the correction comes from reading a stored source rather than from the research, the finding
+ID gives way to `read in <path>:<line>`; where it rests on both, both are given, the finding ID first, separated by
+`; `. One correction may quote more than one old string, each in its own quotes, and quoted words stay exactly as they
+were written. Text added where no old words are corrected, such as a comment explaining a value, is marked
+`(Added YYYY-MM-DD; <finding ID or read in path:line>.)`. A claim that stays with no stored source behind it is marked
+`(Unverified YYYY-MM-DD: no stored source holds this; searched <what>.)` rather than removed.
 
 ### The checker
 
-`scripts/check-corpus.py` uses Python's standard library only and runs on Python 3.9 or later. Its tests come first:
-`tests/test_check_corpus.py` holds, for each check below, a small fixture that passes and one that fails, and
-`python3 -m unittest discover -s tests` runs them with nothing installed. The checker reads the extract,
+`scripts/check-corpus.py` and the package under it use Python's standard library only and run on Python 3.9 or later.
+Its tests come first: the files `tests/test_*.py` hold, for each check below, a small fixture that passes and one that
+fails, and `python3 -m unittest discover -s tests` runs them with nothing installed and without reading the user's own
+git configuration. The checker reads the extract,
 the state facts files, the manifest and the skill, skips anything git ignores, and fails, naming each problem, when:
 
 - a row lacks a field, a value is outside its vocabulary, or an identifier is malformed or used twice
@@ -352,9 +401,11 @@ that.
 It finds the repository root from its own path, so it runs from any working directory. It lists files with
 `git ls-files -z --cached --others --exclude-standard`, which leaves out what git ignores, and asks
 `git check-attr -z text` about each manifest path, which must answer `unset`. A missing extract, manifest,
-`states/federal.json` or `states/co.json` fails. It keeps the list of the corpus's own files as one constant. In this
-increment that is the extract, `open-questions.md`, every file in `states/`, `sources/MANIFEST.json`, any
-`README.md`, and the six analysis files named under "Stored sources and the manifest".
+`states/federal.json` or `states/co.json` fails, and one that git ignores counts as missing, as an ignored skill counts
+as absent. It keeps the list of the corpus's own files as one constant. In this
+increment that is the extract, `open-questions.md`, every `.json` file directly in `states/`,
+`sources/MANIFEST.json`, any `README.md`, and the six analysis files named under "Stored sources and the manifest".
+The count of sources it prints is the number of manifest entries.
 
 ## What has to be true of every rule
 
