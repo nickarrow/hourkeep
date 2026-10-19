@@ -3,13 +3,20 @@
 **Source:** Medicaid Program; Community Engagement Requirement for Certain Individuals
 **Citation:** 91 FR 33348–33482 (June 3, 2026) · FR Doc. 2026-11094 · RIN 0938-AV98
 **As corrected at:** **91 FR 39028 (June 29, 2026), FR Doc. C1-2026-11094** — republishes **§ 435.557 and
-§ 435.558 in their entirety.** The change is editorial (a misplaced § 435.557(c)(2) block relocated, one
-merged-word typo), but **paragraph designations inside § 435.557 shifted.** Cite the pair.
+§ 435.558 in their entirety.** The June 3 printing put § 435.557(f)(1)(ii)(B) through (g)(1) inside
+§ 435.558(a)(2) and § 435.557(g)(2) straight after (f)(1)(ii)(A). It printed § 435.558(a)(2)(i) with the end of
+§ 435.557(f)(1)(ii)(A) in place of its own words, and ran those lost words onto the end of § 435.557(g)(1). The
+correction puts the paragraphs back in order and restores both; every other paragraph of the two sections reads word
+for word as printed June 3, § 435.557(c)(2) included. Cite the pair. (Corrected 2026-10-17: said "The change is
+editorial (a misplaced § 435.557(c)(2) block relocated, one merged-word typo), but **paragraph designations inside
+§ 435.557 shifted.**"; L1-5.)
 **Effective:** July 31, 2026 (already in force)
 **Comment period:** Closed July 31, 2026 · Docket CMS-2026-2047
 **Implements:** SSA § 1902(xx), added by § 71119 of Public Law 119-21
 **Creates:** 42 CFR §§ 435.550–435.563
-**Local source:** `2026-11094.txt` (plain text) · `SECTION-INDEX.txt` (navigation)
+**Local source:** `2026-11094.txt` (plain text of the June 3 printing; for §§ 435.557 and 435.558 use
+`../sources/federal-register/C1-2026-11094.xml`, the June 29 correction) · `SECTION-INDEX.txt` (navigation)
+(Corrected 2026-10-17: said "`2026-11094.txt` (plain text)"; L1-4.)
 **Validated:** August 16, 2026 — see `../../audit/validation-findings-2026-08.md` § G for the corrections
 folded in and for content this extract still omits.
 
@@ -697,79 +704,51 @@ and the **Eligibility Made Easy (Emmy)** tool/API.
 
 ## 8. Noncompliance procedures — § 435.558
 
-### Trigger — "unable to verify" — § 435.558(b)
+Now rows send-notice-of-noncompliance, notice-response-period, showing-of-compliance-or-exception,
+showing-requirement-does-not-apply, coverage-continues-during-noncompliance, unable-to-verify-at-application,
+accept-applicant-declaration-of-noncompliance, renewal-notice-with-renewal-form, notice-sent-with-renewal-form,
+renewal-notice-after-renewal-form-period, notice-sent-after-renewal-form-period,
+renewal-form-and-notice-give-two-periods, no-noncompliance-notice-when-other-factors-unanswered,
+more-frequent-check-notice-after-data-check, no-separate-request-before-notice-after-data-check,
+more-frequent-check-notice-after-information-request, notice-after-unanswered-information-request,
+notice-says-how-to-show-compliance, notice-says-how-to-show-not-applicable, notice-states-the-deadline,
+notice-says-how-to-submit, notice-says-consequences-including-premium-tax-credit, notice-says-how-to-reapply,
+notice-gives-hardship-information-where-elected, notice-follows-section-435-905b,
+electronic-notice-follows-section-435-918b, notice-presumed-received-after-5-days,
+consider-all-other-bases-before-denial, deny-application-with-notice-and-hearing-rights,
+disenroll-with-advance-notice-and-hearing-rights, adverse-notice-names-both-failures,
+check-other-insurance-affordability-programs, no-restriction-on-reapplying, reconsideration-after-disenrollment,
+advance-notice-at-least-10-days in docs/domain/community-engagement-extract.md (2026-10-17).
 
-**At application:** insufficient information after reviewing what the individual provided **and** the
-reliable information available to the State.
-
-**At renewal and at more frequent verification: this is a binary State election, not a disjunctive test.**
-The State must document its choice in the State plan.
-
-| | When the noncompliance notice goes out |
-|---|---|
-| **Option 1** | **Concurrently with** the renewal form |
-| **Option 2** | **Only after** the renewal-form period elapses |
-
-This materially changes the user's timeline. Under Option 1 the 30-day clock starts alongside the renewal
-form. Under Option 2 the person gets **two sequential windows of ≥ 30 days each.** § 435.558(b)(3) has the
-same binary for more-frequent verification.
-
-> **The Option 2 carve-out removes the protection entirely.** If the renewal form is not returned **and**
-> factors *other than* community engagement are also unverified, the § 435.558(a) noncompliance procedures
-> **do not apply** — the person is disenrolled for procedural reasons at the end of the eligibility period
-> with **no community engagement notice and no 30-day window.** Returning the renewal form matters more
-> than the 30-day protection implies.
-
-**Self-reported noncompliance can be accepted at face value.** A State may accept a declaration under
-penalty of perjury on the application that the person does *not* meet the criteria, and be considered to
-have verified noncompliance without further checking. **A user who answers "no, I didn't have 80 hours"
-can be denied on that answer.**
-
-### The response window — § 435.558(a)
-
-- Provide the notice of noncompliance.
-- Provide **30 calendar days beginning on the date the notice is received**.
-- **§ 435.558(c)(4): the notice is deemed received 5 days after the notice date**, unless the
-  individual shows otherwise. Effective window ≈ **35 days from the notice date**.
-- **Continue furnishing Medicaid** for an enrolled beneficiary until determined ineligible
-  (§ 435.930(b)).
-
-The individual may make a satisfactory showing either of **compliance / deemed compliance** for each
-required month, **or** that the requirement **does not apply** because they are not an applicable
-individual, including by meeting a specified excluded individual category.
-
-### Notice content — § 435.558(c)(1)
-
-Must clearly state:
-1. how to make a satisfactory showing of compliance, including **(A) which month(s) the State will
-   assess**, (B) how to show demonstration under § 435.552, and (C) how to show deemed compliance
-   under § 435.553 or § 435.555;
-2. how to show the requirement does not apply (not an applicable individual / is excluded);
-3. the **deadline**;
-4. **how to submit** via any § 435.907(a) modality;
-5. consequences for Medicaid **and for APTC/PTC** eligibility on an Exchange;
-6. how to **reapply**;
-7. short-term hardship information, if the State elected it.
-
-### If no satisfactory showing — § 435.558(d)
-
-1. **Consider all other bases of eligibility** first (§§ 435.911, 435.916(f)).
-2. Deny with written notice and fair hearing rights, or **disenroll no later than the end of the
-   month following the month in which the 30-day period ends**, after ≥ 10 days advance notice and
-   fair hearing rights.
-3. The reason statement must identify failure to show both compliance **and** non-applicability.
-4. Determine potential eligibility for other insurance affordability programs (§ 435.1200(e)).
-
-### After termination
-
-- **§ 435.558(e):** **no restriction** may be imposed on reapplying or on receiving coverage if found
-  eligible on reapplication.
-- **§ 435.558(f):** **reconsideration** — if a MAGI-based beneficiary was disenrolled for failing to
-  submit requested information and submits it during the reconsideration period
-  (§ 435.916(a)(3)(iii): **90 days** after termination, or longer if the State elects), the State must
-  reconsider **without a new application**.
-- **§ 435.912(e)(3):** the 30-day window is an accepted reason for exceeding normal application
-  timeliness standards.
+- In a State that accepts an applicant's own declaration on the application, a user who says there that they did
+  not meet the requirement can be treated as having verified noncompliance on that answer (row
+  accept-applicant-declaration-of-noncompliance). When the agency denies a claim for eligibility it must give the
+  information on hearing rights (row hearing-rights-at-denial-or-action). The steps of § 435.558(d), considering
+  every other basis of eligibility before a denial and denying with written notice and fair hearing rights (rows
+  consider-all-other-bases-before-denial, deny-application-with-notice-and-hearing-rights), apply if no satisfactory
+  showing is made after the 30 days a notice of noncompliance gives, and whether an applicant whose declaration is
+  accepted gets such a notice is an open question in docs/domain/open-questions.md. Whether the answer shows that is
+  the agency's determination.
+  (Corrected 2026-10-17: said
+  "**A user who answers "no, I didn't have 80 hours"" and "can be denied on that answer.**"; read in
+  docs/domain/cms-2454-ifc/2026-11094.xml:2027 and docs/domain/sources/federal-register/C1-2026-11094.xml:180.)
+  (Corrected 2026-10-18: said "Before a denial the State must still consider every other basis of eligibility, and a
+  denial comes with written notice and fair hearing rights (rows accept-applicant-declaration-of-noncompliance,
+  consider-all-other-bases-before-denial, deny-application-with-notice-and-hearing-rights)."; read in
+  docs/domain/sources/federal-register/C1-2026-11094.xml:178 and :182 and
+  docs/domain/sources/ecfr/2026-10-15/42-cfr-431.206.xml:11.)
+- Effective window ≈ **35 days from the notice date**: the 30 days of notice-response-period begin on the receipt
+  date that notice-presumed-received-after-5-days fixes. Whether the 5 are calendar days is an open question in
+  docs/domain/open-questions.md.
+- **§ 435.558(f)** reconsideration is consistent with § 435.916(a)(3)(iii), which gives **90 days** after
+  termination, or longer if the State elects, and reconsideration **without a new application** (91 FR 33481, in
+  the June 3 printing's reprint of § 435.916).
+- **§ 435.912(e)(3):** when the agency is unable to meet the application timeliness standards for applicants given a
+  notice of noncompliance, because of the 30-calendar-day period they must have to respond, that is an exception to
+  the standards (91 FR 33480). The preamble says a State must use the exception case by case and document the reason
+  for the delay in the applicant's case record, as § 435.912(f) requires (91 FR 33414). (Corrected 2026-10-17: said
+  "the 30-day window is an accepted reason for exceeding normal application" and "timeliness standards."; read in
+  docs/domain/cms-2454-ifc/2026-11094.xml:4221 and :2121.)
 
 ---
 
@@ -783,7 +762,11 @@ Must clearly state:
 - **(c)** For a beneficiary **enrolled as of the implementation date**, verify compliance at their
   **first renewal initiated on or after** that date — not immediately.
 
-> **The January 1 cliff is much softer than it looks. Three provisions push most people later.**
+> **Three provisions can push people later than January 1, 2027.** In a State that implements on January 1, 2027
+> and takes SMD 26-001's first path, many existing enrollees' renewals are rescheduled promptly and initiated from
+> January 1, 2027, in practice January 4, 2027. (Corrected 2026-10-18: said "**The January 1 cliff is much softer
+> than it looks. Three provisions push most people later.**"; L2-4; read in
+> docs/domain/sources/cms/smd-26-001.txt:318 to :326 and docs/domain/cms-2454-ifc/2026-11094.xml:3998.)
 >
 > **1. Pending applications are grandfathered.** Applications filed **before** the implementation date are
 > adjudicated under the rules in effect on the filing date (§ 435.915). CMS's example: filed December 15,
@@ -796,11 +779,30 @@ Must clearly state:
 > beneficiary whose renewal is due January or February 2027 **may not face community engagement until
 > mid-2027**.
 >
-> **3. Existing enrollees are not assessed on day one at all** — only at that first initiated renewal.
+> **3. Existing enrollees are assessed at their first renewal initiated on or after the implementation date**
+> (§ 435.559(c)), which can be the implementation date itself. (Corrected 2026-10-18: said "**3. Existing enrollees
+> are not assessed on day one at all** — only at that first initiated renewal."; L2-4; read in
+> docs/domain/sources/cms/smd-26-001.txt:318 to :326 and docs/domain/cms-2454-ifc/2026-11094.xml:3998.)
 >
-> **Who *is* exposed in early 2027:** new applicants in January 2027 and later (assessed on the 1–3 months
-> **immediately preceding** application, so December 2026 activity), and anyone in an early-implementing
-> State. That is the population to design for first.
+> **Who *is* exposed in early 2027:** the requirement is for applicable individuals (§ 435.559(a)) in a State
+> where it is in effect, that is, a State not granted an exemption under § 435.560. Among
+> them: new applicants in January 2027 and later (assessed on the 1–3 months **immediately preceding**
+> application, so December 2026 activity); in an early-implementing State, applicants who apply on or after
+> its implementation date, and enrollees at their first renewal initiated on or after that date
+> (§ 435.559(b) and (c)); and, in a State that implements on January 1, 2027, enrollees whose renewal is
+> initiated in early 2027, under either of SMD 26-001's paths. Under the second path that is the renewal
+> already scheduled. Under the first path it also takes in adults already in a 12-month eligibility period in
+> the adult expansion group, SMD 26-001's name for the people subject to 6-month renewals under the state plan
+> or a demonstration, whose already-set 2027 renewals the State moves earlier. The earliest of those can begin
+> on January 1, 2027, in practice January 4, 2027, and SMD 26-001 expects a State on that path to initiate a
+> large volume of renewals as early as January 1, 2027. That is the population to design for first.
+> (Corrected 2026-10-17: said "and anyone in an early-implementing State.";
+> L2-4; read in docs/domain/sources/cms/smd-26-001.txt:258 and :303.)
+> (Corrected 2026-10-19: said "anyone in an early-implementing State,"; L2-4; read in
+> docs/domain/sources/cms/smd-26-001.txt:318 to :326 and docs/domain/cms-2454-ifc/2026-11094.xml:3996 and
+> :3998.)
+> (Corrected 2026-10-19: said "the requirement is for applicable individuals (§ 435.559(a))."; read in
+> docs/domain/cms-2454-ifc/2026-11094.xml:3996, :3997 and :3998.)
 
 ### Good faith effort exemption — § 435.560
 
@@ -903,8 +905,8 @@ These are the axes for HourKeep's policy-profile module.
 
 | Parameter | CFR | Options | Note |
 |---|---|---|---|
-| **"Unable to verify" at renewal** | § 435.558(b)(2) | **Option 1** (notice concurrent with renewal form) or **Option 2** (notice after form period) | Documented in the State plan. Changes whether the user gets one window or two |
-| **"Unable to verify" at more frequent verification** | § 435.558(b)(3) | same binary | |
+| **"Unable to verify" at renewal** | § 435.558(b)(2) | **Option 1** (notice concurrent with renewal form) or **Option 2** (notice after the form period or, if earlier, after the form is returned without sufficient information) (Corrected 2026-10-19: said "**Option 2** (notice after form period)"; read in docs/domain/cms-2454-ifc/2026-11094.xml:2038.) | Documented in the State plan. Changes whether the user gets one window or two |
+| **"Unable to verify" at more frequent verification** | § 435.558(b)(3) | two options, "similar to" those at renewal (91 FR 33412), with no renewal form: unable to verify after a data check alone, or after a data check and a request for information that is not returned or not sufficient (Corrected 2026-10-19: said "same binary"; read in docs/domain/cms-2454-ifc/2026-11094.xml:2068 and docs/domain/sources/federal-register/C1-2026-11094.xml:153 to :155.) | |
 | **Election not to seek further information on an attested mandatory exception** | § 435.557(g)(1) | may / may not | CMS **encourages States not to use it**. Does not apply where reliable information is *inconsistent* with what the individual reported |
 | **Which activities qualify as community service** | § 435.552(b) | State determines | Material per-State variable for a volunteering tracker |
 | **What non-documentary information is "sufficient"** | § 435.557(b)(2)(iii)(B) | State determines | |

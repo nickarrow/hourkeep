@@ -1,0 +1,90 @@
+{
+  "state": "federal",
+  "name": "Federal default",
+  "facts": [
+    {
+      "row": "notice-response-period",
+      "setting": "after a notice of noncompliance under 42 CFR 435.558(a)(1)",
+      "value": "a period of 30 calendar days beginning on the date on which such notice of noncompliance is received by the individual",
+      "counts_from": "the date on which the notice of noncompliance is received by the individual, fixed by 42 CFR 435.558(c)(4)",
+      "status": "known",
+      "note": "The correction's only date of its own is its filing line, docs/domain/sources/federal-register/C1-2026-11094.xml:201 \"Filed 6-26-26\", so its source_date is 2026-06-26; it was published 2026-06-29. The eCFR XML prints no date of its own; the eCFR date, 2026-10-15, is in the manifest. When a person received the notice is the agency's determination.",
+      "citation": "42 CFR 435.558(a)(2); 91 FR 39030",
+      "sources": [
+        {
+          "source": "docs/domain/sources/federal-register/C1-2026-11094.xml:136 \"a period of 30 calendar days beginning on the date on which such notice of noncompliance is received by the individual\"",
+          "url": "https://www.federalregister.gov/documents/full_text/xml/2026/06/29/C1-2026-11094.xml",
+          "tier": "regulation",
+          "source_date": "2026-06-26"
+        },
+        {
+          "source": "docs/domain/sources/ecfr/2026-10-15/42-cfr-435.558.xml:6 \"a period of 30 calendar days beginning on the date on which such notice of noncompliance is received by the individual\"",
+          "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-15/title-42.xml?part=435&section=435.558",
+          "tier": "regulation",
+          "source_date": "not stated"
+        }
+      ],
+      "checked": "2026-10-17"
+    },
+    {
+      "row": "notice-presumed-received-after-5-days",
+      "setting": "any notice of noncompliance under 42 CFR 435.558",
+      "value": "Is considered to be received 5 days after the date on the notice, unless the applicant or beneficiary shows that he or she did not receive the notice within the 5-day period.",
+      "counts_from": "the date on the notice",
+      "status": "known",
+      "note": "The paragraph does not say whether the 5 days are calendar days; that is an open question. Dates of the sources as for notice-response-period. Whether a person showed they did not receive the notice within the 5-day period is the agency's determination.",
+      "citation": "42 CFR 435.558(c)(4); 91 FR 39031",
+      "sources": [
+        {
+          "source": "docs/domain/sources/federal-register/C1-2026-11094.xml:174 \"Is considered to be received 5 days after the date on the notice\"",
+          "url": "https://www.federalregister.gov/documents/full_text/xml/2026/06/29/C1-2026-11094.xml",
+          "tier": "regulation",
+          "source_date": "2026-06-26"
+        },
+        {
+          "source": "docs/domain/sources/ecfr/2026-10-15/42-cfr-435.558.xml:32 \"Is considered to be received 5 days after the date on the notice\"",
+          "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-15/title-42.xml?part=435&section=435.558",
+          "tier": "regulation",
+          "source_date": "not stated"
+        }
+      ],
+      "checked": "2026-10-17"
+    },
+    {
+      "row": "advance-notice-at-least-10-days",
+      "setting": "before the date of action",
+      "value": "The State or local agency must send a notice at least 10 days before the date of action, except as permitted under §§ 431.213 and 431.214",
+      "counts_from": "the date of action, counted backward",
+      "status": "known",
+      "note": "The exceptions are 42 CFR 431.213 and 431.214. Of those, only 431.213(d) is stored, in the June 3 printing, and it was not read for this fact; 431.214, and 431.201, which defines the date of action, are not stored. The section does not say whether the 10 days are calendar days; that is an open question. The eCFR XML prints no date of its own; the eCFR date is in the citation. Whether an exception applies to a person is the agency's determination.",
+      "citation": "42 CFR 431.211; eCFR 2026-10-15",
+      "sources": [
+        {
+          "source": "docs/domain/sources/ecfr/2026-10-15/42-cfr-431.211.xml:4 \"The State or local agency must send a notice at least 10 days before the date of action, except as permitted under\"",
+          "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-15/title-42.xml?part=431&section=431.211",
+          "tier": "regulation",
+          "source_date": "not stated"
+        }
+      ],
+      "checked": "2026-10-19"
+    },
+    {
+      "row": "hearing-request-window-at-most-90-days",
+      "setting": "on appeal, asking for a fair hearing",
+      "value": "not to exceed 90 days from the date that notice of action is mailed",
+      "counts_from": "the date that notice of action is mailed",
+      "status": "known",
+      "note": "A ceiling, not a default: the agency must allow a reasonable time, and the State sets its length within the 90 days, as the row's State election says. The paragraph does not define a reasonable time or say whether the 90 days are calendar days; that is an open question. The 90 days count from mailing, where notice-response-period's 30 days count from receipt. The source line ends \"to request a hearings.\" with that typo. The eCFR XML prints no date of its own; the eCFR date is in the citation. Whether a person asked in time is the agency's determination.",
+      "citation": "42 CFR 431.221(d); eCFR 2026-10-15",
+      "sources": [
+        {
+          "source": "docs/domain/sources/ecfr/2026-10-15/42-cfr-431.221.xml:10 \"not to exceed 90 days from the date that notice of action is mailed\"",
+          "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-15/title-42.xml?part=431&section=431.221",
+          "tier": "regulation",
+          "source_date": "not stated"
+        }
+      ],
+      "checked": "2026-10-17"
+    }
+  ]
+}

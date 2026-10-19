@@ -47,7 +47,10 @@ sourced only to preamble is marked *(preamble)*; a claim sourced outside the IFC
 
 ---
 
-## 1. The dates, and why the cliff is softer than it looks
+## 1. The dates, and when the first check can come
+
+(Corrected 2026-10-19: said "The dates, and why the cliff is softer than it looks"; L2-4; read in
+docs/domain/sources/cms/smd-26-001.txt:318 to :326.)
 
 | Date | What happens | Cite |
 |---|---|---|
@@ -57,7 +60,13 @@ sourced only to preamble is marked *(preamble)*; a claim sourced outside the IFC
 | **January 1, 2028** | **Documentation hardening.** States must require documentation whenever reasonably available | § 435.557(b)(2)(ii) |
 | **December 31, 2028** | Last possible expiry of a good-faith-effort exemption. **Cannot be renewed beyond it** | § 435.560(c) |
 
-### The three provisions that push most people later than January 2027
+### The three provisions that can push people later than January 2027
+
+In a State that implements on January 1, 2027 and takes SMD 26-001's first path, many existing enrollees'
+renewals are rescheduled promptly and initiated from January 1, 2027, in practice January 4, 2027, as the
+paragraph on who is exposed in early 2027 says below. (Corrected 2026-10-18: said "The three provisions that push
+most people later than January 2027"; L2-4; read in docs/domain/sources/cms/smd-26-001.txt:318 to :326 and
+docs/domain/cms-2454-ifc/2026-11094.xml:3998.)
 
 **Pending applications are grandfathered.** § 435.915. An application filed before the implementation date
 is adjudicated under the rules in effect on the filing date. CMS's own worked example, quoted from the
@@ -78,9 +87,25 @@ to run a renewal, so an end-date rule would have forced them to ask about commun
 their own implementation date. **Consequence:** someone whose renewal is due January or February 2027 may
 not face community engagement until mid-2027.
 
-**So the population actually exposed in early 2027 is narrow:** new applicants — assessed on the months
-immediately preceding application, so December 2026 for a January filing — and anyone in an
-early-implementing State.
+**Who can be checked in early 2027.** The requirement is for applicable individuals (§ 435.559(a)) in a State
+where it is in effect, that is, a State not granted an exemption under § 435.560. Among
+them: new applicants, assessed on the months immediately preceding application, so December 2026 for a
+January filing; in an early-implementing State, applicants who apply on or after its implementation date, and
+enrollees at their first renewal initiated on or after that date (§ 435.559(b) and (c)); and, in a
+State that implements on January 1, 2027, enrollees whose renewal is initiated in early 2027, under either of
+SMD 26-001's paths. Under the second path that is the renewal already scheduled. Under the first path it also
+takes in adults already in a 12-month eligibility period in the adult expansion group, SMD 26-001's name for
+the people subject to 6-month renewals under the state plan or a demonstration, whose already-set 2027
+renewals the State moves earlier. The earliest of those can begin on January 1, 2027, in practice January 4,
+2027, and SMD 26-001 expects a State on that path to initiate a large volume of renewals as early as January
+1, 2027.
+(Corrected 2026-10-17: said "and anyone in an early-implementing State."; L2-4; read in
+docs/domain/sources/cms/smd-26-001.txt:258 and :303.)
+(Corrected 2026-10-19: said "**So the population actually exposed in early 2027 is narrow:**" and "anyone in an
+early-implementing State,"; L2-4; read in docs/domain/sources/cms/smd-26-001.txt:318 to :326 and
+docs/domain/cms-2454-ifc/2026-11094.xml:3996 and :3998.)
+(Corrected 2026-10-19: said "The requirement is for applicable individuals (§ 435.559(a))."; read in
+docs/domain/cms-2454-ifc/2026-11094.xml:3996, :3997 and :3998.)
 
 ### Documentation hardening is per-State, not national
 
@@ -477,7 +502,9 @@ prior month.**
 
 **§ 435.557(a)** defines the reliable information available to the State. **§ 435.557(b)** imposes the duty to
 use it **before requesting anything from the individual**. Cite the pair — the June 29, 2026 correction
-notice (91 FR 39028) republished § 435.557 and shifted paragraph designations inside it.
+notice (91 FR 39028) republished §§ 435.557 and 435.558 in full, and (a) and (b) of § 435.557 read word for word
+as printed June 3. (Corrected 2026-10-17: said "republished § 435.557 and shifted paragraph designations inside
+it"; L1-5.)
 
 The information set includes payroll data, **adjudicated claims from the preceding 12 months — paid, pended,
 or denied** — and **encounter data**. States must also require SNAP and TANF information, incarceration data
@@ -531,42 +558,32 @@ to provide reasonable modifications under § 504, § 1557, and the ADA.
 
 ## 9. If the State cannot verify — § 435.558
 
-This is the section that decides whether someone keeps coverage, and the timing is more generous than it
-first appears.
+Now rows notice-response-period, showing-of-compliance-or-exception, showing-requirement-does-not-apply,
+coverage-continues-during-noncompliance, renewal-notice-with-renewal-form, notice-sent-with-renewal-form,
+renewal-notice-after-renewal-form-period, notice-sent-after-renewal-form-period,
+renewal-form-and-notice-give-two-periods, no-noncompliance-notice-when-other-factors-unanswered,
+notice-says-how-to-show-compliance,
+notice-says-how-to-show-not-applicable, notice-states-the-deadline, notice-says-how-to-submit,
+notice-says-consequences-including-premium-tax-credit, notice-says-how-to-reapply,
+notice-gives-hardship-information-where-elected, notice-follows-section-435-905b,
+electronic-notice-follows-section-435-918b, notice-presumed-received-after-5-days,
+consider-all-other-bases-before-denial, deny-application-with-notice-and-hearing-rights,
+disenroll-with-advance-notice-and-hearing-rights, no-restriction-on-reapplying, reconsideration-after-disenrollment,
+advance-notice-at-least-10-days, hearing-required-on-request, must-reinstate-after-action-without-advance-notice in
+docs/domain/community-engagement-extract.md (2026-10-17).
 
-**The clock.** § 435.558(a)(2) gives **30 calendar days** beginning on the date the notice is **received**.
-§ 435.558(c)(4) deems the notice **received 5 days after the date on the notice**, unless the person shows
-they did not receive it in that window — CMS names hospitalization, mail on hold, and being away from home as
-examples. **So roughly 35 days from the notice date.** This mirrors §§ 431.231(c)(2) and 431.232(b).
+**The clock.** The timing is more generous than it first appears. The 30 days begin on the date of receipt, which is
+presumed 5 days after the date on the notice, **so roughly 35 days from the notice date**. CMS names
+hospitalization, mail on hold, and being away from home as examples of a notice not received within the 5 days, and
+calls the 5 days consistent with § 431.232(b), for an adverse local evidentiary hearing decision, as well as
+§ 431.231(c)(2) (preamble, 91 FR 33413).
 
-**Coverage continues.** § 435.558(a)(3): the State must **continue to furnish Medicaid** until the individual
-is determined ineligible.
-
-**Two ways to respond, not one.** § 435.558(c)(1): the person may show **either** that they complied or were
-deemed to have complied (§§ 435.552, 435.553, or 435.555) **or** that the requirement **does not apply to
-them** — because they are not an applicable individual under § 435.551, including by meeting a § 435.554
-category.
-
-**What the notice must contain** — § 435.558(c)(1)(i)–(vii): **which months** are being assessed under
-§ 435.556(a); how to show compliance; how to show the requirement does not apply; the deadline; how to submit
-through any § 435.907(a) modality; the consequences for Medicaid **and for APTC/PTC** on an Exchange; and how
-to reapply.
-
-**Before denial, every other basis must be considered.** § 435.558(d)(1).
-
-**Disenrollment timing.** No later than the end of the month following the month the 30-day period ends.
-
-**A 90-day reconsideration period, without a new application.** § 435.558(f), consistent with
-§ 435.916(a)(3)(iii): for MAGI enrollees disenrolled for failure to submit, information returned during the
-reconsideration period is **treated as an application**, and the return date is the application date.
-Optional for non-MAGI enrollees, so the 90 days is a **MAGI floor, not universal**.
-
-**No restriction on reapplying.** And determinations are appealable — § 431.220(a)(1).
-
-> **One carve-out that undercuts the "coverage continues" reassurance.** Under the § 435.558(b) "unable to
-> verify" **Option 2**, if the renewal form is not returned **and** other eligibility factors are also
-> unverified, the § 435.558(a) protections do not apply. Which option a State picks is documented in its
-> State plan and changes whether the person gets one window or two.
+**A 90-day reconsideration period, without a new application.** § 435.558(f) is consistent with
+§ 435.916(a)(3)(iii), which gives 90 days after termination, or a longer period elected by the State, without
+requiring a new application (91 FR 33481, in the June 3 printing's reprint of § 435.916). For MAGI enrollees
+disenrolled for failure to submit, information returned during the reconsideration period is **treated as an
+application**, and the return date is the application date. Optional for non-MAGI enrollees (preamble,
+91 FR 33414), so the 90 days is a **MAGI floor, not universal**.
 
 ---
 
@@ -707,12 +724,37 @@ take three things from this document into copy:
 
 1. **Most people will not be asked for anything** — 56% verified ex parte, and States must exhaust their own
    records before asking.
-2. **Existing enrollees are not assessed on January 1, 2027** — they are assessed at their first renewal
-   *initiated* on or after implementation, which for many is mid-2027.
-3. **A person holding a notice has about 35 days, keeps their coverage while they respond, can answer either
-   "here is my compliance" or "this doesn't apply to me", and gets a 90-day reconsideration window if they
-   miss the deadline.**
+2. **Existing enrollees are assessed at their first renewal *initiated* on or after their State's
+   implementation date**, and a State may implement before January 1, 2027. In a State that implements on
+   January 1, 2027, take adults already in a 12-month eligibility period in the adult expansion group on that
+   date whose annual renewals were already scheduled for 2027. By the adult expansion group SMD 26-001 means
+   the people subject to 6-month renewals under the state plan or a demonstration, which leaves out certain
+   American Indians and Alaska Natives. (Added 2026-10-19; read in docs/domain/sources/cms/smd-26-001.txt:156
+   and :133 to :143.) Where the State takes SMD 26-001's first path
+   and moves those renewals earlier, the earliest can begin on January 1, 2027, in practice January 4, 2027;
+   where it keeps the dates already set, it is the renewal already scheduled. (Corrected 2026-10-17: said
+   "**Existing enrollees are not assessed on January 1, 2027** — they are assessed at their first renewal
+   *initiated* on or after implementation, which for many is mid-2027."; L2-4; read in
+   docs/domain/cms-2454-ifc/2026-11094.xml:3997 and :3998 and docs/domain/sources/cms/smd-26-001.txt:258 and
+   :303.)
+3. **A person holding a notice has about 35 days and can answer either "here is my compliance" or "this
+   doesn't apply to me".** A person already enrolled keeps their Medicaid until they are determined ineligible
+   (coverage-continues-during-noncompliance); an applicant who gets the notice at application has no coverage
+   yet to keep. An enrollee whose eligibility is based on MAGI, disenrolled for not sending what the notice asked
+   for, must have their eligibility reconsidered if they send it during the reconsideration period, which
+   § 435.916(a)(3)(iii) sets at 90 days after the date of termination, or a longer period elected by the State
+   (reconsideration-after-disenrollment). § 435.558(f) does not reach an applicant who is denied; they may
+   reapply, and the State may not restrict that because of the denial (no-restriction-on-reapplying).
+   (Corrected 2026-10-18: said "**A person holding a notice has about 35 days, keeps their coverage while they
+   respond, can answer either "here is my compliance" or "this doesn't apply to me", and gets a 90-day
+   reconsideration window if they miss the deadline.**"; read in
+   docs/domain/sources/federal-register/C1-2026-11094.xml:139, :146 and :196 and
+   docs/domain/cms-2454-ifc/2026-11094.xml:4252.)
 
-And one caution that runs the other way: **a self-reported "no, I'm not meeting it" can be accepted at face
-value and support a denial.** Never invite a casual negative self-report. Say what the answer is used for, and
+And one caution that runs the other way: **in a State that takes the option, an applicant's own declaration on
+the application that they did not meet the requirement during the review period at application can be accepted
+without further verification and treated as verified noncompliance** (accept-applicant-declaration-of-noncompliance).
+It is a State option, at application only. Whether a notice of noncompliance still follows is an open question in
+docs/domain/open-questions.md. (Corrected 2026-10-18: said "**a self-reported "no, I'm not meeting it" can be
+accepted at face value and support a denial.**"; read in docs/domain/cms-2454-ifc/2026-11094.xml:2027.) Never invite a casual negative self-report. Say what the answer is used for, and
 surface the exception, exclusion, and ex parte paths **before** the question.

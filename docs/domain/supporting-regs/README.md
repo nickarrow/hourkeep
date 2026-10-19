@@ -14,7 +14,9 @@ household" got into the steering doc.
 > **Caution on §§ 435.907, 435.911(c), 435.912, 435.916.** HR1 § 71102 suspended the 2024 Eligibility &
 > Enrollment rule's amendments to these sections, and CMS-2454-IFC **restores their pre-2024 text through
 > October 1, 2034.** The IFC prints them in full. Where the IFC's printed text and eCFR disagree, **the IFC
-> governs.**
+> governs**, except for §§ 435.557 and 435.558, which the June 29 correction (FR Doc. C1-2026-11094,
+> 91 FR 39028 to 39031) republished in full: for those two, the correction governs. (Corrected 2026-10-17: said
+> "Where the IFC's printed text and eCFR disagree, **the IFC governs.**"; research L1, section 3.)
 
 ---
 

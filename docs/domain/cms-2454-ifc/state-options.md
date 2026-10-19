@@ -119,9 +119,15 @@ export interface PolicyProfile {
   documentationRequiredFrom: string;
   /** § 435.560. Non-null means the State is NOT enforcing yet. Expires no later than 2028-12-31. */
   goodFaithEffortExemptionThrough: string | null;
-  /** § 435.558(a)(2), 91 FR 33476. 30 calendar days from RECEIPT, not from the notice date. */
+  /**
+   * § 435.558(a)(2), 91 FR 39030 (Corrected 2026-10-17: said "91 FR 33476"; L1-6.). 30 calendar days
+   * from RECEIPT, not from the notice date.
+   */
   noncomplianceResponseDays: number;
-  /** § 435.558(c)(4), 91 FR 33477. "considered to be received 5 days after the date on the notice". */
+  /**
+   * § 435.558(c)(4), 91 FR 39031 (Corrected 2026-10-17: said "91 FR 33477"; L1-6.). "considered to be
+   * received 5 days after the date on the notice".
+   */
   noticeReceiptPresumptionDays: number;
   /** § 435.916(a)(3)(iii). 90 is a FEDERAL FLOOR for MAGI; the only election is to elect longer. */
   reconsiderationDays: number;
@@ -150,9 +156,21 @@ export interface PolicyProfile {
   submissionModalities: Array<"online" | "phone" | "mail" | "in-person" | "fax" | "electronic">;
 
   // --- Added on validation (§ 435.558(b), § 435.557) ---
-  /** § 435.558(b)(2). Option 1 = notice concurrent with renewal form. Option 2 = notice after it. */
+  /**
+   * § 435.558(b)(2). Option 1 = notice concurrent with renewal form. Option 2 = notice after it.
+   * The rule sets no default: the State chooses and records its choice in its State plan, so the
+   * federal profile below says `no default`, a value this type does not hold. (Added 2026-10-17;
+   * read in docs/domain/cms-2454-ifc/2026-11094.xml:2029.)
+   */
   unableToVerifyAtRenewal: "option-1-concurrent" | "option-2-sequential";
-  /** § 435.558(b)(3). Same binary for more-frequent verification. */
+  /**
+   * § 435.558(b)(3). Two options for more-frequent verification, "similar to" those at renewal
+   * (91 FR 33412), with no renewal form: unable to verify after a data check alone, or after a data
+   * check and a request for information that is not returned or not sufficient. The enum names come
+   * from renewal and do not describe these. (Corrected 2026-10-19: said "Same binary for
+   * more-frequent verification."; read in docs/domain/cms-2454-ifc/2026-11094.xml:2068 and
+   * docs/domain/sources/federal-register/C1-2026-11094.xml:153 to :155.)
+   */
   unableToVerifyAtVerification: "option-1-concurrent" | "option-2-sequential" | null;
   /** § 435.557(g)(1). CMS ENCOURAGES States not to use this. */
   skipFurtherInfoOnAttestedException: boolean;
@@ -234,7 +252,7 @@ The least-restrictive statutory floor. Safe to show any user, and honest as long
 | `renewalIntervalMonths` | 6 | **SSA § 1902(e)(14)(L), NOT this rule.** See the next row |
 | `renewalIntervalMonthsSource` | *(the caveat, in full)* | The IFC amends § 435.916 to say MAGI renewals happen every 12 months and no more often, while its own preamble says the adult group is subject to 6-month renewals from January 1, 2027 under § 1902(e)(14)(L) — a different section of PL 119-21 that this rule does not implement, and which does not reach American Indians or most § 1115 enrollees. No reconciling rulemaking has issued. 6 is treated as operative and flagged as sourced elsewhere |
 | `submissionModalities` | `["online","phone","mail","in-person","fax","electronic"]` | § 435.907(a). **Fax is real** — Missouri accepts it |
-| `unableToVerifyAtRenewal` | `option-2-sequential` | § 435.558(b)(2). Assumed because it is more protective — two windows rather than one |
+| `unableToVerifyAtRenewal` | `no default` | § 435.558(b)(2). The rule sets no default: the State chooses and records its choice in its State plan. Nebraska sends the notice with the renewal form, and Colorado's draft rule appears to (inferred) (research L4-5, L5-3). Which reading applies where a State plan records nothing is open question Q1 in `docs/domain/open-questions.md`. (Corrected 2026-10-17: said "`option-2-sequential`" and "Assumed because it is more protective — two windows rather than one"; L4-5, L5-3; read in docs/domain/cms-2454-ifc/2026-11094.xml:2029.) |
 | `unableToVerifyAtVerification` | null | No more-frequent verification assumed |
 | `skipFurtherInfoOnAttestedException` | false | § 435.557(g)(1). CMS **encourages States not to use it** |
 | `frailtyReverificationMonths` | 12 | § 435.557(f)(1)(iii) minimum |
