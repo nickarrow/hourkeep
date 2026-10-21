@@ -6,7 +6,7 @@ from __future__ import annotations
 import subprocess
 import unittest
 
-from corpus_fixture import CorpusTestCase, EXTRACT, extract_with
+from corpus_fixture import Corpus, CorpusTestCase, EXTRACT, TOPIC, extract_with, run_checker, topic_with
 
 
 class FieldValuesTest(CorpusTestCase):
@@ -125,7 +125,12 @@ class CitationTest(CorpusTestCase):
     def cite(self, citation: str, tier: str = "regulation") -> subprocess.CompletedProcess:
         text = extract_with(self.CITATION, "- Citation: " + citation + "\n" if citation else "- Citation:\n")
         text = text.replace(self.TIER, "- Tier: " + tier + "\n- State election: no", 1)
-        return self.check_extract(text)
+        corpus = Corpus()
+        corpus.files[EXTRACT] = text
+        # The row's rule item gives the row's Citation exactly, so it follows the change.
+        corpus.files[TOPIC] = topic_with("[notice-response-period] 42 CFR 435.558(a)(2); 91 FR 39030",
+                                         "[notice-response-period] " + citation)
+        return run_checker(corpus)
 
     def test_an_empty_citation_fails(self):
         self.assertFails(self.cite(""), EXTRACT, 23, "Citation is empty")

@@ -169,7 +169,8 @@ CMS calls community engagement. What it relies on lives here:
   community engagement wherever a row exists. Each quotes a source stored under `docs/domain/sources/`, which
   `docs/domain/sources/MANIFEST.json` lists with its hash. State facts are in `states/`, policy questions nobody has
   answered yet are in `open-questions.md`, and the research is in `research/`.
-- `.kiro/skills/medicaid-community-engagement/` restates the rows for agents, and the row wins wherever the two differ.
+- `.kiro/skills/medicaid-community-engagement/` restates the rows for agents. Its `SKILL.md` lists the topics, and
+  `references/` holds one file of rule items per topic. The row wins wherever the two differ.
 - `scripts/check-corpus.py`, with the package `scripts/corpus_check/`, checks the corpus, and `tests/` holds its tests.
 
 After any change to `docs/domain/`, the skill, the checker or its tests, run both checks from the repository root:

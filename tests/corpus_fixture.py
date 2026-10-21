@@ -102,12 +102,9 @@ description: Use when a person asks about Medicaid work requirements, letters, d
 
 # Medicaid community engagement
 
-## Rules
+## Topics
 
-### Fair hearings
-
-- You can ask for a fair hearing within the time the state allows, never more than 90 days.
-  [hearing-request-period] 42 CFR 431.221(d); eCFR 2026-10-14
+- [Fair hearings](references/fair-hearings.md): asking for a fair hearing. Read it before answering a question on one.
 
 ## Precedence
 
@@ -116,6 +113,20 @@ The regulation wins over a state agency page.
 ## Watch list
 
 - 2026-12-01 board meeting: [hearing-request-period]
+"""
+
+# The skill's one topic file, which SKILL_TEXT links from ## Topics, with one rule item for each row of the extract.
+TOPIC = ".kiro/skills/medicaid-community-engagement/references/fair-hearings.md"
+TOPIC_TEXT = """# Fair hearings
+
+The row in the extract wins wherever the two differ.
+
+## Asking for a hearing
+
+- You can ask for a fair hearing within the time the state allows, never more than 90 days.
+  [hearing-request-period] 42 CFR 431.221(d); eCFR 2026-10-14
+- You have 30 calendar days to respond to a notice of noncompliance.
+  [notice-response-period] 42 CFR 435.558(a)(2); 91 FR 39030
 """
 
 ANALYSIS_TEXT = "# Rule extract\n\nAn analysis file. Rows must not cite it.\n"
@@ -233,6 +244,7 @@ class Corpus:
             ECFR_SOURCE: ECFR_TEXT,
             OLDER_SOURCE: OLDER_TEXT,
             SKILL: SKILL_TEXT,
+            TOPIC: TOPIC_TEXT,
             ANALYSIS: ANALYSIS_TEXT,
             "README.md": README_TEXT,
             ".gitattributes": GITATTRIBUTES_TEXT,
@@ -397,8 +409,18 @@ def skill_with(old: str, new: str) -> str:
     return SKILL_TEXT.replace(old, new, 1)
 
 
+def topic_with(old: str, new: str) -> str:
+    """The valid topic file with its first `old` replaced by `new`. Fails loudly if `old` is not there."""
+    if old not in TOPIC_TEXT:
+        raise AssertionError("fixture text not found: " + repr(old))
+    return TOPIC_TEXT.replace(old, new, 1)
+
+
 RULE_ITEM = ("- You can ask for a fair hearing within the time the state allows, never more than 90 days.\n"
              "  [hearing-request-period] 42 CFR 431.221(d); eCFR 2026-10-14\n")
+# The topic file's second rule item, lines 9 and 10, so each row of the valid extract has its one rule item.
+NOTICE_ITEM = ("- You have 30 calendar days to respond to a notice of noncompliance.\n"
+               "  [notice-response-period] 42 CFR 435.558(a)(2); 91 FR 39030\n")
 
 
 class ManifestTestCase(CorpusTestCase):

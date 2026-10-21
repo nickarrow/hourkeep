@@ -50,10 +50,11 @@ citation, its sources, the date it was checked, and the date of each source, so 
 the rule shows it. The tracker in `state-options.md` becomes these files. They start with the federal default and
 Colorado.
 
-A HourKeep domain skill, `.kiro/skills/medicaid-community-engagement/SKILL.md`, carries the operative rules in short
-form with pointers into the extract: about 40 to 60 rows, the Computed, Conditional and Deferred labels applied to
-HourKeep's numbers, CMS's vocabulary, a checklist of errors this corpus has already made, and a dated watch list. The
-generic `hhs-benefits` skill stays.
+A HourKeep domain skill, `.kiro/skills/medicaid-community-engagement/`, carries the operative rules in short form with
+pointers into the extract. It is a main file, `SKILL.md`, plus one file per topic (decision record 0004), and holds a
+rule item for each row. It also carries the Computed, Conditional and Deferred labels applied to HourKeep's numbers,
+CMS's vocabulary, a checklist of errors this corpus has already made, and a dated watch list. The generic
+`hhs-benefits` skill stays.
 
 Four analysis files are retired and two move. `rule-extract.md` goes once every section in it is a pointer.
 `what-matters-most.md` goes once its priorities and its error checklist are in the extract and the skill.
@@ -95,7 +96,8 @@ settles it and writes it here.
 | `docs/domain/open-questions.md` | Policy questions only CMS, a state or a policy person can answer, each with who can answer it |
 | `docs/domain/research/` | The research records |
 | `docs/domain/prior-art/` | The Code for America summaries, from increment 3 |
-| `.kiro/skills/medicaid-community-engagement/SKILL.md` | The domain skill |
+| `.kiro/skills/medicaid-community-engagement/SKILL.md` | The domain skill's main file: how to use it, its topic files, precedence and the watch list |
+| `.kiro/skills/medicaid-community-engagement/references/` | One file of rule items for each topic of the corpus |
 | `scripts/check-corpus.py` | The checker's entry point: its command line, output and exit codes |
 | `scripts/corpus_check/` | The checker, one module for each part of the corpus it reads, with the constants, file listing and report they share |
 | `tests/test_*.py` | The checker's tests, using Python's built-in `unittest`, written before the checker, one file for each part of the corpus |
@@ -115,10 +117,13 @@ number as the publisher writes it, and carries the version or date where the pub
 `cms/smd-26-001.pdf`. A web page's name ends with the date it was fetched. A PDF's text extraction sits beside the PDF
 under the same name, with `.txt` in place of `.pdf`.
 
-In `open-questions.md` each question is a `###` heading in plain words, followed by a list: `- Who can answer:` CMS,
-Colorado's HCPF or another Colorado office, or a policy person; `- Raised:` the date and the rows that depend on the
-answer; and `- Source:` once for each source the question rests on, one for each side where two conflict, in the form
-of a row's Source. A `- Note:` may come last, for context that is neither a source nor who can answer.
+In `open-questions.md` each question is a `###` heading in plain words, followed by a list. It starts with
+`- Why it is open:` and one or more of `the sources conflict`, `the sources are silent`, `it turns on a choice the state
+has not published` and `the answer may be in a provision the corpus has not stored`, separated by semicolons, then one
+or two plain sentences saying which sources and how. Then come `- Who can answer:` CMS, Colorado's HCPF or another
+Colorado office, or a policy person; `- Raised:` the date and the rows that depend on the answer; and `- Source:` once
+for each source the question rests on, one for each side where two conflict, in the form of a row's Source. A
+`- Note:` may come last, for context that is neither a source nor who can answer.
 
 ### A rule row
 
@@ -338,32 +343,45 @@ its `note`. A fact's value uses the source's words, so a period counts from the 
 
 ### The skill
 
-The skill restates rows briefly and holds no rule of its own. Each list item in it that states a rule ends with the
-row's identifier in square brackets and the row's citation, and every number before the identifier appears in that
-row's Rule.
-It stays under 500 lines and about 5,000 tokens, as the [Agent Skills specification](https://agentskills.io/specification)
-recommends. Its `name` matches its folder, and its description uses the words a person would use about the work, such
-as Medicaid work requirements, letters, deadlines and exemptions, because the description decides whether the skill
-loads at all.
+The skill restates rows briefly and holds no rule of its own. It is a main file, `SKILL.md`, and one topic file for
+each topic of the corpus in `references/`, as decision record 0004 sets out, and it holds a rule item for each row.
+Its `name` matches its folder, and its description uses the words a person would use about the work, such as Medicaid
+work requirements, letters, deadlines and exemptions, because the description decides whether the skill loads at all.
 
-Its frontmatter holds `name` and `description` between `---` lines, as the other skills here do. Rule items sit
-under a `## Rules` heading, with a `###` heading for each topic, and every list item there is a rule item, so one
-without an identifier fails. The headings `## Rules`, `## Precedence` and `## Watch list` must each appear, written
-exactly so, `## Rules` must hold at least one rule item, and each rule item sits under a `###` heading and has words
-before its identifier. A misspelled heading would otherwise switch the rule checks off without a sound. A line inside
-a fenced code block is neither a heading nor a rule item, so a fence cannot end `## Rules` or stand in for it. Its other
-sections in this increment are `## Precedence`, which says which source wins when two disagree, and `## Watch list`,
-each item a date or an event and the rows it could change. A rule item may continue on lines indented by exactly two
-spaces, and is read with its lines joined by single spaces. It ends with the
-identifier in square brackets, a space, and the row's Citation exactly as the row gives it:
+`SKILL.md` has frontmatter holding `name` and `description` between `---` lines, as the other skills here do. The
+headings `## Topics`, `## Precedence` and `## Watch list` each appear exactly once, written exactly so, because a
+misspelled heading would otherwise switch a check off without a sound. `## Topics` holds one list item per topic file:
+a markdown link `[<title>](references/<name>.md)`, then what the file covers, and that a session reads it before
+answering a question it covers. A `## Topics` that links no topic file fails. `## Precedence` says which source wins
+when two disagree, and each item of `## Watch list` is a date or an event and the rows it could change. The list items
+in `SKILL.md` are not rule items and are left to review. `SKILL.md` stays under 500 lines, as the
+[Agent Skills specification](https://agentskills.io/specification) recommends, and, as a target the checker does not
+count, about 1,500 words.
+
+A topic file is `references/<name>.md`, its name lowercase words joined by hyphens, with no frontmatter. Its first line
+is `# <title>`. Every `.md` file directly in `references/` is linked from `## Topics`, and every link there names a
+file that exists. Prose may stand under the title or at the start of a group, and holds no rule; it is left to review.
+Rule items sit under `##` group headings named in plain words for what the group covers. Every list item in a topic
+file is a rule item and sits under a `##` heading, so a list item with no identifier, or one above the first `##`
+heading, fails. A rule item names any choice of the state it depends on by what the choice does, never "this option",
+"that option" or "the other option"; that is left to review. A topic file stays under 500 lines. A topic file holds
+at least one rule item, and each row in the extract has exactly one rule item across the topic files.
+
+A rule item has words before its identifier. It may continue on lines indented by exactly two spaces, and is read with
+its lines joined by single spaces. It ends with the row's identifier in square brackets, a space, and the row's
+Citation exactly as the row gives it:
 `- ... beginning on the day they receive it. [notice-response-period] 42 CFR 435.558(a)(2); 91 FR 39030`. A number
 is a run of digits, with any comma or decimal point inside it, so `30`, `8.8` and `1,000` are numbers. Each number in
 a rule item before its identifier must equal a number in the row's Rule, whole against whole, so a `3` does not match
 inside a `30`. A number in parentheses that follows a letter, a digit or a closing parenthesis with no space between,
 as in `(c)(4)` or `1902(e)(14)`, is part of a citation and counts on neither side, while one after a space, as in
-`sixty (60)`, still counts. Anywhere in the skill, frontmatter included, a word in square brackets that has the shape
-of an identifier and is not followed by `(` must name a row, so `[x]` fails too. A skill of more than 500 lines
-fails. Numbers written as words, and items outside `## Rules`, are left to review.
+`sixty (60)`, still counts. Anywhere in `SKILL.md` or a topic file, frontmatter and fences included, a word in square
+brackets that has the shape of an identifier and is not followed by `(` must name a row, so `[x]` fails too. A line
+inside a fenced code block is neither a heading nor a rule item, so a fence cannot stand in for a heading. Numbers
+written as words are left to review.
+
+If `SKILL.md` is absent, the skill is absent: the checker says so, checks the rest, and does not check `references/`
+or whether each row has a rule item. The skill items it counts are the rule items in all topic files.
 
 ### Pointers and dated corrections
 
@@ -395,8 +413,9 @@ the state facts files, the manifest and the skill, skips anything git ignores, a
   checker names: the extract, the state facts, the open questions, the analysis files still in use, and
   `supporting-regs/README.md`
 - a state fact lacks a key or names a row that does not exist
-- the skill passes 500 lines, names a row that does not exist, gives it a different citation, or states a number its
-  row's Rule does not
+- the skill's main file or a topic file passes 500 lines, a topic file is missing, not linked or holds no rule item,
+  a row has no rule item or more than one, or a rule item names a row that does not exist, gives it a different
+  citation, or states a number its row's Rule does not
 
 It prints how many rows it checked and how many of them say `Verified: no`, and how many sources, state facts, facts
 marked `not published`, warnings and skill items it matched. If the skill is absent it says so and checks the rest,

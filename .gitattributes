@@ -30,3 +30,4 @@ docs/domain/community-engagement-extract.md text eol=lf
 docs/domain/open-questions.md text eol=lf
 docs/domain/states/*.json text eol=lf
 .kiro/skills/medicaid-community-engagement/SKILL.md text eol=lf
+.kiro/skills/medicaid-community-engagement/references/*.md text eol=lf

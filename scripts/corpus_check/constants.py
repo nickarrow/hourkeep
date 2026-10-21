@@ -11,7 +11,7 @@ MANIFEST = "docs/domain/sources/MANIFEST.json"
 # The state files the corpus requires. Every other STATES_FOLDER/*.json git lists is a state file too, and is read.
 STATE_FILES = ("docs/domain/states/federal.json", "docs/domain/states/co.json")
 STATES_FOLDER = "docs/domain/states/"
-SKILL = ".kiro/skills/medicaid-community-engagement/SKILL.md"
+SKILL = ".kiro/skills/medicaid-community-engagement/SKILL.md"  # the skill's main file; its topic files are below
 
 # A row's fields: the required ones in the order they must come, then the optional ones, which come last.
 REQUIRED_FIELDS = ("Rule", "Citation", "Source", "Tier", "State election", "Verified", "Error direction", "Recheck")
@@ -109,12 +109,19 @@ NOT_STATED = "not stated"
 WARNING_TIERS = ("state agency page", "secondary")
 RULE_DATE = "2026-06-03"
 
-# The skill. Every list item under RULES_HEADING is a rule item and ends with `[identifier] citation`; a number is a
-# run of digits with any comma or decimal point inside; anywhere in the skill, a bracketed word shaped like an
-# identifier and not followed by `(` must name a row.
-SKILL_MAX_LINES = 500
-RULES_HEADING = "## Rules"
-SKILL_HEADINGS = (RULES_HEADING, "## Precedence", "## Watch list")  # each must appear, written exactly so
+# The skill: its main file, SKILL, and a topic file for each topic, REFERENCES/<name>.md, each linked from
+# TOPICS_HEADING in SKILL by a list item that starts with TOPIC_LINK. Every list item in a topic file is a rule item,
+# sits under a ## heading, and ends with `[identifier] citation`; a number is a run of digits with any comma or
+# decimal point inside; anywhere in the skill, a bracketed word shaped like an identifier and not followed by `(` must
+# name a row.
+SKILL_FOLDER = ".kiro/skills/medicaid-community-engagement/"
+REFERENCES = SKILL_FOLDER + "references/"
+SKILL_MAX_LINES = 500  # for the main file and for each topic file
+TOPICS_HEADING = "## Topics"
+SKILL_HEADINGS = (TOPICS_HEADING, "## Precedence", "## Watch list")  # each exactly once, written exactly so
+TOPIC_LINK = re.compile(r"^\[[^\]]+\]\((references/[^)\s]*)\)")  # its target relative to SKILL_FOLDER
+TOPIC_NAME = re.compile(r"^references/[a-z0-9]+(?:-[a-z0-9]+)*\.md$")
+TOPIC_TITLE = re.compile(r"^# \S")
 FRONTMATTER_KEY = re.compile(r"^([A-Za-z_-]+):(.*)$")
 LIST_ITEM = re.compile(r"^\s*(?:[-*+]|\d+[.)])\s+")
 SKILL_ITEM_END = re.compile(r"^(.*)\[([a-z0-9]+(?:-[a-z0-9]+)*)\] (\S.*)$")

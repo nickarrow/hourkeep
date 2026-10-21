@@ -23,11 +23,14 @@ What it reads:
   the federal file's name, which must be Federal default; each state fact's keys and values, its row, its citation as
   its first source's tier reads it, and each of its sources, checked as a row's Source is, with a url that is an
   http:// or https:// address;
-- the skill, .kiro/skills/medicaid-community-engagement/SKILL.md: its frontmatter, its length, its ## Rules,
-  ## Precedence and ## Watch list headings, at least one rule item under ## Rules, and each rule item's ### topic,
-  continuation indent, words before the identifier, identifier, citation and numbers. A line inside a fenced code
-  block is neither a heading nor a rule item; the bracketed-identifier scan still reads it. An absent skill is
-  reported on a line of its own and the rest is still checked.
+- the skill, .kiro/skills/medicaid-community-engagement/: its main file, SKILL.md, with its frontmatter, its length,
+  its ## Topics, ## Precedence and ## Watch list headings, each exactly once, and the list items under ## Topics,
+  each starting with a link to a topic file that exists, at least one of them; and each topic file, every .md file
+  directly in references/, which must be linked and hold at least one rule item: its first line, # and its title,
+  its length, and each list item, which is a rule item, its ## group heading, continuation indent, words before the
+  identifier, identifier, citation and numbers; and that each row of the extract has exactly one rule item across
+  the topic files. A line inside a fenced code block is neither a heading nor a rule item; the bracketed-identifier scan
+  still reads it. An absent SKILL.md is reported on a line of its own, references/ is not checked, and the rest is.
 
 How it lists files: `git ls-files -z --cached --others --exclude-standard`, so files git ignores are skipped. Every file
 it lists in docs/domain/ outside docs/domain/research/ must be a manifest path or one of the corpus's own files,

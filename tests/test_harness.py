@@ -8,8 +8,8 @@ import unittest
 
 from corpus_fixture import (
     ANALYSIS, CHECKER, COLORADO, COUNTS_LINE, Corpus, CorpusTestCase, ECFR_SOURCE, ECFR_TEXT, EXTRACT,
-    GITATTRIBUTES_TEXT, MANIFEST, OLDER_SOURCE, OLDER_TEXT, RULE_ITEM, SKILL, entry_line, extract_with, fact_line,
-    run_checker, skill_with,
+    GITATTRIBUTES_TEXT, MANIFEST, OLDER_SOURCE, OLDER_TEXT, RULE_ITEM, TOPIC, entry_line, extract_with, fact_line,
+    run_checker, topic_with,
 )
 
 
@@ -61,7 +61,7 @@ class BreakTest(CorpusTestCase):
         result = run_checker(Corpus())
         self.assertPasses(result)
         self.assertIn("Checked 2 rows (1 say Verified: no), 2 sources, 2 state facts (0 marked not published), "
-                      "0 warnings, 1 skill items.", result.stdout)
+                      "0 warnings, 2 skill items.", result.stdout)
 
     def test_a_row_citation_deleted(self):
         with self.subTest("the field deleted"):
@@ -112,15 +112,15 @@ class BreakTest(CorpusTestCase):
 
     def test_a_row_identifier_in_the_skill_misspelled(self):
         corpus = Corpus()
-        corpus.files[SKILL] = skill_with("[hearing-request-period] 42", "[hearing-request-periud] 42")
+        corpus.files[TOPIC] = topic_with("[hearing-request-period] 42", "[hearing-request-periud] 42")
         result = run_checker(corpus)
-        self.assertFails(result, SKILL, 13, "[hearing-request-periud] names no row")
+        self.assertFails(result, TOPIC, 8, "[hearing-request-periud] names no row")
 
     def test_a_number_changed_in_a_skill_item(self):
         corpus = Corpus()
-        corpus.files[SKILL] = skill_with("never more than 90 days.", "never more than 60 days.")
+        corpus.files[TOPIC] = topic_with("never more than 90 days.", "never more than 60 days.")
         result = run_checker(corpus)
-        self.assertFails(result, SKILL, 12, "the number 60 is not in hearing-request-period's Rule")
+        self.assertFails(result, TOPIC, 7, "the number 60 is not in hearing-request-period's Rule")
 
 
 DERIVED_SOURCE = "docs/domain/cms-2454-ifc/2026-11094.txt"
@@ -159,17 +159,17 @@ class DryRunProbeTest(CorpusTestCase):
 
     def test_n1_a_changed_number_on_a_continuation_line_fails(self):
         corpus = Corpus()
-        corpus.files[SKILL] = skill_with(RULE_ITEM, (
+        corpus.files[TOPIC] = topic_with(RULE_ITEM, (
             "- You can ask for a fair hearing within the time the state allows, never more than\n"
             "  45 days. [hearing-request-period] 42 CFR 431.221(d); eCFR 2026-10-14\n"))
         result = run_checker(corpus)
-        self.assertFails(result, SKILL, 12, "the number 45 is not in hearing-request-period's Rule")
+        self.assertFails(result, TOPIC, 7, "the number 45 is not in hearing-request-period's Rule")
 
     def test_n1_a_rule_item_with_no_identifier_fails(self):
         corpus = Corpus()
-        corpus.files[SKILL] = skill_with(RULE_ITEM, RULE_ITEM + "- You have 90 days to ask for a hearing.\n")
+        corpus.files[TOPIC] = topic_with(RULE_ITEM, RULE_ITEM + "- You have 90 days to ask for a hearing.\n")
         result = run_checker(corpus)
-        self.assertFails(result, SKILL, 14, "a rule item ends with [identifier] citation")
+        self.assertFails(result, TOPIC, 9, "a rule item ends with [identifier] citation")
 
 
 if __name__ == "__main__":

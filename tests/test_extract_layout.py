@@ -6,7 +6,8 @@ from __future__ import annotations
 import unittest
 
 from corpus_fixture import (
-    COLORADO, Corpus, CorpusTestCase, EXTRACT, EXTRACT_TEXT, extract_with, load_checker, run_checker,
+    COLORADO, Corpus, CorpusTestCase, EXTRACT, EXTRACT_TEXT, TOPIC, extract_with, load_checker, run_checker,
+    topic_with,
 )
 
 
@@ -70,6 +71,7 @@ class ExtractLayoutTest(CorpusTestCase):
         corpus = Corpus()
         corpus.files[EXTRACT] = extract_with("### notice-response-period", "### notice-response-period-30")
         corpus.states[COLORADO]["facts"][0]["row"] = "notice-response-period-30"  # the fact follows its row
+        corpus.files[TOPIC] = topic_with("[notice-response-period]", "[notice-response-period-30]")  # so does its item
         self.assertPasses(run_checker(corpus))
 
     def test_a_malformed_identifier_fails(self):
