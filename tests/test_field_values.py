@@ -55,10 +55,22 @@ class FieldValuesTest(CorpusTestCase):
             with self.subTest(value=good):
                 self.assertPasses(self.change("- Verified: 2026-10-17, read in source", "- Verified: " + good))
 
+    def test_verified_by_expert_review_with_a_name_passes(self):
+        self.assertPasses(self.change("- Verified: 2026-10-17, read in source",
+                                      "- Verified: 2026-10-17, expert review, by A. Reviewer"))
+
+    def test_expert_review_without_a_name_fails(self):
+        for bad in ("2026-10-17, expert review", "2026-10-17, expert review, by", "2026-10-17, expert review, by ",
+                    "2026-10-17, expert review by A. Reviewer", "2026-10-17, expert review, A. Reviewer"):
+            with self.subTest(value=bad):
+                result = self.change("- Verified: 2026-10-17, read in source", "- Verified: " + bad)
+                self.assertFails(result, EXTRACT, 15, "Verified")
+
     def test_a_malformed_verified_fails(self):
         for bad in ("yes", "No", "2026-10-17", "2026-10-17 read in source", "17 October 2026, read in source",
                     "2026-10-17, read it", "2026-10-17, ledger", "2026-10-17, read in source, by",
-                    "2026-10-17, read in source by A. Reviewer", "2026-13-01, read in source"):
+                    "2026-10-17, read in source by A. Reviewer", "2026-13-01, read in source",
+                    "2026-10-17, Expert review, by A. Reviewer", "2026-10-17, expert, by A. Reviewer"):
             with self.subTest(value=bad):
                 result = self.change("- Verified: 2026-10-17, read in source", "- Verified: " + bad)
                 self.assertFails(result, EXTRACT, 15, "Verified")
@@ -144,6 +156,20 @@ class CitationTest(CorpusTestCase):
     def test_tbd_or_todo_inside_a_longer_word_passes(self):
         for good in ("42 CFR 435.558(a)(2); 91 FR 39030, quoted in a Mastodon post",
                      "42 CFR 435.558(a)(2); 91 FR 39030; TODOS docket"):
+            with self.subTest(citation=good):
+                self.assertPasses(self.cite(good))
+
+    def test_a_semicolon_not_followed_by_exactly_one_space_or_with_a_space_before_it_fails(self):
+        # Review of the review pages 2026-10-21, M4: the pages split a Citation's parts on '; ', so any other
+        # separator would lose a part's link.
+        for bad in ("42 CFR 435.558(a)(2);91 FR 39030", "42 CFR 435.558(a)(2) ; 91 FR 39030",
+                    "42 CFR 435.558(a)(2);  91 FR 39030", "42 CFR 435.558(a)(2);\t91 FR 39030",
+                    "42 CFR 435.558(a)(2); 91 FR 39030;", "42 CFR 435.558(a)(2); 91 FR 39030;eCFR 2026-10-14"):
+            with self.subTest(citation=bad):
+                self.assertFails(self.cite(bad), EXTRACT, 23, "separated by '; '")
+
+    def test_parts_separated_by_a_semicolon_and_one_space_pass(self):
+        for good in ("42 CFR 435.558(a)(2); 91 FR 39030", "42 CFR 435.558(a)(2); 91 FR 39030; eCFR 2026-10-14"):
             with self.subTest(citation=good):
                 self.assertPasses(self.cite(good))
 

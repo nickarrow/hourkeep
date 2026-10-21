@@ -18,6 +18,7 @@ class Counts:
     def __init__(self) -> None:
         self.rows = 0
         self.unverified_rows = 0
+        self.person_verified_rows = 0
         self.sources = 0
         self.state_facts = 0
         self.not_published = 0
@@ -26,10 +27,11 @@ class Counts:
 
     def __str__(self) -> str:
         return (
-            "Checked {} rows ({} say Verified: no), {} sources, {} state facts ({} marked not published), "
-            "{} warnings, {} skill items.".format(
+            "Checked {} rows ({} say Verified: no, {} verified by a person), {} sources, {} state facts "
+            "({} marked not published), {} warnings, {} skill items.".format(
                 self.rows,
                 self.unverified_rows,
+                self.person_verified_rows,
                 self.sources,
                 self.state_facts,
                 self.not_published,

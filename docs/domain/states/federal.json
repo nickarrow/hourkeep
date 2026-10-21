@@ -24,7 +24,7 @@
           "source_date": "not stated"
         }
       ],
-      "checked": "2026-10-19"
+      "checked": "2026-10-19, read in source"
     },
     {
       "row": "notice-presumed-received-after-5-days",
@@ -48,7 +48,7 @@
           "source_date": "not stated"
         }
       ],
-      "checked": "2026-10-17"
+      "checked": "2026-10-17, read in source"
     },
     {
       "row": "advance-notice-at-least-10-days",
@@ -66,7 +66,7 @@
           "source_date": "not stated"
         }
       ],
-      "checked": "2026-10-19"
+      "checked": "2026-10-19, read in source"
     },
     {
       "row": "hearing-request-window-at-most-90-days",
@@ -84,7 +84,7 @@
           "source_date": "not stated"
         }
       ],
-      "checked": "2026-10-17"
+      "checked": "2026-10-17, read in source"
     }
   ]
 }

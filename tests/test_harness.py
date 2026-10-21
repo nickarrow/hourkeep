@@ -38,8 +38,9 @@ class HarnessTest(unittest.TestCase):
     def test_without_root_finds_the_repository_from_its_own_path(self):
         corpus = Corpus()
         corpus.files["scripts/check-corpus.py"] = CHECKER.read_bytes()
-        for module in (CHECKER.parent / "corpus_check").glob("*.py"):
-            corpus.files["scripts/corpus_check/" + module.name] = module.read_bytes()
+        for package in ("corpus_check", "review_pages"):
+            for module in (CHECKER.parent / package).glob("*.py"):
+                corpus.files["scripts/" + package + "/" + module.name] = module.read_bytes()
         result = run_checker(corpus, args=[], cwd="elsewhere", script=lambda root: root / "scripts" / "check-corpus.py")
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         self.assertIsNotNone(COUNTS_LINE.search(result.stdout), result.stdout)
@@ -60,8 +61,20 @@ class BreakTest(CorpusTestCase):
     def test_the_valid_corpus_prints_the_whole_counts_line(self):
         result = run_checker(Corpus())
         self.assertPasses(result)
-        self.assertIn("Checked 2 rows (1 say Verified: no), 2 sources, 2 state facts (0 marked not published), "
-                      "0 warnings, 2 skill items.", result.stdout)
+        self.assertIn("Checked 2 rows (1 say Verified: no, 0 verified by a person), 2 sources, 2 state facts "
+                      "(0 marked not published), 0 warnings, 2 skill items.", result.stdout)
+
+    def test_the_counts_line_gives_the_rows_a_person_verified(self):
+        # The first row of the valid corpus says Verified: 2026-10-17, read in source; the second says no.
+        for verified, people in (("2026-10-17, read in source", "0"), ("2026-10-17, ledger L1-4", "0"),
+                                 ("2026-10-17, read in source, by A. Reviewer", "1"),
+                                 ("2026-10-17, ledger L1-4, by A. Reviewer", "1"),
+                                 ("2026-10-17, expert review, by A. Reviewer", "1")):
+            with self.subTest(verified=verified):
+                result = self.check_extract(extract_with("- Verified: 2026-10-17, read in source",
+                                                         "- Verified: " + verified))
+                self.assertPasses(result)
+                self.assertEqual(COUNTS_LINE.search(result.stdout).group(3), people, result.stdout)
 
     def test_a_row_citation_deleted(self):
         with self.subTest("the field deleted"):

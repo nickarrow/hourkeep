@@ -1,6 +1,8 @@
-# Shown on GitHub's "New issue" page. HourKeep has no issue templates while v2 is built; v1's templates described
-# v1's screens and went with it (docs/decisions/0001-set-aside-v1-in-the-same-repository.md). This link is here so
-# that someone looking for help with their own Medicaid case is pointed to their state before they post anything.
+# Shown on GitHub's "New issue" page. HourKeep has one issue template while v2 is built, row-review.yml, which is for
+# reviewing the policy rows on the review pages in docs/review/
+# (docs/decisions/0005-publish-the-policy-rows-for-open-review.md). v1's templates described v1's screens and went
+# with it (docs/decisions/0001-set-aside-v1-in-the-same-repository.md). The first link is here so that someone looking
+# for help with their own Medicaid case is pointed to their state before they post anything.
 blank_issues_enabled: true
 contact_links:
   - name: Help with your own Medicaid case

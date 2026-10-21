@@ -48,6 +48,7 @@ Checked 2026-10-16:
 - The research cites lines in `docs/domain/` as they stood on 2026-10-16, and pointers shift the lines below them. Find
   a cited line in the file as committed at 70be85f (`git show 70be85f:<path>`) before looking for it today.
 - Corrections to dated claims are recorded with their date. Nothing is rewritten to look as if it was always right.
+- When rows change, the review pages are regenerated in the same change; the checker fails until they are.
 - No app code. American English. The house style in `AGENTS.md`.
 - Each increment changes what HourKeep will say, so each gets the full review: a reviewer against the sources, one
   against the mechanism, a cold reader, a red team, and one who carries out the instructions.

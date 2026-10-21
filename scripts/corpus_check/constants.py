@@ -7,6 +7,7 @@ from __future__ import annotations
 import re
 
 EXTRACT = "docs/domain/community-engagement-extract.md"
+OPEN_QUESTIONS = "docs/domain/open-questions.md"
 MANIFEST = "docs/domain/sources/MANIFEST.json"
 # The state files the corpus requires. Every other STATES_FOLDER/*.json git lists is a state file too, and is read.
 STATE_FILES = ("docs/domain/states/federal.json", "docs/domain/states/co.json")
@@ -31,7 +32,10 @@ RECHECK_TRIGGERS = (
 
 DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 STATE_ELECTION = re.compile(r"^yes; the state chooses (.+?); where it has not chosen, (.+)$")
-VERIFIED = re.compile(r"^(\d{4}-\d{2}-\d{2}), (?:read in source|ledger [^\s,]+)(?:, by (\S.*))?$")
+# A Verified value: the date, then the method; `expert review` always names the person, the others may.
+VERIFIED = re.compile(
+    r"^(\d{4}-\d{2}-\d{2}), (?:(?:read in source|ledger [^\s,]+)(?:, by (\S.*))?|expert review, by (\S.*))$"
+)
 CORRECTED = re.compile(r"^(\d{4}-\d{2}-\d{2}): (.+?); (.+)$")
 NOT_STORED = "not stored"
 NOT_STORED_SOURCE = re.compile(r"^not stored, \S+$")
@@ -45,6 +49,9 @@ SOURCE = re.compile(r'^([^"\s][^"]*?):(\d+) "([^"]+)"$')
 SECTION_TIERS = ("statute", "regulation", "state statute", "state regulation")
 SECTION_NUMBER = re.compile(r"\d+\.\d+|\u00a7+\s*\d|(?i:\bsection\s+\d|\bsec\.\s*\d)|\bSSA\s+\d|\bU\.S\.C\.\s*\d")
 PLACEHOLDER = re.compile(r"\b(?:TBD|TODO)\b", re.IGNORECASE)
+# A citation's parts are separated by exactly '; ', a semicolon then one space, so the review pages can split them.
+# This matches a semicolon with any space before it, or one not followed by a single space and then a non-space.
+CITATION_SEPARATOR = re.compile(r"\s;|;(?! \S)")
 
 # A manifest entry's keys. Each is a string except the two lists. A derived entry adds DERIVED_KEYS, which no other
 # entry holds; an entry for a path under ECFR_FOLDER adds ecfr_date, which eCFR text elsewhere may hold too; any entry
@@ -77,7 +84,7 @@ DOMAIN = "docs/domain/"
 RESEARCH = "docs/domain/research/"
 OWN_FILES = (
     EXTRACT,
-    "docs/domain/open-questions.md",
+    OPEN_QUESTIONS,
     "docs/domain/states/*.json",
     MANIFEST,
     "docs/domain/supporting-regs/README.md",
@@ -135,6 +142,15 @@ CITATION_PARAGRAPH = re.compile(r"(?<=[A-Za-z0-9)])\(\d+\)")
 # line of the same character, at least as many, and nothing else. A line inside one is neither a heading nor a rule
 # item.
 FENCE = re.compile(r"^ {0,3}(`{3,}|~{3,})")
+
+# An open question's fields: the required ones in the order they must come, Source repeating, then an optional Note
+# last. Why it is open starts with one or more of OPEN_REASONS, separated by semicolons, before its first full stop.
+QUESTION_FIELDS = ("Why it is open", "Who can answer", "Raised", "Source", "Note")
+QUESTION_REQUIRED_FIELDS = QUESTION_FIELDS[:-1]
+OPEN_REASONS = (
+    "the sources conflict", "the sources are silent", "it turns on a choice the state has not published",
+    "the answer may be in a provision the corpus has not stored",
+)
 
 HEADING = re.compile(r"^(#+) (.*)$")
 IDENTIFIER = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")

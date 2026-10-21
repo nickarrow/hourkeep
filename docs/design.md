@@ -353,7 +353,9 @@ Each says when it has to be answered.
   The owner, who works in Medicaid policy, reviews rows. The rows also go out for open review by Medicaid policy
   experts, in public, and each comment is checked against the source like any review finding. The corpus work does not
   wait for that review. (Decided, 2026-10-21.)
-- How the open review of the rows is published and how comments come in. Being designed.
+- How the open review of the rows is published and how comments come in. Review pages generated from the rows, read on
+  GitHub, with a GitHub issue form, a Google Form that needs no sign-in and policy@hourkeep.app on every page, as
+  `docs/decisions/0005-publish-the-policy-rows-for-open-review.md` records. (Decided, 2026-10-21.)
 - How much of the corpus a person must have reviewed before a screen that uses it ships. When the first screens are
   ready.
 - Who reads the Spanish, and which organization tries HourKeep first. Before launch; the owner can find an

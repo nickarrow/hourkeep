@@ -1,0 +1,76 @@
+# The GitHub issue form for reviewing HourKeep's policy rows. The review pages in docs/review/ link here with
+# ?template=row-review.yml&row=<row>, which fills the field whose id is "row". The fields ask what the Google Form
+# asks, in the same words (docs/decisions/0005-publish-the-policy-rows-for-open-review.md).
+name: "Review a policy row"
+description: >-
+  Comment on a rule on the review pages: https://github.com/nickarrow/hourkeep/blob/main/docs/review/README.md.
+  Do not include anything about a real person.
+title: "Review: "
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: "What would you like to tell us?"
+      options:
+        - "A row is right as written"
+        - "A row is wrong"
+        - "A row leaves something out"
+        - "I can answer an open question"
+        - "Something the rows don't cover yet"
+        - "Something else"
+    validations:
+      required: true
+  - type: input
+    id: row
+    attributes:
+      label: "Which row, state fact or open question?"
+      description: >-
+        Its name as shown on the review pages, such as notice-response-period or
+        co: hearing-request-window-at-most-90-days, or an open question's title.
+  - type: textarea
+    id: details
+    attributes:
+      label: "Tell us more"
+      description: "If something is wrong or missing, what should it say, and why?"
+  - type: textarea
+    id: source
+    attributes:
+      label: "What source says so?"
+      description: >-
+        The regulation, statute, CMS guidance or state policy behind your comment, with a link if you have one.
+        Every comment is checked against a source before anything changes, so this helps most.
+  - type: dropdown
+    id: checked-official-text
+    attributes:
+      label: "Did you check the official text while reviewing?"
+      description: "Either is welcome. It tells us how to record your review."
+      options:
+        - "Yes, I read the regulation or guidance itself"
+        - "No, this comes from my experience and knowledge"
+  - type: input
+    id: role
+    attributes:
+      label: "Your role, if you'd like to say"
+      description: >-
+        For example, legal aid attorney, state Medicaid policy staff or navigator. It helps us understand your comment.
+  - type: checkboxes
+    id: no-real-case
+    attributes:
+      label: "Nothing about a real person"
+      options:
+        - label: >-
+            My comment includes nothing about a real person's case: no names, case numbers, dates of birth, addresses
+            or other details that could identify someone.
+          required: true
+  - type: checkboxes
+    id: credit
+    attributes:
+      label: "Credit"
+      description: "A GitHub comment always shows the commenter's account name, whether or not you tick this box."
+      options:
+        - label: "Credit me by name on the rows my comment confirms or corrects."
+  - type: input
+    id: credit-name
+    attributes:
+      label: "Your name as you'd like it shown"
+      description: "Only used if you ticked the box above."

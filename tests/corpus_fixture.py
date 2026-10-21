@@ -129,6 +129,24 @@ The row in the extract wins wherever the two differ.
   [notice-response-period] 42 CFR 435.558(a)(2); 91 FR 39030
 """
 
+# The open questions, one question: its heading is line 5, Why it is open lines 7 and 8, Who can answer line 9,
+# Raised line 10, its two Sources lines 11 and 12, and its Note line 13.
+OPEN_QUESTIONS = "docs/domain/open-questions.md"
+OPEN_QUESTIONS_TEXT = """# Open questions
+
+Questions only CMS, a state or a policy person can answer. Synthetic fixture text.
+
+### Are the 30 days calendar days?
+
+- Why it is open: the sources are silent; it turns on a choice the state has not published. The rule says
+  calendar days for one period and not for the other.
+- Who can answer: CMS
+- Raised: 2026-10-17, by rows notice-response-period and hearing-request-period
+- Source: docs/domain/sources/ecfr/2026-10-14/42-cfr-431.221.xml:3 "not to exceed 90 days"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:4 "30 calendar days"
+- Note: Synthetic question.
+"""
+
 ANALYSIS_TEXT = "# Rule extract\n\nAn analysis file. Rows must not cite it.\n"
 README_TEXT = "# Fixture repository\n"
 GITATTRIBUTES_TEXT = "docs/domain/sources/** -text\ndocs/domain/cms-2454-ifc/2026-11094.xml -text\n"
@@ -189,7 +207,7 @@ def valid_federal() -> dict:
                         "source_date": "2026-10-14",
                     }
                 ],
-                "checked": "2026-10-17",
+                "checked": "2026-10-17, read in source",
             }
         ],
     }
@@ -215,7 +233,7 @@ def valid_colorado() -> dict:
                         "source_date": "2026-06-03",
                     }
                 ],
-                "checked": "2026-10-17",
+                "checked": "2026-10-17, read in source",
             }
         ],
     }
@@ -245,6 +263,7 @@ class Corpus:
             OLDER_SOURCE: OLDER_TEXT,
             SKILL: SKILL_TEXT,
             TOPIC: TOPIC_TEXT,
+            OPEN_QUESTIONS: OPEN_QUESTIONS_TEXT,
             ANALYSIS: ANALYSIS_TEXT,
             "README.md": README_TEXT,
             ".gitattributes": GITATTRIBUTES_TEXT,
@@ -299,7 +318,7 @@ def run_checker(corpus: Corpus, args=None, cwd=None, script: Path = CHECKER) -> 
 
 
 COUNTS_LINE = re.compile(
-    r"^Checked (\d+) rows \((\d+) say Verified: no\), (\d+) sources, (\d+) state facts "
+    r"^Checked (\d+) rows \((\d+) say Verified: no, (\d+) verified by a person\), (\d+) sources, (\d+) state facts "
     r"\((\d+) marked not published\), (\d+) warnings, (\d+) skill items\.$",
     re.MULTILINE,
 )

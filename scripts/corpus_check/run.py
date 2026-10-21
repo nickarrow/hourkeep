@@ -9,7 +9,9 @@ from typing import List, Optional, Tuple
 
 from .files import list_files
 from .manifest import check_manifest, check_unlisted_files
+from .questions import check_open_questions
 from .report import Counts, Problem
+from .review import check_review_pages
 from .rows import check_extract
 from .skill import check_skill
 from .states import check_state_facts
@@ -25,7 +27,9 @@ def check(root: Path) -> Tuple[List[Problem], List[Problem], Counts]:
     check_manifest(root, files, problems, counts)
     check_unlisted_files(root, files, problems)
     check_state_facts(root, rows, files, problems, warnings, counts)
+    check_open_questions(root, files, problems)
     check_skill(root, files, rows, problems, counts)
+    check_review_pages(root, files, problems)
     return problems, warnings, counts
 
 

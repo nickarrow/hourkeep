@@ -1,0 +1,80 @@
+"""What the review pages are made from and where they go, the addresses they link to, and the start-here rows."""
+
+from __future__ import annotations
+
+import re
+
+REVIEW = "docs/review/"  # the review pages, from the repository root
+OPEN_QUESTIONS = "docs/domain/open-questions.md"
+LANDING_PAGE = "README.md"
+OPEN_QUESTIONS_PAGE = "open-questions.md"
+STATE_FACTS_PAGE = "state-facts.md"
+DOMAIN_FROM_REVIEW = "../domain/"  # the corpus, docs/domain/, as a page in docs/review/ links it
+EXTRACT_FROM_REVIEW = "../domain/community-engagement-extract.md"  # the extract, as a page in docs/review/ links it
+LEDGER_FROM_REVIEW = "../domain/research/2026-10-16-policy/ledger.md"  # the research ledger, likewise
+FEDERAL_STATE = "federal"  # the state file whose facts come first
+
+# The three ways to comment, on every row, open question and state fact.
+ISSUE_FORM = "https://github.com/nickarrow/hourkeep/issues/new?template=row-review.yml"
+GOOGLE_FORM = "https://forms.gle/Tvs27CNLg6Jdip429"  # the landing page's plain link to the Google Form
+# The Google Form with its question "Which row, state fact or open question?", entry 399684664, filled in with the
+# name that follows, as read from the public form page on 2026-10-21.
+GOOGLE_FORM_FOR = ("https://docs.google.com/forms/d/e/1FAIpQLSfmdg1bA4lF_frlMIl8LGIjwUS0ymtHKcqar2aB_h0evB97yQ/viewform"
+                   "?usp=pp_url&entry.399684664=")
+EMAIL = "policy@hourkeep.app"
+
+# The parts of a citation the pages link to the official text. Each pattern's whole match becomes the link's words.
+# A CFR part's second group is the paragraph it names, if any, such as (a)(1), the first of a range.
+CFR_PART = re.compile(r"42 CFR (\d+\.\d+)((?:\([A-Za-z0-9]+\))*)[^\s;,]*")
+CFR_URL = "https://www.ecfr.gov/current/title-42/section-{}"
+CFR_PARAGRAPH = "#p-{}"  # eCFR's id for a paragraph, the section and paragraph percent-encoded
+# In an open question's text, a 42 CFR reference may be followed by a list of bare sections, as in
+# "42 CFR 431.211, 431.221 and 431.231", and may be shortened to a section sign, as in "§ 431.206(c)(2)". Both link
+# to title 42 only for a section in parts 400 to 499, which hold the Medicare and Medicaid rules the corpus cites, so
+# that Colorado's 8.057 or 8.100 never does. A paragraph alone, such as the (c)(3) in "(c)(2), (c)(3)", stays text.
+CFR_SECTION = r"(4\d\d\.\d+)((?:\([A-Za-z0-9]+\))*)(?![A-Za-z0-9]|\.\d)"
+CFR_LISTED = re.compile(r"(, | and | or )" + CFR_SECTION)  # one more bare section, straight after the last
+CFR_SECTION_SIGN = re.compile(r"§ " + CFR_SECTION)
+CFR_TITLE = re.compile(r"\b(\d+) CFR\b")  # a section sign links only where the text names title 42 and no other
+FR_PART = re.compile(r"(\d+) FR (\d+)(?:-\d+)?")
+FR_URL = "https://www.federalregister.gov/citation/{}-FR-{}"  # the first page of a range
+SMD_PART = re.compile(r"CMS SMD 26-001")
+SMD_SOURCE = "docs/domain/sources/cms/smd-26-001.pdf"
+# Colorado's 10 CCR 2505-10 8.000 holds the sections numbered 8.000 to 8.099, so a section such as 8.100.4 is in
+# another rule of the same volume and is left as text.
+CCR_PART = re.compile(r"10 CCR 2505-10 8\.0\d\d[^\s;,]*")
+CCR_SOURCE = re.compile(r"^docs/domain/sources/colorado/10-ccr-2505-10-8\.000-[^/]*\.pdf$")
+# Colorado's draft 10 CCR 2505-10 8.100, cited in a part that says it is the draft, links to the stored draft.
+CCR_DRAFT_PART = re.compile(r"10 CCR 2505-10 8\.100(?![0-9])[^\s;,]*(?=.*\bdraft\b)")
+CCR_DRAFT_SOURCE = re.compile(r"^docs/domain/sources/colorado/10-ccr-2505-10-8\.100-draft-[^/]*\.pdf$")
+SSA_PART = re.compile(r"SSA 1902[^\s;,]*")
+SSA_URL = "https://www.ssa.gov/OP_Home/ssact/title19/1902.htm"
+PUBLIC_LAW_PART = re.compile(r"Pub\. L\. 119-21")
+PUBLIC_LAW_URL = "https://www.govinfo.gov/content/pkg/PLAW-119publ21/html/PLAW-119publ21.htm"
+NOT_RECORDED = "not recorded"
+
+# The rows a reviewer with little time starts from, keyed by topic file, in the order each topic page lists them.
+START_HERE = {
+    "notices-and-fair-hearings": (
+        "notice-says-how-to-show-compliance",
+        "notice-says-how-to-show-not-applicable",
+        "notice-states-the-deadline",
+        "notice-says-how-to-submit",
+        "notice-says-consequences-including-premium-tax-credit",
+        "notice-says-how-to-reapply",
+        "notice-gives-hardship-information-where-elected",
+        "notice-response-period",
+        "notice-presumed-received-after-5-days",
+        "coverage-continues-during-noncompliance",
+        "consider-all-other-bases-before-denial",
+        "deny-application-with-notice-and-hearing-rights",
+        "disenroll-with-advance-notice-and-hearing-rights",
+        "reconsideration-after-disenrollment",
+        "hearing-request-window-at-most-90-days",
+        "services-maintained-when-hearing-requested-before-action",
+        "recovery-if-action-upheld",
+        "agency-may-reinstate-within-10-days-after-action",
+        "reschedule-2027-renewals-to-six-months",
+        "keep-scheduled-2027-renewals",
+    ),
+}

@@ -3,7 +3,9 @@
 Status: In progress, since 2026-10-17
 
 `docs/design.md` says HourKeep tells nobody anything until its policy corpus is right. This epic makes it right and
-keeps it checkable. It changes `docs/domain/`, adds one skill and two scripts, and writes no app code.
+keeps it checkable. It changes `docs/domain/`, adds one skill and three scripts, and writes no app code. The scripts
+are the checker, `scripts/check-corpus.py`; `scripts/extract-pdf-text.swift`, which makes each PDF's text extraction;
+and `scripts/build-review-pages.py`, which generates the review pages in `docs/review/`.
 
 ## Why
 
@@ -96,13 +98,16 @@ settles it and writes it here.
 | `docs/domain/open-questions.md` | Policy questions only CMS, a state or a policy person can answer, each with who can answer it |
 | `docs/domain/research/` | The research records |
 | `docs/domain/prior-art/` | The Code for America summaries, from increment 3 |
+| `docs/review/` | The review pages, generated from the rows, the skill, the state facts and the open questions |
 | `.kiro/skills/medicaid-community-engagement/SKILL.md` | The domain skill's main file: how to use it, its topic files, precedence and the watch list |
 | `.kiro/skills/medicaid-community-engagement/references/` | One file of rule items for each topic of the corpus |
 | `scripts/check-corpus.py` | The checker's entry point: its command line, output and exit codes |
 | `scripts/corpus_check/` | The checker, one module for each part of the corpus it reads, with the constants, file listing and report they share |
-| `tests/test_*.py` | The checker's tests, using Python's built-in `unittest`, written before the checker, one file for each part of the corpus |
+| `scripts/build-review-pages.py` | The generator that makes the review pages in `docs/review/` |
+| `tests/test_*.py` | The tests, using Python's built-in `unittest`: the checker's, written before the checker, one file for each part of the corpus, and the generator's and the issue form's |
 | `tests/corpus_fixture.py` | The small valid corpus the tests build in a temporary git repository, and the helpers they share |
 | `scripts/extract-pdf-text.swift` | The script that makes each PDF's text extraction, using macOS's PDFKit |
+| `.github/ISSUE_TEMPLATE/row-review.yml` | The GitHub issue form for commenting on a row, a state fact or an open question |
 
 Sources stored before this epic stay where they are, because the corpus cites them by file and line. Paths in the
 manifest, the rows and the state facts are relative to the repository root.
@@ -154,7 +159,7 @@ The fields, all required, and a field with an empty value counts as missing:
   provision older than the rule cites its CFR paragraph and the eCFR date it was read on instead, because eCFR's
   source notes do not say which of several documents set a given paragraph. A statute or regulation citation names a
   section by its number. Any other names the document and, where the document has them, its page, section or docket
-  entry.
+  entry. The parts are separated by `; `, a semicolon and one space, as in `42 CFR 435.558(a)(2); 91 FR 39030`.
 - Source: a stored file with a manifest entry, a line in it, and a few words in quotes that appear on that line.
   Lines are counted as `grep -n` counts them, split on newlines only. The quoted words match the stored text exactly,
   markup and entities included, and contain no double quote: the Federal Register's XML, for one, puts a thin space
@@ -169,8 +174,10 @@ The fields, all required, and a field with an empty value counts as missing:
 - State election: `no`, or `yes` followed by what the state chooses and what applies where it has not chosen.
 - Verified: a date and a method, or `no`. The methods are `read in source`, meaning the quoted words were read at the
   cited place on that date, and `ledger <finding ID>`, meaning the 2026-10-16 verification ledger confirmed it and
-  nobody re-read it. Every check so far has been made by an AI agent. A row checked by a person names them after the
-  method.
+  nobody re-read it. A third, `expert review`, means a person with Medicaid policy knowledge reviewed the row from
+  their own knowledge without rereading its source, and is always followed by `, by <name>`. Every check so far has
+  been made by an AI agent. A row checked by a person names them after the method, so a person who read the official
+  text is recorded as `read in source, by <name>`.
 - Error direction: `dangerous` if getting the rule wrong would lead a person to do less than it requires, `burdensome`
   if more, and `neither` if it changes only a citation, a date or context. These are the research ledger's
   definitions. A rule that could go wrong either way is `dangerous`. The value is the word alone; a reason goes in
@@ -198,7 +205,7 @@ The checker reads a row this way:
   that Source may repeat; `Corrected:`, which may repeat, and `Note:` come last, in either order. A field name not
   listed fails.
 - Verified is `no`, or a date, a comma and a method: `2026-10-17, read in source` or `2026-10-17, ledger L1-4`. A
-  person who checked it follows as `, by <name>`.
+  person who checked it follows as `, by <name>`, which `expert review` always has.
 - State election is `no`, or `yes; the state chooses <what>; where it has not chosen, <what applies>`.
 - Corrected is a date, a colon, what the row said before, a semicolon, and why it changed.
 - Recheck triggers are separated by semicolons. Each is one from the list, or `date YYYY-MM-DD`, and may add detail
@@ -208,7 +215,9 @@ The checker reads a row this way:
   `Pub. L. 119-21, sec. 71119` names one. `91 FR 39030` alone names a page, so a regulation row
   citing only that fails. The tiers that need a section number are `statute`, `regulation`, `state statute` and
   `state regulation`. A citation of any tier fails when it is empty or holds the word TBD or TODO, in capitals or not.
-  A paragraph that runs onto the next page cites both pages, as `91 FR 39030-39031`.
+  A paragraph that runs onto the next page cites both pages, as `91 FR 39030-39031`. A semicolon in a citation has
+  no space before it and exactly one space after it, then the next part, so `42 CFR 435.558(a)(2);91 FR 39030`
+  fails.
 - A Source is a path, a colon, a line number counted from 1, a space, and at least one character of quoted words in
   straight double quotes. The file is read as bytes and split on `\n` only, so line N is the line `grep -n` numbers N,
   and the quoted words, encoded as UTF-8, must occur within that line's bytes. The file must have a manifest entry, so
@@ -320,7 +329,9 @@ dates written as YYYY-MM-DD:
 - `citation`: in the same form as a row's Citation
 - `sources`: a list, one entry per source, each with `source` in the same form as a row's Source, `url`, `tier`, and
   `source_date`, the latest date the source gives itself, or `not stated`
-- `checked`: the date the fact was last checked
+- `checked`: when and how the fact was last checked, in a row's Verified vocabulary less `no`:
+  `YYYY-MM-DD, read in source` or `YYYY-MM-DD, ledger <finding ID>`, each optionally followed by `, by <name>`, or
+  `YYYY-MM-DD, expert review, by <name>`
 
 JSON, because Python's standard library reads it. A fact whose sources include a state agency page or a secondary
 source dated before June 3, 2026 prints a warning that it may predate the rule; it does not fail.
@@ -391,10 +402,12 @@ claim that stays because no row covers it yet. A correction made in place leaves
 after it, `(Corrected YYYY-MM-DD: said "<the old words>"; <finding ID>.)`, so the change and its reason stay where a
 reader meets them. Where the correction comes from reading a stored source rather than from the research, the finding
 ID gives way to `read in <path>:<line>`; where it rests on both, both are given, the finding ID first, separated by
-`; `. One correction may quote more than one old string, each in its own quotes, and quoted words stay exactly as they
-were written. Text added where no old words are corrected, such as a comment explaining a value, is marked
-`(Added YYYY-MM-DD; <finding ID or read in path:line>.)`. A claim that stays with no stored source behind it is marked
-`(Unverified YYYY-MM-DD: no stored source holds this; searched <what>.)` rather than removed.
+`; `. A correction raised by a comment on the review pages, in place or in a row's `Corrected:` field, gives the
+comment as its finding ID, written `issue <number>`. One correction may quote more than one old string, each in its
+own quotes, and quoted words stay exactly as they were written. Text added where no old words are corrected, such as a
+comment explaining a value, is marked `(Added YYYY-MM-DD; <finding ID or read in path:line>.)`. A claim that stays with
+no stored source behind it is marked `(Unverified YYYY-MM-DD: no stored source holds this; searched <what>.)` rather
+than removed.
 
 ### The checker
 
@@ -402,36 +415,90 @@ were written. Text added where no old words are corrected, such as a comment exp
 Its tests come first: the files `tests/test_*.py` hold, for each check below, a small fixture that passes and one that
 fails, and `python3 -m unittest discover -s tests` runs them with nothing installed and without reading the user's own
 git configuration. The checker reads the extract,
-the state facts files, the manifest and the skill, skips anything git ignores, and fails, naming each problem, when:
+the state facts files, the manifest, the open questions and the skill. It also builds the review pages in memory with
+the generator's package, `scripts/review_pages/`, writing nothing, and compares them with `docs/review/`. It skips
+anything git ignores, and fails, naming each problem, when:
 
 - a row lacks a field, a value is outside its vocabulary, or an identifier is malformed or used twice
-- a citation is empty, says TBD or TODO, or, for a statute or regulation tier, names no section number
+- a citation is empty, says TBD or TODO, has parts not separated by `; `, or, for a statute or regulation tier, names
+  no section number
 - a source's file has no manifest entry, its line does not exist, or its quoted words are not on that line
 - a stored source's hash differs from the manifest, a manifest entry's file is missing, or git does not treat a
   manifest path as `-text`
 - a file in `docs/domain/` outside `research/` is neither in the manifest nor one of the corpus's own files, which the
   checker names: the extract, the state facts, the open questions, the analysis files still in use, and
   `supporting-regs/README.md`
-- a state fact lacks a key or names a row that does not exist
+- a state fact lacks a key, names a row that does not exist, or has a `checked` value outside a row's Verified
+  vocabulary less `no`
+- an open question lacks a required field, holds one empty, holds them out of order or repeated, holds a field not
+  listed, or starts `Why it is open` with anything but the four reasons the Formats name
 - the skill's main file or a topic file passes 500 lines, a topic file is missing, not linked or holds no rule item,
   a row has no rule item or more than one, or a rule item names a row that does not exist, gives it a different
   citation, or states a number its row's Rule does not
+- a review page differs from what the generator makes or is missing, or a file in `docs/review/` is one the
+  generator does not make
 
-It prints how many rows it checked and how many of them say `Verified: no`, and how many sources, state facts, facts
-marked `not published`, warnings and skill items it matched. If the skill is absent it says so and checks the rest,
-since deleting a skill is allowed. It cannot tell whether a skill item's words match its row's meaning; review does
+It prints how many rows it checked, how many of them say `Verified: no` and how many a person verified, and how many
+sources, state facts, facts marked `not published`, warnings and skill items it matched. If the skill is absent it
+says so and checks the rest, since deleting a skill is allowed. If `docs/review/` is absent, it says so on a line of
+its own and checks the rest. It does not check that an open question's Source quotes words on its cited line. It
+cannot tell whether a skill item's words match its row's meaning; review does
 that.
 
 It finds the repository root from its own path, so it runs from any working directory. It lists files with
 `git ls-files -z --cached --others --exclude-standard`, which leaves out what git ignores, and asks
 `git check-attr -z text` about each manifest path, which must answer `unset`. A missing extract, manifest,
-`states/federal.json` or `states/co.json` fails, and one that git ignores counts as missing, as an ignored skill counts
-as absent. A file counts as present when git lists it, tracked or not yet added, so a source nobody has added passes
-here and is missing in a clone. It keeps the list of the corpus's own files as one constant. In this increment that
-is the extract, `open-questions.md`, every `.json` file directly in `states/`, `sources/MANIFEST.json`,
-`supporting-regs/README.md`, and the six analysis files named under "Stored sources and the manifest", so a README
-anywhere else in `docs/domain/` outside `research/` fails as unlisted. The count of sources it prints is the number of
-manifest entries.
+`open-questions.md`, `states/federal.json` or `states/co.json` fails, and one that git ignores counts as missing, as
+an ignored skill counts as absent. A file counts as present when git lists it, tracked or not yet added, so a source
+nobody has added passes here and is missing in a clone. It keeps the list of the corpus's own files as one constant. In
+this increment that is the extract, `open-questions.md`, every `.json` file directly in `states/`,
+`sources/MANIFEST.json`, `supporting-regs/README.md`, and the six analysis files named under "Stored sources and the
+manifest", so a README anywhere else in `docs/domain/` outside `research/` fails as unlisted. The count of sources it
+prints is the number of manifest entries.
+
+### The review pages
+
+The pages in `docs/review/` are generated by `scripts/build-review-pages.py` and never edited by hand. They are where
+Medicaid policy experts read the rows and comment on them, as
+`docs/decisions/0005-publish-the-policy-rows-for-open-review.md` records. There is a landing page, one page per topic
+of the skill, a page of open questions and a page of state facts. Under the title of each page but the landing page
+come the line saying it is generated and the sentence "Never post or send anything about a real person's case.",
+which the landing page holds too.
+
+A topic page opens with "Start here": one list item for each group of the topic file that holds a start-here row, its
+text the group's `##` heading and a colon, and under it a link to each of those rows, named by its identifier with
+spaces for hyphens. Both follow the topic file's order, and the list adds no heading of its own.
+
+Each row shows its identifier as the heading, the rule, the citation linked to the official text, whether a state can
+choose differently, which way an error would cost a person, who checked it and how, and links to comment on it and to
+the full row in the extract. Where a state can choose, it takes two lines, "Can a state choose differently? Yes. The
+state chooses ..." and "If the state has not chosen: ...". In those two lines every word that is a row's identifier
+links to that row, and the first "open question" in each links to the open questions page; the row's text is
+unchanged. "If this row were wrong:" says "a person on Medicaid could do less than the rules ask of them." for
+`dangerous`, "a person on Medicaid could do more than the rules ask of them." for `burdensome`, and "only a citation,
+a date or context would be off." for `neither`. "Checked:" puts the Verified value in words, such as "2026-10-19 by an
+AI agent reading the stored text.", and a state fact's `checked` value in the same words.
+
+A CFR citation that names a paragraph, such as `42 CFR 435.558(a)(1)`, links to that paragraph on eCFR's current
+section page, at the fragment `#p-` followed by the section and paragraph percent-encoded:
+`#p-435.558%28a%29%281%29`. A range links to its first paragraph. Every CFR and Federal Register citation in an open
+question's text is linked the same way. So is a section of title 42's parts 400 to 499 listed bare straight after a
+42 CFR reference, as 431.221 and 431.231 are in "42 CFR 431.211, 431.221 and 431.231", and a section-sign reference
+to such a section, such as `§ 431.206(c)(2)`, where the question's text names 42 CFR and no other title. A paragraph
+alone, such as the (c)(3) in "§ 431.206(c)(2), (c)(3) or (c)(4)", stays text, and so does any Colorado section.
+Colorado's draft 10 CCR 2505-10 8.100 links to the address the manifest records for the stored draft. A citation
+links to the current official text, while each row was checked against the stored copy its Verified date names. The
+two can differ once the text is amended.
+
+Every row, open question and state fact has three comment links, each carrying its name: the GitHub issue form, the
+Google Form pre-filled through its question "Which row, state fact or open question?", and email to
+policy@hourkeep.app. A row's name is its identifier, an open question's is its title, and a state fact's is its state
+and row, such as `co: hearing-request-window-at-most-90-days`, which the fact shows before its Comment line. The
+landing page links the Google Form without a name. A state fact's note follows its list, folded in a collapsed
+"Notes for checking" block, and the state facts page opens by defining the three statuses.
+
+The checker fails when `docs/review/` is not what the generator makes. If `docs/review/` is absent, the checker says so
+and checks the rest, as it does for an absent skill.
 
 ## What has to be true of every rule
 

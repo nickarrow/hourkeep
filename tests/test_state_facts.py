@@ -152,7 +152,7 @@ class StateFactTest(CorpusTestCase):
                                  note="Searched the HCPF site on 2026-10-17; nothing published.")
         result = run_checker(corpus)
         self.assertPasses(result)
-        self.assertEqual(COUNTS_LINE.search(result.stdout).group(5), "1", result.stdout)
+        self.assertEqual(COUNTS_LINE.search(result.stdout).group(6), "1", result.stdout)
 
     def test_an_inferred_or_not_published_fact_needs_a_note(self):
         for status, value in (("inferred", "30 calendar days"), ("not published", "not published")):
@@ -234,8 +234,20 @@ class StateFactTest(CorpusTestCase):
                 self.fact(corpus)["sources"][0]["source_date"] = bad
                 self.assertFactFails(corpus, "source_date")
 
-    def test_checked_is_a_date(self):
-        for bad in ("2026-10-17T03:10:00Z", "2026-13-01", "today"):
+    def test_checked_in_the_rows_verified_vocabulary_passes(self):
+        # Formats: checked takes a row's Verified vocabulary, less `no`.
+        for good in ("2026-10-17, read in source", "2026-10-17, ledger L5-3",
+                     "2026-10-17, read in source, by A. Reviewer", "2026-10-17, ledger L5-3, by A. Reviewer",
+                     "2026-10-17, expert review, by A. Reviewer"):
+            with self.subTest(checked=good):
+                corpus = Corpus()
+                self.fact(corpus)["checked"] = good
+                self.assertPasses(run_checker(corpus))
+
+    def test_checked_outside_the_rows_verified_vocabulary_fails(self):
+        for bad in ("2026-10-17", "no", "2026-10-17T03:10:00Z", "2026-13-01, read in source", "today",
+                    "2026-10-17 read in source", "2026-10-17, read it", "2026-10-17, ledger",
+                    "2026-10-17, read in source, by", "2026-10-17, expert review", "2026-10-17, expert review by A."):
             with self.subTest(checked=bad):
                 corpus = Corpus()
                 self.fact(corpus)["checked"] = bad
@@ -243,7 +255,8 @@ class StateFactTest(CorpusTestCase):
 
     def test_the_citation_is_checked_as_a_row_citation_is(self):
         for bad, words in (("TBD", "TBD or TODO"), ("42 CFR 435.558(a)(2); todo", "TBD or TODO"),
-                           ("91 FR 39030", "needs a section number")):
+                           ("91 FR 39030", "needs a section number"),
+                           ("42 CFR 435.558(a)(2);91 FR 39030", "separated by '; '")):
             with self.subTest(citation=bad):
                 corpus = Corpus()
                 self.fact(corpus)["citation"] = bad
@@ -270,7 +283,7 @@ class StateFactTest(CorpusTestCase):
                     self.assertPasses(result)
                     self.assertRegex(result.stdout, r"(?m)^{}:{}: warning: .*may predate the rule".format(
                         re.escape(COLORADO), fact_line(corpus.states[COLORADO], 0)))
-                    self.assertEqual(COUNTS_LINE.search(result.stdout).group(6), "1", result.stdout)
+                    self.assertEqual(COUNTS_LINE.search(result.stdout).group(7), "1", result.stdout)
 
     def test_no_warning_from_the_rule_on_or_for_other_tiers(self):
         for tier, date in (("state agency page", "2026-06-03"), ("secondary", "2026-10-01"),
@@ -281,17 +294,17 @@ class StateFactTest(CorpusTestCase):
                 result = run_checker(corpus)
                 self.assertPasses(result)
                 self.assertNotIn(": warning: ", result.stdout)
-                self.assertEqual(COUNTS_LINE.search(result.stdout).group(6), "0", result.stdout)
+                self.assertEqual(COUNTS_LINE.search(result.stdout).group(7), "0", result.stdout)
 
     def test_the_counts_line_gives_state_facts_and_those_not_published(self):
         result = run_checker(Corpus())
         match = COUNTS_LINE.search(result.stdout)
-        self.assertEqual((match.group(4), match.group(5), match.group(6)), ("2", "0", "0"), result.stdout)
+        self.assertEqual((match.group(5), match.group(6), match.group(7)), ("2", "0", "0"), result.stdout)
         corpus = Corpus()
         corpus.states[COLORADO]["facts"].append(dict(self.fact(corpus), status="not published",
                                                      value="not published", note="Searched on 2026-10-17."))
         match = COUNTS_LINE.search(run_checker(corpus).stdout)
-        self.assertEqual((match.group(4), match.group(5)), ("3", "1"))
+        self.assertEqual((match.group(5), match.group(6)), ("3", "1"))
 
     def test_problems_name_the_fact_they_belong_to(self):
         corpus = Corpus()
@@ -304,7 +317,7 @@ class StateFactTest(CorpusTestCase):
         corpus.states[TEXAS] = valid_texas()
         result = run_checker(corpus)
         self.assertPasses(result)
-        self.assertEqual(COUNTS_LINE.search(result.stdout).group(4), "3", result.stdout)
+        self.assertEqual(COUNTS_LINE.search(result.stdout).group(5), "3", result.stdout)
         for bad, words in (({}, STATE_SHAPE), (dict(valid_texas(), state="co"), "the file name without .json"),
                            (dict(valid_texas(), name=""), "lacks name")):
             with self.subTest(state=bad):

@@ -23,6 +23,9 @@ There is no app code in this repository yet. [hourkeep.app](https://hourkeep.app
   notices of noncompliance and fair hearings came first. Each row quotes a source stored in `docs/domain/sources/`,
   which `docs/domain/sources/MANIFEST.json` lists with its hash. The research behind it is in
   `docs/domain/research/`.
+- `docs/review/` holds the review pages, where people who know Medicaid policy can check each rule HourKeep relies on
+  and comment on it. Start at `docs/review/README.md`. The pages are generated from the rows by
+  `scripts/build-review-pages.py`.
 - `scripts/` holds the checker that keeps the corpus consistent, and `tests/` its tests.
 - `docs/design.md` is the design: what the new HourKeep is, who it is for, and what has to be true for it to work.
   `docs/epics/` holds the plan for each body of work, starting with putting the policy corpus right, and
@@ -70,6 +73,9 @@ bootstrap files carry the MIT License, reproduced in `NOTICE.md`.
 
 Open an issue for a problem or a question. Report a security problem privately, through this repository's Security tab
 and "Report a vulnerability".
+
+Comments on the policy rows are welcome, through the links on the review pages in `docs/review/` or at
+[policy@hourkeep.app](mailto:policy@hourkeep.app). Never include anything about a real person's case.
 
 HourKeep cannot see or change anyone's Medicaid case. For help with your own case, contact the office that sent your
 letter, or find your state's Medicaid agency on

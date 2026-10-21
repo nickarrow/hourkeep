@@ -1,5 +1,6 @@
 """The state facts, every docs/domain/states/*.json git lists, federal.json and co.json required: each
-file's name and shape, each fact's keys and values, its row, its citation and each of its sources."""
+file's name and shape, each fact's keys and values, its row, its checked value in a row's Verified vocabulary less
+`no`, its citation and each of its sources."""
 
 from __future__ import annotations
 
@@ -9,7 +10,8 @@ from typing import List, Optional, Set, Tuple
 
 from .constants import (
     ADDRESS, FACT_KEYS, FACT_SOURCE_KEYS, FEDERAL_NAME, FEDERAL_STATE, NOTE_STATUSES, NOT_PUBLISHED, NOT_STATED,
-    RULE_DATE, STATES_FOLDER, STATE_FILES, STATE_KEYS, STATE_NAME, STATE_SHAPE, STATUSES, TIERS, WARNING_TIERS,
+    RULE_DATE, STATES_FOLDER, STATE_FILES, STATE_KEYS, STATE_NAME, STATE_SHAPE, STATUSES, TIERS, VERIFIED,
+    WARNING_TIERS,
 )
 from .dates import is_date
 from .files import entry_lines, read_listed
@@ -71,8 +73,12 @@ def fact_problems(root: Path, fact: object, rows: Set[str], listed: Set[str]) ->
     row, checked = fact.get("row"), fact.get("checked")
     if isinstance(row, str) and row and row not in rows:
         reasons.append("the fact's row {!r} names no row in the extract".format(row))
-    if isinstance(checked, str) and checked and not is_date(checked):
-        reasons.append("the fact's checked {!r} is not YYYY-MM-DD".format(checked))
+    if isinstance(checked, str) and checked:
+        match = VERIFIED.match(checked)
+        if match is None or not is_date(match.group(1)):
+            reasons.append("the fact's checked {!r} is not 'YYYY-MM-DD, read in source' or 'YYYY-MM-DD, ledger "
+                           "<finding ID>', optionally followed by ', by <name>', or 'YYYY-MM-DD, expert review, by "
+                           "<name>'".format(checked))
     sources = fact.get("sources")
     sources = sources if isinstance(sources, list) else []
     for source in sources:

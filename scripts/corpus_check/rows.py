@@ -7,8 +7,8 @@ from pathlib import Path
 from typing import List, Optional
 
 from .constants import (
-    CORRECTED, ERROR_DIRECTIONS, EXTRACT, FIELD, HEADING, IDENTIFIER, NOT_STORED, OPTIONAL_FIELDS, PLACEHOLDER,
-    RECHECK_TRIGGERS, REQUIRED_FIELDS, SECTION_NUMBER, SECTION_TIERS, STATE_ELECTION, TIERS, VERIFIED,
+    CITATION_SEPARATOR, CORRECTED, ERROR_DIRECTIONS, EXTRACT, FIELD, HEADING, IDENTIFIER, NOT_STORED, OPTIONAL_FIELDS,
+    PLACEHOLDER, RECHECK_TRIGGERS, REQUIRED_FIELDS, SECTION_NUMBER, SECTION_TIERS, STATE_ELECTION, TIERS, VERIFIED,
 )
 from .dates import is_date
 from .files import read_listed, split_lines
@@ -180,6 +180,8 @@ def citation_problem(citation: str, tier: str) -> Optional[str]:
     """Why a citation fails for its tier, or None. An empty citation is reported as missing where it is read."""
     if PLACEHOLDER.search(citation):
         return "the citation holds the word TBD or TODO"
+    if CITATION_SEPARATOR.search(citation):
+        return "a citation's parts are separated by '; ', a semicolon then one space, with no space before it"
     if tier in SECTION_TIERS and not SECTION_NUMBER.search(citation):
         return "a {} citation needs a section number, such as 435.558 or a number after \u00a7, section, " \
                "SSA or U.S.C.".format(tier)
@@ -213,7 +215,8 @@ def check_field_values(row: Row, problems: List[Problem]) -> None:
             match = VERIFIED.match(value)
             if match is None or not is_date(match.group(1)):
                 problem(problems, field.line, "Verified is 'no' or 'YYYY-MM-DD, read in source' or 'YYYY-MM-DD, "
-                        "ledger <finding ID>', optionally followed by ', by <name>'")
+                        "ledger <finding ID>', optionally followed by ', by <name>', or 'YYYY-MM-DD, expert review, "
+                        "by <name>'")
         elif field.name == "Error direction" and value not in ERROR_DIRECTIONS:
             problem(problems, field.line, "Error direction {!r} is not one of {}".format(
                 value, ", ".join(ERROR_DIRECTIONS)))
@@ -250,4 +253,14 @@ def check_extract(root: Path, files: Optional[List[str]], problems: List[Problem
     check_sources(root, rows, files, problems)
     counts.rows = len(rows)
     counts.unverified_rows = sum(1 for row in rows if row.values("Verified") == ["no"])
+    counts.person_verified_rows = sum(1 for row in rows if verified_by_a_person(row))
     return rows
+
+
+def verified_by_a_person(row: Row) -> bool:
+    """True when the row's Verified value names the person who checked it, with `, by <name>`."""
+    for value in row.values("Verified"):
+        match = VERIFIED.match(value)
+        if match is not None and (match.group(2) or match.group(3)):
+            return True
+    return False

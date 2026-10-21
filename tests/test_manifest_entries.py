@@ -266,7 +266,7 @@ class ManifestTest(ManifestTestCase):
 
     def test_the_counts_line_gives_the_number_of_manifest_entries(self):
         result = run_checker(Corpus())
-        self.assertEqual(COUNTS_LINE.search(result.stdout).group(3), "2", result.stdout)
+        self.assertEqual(COUNTS_LINE.search(result.stdout).group(4), "2", result.stdout)
 
 
 if __name__ == "__main__":

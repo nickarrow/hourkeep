@@ -15,7 +15,7 @@ REFERENCES = ".kiro/skills/medicaid-community-engagement/references/"
 
 
 def skill_items(result: subprocess.CompletedProcess) -> str:
-    return COUNTS_LINE.search(result.stdout).group(7)
+    return COUNTS_LINE.search(result.stdout).group(8)
 
 
 class SkillMainFileTest(CorpusTestCase):

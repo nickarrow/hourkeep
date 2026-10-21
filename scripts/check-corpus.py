@@ -7,8 +7,8 @@ PATH defaults to the repository that holds this script. What it reads and how it
 scripts/corpus_check/__init__.py, and each part of the corpus has a module of its own there.
 
 Output: each problem on a line of its own as `file:line: message`, line 0 meaning the file as a whole; then each
-warning as `file:line: warning: message`; then one counts line giving rows, how many say Verified: no, sources,
-state facts, how many are marked not published, warnings, and skill items matched.
+warning as `file:line: warning: message`; then one counts line giving rows, how many say Verified: no, how many
+a person verified, sources, state facts, how many are marked not published, warnings, and skill items matched.
 
 Exit codes: 0 when there are no problems, warnings or not; 1 when there is at least one problem; 2 on a usage error,
 such as an unknown argument or a --root that is not a directory.
