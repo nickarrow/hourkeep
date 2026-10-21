@@ -127,7 +127,9 @@ DERIVED_SOURCE = "docs/domain/cms-2454-ifc/2026-11094.txt"
 
 
 class DryRunProbeTest(CorpusTestCase):
-    """The probes of .agents/review-2026-10-16-fixes/do-it.md that exited 0 against the design's earlier wording."""
+    """The probes that a dry run on 2026-10-16 found passing against the design's earlier wording, each of which must
+    now fail: an older derived source whose manifest entry is removed (S1, beside a control that passes with the
+    entry); a second source on an analysis file (S2); a rule item with a changed number, or with no identifier (N1)."""
 
     def with_derived_source(self) -> Corpus:
         """The valid corpus plus an older derived source that nothing cites, as 2026-11094.txt was in the dry run."""

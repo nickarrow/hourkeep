@@ -421,6 +421,11 @@ checked once on 2026-10-16 and not maintained, and the file is retired. The last
 pointers, and that file is retired too. The open policy questions go into `docs/domain/open-questions.md`, each with who
 can answer it.
 
+(Added 2026-10-21. HCPF's board deck of 2026-09-28, which research L5 cites for the board's dates at deck page 30, is
+not stored; its Drive address is at `docs/domain/research/2026-10-16-policy/L5-colorado.md` line 46. A copy is kept
+outside the repository at `.agents/policy-research-2026-10-16/scratch-L5/rule-deck-2026-09-28.pdf` in case that link
+moves. This increment stores the deck as a source, from that copy or fetched again.)
+
 ### Deliberately not
 
 Maintaining any state other than Colorado.
