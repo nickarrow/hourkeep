@@ -349,8 +349,13 @@ Each says when it has to be answered.
 - The helper session on a shared device, and how the package and backup reach the person. Before the helper feature.
 - What an organization can offer someone who wants nothing digital at all. Before the first organization tries
   HourKeep.
-- Who with Medicaid policy knowledge reads the corpus's rows before HourKeep tells anyone anything, since every check so
-  far has been made by an AI agent. Before launch.
+- Who with Medicaid policy knowledge reads the corpus's rows, since every check so far has been made by an AI agent.
+  The owner, who works in Medicaid policy, reviews rows. The rows also go out for open review by Medicaid policy
+  experts, in public, and each comment is checked against the source like any review finding. The corpus work does not
+  wait for that review. (Decided, 2026-10-21.)
+- How the open review of the rows is published and how comments come in. Being designed.
+- How much of the corpus a person must have reviewed before a screen that uses it ships. When the first screens are
+  ready.
 - Who reads the Spanish, and which organization tries HourKeep first. Before launch; the owner can find an
   organization once there is something to try.
 - Which states follow Colorado. After Colorado's facts are in.

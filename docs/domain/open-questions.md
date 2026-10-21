@@ -1,9 +1,16 @@
 # Open questions
 
-Policy questions that only CMS, a state or a policy person can answer, each with who can answer it, the rows that wait on the answer and the stored lines it rests on; none is answered here, and every check so far was made by an AI agent.
+Policy questions that only CMS, a state or a policy person can answer, each with who can answer it, the rows that
+wait on the answer and the stored lines it rests on; none is answered here, and every check so far was made by an AI
+agent. Each question says why it is open: the sources conflict, the sources are silent, it turns on a choice the state
+has not published, or the answer may be in a provision the corpus has not stored.
 
 ### Which renewal option applies where a state's plan records no choice?
 
+- Why it is open: it turns on a choice the state has not published; the sources are silent. 42 CFR 435.558(b)(2)
+  gives the state two options and the preamble has it record its choice in its State plan, but no stored source says
+  which option applies before a state records one. Colorado's fact is inferred from a draft rule that names neither
+  option (research L5-3).
 - Who can answer: CMS, or Colorado's HCPF for Colorado
 - Raised: 2026-10-17, by rows renewal-notice-with-renewal-form, renewal-notice-after-renewal-form-period and
   no-noncompliance-notice-when-other-factors-unanswered, and the Colorado fact for renewal-notice-with-renewal-form;
@@ -18,6 +25,9 @@ Policy questions that only CMS, a state or a policy person can answer, each with
 
 ### Which option applies to checks between renewals where a state's plan records no choice?
 
+- Why it is open: it turns on a choice the state has not published; the sources are silent. In a state that verifies
+  compliance more often than at renewal under 42 CFR 435.557(d), 42 CFR 435.558(b)(3) gives two options, and no
+  stored source sets a default between them.
 - Who can answer: CMS, or Colorado's HCPF for Colorado
 - Raised: 2026-10-17, by rows more-frequent-check-notice-after-data-check and
   more-frequent-check-notice-after-information-request; 2026-10-19, by rows
@@ -30,6 +40,9 @@ Policy questions that only CMS, a state or a policy person can answer, each with
 
 ### Are the 5 days after which a notice of noncompliance or a notice of action counts as received counted as calendar days?
 
+- Why it is open: the sources are silent. 42 CFR 435.558(a)(2) says calendar days for the 30 days to answer, but
+  neither 42 CFR 435.558(c)(4) nor 42 CFR 431.231(c)(2) says calendar days for the 5 days before a notice counts as
+  received.
 - Who can answer: CMS
 - Raised: 2026-10-17, by row notice-presumed-received-after-5-days and the federal fact for it; 2026-10-18, by row
   must-reinstate-after-action-without-advance-notice
@@ -45,6 +58,9 @@ Policy questions that only CMS, a state or a policy person can answer, each with
 
 ### Is the date a notice of noncompliance is received the first of the 30 calendar days to answer it?
 
+- Why it is open: the sources are silent. 42 CFR 435.558(a)(2) has the 30 calendar days begin on the date of receipt
+  and (c)(4) presumes receipt 5 days after the date on the notice, but neither says whether the date of receipt is
+  day 1 of the 30.
 - Who can answer: CMS
 - Raised: 2026-10-19, by rows notice-response-period and notice-presumed-received-after-5-days, and the federal fact
   for notice-response-period
@@ -59,6 +75,9 @@ Policy questions that only CMS, a state or a policy person can answer, each with
 
 ### Are the 10 days of advance notice and of reinstatement, and the 90 days to ask for a hearing, calendar days?
 
+- Why it is open: the sources are silent; the answer may be in a provision the corpus has not stored. None of the
+  four stored paragraphs of 42 CFR 431.211, 431.221 and 431.231 says calendar days, and 42 CFR 431.201, which
+  § 431.206(c)(2) cites for what an action is, is not stored and was not read.
 - Who can answer: CMS
 - Raised: 2026-10-17, by rows advance-notice-at-least-10-days, agency-may-reinstate-within-10-days-after-action,
   must-reinstate-after-action-without-advance-notice, hearing-request-window-at-most-90-days and
@@ -73,6 +92,10 @@ Policy questions that only CMS, a state or a policy person can answer, each with
 
 ### Is a notice of noncompliance itself a notice of action under 42 CFR 431.210?
 
+- Why it is open: the sources are silent; the answer may be in a provision the corpus has not stored. 42 CFR 431.210
+  covers notices required under § 431.206(c)(2), (c)(3) or (c)(4), and nothing read says whether the notice of
+  noncompliance is one of them. 42 CFR 431.201, which § 431.206 cites for what an action is, is not stored and was
+  not read.
 - Who can answer: CMS
 - Raised: 2026-10-17, by rows notice-of-action-states-action-and-effective-date,
   notice-of-action-states-specific-reasons, notice-of-action-cites-regulations,
@@ -90,6 +113,10 @@ Policy questions that only CMS, a state or a policy person can answer, each with
 
 ### May an Exchange appeals entity hear a community engagement denial where a state has delegated its hearings?
 
+- Why it is open: the sources are silent; the answer may be in a provision the corpus has not stored. 42 CFR
+  431.206(d) says what the agency must tell a person where it has delegated the hearing, but nothing read says
+  whether an Exchange or Exchange appeals entity hears an appeal of a denial or disenrollment under 42 CFR
+  435.558(d), and 42 CFR 431.10 is not stored and was not read.
 - Who can answer: CMS, or Colorado's HCPF for Colorado
 - Raised: 2026-10-17, by row hearing-before-agency-instead-of-exchange
 - Source: docs/domain/sources/ecfr/2026-10-15/42-cfr-431.206.xml:14 "the agency has delegated authority to the Exchange"
@@ -99,6 +126,8 @@ Policy questions that only CMS, a state or a policy person can answer, each with
 
 ### Which SMD 26-001 transition path did Colorado take for renewals already scheduled in 2027?
 
+- Why it is open: it turns on a choice the state has not published. SMD 26-001 gives a state two transition paths for
+  renewals already scheduled in 2027, and no stored Colorado source says which path Colorado took.
 - Who can answer: Colorado's HCPF, or CMS
 - Raised: 2026-10-17, by rows reschedule-2027-renewals-to-six-months and keep-scheduled-2027-renewals
 - Source: docs/domain/sources/cms/smd-26-001.txt:258 "are already enrolled in a 12-month eligibility period in the"
@@ -115,6 +144,8 @@ Policy questions that only CMS, a state or a policy person can answer, each with
 
 ### Must a state publish which SMD 26-001 transition path it took?
 
+- Why it is open: the sources are silent. SMD 26-001 does not say whether a state must publish its path, and it does
+  not say that the state plan amendment it describes records the path.
 - Who can answer: CMS
 - Raised: 2026-10-17, by rows reschedule-2027-renewals-to-six-months and keep-scheduled-2027-renewals
 - Source: docs/domain/sources/cms/smd-26-001.txt:289 "Under Option 1, the state would shorten the eligibility period for beneficiaries enrolled in the"
@@ -127,6 +158,8 @@ Policy questions that only CMS, a state or a policy person can answer, each with
 
 ### In Colorado, do the 10 days for keeping coverage on appeal run to the member's request or to the Office of Administrative Courts' receipt of it?
 
+- Why it is open: the sources conflict. 10 CCR 2505-10 § 8.057.5.D, like 42 CFR 431.231(a), counts the 10 days to
+  the member's request, and HCPF's appeals page counts them to the Office of Administrative Courts' receipt of it.
 - Who can answer: Colorado's HCPF, or the Office of Administrative Courts
 - Raised: 2026-10-17, by row agency-may-reinstate-within-10-days-after-action and the Colorado fact for it
 - Source: docs/domain/sources/colorado/10-ccr-2505-10-8.000-effective-2026-07-10.txt:2924 "Where the member requests a hearing not more than ten (10) days after"
@@ -146,6 +179,8 @@ Policy questions that only CMS, a state or a policy person can answer, each with
 
 ### Is the date of the Notice of Action that starts Colorado's 60 days the date it is mailed?
 
+- Why it is open: the sources are silent. The federal ceiling counts from the date the notice of action is mailed and
+  Colorado's rule from the date of the Notice of Action, and no stored source says whether those are the same day.
 - Who can answer: Colorado's HCPF
 - Raised: 2026-10-17, by row hearing-request-window-at-most-90-days and the Colorado fact for it
 - Source: docs/domain/sources/colorado/10-ccr-2505-10-8.000-effective-2026-07-10.txt:2803 "No later than sixty (60) calendar days after the date of the Notice of"
@@ -156,6 +191,10 @@ Policy questions that only CMS, a state or a policy person can answer, each with
 
 ### What do the at least 30 days in Colorado's draft renewal paragraph count from, and could they give fewer than 30 days from receipt, or more than the 30 days the preamble says cannot be extended?
 
+- Why it is open: the sources are silent; it turns on a choice the state has not published. Colorado's draft 8.100
+  does not say what its at least 30 days count from, and by aligning the self-reporting form's due date with the
+  redetermination due date it could run past the 30 days the preamble says cannot be extended. The draft is not
+  adopted, and the adopted rule may settle this.
 - Who can answer: Colorado's HCPF
 - Raised: 2026-10-17, by row renewal-notice-with-renewal-form and the Colorado fact for it; 2026-10-19, by row
   notice-sent-with-renewal-form
@@ -175,6 +214,9 @@ Policy questions that only CMS, a state or a policy person can answer, each with
 
 ### Does an applicant whose own declaration of noncompliance is accepted still get a notice of noncompliance?
 
+- Why it is open: the sources are silent. 42 CFR 435.558(a)(1) requires the notice when the State is unable to
+  verify that a person met the requirement, and the preamble lets a State accept an applicant's declaration of
+  noncompliance as verified, but nothing read says whether a State that accepts it is unable to verify in that sense.
 - Who can answer: CMS
 - Raised: 2026-10-17, by rows accept-applicant-declaration-of-noncompliance and send-notice-of-noncompliance
 - Source: docs/domain/cms-2454-ifc/2026-11094.xml:2027 "a State may accept the declaration on the application without further verification and be considered to have verified the applicant's noncompliance"
@@ -185,6 +227,10 @@ Policy questions that only CMS, a state or a policy person can answer, each with
 
 ### For the adult expansion group from 2027, which governs how often eligibility is renewed: the regulation's 12 months or the statute's 6?
 
+- Why it is open: the sources conflict. 42 CFR 435.916(a)(1), as the interim final rule reprints it, has eligibility
+  determined on MAGI-based income renewed once every 12 months, while SSA 1902(e)(14)(L)(i), added by Pub. L.
+  119-21, has a State redetermine it once every 6 months for the adult expansion group, and no stored source says
+  how the two are reconciled.
 - Who can answer: CMS
 - Raised: 2026-10-18, by rows reschedule-2027-renewals-to-six-months, keep-scheduled-2027-renewals and
   first-path-period-not-shorter-than-six-months

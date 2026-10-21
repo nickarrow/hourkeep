@@ -171,7 +171,7 @@ Deviations from the plan:
   real corpus and on each of the nine breaks, with byte-identical output.
 - The skill has a rule item for every row, 64 in all, at 296 lines and, by estimate, 5,000 to 6,500 tokens: about
   the size limit the epic design sets, after one topic of five. How it holds the rest is a decision before
-  increment 2.
+  increment 2. (Decided 2026-10-21: decision record 0004.)
 - Rows the plan did not list: seven preamble rows, five of them split out on 2026-10-18 once the Formats section said
   a row takes the tier of the source its Rule rests on; and a statute row for the six-month renewal exemption for
   certain American Indians and Alaska Natives. Of increment 2's "SSA 1902(e)(14)(L) and SMD 26-001 for six-month
@@ -291,6 +291,34 @@ otherwise" in seven passages, broader than § 435.558(c)(4), and a search found 
 did not receive the notice within the 5-day period. That check's Python 3.9 run ended before a result, and the suite
 then passed under both.
 
+Owner's review, 2026-10-21. The owner reviewed the changes to `public/index.html` and the list of commits, with no
+notes. The owner found the skill's renewal options and its 2027 transition paths hard to tell apart, and its paragraph
+on the date of action and the 5-day notice unclear. The open questions did not say why each was open. And the owner
+asked which decisions were needed and what a policy reader should look at. What changed: the skill was split into a main
+file and a file per topic, as decision record 0004 records. Its 64 rule items are grouped under twelve headings, each
+named for what it covers, and every item was read, and 49 of the 64 were reworded so each stands alone, with the state's
+choices named by what they do. The paragraph on the date of action and the 5-day notice was rewritten. Each of the 14
+open questions has a "Why it is open" line. GPT-5.6 Sol, against the source, read all 64 rule items against their rows
+and found 1 blocking and 6 should fix: the group for the second renewal choice was named as if the notice always came
+after the form's deadline, where the preamble also sends it earlier when a form comes back without enough information;
+four items left out an actor, a limit or the date a period is measured from; the paragraph on the date of action said
+only two definitions were missing, where the exceptions in 42 CFR 431.213 and 431.214 are unread as well; and this
+paragraph said every item was reworded. Claude Opus 5.5, against the mechanism, ran 18 break probes under both Pythons,
+all failing as they should, and found 4 should fix and 5 notes: an emptied topic file passed where an emptied Rules
+section had failed; nothing checked that each row has a rule item; the fresh-session test had not run on the split
+skill; and the same count. All 11 findings were confirmed and fixed, and the checker now fails a topic file with no rule
+item and a row with no rule item or more than one. Of the 5 notes, 3 were taken: paths to `docs/` are said to be from
+the repository root, decision record 0004 gives the loading cost of one topic, and two stray blank lines went. Two were
+rejected: a misleading message for a link that already fails, and a scratch report's naming of the test classes. The
+fresh-session test then ran on the split skill, once on Claude Opus 5.5 and once on GPT-5.6 Sol, with only the question:
+both loaded the skill unprompted, opened the topic file, covered the seven things § 435.558(c)(1) requires with hardship
+where the state offers it, named the rows and skills they used, and pointed to the deadline printed on the letter. A
+GPT-5.6 Sol check of those fixes found two more items broader than their rows, and both were fixed: the item for the
+second renewal choice now says the renewal form goes to people whose eligibility cannot be renewed from reliable
+information under § 435.916(a)(2), and the five items on what a notice of action must contain now say they cover
+notices required under § 431.206(c)(2), (c)(3) or (c)(4). After that, 226 tests passed under both Pythons, and the
+checker exited 0 with 64 rows and 64 skill items.
+
 ## 2. The federal rule, verified
 
 ### Delivers
@@ -326,7 +354,9 @@ Approval of the decision record, which covers the retirements and moves in incre
 
 Two decisions before it starts, which increment 1 raised: how the skill holds the topics still to come, since this
 topic alone brings it to about its size limit; and who with Medicaid policy knowledge reads the rows, and what waits
-until they have. (Added 2026-10-19; full review 2026-10-19, red team 4 and 7.)
+until they have. (Added 2026-10-19; full review 2026-10-19, red team 4 and 7.) (Decided 2026-10-21: the skill is a
+main file and a file per topic, decision record 0004; the owner reviews rows and they go out for open review, and the
+corpus work does not wait, as docs/design.md records.)
 
 ## 3. The statute and the supporting rules
 
