@@ -1,9 +1,11 @@
 # HourKeep
 
 HourKeep is a free, open-source app, now being rebuilt, for people on Medicaid facing the new work requirements, also
-called community engagement. Starting no later than January 1, 2027, many adults on Medicaid have to show that they
-work, volunteer, go to school or job training, or earn enough, unless the rule does not apply to them. HourKeep will
-help a person gather that proof and put it into a package they can send their state.
+called community engagement. Many adults on Medicaid have to show that they work, volunteer, go to school or job
+training, or earn enough, unless the rule does not apply to them. States must start by January 1, 2027, unless CMS
+grants a state a good-faith exemption, which ends by December 31, 2028 at the latest (42 CFR 435.559(a), 435.560(c)).
+Some started sooner, so the date depends on the state. HourKeep will help a person gather their proof and put it into a
+package they can send their state.
 
 It will keep everything on the person's own device. It will not decide whether anyone meets the requirement. Their
 state makes that decision.
