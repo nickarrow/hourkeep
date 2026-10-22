@@ -60,14 +60,15 @@ Checked 2026-10-16:
 
 ### Delivers
 
-The formats in the epic design, proved on one topic: notices of noncompliance and fair hearings. The topic covers
-42 CFR 435.558 in full; 42 CFR 431.206, 431.210, 431.211, 431.220, 431.221, 431.230 and 431.231; and the two transition
-paths in CMS's letter SMD 26-001, because they decide whether a person's first review, and so a first notice, can come
-in January 2027. Two choices in this topic share names, so the rows name each by what it does. In § 435.558(b)(2) a
-state sends the notice of noncompliance with the renewal form or after the form's period, which the rule's preamble
-calls Option 1 and Option 2. SMD 26-001 calls its own transition paths options 1 and 2 as well. Paragraph (b)(3) sets a
-separate choice for more frequent checks: a notice straight after the data check, or one after a request for
-information. Specifically:
+The formats in the epic design, proved on one topic: notices of noncompliance and fair hearings. The topic covers 42 CFR
+435.558 in full; 42 CFR 431.206, 431.210, 431.211, 431.220, 431.221, 431.230 and 431.231; and the two transition paths
+in CMS's letter SMD 26-001, because they decide whether a person's first review, and so a first notice, can come in
+January 2027.
+
+Two choices in this topic share names, so the rows name each by what it does. In § 435.558(b)(2) a state sends the
+notice of noncompliance with the renewal form or after the form's period, which the rule's preamble calls Option 1 and
+Option 2. SMD 26-001 calls its own transition paths options 1 and 2 as well. Paragraph (b)(3) sets a separate choice for
+more frequent checks: a notice straight after the data check, or one after a request for information. Specifically:
 
 - Stored, each with a manifest entry: the June 29 correction as Federal Register XML; eCFR XML of § 435.558 and of the
   seven part 431 sections, all for one stated eCFR date; SMD 26-001 with its text extraction; and for Colorado, the
@@ -144,8 +145,7 @@ cannot run the fresh-session test, in which case you ask the question in a new K
 
 ### Done, 2026-10-19
 
-Built on the branch `corpus-1-notices` from 2026-10-17 to 2026-10-19, in four commits. Against "How you know it
-worked":
+Built on the branch `corpus-1-notices` from 2026-10-17 to 2026-10-19, in four commits. Against "How you know it worked":
 
 - `python3 -m unittest discover -s tests` ran 211 tests and passed under Python 3.14.6 (130 s) and 3.9.6 (107 s) on
   2026-10-19. The checker's review rounds mapped every check the epic design lists to a passing and a failing
@@ -203,17 +203,17 @@ Still unverified:
 - PDFKit on another macOS version, and a checkout on Windows itself. A clone with `core.autocrlf=true` passes the
   checker, now that `.gitattributes` gives the corpus's own files `text eol=lf`.
 
-How the work ran, for the increments to come. Workflow steps stalled for long stretches, over two days of elapsed
-time in all. The Mac's power settings put it to sleep a minute after its display, which dropped model connections
-mid-reply, and runs stayed paused until resumed; keeping it awake with `caffeinate -is` ended that. Steps at the
-highest effort that planned a whole job in one reply hit the output limit, while steps that worked a checklist one
-small item at a time did not. Two steps finished without writing their output, and a loop's numeric stop condition
-never fired. So: keep the machine awake, split increments at policy boundaries, give each step one small item, and
-check that each report exists after each round.
+How the work ran, for the increments to come. Workflow steps stalled for long stretches, over two days of elapsed time
+in all. The Mac's power settings put it to sleep a minute after its display, which dropped model connections mid-reply,
+and runs stayed paused until resumed; keeping it awake with `caffeinate -is` ended that. Steps at the highest effort
+that planned a whole job in one reply hit the output limit, while steps that worked a checklist one small item at a time
+did not. Two steps finished without writing their output, and a loop's numeric stop condition never fired.
 
-The claims, by the inventory's numbering (RE for `rule-extract.md` section 8, WMM for `what-matters-most.md`
-section 9). "Stays" means the claim is still in the passage after its pointer line, corrected and dated where it
-needed it.
+So: keep the machine awake, split increments at policy boundaries, give each step one small item, and check that each
+report exists after each round.
+
+The claims, by the inventory's numbering (RE for `rule-extract.md` section 8, WMM for `what-matters-most.md` section 9).
+"Stays" means the claim is still in the passage after its pointer line, corrected and dated where it needed it.
 
 | Claim | Where it went |
 |---|---|
@@ -264,85 +264,109 @@ needed it.
 | WMM-15, the Option 2 carve-out | no-noncompliance-notice-when-other-factors-unanswered; its sentence on the State plan's choice went to renewal-notice-with-renewal-form and renewal-notice-after-renewal-form-period |
 | WMM-16, the heading | stays |
 
-Review. Before the full review, five checks ran. GPT-5.6 Sol checked the rows' groundwork against the stored sources
-and found 9 problems, one of them an invented federal default, all fixed. The checker had six review rounds, GPT-5.6
-Sol and Claude Opus 5.5 each reviewing on their own and an aggregator confirming each finding against the code: no
-blocking finding, 3 or 4 should-fix findings a round, all fixed, with round 5's merge lost to an interrupted step and
-carried by round 6. The rows had three rounds of meaning review on both models, finding 1, 0 and 0 blocking and 14,
-5 and 5 should fix, all fixed, with round 2's Opus review lost to a stalled step. GPT-5.6 Sol ran the checker split
-and found 3 should fix, all fixed. GPT-5.6 Sol checked the last rows fixes and found 2 incomplete, both finished.
+Review. Before the full review, five checks ran.
 
-The full review, on 2026-10-19, ran five mandates two at a time, each against its own source. Against the source,
-GPT-5.6 Sol, against the stored sources, the research records, and a search for anything published after 2026-10-16:
-3 should fix. The search found nothing that changes a conclusion in CMS's community engagement page, the Federal
-Register, eCFR, Colorado's rule page and HCPF's sitemap, the dockets of Massachusetts v. Oz and Taylor v. Kennedy,
-or the IRS proposed rule, each checked 2026-10-19. Red team, GPT-5.6 Sol, against the plan: 3 blocking and 7 should
-fix. Cold reader, Claude Opus 5.5, as a fresh agent, a legal aid attorney, a person on Medicaid on a phone, a new
-developer and the next session: 10 should fix and 7 notes. Against the mechanism, Claude Opus 5.5, against Kiro's,
-the Agent Skills specification's and git's documentation and live runs: 4 should fix and 7 notes. Do it, Claude
-Opus 5.5, carrying out the instructions in a clone: 1 should fix and 4 notes.
+GPT-5.6 Sol checked the rows' groundwork against the stored sources and found 9 problems, one of them an invented
+federal default, all fixed.
+
+The checker had six review rounds, GPT-5.6 Sol and Claude Opus 5.5 each reviewing on their own and an aggregator
+confirming each finding against the code: no blocking finding, 3 or 4 should-fix findings a round, all fixed, with round
+5's merge lost to an interrupted step and carried by round 6.
+
+The rows had three rounds of meaning review on both models, finding 1, 0 and 0 blocking and 14, 5 and 5 should fix, all
+fixed, with round 2's Opus review lost to a stalled step. GPT-5.6 Sol ran the checker split and found 3 should fix, all
+fixed. GPT-5.6 Sol checked the last rows fixes and found 2 incomplete, both finished.
+
+The full review, on 2026-10-19, ran five mandates two at a time, each against its own source.
+
+Against the source, GPT-5.6 Sol, against the stored sources, the research records, and a search for anything published
+after 2026-10-16: 3 should fix. The search found nothing that changes a conclusion in CMS's community engagement page,
+the Federal Register, eCFR, Colorado's rule page and HCPF's sitemap, the dockets of Massachusetts v. Oz and Taylor v.
+Kennedy, or the IRS proposed rule, each checked 2026-10-19.
+
+Red team, GPT-5.6 Sol, against the plan: 3 blocking and 7 should fix.
+
+Cold reader, Claude Opus 5.5, as a fresh agent, a legal aid attorney, a person on Medicaid on a phone, a new developer
+and the next session: 10 should fix and 7 notes.
+
+Against the mechanism, Claude Opus 5.5, against Kiro's, the Agent Skills specification's and git's documentation and
+live runs: 4 should fix and 7 notes.
+
+Do it, Claude Opus 5.5, carrying out the instructions in a clone: 1 should fix and 4 notes.
 
 That is 3 blocking, 25 should fix and 18 notes, six issues of them raised by more than one reviewer, and each was
-confirmed against the files. All 28 blocking and should-fix findings were accepted. Two of the blocking ones were
-this entry not yet existing; the third, that the statute row rests on a copy of unrecorded origin, was answered by
-the GovInfo comparison. Two should-fix findings became decisions before increment 2, the skill's shape and the policy
-reader; the rest were fixed. Four notes were rejected: the manifest's two Federal Register fetch commands lack
-`--fail`, but the manifest records the command that ran, and the next fetch adds it; whole-file problems are reported
-at line 0, as the checker's docstring says; an emptied fact source is reported at its fact's line, which names the
-fact and the key, so a finer line waits; and the page's "ask soon" before a hearing, which the reviewer called
-accurate. A GPT-5.6 Sol check of the fixes then found the receipt presumption stated as "unless the person shows
-otherwise" in seven passages, broader than § 435.558(c)(4), and a search found two more; all nine now say the person
-did not receive the notice within the 5-day period. That check's Python 3.9 run ended before a result, and the suite
-then passed under both.
+confirmed against the files. All 28 blocking and should-fix findings were accepted. Two of the blocking ones were this
+entry not yet existing; the third, that the statute row rests on a copy of unrecorded origin, was answered by the
+GovInfo comparison. Two should-fix findings became decisions before increment 2, the skill's shape and the policy
+reader; the rest were fixed.
+
+Four notes were rejected: the manifest's two Federal Register fetch commands lack `--fail`, but the manifest records the
+command that ran, and the next fetch adds it; whole-file problems are reported at line 0, as the checker's docstring
+says; an emptied fact source is reported at its fact's line, which names the fact and the key, so a finer line waits;
+and the page's "ask soon" before a hearing, which the reviewer called accurate.
+
+A GPT-5.6 Sol check of the fixes then found the receipt presumption stated as "unless the person shows otherwise" in
+seven passages, broader than § 435.558(c)(4), and a search found two more; all nine now say the person did not receive
+the notice within the 5-day period. That check's Python 3.9 run ended before a result, and the suite then passed under
+both.
 
 Owner's review, 2026-10-21. The owner reviewed the changes to `public/index.html` and the list of commits, with no
-notes. The owner found the skill's renewal options and its 2027 transition paths hard to tell apart, and its paragraph
-on the date of action and the 5-day notice unclear. The open questions did not say why each was open. And the owner
-asked which decisions were needed and what a policy reader should look at. What changed: the skill was split into a main
-file and a file per topic, as decision record 0004 records. Its 64 rule items are grouped under twelve headings, each
-named for what it covers, and every item was read, and 49 of the 64 were reworded so each stands alone, with the state's
-choices named by what they do. The paragraph on the date of action and the 5-day notice was rewritten. Each of the 14
-open questions has a "Why it is open" line. GPT-5.6 Sol, against the source, read all 64 rule items against their rows
-and found 1 blocking and 6 should fix: the group for the second renewal choice was named as if the notice always came
-after the form's deadline, where the preamble also sends it earlier when a form comes back without enough information;
-four items left out an actor, a limit or the date a period is measured from; the paragraph on the date of action said
-only two definitions were missing, where the exceptions in 42 CFR 431.213 and 431.214 are unread as well; and this
-paragraph said every item was reworded. Claude Opus 5.5, against the mechanism, ran 18 break probes under both Pythons,
-all failing as they should, and found 4 should fix and 5 notes: an emptied topic file passed where an emptied Rules
-section had failed; nothing checked that each row has a rule item; the fresh-session test had not run on the split
-skill; and the same count. All 11 findings were confirmed and fixed, and the checker now fails a topic file with no rule
-item and a row with no rule item or more than one. Of the 5 notes, 3 were taken: paths to `docs/` are said to be from
-the repository root, decision record 0004 gives the loading cost of one topic, and two stray blank lines went. Two were
-rejected: a misleading message for a link that already fails, and a scratch report's naming of the test classes. The
-fresh-session test then ran on the split skill, once on Claude Opus 5.5 and once on GPT-5.6 Sol, with only the question:
-both loaded the skill unprompted, opened the topic file, covered the seven things § 435.558(c)(1) requires with hardship
-where the state offers it, named the rows and skills they used, and pointed to the deadline printed on the letter. A
-GPT-5.6 Sol check of those fixes found two more items broader than their rows, and both were fixed: the item for the
-second renewal choice now says the renewal form goes to people whose eligibility cannot be renewed from reliable
-information under § 435.916(a)(2), and the five items on what a notice of action must contain now say they cover
-notices required under § 431.206(c)(2), (c)(3) or (c)(4). After that, 226 tests passed under both Pythons, and the
-checker exited 0 with 64 rows and 64 skill items.
+notes.
+
+The owner found the skill's renewal options and its 2027 transition paths hard to tell apart, and its paragraph on the
+date of action and the 5-day notice unclear. The open questions did not say why each was open. And the owner asked which
+decisions were needed and what a policy reader should look at.
+
+What changed: the skill was split into a main file and a file per topic, as decision record 0004 records. Its 64 rule
+items are grouped under twelve headings, each named for what it covers, and every item was read, and 49 of the 64 were
+reworded so each stands alone, with the state's choices named by what they do. The paragraph on the date of action and
+the 5-day notice was rewritten. Each of the 14 open questions has a "Why it is open" line.
+
+GPT-5.6 Sol, against the source, read all 64 rule items against their rows and found 1 blocking and 6 should fix: the
+group for the second renewal choice was named as if the notice always came after the form's deadline, where the preamble
+also sends it earlier when a form comes back without enough information; four items left out an actor, a limit or the
+date a period is measured from; the paragraph on the date of action said only two definitions were missing, where the
+exceptions in 42 CFR 431.213 and 431.214 are unread as well; and this paragraph said every item was reworded.
+
+Claude Opus 5.5, against the mechanism, ran 18 break probes under both Pythons, all failing as they should, and found 4
+should fix and 5 notes: an emptied topic file passed where an emptied Rules section had failed; nothing checked that
+each row has a rule item; the fresh-session test had not run on the split skill; and the same count.
+
+All 11 findings were confirmed and fixed, and the checker now fails a topic file with no rule item and a row with no
+rule item or more than one. Of the 5 notes, 3 were taken: paths to `docs/` are said to be from the repository root,
+decision record 0004 gives the loading cost of one topic, and two stray blank lines went. Two were rejected: a
+misleading message for a link that already fails, and a scratch report's naming of the test classes.
+
+The fresh-session test then ran on the split skill, once on Claude Opus 5.5 and once on GPT-5.6 Sol, with only the
+question: both loaded the skill unprompted, opened the topic file, covered the seven things § 435.558(c)(1) requires
+with hardship where the state offers it, named the rows and skills they used, and pointed to the deadline printed on the
+letter. A GPT-5.6 Sol check of those fixes found two more items broader than their rows, and both were fixed: the item
+for the second renewal choice now says the renewal form goes to people whose eligibility cannot be renewed from reliable
+information under § 435.916(a)(2), and the five items on what a notice of action must contain now say they cover notices
+required under § 431.206(c)(2), (c)(3) or (c)(4).
+
+After that, 226 tests passed under both Pythons, and the checker exited 0 with 64 rows and 64 skill items.
 
 ## 2. The federal rule, verified
 
 ### Delivers
 
-All of 42 CFR 435.550 to 435.563 as rows, outreach under § 435.561 included, with SSA 1902(e)(14)(L) and SMD 26-001
-for six-month renewals. Every correction the ledger confirmed for `rule-extract.md` and `what-matters-most.md` is
-applied as its passage becomes a pointer, each dated. `what-matters-most.md`'s priorities and its checklist of common
-errors move into the extract and the skill, and the file is retired.
+All of 42 CFR 435.550 to 435.563 as rows, outreach under § 435.561 included, with SSA 1902(e)(14)(L) and SMD 26-001 for
+six-month renewals. Every correction the ledger confirmed for `rule-extract.md` and `what-matters-most.md` is applied as
+its passage becomes a pointer, each dated. `what-matters-most.md`'s priorities and its checklist of common errors move
+into the extract and the skill, and the file is retired.
 
 One decision record sets out the whole restructure: what is retired, what moves, where each part goes, and which
-increment does it. Increments 3 and 4 carry it out and record each step in their Done entries, so the record never
-needs editing.
+increment does it. Increments 3 and 4 carry it out and record each step in their Done entries, so the record never needs
+editing.
 
 (Decided 2026-10-22 by the owner. This increment is split by topic: one increment for each topic of 42 CFR 435.550 to
-435.563, each reviewed and published on the review pages on its own, since increment 1's one topic came to 64 rows.
-The decision record names the topics and their order, and they are written into this plan once it is approved. It
-also takes the state's part of each open question that waits on a choice a state has not published into the state
-facts, marked `not published`; any part about the federal rule stays an open question. Before the rows for 42 CFR
-435.554 and 435.557(f) are written, check the docket in Massachusetts v. Oz, D. Mass. 1:26-cv-12962, for whether its
-summary judgment hearing, set for 2026-10-22 as the skill's watch list says, was held, and what followed.)
+435.563, each reviewed and published on the review pages on its own, since increment 1's one topic came to 64 rows. The
+decision record names the topics and their order, and they are written into this plan once it is approved. It also takes
+the state's part of each open question that waits on a choice a state has not published into the state facts, marked
+`not published`; any part about the federal rule stays an open question. Before the rows for 42 CFR 435.554 and
+435.557(f) are written, check the docket in Massachusetts v. Oz, D. Mass. 1:26-cv-12962, for whether its summary
+judgment hearing, set for 2026-10-22 as the skill's watch list says, was held, and what followed.)
 
 ### Deliberately not
 
@@ -364,11 +388,11 @@ corrections that record it.
 
 Approval of the decision record, which covers the retirements and moves in increments 2 to 4.
 
-Two decisions before it starts, which increment 1 raised: how the skill holds the topics still to come, since this
-topic alone brings it to about its size limit; and who with Medicaid policy knowledge reads the rows, and what waits
-until they have. (Added 2026-10-19; full review 2026-10-19, red team 4 and 7.) (Decided 2026-10-21: the skill is a
-main file and a file per topic, decision record 0004; the owner reviews rows and they go out for open review, and the
-corpus work does not wait, as docs/design.md records.)
+Two decisions before it starts, which increment 1 raised: how the skill holds the topics still to come, since this topic
+alone brings it to about its size limit; and who with Medicaid policy knowledge reads the rows, and what waits until
+they have. (Added 2026-10-19; full review 2026-10-19, red team 4 and 7.) (Decided 2026-10-21: the skill is a main file
+and a file per topic, decision record 0004; the owner reviews rows and they go out for open review, and the corpus work
+does not wait, as docs/design.md records.)
 
 ## 3. The statute and the supporting rules
 
@@ -424,9 +448,9 @@ whether to keep the blueprint PDFs.
 
 The state facts files complete for the federal default, and for everything Colorado has published, with each gap marked
 `not published`: look-back months at application and renewal, hardship exceptions, income-to-hours, how medically frail
-status is shown and when documentation starts, how the 30 days are counted, submission channels, the appeal window,
-and the start date. Colorado's facts come from its draft rule (10 CCR 2505-10 § 8.100), HCPF's pages and its English
-and Spanish letter templates, each stored with its retrieval date.
+status is shown and when documentation starts, how the 30 days are counted, submission channels, the appeal window, and
+the start date. Colorado's facts come from its draft rule (10 CCR 2505-10 § 8.100), HCPF's pages and its English and
+Spanish letter templates, each stored with its retrieval date.
 
 `state-options.md`'s tracker moves into the facts files, the values the research checked for other states labeled as
 checked once on 2026-10-16 and not maintained, and the file is retired. The last sections of `rule-extract.md` become
@@ -445,8 +469,8 @@ Maintaining any state other than Colorado.
 ### Why this shape
 
 The design phases states in, starting with Colorado. Colorado's rule is a draft due before its Medical Services Board on
-November 27, 2026, and the research found its hardship and seasonal-income positions still open (research L5,
-findings 10 and 11), so its facts need a recheck date in the watch list, and some will be `not published`.
+November 27, 2026, and the research found its hardship and seasonal-income positions still open (research L5, findings
+10 and 11), so its facts need a recheck date in the watch list, and some will be `not published`.
 
 ### How you know it worked
 
@@ -464,10 +488,10 @@ records.
 
 ### Delivers
 
-The skill with all its rows, the number labels, CMS's vocabulary in English and Spanish, with the Spanish renderings
-the research found wrong (research L5-19), the error checklist and a dated watch list: the
-Massachusetts v. Oz hearing on October 22, 2026, Taylor v. Kennedy, the IRS proposed rule open for comment until
-November 30, 2026, Colorado's rule, SNAP's pending rule, and the next eCFR check.
+The skill with all its rows, the number labels, CMS's vocabulary in English and Spanish, with the Spanish renderings the
+research found wrong (research L5-19), the error checklist and a dated watch list: the Massachusetts v. Oz hearing on
+October 22, 2026, Taylor v. Kennedy, the IRS proposed rule open for comment until November 30, 2026, Colorado's rule,
+SNAP's pending rule, and the next eCFR check.
 
 ### Deliberately not
 
@@ -479,9 +503,8 @@ The skill is what every later session reads, so it comes last, from a corpus tha
 
 ### How you know it worked
 
-A fresh session given five questions from the error checklist loads the skill without being told to, as in increment
-1, and answers each with the right citation and the row's identifier. The questions are written before the session
-runs.
+A fresh session given five questions from the error checklist loads the skill without being told to, as in increment 1,
+and answers each with the right citation and the row's identifier. The questions are written before the session runs.
 
 ### Needs from you
 
