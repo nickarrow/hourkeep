@@ -2,7 +2,7 @@
 
 **Review date:** 2026-10-22
 **Reviewed by:** agent self-review
-**Agent / system:** Claude Code (Claude Opus 5), cloud session
+**Agent / system:** Claude Code, cloud session
 **Task or period under review:** integrating the CMS eAPD content guide as HourKeep's first authority for screen copy
 **Accountable human (name or role):** the repository owner (Ron), who named the guide and linked the commit
 

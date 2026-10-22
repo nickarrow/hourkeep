@@ -2,7 +2,7 @@
 
 **Review date:** 2026-10-22
 **Reviewed by:** agent self-review
-**Agent / system:** Claude Code (Claude Opus 5), cloud session
+**Agent / system:** Claude Code, cloud session
 **Task or period under review:** adopting the owner's editorial lint and Agent Action Record tool in HourKeep
 **Accountable human (name or role):** the repository owner (Ron), who named both tools
 
