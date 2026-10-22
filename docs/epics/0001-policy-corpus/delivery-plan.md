@@ -29,7 +29,10 @@ Checked 2026-10-16:
   the link the research cites. These sites change their minds, so record the command that worked, and when, for each
   source stored.
 - Python: `python3` on the path is 3.14.6, and `/usr/bin/python3` is 3.9.6. The checker uses only the standard library
-  and runs on either. Neither reads YAML without a package.
+  and runs on either. Neither reads YAML without a package. (Added 2026-10-22: in the shell Kiro's agents run, plain
+  `python3` resolved to `/usr/bin/python3`, 3.9.6, on 2026-10-21 and 2026-10-22, and the 3.14.6 interpreter is
+  `/opt/homebrew/bin/python3`, so a command that has to run on both names each by its path; increment 2 handoff dry
+  run.)
 - PDF text: `pdftotext`, `mutool`, `qpdf` and Ghostscript are not installed. A short Swift script using macOS's PDFKit
   extracted all 14 pages of SMD 26-001 as text in under 2 seconds, and in the dry run each extraction ran twice to
   identical bytes. It separates some paragraph labels from their text.
@@ -336,9 +339,10 @@ needs editing.
 (Decided 2026-10-22 by the owner. This increment is split by topic: one increment for each topic of 42 CFR 435.550 to
 435.563, each reviewed and published on the review pages on its own, since increment 1's one topic came to 64 rows.
 The decision record names the topics and their order, and they are written into this plan once it is approved. It
-also moves the open questions that wait on a choice a state has not published into the state facts, marked
-`not published`. Before the rows for 42 CFR 435.554 and 435.557(f) are written, check the docket in Massachusetts v.
-Oz, D. Mass. 1:26-cv-12962, whose summary judgment hearing was on 2026-10-22, as the skill's watch list says.)
+also takes the state's part of each open question that waits on a choice a state has not published into the state
+facts, marked `not published`; any part about the federal rule stays an open question. Before the rows for 42 CFR
+435.554 and 435.557(f) are written, check the docket in Massachusetts v. Oz, D. Mass. 1:26-cv-12962, for whether its
+summary judgment hearing, set for 2026-10-22 as the skill's watch list says, was held, and what followed.)
 
 ### Deliberately not
 
