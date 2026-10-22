@@ -6,7 +6,7 @@
 **Task or period under review:** merging the `prototype-draft` branch into `main` on the `quarterback/hourkeep` fork
 **Accountable human (name or role):** the repository owner (Ron), who asked for the move
 
-## 1. Intent — what was supposed to happen
+## 1. Intent: what was supposed to happen
 
 **Instruction given (actual wording):** "i want to improve the hourkeep draft right now i want to elevate the draft to
 main so there's showing the prototype improvement and then work from there with it", then, after the agent asked a
@@ -23,7 +23,7 @@ target explicit after the agent raised the deploy question.
 **Out of scope:** any pull request to the upstream repository. Changing the prototype's behaviour, which the owner
 asked for next, not now. Changing the policy corpus, the review pages or the checker.
 
-## 2. Action — what actually happened
+## 2. Action: what actually happened
 
 **What the agent did (step by step):**
 
@@ -61,7 +61,7 @@ for.
 were the agent's own, within what `AGENTS.md` asks of a change ("Fixing what your own change made untrue is part of
 the change").
 
-## 3. Judgment — human in the loop
+## 3. Judgment: human in the loop
 
 **Decisions the agent made on its own:**
 
@@ -86,7 +86,7 @@ the refusal answered a different and more important question.
 
 **Accountable for these actions:** the repository owner, who asked for the move and can revert any of it.
 
-## 4. Deviation — the gaps
+## 4. Deviation: the gaps
 
 **Gaps between intent and action, and why (root cause):** "elevate to main" is ambiguous between "land it in the
 tree" and "make it the thing people see". The agent resolved it toward the tree because `main` publishes to a live
@@ -100,7 +100,7 @@ to main" with a root-level merge would have conflicted on three files and put a 
 **Confidently wrong:** nothing identified yet. If the owner wanted the prototype at the repository root, or wanted it
 visible on the web, this run did neither and will need a second pass.
 
-## 5. Consequence — what it cost or risked
+## 5. Consequence: what it cost or risked
 
 **Actual outcome (did the work hold up):** `python3 scripts/check-corpus.py` passes (64 rows, 39 sources, 8 state
 facts, 0 warnings). `python3 -m unittest discover -s tests` ran 317 tests in 63 seconds: OK, 4 skipped, nothing
@@ -109,7 +109,7 @@ checker supports, because this container has only python3 (3.13.16); `AGENTS.md`
 `npm install` and `npm run build` in `prototype/` succeed on Node 22.22.0 and produce a 20 kB JS and 72 kB CSS bundle.
 `git status` confirms `prototype/dist/` and `node_modules/` are ignored.
 
-**Harm / cost / risk — realized or narrowly avoided:** narrowly avoided publishing an untested Medicaid prototype to
+**Harm, cost or risk, realized or narrowly avoided:** narrowly avoided publishing an untested Medicaid prototype to
 hourkeep.app. The deploy workflow runs on any push to `main`; had the prototype gone in at the root and overwritten
 `public/`, the placeholder that currently tells people to call the office on their letter would have been replaced by
 a sample-case demo. On this fork GitHub Actions are most likely off and the `hourkeep.app` CNAME belongs to upstream,
@@ -122,7 +122,7 @@ owner inherit a second `package.json` and a second `node_modules/` in a reposito
 "elevate to main" literally lands the prototype at the root and loses, or buries, the corpus work. A second recurring
 failure is treating a passing checker as proof the change is right; the checker never looks outside `docs/domain/`.
 
-## 6. Change — what happens next
+## 6. Change: what happens next
 
 **Specific changes before next run:** the owner should say whether `prototype/` is the right home and whether the
 prototype should ever be reachable on the web. The improvement work the owner asked for has no brief yet: the

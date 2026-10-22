@@ -35,6 +35,10 @@ The first prototype of the screens is in `prototype/`. It runs on a developer's 
 - `prototype/` holds a static, browser-only prototype of the screens, with its own README. It carries one
   made-up case, keeps edits in the browser's local storage, sends nothing anywhere, and exists to try the flow
   in `docs/design.md` against real people. It is not the stack the design settled on, and it is not deployed.
+- `EDITORIAL.md` is the editorial policy, enforced as far as a tool can by
+  [Prosekeep](https://github.com/quarterback/prosekeep) through `.editorial.json` and
+  `.github/workflows/editorial.yml`. The same workflow scores each Agent Action Record in `docs/aar-*.md` with
+  [ClosedTab](https://github.com/quarterback/closedtab). Neither checks `docs/domain/`, which quotes federal law.
 - `AGENTS.md` and `.kiro/skills/` hold the rules the AI agents working here follow. `HOW-TO-WORK.md`, `DATA-GUARD.md`
   and `missions/` are for the people working with those agents. All of them come from the
   [agentic engineering bootstrap](https://github.com/nickarrow/agentic-engineering-bootstrap), and `NOTICE.md` says so.

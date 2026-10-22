@@ -1,0 +1,83 @@
+name: Editorial checks
+
+# Prosekeep checks the prose this repository writes. It does not check docs/domain/, which quotes
+# federal law, or docs/review/, which is generated; .editorial.json says why. ClosedTab scores each
+# Agent Action Record. Both are the owner's own tools, and EDITORIAL.md is the policy they read.
+#
+# Prosekeep is pinned to a commit rather than an npm version. The repository is at 0.3.0 and npm
+# serves 0.2.0, whose rules are older than this project's configuration. When 0.3.0 is published,
+# replace the checkout and the two `node` calls with `npx prosekeep@0.3.0`.
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  PROSEKEEP_REPO: quarterback/prosekeep
+  PROSEKEEP_COMMIT: 110ec586c17c72fb1bd9a9a51f44417db5853cd5
+  CLOSEDTAB_VERSION: "0.5.0"
+
+jobs:
+  prose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout HourKeep
+        uses: actions/checkout@v4
+        with:
+          # changed-line mode diffs against the base, so the history has to reach it.
+          fetch-depth: 0
+
+      - name: Checkout Prosekeep at its pinned commit
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.PROSEKEEP_REPO }}
+          ref: ${{ env.PROSEKEEP_COMMIT }}
+          path: .prosekeep
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Check every file the policy covers
+        run: node .prosekeep/bin/prosekeep.mjs check .
+
+      # audit always exits 0. It is here to put the outlines and any repeated paragraph in the log
+      # for a reviewer, not to gate the build. Only `check` fails a run.
+      - name: Report the outlines and any repeated paragraph
+        run: node .prosekeep/bin/prosekeep.mjs audit .
+
+  records:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # Every docs/aar-*.md has to carry the six parts. A record that scores below 6 is a record
+      # that left out who decided, what it risked, or what to change, which is the point of keeping it.
+      - name: Score every Agent Action Record
+        run: |
+          shopt -s nullglob
+          records=(docs/aar-*.md)
+          if [ ${#records[@]} -eq 0 ]; then
+            echo "No Agent Action Record found. AGENTS.md asks for one per piece of work."
+            exit 1
+          fi
+          failed=0
+          for record in "${records[@]}"; do
+            echo "::group::$record"
+            output=$(npx -y "closedtab@${CLOSEDTAB_VERSION}" check "$record" 2>&1) || true
+            echo "$output"
+            echo "::endgroup::"
+            if ! printf '%s' "$output" | grep -q "score: 6/6"; then
+              echo "::error file=$record::scored below 6/6"
+              failed=1
+            fi
+          done
+          exit $failed
