@@ -1,18 +1,6 @@
 # Working agreement
 
-Rules for any AI agent working in this repository. Kiro loads this file automatically, on every surface, and other tools
-read `AGENTS.md` too, which is why the rules live here rather than somewhere tool-specific.
-
-A few things decide whether this file reaches a session. Kiro's documentation says a newly opened folder is untrusted
-until you say otherwise, and an untrusted folder's steering files and skills are not loaded, so trust the folder first.
-It also says a custom agent loads steering and skills only when its configuration asks for them, so a custom agent is
-the next thing to suspect. And an `AGENTS.md` in a subfolder, such as a worktree or a copy of another repository, may
-not be in the session from its first message. It has been seen to arrive once a file in that folder was read.
-
-This file holds what is true in every session. Anything that only matters sometimes is a skill under `.kiro/skills/`,
-which loads when it is relevant. Counts and dated notes about this repository's own state stay out of this file and the
-skills, because every session reads them as current. How many files there are, or what last week's test showed, belongs
-in the delivery plan or a decision record. A figure or a date that comes with a cited source is fine.
+Rules for any AI agent working in this repository.
 
 ## What you may look at
 
@@ -34,74 +22,118 @@ Never these:
 - Anything pulled out of a system of record, however convenient
 
 Lead with the safe list when explaining this to anyone. A deny list alone reads as a warning and gets tools banned. A
-safe list reads as a scope, and scoped things get approved. Cite whatever authority governs the work rather than
-citing this file, because an agency believes its own rules before it believes a repository.
+safe list reads as a scope, and scoped things get approved.
 
-This file is advice and cannot enforce itself. Two things do. Keeping real data out of the workspace, which is the actual
-boundary, and a `fs_read` deny rule in the user's own Kiro permissions file as a backstop behind it. If a `sensitive/`
-folder exists here, that is the designated place and the deny rule should already cover it. If you cannot tell whether
-that rule is in place, say so rather than assuming it is.
+Cite whatever authority governs the work rather than citing this file, because an agency believes its own rules before
+it believes a repository.
+
+### What actually enforces it
+
+This file is advice and cannot enforce itself. Two things do:
+
+- keeping real data out of the workspace, which is the actual boundary
+- a `fs_read` deny rule in the user's own Kiro permissions file, as a backstop behind it
+
+If a `sensitive/` folder exists here, that is the designated place, and the deny rule should already cover it. If you
+cannot tell whether that rule is in place, say so rather than assuming it is.
 
 ## What the software may decide
 
-These four hold whatever the work is, and they stay here rather than in a skill because a skill can be deleted.
+These four hold whatever the work is. They stay here rather than in a skill, because a skill can be deleted.
 
-Never put a model in the path of a decision about a person. Use agents to pull rules apart, draft them, write tests,
-write documentation and prototype. The decision itself has to be replayable: same inputs, same answer, every time, and
-explainable afterwards by somebody who was not there.
-
-If a person can lose something because of what this software says, then what it says has to be readable, has to name
-what they can do next, and has to be printable and exportable. Somebody with no copy of their own has nothing to bring
-to a dispute.
-
-Build accessibility in rather than auditing it at the end. Keyboard operation, visible focus, real contrast, labelled
-controls, and a route for somebody who will not use the software at all. Section 508 binds federal and federally funded
-work to WCAG 2.0 Level AA, and the Department of Justice's 2024 rule under Title II of the Americans with Disabilities
-Act binds state and local government to WCAG 2.1 Level AA. Build to 2.2 AA and you are ahead of both.
-
-Any rule you encode carries a citation to the thing that says it: the section, the URL, and a plain paraphrase.
-Anything that cannot carry one is a guess and gets labelled rather than shipped quietly.
+- Never put a model in the path of a decision about a person. Use agents to pull rules apart, draft them, write tests,
+  write documentation and prototype. The decision itself has to be replayable: same inputs, same answer, every time, and
+  explainable afterwards by somebody who was not there.
+- If a person can lose something because of what this software says, then what it says has to be readable, has to name
+  what they can do next, and has to be printable and exportable. Somebody with no copy of their own has nothing to bring
+  to a dispute.
+- Build accessibility in rather than auditing it at the end: keyboard operation, visible focus, real contrast, labelled
+  controls, and a route for somebody who will not use the software at all. Section 508 binds federal and federally
+  funded work to WCAG 2.0 Level AA. The Department of Justice's 2024 rule under Title II of the Americans with
+  Disabilities Act binds state and local government to WCAG 2.1 Level AA. Build to 2.2 AA and you are ahead of both.
+- Any rule you encode carries a citation to the thing that says it: the section, the URL, and a plain paraphrase.
+  Anything that cannot carry one is a guess, and gets labelled rather than shipped quietly.
 
 A domain skill may sharpen these. Nothing may loosen them.
 
 ## How to work
 
-Talk before you build. Have a conversation first, research it, look for prior art. Do not scaffold before the problem
-is understood, and do not offer to.
+### Talk before you build
 
-Change only what you were asked to change. If you spot something else worth doing, say so and wait. Nobody working
-here should have to watch you to find out what you touched. Fixing what your own change made untrue is part of the
-change: if it renames a file the docs name, or alters behaviour a skill describes, correct that too.
+Have a conversation first, research it, look for prior art. Do not scaffold before the problem is understood, and do
+not offer to.
 
-Write it down before the session ends, because the session takes its context with it. Three documents do three jobs:
+### Change only what you were asked to change
 
-- A **design document** says what is being built, why, and what has to be true. The project's, `docs/design.md`, is
-  argued with, revised and kept true.
-- A **delivery plan** says in what order, and carries the record of what is done. One per epic, separate from the
-  design so a stale assumption cannot hide inside a task list.
-- **Decision records** capture a choice made along the way, dated, one small file each, superseded rather than edited.
+If you spot something else worth doing, say so and wait. Nobody working here should have to watch you to find out what
+you touched.
 
-Each body of work, an epic, gets a numbered folder under `docs/epics/` for its delivery plan and any design document
+Fixing what your own change made untrue is part of the change. If it renames a file the docs name, or alters behaviour
+a skill describes, correct that too.
+
+### Write it down before the session ends
+
+The session takes its context with it. Four documents do four jobs:
+
+| Document | Job | Where |
+| --- | --- | --- |
+| Design document | What is being built, why, and what has to be true. Argued with, revised and kept true | `docs/design.md` |
+| Delivery plan | In what order, and the record of what is done. One per epic, kept apart from the design so a stale assumption cannot hide inside a task list | `docs/epics/<number>-<name>/` |
+| Decision record | A choice made along the way. Dated, one small file each, superseded rather than edited | `docs/decisions/` |
+| Agent Action Record | The run rather than the work. What was asked in the person's own words, what the agent did, which calls it made on its own, where it departed from the instruction, what that risked, and what should change next time | `docs/aar-<slug>.md` |
+
+Each body of work, an epic, gets a numbered folder under `docs/epics/` for its delivery plan, and any design document
 of its own. Do not invent other names for these. Do not split the design document to make it shorter.
 
-Files a session makes for its own work (briefs, reviewer reports, scratch copies, scripts) go in one folder per piece
-of work under `.agents/`, which git ignores. They are scratch, not the record. When the work is done, whatever matters
-moves into the delivery plan, a decision record, a test or a commit message; then delete that work's own folder, not
-`.agents/` itself, and say what you deleted. Never delete anything the person put there. Size the review to the change:
-the full fan-out for a design, a plan, or a change to what the software does or says; for a refactor that changes
-neither, the do-it reviewer and the tests.
+Write an Agent Action Record for a review or an abandoned attempt, as well as for code that shipped. Commit it with the
+work it describes. `.kiro/skills/closedtab/SKILL.md` has the six parts, and this scores it:
 
-Review before shipping anything substantial. Fan out several reviewers in parallel, each anchored to a different
-source. Several agents checking one shared opinion is not review. Treat every finding as a lead: open the file, confirm
-it, and say how many you threw out. When reviewing, report rather than fix. If a `review` skill is available, `/review`
-runs this properly and you should use it.
+```
+npx closedtab@0.5.0 check docs/aar-<slug>.md
+```
 
-For one person the git workflow is light. One branch per increment or per fix, in the checkout that is already open,
-not a worktree. The agent runs the git steps: branching, committing, merging. The person's part is to say when, and they
-can merge in the editor if they would rather. Show the commit message before committing. Push only when asked. No pull
-request for your own work: the review that replaces it is the fan-out above and the person's own read of the branch
-before it merges. A team that reviews through pull requests says so here. Contributions from outside a public
-repository still arrive as pull requests.
+The editorial workflow fails a record that scores below 6.
+
+### Scratch files
+
+Files a session makes for its own work go in one folder per piece of work under `.agents/`, which git ignores. That
+means briefs, reviewer reports, scratch copies and scripts. They are scratch, not the record.
+
+When the work is done:
+
+1. Move whatever matters into the delivery plan, a decision record, a test or a commit message.
+2. Delete that work's own folder, not `.agents/` itself.
+3. Say what you deleted.
+
+Never delete anything the person put there.
+
+### Review before shipping anything substantial
+
+Size the review to the change:
+
+- a design, a plan, or a change to what the software does or says: the full fan-out
+- a refactor that changes neither: the do-it reviewer and the tests
+
+The fan-out means several reviewers in parallel, each anchored to a different source. Several agents checking one
+shared opinion is not review.
+
+Treat every finding as a lead: open the file, confirm it, and say how many you threw out. When reviewing, report
+rather than fix. If a `review` skill is available, `/review` runs this properly and you should use it.
+
+### Git, for one person
+
+The git workflow is light.
+
+- One branch per increment or per fix, in the checkout that is already open, not a worktree.
+- The agent runs the git steps: branching, committing, merging. The person's part is to say when, and they can merge
+  in the editor if they would rather.
+- Show the commit message before committing.
+- Push only when asked.
+- No pull request for your own work. The review that replaces it is the fan-out above, and the person's own read of
+  the branch before it merges.
+
+A team that reviews through pull requests says so here. Contributions from outside a public repository still arrive as
+pull requests.
 
 ## How to write it down
 
@@ -126,33 +158,43 @@ document is plenty, and none is fine.
 
 These are style rules, not safety rules. A team with its own house style should replace them.
 
+### What a tool checks
+
+Seven of them are mechanical. `prosekeep check .` enforces dashes, stock AI vocabulary, staged introductions,
+formulaic contrasts, date form, link text and generic headings. `.github/workflows/editorial.yml` runs it on every push
+and pull request.
+
+`EDITORIAL.md` is the full policy, including the rules above that no tool checks. `.editorial.json` configures the
+checker.
+
+The lint leaves `docs/domain/` and `docs/review/` alone, because the first quotes federal law and the second is
+generated.
+
+A passing check means seven line patterns did not match. It is not a review.
+
 ## How to check yourself
 
-Say what you did not verify. Which claims you checked against a source, which you took on trust, and which you are
-guessing at.
-
-Report counts you actually computed. If you did not count it, say "roughly" or leave the number out.
-
-Do not report a task as done because a command exited zero. Say what you observed.
-
-Record a correction with its date rather than editing history silently. The direction of an error matters as much as
-the fact of it.
-
-On anything touching cloud infrastructure: read-only credentials by default, explicit approval before anything changes
-state, a scoped role rather than an administrator profile, and never production credentials in a session.
+- Say what you did not verify: which claims you checked against a source, which you took on trust, and which you are
+  guessing at.
+- Report counts you actually computed. If you did not count it, say "roughly" or leave the number out.
+- Do not report a task as done because a command exited zero. Say what you observed.
+- Record a correction with its date, rather than editing history silently. The direction of an error matters as much
+  as the fact of it.
+- On anything touching cloud infrastructure: read-only credentials by default, explicit approval before anything
+  changes state, a scoped role rather than an administrator profile, and never production credentials in a session.
 
 ## Skills, and loading them on purpose
 
-Material that only matters sometimes lives in `.kiro/skills/` rather than here. Their names and descriptions are in front
-of you from the start of the session. The bodies are not, and they do not arrive by themselves.
+Material that only matters sometimes lives in `.kiro/skills/` rather than here. Their names and descriptions are in
+front of you from the start of the session. The bodies are not, and they do not arrive by themselves.
 
-So at the start of a piece of work, read the available skill descriptions and load the ones that apply. Do not wait to be
-asked for them and do not assume it has happened already. If the work turns toward something a skill covers, load it
-then. Say which ones you loaded, so the person can tell whether the right material was in front of you.
-
-If the session lists no skills at all, look in `.kiro/skills/` and read the `SKILL.md` files that apply directly. When
-you hand work to a sub-agent or a workflow step, name the files it should read: this file, any subfolder `AGENTS.md`
-that applies, and the skills the work needs. A session opened elsewhere does not inherit them.
+- At the start of a piece of work, read the available skill descriptions and load the ones that apply. Do not wait to
+  be asked, and do not assume it has happened already.
+- If the work turns toward something a skill covers, load it then.
+- Say which ones you loaded, so the person can tell whether the right material was in front of you.
+- If the session lists no skills at all, look in `.kiro/skills/` and read the `SKILL.md` files that apply directly.
+- When you hand work to a sub-agent or a workflow step, name the files it should read: this file, any subfolder
+  `AGENTS.md` that applies, and the skills the work needs. A session opened elsewhere does not inherit them.
 
 Deleting a skill is a supported thing to do, including the domain one. Everything in this file stands on its own, so a
 missing skill costs detail and never a rule.
@@ -160,31 +202,87 @@ missing skill costs detail and never a rule.
 ## This repository
 
 HourKeep is a free, open-source web app, being rebuilt, for people on Medicaid facing the new work requirements, which
-CMS calls community engagement. What it relies on lives here:
+CMS calls community engagement.
 
-- `docs/design.md` is the design, `docs/epics/` holds a numbered folder for each epic with its delivery plan, and
-  `docs/decisions/` holds the decision records. The Formats section of `docs/epics/0001-policy-corpus/design.md` sets
-  the form of everything in `docs/domain/`.
-- `docs/domain/` is the policy corpus. Its rows, in `community-engagement-extract.md`, are the authority for Medicaid
-  community engagement wherever a row exists. Each quotes a source stored under `docs/domain/sources/`, which
-  `docs/domain/sources/MANIFEST.json` lists with its hash. State facts are in `states/`, policy questions nobody has
-  answered yet are in `open-questions.md`, and the research is in `research/`.
-- `.kiro/skills/medicaid-community-engagement/` restates the rows for agents. Its `SKILL.md` lists the topics, and
-  `references/` holds one file of rule items per topic. The row wins wherever the two differ.
-- `scripts/check-corpus.py`, with the package `scripts/corpus_check/`, checks the corpus, and `tests/` holds its tests.
-- `docs/review/` holds the review pages, where Medicaid policy experts check the rows in public. They are generated by
-  `python3 scripts/build-review-pages.py`, which must be run after any change to the rows, the skill, the state facts
-  or the open questions; the checker fails until it is.
+### Where things are
 
-After any change to `docs/domain/`, the skill, the checker or its tests, run both checks from the repository root:
+| Path | What it is |
+| --- | --- |
+| `docs/design.md` | The design |
+| `docs/epics/` | A numbered folder for each epic, with its delivery plan |
+| `docs/decisions/` | The decision records |
+| `docs/domain/` | The policy corpus |
+| `.kiro/skills/medicaid-community-engagement/` | The rows restated for agents |
+| `scripts/check-corpus.py` and `scripts/corpus_check/` | The corpus checker |
+| `tests/` | The checkers' tests |
+| `docs/review/` | Review pages, where Medicaid policy experts check the rows in public |
+| `EDITORIAL.md` | The editorial policy |
+| `.editorial.json` | The editorial checker's configuration |
+| `.kiro/skills/interface-copy/SKILL.md` | The rules for every word inside a screen |
+| `.kiro/skills/prosekeep/` and `.kiro/skills/closedtab/` | Vendored copies of `quarterback/prosekeep` and `quarterback/closedtab`, pinned at the commits their `SKILL.md` names. Neither is edited here |
 
-```
-python3 -m unittest discover -s tests
-python3 scripts/check-corpus.py
-```
+### The policy corpus
 
-Both must pass under `python3` and under Python 3.9, the oldest the checker supports. The checker exits 0 when the
-corpus is consistent and names each problem when it is not. It cannot tell whether a row says what its source means;
-review does that. The tests build a git repository for each test, so give that command a timeout of several minutes.
-A PDF's text extraction is made on macOS with `swift scripts/extract-pdf-text.swift <pdf> > <txt>`; the redirect
+The Formats section of `docs/epics/0001-policy-corpus/design.md` sets the form of everything in `docs/domain/`.
+
+The rows, in `docs/domain/community-engagement-extract.md`, are the authority for Medicaid community engagement wherever
+a row exists. Each row quotes a source stored under `docs/domain/sources/`, and `docs/domain/sources/MANIFEST.json`
+lists each source with its hash.
+
+Also in `docs/domain/`:
+
+- state facts, in `states/`
+- policy questions nobody has answered yet, in `open-questions.md`
+- the research, in `research/`
+
+The skill in `.kiro/skills/medicaid-community-engagement/` restates the rows. Its `SKILL.md` lists the topics, and
+`references/` holds one file of rule items per topic. The row wins wherever the two differ.
+
+The review pages in `docs/review/` are generated by `python3 scripts/build-review-pages.py`. Run it after any change
+to the rows, the skill, the state facts or the open questions. The checker fails until you do.
+
+### Which check to run
+
+| After a change to | Run, from the repository root |
+| --- | --- |
+| A string a person sees | `python3 scripts/check-interface-copy.py` |
+| Prose outside `docs/domain/` and `docs/review/` | `node /path/to/prosekeep/bin/prosekeep.mjs check .` |
+| `docs/domain/`, the skill, the checker or its tests | `python3 -m unittest discover -s tests`, then `python3 scripts/check-corpus.py` |
+
+`.kiro/skills/interface-copy/SKILL.md` governs every word inside a screen, ahead of `EDITORIAL.md`. It adapts the CMS
+eAPD content guide, written for this kind of form.
+
+Prosekeep 0.3.0 is not on npm yet, so run it from a checkout. `.github/workflows/editorial.yml` names the pinned
+commit.
+
+### The corpus checks
+
+Both must pass under `python3` and under Python 3.9, the oldest the checker supports.
+
+- The checker exits 0 when the corpus is consistent, and names each problem when it is not.
+- It cannot tell whether a row says what its source means. Review does that.
+- The tests build a git repository for each test, so give that command a timeout of several minutes.
+
+A PDF's text extraction is made on macOS with `swift scripts/extract-pdf-text.swift <pdf> > <txt>`. The redirect
 empties `<txt>` before the script runs, so after a failed run, restore it from git.
+
+## Whether this file reaches a session
+
+Kiro loads this file automatically, on every surface, and other tools read `AGENTS.md` too. That is why the rules live
+here rather than somewhere tool-specific.
+
+A few things decide whether it reaches a session:
+
+- Kiro's documentation says a newly opened folder is untrusted until you say otherwise, and an untrusted folder's
+  steering files and skills are not loaded. Trust the folder first.
+- It also says a custom agent loads steering and skills only when its configuration asks for them. A custom agent is
+  the next thing to suspect.
+- An `AGENTS.md` in a subfolder, such as a worktree or a copy of another repository, may not be in the session from
+  its first message. It has been seen to arrive once a file in that folder was read.
+
+This file holds what is true in every session. Anything that only matters sometimes is a skill under `.kiro/skills/`,
+which loads when it is relevant.
+
+Counts and dated notes about this repository's own state stay out of this file and the skills, because every session
+reads them as current. How many files there are, or what last week's test showed, belongs in the delivery plan or a
+decision record. A figure or a date that comes with a cited source is fine.

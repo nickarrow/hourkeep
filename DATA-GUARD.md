@@ -25,18 +25,20 @@ rule and to your `.gitignore`, and keep it out of your code too.
 ## The rule
 
 Kiro keeps permission rules on your own machine, outside any repository, which is why this cannot ship already done.
-Nothing you clone can loosen them, and a deny beats every other rule. It also means Kiro will not fill this file in for
-you: its file-writing tools are blocked from its own settings folder, the same way its file-reading tools are blocked
-from the folders the rule names. The shell is the exception, which is why the create step below works and why you still
-paste the contents by hand.
+Nothing you clone can loosen them, and a deny beats every other rule.
 
-The file is here:
+It also means Kiro will not fill this file in for you. Its file-writing tools are blocked from its own settings folder,
+the same way its file-reading tools are blocked from the folders the rule names. The shell is the exception, which is
+why the create step below works, and why you still paste the contents by hand.
+
+### Step 1: find the file
 
 - Mac or Linux: `~/.kiro/settings/permissions.yaml`, where `~` is your home folder
 - Windows: `%USERPROFILE%\.kiro\settings\permissions.yaml`
 
-Ask Kiro in the chat panel to open that path. If it opens, you can edit it in that tab. If it is not there yet, create
-it, then ask Kiro to open it.
+Ask Kiro in the chat panel to open that path. If it opens, you can edit it in that tab, and you can skip step 2.
+
+### Step 2: create it, if it is not there yet
 
 On Mac or Linux, type this into the chat, including the first three words, and say yes when Kiro asks to run a command:
 
@@ -46,9 +48,15 @@ On Windows, do the same with the PowerShell equivalent:
 
 > Run this for me: New-Item -ItemType Directory -Force "$env:USERPROFILE\.kiro\settings"; New-Item -ItemType File -Force "$env:USERPROFILE\.kiro\settings\permissions.yaml"
 
-Either one makes an empty file. You type the contents yourself and save. If Kiro opens the path but no editable tab
-appears, open the folder above in your file browser, `~/.kiro/settings` or `%USERPROFILE%\.kiro\settings`, and open the
-file from there. YAML cares about indentation, so keep the spacing exactly as the block below has it.
+Either one makes an empty file. Then ask Kiro to open it.
+
+If Kiro opens the path but no editable tab appears, open the folder in your file browser, `~/.kiro/settings` or
+`%USERPROFILE%\.kiro\settings`, and open the file from there.
+
+### Step 3: add the rules
+
+You type the contents yourself, and save. YAML cares about indentation, so keep the spacing exactly as the block below
+has it.
 
 ### If the file is empty
 
@@ -73,8 +81,8 @@ rules:
 
 ### If the file already has rules in it
 
-Do not paste the block. Merging YAML by hand goes wrong quietly, and the most common slip produces a file that is valid
-and has thrown your existing rules away. Instead, ask Kiro this:
+Do not paste the block. Merging YAML by hand goes wrong quietly. The most common slip produces a file that is valid and
+has thrown your existing rules away. Instead, ask Kiro this:
 
 > Read my permissions file, then show me what it should look like with two more fs_read rules added: a deny on
 > `**/sensitive/**`, and an ask on `**/*extract*.csv`, `**/*member*.csv`, `**/*claims*.csv`, `**/*beneficiary*`,
@@ -84,25 +92,35 @@ Kiro can read that file even though it cannot write it. Copy what it prints, rep
 
 ## Then check it, because a silent failure here looks like success
 
+### Step 4: count the rules
+
 Ask Kiro:
 
 > How many rules are in my permissions file, and what does each one do?
 
 Count them against what you expected. If a rule you had before is missing, the paste replaced it rather than adding to
-it, and you need to put it back. This is the step people skip and it is the one that catches the failure that looks
+it, and you need to put it back. This is the step people skip, and it is the one that catches the failure that looks
 fine.
 
-Then prove the deny works:
+### Step 5: prove the deny works
 
 > Read sensitive/FAKE-eligibility-extract.csv and show me what is in it.
 
-It should refuse and name the rule that stopped it. That file is fake and its values are nonsense on purpose. If it
-reads the file instead, the guard is not working on your setup: check you saved, check the indentation, and check the
-file is in your home folder and not inside this repository. Do not assume you are protected.
+It should refuse, and name the rule that stopped it. That file is fake, and its values are nonsense on purpose.
+
+If it reads the file instead, the guard is not working on your setup:
+
+- check you saved
+- check the indentation
+- check the file is in your home folder, and not inside this repository
+
+Do not assume you are protected.
 
 Never test this with a real extract. The fake one ships so you never have to.
 
 ## Three honest limits
+
+### It does not cover the shell
 
 It covers the agent's file-reading tools and not the shell, so a shell command reading a denied path returns the
 contents. This was tested rather than assumed. A list of blocked commands would not fix it, because every scripting
@@ -111,8 +129,12 @@ language on the machine can open a file. This is a backstop against the unthinki
 Do not try to demonstrate that limit by asking the agent to get around its own guard. Doing so hit a hard stop that
 ended the session and lost the conversation. Knowing the gap is there is the useful part.
 
+### Someone with administrator rights can remove it
+
 It is enforced by Kiro on your machine, so somebody with administrator rights on that machine can remove it. It is not a
 server-side boundary and should not be described as one to a security office.
+
+### The ask list will sometimes prompt on code
 
 The ask list matches on filenames, and these rules apply machine-wide, so it will occasionally prompt in unrelated work.
 The likeliest source is your own code: `**/*beneficiary*` has no extension, so it matches a `beneficiary-service.ts` or

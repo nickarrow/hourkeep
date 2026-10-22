@@ -2,85 +2,152 @@
 
 Status: In progress, since 2026-10-17
 
-`docs/design.md` says HourKeep tells nobody anything until its policy corpus is right. This epic makes it right and
-keeps it checkable. It changes `docs/domain/`, adds one skill and three scripts, and writes no app code. The scripts
-are the checker, `scripts/check-corpus.py`; `scripts/extract-pdf-text.swift`, which makes each PDF's text extraction;
-and `scripts/build-review-pages.py`, which generates the review pages in `docs/review/`.
+`docs/design.md` says HourKeep tells nobody anything until its policy corpus is right. This epic makes it right, and
+keeps it checkable. It changes `docs/domain/` and writes no app code.
+
+It adds one skill and three scripts:
+
+| Script | What it does |
+| --- | --- |
+| `scripts/check-corpus.py` | The checker |
+| `scripts/extract-pdf-text.swift` | Makes each PDF's text extraction |
+| `scripts/build-review-pages.py` | Generates the review pages in `docs/review/` |
 
 ## Why
 
+### The corpus had errors
+
 Research on 2026-10-16 reported 39 findings of wrong or out-of-date passages in `docs/domain/`. An AI agent then
-rechecked each one against its sources and confirmed 36, confirmed 2 in part and partly rejected 1 (research ledger,
-Ledger A). Some of the errors would lead a person to do less than the rule requires: the six-month renewal exception
-read as covering "most" section 1115 enrollees when CMS's test is narrower (research L2-3), a hardship dependent read as
-a minor child only (L8-3), and "most people will not be asked for anything" against CMS's estimate that 8.8 million
-will (L8-9). The corpus also never cited CMS's six-month renewal letter, SMD 26-001 (L2-2), or the bar on marketplace
-tax credits (L1-9).
+rechecked each one against its sources, and confirmed 36, confirmed 2 in part, and partly rejected 1 (research ledger,
+Ledger A).
 
-Most of the drift has one cause. Three files, `rule-extract.md`, `what-matters-most.md` and `state-options.md`, restate
-the same provisions, and nine of the sixteen contradictions the corpus audit found sat in those three (research L8,
-sections B and E). A correction reached one copy and not the others.
+Some of the errors would lead a person to do less than the rule requires:
 
-Nothing in `docs/domain/` says whether, how or when a rule was checked. `AGENTS.md` and the `hhs-benefits` skill ask
-for a citation on every rule and a label on every guess, and stop there. The bootstrap goes further in its
-`CONTRIBUTING.md`, which was not copied here: a domain layer marks every item as verified, with the method and the
-date, or as unverified, so that an agent can tell a checked rule from a guess without leaving the file
-(github.com/nickarrow/agentic-engineering-bootstrap, release 2026.10.17). It asks that of fields where the risk is a
-wrong answer. Where a person can lose coverage, HourKeep needs it more.
+- The six-month renewal exception read as covering "most" section 1115 enrollees, when CMS's test is narrower
+  (research L2-3).
+- A hardship dependent read as a minor child only (L8-3).
+- "Most people will not be asked for anything", against CMS's estimate that 8.8 million will (L8-9).
+
+The corpus also never cited CMS's six-month renewal letter, SMD 26-001 (L2-2), or the bar on marketplace tax credits
+(L1-9).
+
+### Most of the drift had one cause
+
+Three files, `rule-extract.md`, `what-matters-most.md` and `state-options.md`, restate the same provisions. Nine of the
+sixteen contradictions the corpus audit found sat in those three (research L8, sections B and E). A correction reached
+one copy and not the others.
+
+### Nothing said whether a rule was checked
+
+Nothing in `docs/domain/` says whether, how or when a rule was checked. `AGENTS.md` and the `hhs-benefits` skill ask for
+a citation on every rule and a label on every guess, and stop there.
+
+The bootstrap goes further, in its `CONTRIBUTING.md`, which was not copied here. A domain layer marks every item as
+verified, with the method and the date, or as unverified, so an agent can tell a checked rule from a guess without
+leaving the file (github.com/nickarrow/agentic-engineering-bootstrap, release 2026.10.17). It asks that of fields where
+the risk is a wrong answer. Where a person can lose coverage, HourKeep needs it more.
 
 ## What it changes
 
-Sources are stored verbatim, each listed in a manifest with its URL, retrieval date and hash. The June 29, 2026
-correction to the rule, which the corpus cites and does not store, is added, along with current eCFR text and CMS's
-guidance documents. The stored June 3 printing stays as it is, and the manifest records that the correction supersedes
-it for §§ 435.557 and 435.558.
+### Sources are stored verbatim
 
-One extract, a new file, becomes the authority for Medicaid community engagement. Each rule in it is a row with an
-identifier, a plain paraphrase, the citation down to the paragraph and the Federal Register page, the stored source and
-line it rests on, a source tier, whether it is a state election, the date it was verified and how, the direction an
-error would cost a person, and what should trigger a recheck. Rows arrive a topic at a time. When a topic lands, the
-passage on it in each older analysis file is replaced by a pointer to the new rows, and the corrections the research
-found in that passage are applied there and then, so no stale copy outlives its topic. A passage becomes a pointer only
-once every claim in it has a row. A claim no row covers yet, or a passage that also covers topics still to come, is
-corrected in place and waits for its own topic.
+Each source is listed in a manifest with its URL, retrieval date and hash.
+
+- The June 29, 2026 correction to the rule, which the corpus cites and did not store, is added.
+- So are current eCFR text and CMS's guidance documents.
+- The stored June 3 printing stays as it is. The manifest records that the correction supersedes it for §§ 435.557 and
+  435.558.
+
+### One extract becomes the authority
+
+One extract, a new file, becomes the authority for Medicaid community engagement. Each rule in it is a row with:
+
+- an identifier
+- a plain paraphrase
+- the citation, down to the paragraph and the Federal Register page
+- the stored source and line it rests on
+- a source tier
+- whether it is a state election
+- the date it was verified, and how
+- the direction an error would cost a person
+- what should trigger a recheck
+
+Rows arrive a topic at a time. When a topic lands:
+
+- The passage on it in each older analysis file is replaced by a pointer to the new rows.
+- The corrections the research found in that passage are applied there and then, so no stale copy outlives its topic.
+
+A passage becomes a pointer only once every claim in it has a row. A claim no row covers yet, or a passage that also
+covers topics still to come, is corrected in place and waits for its own topic.
 
 The § 435.603 household income extract in `supporting-regs/README.md` stays, without its v1 notes, and keeps
 precedence on income.
 
-State facts move into structured data files, one per state plus one for the federal default, each fact with a value, a
+### State facts become data
+
+State facts move into structured data files, one per state plus one for the federal default. Each fact has a value, a
 citation, its sources, the date it was checked, and the date of each source, so a fact taken from something older than
-the rule shows it. The tracker in `state-options.md` becomes these files. They start with the federal default and
-Colorado.
+the rule shows it.
 
-A HourKeep domain skill, `.kiro/skills/medicaid-community-engagement/`, carries the operative rules in short form with
+The tracker in `state-options.md` becomes these files. They start with the federal default and Colorado.
+
+### A domain skill for agents
+
+A HourKeep domain skill, `.kiro/skills/medicaid-community-engagement/`, carries the operative rules in short form, with
 pointers into the extract. It is a main file, `SKILL.md`, plus one file per topic (decision record 0004), and holds a
-rule item for each row. It also carries the Computed, Conditional and Deferred labels applied to HourKeep's numbers,
-CMS's vocabulary, a checklist of errors this corpus has already made, and a dated watch list. The generic
-`hhs-benefits` skill stays.
+rule item for each row.
 
-Four analysis files are retired and two move. `rule-extract.md` goes once every section in it is a pointer.
-`what-matters-most.md` goes once its priorities and its error checklist are in the extract and the skill.
-`state-options.md` goes once its tracker is in the state facts files; its v1 schema stays in history on `experiment-1`.
-`hr1/HR1-Impact-Summary.md` gives way to a short extract of the statute sections HourKeep relies on. The two Code for
-America blueprint summaries move to `docs/domain/prior-art/` with a note that they predate the rule, and each error
-already found in them gets a dated correction. One decision record sets out the whole restructure and says where each
-part goes.
+It also carries:
 
-Three groups of stored copies go too, each replaced by something verbatim. The copies of Public Law 119-21 in `hr1/`,
-which a formatter rewrote in November 2025, give way to GovInfo's text of the law, stored as served, along with the list
-of its HHS sections kept beside them. The two eCFR text
-files in `supporting-regs/` give way to eCFR's XML. The two Code for America blueprint PDFs, which state no license,
-give way to links in the prior-art note, unless Code for America's terms allow keeping copies.
+- the Computed, Conditional and Deferred labels applied to HourKeep's numbers
+- CMS's vocabulary
+- a checklist of errors this corpus has already made
+- a dated watch list
+
+The generic `hhs-benefits` skill stays.
+
+### Old files go
+
+Four analysis files are retired and two move.
+
+| File | What happens |
+| --- | --- |
+| `rule-extract.md` | Goes once every section in it is a pointer |
+| `what-matters-most.md` | Goes once its priorities and its error checklist are in the extract and the skill |
+| `state-options.md` | Goes once its tracker is in the state facts files. Its v1 schema stays in history on `experiment-1` |
+| `hr1/HR1-Impact-Summary.md` | Gives way to a short extract of the statute sections HourKeep relies on |
+| The two Code for America blueprint summaries | Move to `docs/domain/prior-art/`, with a note that they predate the rule. Each error already found in them gets a dated correction |
+
+One decision record sets out the whole restructure, and says where each part goes.
+
+Three groups of stored copies go too, each replaced by something verbatim:
+
+| Now | Replaced by |
+| --- | --- |
+| The copies of Public Law 119-21 in `hr1/`, which a formatter rewrote in November 2025 | GovInfo's text of the law, stored as served, with the list of its HHS sections kept beside them |
+| The two eCFR text files in `supporting-regs/` | eCFR's XML |
+| The two Code for America blueprint PDFs, which state no license | Links in the prior-art note, unless Code for America's terms allow keeping copies |
+
+### The research stays, as evidence
 
 The research this epic works from is kept as dated records in `docs/domain/research/`: the 2026-10-16 verification
 ledger with its eight lane reports, and the 2026-10-15 SNAP report. Rows and documents cite them by finding ID. They are
 evidence for what the corpus says, never authority in place of the sources they cite.
 
-When the epic is done, `docs/domain/` holds only these: stored sources, each listed in the manifest as verbatim or
-derived; the extract; the state facts; the open questions; the § 435.603 extract; the research records; and the prior
-art, marked as predating the rule. Nothing that is wrong or out of date survives outside a stored source or a dated
-record. The checker enforces it, because its list of the corpus's own files ends up naming nothing else, so any file
-left over fails.
+### When the epic is done
+
+`docs/domain/` holds only these:
+
+- stored sources, each listed in the manifest as verbatim or derived
+- the extract
+- the state facts
+- the open questions
+- the § 435.603 extract
+- the research records
+- the prior art, marked as predating the rule
+
+Nothing that is wrong or out of date survives outside a stored source or a dated record. The checker enforces it,
+because its list of the corpus's own files ends up naming nothing else, so any file left over fails.
 
 ## Formats
 
@@ -112,23 +179,32 @@ settles it and writes it here.
 Sources stored before this epic stay where they are, because the corpus cites them by file and line. Paths in the
 manifest, the rows and the state facts are relative to the repository root.
 
+#### Dates
+
 Dates of this corpus's own work, such as when a source was fetched, a row verified or a fact checked, are UTC dates
 written YYYY-MM-DD, and times are UTC in ISO 8601 with a `Z`, such as `2026-10-17T03:10:00Z`, because the research
 records give UTC times. A date a document gives itself, such as its publication, effective or meeting date, is the
-calendar date it states, written YYYY-MM-DD and never moved between time zones. A file stored under
-`docs/domain/sources/` gets a lowercase name joined by hyphens that says what it is. It keeps the publisher's document
-number as the publisher writes it, and carries the version or date where the publisher serves more than one:
-`federal-register/C1-2026-11094.xml`, `ecfr/2026-10-15/42-cfr-435.558.xml` for one section on one eCFR date,
+calendar date it states, written YYYY-MM-DD and never moved between time zones.
+
+#### File names
+
+A file stored under `docs/domain/sources/` gets a lowercase name joined by hyphens that says what it is. It keeps the
+publisher's document number as the publisher writes it, and carries the version or date where the publisher serves more
+than one: `federal-register/C1-2026-11094.xml`, `ecfr/2026-10-15/42-cfr-435.558.xml` for one section on one eCFR date,
 `cms/smd-26-001.pdf`. A web page's name ends with the date it was fetched. A PDF's text extraction sits beside the PDF
 under the same name, with `.txt` in place of `.pdf`.
 
+#### The open questions file
+
 In `open-questions.md` each question is a `###` heading in plain words, followed by a list. It starts with
-`- Why it is open:` and one or more of `the sources conflict`, `the sources are silent`, `it turns on a choice the state
-has not published` and `the answer may be in a provision the corpus has not stored`, separated by semicolons, then one
-or two plain sentences saying which sources and how. Then come `- Who can answer:` CMS, Colorado's HCPF or another
-Colorado office, or a policy person; `- Raised:` the date and the rows that depend on the answer; and `- Source:` once
-for each source the question rests on, one for each side where two conflict, in the form of a row's Source. A
-`- Note:` may come last, for context that is neither a source nor who can answer.
+`- Why it is open:` and one or more of `the sources conflict`, `the sources are silent`,
+`it turns on a choice the state has not published` and `the answer may be in a provision the corpus has not stored`,
+separated by semicolons, then one or two plain sentences saying which sources and how.
+
+Then come `- Who can answer:` CMS, Colorado's HCPF or another Colorado office, or a policy person; `- Raised:` the date
+and the rows that depend on the answer; and `- Source:` once for each source the question rests on, one for each side
+where two conflict, in the form of a row's Source. A `- Note:` may come last, for context that is neither a source nor
+who can answer.
 
 ### A rule row
 
@@ -150,6 +226,8 @@ against its source, so it says so:
 - Error direction: dangerous
 - Recheck: final rule; correction notice
 ```
+
+#### The fields
 
 The fields, all required, and a field with an empty value counts as missing:
 
@@ -186,14 +264,18 @@ The fields, all required, and a field with an empty value counts as missing:
   `court ruling`, `CMS guidance`, `state plan amendment`, `state rule`, `federal minimum wage`, `eCFR amendment`, or
   `date YYYY-MM-DD` for a known event such as a board meeting. A trigger may add detail after a colon.
 
-Two optional fields may follow: `Corrected:`, once for each dated correction, saying what the row said before and why
-it changed, and `Note:`.
+Two optional fields may follow: `Corrected:`, once for each dated correction, saying what the row said before and why it
+changed, and `Note:`.
+
+#### The tiers
 
 The tiers, highest first in each group:
 
 - Federal: `statute`, `regulation`, `preamble`, `proposed regulation`, `agency guidance`
 - State: `state statute`, `state regulation`, `state plan`, `state draft rule`, `state agency page`
 - Either: `court`, `party filing`, `secondary`
+
+#### How the checker reads a row
 
 The checker reads a row this way:
 
@@ -228,27 +310,37 @@ The checker reads a row this way:
 
 ### Stored sources and the manifest
 
-A stored source is the bytes as fetched, unedited. Federal Register documents are stored as the Federal Register's
-XML, eCFR sections as the eCFR API's XML for a stated date, web pages as the HTML received, and PDFs as the PDF with a
-text extraction beside it that marks where each page starts. Rows cite the extraction by line.
+A stored source is the bytes as fetched, unedited. Federal Register documents are stored as the Federal Register's XML,
+eCFR sections as the eCFR API's XML for a stated date, web pages as the HTML received, and PDFs as the PDF with a text
+extraction beside it that marks where each page starts. Rows cite the extraction by line.
+
+#### What a manifest entry records
 
 Each manifest entry gives the path, its SHA-256 hash, the URL a document cites for it, the URL that actually served the
-bytes after any redirect, the command that fetched it and when, whether the file is verbatim or derived, what a
-derived file came from and how it was made, and what supersedes it, if anything. eCFR's XML carries no date of its own,
-so its entry records the eCFR date. Any of these the record never kept, such as the URL, the retrieval date or how a
-derived file was made, says `not recorded`; nothing is guessed. Files already in the corpus are re-fetched where they
-can be. A fresh copy identical to the old file adds its URL and date to the old file's entry; one that differs is
-stored under `docs/domain/sources/` as a source of its own. The June 3 text with its `[[FR p.33348]]` page markers,
-the copies of Public Law 119-21 in `hr1/`, `SECTION-INDEX.txt` and the two text files in `supporting-regs/` are
-derived copies and are listed that way. The manifest, and not the file, marks the June 3 printing as superseded for
-§§ 435.557 and 435.558, because a mark in the file would change its hash.
+bytes after any redirect, the command that fetched it and when, whether the file is verbatim or derived, what a derived
+file came from and how it was made, and what supersedes it, if anything. eCFR's XML carries no date of its own, so its
+entry records the eCFR date. Any of these the record never kept, such as the URL, the retrieval date or how a derived
+file was made, says `not recorded`; nothing is guessed.
+
+Files already in the corpus are re-fetched where they can be. A fresh copy identical to the old file adds its URL and
+date to the old file's entry; one that differs is stored under `docs/domain/sources/` as a source of its own.
+
+The June 3 text with its `[[FR p.33348]]` page markers, the copies of Public Law 119-21 in `hr1/`, `SECTION-INDEX.txt`
+and the two text files in `supporting-regs/` are derived copies and are listed that way. The manifest, and not the file,
+marks the June 3 printing as superseded for §§ 435.557 and 435.558, because a mark in the file would change its hash.
+
+#### What the hash proves
 
 The hash proves a stored copy has not been edited since it was stored. It says nothing about whether the source has
-changed since; recheck triggers cover that. A `.gitattributes` file at the repository root marks every stored source
-`-text`, so git never rewrites its line endings and breaks the hash: `docs/domain/sources/** -text` for the new folder,
-and one line for each older source, which shares its folder with analysis files. It marks the corpus's own files that
-the checker parses, the extract, the open questions, the state files and the skill, `text eol=lf`, so a checkout that
-converts line endings, as Git for Windows does by default, still gives the checker lines that end in a bare newline.
+changed since; recheck triggers cover that.
+
+A `.gitattributes` file at the repository root marks every stored source `-text`, so git never rewrites its line endings
+and breaks the hash: `docs/domain/sources/** -text` for the new folder, and one line for each older source, which shares
+its folder with analysis files. It marks the corpus's own files that the checker parses, the extract, the open
+questions, the state files and the skill, `text eol=lf`, so a checkout that converts line endings, as Git for Windows
+does by default, still gives the checker lines that end in a bare newline.
+
+#### The manifest's shape
 
 `MANIFEST.json` is a JSON object whose one key, `sources`, holds the entries, sorted by path. Every entry has these
 keys, each a string unless it says otherwise:
@@ -264,26 +356,44 @@ keys, each a string unless it says otherwise:
 - `superseded`, a list, empty unless something supersedes the file, of objects with `by`, the superseding file's
   path, and `scope`, what it is superseded for
 
-A derived entry adds `derived_from`, the path or address it was made from, and `derivation`, the command that made
-it, and either may say `not recorded`. For a PDF's extraction the derivation is
-`swift scripts/extract-pdf-text.swift <pdf> > <txt>` run from the repository root, followed by the script's SHA-256
-and the macOS and Swift versions it ran on. The extraction starts each page with a line `[[page N]]`, counting from 1.
+#### Derived entries
+
+A derived entry adds `derived_from`, the path or address it was made from, and `derivation`, the command that made it,
+and either may say `not recorded`. For a PDF's extraction the derivation is
+`swift scripts/extract-pdf-text.swift <pdf> > <txt>` run from the repository root, followed by the script's SHA-256 and
+the macOS and Swift versions it ran on. The extraction starts each page with a line `[[page N]]`, counting from 1.
+
 An entry for eCFR text adds `ecfr_date`, whether the text is stored or derived, and the checker requires it for every
-path under `docs/domain/sources/ecfr/`. Any entry may add `note`. An entry, a retrieval and a superseded item each
-hold no key but their own, and only a derived entry holds `derived_from` and `derivation`. A path is relative to the
-repository root, lies in `docs/domain/` outside `research/`, has no `..` segment, and is never one of the corpus's own
-files, so a manifest entry cannot turn an analysis file or a research record into a source. A stored source is
-present only when git lists a file at exactly its path, so on a Mac's case-insensitive disk a path in the wrong case
-fails, and it is never a symlink. `cited_url` and `served_url` are each `not recorded` or an address beginning
-`http://` or `https://`, and a superseded item's `by` names another manifest entry. A PDF under
-`docs/domain/sources/` has an entry for its extraction, whose path is the PDF's with `.txt` in place of `.pdf`, whose
-`kind` is `derived`, whose `derived_from` is the PDF's path, and whose derivation is the script's command for that
-PDF; the extraction's first line is `[[page 1]]`, and each later `[[page N]]` line is one more than the last. The
-checker fails an entry that breaks any of this, lacks a key, holds an empty string or a value of the wrong type, holds
-a `kind` outside the two, or repeats a path, and reports a path it cannot open or hash as a problem rather than
-stopping. Left to review: sorting by path, the order of retrievals, whether a `command` is the one that ran, and
-whether an extraction is what the script makes from its PDF. These entries illustrate the shape and have not been
-checked against the files:
+path under `docs/domain/sources/ecfr/`. Any entry may add `note`.
+
+#### What every entry must satisfy
+
+An entry, a retrieval and a superseded item each hold no key but their own, and only a derived entry holds
+`derived_from` and `derivation`.
+
+A path is relative to the repository root, lies in `docs/domain/` outside `research/`, has no `..` segment, and is never
+one of the corpus's own files, so a manifest entry cannot turn an analysis file or a research record into a source.
+
+A stored source is present only when git lists a file at exactly its path, so on a Mac's case-insensitive disk a path in
+the wrong case fails, and it is never a symlink.
+
+`cited_url` and `served_url` are each `not recorded` or an address beginning `http://` or `https://`, and a superseded
+item's `by` names another manifest entry.
+
+A PDF under `docs/domain/sources/` has an entry for its extraction, whose path is the PDF's with `.txt` in place of
+`.pdf`, whose `kind` is `derived`, whose `derived_from` is the PDF's path, and whose derivation is the script's command
+for that PDF; the extraction's first line is `[[page 1]]`, and each later `[[page N]]` line is one more than the last.
+
+#### What the checker fails, and what it leaves to review
+
+The checker fails an entry that breaks any of this, lacks a key, holds an empty string or a value of the wrong type,
+holds a `kind` outside the two, or repeats a path, and reports a path it cannot open or hash as a problem rather than
+stopping.
+
+Left to review: sorting by path, the order of retrievals, whether a `command` is the one that ran, and whether an
+extraction is what the script makes from its PDF.
+
+These entries illustrate the shape and have not been checked against the files:
 
 ```json
 {"sources": [
@@ -300,21 +410,26 @@ checked against the files:
 ]}
 ```
 
+#### The files this epic began with
+
 Of the 29 files in `docs/domain/` outside `research/` when this epic began, 22 are stored sources and get entries and
-`.gitattributes` lines. Three are verbatim: `cms-2454-ifc/2026-11094.xml`, which a re-fetch on 2026-10-16 matched
-byte for byte, and the two PDFs in `blueprint-pdfs/`, taken as verbatim because nothing here reformats a PDF, though
-where they came from was never recorded. Nineteen are derived: `cms-2454-ifc/2026-11094.txt` and `SECTION-INDEX.txt`,
-the 15 files in `hr1/` other than `HR1-Impact-Summary.md`, and the two text files in `supporting-regs/`. The other
-seven are the corpus's own files: six analysis files, namely `rule-extract.md`, `state-options.md` and
-`what-matters-most.md` in `cms-2454-ifc/`, `hr1/HR1-Impact-Summary.md` and the two Code for America summaries; and
-`supporting-regs/README.md`.
+`.gitattributes` lines. Three are verbatim: `cms-2454-ifc/2026-11094.xml`, which a re-fetch on 2026-10-16 matched byte
+for byte, and the two PDFs in `blueprint-pdfs/`, taken as verbatim because nothing here reformats a PDF, though where
+they came from was never recorded. Nineteen are derived: `cms-2454-ifc/2026-11094.txt` and `SECTION-INDEX.txt`, the 15
+files in `hr1/` other than `HR1-Impact-Summary.md`, and the two text files in `supporting-regs/`. The other seven are
+the corpus's own files: six analysis files, namely `rule-extract.md`, `state-options.md` and `what-matters-most.md` in
+`cms-2454-ifc/`, `hr1/HR1-Impact-Summary.md` and the two Code for America summaries; and `supporting-regs/README.md`.
+
+#### Re-fetching older sources
 
 Re-fetching an older source means fetching the same document from its publisher. A verbatim source is re-fetched. A
-derived copy is not, because how it was made was never recorded; its entry names what it came from where a record or
-the file itself says so, and `not recorded` where nothing does. Increment 3 stores the origins of the `hr1/` and
-`supporting-regs/` copies. When a fresh copy of a source that states no license differs from the stored one, as the
-blueprint PDFs might, it is not stored: the old entry's `note` gives the address, the time and the fresh copy's hash,
-and increment 3 decides whether copies stay at all.
+derived copy is not, because how it was made was never recorded; its entry names what it came from where a record or the
+file itself says so, and `not recorded` where nothing does. Increment 3 stores the origins of the `hr1/` and
+`supporting-regs/` copies.
+
+When a fresh copy of a source that states no license differs from the stored one, as the blueprint PDFs might, it is not
+stored: the old entry's `note` gives the address, the time and the fresh copy's hash, and increment 3 decides whether
+copies stay at all.
 
 ### State facts
 
@@ -333,91 +448,148 @@ dates written as YYYY-MM-DD:
   `YYYY-MM-DD, read in source` or `YYYY-MM-DD, ledger <finding ID>`, each optionally followed by `, by <name>`, or
   `YYYY-MM-DD, expert review, by <name>`
 
-JSON, because Python's standard library reads it. A fact whose sources include a state agency page or a secondary
-source dated before June 3, 2026 prints a warning that it may predate the rule; it does not fail.
+#### Why JSON
+
+JSON, because Python's standard library reads it.
+
+A fact whose sources include a state agency page or a secondary source dated before June 3, 2026 prints a warning that
+it may predate the rule; it does not fail.
+
+#### What the checker requires of a state file
 
 Its shape is `{"state": ..., "name": ..., "facts": [...]}`, with no other key and at least one fact. The checker reads
-every `.json` file directly in `states/` by these rules, `federal.json` and `co.json` must exist, and any other kind
-of file in `states/` fails as unlisted. Its `state` is the file's name without `.json`, either
-`federal` or a state's two-letter code in lowercase, such as `co`, and its `name` is the plain name, such as
-`Colorado`. Every value is a string except `sources` and `facts`, which are lists. Each fact has `row`, `setting`,
-`value`, `status`, `citation`, `sources` and `checked`, and a `note` as well when its status is `inferred` or
-`not published`. A key whose value is empty, or an empty list, counts as missing. A fact marked `not published` has
-the value `not published`. Each source has all four of its keys, its Source is checked as a row's is, its `url` is an
-address beginning `http://` or `https://`, and its tier is one of the tiers above. A fact's citation is checked as a
-row's is, taking the tier of its first source. A source on a state agency page or a secondary source whose date is
-`not stated` gets the same warning, because it too may predate the rule. The checker cannot tell whether a value is a
-period, so it never requires `counts_from`; review checks that every period has one. A source's `url` is the address
-a document in this repository gives for it or, where none does, the address that served it. The federal file's `name`
-is `Federal default`. A fact that records a state's own choice, such as making a federal "may" a "must", says so in
-its `note`. A fact's value uses the source's words, so a period counts from the event the source names.
+every `.json` file directly in `states/` by these rules, `federal.json` and `co.json` must exist, and any other kind of
+file in `states/` fails as unlisted.
+
+Its `state` is the file's name without `.json`, either `federal` or a state's two-letter code in lowercase, such as
+`co`, and its `name` is the plain name, such as `Colorado`.
+
+Every value is a string except `sources` and `facts`, which are lists. Each fact has `row`, `setting`, `value`,
+`status`, `citation`, `sources` and `checked`, and a `note` as well when its status is `inferred` or `not published`. A
+key whose value is empty, or an empty list, counts as missing. A fact marked `not published` has the value
+`not published`.
+
+Each source has all four of its keys, its Source is checked as a row's is, its `url` is an address beginning `http://`
+or `https://`, and its tier is one of the tiers above. A fact's citation is checked as a row's is, taking the tier of
+its first source.
+
+A source on a state agency page or a secondary source whose date is `not stated` gets the same warning, because it too
+may predate the rule.
+
+The checker cannot tell whether a value is a period, so it never requires `counts_from`; review checks that every period
+has one.
+
+A source's `url` is the address a document in this repository gives for it or, where none does, the address that served
+it. The federal file's `name` is `Federal default`. A fact that records a state's own choice, such as making a federal
+"may" a "must", says so in its `note`. A fact's value uses the source's words, so a period counts from the event the
+source names.
 
 ### The skill
 
-The skill restates rows briefly and holds no rule of its own. It is a main file, `SKILL.md`, and one topic file for
-each topic of the corpus in `references/`, as decision record 0004 sets out, and it holds a rule item for each row.
-Its `name` matches its folder, and its description uses the words a person would use about the work, such as Medicaid
-work requirements, letters, deadlines and exemptions, because the description decides whether the skill loads at all.
+The skill restates rows briefly and holds no rule of its own. It is a main file, `SKILL.md`, and one topic file for each
+topic of the corpus in `references/`, as decision record 0004 sets out, and it holds a rule item for each row. Its
+`name` matches its folder, and its description uses the words a person would use about the work, such as Medicaid work
+requirements, letters, deadlines and exemptions, because the description decides whether the skill loads at all.
+
+#### The main file
 
 `SKILL.md` has frontmatter holding `name` and `description` between `---` lines, as the other skills here do. The
 headings `## Topics`, `## Precedence` and `## Watch list` each appear exactly once, written exactly so, because a
-misspelled heading would otherwise switch a check off without a sound. `## Topics` holds one list item per topic file:
-a markdown link `[<title>](references/<name>.md)`, then what the file covers, and that a session reads it before
-answering a question it covers. A `## Topics` that links no topic file fails. `## Precedence` says which source wins
-when two disagree, and each item of `## Watch list` is a date or an event and the rows it could change. The list items
-in `SKILL.md` are not rule items and are left to review. `SKILL.md` stays under 500 lines, as the
-[Agent Skills specification](https://agentskills.io/specification) recommends, and, as a target the checker does not
-count, about 1,500 words.
+misspelled heading would otherwise switch a check off without a sound.
+
+`## Topics` holds one list item per topic file: a markdown link `[<title>](references/<name>.md)`, then what the file
+covers, and that a session reads it before answering a question it covers. A `## Topics` that links no topic file fails.
+`## Precedence` says which source wins when two disagree, and each item of `## Watch list` is a date or an event and the
+rows it could change. The list items in `SKILL.md` are not rule items and are left to review.
+
+`SKILL.md` stays under 500 lines, as the [Agent Skills specification](https://agentskills.io/specification) recommends,
+and, as a target the checker does not count, about 1,500 words.
+
+#### Topic files
 
 A topic file is `references/<name>.md`, its name lowercase words joined by hyphens, with no frontmatter. Its first line
-is `# <title>`. Every `.md` file directly in `references/` is linked from `## Topics`, and every link there names a
-file that exists. Prose may stand under the title or at the start of a group, and holds no rule; it is left to review.
-Rule items sit under `##` group headings named in plain words for what the group covers. Every list item in a topic
-file is a rule item and sits under a `##` heading, so a list item with no identifier, or one above the first `##`
-heading, fails. A rule item names any choice of the state it depends on by what the choice does, never "this option",
-"that option" or "the other option"; that is left to review. A topic file stays under 500 lines. A topic file holds
-at least one rule item, and each row in the extract has exactly one rule item across the topic files.
+is `# <title>`. Every `.md` file directly in `references/` is linked from `## Topics`, and every link there names a file
+that exists. Prose may stand under the title or at the start of a group, and holds no rule; it is left to review.
+
+Rule items sit under `##` group headings named in plain words for what the group covers. Every list item in a topic file
+is a rule item and sits under a `##` heading, so a list item with no identifier, or one above the first `##` heading,
+fails. A rule item names any choice of the state it depends on by what the choice does, never "this option", "that
+option" or "the other option"; that is left to review.
+
+A topic file stays under 500 lines. A topic file holds at least one rule item, and each row in the extract has exactly
+one rule item across the topic files.
+
+#### Rule items
 
 A rule item has words before its identifier. It may continue on lines indented by exactly two spaces, and is read with
-its lines joined by single spaces. It ends with the row's identifier in square brackets, a space, and the row's
-Citation exactly as the row gives it:
-`- ... beginning on the day they receive it. [notice-response-period] 42 CFR 435.558(a)(2); 91 FR 39030`. A number
-is a run of digits, with any comma or decimal point inside it, so `30`, `8.8` and `1,000` are numbers. Each number in
-a rule item before its identifier must equal a number in the row's Rule, whole against whole, so a `3` does not match
-inside a `30`. A number in parentheses that follows a letter, a digit or a closing parenthesis with no space between,
-as in `(c)(4)` or `1902(e)(14)`, is part of a citation and counts on neither side, while one after a space, as in
-`sixty (60)`, still counts. Anywhere in `SKILL.md` or a topic file, frontmatter and fences included, a word in square
-brackets that has the shape of an identifier and is not followed by `(` must name a row, so `[x]` fails too. A line
-inside a fenced code block is neither a heading nor a rule item, so a fence cannot stand in for a heading. Numbers
-written as words are left to review.
+its lines joined by single spaces. It ends with the row's identifier in square brackets, a space, and the row's Citation
+exactly as the row gives it:
+`- ... beginning on the day they receive it. [notice-response-period] 42 CFR 435.558(a)(2); 91 FR 39030`.
 
-If `SKILL.md` is absent, the skill is absent: the checker says so, checks the rest, and does not check `references/`
-or whether each row has a rule item. The skill items it counts are the rule items in all topic files.
+#### Numbers in a rule item
+
+A number is a run of digits, with any comma or decimal point inside it, so `30`, `8.8` and `1,000` are numbers. Each
+number in a rule item before its identifier must equal a number in the row's Rule, whole against whole, so a `3` does
+not match inside a `30`. A number in parentheses that follows a letter, a digit or a closing parenthesis with no space
+between, as in `(c)(4)` or `1902(e)(14)`, is part of a citation and counts on neither side, while one after a space, as
+in `sixty (60)`, still counts.
+
+#### Identifiers in square brackets
+
+Anywhere in `SKILL.md` or a topic file, frontmatter and fences included, a word in square brackets that has the shape of
+an identifier and is not followed by `(` must name a row, so `[x]` fails too. A line inside a fenced code block is
+neither a heading nor a rule item, so a fence cannot stand in for a heading. Numbers written as words are left to
+review.
+
+#### When the skill is absent
+
+If `SKILL.md` is absent, the skill is absent: the checker says so, checks the rest, and does not check `references/` or
+whether each row has a rule item. The skill items it counts are the rule items in all topic files.
 
 ### Pointers and dated corrections
 
 When a passage in an older analysis file becomes a pointer, its heading stays and its text gives way to one line,
 `Now rows <identifier>, <identifier> in docs/domain/community-engagement-extract.md (YYYY-MM-DD).`, followed by any
-claim that stays because no row covers it yet. A correction made in place leaves the corrected text and adds, right
-after it, `(Corrected YYYY-MM-DD: said "<the old words>"; <finding ID>.)`, so the change and its reason stay where a
-reader meets them. Where the correction comes from reading a stored source rather than from the research, the finding
-ID gives way to `read in <path>:<line>`; where it rests on both, both are given, the finding ID first, separated by
-`; `. A correction raised by a comment on the review pages, in place or in a row's `Corrected:` field, gives the
-comment as its finding ID, written `issue <number>`. One correction may quote more than one old string, each in its
-own quotes, and quoted words stay exactly as they were written. Text added where no old words are corrected, such as a
-comment explaining a value, is marked `(Added YYYY-MM-DD; <finding ID or read in path:line>.)`. A claim that stays with
-no stored source behind it is marked `(Unverified YYYY-MM-DD: no stored source holds this; searched <what>.)` rather
-than removed.
+claim that stays because no row covers it yet.
+
+#### Corrections in place
+
+A correction made in place leaves the corrected text and adds, right after it,
+`(Corrected YYYY-MM-DD: said "<the old words>"; <finding ID>.)`, so the change and its reason stay where a reader meets
+them.
+
+Where the correction comes from reading a stored source rather than from the research, the finding ID gives way to
+`read in <path>:<line>`; where it rests on both, both are given, the finding ID first, separated by `; `.
+
+A correction raised by a comment on the review pages, in place or in a row's `Corrected:` field, gives the comment as
+its finding ID, written `issue <number>`.
+
+One correction may quote more than one old string, each in its own quotes, and quoted words stay exactly as they were
+written.
+
+#### Additions, and claims with no source
+
+Text added where no old words are corrected, such as a comment explaining a value, is marked
+`(Added YYYY-MM-DD; <finding ID or read in path:line>.)`.
+
+A claim that stays with no stored source behind it is marked
+`(Unverified YYYY-MM-DD: no stored source holds this; searched <what>.)` rather than removed.
 
 ### The checker
 
 `scripts/check-corpus.py` and the package under it use Python's standard library only and run on Python 3.9 or later.
+
+#### Tests
+
 Its tests come first: the files `tests/test_*.py` hold, for each check below, a small fixture that passes and one that
 fails, and `python3 -m unittest discover -s tests` runs them with nothing installed and without reading the user's own
-git configuration. The checker reads the extract,
-the state facts files, the manifest, the open questions and the skill. It also builds the review pages in memory with
-the generator's package, `scripts/review_pages/`, writing nothing, and compares them with `docs/review/`. It skips
-anything git ignores, and fails, naming each problem, when:
+git configuration.
+
+#### What it reads, and when it fails
+
+The checker reads the extract, the state facts files, the manifest, the open questions and the skill. It also builds the
+review pages in memory with the generator's package, `scripts/review_pages/`, writing nothing, and compares them with
+`docs/review/`. It skips anything git ignores, and fails, naming each problem, when:
 
 - a row lacks a field, a value is outside its vocabulary, or an identifier is malformed or used twice
 - a citation is empty, says TBD or TODO, has parts not separated by `; `, or, for a statute or regulation tier, names
@@ -438,75 +610,105 @@ anything git ignores, and fails, naming each problem, when:
 - a review page differs from what the generator makes or is missing, or a file in `docs/review/` is one the
   generator does not make
 
+#### What it prints
+
 It prints how many rows it checked, how many of them say `Verified: no` and how many a person verified, and how many
-sources, state facts, facts marked `not published`, warnings and skill items it matched. If the skill is absent it
-says so and checks the rest, since deleting a skill is allowed. If `docs/review/` is absent, it says so on a line of
-its own and checks the rest. It does not check that an open question's Source quotes words on its cited line. It
-cannot tell whether a skill item's words match its row's meaning; review does
-that.
+sources, state facts, facts marked `not published`, warnings and skill items it matched. If the skill is absent it says
+so and checks the rest, since deleting a skill is allowed. If `docs/review/` is absent, it says so on a line of its own
+and checks the rest.
+
+#### What it leaves to review
+
+It does not check that an open question's Source quotes words on its cited line. It cannot tell whether a skill item's
+words match its row's meaning; review does that.
+
+#### How it finds files
 
 It finds the repository root from its own path, so it runs from any working directory. It lists files with
 `git ls-files -z --cached --others --exclude-standard`, which leaves out what git ignores, and asks
 `git check-attr -z text` about each manifest path, which must answer `unset`. A missing extract, manifest,
-`open-questions.md`, `states/federal.json` or `states/co.json` fails, and one that git ignores counts as missing, as
-an ignored skill counts as absent. A file counts as present when git lists it, tracked or not yet added, so a source
-nobody has added passes here and is missing in a clone. It keeps the list of the corpus's own files as one constant. In
-this increment that is the extract, `open-questions.md`, every `.json` file directly in `states/`,
-`sources/MANIFEST.json`, `supporting-regs/README.md`, and the six analysis files named under "Stored sources and the
-manifest", so a README anywhere else in `docs/domain/` outside `research/` fails as unlisted. The count of sources it
-prints is the number of manifest entries.
+`open-questions.md`, `states/federal.json` or `states/co.json` fails, and one that git ignores counts as missing, as an
+ignored skill counts as absent. A file counts as present when git lists it, tracked or not yet added, so a source nobody
+has added passes here and is missing in a clone.
+
+#### The corpus's own files
+
+It keeps the list of the corpus's own files as one constant. In this increment that is the extract, `open-questions.md`,
+every `.json` file directly in `states/`, `sources/MANIFEST.json`, `supporting-regs/README.md`, and the six analysis
+files named under "Stored sources and the manifest", so a README anywhere else in `docs/domain/` outside `research/`
+fails as unlisted. The count of sources it prints is the number of manifest entries.
 
 ### The review pages
 
 The pages in `docs/review/` are generated by `scripts/build-review-pages.py` and never edited by hand. They are where
 Medicaid policy experts read the rows and comment on them, as
-`docs/decisions/0005-publish-the-policy-rows-for-open-review.md` records. There is a landing page, one page per topic
-of the skill, a page of open questions and a page of state facts. Under the title of each page but the landing page
-come the line saying it is generated and the sentence "Never post or send anything about a real person's case.",
-which the landing page holds too.
+`docs/decisions/0005-publish-the-policy-rows-for-open-review.md` records.
+
+There is a landing page, one page per topic of the skill, a page of open questions and a page of state facts. Under the
+title of each page but the landing page come the line saying it is generated and the sentence "Never post or send
+anything about a real person's case.", which the landing page holds too.
+
+#### Topic pages
 
 A topic page opens with "Start here": one list item for each group of the topic file that holds a start-here row, its
 text the group's `##` heading and a colon, and under it a link to each of those rows, named by its identifier with
 spaces for hyphens. Both follow the topic file's order, and the list adds no heading of its own.
 
+#### How a row is shown
+
 Each row shows its identifier as the heading, the rule, the citation linked to the official text, whether a state can
 choose differently, which way an error would cost a person, who checked it and how, and links to comment on it and to
 the full row in the extract. Where a state can choose, it takes two lines, "Can a state choose differently? Yes. The
 state chooses ..." and "If the state has not chosen: ...". In those two lines every word that is a row's identifier
-links to that row, and the first "open question" in each links to the open questions page; the row's text is
-unchanged. "If this row were wrong:" says "a person on Medicaid could do less than the rules ask of them." for
-`dangerous`, "a person on Medicaid could do more than the rules ask of them." for `burdensome`, and "only a citation,
-a date or context would be off." for `neither`. "Checked:" puts the Verified value in words, such as "2026-10-19 by an
-AI agent reading the stored text.", and a state fact's `checked` value in the same words.
+links to that row, and the first "open question" in each links to the open questions page; the row's text is unchanged.
 
-A CFR citation that names a paragraph, such as `42 CFR 435.558(a)(1)`, links to that paragraph on eCFR's current
-section page, at the fragment `#p-` followed by the section and paragraph percent-encoded:
-`#p-435.558%28a%29%281%29`. A range links to its first paragraph. Every CFR and Federal Register citation in an open
-question's text is linked the same way. So is a section of title 42's parts 400 to 499 listed bare straight after a
-42 CFR reference, as 431.221 and 431.231 are in "42 CFR 431.211, 431.221 and 431.231", and a section-sign reference
-to such a section, such as `§ 431.206(c)(2)`, where the question's text names 42 CFR and no other title. A paragraph
-alone, such as the (c)(3) in "§ 431.206(c)(2), (c)(3) or (c)(4)", stays text, and so does any Colorado section.
-Colorado's draft 10 CCR 2505-10 8.100 links to the address the manifest records for the stored draft. A citation
-links to the current official text, while each row was checked against the stored copy its Verified date names. The
-two can differ once the text is amended.
+"If this row were wrong:" says "a person on Medicaid could do less than the rules ask of them." for `dangerous`, "a
+person on Medicaid could do more than the rules ask of them." for `burdensome`, and "only a citation, a date or context
+would be off." for `neither`. "Checked:" puts the Verified value in words, such as "2026-10-19 by an AI agent reading
+the stored text.", and a state fact's `checked` value in the same words.
+
+#### Links to the official text
+
+A CFR citation that names a paragraph, such as `42 CFR 435.558(a)(1)`, links to that paragraph on eCFR's current section
+page, at the fragment `#p-` followed by the section and paragraph percent-encoded: `#p-435.558%28a%29%281%29`. A range
+links to its first paragraph.
+
+Every CFR and Federal Register citation in an open question's text is linked the same way. So is a section of title 42's
+parts 400 to 499 listed bare straight after a 42 CFR reference, as 431.221 and 431.231 are in "42 CFR 431.211, 431.221
+and 431.231", and a section-sign reference to such a section, such as `§ 431.206(c)(2)`, where the question's text names
+42 CFR and no other title. A paragraph alone, such as the (c)(3) in "§ 431.206(c)(2), (c)(3) or (c)(4)", stays text, and
+so does any Colorado section.
+
+Colorado's draft 10 CCR 2505-10 8.100 links to the address the manifest records for the stored draft. A citation links
+to the current official text, while each row was checked against the stored copy its Verified date names. The two can
+differ once the text is amended.
+
+#### Comment links
 
 Every row, open question and state fact has three comment links, each carrying its name: the GitHub issue form, the
-Google Form pre-filled through its question "Which row, state fact or open question?", and email to
-policy@hourkeep.app. A row's name is its identifier, an open question's is its title, and a state fact's is its state
-and row, such as `co: hearing-request-window-at-most-90-days`, which the fact shows before its Comment line. The
-landing page links the Google Form without a name. A state fact's note follows its list, folded in a collapsed
+Google Form pre-filled through its question "Which row, state fact or open question?", and email to policy@hourkeep.app.
+A row's name is its identifier, an open question's is its title, and a state fact's is its state and row, such as
+`co: hearing-request-window-at-most-90-days`, which the fact shows before its Comment line.
+
+The landing page links the Google Form without a name. A state fact's note follows its list, folded in a collapsed
 "Notes for checking" block, and the state facts page opens by defining the three statuses.
+
+#### The open questions page
 
 The open questions page groups the questions by why each is open, with conflicts first, since there two sources say
 different things; the owner decided that order on 2026-10-22. Its opening paragraph says so. Each group is a `##`
 heading with one sentence under it, and each question a `###` heading with its title unchanged, so its anchor and the
-name it is commented under stay the same. A question goes in the first of these groups that fits it, and so in
-exactly one: "Where the sources conflict" if its reasons include `the sources conflict`; "Waiting on a choice a state
-has not published" if they include `it turns on a choice the state has not published`; "Questions about the federal
-rule" if its Who can answer starts with `CMS`; and "Questions about a state's own rules" otherwise. Its reasons are
-read as the checker reads them. The page shows the conflicts, then the federal rule, then a state's own rules, then a
-state's choice, and leaves out a group with no question. Within a group the questions keep the order of
-`open-questions.md`.
+name it is commented under stay the same.
+
+A question goes in the first of these groups that fits it, and so in exactly one: "Where the sources conflict" if its
+reasons include `the sources conflict`; "Waiting on a choice a state has not published" if they include
+`it turns on a choice the state has not published`; "Questions about the federal rule" if its Who can answer starts with
+`CMS`; and "Questions about a state's own rules" otherwise. Its reasons are read as the checker reads them.
+
+The page shows the conflicts, then the federal rule, then a state's own rules, then a state's choice, and leaves out a
+group with no question. Within a group the questions keep the order of `open-questions.md`.
+
+#### What the checker compares
 
 The checker fails when `docs/review/` is not what the generator makes. If `docs/review/` is absent, the checker says so
 and checks the rest, as it does for an absent skill.

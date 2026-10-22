@@ -1,0 +1,18 @@
+{
+  "profile": "public-service",
+  "standards": ["18f-content", "federal-plain-language", "gsa-content", "accessible-content", "source-evidence", "ai-writing", "publishing"],
+  "includeExtensions": [".md", ".html", ".txt"],
+  "exclude": [
+    "node_modules", ".git", "dist", "build", "coverage", ".agents", ".worktrees", "sensitive",
+    "domain", "review", "prosekeep", "closedtab", "NOTICE.md"
+  ],
+  "rules": {
+    "STYLE-01": true,
+    "STYLE-02": true,
+    "STYLE-03": true,
+    "STYLE-04": true,
+    "STYLE-05": true,
+    "STYLE-06": true,
+    "STYLE-07": true
+  }
+}

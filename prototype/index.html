@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#6B4E71" />
+    <title>HourKeep prototype: gather proof for a Medicaid letter</title>
+    <meta name="description" content="A browser-only prototype of HourKeep. It helps a person gather proof for the months their state asks about and print one packet. It sends nothing anywhere. The state makes every decision." />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-white focus:p-3">Skip to content</a>
+    <header class="no-print border-b border-tan bg-white">
+      <div class="mx-auto flex max-w-4xl flex-wrap items-center justify-between gap-3 px-4 py-3">
+        <div class="flex items-center gap-3">
+          <img src="./favicon.svg" alt="" width="36" height="36" />
+          <span class="text-2xl font-bold text-purple-dark">HourKeep</span>
+          <span class="rounded-full border border-ink-soft px-2 py-0.5 text-xs text-ink-soft" id="sample-marker">Prototype with a made-up case, HK-2027-0142</span>
+        </div>
+        <div class="flex flex-wrap gap-2" id="reset-area"></div>
+      </div>
+    </header>
+    <div id="recovered-slot" class="no-print"></div>
+    <div id="helper-slot" class="no-print"></div>
+    <nav aria-label="Steps" class="no-print mx-auto max-w-4xl px-4 pt-4">
+      <ol id="steps" class="grid gap-1"></ol>
+    </nav>
+    <main id="main" tabindex="-1" class="mx-auto max-w-4xl px-4 py-4 pb-24"></main>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
