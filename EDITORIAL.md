@@ -22,6 +22,19 @@ changes both.
   and each row quotes a source stored under `docs/domain/sources/`. Where a row and the regulation disagree, the
   regulation wins. `docs/design.md` is the authority on what HourKeep is and does.
 
+## The interface comes first
+
+For any word inside a screen, `.kiro/skills/interface-copy/SKILL.md` is read before this file and wins where the
+two differ. It adapts the CMS eAPD content guide, which was written for a long government form turned into an
+application, filled in by somebody who will be judged on what they submit. That is what HourKeep is, and no other
+standard here is written about sections, subsections, instructions, field labels, toggles, tables or a print view.
+
+Two of eAPD's assumptions are reversed there, because eAPD writes for state analysts who know the form and HourKeep
+writes for a person who has never seen it.
+
+`python3 scripts/check-interface-copy.py` enforces the part a checker can see. This file still governs every
+document: the README, the design, decision records, the research.
+
 ## Voice and register
 
 A paragraph to preserve, from `public/index.html`:
@@ -123,6 +136,11 @@ accessible, readable by the person it is for, or acceptable to the owner. The re
 `.kiro/skills/prosekeep/references/review.md` does that, and the owner signs off.
 
 ## Reference standards
+
+The eAPD addendum is first, and it sits outside `.editorial.json`. Prosekeep's standards are a fixed registry in its
+own source, so `eapd-content` cannot be named in the `standards` array; adding it there makes
+`prosekeep standards eapd-content` fail. It is a skill instead, which is what makes it an addendum rather than a
+module.
 
 Seven modules are selected in `.editorial.json`: 18F content, federal plain language, GSA content, accessible
 content, source evidence, AI writing, and publishing. They are in

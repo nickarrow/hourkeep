@@ -51,6 +51,20 @@ jobs:
       - name: Report the outlines and any repeated paragraph
         run: node .prosekeep/bin/prosekeep.mjs audit .
 
+  # The words inside the screens, against the eAPD addendum in .kiro/skills/interface-copy/SKILL.md.
+  # Python only, like the corpus checker, because the repository root has no npm install.
+  interface:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+      - name: Check the interface copy
+        run: python3 scripts/check-interface-copy.py
+      - name: Run the interface copy checker's tests
+        run: python3 -m unittest tests.test_interface_copy -v
+
   records:
     runs-on: ubuntu-latest
     steps:

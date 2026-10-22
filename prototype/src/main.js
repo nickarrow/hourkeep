@@ -7,7 +7,7 @@ const SUGGESTED = [
   'Volunteer sign-in sheet or a note from the group',
   'Class schedule or a letter from the school',
 ];
-const STEPS = ['Overview', 'Notice details', 'Months and evidence', 'Hours', 'Packet'];
+const STEPS = ['Your Notice', 'Notice Details', 'Months and Evidence', 'Hours', 'Packet'];
 const REF = 'HK-2027-0142';
 
 let n = 0;
@@ -101,7 +101,7 @@ const views = [
   // 0 Overview
   () => `
   <section class="card" aria-labelledby="t">
-    <h1 id="t" class="text-3xl font-bold text-aegold-900">Your notice and records</h1>
+    <h1 id="t" class="text-3xl font-bold text-aegold-900">Your Notice and Records</h1>
     <p class="mt-2 text-lg">Enter what the notice says, describe the records you have for each month it names, add up your hours, and print one packet.</p>
     <dl class="mt-5 grid gap-3 sm:grid-cols-3">
       <div class="rounded bg-aeblack-50 p-3"><dt class="text-sm font-semibold text-aeblack-700">Notice date</dt><dd class="font-semibold" data-bind="ov-notice"></dd></div>
@@ -117,7 +117,7 @@ const views = [
   // 1 Notice details
   () => `
   <section class="card" aria-labelledby="t">
-    <h2 id="t" class="text-2xl font-bold text-aegold-900">Notice details</h2>
+    <h2 id="t" class="text-2xl font-bold text-aegold-900">Notice Details</h2>
     <p class="mt-1">Copy these from the notice you received.</p>
     <div class="mt-5 grid gap-5 sm:grid-cols-2">
       ${field('notice', 'Notice date', 'The date printed on the notice.', `<input id="notice" type="date" class="aegov-form-control" value="${esc(S.letter.noticeDate)}" data-letter="noticeDate" />`)}
@@ -142,7 +142,7 @@ const views = [
   // 2 Months and evidence
   () => `
   <section class="card" aria-labelledby="t">
-    <h2 id="t" class="text-2xl font-bold text-aegold-900">Requested months and evidence</h2>
+    <h2 id="t" class="text-2xl font-bold text-aegold-900">Requested Months and Evidence</h2>
     <p class="mt-1">For each month, tick what you have gathered and describe each record in a few words. Files are not uploaded.</p>
     ${months().length === 0 ? `<div class="aegov-alert alert-warning mt-5" role="status"><div class="alert-content"><p>No months selected.</p></div></div><button type="button" class="aegov-btn btn-outline mt-3" data-go="1">Choose months in Notice details</button>` : ''}
     <div class="mt-5 space-y-5">
@@ -155,7 +155,7 @@ const views = [
           <p class="mt-3 text-sm font-semibold">Records you described</p>
           ${rows.length === 0 ? '<p class="mt-1 rounded border border-dashed border-aeblack-400 p-3 text-aeblack-700">None yet. Add a description below.</p>' : `<ul class="mt-1 space-y-2">${rows.map((p) => `<li class="flex items-center justify-between gap-3 rounded bg-white p-3"><span>${esc(p.text)}</span><button type="button" class="aegov-btn btn-outline btn-sm shrink-0" data-rm-proof="${p.id}" aria-label="Remove record: ${esc(p.text)}">${ICON.trash} Remove</button></li>`).join('')}</ul>`}
           <form class="mt-3 flex flex-col gap-2 sm:flex-row" data-add-proof="${m}">
-            <label for="pf-${m}" class="sr-only">Describe a record for ${monthLabel(m)}</label>
+            <label for="pf-${m}" class="sr-only">Record description for ${monthLabel(m)}</label>
             <input id="pf-${m}" class="aegov-form-control" placeholder="Example: Volunteer sign-in sheet" autocomplete="off" />
             <button type="submit" class="aegov-btn shrink-0">${ICON.plus} Add</button>
           </form>
@@ -167,8 +167,8 @@ const views = [
   // 3 Hours
   () => `
   <section class="card" aria-labelledby="t">
-    <h2 id="t" class="text-2xl font-bold text-aegold-900">Hours arithmetic</h2>
-    <p class="mt-1">Hours for each activity = hours per week x weeks. HourKeep adds them up and does not judge them.</p>
+    <h2 id="t" class="text-2xl font-bold text-aegold-900">Hours Arithmetic</h2>
+    <p class="mt-1">Enter the hours for each activity. Hours = hours a week × weeks. HourKeep adds them up and does not judge them.</p>
     ${months().length === 0 ? `<div class="aegov-alert alert-warning mt-5" role="status"><div class="alert-content"><p>No months selected.</p></div></div><button type="button" class="aegov-btn btn-outline mt-3" data-go="1">Choose months in Notice details</button>` : ''}
     <div class="mt-5 space-y-5">
       ${months().map((m) => {
@@ -198,7 +198,7 @@ const views = [
   // 4 Packet
   () => `
   <div class="no-print card mb-4">
-    <h2 class="text-2xl font-bold text-aegold-900">Printable packet</h2>
+    <h2 class="text-2xl font-bold text-aegold-900">Printable Packet</h2>
     <p class="mt-1">Review the pages below, then print or save as PDF from your browser. Nothing is submitted.</p>
     <div class="mt-3 flex flex-wrap gap-3">
       <button type="button" class="aegov-btn btn-lg" data-print>${ICON.print} Print this packet</button>
@@ -213,7 +213,7 @@ function packetHtml() {
   const ms = months();
   return `
   <section class="packet-page" aria-labelledby="pk1">
-    <h2 id="pk1" class="text-2xl font-bold">1. Packet summary</h2>
+    <h2 id="pk1" class="text-2xl font-bold">1. Packet Summary</h2>
     <dl class="mt-4 grid grid-cols-[auto_1fr] gap-x-6 gap-y-2">
       <dt class="font-semibold">Person</dt><dd>Jordan Lee</dd>
       <dt class="font-semibold">Reference</dt><dd>${REF}</dd>
@@ -228,16 +228,16 @@ function packetHtml() {
     ${foot(1)}
   </section>
   <section class="packet-page" aria-labelledby="pk2">
-    <h2 id="pk2" class="text-2xl font-bold">2. Hours and arithmetic</h2>
-    <p class="mt-1 text-sm">Hours shown = hours per week x weeks.</p>
-    ${ms.map((m) => { const rows = monthActs(m); return `<div class="mt-5"><h3 class="text-lg font-bold">${monthLabel(m)}</h3>${rows.length === 0 ? '<p class="text-sm">No activities listed.</p>' : `<table class="mt-1 w-full border-collapse text-sm"><tbody>${rows.map((a) => `<tr class="border-b border-aeblack-300"><td class="py-1 pr-2">${esc(a.name)}</td><td class="whitespace-nowrap py-1 pr-2">${a.perWeek} x ${a.weeks}</td><td class="whitespace-nowrap py-1 text-right">= ${num(hoursOf(a))} hours</td></tr>`).join('')}<tr><td class="py-1 font-bold" colspan="2">Month subtotal</td><td class="py-1 text-right font-bold">${sum(rows)} hours</td></tr></tbody></table>`}</div>`; }).join('')}
+    <h2 id="pk2" class="text-2xl font-bold">2. Hours and Arithmetic</h2>
+    <p class="mt-1 text-sm">Hours shown = hours a week × weeks.</p>
+    ${ms.map((m) => { const rows = monthActs(m); return `<div class="mt-5"><h3 class="text-lg font-bold">${monthLabel(m)}</h3>${rows.length === 0 ? '<p class="text-sm">No response was provided for this month’s activities.</p>' : `<table class="mt-1 w-full border-collapse text-sm"><tbody>${rows.map((a) => `<tr class="border-b border-aeblack-300"><td class="py-1 pr-2">${esc(a.name)}</td><td class="whitespace-nowrap py-1 pr-2">${a.perWeek} × ${a.weeks}</td><td class="whitespace-nowrap py-1 text-right">= ${num(hoursOf(a))} hours</td></tr>`).join('')}<tr><td class="py-1 font-bold" colspan="2">Month subtotal</td><td class="py-1 text-right font-bold">${sum(rows)} hours</td></tr></tbody></table>`}</div>`; }).join('')}
     <div class="mt-6 border-2 border-aeblack-800 p-3"><p class="font-bold" data-bind="pk-total"></p><p class="text-sm">Arithmetic only. No eligibility decision is made here.</p></div>
     ${foot(2)}
   </section>
   <section class="packet-page" aria-labelledby="pk3">
-    <h2 id="pk3" class="text-2xl font-bold">3. Records described</h2>
+    <h2 id="pk3" class="text-2xl font-bold">3. Records Described</h2>
     <p class="mt-1 text-sm">Descriptions only. No files are attached.</p>
-    ${ms.map((m) => { const rows = S.proofs.filter((p) => p.month === m); return `<div class="mt-4"><h3 class="text-lg font-bold">${monthLabel(m)}</h3>${rows.length === 0 ? '<p class="text-sm">No records described.</p>' : `<ol class="list-decimal pl-6 text-sm">${rows.map((p) => `<li>${esc(p.text)}</li>`).join('')}</ol>`}</div>`; }).join('')}
+    ${ms.map((m) => { const rows = S.proofs.filter((p) => p.month === m); return `<div class="mt-4"><h3 class="text-lg font-bold">${monthLabel(m)}</h3>${rows.length === 0 ? '<p class="text-sm">No response was provided describing this month’s records.</p>' : `<ol class="list-decimal pl-6 text-sm">${rows.map((p) => `<li>${esc(p.text)}</li>`).join('')}</ol>`}</div>`; }).join('')}
     <div class="mt-10 grid gap-8 sm:grid-cols-2"><div><div class="h-10 border-b-2 border-aeblack-800"></div><p class="mt-1 text-sm">Signature</p></div><div><div class="h-10 border-b-2 border-aeblack-800"></div><p class="mt-1 text-sm">Date</p></div></div>
     <p class="mt-8 border-2 border-aeblack-800 p-3 text-sm">This packet does not determine whether a person is exempt or has met any requirement. The state makes that determination.</p>
     ${foot(3)}
@@ -256,7 +256,7 @@ function updateDerived() {
   bind('pk-response', fmtDate(S.letter.responseDate));
   bind('pk-method', S.letter.method);
   bind('pk-total', `Total listed: ${totalHours()} hours`);
-  S.activities.forEach((a) => bind(`math-${a.id}`, `${num(Number(a.perWeek) || 0)} x ${num(Number(a.weeks) || 0)} = ${num(hoursOf(a))} hours`));
+  S.activities.forEach((a) => bind(`math-${a.id}`, `${num(Number(a.perWeek) || 0)} × ${num(Number(a.weeks) || 0)} = ${num(hoursOf(a))} hours`));
   ms.forEach((m) => bind(`sub-${m}`, `${sum(monthActs(m))} hours`));
   bind('total-line', `${ms.map((m) => sum(monthActs(m))).join(' + ') || '0'} = ${totalHours()} hours`);
   const de = document.getElementById('date-error');

@@ -195,6 +195,13 @@ CMS calls community engagement. What it relies on lives here:
   `quarterback/prosekeep` and `quarterback/closedtab`, pinned at the commits their `SKILL.md` names, and neither is
   edited here.
 
+`.kiro/skills/interface-copy/SKILL.md` governs every word inside a screen, ahead of `EDITORIAL.md`. It adapts the
+CMS eAPD content guide, written for this kind of form. After any change to a string a person sees, run:
+
+```
+python3 scripts/check-interface-copy.py
+```
+
 After any change to prose outside `docs/domain/` and `docs/review/`, run the editorial check from the repository
 root. Prosekeep 0.3.0 is not on npm yet, so run it from a checkout; `.github/workflows/editorial.yml` names the
 pinned commit.
