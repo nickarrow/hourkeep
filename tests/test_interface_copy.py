@@ -66,6 +66,28 @@ class SectionTitleTest(unittest.TestCase):
         self.assertEqual([], check_javascript("f.js", js))
 
 
+class StepObjectTest(unittest.TestCase):
+    """COPY-02. Steps written as objects are judged by their title, never by their id."""
+
+    def test_an_id_beside_a_title_is_not_read_as_a_title(self):
+        js = "const STEPS = [\n  { id: 'start', title: 'Why You\u2019re Here', shown: () => true },\n];\n"
+        self.assertEqual([], check_javascript("f.js", js))
+
+    def test_a_sentence_cased_title_in_an_object_is_still_reported(self):
+        js = "const STEPS = [\n  { id: 'notice', title: 'Notice details' },\n];\n"
+        self.assertIn("COPY-02", rules(check_javascript("f.js", js)))
+
+
+class ToggleTest(unittest.TestCase):
+    """COPY-14. A yes or no toggle is labelled with a question."""
+
+    def test_a_toggle_labelled_with_a_question_passes(self):
+        self.assertEqual([], check_javascript("f.js", "toggle('snap:onCase', 'Are you on that SNAP case?', v)"))
+
+    def test_a_toggle_labelled_with_a_statement_is_reported(self):
+        self.assertIn("COPY-14", rules(check_javascript("f.js", "toggle('snap:onCase', 'On that SNAP case', v)")))
+
+
 class FieldLabelTest(unittest.TestCase):
     """COPY-04 and COPY-05. A label says what the field is."""
 

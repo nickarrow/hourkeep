@@ -1,20 +1,89 @@
 @import "tailwindcss";
-@plugin "@aegov/design-system";
 @source "../index.html";
 @source "./main.js";
 
-html { font-size: 17px; }
-:focus-visible { outline: 3px solid var(--color-aegold-700); outline-offset: 2px; }
-.card { background: #fff; border: 1px solid var(--color-aeblack-200); border-radius: 0.5rem; padding: 1.25rem; }
-.field-label { display: block; font-weight: 600; margin-bottom: 0.25rem; }
-.step-btn[aria-current="step"] { background: var(--color-aegold-800); color: #fff; }
+/* v1's palette, as docs/design.md decided on 2026-10-15. Tan fails contrast as text (2.23:1 on white), so it is
+   used for borders and rules only. Green and red never mean compliant and not compliant, so neither appears. */
+@theme {
+  --color-purple: #6b4e71;
+  --color-purple-dark: #4b2e51;
+  --color-purple-tint: #f1ecf2;
+  --color-tan: #d4a574;
+  --color-tan-tint: #f3e7d9;
+  --color-orange: #d97d54;
+  --color-orange-dark: #8a3f1e;
+  --color-orange-tint: #fbede6;
+  --color-page: #faf9f7;
+  --color-ink: #2d2d2d;
+  --color-ink-soft: #6b6b6b;
+  --font-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
 
-.packet-page { background: #fff; border: 1px solid var(--color-aeblack-300); padding: 1.5rem; margin-bottom: 1rem; }
+html { font-size: 17px; }
+body { background: var(--color-page); color: var(--color-ink); font-family: var(--font-sans); line-height: 1.55; }
+:focus-visible { outline: 3px solid var(--color-purple-dark); outline-offset: 2px; border-radius: 2px; }
+a { color: var(--color-purple); text-decoration-thickness: 0.08em; text-underline-offset: 0.18em; }
+
+.card { background: #fff; border: 1px solid #e4dfe5; border-radius: 0.75rem; padding: 1.25rem; }
+.field-label { display: block; font-weight: 600; margin-bottom: 0.25rem; }
+.hint { font-size: 0.9rem; color: var(--color-ink-soft); margin-bottom: 0.35rem; }
+.input {
+  width: 100%; min-height: 2.75rem; padding: 0.5rem 0.75rem; background: #fff;
+  border: 2px solid #b9b0bb; border-radius: 0.5rem; font: inherit; color: inherit;
+}
+.input:focus-visible { border-color: var(--color-purple-dark); }
+
+/* Every control is at least 44px tall, the WCAG 2.2 target size HourKeep builds to. */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; min-height: 2.75rem;
+  padding: 0.5rem 1.1rem; border-radius: 0.5rem; border: 2px solid var(--color-purple);
+  background: var(--color-purple); color: #fff; font-weight: 600; cursor: pointer; text-align: left;
+}
+.btn:hover { background: var(--color-purple-dark); border-color: var(--color-purple-dark); }
+.btn-secondary { background: #fff; color: var(--color-purple-dark); }
+.btn-secondary:hover { background: var(--color-purple-tint); color: var(--color-purple-dark); }
+.btn-sm { min-height: 2.75rem; padding: 0.35rem 0.8rem; font-size: 0.95rem; }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+/* A large tappable answer, for the one-tap questions. */
+.choice {
+  display: flex; align-items: flex-start; gap: 0.75rem; width: 100%; min-height: 3.25rem; padding: 0.85rem 1rem;
+  background: #fff; border: 2px solid #d9d2da; border-radius: 0.75rem; cursor: pointer; text-align: left;
+}
+.choice:hover { border-color: var(--color-purple); }
+.choice[aria-pressed="true"], .choice:has(input:checked) { border-color: var(--color-purple); background: var(--color-purple-tint); }
+.choice input { margin-top: 0.3rem; width: 1.15rem; height: 1.15rem; accent-color: var(--color-purple); flex-shrink: 0; }
+
+.alert { border-left: 6px solid var(--color-purple); background: var(--color-purple-tint); padding: 0.85rem 1rem; border-radius: 0.5rem; }
+.alert-attention { border-left-color: var(--color-orange); background: var(--color-orange-tint); }
+.alert-title { font-weight: 700; }
+
+/* The three labels every number carries (.kiro/skills/hhs-benefits/SKILL.md). Told apart by word and border style,
+   never by colour alone. */
+.label-tag {
+  display: inline-block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase;
+  padding: 0.05rem 0.45rem; border-radius: 0.25rem; border: 2px solid var(--color-ink); background: #fff; color: var(--color-ink);
+  vertical-align: 0.1em;
+}
+.label-computed { border-style: solid; }
+.label-conditional { border-style: dashed; background: var(--color-tan-tint); }
+.label-deferred { border-style: dotted; background: #eeeeee; }
+
+.step-btn { min-height: 2.75rem; }
+.step-btn[aria-current="step"] { background: var(--color-purple); color: #fff; border-color: var(--color-purple); }
+
+details.sources > summary { cursor: pointer; font-weight: 600; color: var(--color-purple-dark); min-height: 2.75rem; display: flex; align-items: center; }
+
+.packet-page { background: #fff; border: 1px solid #cfc8d0; padding: 1.5rem; margin-bottom: 1rem; border-radius: 0.25rem; }
+.packet-page table { border-collapse: collapse; width: 100%; }
+.packet-page th, .packet-page td { border-bottom: 1px solid #cfc8d0; padding: 0.3rem 0.4rem 0.3rem 0; text-align: left; vertical-align: top; }
+
 @media print {
   html { font-size: 12pt; }
-  body { background: #fff !important; }
+  body { background: #fff !important; color: #000 !important; }
   .no-print { display: none !important; }
   main { max-width: none !important; padding: 0 !important; }
   .packet-page { border: none; padding: 0; margin: 0; break-after: page; }
   .packet-page:last-child { break-after: auto; }
+  .label-tag { border-color: #000; background: #fff !important; }
 }

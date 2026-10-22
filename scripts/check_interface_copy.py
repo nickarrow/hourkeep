@@ -142,6 +142,9 @@ LIST_ITEM = re.compile(r"<li\b[^>]*>(.*?)</li>", re.S)
 TABLE_CELL = re.compile(r"<t[dh]\b[^>]*>(.*?)</t[dh]>", re.S)
 DT = re.compile(r"<dt\b[^>]*>(.*?)</dt>", re.S)
 
+# toggle('name', 'Label?', value): the helper the prototype renders a yes, no or not-sure answer with.
+TOGGLE_CALL = re.compile(r"toggle\(\s*[`'\"][^`'\"]*[`'\"]\s*,\s*'([^']*)'")
+
 PACKET_PHRASE = re.compile(r"\bNot specified\b|\bnot specified\.|No response was provided")
 
 
@@ -159,8 +162,18 @@ def check_javascript(path: str, text: str) -> list[Finding]:
     steps = STEPS.search(text)
     if steps:
         start = steps.start(1)
-        for raw in re.finditer(r"'([^']+)'", steps.group(1)):
-            out += check_title(path, text, start + raw.start(), raw.group(1), "section title", SECTION_TITLE_MAX)
+        body = steps.group(1)
+        # Steps written as objects carry an id beside the title, and only the title is shown.
+        titles = re.finditer(r"title:\s*'([^']+)'", body) if "title:" in body else re.finditer(r"'([^']+)'", body)
+        for raw in titles:
+            out += check_title(path, text, start + raw.start(1), raw.group(1), "section title", SECTION_TITLE_MAX)
+
+    # A yes or no toggle is the one control whose label is a question, so it has to end with a question mark.
+    for match in TOGGLE_CALL.finditer(text):
+        label = match.group(1)
+        if not label.rstrip().endswith("?"):
+            out.append(Finding(path, line_of(text, match.start()), "COPY-14",
+                               f"a yes or no toggle is labelled with a question: {label!r}"))
 
     for match in HEADING.finditer(text):
         title = visible(match.group(2))

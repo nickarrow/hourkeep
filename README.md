@@ -34,7 +34,7 @@ The first prototype of the screens is in `prototype/`. It runs on a developer's 
 - `public/` holds the placeholder page and the icons. This is what hourkeep.app serves.
 - `prototype/` holds a static, browser-only prototype of the screens, with its own README. It carries one
   made-up case, keeps edits in the browser's local storage, sends nothing anywhere, and exists to try the flow
-  in `docs/design.md` against real people. It is not the stack the design settled on, and it is not deployed.
+  in `docs/design.md` against real people. It uses the design's palette but not its stack, and it is not deployed.
 - `EDITORIAL.md` is the editorial policy, enforced as far as a tool can by
   [Prosekeep](https://github.com/quarterback/prosekeep) through `.editorial.json` and
   `.github/workflows/editorial.yml`. The same workflow scores each Agent Action Record in `docs/aar-*.md` with

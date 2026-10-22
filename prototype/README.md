@@ -1,46 +1,66 @@
-# HourKeep static prototype
+# HourKeep prototype
 
-A runnable, browser-only design baseline for testing the assumptions in [the HourKeep design](../docs/design.md). It uses plain HTML, CSS, and JavaScript with the UAE Government Design System through its Tailwind plugin. It is not a policy engine or a launch-ready service.
+A browser-only draft of the screens in [the design](../docs/design.md), for trying the flow with real people. It
+uses one made-up case, keeps edits in this browser, and sends nothing anywhere. It is not a policy engine and it
+decides nothing.
 
 ## Run it
 
-Use Node.js 20.19+ or 22.12+. Run these from this folder, not the repository root.
+Node.js 20.19 or later. From this folder:
 
 ```sh
-cd prototype
 npm install
 npm run dev
 ```
 
-The sample edits stay in this browser's local storage. The app has no server connection and does not submit information. Use only the supplied sample case.
+## What it does
 
-To verify the static output:
+| Step | What happens | Shown when |
+| --- | --- | --- |
+| Why You’re Here | 4 one-tap reasons: a letter, applying or renewing, helping someone, keeping track | Always |
+| Your Letter | Pick what the letter says, never what it is called | There is a letter |
+| Fair Hearing | Rights, time limit, and keeping coverage during an appeal | The letter is a denial |
+| Notice Details | Dates and months as printed, plus a cross-check of the deadline | There is a letter |
+| Might Not Apply to You | Reasons the rule may not apply, before any hours | Not keeping track |
+| Records | Records tagged by type, with a follow-up only when one matters | Always |
+| Month by Month | What each month has, the hours, and the sum in full | Always |
+| Packet | Numbered pages and documents, a signature line, and a list of what is in it | Always, and 1 tap away |
 
-```sh
-npm run check
-npm run build
-```
+Every number on screen is labelled Computed, Conditional or Deferred. Whether the rule applies, and whether it is
+met, is always Deferred, and each Deferred note says what to do next.
 
-## What this draft tests
+A skipped question is never stored as a no.
 
-The current path is overview, notice details and requested months, described records, hours arithmetic, and a printable packet. The sample case makes that path possible to try without entering real case details.
+## Where the rules come from
 
-## Assumptions to challenge
+Each screen has a list called *Sources for this screen*. Rules about letters and hearings cite rows in
+`docs/domain/community-engagement-extract.md`, verified on 2026-10-19.
 
-This is a deliberately narrow slice of the written design, not a claim that the requirements are settled. The current draft assumes someone starts at an overview, has a notice with a response date and requested months, describes records without attaching them, enters activities manually, and visits the packet only at the final step.
+Rules about exemptions, the 80-hour threshold, half-time school and SNAP come from `docs/design.md`. None has a
+verified row yet, and the screen says so.
 
-The design in [docs/design.md](../docs/design.md) calls for more. The next design pass should test at least:
+## What it leaves out
 
-- Different starting reasons, including helping someone, applying or renewing, and keeping track.
-- Identifying what kind of letter someone received, and the distinct fair-hearing path for a denial or termination.
-- Showing possible exclusions before asking for monthly hours, without treating a skipped question as a "no" or deciding whether the rule applies.
-- Adding or photographing records by type, then asking follow-up questions only when a record makes them relevant.
-- Showing month-by-month proof gaps and labeling each number Computed, Conditional, or Deferred, with formulas and citations where applicable.
-- Keeping the packet available throughout the flow, with attached documents and page references in the printable output.
-- Spanish, state-specific sources, device-only storage, and the planned backup and shared-device handoff.
-
-Those are product and design questions for review. This prototype does not implement or validate Medicaid policy, determine eligibility, upload records, send information, or connect to a state.
+- Spanish. The design asks for Spanish read by a person before launch, and AI-written Spanish would repeat the
+  problem the published page already admits to.
+- Photos and attached files. Records are described, not attached.
+- Backup, a passphrase, and handing over a shared device. All are Open in the design.
+- State rules. Federal rules only.
+- Income. The design makes household income Deferred and never adds it up.
 
 ## Where it departs from the design
 
-The stack here is not the one the design settled on. `../docs/design.md` decided TypeScript and React, records in IndexedDB through Dexie, a service worker, and v1's palette of muted purple `#6B4E71` and warm tan `#D4A574`. This draft is plain JavaScript, keeps its sample case in local storage, has no service worker, and takes its colours from the UAE Government Design System's Tailwind plugin. That was fast to put together and it is wrong for a US Medicaid app. Treat the layout and the step order as the thing under test and the stack and the palette as placeholder.
+The palette, the font and the 44-pixel touch targets follow the design. The code does not. It is plain JavaScript
+with local storage, where the design decided TypeScript, React, IndexedDB and a service worker. Treat the screens
+and the order of the steps as the thing under test.
+
+## Checks
+
+```sh
+npm run build
+npm run check:flows
+```
+
+`check:flows` drives every route in Chromium and runs 54 checks. It needs a Chromium for Playwright 1.56.1 and is
+not in CI yet. The words on screen are checked from the repository root with
+`python3 scripts/check-interface-copy.py`.
