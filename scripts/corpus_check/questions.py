@@ -114,14 +114,18 @@ def check_question_fields(question: Question, problems: List[Problem]) -> None:
             problem(problems, question.line, "{!r} lacks the {} field".format(question.title, name))
 
 
+def open_reasons(value: str) -> List[str]:
+    """The reasons a Why it is open value starts with: the words before its first full stop, separated by
+    semicolons, each stripped. Whether each is one of OPEN_REASONS is reasons_problem's to say."""
+    return [reason.strip() for reason in value.split(".", 1)[0].split(";")]
+
+
 def reasons_problem(value: str) -> Optional[str]:
-    """Why a Why it is open value does not start with the reasons, or None. The reasons are the words before its
-    first full stop, separated by semicolons."""
-    reasons = value.split(".", 1)[0]
-    for reason in reasons.split(";"):
-        if reason.strip() not in OPEN_REASONS:
+    """Why a Why it is open value does not start with the reasons, or None."""
+    for reason in open_reasons(value):
+        if reason not in OPEN_REASONS:
             return "Why it is open starts with one or more of {}, separated by semicolons; {!r} is not one".format(
-                "; ".join(OPEN_REASONS), reason.strip())
+                "; ".join(OPEN_REASONS), reason)
     return None
 
 

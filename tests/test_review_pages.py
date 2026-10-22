@@ -221,7 +221,8 @@ class OpenQuestionsPageTest(GeneratorTestCase):
     def test_gives_each_question_with_why_it_is_open_who_can_answer_its_rows_and_comment_links(self):
         page = self.page("open-questions.md")
         heading = "Are the 30 days calendar days?"
-        self.assertIn("## " + heading + "\n", page)
+        self.assertIn("\n### " + heading + "\n", page)
+        self.assertNotIn("\n## " + heading + "\n", page)
         self.assertIn("- Why it is open: the sources are silent. The rule says calendar days for one period and not "
                       "for the other.\n", page)
         self.assertIn("- Who can answer: CMS\n", page)

@@ -5,10 +5,14 @@ from __future__ import annotations
 import re
 from typing import Dict, List, Sequence
 
+from corpus_check.questions import open_reasons
 from corpus_check.rows import Row
 
 from . import links
-from .constants import EXTRACT_FROM_REVIEW, LANDING_PAGE, OPEN_QUESTIONS_PAGE
+from .constants import (
+    CONFLICT_GROUP, CONFLICT_REASON, EXTRACT_FROM_REVIEW, FEDERAL_GROUP, LANDING_PAGE, OPEN_QUESTIONS_PAGE,
+    QUESTION_GROUPS, STATE_CHOICE_GROUP, STATE_CHOICE_REASON, STATE_RULES_GROUP,
+)
 from .corpus import Question, Topic
 
 IDENTIFIER_WORD = re.compile(r"(?<![a-z0-9-])[a-z0-9]+(?:-[a-z0-9]+)*(?![a-z0-9-])")
@@ -98,21 +102,49 @@ def row_link(identifier: str, pages: Dict[str, str]) -> str:
     return "[{}]({})".format(identifier, target)
 
 
+def question_group(question: Question) -> str:
+    """The group a question goes in: the conflicts if a source conflicts, else a state's choice if it turns on one,
+    else the federal rule if CMS is named first to answer it, else a state's own rules. Its reasons are read as the
+    checker reads them."""
+    reasons = open_reasons(question.fields.get("Why it is open", ""))
+    if CONFLICT_REASON in reasons:
+        return CONFLICT_GROUP
+    if STATE_CHOICE_REASON in reasons:
+        return STATE_CHOICE_GROUP
+    if question.fields.get("Who can answer", "").startswith("CMS"):
+        return FEDERAL_GROUP
+    return STATE_RULES_GROUP
+
+
+def question_section(question: Question, rows: Dict[str, Row], pages: Dict[str, str]) -> List[str]:
+    held_up: List[str] = []
+    for word in IDENTIFIER_WORD.findall(question.fields.get("Raised", "")):
+        if word in rows and word not in held_up:
+            held_up.append(word)
+    return [
+        "### " + question.heading,
+        "",
+        "- Why it is open: " + links.cite_in_text(question.fields.get("Why it is open", "")),
+        "- Who can answer: " + links.cite_in_text(question.fields.get("Who can answer", "")),
+        "- Rows it holds up: " + ", ".join(row_link(identifier, pages) for identifier in held_up),
+        "- Comment: " + links.comment_links(question.heading),
+        "",
+    ]
+
+
 def questions_page(questions: List[Question], rows: Dict[str, Row], pages: Dict[str, str]) -> str:
+    """The open questions under the groups of QUESTION_GROUPS, in its order, each group in the file's order; a group
+    with no question is left out."""
     lines = header("Open questions") + [
         "Each is a policy question only CMS, a state or a policy person can answer, and the rows it names wait on "
-        "the answer.", ""]
-    for question in questions:
-        raised = question.fields.get("Raised", "")
-        held_up: List[str] = []
-        for word in IDENTIFIER_WORD.findall(raised):
-            if word in rows and word not in held_up:
-                held_up.append(word)
-        lines += ["## " + question.heading, ""]
-        lines.append("- Why it is open: " + links.cite_in_text(question.fields.get("Why it is open", "")))
-        lines.append("- Who can answer: " + links.cite_in_text(question.fields.get("Who can answer", "")))
-        lines.append("- Rows it holds up: " + ", ".join(row_link(identifier, pages) for identifier in held_up))
-        lines += ["- Comment: " + links.comment_links(question.heading), ""]
+        "the answer. They are grouped by why they are open, with conflicts first, since there two sources say "
+        "different things.", ""]
+    for group, sentence in QUESTION_GROUPS:
+        in_group = [question for question in questions if question_group(question) == group]
+        if in_group:
+            lines += ["## " + group, "", sentence, ""]
+            for question in in_group:
+                lines += question_section(question, rows, pages)
     return "\n".join(lines)
 
 

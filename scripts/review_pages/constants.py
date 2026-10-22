@@ -13,6 +13,25 @@ DOMAIN_FROM_REVIEW = "../domain/"  # the corpus, docs/domain/, as a page in docs
 EXTRACT_FROM_REVIEW = "../domain/community-engagement-extract.md"  # the extract, as a page in docs/review/ links it
 LEDGER_FROM_REVIEW = "../domain/research/2026-10-16-policy/ledger.md"  # the research ledger, likewise
 FEDERAL_STATE = "federal"  # the state file whose facts come first
+# The open questions page's groups, in the order it shows them, each its ## heading and the sentence under it. The
+# owner decided on 2026-10-22 that conflicts come first, since there two sources say different things.
+CONFLICT_GROUP = "Where the sources conflict"
+FEDERAL_GROUP = "Questions about the federal rule"
+STATE_RULES_GROUP = "Questions about a state's own rules"
+STATE_CHOICE_GROUP = "Waiting on a choice a state has not published"
+QUESTION_GROUPS = (
+    (CONFLICT_GROUP, "Two sources say different things, and HourKeep does not pick a side until someone who can "
+                     "decide says which governs."),
+    (FEDERAL_GROUP, "The federal rule raises these and does not answer them. CMS can settle them, and anyone who "
+                    "knows how CMS reads its rule can help."),
+    (STATE_RULES_GROUP, "A state's own rules or its Medicaid agency's pages leave these unclear. The state's "
+                        "Medicaid agency can settle them."),
+    (STATE_CHOICE_GROUP, "The federal rule lets a state choose, and no stored source says what the state chose. The "
+                         "state's adopted rules, or its Medicaid agency, can settle these."),
+)
+# The two reasons of the Formats that decide a group, as corpus_check's OPEN_REASONS writes them.
+CONFLICT_REASON = "the sources conflict"
+STATE_CHOICE_REASON = "it turns on a choice the state has not published"
 
 # The three ways to comment, on every row, open question and state fact.
 ISSUE_FORM = "https://github.com/nickarrow/hourkeep/issues/new?template=row-review.yml"

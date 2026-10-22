@@ -497,6 +497,17 @@ and row, such as `co: hearing-request-window-at-most-90-days`, which the fact sh
 landing page links the Google Form without a name. A state fact's note follows its list, folded in a collapsed
 "Notes for checking" block, and the state facts page opens by defining the three statuses.
 
+The open questions page groups the questions by why each is open, with conflicts first, since there two sources say
+different things; the owner decided that order on 2026-10-22. Its opening paragraph says so. Each group is a `##`
+heading with one sentence under it, and each question a `###` heading with its title unchanged, so its anchor and the
+name it is commented under stay the same. A question goes in the first of these groups that fits it, and so in
+exactly one: "Where the sources conflict" if its reasons include `the sources conflict`; "Waiting on a choice a state
+has not published" if they include `it turns on a choice the state has not published`; "Questions about the federal
+rule" if its Who can answer starts with `CMS`; and "Questions about a state's own rules" otherwise. Its reasons are
+read as the checker reads them. The page shows the conflicts, then the federal rule, then a state's own rules, then a
+state's choice, and leaves out a group with no question. Within a group the questions keep the order of
+`open-questions.md`.
+
 The checker fails when `docs/review/` is not what the generator makes. If `docs/review/` is absent, the checker says so
 and checks the rest, as it does for an absent skill.
 
