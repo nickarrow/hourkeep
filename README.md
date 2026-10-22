@@ -10,7 +10,8 @@ package they can send their state.
 It will keep everything on the person's own device. It will not decide whether anyone meets the requirement. Their
 state makes that decision.
 
-There is no app code in this repository yet. [hourkeep.app](https://hourkeep.app) shows a placeholder until there is.
+The first prototype of the screens is in `prototype/`. It runs on a developer's machine and is not deployed, so
+[hourkeep.app](https://hourkeep.app) still shows a placeholder.
 
 ## What is here
 
@@ -30,7 +31,10 @@ There is no app code in this repository yet. [hourkeep.app](https://hourkeep.app
 - `docs/design.md` is the design: what the new HourKeep is, who it is for, and what has to be true for it to work.
   `docs/epics/` holds the plan for each body of work, starting with putting the policy corpus right, and
   `docs/decisions/` holds the decision records.
-- `public/` holds the placeholder page and the icons.
+- `public/` holds the placeholder page and the icons. This is what hourkeep.app serves.
+- `prototype/` holds a static, browser-only prototype of the screens, with its own README. It carries one
+  made-up case, keeps edits in the browser's local storage, sends nothing anywhere, and exists to try the flow
+  in `docs/design.md` against real people. It is not the stack the design settled on, and it is not deployed.
 - `AGENTS.md` and `.kiro/skills/` hold the rules the AI agents working here follow. `HOW-TO-WORK.md`, `DATA-GUARD.md`
   and `missions/` are for the people working with those agents. All of them come from the
   [agentic engineering bootstrap](https://github.com/nickarrow/agentic-engineering-bootstrap), and `NOTICE.md` says so.
