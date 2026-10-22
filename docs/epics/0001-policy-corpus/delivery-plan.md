@@ -333,6 +333,13 @@ One decision record sets out the whole restructure: what is retired, what moves,
 increment does it. Increments 3 and 4 carry it out and record each step in their Done entries, so the record never
 needs editing.
 
+(Decided 2026-10-22 by the owner. This increment is split by topic: one increment for each topic of 42 CFR 435.550 to
+435.563, each reviewed and published on the review pages on its own, since increment 1's one topic came to 64 rows.
+The decision record names the topics and their order, and they are written into this plan once it is approved. It
+also moves the open questions that wait on a choice a state has not published into the state facts, marked
+`not published`. Before the rows for 42 CFR 435.554 and 435.557(f) are written, check the docket in Massachusetts v.
+Oz, D. Mass. 1:26-cv-12962, whose summary judgment hearing was on 2026-10-22, as the skill's watch list says.)
+
 ### Deliberately not
 
 State values, the statute extract, and SNAP. The sections of `rule-extract.md` on state options, the implementation
