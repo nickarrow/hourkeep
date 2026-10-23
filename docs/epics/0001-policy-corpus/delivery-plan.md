@@ -4,7 +4,14 @@ Status: In progress, since 2026-10-17. What the epic changes and why, and the fo
 `design.md` beside this file.
 
 - [x] 1. One topic, all the way through
-- [ ] 2. The federal rule, verified
+- [ ] 2.1 Who the requirement applies to, and who is excluded from it
+- [ ] 2.2 People who are medically frail or have special medical needs
+- [ ] 2.3 Exceptions for a month: mandatory exceptions, and optional short-term hardship exceptions
+- [ ] 2.4 Work, community service, work programs and school
+- [ ] 2.5 Monthly income, income counted as work hours, and seasonal workers
+- [ ] 2.6 How the state verifies: reliable information first, then what a person sends
+- [ ] 2.7 Which months are checked, how often, and when the requirement starts
+- [ ] 2.8 Outreach, and what states report to CMS
 - [ ] 3. The statute and the supporting rules
 - [ ] 4. Federal and Colorado facts
 - [ ] 5. The domain skill, complete
@@ -32,7 +39,9 @@ Checked 2026-10-16:
   and runs on either. Neither reads YAML without a package. (Added 2026-10-22: in the shell Kiro's agents run, plain
   `python3` resolved to `/usr/bin/python3`, 3.9.6, on 2026-10-21 and 2026-10-22, and the 3.14.6 interpreter is
   `/opt/homebrew/bin/python3`, so a command that has to run on both names each by its path; increment 2 handoff dry
-  run.)
+  run.) (Added 2026-10-22: at about 22:00 UTC that day, in the shell one agent ran, plain `python3` was
+  `/opt/homebrew/bin/python3`, 3.14.6, and under `env -i` it was `/usr/bin/python3`, 3.9.6, so which one plain
+  `python3` names depends on the environment the agent gets; review of decision record 0006, mechanism 17.)
 - PDF text: `pdftotext`, `mutool`, `qpdf` and Ghostscript are not installed. A short Swift script using macOS's PDFKit
   extracted all 14 pages of SMD 26-001 as text in under 2 seconds, and in the dry run each extraction ran twice to
   identical bytes. It separates some paragraph labels from their text.
@@ -46,12 +55,19 @@ Checked 2026-10-16:
 - When a topic lands, each older analysis file's passage on that topic becomes a pointer to the new rows, with the
   research's corrections to that passage applied in the same change. A passage becomes a pointer only once every claim
   in it has a row. A claim no row covers yet, or a passage that also covers topics still to come, is corrected in place.
+  Two kinds of correction come sooner, in the fix before increment 2.1 that section 2 describes, in every file that
+  carries the claim: one the ledger rates dangerous, and one about an event or a publication that no topic covers. One
+  about a state other than Colorado that is not dangerous is not applied, and goes when its file is retired (decision
+  record 0006).
 - When a claim is corrected, search `docs/domain/` outside the stored sources and the research records, and the skill,
   for every copy of it in the same change.
 - The research cites lines in `docs/domain/` as they stood on 2026-10-16, and pointers shift the lines below them. Find
   a cited line in the file as committed at 70be85f (`git show 70be85f:<path>`) before looking for it today.
 - Corrections to dated claims are recorded with their date. Nothing is rewritten to look as if it was always right.
 - When rows change, the review pages are regenerated in the same change; the checker fails until they are.
+- Each increment checks the skill's watch list for items that have come due, by their date or their event, before it
+  drafts any row and again before its Done entry. The Done entry records each item checked and what it changed, or
+  that it changed nothing.
 - No app code. American English. The house style in `AGENTS.md`.
 - Each increment changes what HourKeep will say, so each gets the full review: a reviewer against the sources, one
   against the mechanism, a cold reader, a red team, and one who carries out the instructions.
@@ -197,7 +213,8 @@ Still unverified:
   read them; who does, and what waits for them, is a decision before increment 2.
 - The Spanish on `public/index.html` has had no native speaker's read.
 - The 19 Source quotes taken from the derived statute copy in `hr1/` were compared with GovInfo's text of Public Law
-  119-21 on 2026-10-19 and all match; that text is stored only in increment 3.
+  119-21 on 2026-10-19 and all match; that text is stored only in increment 3. (Added 2026-10-22: decision
+  record 0006 moves the storing of GovInfo's text to increment 2.7.)
 - Colorado's 8.000 is an emergency rule, version 12612, effective 2026-07-10. When it lapses, and whether § 8.057
   differs in the archived permanent version 12578, were not checked, because the Secretary of State answered 500.
 - PDFKit on another macOS version, and a checkout on Windows itself. A clone with `core.autocrlf=true` passes the
@@ -325,16 +342,86 @@ checker exited 0 with 64 rows and 64 skill items.
 
 ## 2. The federal rule, verified
 
-### Delivers
+Delivered as increments 2.1 to 2.8 below, one for each topic of 42 CFR 435.550 to 435.563, under decision record
+0006, which sets the topics and their order and the restructure of `docs/domain/` they carry out. Together they
+deliver what this increment named: all of §§ 435.550 to 435.563 as rows, outreach under § 435.561 included, with SSA
+1902(e)(14)(L) and SMD 26-001 for six-month renewals; every correction the ledger confirmed for `rule-extract.md` and
+`what-matters-most.md`, each dated; and `what-matters-most.md`'s priorities and its checklist of common errors moved
+into the extract and the skill, and the file retired. None of the eight adds state values beyond the facts decision
+record 0006 moves, the statute extract or SNAP, and the sections of `rule-extract.md` on state options, the
+implementation landscape and open questions become pointers only in increment 4.
 
-All of 42 CFR 435.550 to 435.563 as rows, outreach under § 435.561 included, with SSA 1902(e)(14)(L) and SMD 26-001
-for six-month renewals. Every correction the ledger confirmed for `rule-extract.md` and `what-matters-most.md` is
-applied as its passage becomes a pointer, each dated. `what-matters-most.md`'s priorities and its checklist of common
-errors move into the extract and the skill, and the file is retired.
+This increment's checks are carried into the topics. Each topic's Done entry lists once every ledger finding it
+applied or rejected, with a reason for each rejection; each topic searches `docs/domain/` outside the stored sources
+and the research records for the old wording of its corrections; and increment 2.8 checks that every paragraph of
+§§ 435.550 to 435.563 is carried by a row or has a reason it has none.
 
-One decision record sets out the whole restructure: what is retired, what moves, where each part goes, and which
-increment does it. Increments 3 and 4 carry it out and record each step in their Done entries, so the record never
-needs editing.
+Increment 1 already applied these findings, by the files' dated corrections, and for L8-8 and L8-19 by its Done entry
+too, which names no other of them; no topic applies them again. L1-5 and L1-4, in `rule-extract.md`'s header; L8-8,
+`what-matters-most.md` section 9, now a pointer; L2-4, that file's section 1 and "Writing for people" item 2, and
+`rule-extract.md` section 9; research L1 section 3, `what-matters-most.md` section 8, corrected 2026-10-17 under L1-5,
+and the caution in `supporting-regs/README.md`; L1-6, and L4-5 with L5-3, in `state-options.md`; L6-6 and L1-9, whose
+content notice-response-period, notice-sent-with-renewal-form and notice-says-consequences-including-premium-tax-credit
+carry, though none names the finding, and the watch list names L1-9; L8-19's §§ 435.905(b) and 435.918(b), as rows;
+and the stored correction the ledger's "New file" asks for (L1-4, L8-18). Of the 28 entries of
+`what-matters-most.md` section 12, increment 1's rows already carry 2, "You get 30 days from the notice" and
+"Coverage stops when the notice arrives"; the other 26 fall to increments 2.1 to 2.7 below. A Note quotes the
+second; no row quotes the first, and increment 2.7 adds it to notice-response-period's Note.
+
+A fix on its own branch applies the corrections that cannot wait, right after decision record 0006 is accepted and
+before increment 2.1 starts. They are the corrections the ledger rates dangerous, about another state included, and
+those about an event or a publication that no topic covers (decision record 0006, "The corrections"). Each is applied
+in place, dated with its finding ID, in every file that carries the claim, found first in the file as it stood at
+70be85f, the commit the research read. The fix is reviewed as a fix: one reviewer against the research ledger, and a
+do-it reviewer who carries out this list in a clone. Before it merges, the tests and the checker run under both
+interpreters, each by its path, and a search of `docs/domain/` outside the stored sources and the research records
+finds each corrected claim's old wording, "October 20, 2026" among them, only in its dated correction. Its commit
+message lists each finding below, applied or rejected with a reason, and a dated line in this section records the
+merge and what the review found.
+
+Each correction is applied once, by the fix. A later topic whose rows carry a subject the fix corrected says so in its
+Done entry as coverage, and does not list the finding as applied a second time. A passage the fix corrects still
+becomes a pointer when its topic lands, and that topic corrects it again only if its rows say otherwise.
+
+The corrections the ledger rates dangerous:
+
+- L8-9, the 56% scoped to applicable individuals due for renewal, in `rule-extract.md` sections 7 and 11, and in
+  `what-matters-most.md`'s "Writing for people, not about the rule" item 1.
+- L2-3, L2-5, L3-9 and L3-11, the six-month text, with L2-2 and L3-10, which support them and which the ledger does not
+  rate dangerous: `rule-extract.md` section 9's "Renewal frequency" and section 12, `what-matters-most.md` section 13,
+  and `state-options.md`'s schema and federal default profile; and, by L3-12, line 242 of `HR1-Impact-Summary.md` as
+  it stood at 70be85f.
+- L8-3, the three-prong dependent, in `what-matters-most.md` section 10.
+- L8-4, develop rather than publish a condition list, in `rule-extract.md` section 12.
+- L4-13 with L8-6, the eight-state sentence, in `rule-extract.md` section 11 and in `state-options.md`'s schema and
+  federal default profile, whose New Hampshire omission is dangerous. L8-6 is the tracker's nine rows against the
+  text's eight.
+- L8-16 with L6-12, Montana's enforcement, in `rule-extract.md` section 11.
+- L8-10's four dangerous lines, 17, 52, 58 and 104 as the file stood at 70be85f, in
+  `docs/domain/medicaid-work-requirements-cfa-service-blueprint.md`, the Medicaid summary.
+- L4-9, L4-10, L4-11, L4-14 with L8-7, L4-15, L4-18, L3-17 and L8-15, in `state-options.md`'s "Per-State tracker" and
+  "Open data gaps". A dangerous value for a state the tracker has no row for gets a dated line under the tracker naming
+  the finding, not a row.
+
+The corrections about an event or a publication that no topic covers:
+
+- L1-11 with L3-1 and L5-15, the Massachusetts v. Oz hearing reset to 2026-10-22, in `rule-extract.md` section 11,
+  `what-matters-most.md` section 4 and `state-options.md`'s schema, each still saying October 20 on 2026-10-22, with
+  L3-2, L3-4, L1-12 with L3-5, and L3-6 on the litigation. Increment 2.1 checks the docket and adds its result to the
+  same passages.
+- L2-18 with L8-17, Emmy, in `rule-extract.md` section 11.
+- L2-6 with L4-6 and L6-2, the MACPro guide, in `rule-extract.md` section 12 and `state-options.md`'s "Open data gaps".
+- L8-12's page where the regulatory text starts, in `what-matters-most.md`'s header.
+
+Rejected, with its reason in the commit message: L2-14's part on the Alaska and Hawaii pages, which show the 48-state
+figure of $22,025 for income up to 138% of the poverty line (research L2, line 132). The ledger rates it dangerous and
+did not re-derive the two states' limits. It is the adult group's income limit, and HourKeep does not screen for
+Medicaid eligibility (`docs/design.md`, "What it will not do"), so it gets no row and the figures are not re-derived.
+
+Two sentences outside `docs/domain/` say every correction waits for its topic: `docs/design.md` under "What has to be
+true" ("the rest wait for their own topics") and `README.md` under "What is here" ("They are corrected a topic at a
+time"). The fix adds to each that the dangerous corrections, and those no topic covers, come first, in a fix before
+increment 2.1.
 
 (Decided 2026-10-22 by the owner. This increment is split by topic: one increment for each topic of 42 CFR 435.550 to
 435.563, each reviewed and published on the review pages on its own, since increment 1's one topic came to 64 rows.
@@ -344,25 +431,11 @@ facts, marked `not published`; any part about the federal rule stays an open que
 435.554 and 435.557(f) are written, check the docket in Massachusetts v. Oz, D. Mass. 1:26-cv-12962, for whether its
 summary judgment hearing, set for 2026-10-22 as the skill's watch list says, was held, and what followed.)
 
-### Deliberately not
-
-State values, the statute extract, and SNAP. The sections of `rule-extract.md` on state options, the implementation
-landscape and open questions, which wait for increment 4.
-
-### Why this shape
-
-The federal rule is the floor every state builds on, and most of the dangerous errors the research found sit in it.
-
-### How you know it worked
-
-The checker passes with every section from 435.550 to 435.563 represented. Each ledger finding against these two files
-appears once in the Done entry as applied or rejected, with a reason for each rejection. A search of `docs/domain/`
-outside the stored sources and the research records for the old wording of each correction finds it only in the dated
-corrections that record it.
-
 ### Needs from you
 
-Approval of the decision record, which covers the retirements and moves in increments 2 to 4.
+Approval of the decision record, which covers the retirements and moves in increments 2 to 4. (Approved 2026-10-23:
+decision record 0006. Decided 2026-10-22 by the owner: the record keeps the decisions and the rules, and the detailed
+lists are in increments 2.1 to 2.8 below, since they are ordering and the likeliest to shift as topics land.)
 
 Two decisions before it starts, which increment 1 raised: how the skill holds the topics still to come, since this
 topic alone brings it to about its size limit; and who with Medicaid policy knowledge reads the rows, and what waits
@@ -370,34 +443,834 @@ until they have. (Added 2026-10-19; full review 2026-10-19, red team 4 and 7.) (
 main file and a file per topic, decision record 0004; the owner reviews rows and they go out for open review, and the
 corpus work does not wait, as docs/design.md records.)
 
+## 2.1 Who the requirement applies to, and who is excluded from it
+
+### Delivers
+
+- Before any row for § 435.554, the docket in Massachusetts v. Oz, D. Mass. 1:26-cv-12962, checked for whether the
+  summary judgment hearing set for 2026-10-22 was held and what followed. The result goes in the Done entry, the
+  skill's watch list, and the three passages the fix before this increment corrected under L1-11 with L3-1 and L5-15
+  (section 2). If the docket shows an order on the provisions the case challenges, row work on those provisions
+  stops until the owner decides how to go on. If it shows none, the work goes on, and the Done entry records the
+  query, its date and that RECAP, which the research searched, can lag
+  (`docs/domain/research/2026-10-16-policy/L3-statute-litigation.md:206`).
+- Rows for § 435.550; § 435.551, its opening paragraph and (a) and (b); § 435.554(a), (b), and (c) less (c)(5);
+  § 435.563(a) and (b); § 435.119(d) as the rule adds it; and 28 CFR 35.108 and 42 CFR 447.51 where § 435.554(a) and
+  (c)(2) incorporate them. A paragraph named takes its own text, the words before its first subparagraph included,
+  as decision record 0006 sets out. About 31 rows, decision record 0006's inference from 1,221 words of regulation
+  text.
+- Stored as served, each with a manifest entry and a `.gitattributes` line: eCFR XML of 42 CFR 435.119, 28 CFR 35.108
+  and 42 CFR 447.51, for one stated eCFR date, with the command that fetched each.
+- The topic file `.kiro/skills/medicaid-community-engagement/references/who-the-requirement-applies-to.md`, whose
+  first line is `# Who the requirement applies to, and who is excluded from it`, and whose opening sentence names the
+  prohibition of waivers, § 435.563, by that word; its item under `## Topics` in `SKILL.md`, at about 25 words, so
+  `SKILL.md` stays near its target of about 1,500 words; and words in the skill's description for who the work
+  requirement applies to and who is excluded from it.
+- The review pages' citation links extended to title 28, so 28 CFR 35.108 links to its section on eCFR as a 42 CFR
+  citation does today: `CFR_PART` and `CFR_URL` in `scripts/review_pages/constants.py`, and `cfr_address` and
+  `section_address` in `scripts/review_pages/links.py`, take the title from the citation, with a 28 CFR case in
+  `test_links_each_kind_of_part_and_leaves_the_rest_as_text` in `tests/test_review_pages.py`, and the Formats under
+  "The review pages" say a CFR citation of either title links.
+- The review page `docs/review/who-the-requirement-applies-to.md`, listed on the landing page, and its start-here rows
+  under the key `who-the-requirement-applies-to` in `START_HERE`, chosen by decision record 0006's rule.
+- Its 6 entries of `what-matters-most.md` section 12, each a row or part of one with the error quoted in the row's
+  Note: citing the exclusions as § 435.554(a)(1) to (10); "The SNAP test is complying with SNAP work rules"; "Veterans
+  need a 100% schedular rating"; "Postpartum is 60 days"; "Age 65+ is exempt"; and "A State can get an 1115 waiver
+  from this".
+- The dangerous finding L2-11, the 13 demonstration-only populations in 8 states, as rows; and L2-14's parts on this
+  topic's paragraphs, the tribal line, "given birth" and "recovery program" (research L2, finding 14), as rows. Neither
+  corrects a file.
+- L2-12's SNAP breadth, read against § 435.554(c)(7) and the preamble, applied with its rows.
+- Pointers, once its rows carry every claim: in `rule-extract.md`, section 1, "Applicable individual", subsection 4.1,
+  "Supporting definitions", and section 9's "No waivers"; in `what-matters-most.md`, section 3, "The caregiver
+  cluster"; and in `supporting-regs/README.md`, sections 2 and 3, on 28 CFR 35.108 and 42 CFR 447.51.
+- Corrected in place, where its rows say otherwise, and pointed later: `rule-extract.md` section 0, "The three-tier
+  status model", pointed in increment 2.7, and subsection 4.2, "The ten exclusion categories", pointed in increment
+  2.2; `what-matters-most.md` section 2, "Who it applies to", pointed in increment 2.3, section 11, "Scope, and hard
+  limits on States", pointed in increment 2.8, and section 13's broken cross-reference in § 435.554(c)(3), pointed in
+  increment 2.7. The parameters of `rule-extract.md` section 10 on its paragraphs become State elections of its rows.
+- The inherited rows showing-requirement-does-not-apply, notice-says-how-to-show-not-applicable and
+  adverse-notice-names-both-failures rechecked against the new rows, since they use the terms of §§ 435.551 and
+  435.554, each given a dated `Corrected:` where a new row shows it says more or less than its source.
+
+The change for state choices that are not published, which decision record 0006 sets out, made before the rows:
+
+- The Formats. Under "State facts": one fact per row in a state file; the `choice` key, its values, and that a fact
+  on the first row of a pair has it and no other fact does; `value`, `choice` and `counts_from` as the three keys
+  that may be `not published`, each so written needing a note; a `not published` fact's citation and sources; and a
+  fact that takes a question's part names it. In the open questions paragraph under "Where things live": the
+  `- Moved:` form, and the sentence naming the fact that ends Why it is open in a question that stays after its state
+  part moved. Under "The skill": the description at most 1,024 characters, and each topic file's title the `##`
+  heading of one topic in the extract. Under "Pointers and dated corrections": a correction that carries out a
+  decision record cites it as `decision record <number>`. Under "The checker": the new state fact checks, a `Moved`
+  question as the exception to the open question fields, the check that a fact named in a question exists, and the
+  two skill checks. Under "The review pages": the moved group, last, where each question's three comment links carry
+  the fact's name; the fact's name there and in Why it is open as text, not a link; the fact's line for its choice,
+  which says in words which of the two options the state takes; and a sentence on `counts_from` in the status
+  definitions.
+- The checker. `scripts/corpus_check/constants.py` gains `CHOICE_PAIRS`, the three pairs, which a later topic extends
+  when it writes a choice between two rows, and `CHOICE_WORDS`, `not published` and `not applicable`. In `states.py`:
+  a state file holds at most one fact per row; no fact names the second row of a pair; a fact on the first row of a
+  pair has `choice`, and no other fact does; `choice` is one of its pair's identifiers or one of `CHOICE_WORDS`; a
+  `not published` fact has `choice` `not published` where it has `choice` at all; a fact whose `value`, `choice` or
+  `counts_from` is `not published`, or whose `choice` is `not applicable`, has a note; and no other key of a fact is
+  `not published`. `Moved` joins `QUESTION_FIELDS` in `constants.py`. In `questions.py`: a question holding `Moved`
+  holds no other field and is exempt from `QUESTION_REQUIRED_FIELDS`, and its value has the record's form; and a fact
+  named as `the state fact <state>: <row>`, in a `Moved` line or in Why it is open, exists. For that check,
+  `check_state_facts` in `states.py` returns the `<state>: <row>` names, built from each file's `state` and each
+  fact's `row`, and `scripts/corpus_check/run.py` passes them to `check_open_questions`. In `skill.py`: the
+  description is at most 1,024 characters, the limit the Agent Skills specification sets; and each topic file's
+  title, its first line after `# `, is the `##` heading of one topic in the extract, a check that needs the extract's
+  `##` headings, which `check_extract` in `rows.py` reads and does not keep today.
+- The generator. `scripts/review_pages/corpus.py` needs no change: `read_questions` already reads any `- Name: value`
+  line, `Moved` among them. In `pages.py`, `fact_section` adds "Which of the two rows" after the value: in words, which
+  of the two options the state takes, such as "sends the notice with the renewal form", with a link to that row, or
+  `not published` or `not applicable`. The words for each row sit beside its identifier in `CHOICE_PAIRS`, because the
+  fact's name gives the pair's first row whichever the state takes. `question_group` gains a branch for a question
+  holding `Moved`, which today falls through to "Questions about a state's own rules"; a moved question gets a section
+  of its own in place of `question_section`'s empty Why it is open, Who can answer and Rows it holds up: its old title
+  as the heading, the fact's name as text and not a link, and three comment links that carry the fact's name;
+  `questions_page` puts the moved group last, and its opening sentence gains "The last group holds questions whose part
+  moved to the state facts, each under its old title."; and `STATUS_DEFINITIONS` gains "A part of a fact, such as what a
+  period counts from, may be not published while the rest is known." `constants.py` holds the moved group's heading and
+  its sentence, "These were open questions. Each is now a state fact, named under its old title, and comments on it go
+  to the fact."
+- The corpus prose. The opening paragraph of `open-questions.md` says that each question still open says why, and
+  that a question whose part moved keeps its heading with a `Moved` line naming the fact.
+- The tests, a passing and a failing fixture for each check. In `tests/test_state_facts.py`: one fact on a row and
+  two; a fact on a pair's first row and one on its second; a pair fact with `choice` and one without; a `choice` on a
+  row in no pair; each allowed `choice`, both identifiers and both words, and a value outside them, such as an
+  identifier from another pair; a `not published` fact with `choice` `not published` and one with an identifier;
+  `value` `not published`, `counts_from` `not published`, `choice` `not published` and `choice` `not applicable`,
+  each with a note and without; and another key, such as `setting`, written `not published`. The fixture extract
+  holds two rows today, `hearing-request-period` and `notice-response-period` (`tests/corpus_fixture.py`), and each
+  test runs the checker as a subprocess, so the pair tests add the rows of two pairs, each with its rule item in the
+  fixture's topic file, in the test or in a helper in `tests/corpus_fixture.py`, and leave the valid corpus's counts
+  alone. In `tests/test_open_questions.py`: a moved question naming a fact that exists, one naming none, one with a
+  malformed `Moved` line, and one holding another field; and a Why it is open naming a state fact that exists and one
+  naming none. In `tests/test_skill.py`: a description of 1,024 characters and one of 1,025; and a topic file whose
+  title is a `##` heading of the extract and one whose title is not. `tests/test_review_question_groups.py` tests the
+  moved group and its place; `tests/test_review_pages.py` the moved question's section, with the fact's name as text
+  and its three comment links carrying that name, the choice line in words for each row of a pair, both opening
+  sentences and the status definitions.
+- The data. `open-questions.md` and `states/co.json` as decision record 0006 sets out for the four questions; the
+  search behind each `not published` run again over the stored Colorado sources and recorded in its note; and the
+  review pages regenerated.
+
+### Deliberately not
+
+Medical frailty, § 435.554(c)(5), which increment 2.2 takes with its verification, and the mandatory exceptions of
+§ 435.553, which increment 2.3 takes. How the state verifies an exclusion, under § 435.557. That includes
+§ 435.557(f)(2), the privacy duty for data used to verify medical frailty or participation in a drug addiction or
+alcoholic treatment and rehabilitation program: its share for § 435.554(c)(8), this topic's exclusion, goes with
+increment 2.2's rows. The corrections that are neither dangerous nor about an event no topic covers, which wait for
+the topic whose rows cover their claim. Other states' values beyond the dangerous corrections, which increment 4
+settles. No file is retired.
+
+### Why this shape
+
+It comes first because every later section uses the terms applicable individual and specified excluded individual,
+and because `docs/design.md`, under "What may mean the rule does not apply", leads with what may mean the rule does
+not apply at all. It also carries the mechanism for unpublished state choices, so the topics after it write rows and
+pointers only. The corrections that cannot wait land before it, in the fix section 2 describes.
+
+### How you know it worked
+
+- `/usr/bin/python3 -m unittest discover -s tests` (3.9.6) and `/opt/homebrew/bin/python3 -m unittest discover -s
+  tests` (3.14.6) both pass, each run as its own command, with a passing and a failing fixture for each new check
+  named in the Done entry.
+- `scripts/check-corpus.py` exits 0 under both and prints its counts of rows, sources, state facts and skill items.
+- `docs/review/who-the-requirement-applies-to.md` exists and the checker compares it with what the generator makes.
+- The open questions page has the group "Moved to the state facts", last, and no group "Waiting on a choice a state
+  has not published"; every question title and every `<state>: <row>` fact name published before this increment
+  still has its heading on the pages.
+- The Massachusetts v. Oz docket result is in the Done entry and the watch list, with the date it was checked.
+- Each ledger finding this increment applies appears once in its Done entry, applied or rejected with a reason.
+- The Done entry lists each paragraph in Delivers with the rows that carry it, or the reason it has none, and each
+  claim of each passage pointed in `rule-extract.md`, `what-matters-most.md` and `supporting-regs/README.md` with the
+  row that now carries it, as increment 1's did.
+- A search of `docs/domain/` outside the stored sources and the research records finds each corrected claim's old
+  wording only in its dated correction.
+- A fresh agent session is asked: "I look after my mother, who has a disability and lives with me. Do I still have to
+  meet Medicaid's work requirement?" It runs as increment 1's did, as a one-step workflow whose whole prompt is the
+  question, or as a new Kiro chat, with no skill named. Its answer says that a caretaker relative of a disabled
+  individual, as § 435.554(a) defines one, a relative such as a son or daughter with whom the disabled individual lives
+  and who assumes primary responsibility for their care, is a specified excluded individual, to whom the requirement
+  does not apply; that a family caregiver, as § 435.554(a) defines one, is excluded only if they also meet one of the
+  tests of § 435.554(c)(3)(i)(A) to (C), which for someone who primarily lives with the person they care for is
+  assistance that comes on a regular basis and is not solely incidental in nature; that a disabled individual is one who
+  meets the ADA's definition at 28 CFR 35.108, whether or not they are eligible for Medicaid or another federal program
+  on the basis of a disability; and that whether the person is a caretaker relative, or meets one of those tests, is the
+  agency's determination, labeled Deferred, with the agency named as the one to ask. It cites by identifier the rows on
+  § 435.554(a)'s definitions of caretaker relative, family caregiver and disabled individual, and on § 435.554(b),
+  (c)(3) and (c)(3)(i), and says which skills it loaded. If the skill did not load, the session runs again with the
+  skill named, and the miss is recorded for increment 5, whose test depends on unprompted loading.
+
+### Needs from you
+
+The owner's go before it starts, and the owner's decision on how to go on if the docket shows an order on the
+provisions Massachusetts v. Oz challenges. Nothing else, unless a site refuses automated requests, in which case a
+copy downloaded in a browser.
+
+## 2.2 People who are medically frail or have special medical needs
+
+### Delivers
+
+- Before any row, the docket in Massachusetts v. Oz checked again, from where increment 2.1's check left it, with the
+  result in the Done entry and the skill's watch list. The outcome rule is increment 2.1's: an order on the provisions
+  the case challenges stops row work on them until the owner decides how to go on; none, and the work goes on, with
+  the query, its date and RECAP's lag recorded in the Done entry.
+- Rows for § 435.554(c)(5) and § 435.557(f), the second from the stored correction. About 23 rows, decision record
+  0006's inference from 919 words of regulation text. § 435.557(f)(2), the privacy duty, covers data used to verify
+  participation in a drug addiction or alcoholic treatment and rehabilitation program as well as medical frailty, so
+  its rows also carry its share for § 435.554(c)(8), increment 2.1's exclusion, and say so.
+- A decision, made before any row is drafted and recorded in the Done entry, on whether CMS's frailty deck that L2-8
+  cites is stored and rowed. It is stored and rowed only for an operative claim that no higher source carries; the
+  Done entry records the claim either way, and the higher source that carries it where one does. If it is stored, it
+  is stored as served with a manifest entry and a `.gitattributes` line. L2-8 asks for a change to
+  `state-options.md`'s schema only if that schema survives, and it does not, so no schema changes.
+- The topic file `.kiro/skills/medicaid-community-engagement/references/medically-frail-or-special-medical-needs.md`,
+  whose first line is `# People who are medically frail or have special medical needs`; its item under `## Topics` in
+  `SKILL.md`, at about 25 words; and words in the skill's description for being medically frail or having special
+  medical needs.
+- The review page `docs/review/medically-frail-or-special-medical-needs.md`, listed on the landing page, and its
+  start-here rows under the key `medically-frail-or-special-medical-needs`, chosen by decision record 0006's rule.
+- Its 1 entry of `what-matters-most.md` section 12, "Medically frail means having a listed diagnosis", as a row or
+  part of one, with the error quoted in the row's Note.
+- Rows carrying the subject of the dangerous finding L8-4, that a state must develop a list of conditions and keep
+  the request path for a condition not on it, which the fix before increment 2.1 corrected in place. The Done entry
+  records these rows as coverage of that correction and does not list L8-4 as applied again. And L2-14's part on
+  frailty described without the functional gate, as rows.
+- L1-7, the third broken cross-reference, in § 435.554(c)(5)(ii)(A), added in `what-matters-most.md` section 13, with
+  that section's broken cross-reference in § 435.554(c)(5)(ii) and its litigation paragraph corrected in place where
+  the rows and the docket check say otherwise. The section is pointed in increment 2.7.
+- Pointers, once its rows carry every claim: in `rule-extract.md`, subsection 4.2, "The ten exclusion categories",
+  with increment 2.1's rows, and subsection 7.7, "Medical frailty verification and privacy"; in
+  `what-matters-most.md`, section 4, "Medically frail".
+- A row that relies on "reliable information available to the State" or "period of enrollment" quotes § 435.557(a)'s
+  words from the stored correction in its Note and names the paragraph, as decision record 0006 has a forward
+  reference handled.
+- The inherited rows showing-requirement-does-not-apply, notice-says-how-to-show-not-applicable and
+  adverse-notice-names-both-failures rechecked, since they name § 435.554 without excluding paragraph (c)(5), each
+  given a dated `Corrected:` where a new row shows it says more or less than its source.
+
+### Deliberately not
+
+The other nine exclusions, which increment 2.1 wrote. § 435.557(a)'s definitions as rows, which increment 2.6 writes.
+How Colorado shows medically frail status and when its documentation starts, which are Colorado facts for increment
+4, and any other state's frailty documentation rules, which leave with `state-options.md`.
+
+### Why this shape
+
+§ 435.557(f) verifies the status § 435.554(c)(5) defines, so the two are reviewed together. Massachusetts v. Oz
+challenges those rules, so a ruling reaches this one topic and holds up no other exclusion.
+
+### How you know it worked
+
+- `/usr/bin/python3 -m unittest discover -s tests` (3.9.6) and `/opt/homebrew/bin/python3 -m unittest discover -s
+  tests` (3.14.6) both pass, each run as its own command.
+- `scripts/check-corpus.py` exits 0 under both and prints its counts.
+- `docs/review/medically-frail-or-special-medical-needs.md` exists and the checker compares it.
+- The docket result is in the Done entry and the watch list, with the date it was checked.
+- Each ledger finding this increment applies appears once in its Done entry, applied or rejected with a reason.
+- A search of `docs/domain/` outside the stored sources and the research records finds each corrected claim's old
+  wording only in its dated correction.
+- The Done entry lists each paragraph in Delivers with the rows that carry it, or the reason it has none, and each
+  claim of each passage pointed in `rule-extract.md` and `what-matters-most.md` with the row that now carries it.
+- A fresh agent session is asked: "I have bipolar disorder. How does the state decide whether I'm medically frail, so
+  the work requirement doesn't apply to me?" It runs, with no skill named, and a miss is handled, as in increment
+  2.1. Its answer says that medically frail means both a condition that significantly impairs the person's ability
+  to comply with the requirement and being in one of the groups § 435.554(c)(5)(i) lists, a disabling mental
+  disorder among them; that the state must develop a list of conditions and have a process for a person whose
+  condition is not on it to ask to be considered; and that the state first tries to verify the status from reliable
+  information, claims from the preceding 12 months included, and that whether the person is excluded is the
+  agency's determination, labeled Deferred, with the agency named. It cites by identifier the rows on
+  § 435.554(c)(5)(i) and (ii) and § 435.557(f)(1), and says which skills it loaded.
+
+### Needs from you
+
+The owner's go before it starts, and the owner's decision on how to go on if the docket shows an order on the
+provisions Massachusetts v. Oz challenges.
+
+## 2.3 Exceptions for a month: mandatory exceptions, and optional short-term hardship exceptions
+
+### Delivers
+
+- Rows for § 435.553, its opening paragraph and (a) and (b); § 435.555(a) to (f); and § 435.557(g), from the stored
+  correction. A paragraph named takes its own text, the words before its first subparagraph included. About 41 rows,
+  decision record 0006's inference from 1,623 words of regulation text.
+- Any provision outside the rule that its rows rest on, stored as served with a manifest entry and a `.gitattributes`
+  line. Decision record 0006 names none for this topic.
+- The topic file
+  `.kiro/skills/medicaid-community-engagement/references/mandatory-exceptions-and-short-term-hardship.md`, whose
+  first line is `# Exceptions for a month: mandatory exceptions, and optional short-term hardship exceptions`; its
+  item under `## Topics` in `SKILL.md`, at about 25 words; and words in the skill's description for exceptions for a
+  month, mandatory exceptions and optional short-term hardship exceptions.
+- The review page `docs/review/mandatory-exceptions-and-short-term-hardship.md`, listed on the landing page, and its
+  start-here rows under the key `mandatory-exceptions-and-short-term-hardship`, chosen by decision record 0006's rule.
+- Its 2 entries of `what-matters-most.md` section 12, each a row or part of one with the error quoted in the row's
+  Note: citing the post-release exception as § 435.553(a)(5), and "Under 19 is an exclusion".
+- Rows carrying the subject of the dangerous finding L8-3, the dependent's three prongs in § 435.555(b)(1), which the
+  fix before increment 2.1 corrected in place. The Done entry records these rows as coverage of that correction and
+  does not list L8-3 as applied again. And L2-14's part on Medicare, as rows.
+- L8-19's automatic county hardship exception, which needs no information or impact test (§ 435.557(g)(2)(ii)), as a
+  row.
+- Pointers, once its rows carry every claim: in `rule-extract.md`, section 3, "Mandatory exceptions", section 5,
+  "Optional short-term hardship exceptions", and subsection 7.8, "Mandatory exception verification"; in
+  `what-matters-most.md`, section 2, "Who it applies to", with the rows of increments 2.1 and 2.2, and section 10,
+  "Optional short-term hardship".
+- Corrected in place where its rows say otherwise: `rule-extract.md` section 0, "The three-tier status model", pointed
+  in increment 2.7. The parameters of `rule-extract.md` section 10 on its paragraphs become State elections of its
+  rows.
+- A row that relies on § 435.557(a)'s "reliable information available to the State" or "period of enrollment", or on
+  § 435.557(b)(2) or (b)(4), which § 435.557(g)(1) applies, quotes the later paragraph's words from the stored
+  correction in its Note and names the paragraph.
+- The inherited rows showing-of-compliance-or-exception, notice-says-how-to-show-compliance,
+  notice-gives-hardship-information-where-elected and adverse-notice-names-both-failures rechecked, for §§ 435.553
+  and 435.555, each given a dated `Corrected:` where a new row shows it says more or less than its source.
+
+### Deliberately not
+
+Verification in general, § 435.557(a) to (c) and (e), which increment 2.6 writes. Colorado's hardship elections,
+which are Colorado facts for increment 4, and other states' hardship elections, which leave with `state-options.md`.
+
+### Why this shape
+
+§ 435.557(g) verifies the exceptions of §§ 435.553 and 435.555, so all three are reviewed together. With this topic
+the screen of exclusions and exceptions is complete, and what counts toward the requirement comes next.
+
+### How you know it worked
+
+- `/usr/bin/python3 -m unittest discover -s tests` (3.9.6) and `/opt/homebrew/bin/python3 -m unittest discover -s
+  tests` (3.14.6) both pass, each run as its own command.
+- `scripts/check-corpus.py` exits 0 under both and prints its counts.
+- `docs/review/mandatory-exceptions-and-short-term-hardship.md` exists and the checker compares it.
+- Each ledger finding this increment applies appears once in its Done entry, applied or rejected with a reason.
+- A search of `docs/domain/` outside the stored sources and the research records finds each corrected claim's old
+  wording only in its dated correction.
+- The Done entry lists each paragraph in Delivers with the rows that carry it, or the reason it has none, and each
+  claim of each passage pointed in `rule-extract.md` and `what-matters-most.md` with the row that now carries it.
+- A fresh agent session is asked: "I was in the hospital for two weeks last month. Does that month still count
+  against me for the work requirement?" It runs, with no skill named, and a miss is handled, as in increment 2.1.
+  Its answer says that a short-term hardship exception for inpatient hospital care exists only where the state has
+  elected the optional exception of § 435.555, so the answer is Conditional on that choice and names it; that for a
+  hospital stay the person, or someone acting for them, requests the exception, and a state that offers it must give
+  notice of how to request it and by when; and that the state must first try reliable information to verify the
+  hospital care before asking the person for more. It cites by identifier the rows on § 435.555(a), (c)(2) and
+  (d)(1) and § 435.557(g)(2)(i), and says which skills it loaded.
+
+### Needs from you
+
+The owner's go before it starts.
+
+## 2.4 Work, community service, work programs and school
+
+### Delivers
+
+- Rows for § 435.552(a) less (a)(6) and (a)(7), (b), (c), (d), and (e) less (e)(2). A paragraph named takes its own
+  text, so (a) brings its general rule. About 26 rows, decision record 0006's inference from 1,036 words of
+  regulation text.
+- Any provision outside the rule that its rows rest on, stored as served with a manifest entry and a `.gitattributes`
+  line. Decision record 0006 names none for this topic.
+- The topic file `.kiro/skills/medicaid-community-engagement/references/work-service-programs-and-school.md`, whose
+  first line is `# Work, community service, work programs and school`; its item under `## Topics` in `SKILL.md`, at
+  about 25 words; and words in the skill's description for work, community service, work programs and school as ways
+  to meet the requirement.
+- The review page `docs/review/work-service-programs-and-school.md`, listed on the landing page, and its start-here
+  rows under the key `work-service-programs-and-school`, chosen by decision record 0006's rule.
+- Its 8 entries of `what-matters-most.md` section 12, each a row or part of one with the error quoted in the row's
+  Note: "Work means paid employment"; "Unpaid internships don't count"; "Each activity needs 80 hours"; "Half-time
+  school contributes hours toward 80"; "6 credit hours is half-time"; "Community service must be a 501(c)(3)";
+  "Court-ordered service doesn't count"; and "Job training programs generally count".
+- L2-19, the source of `what-matters-most.md` section 5's verification guidance named as the preamble at 91 FR 33400,
+  applied as that passage becomes a pointer; and L8-19's auditable community service records, as a row.
+- Pointers, once its rows carry every claim: in `rule-extract.md`, subsections 2.2, "Definitions", 2.3, "Enrollment
+  status", and 2.4, "Less-than-half-time education hours"; in `what-matters-most.md`, section 5, "How the requirement
+  is satisfied", except its subsection "Combination, and the income-to-hours proxy", which increment 2.5 points.
+- Corrected in place where its rows say otherwise, and pointed in increment 2.5, which writes § 435.552(a)(6), (a)(7)
+  and (e)(2): `rule-extract.md` subsections 2.1, "The seven pathways", and 2.5, "Combination of activities". This
+  follows decision record 0006's rule that a passage becomes a pointer in the increment that writes the last row its
+  claims need. The parameters of `rule-extract.md` section 10 on its paragraphs become State elections of its rows.
+- The inherited rows notice-says-how-to-show-compliance and adverse-notice-names-both-failures rechecked for
+  § 435.552's paragraphs in this topic, each given a dated `Corrected:` where a new row shows it says more or less than
+  its source.
+
+### Deliberately not
+
+Income, § 435.552(a)(6), (a)(7), (e)(2), (f) and (g), with § 435.603 and the provisions outside part 435 that income
+rests on, which increment 2.5 takes. How the state verifies hours, which increment 2.6 writes. Colorado's facts on how
+hours are shown, which wait for increment 4.
+
+### Why this shape
+
+What counts comes after who is outside the requirement, in the order of HourKeep's screens: a school term, then the
+pay stub's 80 hours, then logged hours. Income is split off into increment 2.5 because it rests on § 435.603 and six
+provisions outside part 435 and carries 8 of the checklist's 28 errors; together the two would come to about 53 rows
+by decision record 0006's figures.
+
+### How you know it worked
+
+- `/usr/bin/python3 -m unittest discover -s tests` (3.9.6) and `/opt/homebrew/bin/python3 -m unittest discover -s
+  tests` (3.14.6) both pass, each run as its own command.
+- `scripts/check-corpus.py` exits 0 under both and prints its counts.
+- `docs/review/work-service-programs-and-school.md` exists and the checker compares it.
+- Each ledger finding this increment applies appears once in its Done entry, applied or rejected with a reason.
+- A search of `docs/domain/` outside the stored sources and the research records finds each corrected claim's old
+  wording only in its dated correction.
+- The Done entry lists each paragraph in Delivers with the rows that carry it, or the reason it has none, and each
+  claim of each passage pointed in `rule-extract.md` and `what-matters-most.md` with the row that now carries it.
+- A fresh agent session is asked: "I take 6 credit hours at community college and work about 30 hours a month. Does
+  that meet Medicaid's work requirement?" It runs, with no skill named, and a miss is handled, as in increment 2.1.
+  Its answer says that whether 6 credit hours is half-time is for the school to determine, not a fixed count; that
+  enrollment at least half-time meets the requirement for the month on its own; and that if enrollment is less than
+  half-time, each credit hour counts as 3 hours a week, times 4.33 weeks, and those hours are added to the work hours
+  toward 80. It leaves whether the person met the requirement to the agency, labeled Deferred. It cites by
+  identifier the rows on § 435.552(a)(4), (c), (d)(1) and (e), and says which skills it loaded.
+
+### Needs from you
+
+The owner's go before it starts.
+
+## 2.5 Monthly income, income counted as work hours, and seasonal workers
+
+### Delivers
+
+- Rows for § 435.552(a)(6), (a)(7), (e)(2), (f) and (g); § 435.603(d), (e), (f), (h)(3) and (j)(1), where
+  § 435.552(f)(2) and (g) incorporate them; and 26 U.S.C. 36B(d)(2)(B), 85, 6012(a)(1) and 45R(d)(5)(B), 29 U.S.C.
+  206(a)(1)(C) and 29 CFR 500.20(s)(1). About 11 rows, decision record 0006's inference from 439 words of § 435.552,
+  and about 16 more, its figure for the 10 paragraphs of § 435.603 and the 6 provisions outside part 435 that
+  `what-matters-most.md` section 6 cites. The ratio behind the figures carries no rows on provisions outside the rule,
+  so this topic may come in above them.
+- Stored as served, each with a manifest entry, a `.gitattributes` line and the command that fetched it: eCFR XML of
+  42 CFR 435.603 and 29 CFR 500.20, for one stated eCFR date; and, for 26 U.S.C. 36B, 85, 6012 and 45R and 29 U.S.C.
+  206, the text their publisher serves.
+- `supporting-regs/README.md` section 1, the § 435.603 extract, kept, and where it and the stored eCFR text of
+  § 435.603 differ, the stored text governs, as the skill's Precedence has a stored source govern over any summary.
+  Each of the five state options in its section 4 becomes a State election of a row where a row rests on its
+  paragraph. The options on § 435.603(b) and (h)(2) fall outside this topic's paragraphs and get no row unless one of
+  its rows rests on them.
+- The topic file `.kiro/skills/medicaid-community-engagement/references/income-and-seasonal-work.md`, whose first line
+  is `# Monthly income, income counted as work hours, and seasonal workers`; its item under `## Topics` in `SKILL.md`,
+  at about 25 words; and words in the skill's description for monthly and household income, income counted as work
+  hours, and seasonal workers.
+- The review pages' citation links extended to the citations this topic introduces. 29 CFR 500.20 links once
+  `CFR_PART` in `scripts/review_pages/constants.py` accepts title 29, as increment 2.1's change has it accept title
+  28. A new `USC_PART` pattern there, for a citation of 26 or 29 U.S.C., links in `cite_part` in
+  `scripts/review_pages/links.py` to the address the manifest records for the stored copy of that section, through
+  `source_address`, as SMD 26-001 and Colorado's rule link today. Cases for 29 CFR 500.20(s)(1) and 26 U.S.C.
+  45R(d)(5)(B) join `test_links_each_kind_of_part_and_leaves_the_rest_as_text` in `tests/test_review_pages.py`. The
+  Formats under "The review pages" say a U.S.C. citation links to its stored copy and, in prose, stays text, as SSA
+  1902 and Pub. L. 119-21 do today (`cite_in_text` links only CFR and Federal Register citations).
+- The review page `docs/review/income-and-seasonal-work.md`, listed on the landing page, and its start-here rows under
+  the key `income-and-seasonal-work`, chosen by decision record 0006's rule.
+- Its 8 entries of `what-matters-most.md` section 12, each a row or part of one with the error quoted in the row's
+  Note: "Only earned income counts"; "SSDI, unemployment, investment, and rental income don't count"; "Taxable
+  interest and dividends count"; "The whole household's income counts"; "Money from family counts"; "Hours and income
+  are either/or"; "Seasonal work means ≤ 6 months a year"; and "The 6-month seasonal average includes this month".
+- L2-14's part on "earning at least $580 a month", where § 435.552(f)(2) uses household income, earned and unearned
+  (research L2, finding 14), as rows. It corrects no file.
+- Pointers, once its rows carry every claim: in `rule-extract.md`, subsections 2.6, "Monthly income", and 2.7,
+  "Seasonal workers", and, with increment 2.4's rows, subsections 2.1, "The seven pathways", and 2.5, "Combination of
+  activities", which leaves all of section 2 a pointer; in `what-matters-most.md`, section 6, on MAGI-based household
+  income, and section 5's subsection "Combination, and the income-to-hours proxy". The parameters of `rule-extract.md`
+  section 10 on its paragraphs become State elections of its rows.
+- The inherited rows notice-says-how-to-show-compliance and adverse-notice-names-both-failures rechecked for
+  § 435.552's paragraphs in this topic, each given a dated `Corrected:` where a new row shows it says more or less than
+  its source.
+
+### Deliberately not
+
+Work, community service, work programs and school, which increment 2.4 wrote. How the state verifies income, under
+§ 435.557, which increment 2.6 writes. Paragraphs of § 435.603 beyond those listed, unless a row rests on one. Any
+figure for a person's household income: the rows say what the rule counts, and `docs/design.md` keeps household
+income Deferred. Colorado's income-to-hours fact, which waits for increment 4.
+
+### Why this shape
+
+It finishes what counts toward the requirement, after increment 2.4's hours and school, with the household income
+that `docs/design.md`, under "Proof, month by month", names as one of the two Deferred cases that matter most. It is
+a topic of its own because it rests on § 435.603 and six provisions outside part 435 and carries 8 of the checklist's
+28 errors, which would otherwise share a review page with the 8 on hours and school.
+
+### How you know it worked
+
+- `/usr/bin/python3 -m unittest discover -s tests` (3.9.6) and `/opt/homebrew/bin/python3 -m unittest discover -s
+  tests` (3.14.6) both pass, each run as its own command.
+- `scripts/check-corpus.py` exits 0 under both and prints its counts.
+- `docs/review/income-and-seasonal-work.md` exists and the checker compares it, and each 26 U.S.C., 29 U.S.C. and
+  29 CFR citation on it is a link.
+- Each ledger finding this increment applies appears once in its Done entry, applied or rejected with a reason.
+- A search of `docs/domain/` outside the stored sources and the research records finds each corrected claim's old
+  wording only in its dated correction.
+- The Done entry lists each paragraph in Delivers with the rows that carry it, or the reason it has none, and each
+  claim of each passage pointed in `rule-extract.md` and `what-matters-most.md` with the row that now carries it.
+- A fresh agent session is asked: "I do seasonal work and earn most of my money in the summer. In a winter month when
+  I hardly work, can I still meet Medicaid's work requirement?" It runs, with no skill named, and a miss is handled,
+  as in increment 2.1. Its answer says that a seasonal worker, as 26 U.S.C. 45R(d)(5)(B) describes one, meets the
+  requirement for a month if their average monthly income over the preceding six months is not less than the federal
+  minimum wage under 29 U.S.C. 206(a)(1)(C) times 80 hours; that the state determines that average from MAGI-based
+  income, for the person's MAGI-based household as § 435.603 defines it; and that whether the person is a seasonal
+  worker and whether their income is enough is the agency's determination, labeled Deferred, with the agency named.
+  It cites by identifier the rows on § 435.552(g)(1) and (g)(2) and on 26 U.S.C. 45R(d)(5)(B), and says which skills
+  it loaded.
+
+### Needs from you
+
+The owner's go before it starts. Nothing else, unless a site refuses automated requests, in which case a copy
+downloaded in a browser.
+
+## 2.6 How the state verifies: reliable information first, then what a person sends
+
+### Delivers
+
+- Rows for § 435.557(a), (b), (c) and (e) from the stored correction; § 435.945(j) as the rule amends it; and
+  § 438.58(b). About 42 rows, decision record 0006's inference from 1,679 words of § 435.557: 1,665 in paragraphs
+  (a), (b), (c) and (e), and the 14 of the section's heading, which no other topic counts. The amendment to
+  § 435.945(j) and § 438.58(b) are not in the word count.
+- Stored as served, with a manifest entry, a `.gitattributes` line and the command that fetched it: CMS's IFC
+  overview slide deck of 2026-07-27, which research L2 lists at
+  https://www.medicaid.gov/medicaid/downloads/ce-requirement-ifc-deck.pdf, with its text extraction. Slide 47 is read
+  before any row on L2-12's limits on plans; if the deck cannot be stored, that claim gets no row and is marked
+  Unverified in place. Any other provision outside the rule that a row rests on is stored the same way.
+- The topic file `.kiro/skills/medicaid-community-engagement/references/how-the-state-verifies.md`, whose first line
+  is `# How the state verifies: reliable information first, then what a person sends`, and which opens by naming
+  where the rest of § 435.557 is: (d), checks between renewals, in increment 2.7's topic file, (f), medical frailty,
+  in increment 2.2's, and (g), the exceptions, in increment 2.3's; its item under `## Topics` in `SKILL.md`, at about
+  25 words; and words in the skill's description for how the state verifies, from reliable information first and then
+  from what a person sends, and when it may ask a person for proof.
+- The review page `docs/review/how-the-state-verifies.md`, listed on the landing page, and its start-here rows under
+  the key `how-the-state-verifies`, chosen by decision record 0006's rule. None of the 28 entries of
+  `what-matters-most.md` section 12 falls to this topic.
+- Rows carrying the subject of the dangerous finding L8-9, that the 56% verified from reliable information applies
+  to applicable individuals due for renewal and that 8.8 million submit every 6 months (91 FR 33434), which the fix
+  before increment 2.1 corrected in place. The Done entry records these rows as coverage of that correction and does
+  not list L8-9 as applied again. With them, `what-matters-most.md`'s "Writing for people, not about the rule" item
+  1, "Most people will not be asked for anything", as a row or part of one.
+- Each row of increments 2.2 and 2.3 that quotes § 435.557(a), (b)(2) or (b)(4) in its Note, compared with this
+  topic's rows on that paragraph. Any that says something different from them gets a dated `Corrected:` in the same
+  change, and the Done entry lists each row compared.
+- L8-12's splice in `rule-extract.md` section 7, at line 585 as the file stood at 70be85f, in subsection 7.2, "Ex
+  parte first", repaired.
+- L2-12's limits on plans, read against § 438.58(b) and the deck's slide 47. The ledger says "plans" and research
+  L2's finding 12 says managed care plans. That the deck means managed care plans is an inference, from § 438.58
+  sitting in the managed care part, until slide 47 is read.
+- Pointers, once its rows carry every claim: in `rule-extract.md`, subsections 7.1, "Reliable information available
+  to the State", 7.2, "Ex parte first", 7.3, "The January 1, 2028 hardening date", 7.4, "Submission", 7.5,
+  "Sequencing rules", and 7.9, "Federal data services", and section 9's "Conflict of interest"; in
+  `what-matters-most.md`, section 8, "Verification".
+- Corrected in place where its rows say otherwise, and pointed later: `rule-extract.md` section 0, "The three-tier
+  status model", pointed in increment 2.7, and section 11's burden estimate, pointed in increment 4;
+  `what-matters-most.md` section 1 on § 435.557(b)(2)(ii), and section 11 on § 438.58(b), both pointed in increment
+  2.8, and section 13's paragraph on what § 435.557(a) names, and "Writing for people" item 1, both pointed in
+  increment 2.7. The parameters of `rule-extract.md` section 10 on its paragraphs become State elections of its rows.
+- No inherited row: none of increment 1's rows names § 435.557(a), (b), (c) or (e), § 435.945 or § 438.58.
+
+### Deliberately not
+
+§ 435.557(d), checks between renewals, which increment 2.7 takes, and § 435.557(f) and (g), which increments 2.2 and
+2.3 wrote, beyond a dated correction where one of their rows says something different from this topic's. Rows for the
+deck's other slides, beyond those a row of this topic or of
+increment 2.7 needs. Colorado's submission channels, which wait for increment 4. The other sections the rule amends,
+§§ 435.907, 435.911, 435.912 and 435.916 among them, which increment 3 takes.
+
+### Why this shape
+
+Verification checks everything the topics before it define: the exclusions, the exceptions, the activities and
+income. Increments 2.2 and 2.3 used its definitions as forward references, quoted from the stored correction, and
+this topic compares those rows with its own once its own are written, so a different reading shows up here.
+
+### How you know it worked
+
+- `/usr/bin/python3 -m unittest discover -s tests` (3.9.6) and `/opt/homebrew/bin/python3 -m unittest discover -s
+  tests` (3.14.6) both pass, each run as its own command.
+- `scripts/check-corpus.py` exits 0 under both and prints its counts.
+- `docs/review/how-the-state-verifies.md` exists and the checker compares it.
+- The IFC deck is in `docs/domain/sources/MANIFEST.json`, or the Done entry says it could not be stored and the claim
+  on plans is marked Unverified in place.
+- Each ledger finding this increment applies appears once in its Done entry, applied or rejected with a reason.
+- A search of `docs/domain/` outside the stored sources and the research records finds each corrected claim's old
+  wording only in its dated correction.
+- The Done entry lists each paragraph in Delivers with the rows that carry it, or the reason it has none, and each
+  claim of each passage pointed in `rule-extract.md` and `what-matters-most.md` with the row that now carries it.
+- A fresh agent session is asked: "Will I have to send the state pay stubs to prove I worked enough hours for
+  Medicaid?" It runs, with no skill named, and a miss is handled, as in increment 2.1. Its answer says that the
+  state must first try to verify from the reliable information available to it, payroll data and information from
+  other state agencies among it, before asking the person for anything; that the person must not be required to
+  provide documentation or other information unless the state could not verify it that way, including where it has
+  no such information or what it has is not reasonably compatible with what the person told it; and that if the
+  state does ask, it must accept information other than documentation where no documentation is reasonably
+  available, and may not deny or end coverage only because the person cannot produce documentation that does not
+  exist. Whether the state's information shows the person met the requirement is the agency's determination, labeled
+  Deferred, with the agency named. It cites by identifier the rows on § 435.557(a)'s definition of reliable
+  information available to the State, § 435.557(b) and (b)(2)(iii), and § 435.557(c)(1)(i), and says which skills it
+  loaded.
+
+### Needs from you
+
+The owner's go before it starts. Nothing else, unless medicaid.gov refuses automated requests, in which case a copy of
+the IFC deck downloaded in a browser.
+
+## 2.7 Which months are checked, how often, and when the requirement starts
+
+### Delivers
+
+- Before any row is written or edited, an inventory of the candidate rows on SMD 26-001 and on the statute, added to
+  the figure below and recorded in the Done entry. If the topic would pass 64 rows, a new decision record splits it,
+  as decision record 0006 requires, and no row is written until that record is accepted.
+- Rows for § 435.556(a) to (d); § 435.557(d), from the stored correction; § 435.559(a) to (c); § 435.560(a) to (d);
+  SSA 1902(e)(14)(L)(i); and § 435.915 as the preamble applies it. A paragraph named takes its own text, the words
+  before its first subparagraph included, so § 435.557(d) brings its opening sentence. About 36 rows, decision record
+  0006's inference from 1,435 words of regulation text. The statute and SMD 26-001 are not in that figure, so this
+  topic may come in above it.
+- Rows for the parts of SMD 26-001 that increment 1's four rows on it do not cover, on pages 3 to 13: who is in the
+  adult expansion group, the
+  whole-group test for coverage under a waiver and the partial-expansion demonstrations it leaves out (pp. 3 and 4);
+  the treatment of other eligibility groups (p. 4); what the six-month renewals mean for community engagement, and the
+  federal renewal requirements that still apply (pp. 5 and 6); applicants from 2027-01-01 (p. 6, Example 1); Examples
+  2 to 5 (pp. 8 to 10) only where they say more than increment 1's rows on the two paths; households with different
+  renewal schedules, movement between eligibility groups at renewal and coordination with other recertifications
+  (pp. 10 to 12); application and renewal processing and fair hearing requests (p. 12); and the state plan amendment
+  due 2027-03-31 (pp. 12 and 13). Its pages on IT system costs (p. 13) and its closing (p. 14) state no rule a person
+  meets and get no rows.
+- Sources: SMD 26-001 is stored already, at `docs/domain/sources/cms/smd-26-001.pdf` with its text. GovInfo's text
+  of Public Law 119-21 is stored as served, with a manifest entry, a `.gitattributes` line and the command that
+  fetched it. The rows on SSA 1902(e)(14)(L)(i) cite it, and increment 1's row on clause (ii),
+  six-month-renewals-do-not-apply-to-exempt-american-indians-and-alaska-natives, has its five Sources repointed to it
+  from the copy in `hr1/`. Increment 3 points the other Sources that cite `hr1/` at it and retires the copies. L2-12's
+  part here rests on the IFC deck that increment 2.6 stores. Any other provision outside the rule that a row rests on
+  is stored as served, with a manifest entry and a `.gitattributes` line.
+- The topic file `.kiro/skills/medicaid-community-engagement/references/which-months-and-when-it-starts.md`, whose
+  first line is `# Which months are checked, how often, and when the requirement starts`, and whose opening sentence
+  names the good faith effort exemption, § 435.560, by those words; its item under `## Topics` in `SKILL.md`, at about
+  25 words; and words in the skill's description for which months are checked, checks between renewals, six-month
+  renewals and when the requirement starts.
+- The review page `docs/review/which-months-and-when-it-starts.md`, listed on the landing page, and its start-here
+  rows under the key `which-months-and-when-it-starts`, chosen by decision record 0006's rule.
+- Its 1 entry of `what-matters-most.md` section 12, "Renewal months must be consecutive", as a row or part of one,
+  with the error quoted in the row's Note.
+- The inherited row notice-response-period given a dated addition to its Note quoting section 12's entry "You get 30
+  days from the notice", which no row quotes today, so that increment 5, which draws its checklist from the rows'
+  Notes, finds it once `what-matters-most.md` is retired.
+- Rows carrying the subjects of the dangerous findings L2-3, the whole-group test for coverage under a waiver; L2-5,
+  10 days' notice and hearing rights when a period shortens or a person moves into a six-month group, and the state
+  plan amendment due 2027-03-31; and L3-9, Pub. L. 119-21 sec. 71107, which adds SSA 1902(e)(14)(L) for renewals
+  scheduled on or after 2027-01-01, with the individuals SSA 1902(xx)(9)(A)(ii)(II) describes as the only exemption.
+  The fix before increment 2.1 corrected the six-month text they concern in place. The Done entry records these rows
+  as coverage of that correction and does not list L2-3, L2-5 or L3-9 as applied again.
+- L2-20, § 435.557(d)(4), that excluded status is not checked again between scheduled renewals unless the state has
+  information that it changed, applied in `state-options.md`'s schema at its line "a State may reverify more often".
+  `rule-extract.md` subsection 7.6 already stated paragraph (d)(4) at 70be85f, so that passage needs only checking
+  against the rows.
+- L2-12's initial good faith effort exemptions, approved for 6 months at most (IFC deck slide 42), from the copy
+  increment 2.6 stores; if it was not stored, the claim gets no row and is marked Unverified in place.
+- Pointers, once its rows carry every claim: in `rule-extract.md`, section 0, "The three-tier status model", with the
+  rows of increments 2.1, 2.3 and 2.6 and its own on § 435.556(c); section 6, "Assessing compliance"; subsection 7.6,
+  "More frequent verification"; and section 9's "Implementation", "Good faith effort exemption" and "Renewal
+  frequency". In `what-matters-most.md`: section 7, "Which months get assessed"; section 12, "The things most often
+  gotten wrong", once all 28 entries are rows; section 13, "Known uncertainty", with its per-state dates dropped; and
+  "Writing for people, not about the rule". Of that last, item 2 becomes this topic's rows, item 1 is increment 2.6's,
+  and item 3 and the caution are rows already, with the caution's rule for copy in `docs/design.md` under "What may
+  mean the rule does not apply".
+- Corrected in place where its rows say otherwise, and pointed in increment 2.8: `what-matters-most.md` section 1 on
+  §§ 435.559, 435.560 and 435.915, and section 11 on § 435.560. The parameters of `rule-extract.md` section 10 on its
+  paragraphs become State elections of its rows.
+- The inherited rows rechecked, each given a dated `Corrected:` where a new row shows it says more or less than its
+  source: unable-to-verify-at-application, accept-applicant-declaration-of-noncompliance,
+  notice-says-how-to-show-compliance and adverse-notice-names-both-failures, for § 435.556;
+  more-frequent-check-notice-after-data-check and more-frequent-check-notice-after-information-request, for
+  § 435.557(d); reschedule-2027-renewals-to-six-months, which names § 435.559(b) and (c); and
+  six-month-renewals-do-not-apply-to-exempt-american-indians-and-alaska-natives, keep-scheduled-2027-renewals,
+  first-path-period-not-shorter-than-six-months and shortened-renewal-period-needs-advance-notice, which share its
+  subject. The open question "For the adult expansion group from 2027, which governs how often eligibility is renewed:
+  the regulation's 12 months or the statute's 6?" is rechecked against the new rows.
+- Where one of its rows sets out a new choice between two rows, the pair added to `CHOICE_PAIRS`, as decision record
+  0006 has a later topic extend it.
+
+### Deliberately not
+
+The notice of noncompliance and its 30 days, which increment 1 wrote, beyond the Note on notice-response-period, and
+renewals under § 435.916, which increment 3 takes with the other letters. The other Sources that cite `hr1/`, which
+increment 3 repoints. A new answer to which of 12 months or 6 governs, which stays an open question for CMS.
+Colorado's look-back months, its start date and its transition path, which are Colorado facts for increment 4. Other
+states' implementation dates and early implementers, which are dropped at retirement. Outreach timing under
+§ 435.561, which increment 2.8 writes.
+
+### Why this shape
+
+§ 435.557(d)'s checks between renewals sit here rather than with verification because § 435.559(c) ties an
+enrollee's first check to their first renewal initiated on or after the state's implementation date, and six-month
+renewals and SMD 26-001's two transition paths decide when that is. It follows verification, since its checks between
+renewals are verification under § 435.557(d), and comes before outreach, whose notice explains the months.
+
+### How you know it worked
+
+- `/usr/bin/python3 -m unittest discover -s tests` (3.9.6) and `/opt/homebrew/bin/python3 -m unittest discover -s
+  tests` (3.14.6) both pass, each run as its own command.
+- `scripts/check-corpus.py` exits 0 under both and prints its counts.
+- `docs/review/which-months-and-when-it-starts.md` exists and the checker compares it.
+- GovInfo's text of Public Law 119-21 is in `docs/domain/sources/MANIFEST.json`, and no row whose Citation names SSA
+  1902(e)(14)(L) has a Source in `hr1/`.
+- notice-response-period's Note quotes "You get 30 days from the notice", with its date.
+- The Done entry records the inventory of SMD 26-001 and statute rows, and the count it gave, before the first row.
+- Each ledger finding this increment applies appears once in its Done entry, applied or rejected with a reason.
+- A search of `docs/domain/` outside the stored sources and the research records finds each corrected claim's old
+  wording only in its dated correction.
+- The Done entry lists each paragraph in Delivers with the rows that carry it, or the reason it has none, and each
+  claim of each passage pointed in `rule-extract.md` and `what-matters-most.md` with the row that now carries it.
+- A fresh agent session is asked: "I'm already on Medicaid. When will the state first check whether I've met the
+  work requirement, and which months will it look at?" It runs, with no skill named, and a miss is handled, as in
+  increment 2.1. Its answer says that the requirement is a condition of eligibility for coverage from January 1,
+  2027, unless CMS has granted the state a good faith effort exemption or the state chose to start earlier; that for
+  a person enrolled on the state's start date, the state must verify compliance at their first renewal initiated on
+  or after that date; and that the state checks 1 or more months, as its State plan says and whether or not
+  consecutive, from the period since the person's last determination or renewal, or more often where it has chosen
+  to check between renewals. Each date and month count is labeled Conditional on the state's choices, which it names,
+  with the agency named as the one to ask. It cites by identifier the rows on § 435.559(a), (b) and (c),
+  § 435.556(a)(2) and § 435.557(d), and says which skills it loaded.
+
+### Needs from you
+
+The owner's go before it starts, and the owner's acceptance of a decision record that splits the topic if the
+inventory shows it would pass 64 rows. Nothing else, unless GovInfo refuses automated requests, in which case a copy
+downloaded in a browser.
+
+## 2.8 Outreach, and what states report to CMS
+
+### Delivers
+
+- Rows for §§ 435.561(a) to (e) and 435.562(a) to (e). About 29 rows, decision record 0006's inference from 1,170
+  words of regulation text.
+- Any provision outside the rule that its rows rest on, stored as served with a manifest entry and a `.gitattributes`
+  line. Decision record 0006 names none for this topic.
+- The topic file `.kiro/skills/medicaid-community-engagement/references/outreach-and-state-reporting.md`, whose first
+  line is `# Outreach, and what states report to CMS`; its item under `## Topics` in `SKILL.md`, at about 25 words; and
+  words in the skill's description for outreach letters about the requirement and what states report to CMS.
+- The review page `docs/review/outreach-and-state-reporting.md`, listed on the landing page, and its start-here rows
+  under the key `outreach-and-state-reporting`, chosen by decision record 0006's rule. None of the 28 entries of
+  `what-matters-most.md` section 12 falls to this topic.
+- Pointers, once its rows carry every claim: in `rule-extract.md`, section 9's "Outreach" and "Monitoring", which
+  leaves all of section 9 a pointer; in `what-matters-most.md`, section 1, "The dates, and when the first check can
+  come", with the rows of increments 2.6 and 2.7 and its claims about other states dropped, and section 11, "Scope,
+  and hard limits on States", with the rows of increments 2.1, 2.6 and 2.7.
+- Corrected in place where its rows say otherwise: `rule-extract.md` section 11's outreach timing, pointed in
+  increment 4. The parameters of `rule-extract.md` section 10 on its paragraphs become State elections of its rows.
+- `what-matters-most.md` retired, once every passage in it is a pointer; its header and "How to use this" go with it.
+  A claim outside the epic's scope, about a state other than Colorado or about how to word HourKeep's copy, is
+  dropped, and the Done entry says where each is kept: the ledger finding that checked it, `docs/design.md`, or git
+  history. In the same change its entry leaves `OWN_FILES` in `scripts/corpus_check/constants.py`, the list in
+  `tests/test_unlisted_files.py` and the list under "The checker" in the Formats, so a copy left behind fails as
+  unlisted; the names and the counts of the corpus's own files under "Stored sources and the manifest" in the Formats,
+  which on 2026-10-22 say "seven" and "six analysis files", lose it; and the skill's Precedence, which names it among
+  the older analysis files, drops it.
+- No inherited row: none of increment 1's rows names § 435.561 or § 435.562.
+
+### Deliberately not
+
+`rule-extract.md` and `state-options.md`, which increment 4 retires. Colorado's outreach letters and its English and
+Spanish templates, which wait for increment 4. The skill's error checklist, which increment 5 assembles from the rows'
+Notes. Any count of a state's reports to CMS: the rows say what a state must report, not what one has.
+
+### Why this shape
+
+Outreach comes last because an outreach letter starts no clock (`docs/design.md`, "The letter"), and § 435.561(c) has
+the notice explain the exceptions, the exclusions, the months and the consequences, which the earlier topics define.
+The last passages of `what-matters-most.md` to land are here, so the file is retired here.
+
+### How you know it worked
+
+- `/usr/bin/python3 -m unittest discover -s tests` (3.9.6) and `/opt/homebrew/bin/python3 -m unittest discover -s
+  tests` (3.14.6) both pass, each run as its own command.
+- `scripts/check-corpus.py` exits 0 under both and prints its counts.
+- `docs/review/outreach-and-state-reporting.md` exists and the checker compares it.
+- Every paragraph of §§ 435.550 to 435.563, 14 sections, is carried by at least one row or has a reason it has none,
+  by the union of the paragraph lists in the Done entries of increments 2.1 to 2.8, with increment 1's rows for every
+  paragraph of § 435.558. The Done entry gives the result and names each paragraph the union misses, and a search of
+  the extract's Citation lines, whose result is in the Done entry too, finds each of the 14 sections cited.
+- `docs/domain/cms-2454-ifc/what-matters-most.md` is gone, and `git grep what-matters-most` finds it in no Source line
+  of a row, fact or question, and in no skill file, script or test.
+- Each ledger finding this increment applies appears once in its Done entry, applied or rejected with a reason.
+- A search of `docs/domain/` outside the stored sources and the research records finds each corrected claim's old
+  wording only in its dated correction.
+- The Done entry lists each paragraph in Delivers with the rows that carry it, or the reason it has none, and each
+  claim of each passage pointed in `rule-extract.md` and `what-matters-most.md` with the row that now carries it.
+- A fresh agent session is asked: "I got a letter from Medicaid about the new work requirement. What is the state
+  supposed to tell me about it, and how?" It runs, with no skill named, and a miss is handled, as in increment 2.1. Its
+  answer says that the state must tell the people § 435.561(a) describes about the requirement: first, three months plus
+  the number of months it checks at application before the requirement starts; then, for anyone who enrolls between that
+  first notice and the start, on enrollment; and after that periodically, such as each time they are determined or
+  redetermined eligible at application, at renewal or after a change in circumstances; that the notice must explain how
+  to comply, the exceptions and exclusions, how many months are checked at renewal and how often the state checks
+  between renewals if it does, what not complying means for Medicaid and for the premium tax credit, and how to report a
+  change; and that it comes by regular mail, or electronically if the person chose that, and in at least one other way,
+  such as their online account, a phone call or a text message. Where the answer turns on the months the state checks or
+  whether it checks between renewals, it labels that Conditional on the state's choice and names it. It cites by
+  identifier the rows on § 435.561(a), (b), (c) and (d), and says which skills it loaded.
+
+### Needs from you
+
+The owner's go before it starts.
+
 ## 3. The statute and the supporting rules
 
 ### Delivers
 
-- A short statute extract: Public Law 119-21 sections 71119 and 71107, and section 10102 for the SNAP questions.
+- A short statute extract: Public Law 119-21 sections 71119 and 71107, and section 10102 for the SNAP questions. Its
+  rows are statute rows under a topic of their own, citing GovInfo's text of the law, which increment 2.7 stores
+  (decision record 0006).
 - 7 CFR 273.7 and 273.24 stored, so the SNAP questions rest on stored text.
 - The rules for the other letters a person may hold: renewal forms (§ 435.916), what a decision notice must say
   (§ 435.917), plain language and access for people with limited English or a disability (§ 435.905(b)), and
   electronic notices (§ 435.918).
+- Besides § 435.916, the other sections the interim final rule amends that increment 1's rows lean on: §§ 435.907,
+  435.911 and 435.912, the removal of § 435.919, and § 435.1200(e)(1), since those rows rest on §§ 435.907(a),
+  435.911, 435.912(e)(3) and 435.1200(e) (decision record 0006).
 - The provisions increment 1's rows rely on and nobody has read, stored as eCFR XML and carried as rows: 42 CFR
   431.201 (definitions, among them the date of action), 431.213 and 431.214 (the exceptions to 10 days' notice, and
   the 5-day notice), 431.10(c)(1)(ii) (hearings delegated to the Exchange), 435.930(b) (coverage until a person is
   found ineligible) and 435.952(d) (requests for information). Each row that names one says so in its Note.
-  (Added 2026-10-19; full review 2026-10-19, red team 6.)
-- `supporting-regs/README.md` without its v1 notes and with a fresh eCFR snapshot.
-- The two Code for America summaries moved to `docs/domain/prior-art/` with a note that they predate the rule, and each
-  error already found in them given a dated correction. The Medicaid summary's line 68 says "meeting" SNAP rules where
-  the test is being subject to them; the SNAP summary's line 51 says "18 or younger" where the statute says under 18;
-  and the ledger finds six more lines in the Medicaid summary that conflict with the rule or the statute (research
-  L8-10, L3-12).
-- `hr1/HR1-Impact-Summary.md` retired.
-- GovInfo's text of Public Law 119-21 stored as served, the statute extract made from it, and the other 15 files in
-  `hr1/` retired: 14 reformatted copies of the law and a list of its sections that touch HHS. The two eCFR text files
-  in `supporting-regs/` retired once the fresh snapshot is stored as eCFR XML and nothing cites them.
-- The two Code for America blueprint PDFs replaced by links in the prior-art note, unless Code for America's terms
-  allow keeping copies. Neither PDF states a license.
+  (Added 2026-10-19; full review 2026-10-19, red team 6.) § 431.213 includes its paragraph (d) as the interim final
+  rule amends it (decision record 0006).
+- `supporting-regs/README.md` without its v1 notes, meaning its section 5 and the lines in its header and section 1
+  that name v1's PRD, steering doc and waves, and with a fresh eCFR snapshot. In the same change, L8-12's "until
+  October 1, 2034" and L8-13's snapshot age are corrected there. Its sections 1 and 4 stay with the § 435.603
+  extract.
+- The two Code for America summaries moved to `docs/domain/prior-art/` with a note that they predate the rule (research
+  L8-14), and each error already found in them given a dated correction. The Medicaid summary's line 68 says "meeting"
+  SNAP rules where the test is being subject to them; the SNAP summary's line 51 says "18 or younger" where the statute
+  says under 18; and the ledger finds six more lines in the Medicaid summary that conflict with the rule or the statute
+  (research L8-10, L3-12). Of those six, the fix before increment 2.1 corrects first the four L8-10 rates dangerous,
+  lines 17, 52, 58 and 104 as the file stood at 70be85f; L8-10's line 214 and L3-12's line 277 are corrected at the
+  move. The summaries' entries in `OWN_FILES` become their `prior-art/` paths in the same change, and so do the two old
+  paths in the list in `tests/test_unlisted_files.py`. If the prior-art note is a file of its own, it gains an entry in
+  `OWN_FILES` and in that list, or the checker fails it as unlisted.
+- `hr1/HR1-Impact-Summary.md` retired. Its claims become statute rows or go with the file, L8-11's included, and the
+  Done entry says which. In the same change its entry leaves `OWN_FILES` in `scripts/corpus_check/constants.py`, the
+  list in `tests/test_unlisted_files.py` and the list under "The checker" in the Formats; the names and the counts of
+  the corpus's own files under "Stored sources and the manifest" in the Formats lose it; and the skill's Precedence,
+  which names it among the older analysis files, drops it.
+- The statute extract made from GovInfo's text of Public Law 119-21, which increment 2.7 stores as served, and the
+  other 15 files in `hr1/` retired once this increment has pointed every Source that still cites `hr1/` at GovInfo's
+  text: 14 reformatted copies of the law
+  (`119hr1enr.md`, `119hr1enr-toc.md` and the 12 `119hr1enr-title*.md` files for titles 1 to 10, title 7 in three
+  parts) and a list of its sections that touch HHS, `119hr1enr-hhs-sections.md`. On 2026-10-22, 25 lines of the
+  extract and 2 of `open-questions.md` named `hr1/119hr1enr-title7-part3.md`, 19 and 1 of them Source lines.
+  Increment 2.7 repoints 5 of the 19, the Sources of increment 1's row on clause (ii), so this increment repoints the
+  other 14 and the one in `open-questions.md`. The two
+  eCFR text files in `supporting-regs/` retired once eCFR XML of their sections is stored and nothing cites them;
+  increments 2.1 and 2.5 store four of those sections first (42 CFR 435.119, 28 CFR 35.108, 42 CFR 447.51 and
+  42 CFR 435.603), and this increment stores the rest. On 2026-10-22, 2 lines of the extract, neither a Source
+  line, named `supporting-regs/42cfr-supporting-sections.txt`.
+- The two Code for America blueprint PDFs,
+  `blueprint-pdfs/Medicaid-Work-Requirements-Service-Blueprint-–-Code-for-America-11x17-1.pdf` and
+  `blueprint-pdfs/SNAP-Work-Requirements-Service-Blueprint-–-Code-for-America-11x17-1.pdf`, replaced by links in the
+  prior-art note, unless Code for America's terms allow keeping copies. Neither PDF states a license.
+- Each stored copy retired here loses its entry in `docs/domain/sources/MANIFEST.json` and its line in
+  `.gitattributes` in the same change, and no row, fact or question cites it after.
 - The lines that point at v1's files fixed. Decision record 0001 counted 32 on 2026-10-16; the pattern check below is
   the measure.
+- `README.md`, "What is here", fixed where this increment makes it untrue: it names the two summaries as prior art,
+  and, if the blueprint PDFs give way to links, it no longer says the folder holds Code for America's service
+  blueprints.
 
 ### Deliberately not
 
@@ -409,9 +1282,11 @@ It removes the secondary sources that carried the oldest errors, once the extrac
 
 ### How you know it worked
 
-The checker passes. No file in `docs/domain/` outside the stored sources and the research records names a v1 decision
-record, wave, steering file or `src/` path. Each retired or moved file appears in the Done entry with where its content
-went, against the decision record.
+`/usr/bin/python3 -m unittest discover -s tests` (3.9.6) and `/opt/homebrew/bin/python3 -m unittest discover -s tests`
+(3.14.6) both pass, each run as its own command, and `scripts/check-corpus.py` exits 0 under both, each by its path.
+No file in `docs/domain/` outside the stored sources and the research records names a v1 decision record, wave,
+steering file or `src/` path. Each retired or moved file appears in the Done entry with where its content went, against
+the decision record.
 
 ### Needs from you
 
@@ -428,15 +1303,88 @@ status is shown and when documentation starts, how the 30 days are counted, subm
 and the start date. Colorado's facts come from its draft rule (10 CCR 2505-10 § 8.100), HCPF's pages and its English
 and Spanish letter templates, each stored with its retrieval date.
 
-`state-options.md`'s tracker moves into the facts files, the values the research checked for other states labeled as
-checked once on 2026-10-16 and not maintained, and the file is retired. The last sections of `rule-extract.md` become
-pointers, and that file is retired too. The open policy questions go into `docs/domain/open-questions.md`, each with who
-can answer it.
+Every Colorado fact marked `not published` or `inferred`, those increments 2.1 to 2.8 wrote included, is rechecked
+against every Colorado source this increment stores, and its note gains the recheck's date and result. A fact a newly
+stored source answers takes that source's words and its status changes, with the old value in the note.
+
+The Colorado findings of Ledgers A and B, each named in the Done entry with the facts or rows it produced, or why it
+produced none. Where a fact is named here by the row it attaches to, the row is this plan's reading of which paragraph
+carries the subject, an inference the Done entry confirms or corrects. A fact taken from the draft rule says in its
+`setting` that the draft is not adopted, as Colorado's fact on renewal-notice-with-renewal-form does.
+
+- L5-8, dangerous for the cap: two facts from the draft rule, stored since increment 1
+  (`10-ccr-2505-10-8.100-draft-2026-09-28.txt` lines 1691 to 1696, and 1723 to 1724). On increment 2.4's row for
+  § 435.552(d)(1), Colorado rounds the monthly hours from credit hours up to the nearest whole hour. On its row for the
+  state programs in § 435.552(b)'s definition of work program, job search in a state workfare or training program
+  counts for at most 39 hours a month.
+- L5-9, dangerous: a fact on increment 2.7's row for § 435.556(a)(1), the months checked at application, that for a
+  requested retroactive month HCPF reviews the month before it, from HCPF's FAQ, under "What is a mandatory exception"
+  (research L5, section 7), stored with its retrieval date. Its note says the interim final rule has no line on
+  retroactive coverage (research L5-9, counted).
+- L5-1: no fact. The draft rule is stored already, and the watch list's item for the Medical Services Board's dates
+  cites page 30 of the deck this increment stores in place of the research.
+- L5-2: the facts for Colorado's months checked at application (the month before) and at renewal (1 calendar month
+  since the last renewal deadline), the income-to-hours proxy, attestation in 2027, veterans shown by a VA
+  determination, and 6-month renewals, each on the row of the topic that carries its paragraph, from the draft rule
+  and HCPF's FAQ, timeline and letter, each stored. The ledger did not recheck more-frequent checks or the 12-month
+  frailty exclusion, so each is read in a stored source before a fact rests on it.
+- L5-3: no new fact. Increment 1 applied it in `state-options.md` and wrote the inferred fact on
+  renewal-notice-with-renewal-form, which increment 2.1 gives its `choice`; this increment rechecks that fact with the
+  others marked `inferred`.
+- L5-12, burdensome: facts on increment 2.2's rows for § 435.557(f) naming the data Colorado counts as showing medical
+  frailty: SSI, SSDI, long-term services and supports, and a facility stay now or in the past 3 months, from HCPF's
+  FAQ, stored. The ledger did not re-open the HIE plan or Worksheet J, so neither is cited until it is read in a
+  stored copy.
+- L5-16 with L6-11: the English and Spanish letter templates, stored with their text extractions, which source the
+  renewal fact under L5-2 beside the draft rule. The 12-PDF count and the 377,000 figure, which the ledger did not
+  recheck, go into no fact.
+- L5-18, dangerous: no new fact. Increment 1's three Colorado facts on appeals and its open question on the 10 days
+  carry the 60 days and the 10 days, from the stored rule and the stored appeals page. The page's line that a
+  first-time applicant gets no continuation of benefits (`hcpf-appeals-2026-10-17.html` line 1151) is checked against
+  those facts' settings, each "for a member", and gets a fact of its own only if they do not carry it.
+- L5-21: no fact. No Colorado fact rests on HCPF's key changes page, the member FAQ's expectation of federal guidance
+  by June 2026, the February Worksheet J draft, or the September worker sheet's list of veterans, which omits TDIU,
+  since each predates the rule or disagrees with the draft rule. The facts cite the draft rule, HCPF's page of
+  September 23, 2026 and the final forms instead, as research L5 finding 21 says.
+
+Colorado's values in `state-options.md`'s tracker move into `co.json`, and its federal default profile into
+`federal.json`. The values the research checked for other states go into no facts file: each is dropped when the file
+is retired and stays in the research records, and the Done entry names, state by state, the ledger findings that
+checked it (decision record 0006). L4-8, L4-12, L4-16 and L4-17 with L8-5, about other states and not dangerous, are
+not applied and go with their files. Of the ledger's states to add, Colorado's values go into `co.json` from its
+stored sources, and the rest stay in the ledger. "Open data gaps" goes to `open-questions.md` where a gap asks about
+the federal rule or Colorado, and is dropped otherwise. "Why this exists" and "How to add a State" are retired, since
+the Formats' "State facts" says how a state is added, and the schema stays in history on `experiment-1`. Then the file
+is retired.
+
+The last sections of `rule-extract.md` become pointers, and that file is retired too: section 10, its state-configurable
+parameters, once each is a row's State election and its column of assumptions has given way to `federal.json`; section
+11, the implementation landscape, with Colorado and the federal default in the state facts and other states' values
+dropped, kept in the research records; and section 12, its open questions to track, into `open-questions.md` or the rows
+that answer them. The open policy questions go into `docs/domain/open-questions.md`, each with who can answer it.
+
+With `state-options.md` gone, the opening line of `supporting-regs/README.md` section 4 and its count of tracked
+parameters, both of which refer to that file, go too. In the change that retires each of the two files, its entry leaves
+`OWN_FILES` in `scripts/corpus_check/constants.py`, and `state-options.md`'s leaves the list in
+`tests/test_unlisted_files.py`; both leave the list under "The checker" in the Formats, and the names and the counts of
+the corpus's own files under "Stored sources and the manifest"; and the skill's Precedence, which names both among the
+older analysis files, drops them. With the last analysis file gone, `README.md`'s "What is
+here" no longer says `docs/domain/` holds "analysis written for this project". `tests/corpus_fixture.py` uses
+`rule-extract.md` as its `ANALYSIS` file, so `ANALYSIS` becomes `docs/domain/supporting-regs/README.md`, an own file
+that stays at its path to the end of the epic, and `ANALYSIS_TEXT` keeps its third line, which tests quote. Every test
+that spells out `rule-extract.md`'s path, on 2026-10-22 in `tests/test_manifest_files.py` and
+`tests/test_unlisted_files.py`, takes the README's path in the same change. So does the one spelled in other case,
+which a case-sensitive search misses: `"docs/domain/CMS-2454-IFC/Rule-Extract.md"`, line 61 of
+`tests/test_manifest_files.py`, becomes the README's path in other case, such as
+`docs/domain/Supporting-Regs/readme.md`, so it stays a spelling of the file `ANALYSIS` names and its subtest still
+tests the case-folding its comment describes.
 
 (Added 2026-10-21. HCPF's board deck of 2026-09-28, which research L5 cites for the board's dates at deck page 30, is
 not stored; its Drive address is at `docs/domain/research/2026-10-16-policy/L5-colorado.md` line 46. A copy is kept
 outside the repository at `.agents/policy-research-2026-10-16/scratch-L5/rule-deck-2026-09-28.pdf` in case that link
-moves. This increment stores the deck as a source, from that copy or fetched again.)
+moves. This increment stores the deck as a source, from that copy or fetched again.) It is stored as
+`docs/domain/sources/colorado/hcpf-rule-deck-2026-09-28.pdf`, with its text extraction beside it (decision record
+0006).
 
 ### Deliberately not
 
@@ -450,24 +1398,37 @@ findings 10 and 11), so its facts need a recheck date in the watch list, and som
 
 ### How you know it worked
 
-The checker passes, and every Colorado fact shows its source, its retrieval date, and whether it comes from the draft
-rule. The checker's list of the corpus's own files names no retired file, and every file left in `docs/domain/` is a
-stored source in the manifest, the extract, a state facts file, the open questions, the § 435.603 extract, a research
-record or prior art marked as predating the rule.
+`/usr/bin/python3 -m unittest discover -s tests` (3.9.6) and `/opt/homebrew/bin/python3 -m unittest discover -s tests`
+(3.14.6) both pass, each run as its own command, and `scripts/check-corpus.py` exits 0 under both, each by its path.
+Every Colorado fact shows its source, its retrieval date, and whether it comes from the draft rule. Every Colorado fact
+marked `not published` or `inferred` names in its note the recheck against this increment's stored sources and its
+date, and the Done entry lists each such fact with its result. Each Colorado finding named under Delivers appears in
+the Done entry with the facts or rows it produced, or why it produced none. The checker's list of the corpus's own
+files names no retired file, and every file left in `docs/domain/` is a stored source in the manifest, the extract, a
+state facts file, the open questions, the § 435.603 extract, a research record or prior art marked as predating the
+rule.
 
 ### Needs from you
 
 Whether to keep the other states' checked-once values in the facts files, as proposed, or leave them in the research
-records.
+records. (Decided 2026-10-22 by the owner: they are not moved into the facts files. They leave with `state-options.md`
+and stay in the dated research records, as decision record 0006 records.)
 
 ## 5. The domain skill, complete
 
 ### Delivers
 
 The skill with all its rows, the number labels, CMS's vocabulary in English and Spanish, with the Spanish renderings
-the research found wrong (research L5-19), the error checklist and a dated watch list: the
-Massachusetts v. Oz hearing on October 22, 2026, Taylor v. Kennedy, the IRS proposed rule open for comment until
-November 30, 2026, Colorado's rule, SNAP's pending rule, and the next eCFR check.
+the research found wrong (research L5-19), the error checklist and a dated watch list. Under L5-19 the vocabulary's
+entry for half-time quotes "al menos a tiempo parcial" from page 3 of Colorado's Spanish letter, which increment 4
+stores, as a rendering that reads as part-time and so blurs half-time with less than half-time; the entry says that
+reading is the research's, not a native speaker's (ledger L5-19). The vocabulary takes in the
+terminology note in the header of `rule-extract.md`, which increment 4 retires, so it is read from git history. The
+error checklist is a list in the skill naming each error this corpus has made and the row that corrects it, drawn from
+the rows' Notes, where increments 2.1 to 2.8 quote the entries of `what-matters-most.md` section 12 that their rows
+correct, and from errors found after 2026-10-16 (decision record 0006). The watch list holds the Massachusetts v. Oz
+hearing on October 22, 2026, Taylor v. Kennedy, the IRS proposed rule open for comment until November 30, 2026,
+Colorado's rule, SNAP's pending rule, and the next eCFR check.
 
 ### Deliberately not
 
@@ -479,6 +1440,8 @@ The skill is what every later session reads, so it comes last, from a corpus tha
 
 ### How you know it worked
 
+`/usr/bin/python3 -m unittest discover -s tests` (3.9.6) and `/opt/homebrew/bin/python3 -m unittest discover -s tests`
+(3.14.6) both pass, each run as its own command, and `scripts/check-corpus.py` exits 0 under both, each by its path.
 A fresh session given five questions from the error checklist loads the skill without being told to, as in increment
 1, and answers each with the right citation and the row's identifier. The questions are written before the session
 runs.

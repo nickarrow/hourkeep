@@ -42,15 +42,19 @@ error would cost a person, and what should trigger a recheck. Rows arrive a topi
 passage on it in each older analysis file is replaced by a pointer to the new rows, and the corrections the research
 found in that passage are applied there and then, so no stale copy outlives its topic. A passage becomes a pointer only
 once every claim in it has a row. A claim no row covers yet, or a passage that also covers topics still to come, is
-corrected in place and waits for its own topic.
+corrected in place and waits for its own topic. Two kinds of correction come sooner, in a fix before increment 2.1:
+one the research ledger rates dangerous, and one about an event or a publication that no topic covers. One about a
+state other than Colorado that is not dangerous is not applied, and goes when its file is retired (decision record
+0006).
 
 The § 435.603 household income extract in `supporting-regs/README.md` stays, without its v1 notes, and keeps
 precedence on income.
 
 State facts move into structured data files, one per state plus one for the federal default, each fact with a value, a
 citation, its sources, the date it was checked, and the date of each source, so a fact taken from something older than
-the rule shows it. The tracker in `state-options.md` becomes these files. They start with the federal default and
-Colorado.
+the rule shows it. The federal default profile in `state-options.md` and the Colorado values in its tracker become
+these files, and the values the research checked for other states stay in the dated research records (decision record
+0006). They start with the federal default and Colorado.
 
 A HourKeep domain skill, `.kiro/skills/medicaid-community-engagement/`, carries the operative rules in short form with
 pointers into the extract. It is a main file, `SKILL.md`, plus one file per topic (decision record 0004), and holds a
@@ -59,12 +63,14 @@ CMS's vocabulary, a checklist of errors this corpus has already made, and a date
 `hhs-benefits` skill stays.
 
 Four analysis files are retired and two move. `rule-extract.md` goes once every section in it is a pointer.
-`what-matters-most.md` goes once its priorities and its error checklist are in the extract and the skill.
-`state-options.md` goes once its tracker is in the state facts files; its v1 schema stays in history on `experiment-1`.
+`what-matters-most.md` goes once its priorities are in the topics' start-here rows and the order of the skill's
+groups, and each entry of its error checklist is in a row of the extract, from which increment 5 assembles the skill's
+checklist. `state-options.md` goes once its federal default profile and its tracker's Colorado values are in the state
+facts files; its v1 schema stays in history on `experiment-1`.
 `hr1/HR1-Impact-Summary.md` gives way to a short extract of the statute sections HourKeep relies on. The two Code for
 America blueprint summaries move to `docs/domain/prior-art/` with a note that they predate the rule, and each error
-already found in them gets a dated correction. One decision record sets out the whole restructure and says where each
-part goes.
+already found in them gets a dated correction. Decision record 0006 sets out the whole restructure and where each file
+goes, and the delivery plan lists the passages each increment moves.
 
 Three groups of stored copies go too, each replaced by something verbatim. The copies of Public Law 119-21 in `hr1/`,
 which a formatter rewrote in November 2025, give way to GovInfo's text of the law, stored as served, along with the list
@@ -84,8 +90,8 @@ left over fails.
 
 ## Formats
 
-Increment 1 builds these, and every later increment fills them. Where this section leaves a detail open, increment 1
-settles it and writes it here.
+Increment 1 builds these, and every later increment fills them, changing them only where decision record 0006 says.
+Where this section leaves a detail open, increment 1 settles it and writes it here.
 
 ### Where things live
 
@@ -311,10 +317,12 @@ seven are the corpus's own files: six analysis files, namely `rule-extract.md`, 
 
 Re-fetching an older source means fetching the same document from its publisher. A verbatim source is re-fetched. A
 derived copy is not, because how it was made was never recorded; its entry names what it came from where a record or
-the file itself says so, and `not recorded` where nothing does. Increment 3 stores the origins of the `hr1/` and
-`supporting-regs/` copies. When a fresh copy of a source that states no license differs from the stored one, as the
-blueprint PDFs might, it is not stored: the old entry's `note` gives the address, the time and the fresh copy's hash,
-and increment 3 decides whether copies stay at all.
+the file itself says so, and `not recorded` where nothing does. Increment 2.7 stores GovInfo's text of Public Law
+119-21, the origin of the `hr1/` copies, and increment 3 stores the origins of the `supporting-regs/` copies, but for
+the four sections of `supporting-regs/` that increments 2.1 and 2.5 store first (decision record 0006). When a fresh
+copy of a source that states no license differs from the stored one, as the blueprint PDFs might, it is not stored:
+the old entry's `note` gives the address, the time and the fresh copy's hash, and increment 3 decides whether copies
+stay at all.
 
 ### State facts
 
@@ -528,8 +536,9 @@ and checks the rest, as it does for an absent skill.
 ## What it will not do
 
 - Write app code, or decide how the app loads these facts.
-- Cover states beyond the federal default and Colorado. Values the research checked for other states are kept as
-  leads, labeled as checked once and not maintained, unless the owner decides otherwise.
+- Cover states beyond the federal default and Colorado. Values the research checked for other states stay in the
+  dated research records and go into none of the corpus's own files, as the owner decided on 2026-10-22 (decision
+  record 0006).
 - Answer the open policy questions the research raised. They go into `docs/domain/open-questions.md`, each addressed to
   whoever can answer it: CMS, Colorado's HCPF, or a policy person.
 - Add SNAP facts beyond what the SNAP awareness questions need.
