@@ -2,16 +2,16 @@
 
 Policy questions that only CMS, a state or a policy person can answer, each with who can answer it, the rows that
 wait on the answer and the stored lines it rests on; none is answered here, and every check so far was made by an AI
-agent. Each question says why it is open: the sources conflict, the sources are silent, it turns on a choice the state
-has not published, or the answer may be in a provision the corpus has not stored.
+agent. Each question still open says why: the sources conflict, the sources are silent, it turns on a choice the state
+has not published, or the answer may be in a provision the corpus has not stored. A question whose part moved to the
+state facts keeps its heading, with a `Moved` line naming the fact that now holds it.
 
 ### Which renewal option applies where a state's plan records no choice?
 
-- Why it is open: it turns on a choice the state has not published; the sources are silent. 42 CFR 435.558(b)(2)
-  gives the state two options and the preamble has it record its choice in its State plan, but no stored source says
-  which option applies before a state records one. Colorado's fact is inferred from a draft rule that names neither
-  option (research L5-3).
-- Who can answer: CMS, or Colorado's HCPF for Colorado
+- Why it is open: the sources are silent. 42 CFR 435.558(b)(2) gives the state two options and the preamble has it
+  record its choice in its State plan, but no stored source says which option applies before a state records one.
+  Colorado's part moved on 2026-10-23 to the state fact co: renewal-notice-with-renewal-form.
+- Who can answer: CMS
 - Raised: 2026-10-17, by rows renewal-notice-with-renewal-form, renewal-notice-after-renewal-form-period and
   no-noncompliance-notice-when-other-factors-unanswered, and the Colorado fact for renewal-notice-with-renewal-form;
   2026-10-19, by rows notice-sent-with-renewal-form, notice-sent-after-renewal-form-period and
@@ -21,14 +21,18 @@ has not published, or the answer may be in a provision the corpus has not stored
 - Source: docs/domain/cms-2454-ifc/2026-11094.xml:2029 "The State must document its selected option in the State plan."
 - Note: 42 CFR 435.558(b)(2) gives the state two options and the preamble has it record its choice in its State
   plan. No stored source says which option applies before a state records one. Colorado's fact is inferred from a
-  draft rule that names neither option (research L5-3).
+  draft rule that names neither option (research L5-3). (Corrected 2026-10-23: Why it is open said "it turns on a
+  choice the state has not published; the sources are silent. 42 CFR 435.558(b)(2) gives the state two options and
+  the preamble has it record its choice in its State plan, but no stored source says which option applies before a
+  state records one. Colorado's fact is inferred from a draft rule that names neither option (research L5-3)." and
+  Who can answer said "CMS, or Colorado's HCPF for Colorado"; decision record 0006.)
 
 ### Which option applies to checks between renewals where a state's plan records no choice?
 
-- Why it is open: it turns on a choice the state has not published; the sources are silent. In a state that verifies
-  compliance more often than at renewal under 42 CFR 435.557(d), 42 CFR 435.558(b)(3) gives two options, and no
-  stored source sets a default between them.
-- Who can answer: CMS, or Colorado's HCPF for Colorado
+- Why it is open: the sources are silent. In a state that verifies compliance more often than at renewal under
+  42 CFR 435.557(d), 42 CFR 435.558(b)(3) gives two options, and no stored source sets a default between them.
+  Colorado's part moved on 2026-10-23 to the state fact co: more-frequent-check-notice-after-data-check.
+- Who can answer: CMS
 - Raised: 2026-10-17, by rows more-frequent-check-notice-after-data-check and
   more-frequent-check-notice-after-information-request; 2026-10-19, by rows
   no-separate-request-before-notice-after-data-check and notice-after-unanswered-information-request
@@ -36,7 +40,11 @@ has not published, or the answer may be in a provision the corpus has not stored
 - Source: docs/domain/sources/federal-register/C1-2026-11094.xml:155 "to request information from the individual, when the requested information is not returned"
 - Source: docs/domain/cms-2454-ifc/2026-11094.xml:2068 "the State may select one of two options, similar to those provided at renewal"
 - Note: The question arises only in a state that verifies compliance more often than at renewal under
-  42 CFR 435.557(d). No stored source sets a default between the two options of 42 CFR 435.558(b)(3).
+  42 CFR 435.557(d). No stored source sets a default between the two options of 42 CFR 435.558(b)(3). (Corrected
+  2026-10-23: Why it is open said "it turns on a choice the state has not published; the sources are silent. In a
+  state that verifies compliance more often than at renewal under 42 CFR 435.557(d), 42 CFR 435.558(b)(3) gives two
+  options, and no stored source sets a default between them." and Who can answer said "CMS, or Colorado's HCPF for
+  Colorado"; decision record 0006.)
 
 ### Are the 5 days after which a notice of noncompliance or a notice of action counts as received counted as calendar days?
 
@@ -126,21 +134,7 @@ has not published, or the answer may be in a provision the corpus has not stored
 
 ### Which SMD 26-001 transition path did Colorado take for renewals already scheduled in 2027?
 
-- Why it is open: it turns on a choice the state has not published. SMD 26-001 gives a state two transition paths for
-  renewals already scheduled in 2027, and no stored Colorado source says which path Colorado took.
-- Who can answer: Colorado's HCPF, or CMS
-- Raised: 2026-10-17, by rows reschedule-2027-renewals-to-six-months and keep-scheduled-2027-renewals
-- Source: docs/domain/sources/cms/smd-26-001.txt:258 "are already enrolled in a 12-month eligibility period in the"
-- Source: docs/domain/sources/cms/smd-26-001.txt:289 "Under Option 1, the state would shorten the eligibility period for beneficiaries enrolled in the"
-- Source: docs/domain/sources/cms/smd-26-001.txt:305 "Under Option 2, the state would not reschedule already-set 2027 renewal initiation dates, which"
-- Note: No stored Colorado source answers it. On 2026-10-17 the 8.000 and draft 8.100 extractions, HCPF's appeals
-  page and the 8.000 rule-information page were searched, ignoring case, for 26-001, reschedul, six-month and
-  6-month; the only hits were two eDocket numbers on the rule-information page that contain 26-001 by chance. As a
-  research lead only: the 2026-10-16 research records Montana as taking the first path, SMD 26-001's Option 1, in its
-  open question 13 (docs/domain/research/2026-10-16-policy/ledger.md:232, "Montana's table shows Option 1"), from a
-  Montana agency page that is not stored and so is not cited as a Source. (Corrected 2026-10-19: the heading said
-  "Which SMD 26-001 transition path did Colorado take for renewals already scheduled in 2027, and has any state said
-  which it took?" and the Note said "For the second part,"; full review 2026-10-19, against the source 3.)
+- Moved: 2026-10-23, to the state fact co: reschedule-2027-renewals-to-six-months.
 
 ### Must a state publish which SMD 26-001 transition path it took?
 
@@ -191,11 +185,12 @@ has not published, or the answer may be in a provision the corpus has not stored
 
 ### What do the at least 30 days in Colorado's draft renewal paragraph count from, and could they give fewer than 30 days from receipt, or more than the 30 days the preamble says cannot be extended?
 
-- Why it is open: the sources are silent; it turns on a choice the state has not published. Colorado's draft 8.100
-  does not say what its at least 30 days count from, and by aligning the self-reporting form's due date with the
-  redetermination due date it could run past the 30 days the preamble says cannot be extended. The draft is not
-  adopted, and the adopted rule may settle this.
-- Who can answer: Colorado's HCPF
+- Why it is open: the sources are silent. By aligning the self-reporting form's due date with the redetermination
+  due date, Colorado's draft 8.100 could give a period that runs past the 30 days the preamble says cannot be
+  extended. The draft is not adopted, and the adopted rule may settle this. The question keeps whether aligning the
+  form's due date with the renewal's fits the preamble's 30 days, and no longer asks what the 30 days count from.
+  Colorado's part moved on 2026-10-23 to the state fact co: renewal-notice-with-renewal-form.
+- Who can answer: CMS, or Colorado's HCPF for how its draft is meant to work
 - Raised: 2026-10-17, by row renewal-notice-with-renewal-form and the Colorado fact for it; 2026-10-19, by row
   notice-sent-with-renewal-form
 - Source: docs/domain/sources/colorado/10-ccr-2505-10-8.100-draft-2026-09-28.txt:1929 "individual shall be provided at least 30 calendar days to provide"
@@ -203,14 +198,22 @@ has not published, or the answer may be in a provision the corpus has not stored
 - Source: docs/domain/sources/federal-register/C1-2026-11094.xml:136 "a period of 30 calendar days beginning on the date on which such notice of noncompliance is received by the individual"
 - Source: docs/domain/cms-2454-ifc/2026-11094.xml:2032 "cannot be extended to align with a longer period for beneficiaries to return their renewal form"
 - Note: The draft does not say what its 30 days count from, and the federal 30 days begin on the date the person
-  receives the notice. The question has two sides. Counted from the date on the form, the draft's 30 days could
-  give fewer than 30 days from receipt. And because the draft aligns the self-reporting form's due date with the
-  redetermination due date (h.iii.3), the period could run past 30 days, where the preamble says the notice's
-  30-calendar-day period cannot be extended to align with a longer period for returning the renewal form
-  (91 FR 33411). A Colorado person shown the renewal due date as the deadline may answer after a 30-day deadline
-  the state enforces. The research asked the second side as its open
-  question 2 (docs/domain/research/2026-10-16-policy/ledger.md:221), a research record, so it is named here rather
-  than cited as a Source. The draft 8.100 is not adopted, and the adopted rule may settle this.
+  receives the notice. Only the second of the question's two sides stays here: the first, that counted from the date
+  on the form the draft's 30 days could give fewer than 30 days from receipt, moved on 2026-10-23 to the
+  counts_from of the state fact co: renewal-notice-with-renewal-form. (Corrected 2026-10-23: said "The question has
+  two sides. Counted from the date on the form, the draft's 30 days could give fewer than 30 days from receipt." and
+  "And because"; full review 2026-10-23, corpus against source 1.) Because the draft aligns the self-reporting
+  form's due date with the redetermination due date (h.iii.3), the period could run past 30 days, where the
+  preamble says the notice's 30-calendar-day period cannot be extended to align with a longer period for returning
+  the renewal form (91 FR 33411). A Colorado person shown the renewal due date as the deadline may answer after a
+  30-day deadline the state enforces. The research asked the second side as its open question 2
+  (docs/domain/research/2026-10-16-policy/ledger.md:221), a research record, so it is named here rather than cited
+  as a Source. The draft 8.100 is not adopted, and the adopted rule may settle this. (Corrected
+  2026-10-23: Why it is open said "the sources are silent; it turns on a choice the state has not published.
+  Colorado's draft 8.100 does not say what its at least 30 days count from, and by aligning the self-reporting form's
+  due date with the redetermination due date it could run past the 30 days the preamble says cannot be extended. The
+  draft is not adopted, and the adopted rule may settle this." and Who can answer said "Colorado's HCPF"; decision
+  record 0006.)
 
 ### Does an applicant whose own declaration of noncompliance is accepted still get a notice of noncompliance?
 
@@ -261,3 +264,72 @@ has not published, or the answer may be in a provision the corpus has not stored
   (docs/domain/research/2026-10-16-policy/ledger.md:229). No stored source says how the regulation's text is
   reconciled with the statute, and § 435.916(d) was not read. The stored statute is a derived
   copy whose origin was never recorded. The epic design names this as the first conflict for this list.
+
+### Which criteria must a family caregiver meet under 42 CFR 435.554(c)(3), which cites paragraphs that do not exist?
+
+- Why it is open: the sources conflict. 42 CFR 435.554(c)(3), as the June 3 printing gives it, has a family caregiver
+  meet one of the criteria at paragraphs (c)(1)(i)(A) through (C), and paragraph (c)(1) is one sentence with no
+  subparagraphs, while the preamble says those criteria are specified at § 435.554(c)(3)(i).
+- Who can answer: CMS
+- Raised: 2026-10-23, by rows parent-guardian-caretaker-relative-or-family-caregiver-excluded and
+  family-caregiver-excluded-on-one-criterion
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3670 "meets one of the criteria identified at paragraphs (c)(1)(i)(A) through (C) of this section"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3668 "The individual meets the definition of the eligibility group serving former foster care children"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:781 "must also meet certain criteria specified at new"
+- Note: The preamble line goes on to name § 435.554(c)(3)(i) (91 FR 33366), whose three criteria are rows
+  family-caregiver-living-with-care-recipient, family-caregiver-relative-living-apart and
+  family-caregiver-unrelated-living-apart-80-hours. The June 29 correction republished only §§ 435.557 and 435.558,
+  so it does not reach § 435.554. Reading the printed words as meaning (c)(3)(i) is an inference, and no stored
+  source says which governs.
+
+### How does the regarded as prong of 28 CFR 35.108 apply to the disabled individual of the caregiver exclusion?
+
+- Why it is open: the sources are silent. 42 CFR 435.554(a) defines a disabled individual by the ADA definition of
+  disability at 28 CFR 35.108, whose regarded as prong turns on the individual being subjected to an action the ADA
+  prohibits because of an actual or perceived impairment, and neither 28 CFR 35.108 nor the preamble lines read for
+  these rows say how that prong applies where the question is only whether a caregiver is excluded.
+- Who can answer: CMS
+- Raised: 2026-10-23, by rows disabled-individual-defined, ada-disability-definition,
+  ada-disability-any-one-or-more-prongs, ada-regarded-as-having-impairment and
+  ada-regarded-as-excludes-transitory-and-minor
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3649 "means an individual who meets the Americans with Disabilities Act definition of disability at 28 CFR 35.108"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:7 "Being regarded as having such an impairment as described in paragraph (f) of this section"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:59 "if the individual is subjected to a prohibited action because of an actual or perceived physical or mental impairment"
+- Note: Getting it wrong could go either way: a caregiver of a person regarded as having an impairment who is told
+  the prong cannot apply may meet a requirement that does not apply to them, and one told any perceived impairment
+  is enough may not meet one that does. The preamble lines read are those the rows disabled-individual-defined and
+  disabled-individual-has-no-age-limit cite, on 91 FR 33368 and 33369.
+
+### Do the relationships a state adds to the caretaker relative definition count for a family caregiver who lives apart?
+
+- Why it is open: the sources are silent. 42 CFR 435.554(c)(3)(i)(B) and (C) turn on whether the family caregiver is
+  a relative as the caretaker relative definition specifies, without regard to its requirements to live with and to
+  assume primary responsibility, and neither paragraph nor the preamble lines read for these rows say whether the
+  relationships a State may add under paragraph (iv) of that definition count.
+- Who can answer: CMS
+- Raised: 2026-10-23, by rows family-caregiver-relative-living-apart,
+  family-caregiver-unrelated-living-apart-80-hours and caretaker-relative-other-relationships-at-state-option
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3673 "without regard to the requirements to live with and to assume primary responsibility"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3674 "The individual does not reside with and is not a relative"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3642 "At State option, another relative of the dependent child or disabled individual based on blood (including those of half-blood), adoption, or marriage"
+- Note: The answer decides whether a caregiver who lives apart from the person, in a relationship a State added,
+  needs only assistance that is regular and not solely incidental, under (B), or at least 80 hours a month of it,
+  under (C). It matters only in a State that added relationships, and no state fact records whether Colorado did.
+
+### What does household mean in the SNAP exclusion of 42 CFR 435.554(c)(7)?
+
+- Why it is open: the sources are silent. 42 CFR 435.554(c)(7) excludes a member of a household that receives SNAP
+  benefits, and no stored source defines household for it; the preamble describes the SNAP household and has States
+  use SNAP household eligibility from the SNAP agency, which points to the SNAP household without saying so.
+- Who can answer: CMS
+- Raised: 2026-10-23, by rows snap-household-member-not-exempt-from-work-requirement-excluded and
+  snap-exclusion-covers-general-and-time-limit-work-requirements
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3689 "The individual is a member of a household that receives Supplemental Nutrition Assistance Program (SNAP) benefits"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:915 "In SNAP, a household is defined as everyone who lives together and purchases and prepares meals together."
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1972 "SNAP household eligibility and work requirement exemption and exception status"
+- Note: The line on the SNAP household (91 FR 33370) comes in the preamble's discussion of the dependent child, and
+  the line on SNAP agency data (91 FR 33407) in its discussion of verification. Research L2 labels the meaning open
+  and reads it as the SNAP household as the SNAP agency determined it, not the MAGI household of § 435.603
+  (docs/domain/research/2026-10-16-policy/L2-cms-guidance.md:33 and :171), a research record, so it is named here
+  rather than cited as a Source. Getting it wrong is dangerous: a person who shares a home with SNAP recipients but
+  is not on their SNAP case, told they are excluded, may not meet a requirement that applies to them.

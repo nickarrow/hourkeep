@@ -23,12 +23,12 @@ def check(root: Path) -> Tuple[List[Problem], List[Problem], Counts]:
     warnings: List[Problem] = []
     counts = Counts()
     files = list_files(root, problems)
-    rows = check_extract(root, files, problems, counts)
+    rows, topics = check_extract(root, files, problems, counts)
     check_manifest(root, files, problems, counts)
     check_unlisted_files(root, files, problems)
-    check_state_facts(root, rows, files, problems, warnings, counts)
-    check_open_questions(root, files, problems)
-    check_skill(root, files, rows, problems, counts)
+    facts = check_state_facts(root, rows, files, problems, warnings, counts)
+    check_open_questions(root, files, problems, facts)
+    check_skill(root, files, rows, topics, problems, counts)
     check_review_pages(root, files, problems)
     return problems, warnings, counts
 

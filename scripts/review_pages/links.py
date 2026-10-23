@@ -12,8 +12,8 @@ from corpus_check.constants import STATE_ELECTION
 
 from .constants import (
     CCR_DRAFT_PART, CCR_DRAFT_SOURCE, CCR_PART, CCR_SOURCE, CFR_LISTED, CFR_PARAGRAPH, CFR_PART, CFR_SECTION_SIGN,
-    CFR_TITLE, CFR_URL, EMAIL, FR_PART, FR_URL, GOOGLE_FORM_FOR, ISSUE_FORM, NOT_RECORDED, PUBLIC_LAW_PART,
-    PUBLIC_LAW_URL, SMD_PART, SMD_SOURCE, SSA_PART, SSA_URL,
+    CFR_TITLE, CFR_TITLE_42, CFR_URL, EMAIL, FR_PART, FR_URL, GOOGLE_FORM_FOR, ISSUE_FORM, NOT_RECORDED,
+    PUBLIC_LAW_PART, PUBLIC_LAW_URL, SMD_PART, SMD_SOURCE, SSA_PART, SSA_URL,
 )
 
 IF_WRONG = {
@@ -43,15 +43,16 @@ def source_address(manifest: dict, path_matches) -> Optional[str]:
     return None
 
 
-def section_address(section: str, paragraph: str) -> str:
-    """The eCFR's current page for a title 42 section, at the paragraph, such as (c)(2), if one is given."""
-    address = CFR_URL.format(section)
+def section_address(title: str, section: str, paragraph: str) -> str:
+    """The eCFR's current page for a section of the title, at the paragraph, such as (c)(2), if one is given."""
+    address = CFR_URL.format(title, section)
     return address + CFR_PARAGRAPH.format(quote(section + paragraph, safe="")) if paragraph else address
 
 
 def cfr_address(match) -> str:
-    """The eCFR's current section a CFR_PART match names, at the paragraph it names, if it names one."""
-    return section_address(match.group(1), match.group(2))
+    """The eCFR's current section a CFR_PART match names, in its title, at the paragraph it names, if it names
+    one."""
+    return section_address(*match.group(1, 2, 3))
 
 
 def cite_part(part: str, manifest: dict) -> str:
@@ -83,28 +84,31 @@ def cite(citation: str, manifest: dict) -> str:
 
 
 def cite_in_text(text: str) -> str:
-    """Prose with every CFR and Federal Register citation in it linked to the official text, as a Citation's are.
-    The bare sections listed straight after a 42 CFR reference link to title 42 too, and so does a section-sign
-    reference where the text names 42 CFR and no other title. A full stop that ends the sentence stays outside the
-    link."""
+    """Prose with every 42 or 28 CFR and Federal Register citation in it linked to the official text, as a
+    Citation's are. The bare sections listed straight after a 42 CFR reference link to title 42 too, and so does a
+    section-sign reference where the text names 42 CFR and no other title. A full stop that ends the sentence stays
+    outside the link."""
     def linked(words: str, address: str) -> str:
         stop = "." if words.endswith(".") else ""
         return "[" + words[:len(words) - len(stop)] + "](" + address + ")" + stop
+
+    def title_42(section: str, paragraph: str) -> str:
+        return section_address(CFR_TITLE_42, section, paragraph)
 
     titles = set(CFR_TITLE.findall(text))
     pieces, position = [], 0
     for match in CFR_PART.finditer(text):
         pieces += [text[position:match.start()], linked(match.group(0), cfr_address(match))]
         position = match.end()
-        listed = CFR_LISTED.match(text, position)
+        listed = CFR_LISTED.match(text, position) if match.group(1) == CFR_TITLE_42 else None
         while listed is not None:
             separator = listed.group(1)
-            pieces += [separator, linked(listed.group(0)[len(separator):], section_address(*listed.group(2, 3)))]
+            pieces += [separator, linked(listed.group(0)[len(separator):], title_42(*listed.group(2, 3)))]
             position = listed.end()
             listed = CFR_LISTED.match(text, position)
     text = "".join(pieces) + text[position:]
-    if titles == {"42"}:
-        text = CFR_SECTION_SIGN.sub(lambda match: linked(match.group(0), section_address(*match.group(1, 2))), text)
+    if titles == {CFR_TITLE_42}:
+        text = CFR_SECTION_SIGN.sub(lambda match: linked(match.group(0), title_42(*match.group(1, 2))), text)
     return FR_PART.sub(lambda match: linked(match.group(0), FR_URL.format(match.group(1), match.group(2))), text)
 
 

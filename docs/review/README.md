@@ -16,6 +16,7 @@ Medicaid policy to check them too.
 One row helps. If you have a few minutes, start with these rows:
 
 - [Notices of noncompliance and fair hearings: start here](notices-and-fair-hearings.md#start-here)
+- [Who the requirement applies to, and who is excluded from it: start here](who-the-requirement-applies-to.md#start-here)
 
 For each row, check three things:
 
@@ -71,5 +72,6 @@ HourKeep is not part of any government. It cannot see or change anyone's Medicai
 ## The pages
 
 - [Notices of noncompliance and fair hearings](notices-and-fair-hearings.md)
+- [Who the requirement applies to, and who is excluded from it](who-the-requirement-applies-to.md)
 - [Open questions](open-questions.md)
 - [State facts](state-facts.md)

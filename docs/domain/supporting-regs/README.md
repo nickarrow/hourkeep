@@ -159,47 +159,33 @@ cost-sharing** assistance; and **medically needy** coverage.
 
 ## 2. 28 CFR 35.108 — ADA "disability" · the `disabled individual` definition
 
-§ 435.554(a) defines a **disabled individual** by reference to this section, and adds that the person **need
-not** be Medicaid-eligible on the basis of disability.
-
-**(a)(1) Three independent prongs.** Disability means, with respect to an individual:
-
-1. a **physical or mental impairment that substantially limits** one or more **major life activities**;
-2. a **record of** such an impairment; **or**
-3. **being regarded as having** such an impairment.
-
-**(a)(2) Rules of construction — these matter for how we ask.**
-
-- The definition "shall be construed **broadly in favor of expansive coverage, to the maximum extent
-  permitted** by the terms of the ADA."
-- An individual **may establish coverage under any one or more** of the three prongs.
+Now rows disabled-individual-defined, ada-disability-definition, ada-disability-construed-broadly,
+ada-disability-any-one-or-more-prongs, ada-record-of-impairment-defined, ada-regarded-as-having-impairment,
+ada-regarded-as-excludes-transitory-and-minor in docs/domain/community-engagement-extract.md (2026-10-23).
 
 > **HourKeep's current question — "someone with a disability" — is far narrower than the standard.** The
-> caregiver screening should be permissive and should surface all three prongs, because a "record of" or
-> "regarded as" impairment qualifies without any showing that a major life activity is substantially limited.
-> Fold into W4.
+> caregiver screening should be permissive and should surface all three prongs, because a "record of" an
+> impairment qualifies on a history of one that substantially limited a major life activity, or a
+> misclassification as having one, not a present limitation, and "regarded as" turns on being subjected to a
+> prohibited action because of an actual or perceived impairment, whether or not it limits a major life activity
+> (28 CFR 35.108(e)(1) and (f)(1)). (Corrected
+> 2026-10-23: said "because a "record of" or "regarded as" impairment qualifies without any showing that a major
+> life activity is substantially limited."; read in docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:55 and
+> :59.) Fold into W4.
 
 ---
 
 ## 3. 42 CFR 447.51 — "Indian" · the exclusion at § 435.554(c)(2)
 
-Defined as any individual described at **25 U.S.C. 1603(13), 1603(28), or 1679(a)**, or determined eligible
-as an Indian under **42 CFR 136.12**. Four routes:
-
-1. **Member of a federally-recognized Indian tribe**;
-2. **Resides in an urban center** and meets one or more of: member of a tribe, band, or other organized group
-   including those terminated since 1940 and those recognized now or in future by the State of residence, **or
-   a first- or second-degree descendant** of such a member; is an **Eskimo, Aleut, or other Alaska Native**;
-   is considered an Indian by the Secretary of the Interior for any purpose; or is determined to be an Indian
-   under the Secretary's regulations;
-3. Is **considered by the Secretary of the Interior** to be an Indian for any purpose; **or**
-4. Is **considered by HHS** to be an Indian for IHS eligibility purposes, **including as a California Indian,
-   Eskimo, Aleut, or other Alaska Native.**
+Now rows american-indian-excluded, indian-defined-at-447-51, urban-indian-criteria-at-447-51 in
+docs/domain/community-engagement-extract.md (2026-10-23).
 
 > HourKeep's current question ("Indian, Urban Indian, California Indian, or IHS-eligible Indian") tracks the
 > statute but misses that **Alaska Natives are explicitly included**, that **descendants to the second degree**
-> can qualify through the urban-center route, and that **State-recognized** tribes count. Recall also that
-> States **may not reverify** this status. Fold into W4.
+> can qualify through the urban-center route, and that, for a person who resides in an urban center,
+> **State-recognized** tribes count. (Corrected 2026-10-23: said "and that **State-recognized** tribes count.";
+> read in docs/domain/sources/ecfr/2026-10-21/42-cfr-447.51.xml:14 and :15.) Recall also that States **may not
+> reverify** this status. Fold into W4.
 
 ---
 
@@ -232,4 +218,7 @@ That brings the tracked State-configurable parameter count to **29**.
    construe-broadly instruction. W4.
 6. **The `non-MAGI Medicaid` question can be replaced** with concrete circumstances from § 435.603(j).  W4.
 7. **The Indian definition needs Alaska Natives, second-degree descendants, and State-recognized tribes.** W4.
+   42 CFR 447.51 names State recognition only in its urban-center route; whether another route reaches such a
+   person rests on 42 CFR 136.12 and 25 U.S.C. 1603, which are not stored. (Added 2026-10-23; read in
+   docs/domain/sources/ecfr/2026-10-21/42-cfr-447.51.xml:12, :14 and :15.)
 8. **Five more State options** for the policy profile schema.

@@ -89,9 +89,10 @@
       "row": "renewal-notice-with-renewal-form",
       "setting": "at renewal (redetermination), under a draft rule that is not adopted",
       "value": "If available and reliable information is insufficient to establish a Specified Exclusion, Mandatory Exception, or compliance through a Qualifying Activity, a Work Requirements Self-Reporting Form and any required verification requests shall be provided with the redetermination form. The individual shall be provided at least 30 calendar days to provide information establishing that Community Engagement requirements have been met; or The requirement does not apply. The due date for the Work Requirement Self-Reporting Form will align with the redetermination due date.",
-      "counts_from": "not stated; the draft says only that the form's due date will align with the redetermination due date",
+      "counts_from": "not published",
+      "choice": "renewal-notice-with-renewal-form",
       "status": "inferred",
-      "note": "Inferred, and the draft is not adopted. The draft names neither 42 CFR 435.558(b)(2) option. That Colorado's draft takes renewal-notice-with-renewal-form is inferred from three things read in it: the form is a notice of noncompliance, since the draft's unlabeled paragraph on page 23 (margin lines 885 to 890, extraction lines 1843 to 1846) issues a Work Requirements Form as a notice of noncompliance, and at application h.ii.4 names \"A Work Requirements Self-Reporting Form (Notice of Noncompliance)\" (extraction line 1860); at renewal it goes with the redetermination form (h.iii.2); and its due date is the redetermination due date (h.iii.3). The next two paragraphs may add a second, shorter period: if the individual returns the redetermination form but the information is incomplete, inconsistent, or raises additional questions, the eligibility site worker will make reasonable efforts to obtain clarification (h.iii.4, margin lines 941 to 944, extraction line 1936), and the individual will be provided at least 10 business days to submit additional requested verification (h.iii.5, margin lines 945 and 946, extraction line 1940). The draft does not say whether those 10 business days cover community engagement information or how they sit with the 30 calendar days, so whether a person has one window or two under the draft is not known. Research L5-3 makes the same mapping and calls it inference. Paragraph labels h.iii.2 to h.iii.5 were read on rendered page 24, h.iii.2 and h.iii.3 on 2026-10-17 and h.iii.4 and h.iii.5 on 2026-10-18, since the extraction separates them from their text. The draft does not say what the 30 days count from at renewal, where 435.558(a)(2) counts from receipt; at application it gives 30 calendar days from receipt (page 23, margin lines 915 to 919). That is an open question for HCPF. The PDF prints no date; its file name carries 2026-09-28, the HCPF stakeholder meeting it was posted for (manifest note). Research ledger L5-1 reports, from an HCPF deck that is not stored, a Medical Services Board reading on 2026-11-27 and effect on 2027-01-01: recheck on state rule when 8.100 is adopted. Shown as known, this fact would be dangerous. Whether a person's information establishes compliance is the agency's determination.",
+      "note": "Inferred, and the draft is not adopted. The draft names neither 42 CFR 435.558(b)(2) option. That Colorado's draft takes renewal-notice-with-renewal-form is inferred from three things read in it: the form is a notice of noncompliance, since the draft's unlabeled paragraph on page 23 (margin lines 885 to 890, extraction lines 1843 to 1846) issues a Work Requirements Form as a notice of noncompliance, and at application h.ii.4 names \"A Work Requirements Self-Reporting Form (Notice of Noncompliance)\" (extraction line 1860); at renewal it goes with the redetermination form (h.iii.2); and its due date is the redetermination due date (h.iii.3). The next two paragraphs may add a second, shorter period: if the individual returns the redetermination form but the information is incomplete, inconsistent, or raises additional questions, the eligibility site worker will make reasonable efforts to obtain clarification (h.iii.4, margin lines 941 to 944, extraction line 1936), and the individual will be provided at least 10 business days to submit additional requested verification (h.iii.5, margin lines 945 and 946, extraction line 1940). The draft does not say whether those 10 business days cover community engagement information or how they sit with the 30 calendar days, so whether a person has one window or two under the draft is not known. Research L5-3 makes the same mapping and calls it inference. Paragraph labels h.iii.2 to h.iii.5 were read on rendered page 24, h.iii.2 and h.iii.3 on 2026-10-17 and h.iii.4 and h.iii.5 on 2026-10-18, since the extraction separates them from their text. The draft does not say what the 30 days count from at renewal, where 435.558(a)(2) counts from receipt; at application it gives 30 calendar days from receipt (page 23, margin lines 915 to 919). So counts_from is not published. On 2026-10-23 the 8.000 and draft 8.100 extractions, the 8.000 rule-information page and HCPF's appeals page, which with the two PDFs the extractions come from are the six stored Colorado files, were searched, ignoring case, for 30 calendar days, 30-calendar, 30- calendar, from receipt, considered received, due date, redetermination form and self-reporting form. The only hits that name what a period counts from are the draft's application paragraph, \"30- calendar days from receipt\" and the 5 days after which the notice counts as received (extraction lines 1870 and 1872); its renewal paragraph's hits (lines 1929 to 1942) name no event, and the 8.000 extraction's hits are on provider appeals, exceptions to an initial decision and a provider's records (lines 2580, 3069 to 3087 and 4194). (Corrected 2026-10-23: said \"That is an open question for HCPF.\", and counts_from said \"not stated; the draft says only that the form's due date will align with the redetermination due date\"; decision record 0006.) This fact takes Colorado's part of two open questions, both raised 2026-10-17: \"Which renewal option applies where a state's plan records no choice?\", for the choice, and \"What do the at least 30 days in Colorado's draft renewal paragraph count from, and could they give fewer than 30 days from receipt, or more than the 30 days the preamble says cannot be extended?\", for counts_from. (Added 2026-10-23; decision record 0006.) The PDF prints no date; its file name carries 2026-09-28, the HCPF stakeholder meeting it was posted for (manifest note). Research ledger L5-1 reports, from an HCPF deck that is not stored, a Medical Services Board reading on 2026-11-27 and effect on 2027-01-01: recheck on state rule when 8.100 is adopted. Shown as known, this fact would be dangerous. Whether a person's information establishes compliance is the agency's determination.",
       "citation": "10 CCR 2505-10 8.100.4.G.4.h.iii.2 and 8.100.4.G.4.h.iii.3, draft, not adopted, page 24; the same draft, page 23, margin lines 885 to 890",
       "sources": [
         {
@@ -125,7 +126,67 @@
           "source_date": "not stated"
         }
       ],
-      "checked": "2026-10-19, read in source"
+      "checked": "2026-10-23, read in source"
+    },
+    {
+      "row": "more-frequent-check-notice-after-data-check",
+      "setting": "between renewals, in a state that verifies compliance more often than at renewal under 42 CFR 435.557(d)",
+      "value": "not published",
+      "choice": "not published",
+      "status": "not published",
+      "note": "No stored Colorado source says whether Colorado verifies compliance more often than at renewal under 42 CFR 435.557(d), or, if it does, which of the two choices of 42 CFR 435.558(b)(3) it takes: sending the notice of noncompliance straight after its data check, more-frequent-check-notice-after-data-check, or asking for information first, more-frequent-check-notice-after-information-request. On 2026-10-23 the 8.000 and draft 8.100 extractions, the 8.000 rule-information page and HCPF's appeals page, which with the two PDFs the extractions come from are the six stored Colorado files, were searched, ignoring case, for more frequent, more often, between renewal, between redetermination, periodic, quarterly, monthly, each month, every month, ex parte, 435.557, 435.558, data match, interim, post-enrollment, post enrollment, ongoing, throughout, frequen and verif. No hit says that Colorado verifies more often than at renewal or names either choice. The nearest are in the draft 8.100, which is not adopted and so chooses nothing. For a member who remains an applicable individual and reports a change to a qualifying activity, it says \"Community Engagement compliance shall be evaluated at the member's next scheduled renewal using the lookback review period, unless another change affects the member's eligibility or establishes that the member is a Specified Excluded Individual.\" (extraction lines 1394 to 1397). For a member who loses a specified exclusion between renewals, the Department determines compliance over a lookback review period that ends on the last day of the month before the month the member becomes an applicable individual (lines 1361 to 1366). The draft does not say whether that determination is a verification more often than at renewal in the sense of 42 CFR 435.557(d), and reading it either way is inference. Those lines follow 42 CFR 435.556(a)(2)(iii) closely, the review period for a person who becomes an applicable individual as a result of a redetermination based on a change in circumstances (docs/domain/cms-2454-ifc/2026-11094.xml:3800, 91 FR 33474), which the rule keeps apart from § 435.556(a)(2)(ii), the period for a State that has opted to conduct more frequent verifications under § 435.557(d) (:3799). And the draft's part h, Compliance Reporting and Verification (extraction line 1766), has a part for verification at application (line 1847) and one for redetermination (line 1918), and none for checks between renewals. Both lean toward the draft making no check between renewals, which is inference, and the draft does not say it makes neither choice and is not adopted, so the fact stays not published. The draft's ex parte hits are about redetermination (lines 302, 306, 1445 and 1919), and its 435.557 hit is the verification period at application (line 1859); the 8.000 extraction's monthly and data match hits are on premiums, payments and data from other parties (lines 3425 to 3598). This fact takes Colorado's part of the open question \"Which option applies to checks between renewals where a state's plan records no choice?\", raised 2026-10-17. Recheck on state rule, when 8.100 is adopted. Whether a person met the requirement is the agency's determination.",
+      "citation": "42 CFR 435.558(b)(3); 91 FR 39031",
+      "sources": [
+        {
+          "source": "docs/domain/sources/federal-register/C1-2026-11094.xml:153 \"as part of the more frequent verification of compliance under\"",
+          "url": "https://www.federalregister.gov/documents/full_text/xml/2026/06/29/C1-2026-11094.xml",
+          "tier": "regulation",
+          "source_date": "2026-06-26"
+        },
+        {
+          "source": "docs/domain/sources/federal-register/C1-2026-11094.xml:154 \"and information is not sufficient; or\"",
+          "url": "https://www.federalregister.gov/documents/full_text/xml/2026/06/29/C1-2026-11094.xml",
+          "tier": "regulation",
+          "source_date": "2026-06-26"
+        },
+        {
+          "source": "docs/domain/sources/federal-register/C1-2026-11094.xml:155 \"to request information from the individual, when the requested information is not returned\"",
+          "url": "https://www.federalregister.gov/documents/full_text/xml/2026/06/29/C1-2026-11094.xml",
+          "tier": "regulation",
+          "source_date": "2026-06-26"
+        }
+      ],
+      "checked": "2026-10-23, read in source"
+    },
+    {
+      "row": "reschedule-2027-renewals-to-six-months",
+      "setting": "at renewal, for people already enrolled in a 12-month eligibility period in the adult expansion group on January 1, 2027, whose renewals are already scheduled in 2027",
+      "value": "not published",
+      "choice": "not published",
+      "status": "not published",
+      "note": "No stored Colorado source says which of CMS SMD 26-001's two transition paths Colorado took: moving renewals already scheduled in 2027 earlier, reschedule-2027-renewals-to-six-months, or keeping them where they are, keep-scheduled-2027-renewals. On 2026-10-23 the 8.000 and draft 8.100 extractions, the 8.000 rule-information page and HCPF's appeals page, which with the two PDFs the extractions come from are the six stored Colorado files, were searched, ignoring case, for 26-001, reschedul, six-month, 6-month, six month, 6 month, transition, initiation, 2027, renewal date, 12-month, 12 month, twelve and eligibility period. No hit names a path. The two 26-001 hits are eDocket numbers on the rule-information page, 2026-00141 and 2026-00116, that contain 26-001 by chance (lines 346 and 394). The draft 8.100's one 2027 hit is the start of the community engagement requirement, \"Effective January 1, 2027\" (extraction line 1117). The other hits are on other subjects, among them a disability expected to last six months or longer (line 62), Transitional Medical Assistance (line 722), a member who transitions into the MAGI Expansion Group from another group (line 1371), presumptive eligibility once every 12 months (line 1035) and, in the 8.000 extraction, 6 months after a Medicare claim's disposition (line 2290); the appeals page's two transition hits are in its style sheet. The search of 2026-10-17, for the first four of these words over the same four files, found the same two eDocket numbers and nothing else. This fact takes the open question \"Which SMD 26-001 transition path did Colorado take for renewals already scheduled in 2027?\", raised 2026-10-17, which moved here whole. Recheck on state plan amendment or CMS guidance. Whether a person is in the adult expansion group, and when their renewal is, is the agency's determination.",
+      "citation": "CMS SMD 26-001, pp. 7-8",
+      "sources": [
+        {
+          "source": "docs/domain/sources/cms/smd-26-001.txt:258 \"are already enrolled in a 12-month eligibility period in the\"",
+          "url": "https://www.medicaid.gov/federal-policy-guidance/downloads/smd26001.pdf",
+          "tier": "agency guidance",
+          "source_date": "2026-03-06"
+        },
+        {
+          "source": "docs/domain/sources/cms/smd-26-001.txt:289 \"Under Option 1, the state would shorten the eligibility period for beneficiaries enrolled in the\"",
+          "url": "https://www.medicaid.gov/federal-policy-guidance/downloads/smd26001.pdf",
+          "tier": "agency guidance",
+          "source_date": "2026-03-06"
+        },
+        {
+          "source": "docs/domain/sources/cms/smd-26-001.txt:305 \"Under Option 2, the state would not reschedule already-set 2027 renewal initiation dates, which\"",
+          "url": "https://www.medicaid.gov/federal-policy-guidance/downloads/smd26001.pdf",
+          "tier": "agency guidance",
+          "source_date": "2026-03-06"
+        }
+      ],
+      "checked": "2026-10-23, read in source"
     }
   ]
 }

@@ -1,7 +1,9 @@
 """Tests of the generator of the review pages, scripts/build-review-pages.py and its package, scripts/review_pages/:
-which pages it makes, what each row, open question and state fact shows, how citations are linked, that its output
-depends only on the corpus, and --check. The fixture is corpus_fixture.py's valid corpus, with an open questions file
-and a second group in its topic file added here. Its wording is illustration, not a checked statement of any rule.
+which pages it makes, a topic page's orientation, what each row, open question, moved question and state fact shows,
+a row's source not stored yet, a choice fact's line naming both rows of its pair and the state's choice, how
+citations of 42 and 28 CFR are linked, that its output depends only on the corpus, and --check. The fixture is
+corpus_fixture.py's valid corpus, with an open questions file and a second group in its topic file added here. Its
+wording is illustration, not a checked statement of any rule.
 """
 
 from __future__ import annotations
@@ -13,18 +15,22 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from corpus_fixture import COLORADO, Corpus, TOPIC, git_environment
+from corpus_fixture import (
+    CHECK_PAIR, COLORADO, RENEWAL_PAIR, TOPIC, TOPIC_HEADING, Corpus, git_environment, with_choice_pairs,
+)
 
 GENERATOR = Path(__file__).resolve().parent.parent / "scripts" / "build-review-pages.py"
 REVIEW = "docs/review/"
 OPEN_QUESTIONS = "docs/domain/open-questions.md"
 FORM = "https://forms.gle/Tvs27CNLg6Jdip429"
+REAL_CASE = "Never post or send anything about a real person's case."
 # The Google Form with its "Which row, state fact or open question?" question, entry 399684664, filled in.
 PREFILLED_FORM = ("https://docs.google.com/forms/d/e/1FAIpQLSfmdg1bA4lF_frlMIl8LGIjwUS0ymtHKcqar2aB_h0evB97yQ/viewform"
                   "?usp=pp_url&entry.399684664=")
 
 # The topic file with its two rows in two groups, the second row first, so the page's order can only come from it.
-TOPIC_TEXT = """# Fair hearings
+# Its title is the extract's topic heading, as the checker requires.
+TOPIC_TEXT = "# " + TOPIC_HEADING + """
 
 The row in the extract wins wherever the two differ.
 
@@ -86,14 +92,15 @@ class GeneratorTestCase(unittest.TestCase):
         self.corpus = self.corpus_factory()
         self.corpus.write(self.root)
 
-    def pages(self, start_here=None) -> dict:
+    def pages(self, start_here=None, orientation=None) -> dict:
         """The pages the generator makes for the fixture, as text keyed by path from the repository root."""
-        package = load_generator()
-        made = package.build(self.root) if start_here is None else package.build(self.root, start_here=start_here)
+        given = {name: value for name, value in (("start_here", start_here), ("orientation", orientation))
+                 if value is not None}
+        made = load_generator().build(self.root, **given)
         return {path: data.decode("utf-8") for path, data in made.items()}
 
-    def page(self, name: str, start_here=None) -> str:
-        return self.pages(start_here)[REVIEW + name]
+    def page(self, name: str, start_here=None, orientation=None) -> str:
+        return self.pages(start_here, orientation)[REVIEW + name]
 
 
 class PagesTest(GeneratorTestCase):
@@ -177,6 +184,8 @@ NOTICE_ROW = "\n".join([
     "- The rule: A person has 30 calendar days to respond to a notice of noncompliance.",
     "- From: [42 CFR 435.558(a)(2)](https://www.ecfr.gov/current/title-42/section-435.558#p-435.558%28a%29%282%29)"
     "; [91 FR 39030](https://www.federalregister.gov/citation/91-FR-39030)",
+    "- Source, not stored yet: [https://www.federalregister.gov/d/C1-2026-11094]"
+    "(https://www.federalregister.gov/d/C1-2026-11094)",
     "- Can a state choose differently? No.",
     "- If this row were wrong: a person on Medicaid could do less than the rules ask of them.",
     "- Checked: not yet.",
@@ -190,7 +199,7 @@ NOTICE_ROW = "\n".join([
 class TopicPageTest(GeneratorTestCase):
     def test_opens_with_the_topic_files_title_and_a_line_linking_the_landing_page(self):
         lines = self.page("fair-hearings.md").split("\n")
-        self.assertEqual(lines[0], "# Fair hearings")
+        self.assertEqual(lines[0], "# " + TOPIC_HEADING)
         self.assertEqual(lines[1], "")
         self.assertIn("generated from", lines[2].lower())
         self.assertIn("](README.md)", lines[2])
@@ -211,10 +220,40 @@ class TopicPageTest(GeneratorTestCase):
         self.assertIn("- From: [42 CFR 431.221(d)](https://www.ecfr.gov/current/title-42/section-431.221"
                       "#p-431.221%28d%29); eCFR 2026-10-14\n", page)
         self.assertIn("- Checked: 2026-10-17 by an AI agent reading the stored text.\n", page)
+        self.assertNotIn("not stored yet", page[page.index("### hearing-request-period\n"):])
 
     def test_has_no_start_here_section_when_its_topic_has_no_start_here_rows(self):
         self.assertNotIn("## Start here", self.page("fair-hearings.md"))
 
+    def test_an_orientation_comes_before_start_here_with_each_row_identifier_in_it_linked(self):
+        page = self.page("fair-hearings.md", start_here={"fair-hearings": ["notice-response-period"]},
+                         orientation={"fair-hearings": "One term runs through this page, as notice-response-period "
+                                                       "and no-such-row say."})
+        orientation = ("\n\nOne term runs through this page, as [notice-response-period](fair-hearings.md"
+                       "#notice-response-period) and no-such-row say.\n\n## Start here\n")
+        self.assertIn(REAL_CASE + orientation, page)
+
+    def test_an_orientation_comes_before_the_first_group_when_the_topic_has_no_start_here_rows(self):
+        page = self.page("fair-hearings.md", orientation={"fair-hearings": "A synthetic orientation."})
+        self.assertIn(REAL_CASE + "\n\nA synthetic orientation.\n\n## Answering a notice\n", page)
+
+    def test_has_no_orientation_when_its_topic_has_none(self):
+        self.assertIn(REAL_CASE + "\n\n## Answering a notice\n",
+                      self.page("fair-hearings.md", orientation={"another-topic": "Not this page's."}))
+
+
+class NotStoredLinesTest(unittest.TestCase):
+    def test_gives_a_line_for_each_source_not_stored_and_none_for_a_stored_one(self):
+        load_generator()
+        rows = importlib.import_module("corpus_check.rows")
+        pages = importlib.import_module("review_pages.pages")
+        row = rows.Row("synthetic-row", 1)
+        for value in ("not stored, https://example.org/first", "docs/domain/stored.txt:1 \"words\"",
+                      "not stored, https://example.org/second"):
+            row.fields.append(rows.Field("Source", value, 1))
+        self.assertEqual(pages.not_stored_lines(row), [
+            "- Source, not stored yet: [https://example.org/first](https://example.org/first)",
+            "- Source, not stored yet: [https://example.org/second](https://example.org/second)"])
 
 
 class OpenQuestionsPageTest(GeneratorTestCase):
@@ -229,6 +268,41 @@ class OpenQuestionsPageTest(GeneratorTestCase):
         self.assertIn("- Rows it holds up: [notice-response-period](fair-hearings.md#notice-response-period), "
                       "[hearing-request-period](fair-hearings.md#hearing-request-period)\n", page)
         self.assertIn(comment_line("Are%20the%2030%20days%20calendar%20days%3F") + "\n", page)
+
+    def test_a_moved_question_gives_its_old_title_the_facts_name_as_text_and_comment_links_carrying_it(self):
+        self.corpus.files[OPEN_QUESTIONS] = OPEN_QUESTIONS_TEXT + MOVED_QUESTION_TEXT
+        self.corpus.write(self.root)
+        page = self.page("open-questions.md")
+        self.assertIn(MOVED_SECTION, page)
+        section = page[page.index("### Which path did Colorado take?\n"):]
+        for absent in ("Why it is open", "Who can answer", "Rows it holds up", "](fair-hearings.md"):
+            with self.subTest(absent=absent):
+                self.assertNotIn(absent, section)
+
+    def test_why_it_is_open_names_a_state_fact_as_text(self):
+        self.corpus.files[OPEN_QUESTIONS] = OPEN_QUESTIONS_TEXT.replace(
+            "  and not for the other.\n",
+            "  and not for the other. Colorado's part moved on 2026-10-23 to the state fact co:\n"
+            "  notice-response-period.\n")
+        self.corpus.write(self.root)
+        self.assertIn("- Why it is open: the sources are silent. The rule says calendar days for one period and not "
+                      "for the other. Colorado's part moved on 2026-10-23 to the state fact co: "
+                      "notice-response-period.\n", self.page("open-questions.md"))
+
+
+# A question whose part moved to the state facts, and the section the open questions page gives it.
+MOVED_QUESTION_TEXT = """
+### Which path did Colorado take?
+
+- Moved: 2026-10-23, to the state fact co: notice-response-period.
+"""
+MOVED_SECTION = "\n".join([
+    "### Which path did Colorado take?",
+    "",
+    "- Moved on 2026-10-23 to the state fact `co: notice-response-period`",
+    comment_line("co:%20notice-response-period"),
+    "",
+])
 
 
 class StateFactsPageTest(GeneratorTestCase):
@@ -264,6 +338,49 @@ class StateFactsPageTest(GeneratorTestCase):
         page = self.page("state-facts.md")
         self.assertIn(fact, page[page.index("## Colorado\n"):])
 
+    def test_a_choice_fact_says_after_its_value_which_of_the_two_rows_the_state_takes(self):
+        self.corpus = with_choice_pairs(self.corpus)
+        fact = dict(self.corpus.states[COLORADO]["facts"][0], row=RENEWAL_PAIR[0], choice=RENEWAL_PAIR[1])
+        self.corpus.states[COLORADO]["facts"].append(fact)
+        self.corpus.write(self.root)
+        page = self.page("state-facts.md")
+        self.assertIn("- The value: 30 calendar days\n- Which of the two rows: the state sends the notice with the "
+                      "renewal form, [renewal-notice-with-renewal-form](fair-hearings.md#renewal-notice-with-renewal-"
+                      "form), or the state sends the notice after the renewal form, [renewal-notice-after-renewal-"
+                      "form-period](fair-hearings.md#renewal-notice-after-renewal-form-period). The state's choice: "
+                      "the state sends the notice after the renewal form.\n- Counts from: ", page)
+        self.assertEqual(page.count("- Which of the two rows: "), 1)
+
+    def test_the_choice_line_names_both_rows_of_the_pair_in_words_each_linked_then_the_states_choice(self):
+        pages = {identifier: "fair-hearings" for identifier in RENEWAL_PAIR + CHECK_PAIR}
+        renewal = ("the state sends the notice with the renewal form, [{0}](fair-hearings.md#{0}), or the state "
+                   "sends the notice after the renewal form, [{1}](fair-hearings.md#{1}).").format(*RENEWAL_PAIR)
+        check = ("the state sends the notice straight after its data check, [{0}](fair-hearings.md#{0}), or the "
+                 "state asks for information before sending the notice, [{1}](fair-hearings.md#{1})."
+                 ).format(*CHECK_PAIR)
+        reschedule = ("the state moves renewals already scheduled in 2027 earlier, [{0}]({2}#{0}), or the state "
+                      "keeps renewals already scheduled in 2027 where they are, [{1}]({2}#{1}).").format(
+                          "reschedule-2027-renewals-to-six-months", "keep-scheduled-2027-renewals",
+                          "../domain/community-engagement-extract.md")
+        cases = [
+            (RENEWAL_PAIR[0], RENEWAL_PAIR[0], renewal + " The state's choice: the state sends the notice with the "
+                                                         "renewal form."),
+            (RENEWAL_PAIR[0], RENEWAL_PAIR[1], renewal + " The state's choice: the state sends the notice after the "
+                                                         "renewal form."),
+            (RENEWAL_PAIR[0], "not published", renewal + " The state's choice: not published."),
+            (RENEWAL_PAIR[0], "not applicable", renewal + " The state's choice: not applicable."),
+            (CHECK_PAIR[0], CHECK_PAIR[1], check + " The state's choice: the state asks for information before "
+                                                   "sending the notice."),
+            ("reschedule-2027-renewals-to-six-months", "keep-scheduled-2027-renewals",
+             reschedule + " The state's choice: the state keeps renewals already scheduled in 2027 where they are."),
+            (RENEWAL_PAIR[0], "no-such-choice", renewal + " The state's choice: no-such-choice."),
+            ("notice-response-period", RENEWAL_PAIR[0], RENEWAL_PAIR[0]),
+        ]
+        choice_line = load_generator().pages.choice_line
+        for row, choice, words in cases:
+            with self.subTest(row=row, choice=choice):
+                self.assertEqual(choice_line(row, choice, pages), "- Which of the two rows: " + words)
+
     def test_checked_takes_the_rows_wording(self):
         self.corpus.states[COLORADO]["facts"][0]["checked"] = "2026-10-18, ledger L5-3, by A. Reviewer"
         self.corpus.write(self.root)
@@ -279,6 +396,8 @@ class StateFactsPageTest(GeneratorTestCase):
             "- known: a source states the value.",
             "- inferred: the value is worked out from what a source does say, and its note says from what.",
             "- not published: no source found publishes the value, and its note says where and when the search ran.",
+            "",
+            "A part of a fact, such as what a period counts from, may be not published while the rest is known.",
             "",
         ])
         self.assertIn(definitions, page)
@@ -311,6 +430,10 @@ class CitationLinkTest(unittest.TestCase):
              "Preamble to [42 CFR 435.558(b)(1)](https://www.ecfr.gov/current/title-42/section-435.558"
              "#p-435.558%28b%29%281%29)"),
             ("42 CFR 431.211", "[42 CFR 431.211](https://www.ecfr.gov/current/title-42/section-431.211)"),
+            ("28 CFR 35.108(a)(1)",
+             "[28 CFR 35.108(a)(1)](https://www.ecfr.gov/current/title-28/section-35.108#p-35.108%28a%29%281%29)"),
+            ("28 CFR 35.108", "[28 CFR 35.108](https://www.ecfr.gov/current/title-28/section-35.108)"),
+            ("29 CFR 500.20(s)(1)", "29 CFR 500.20(s)(1)"),
             ("91 FR 39030-39031", "[91 FR 39030-39031](https://www.federalregister.gov/citation/91-FR-39030)"),
             ("CMS SMD 26-001, pp. 4, 8", "[CMS SMD 26-001](https://example.gov/smd26001.pdf), pp. 4, 8"),
             ("10 CCR 2505-10 8.057.4.B.1", "[10 CCR 2505-10 8.057.4.B.1](https://example.gov/8.000.pdf)"),
@@ -335,6 +458,12 @@ class CitationLinkTest(unittest.TestCase):
         for citation in ("10 CCR 2505-10 8.100.4.G.4", "10 CCR 2505-10 8.200.1, draft"):
             with self.subTest(citation=citation):
                 self.assertLinks(citation, citation)
+
+    def test_a_28_cfr_reference_in_text_links_to_title_28_and_no_bare_section_after_it_links(self):
+        self.assertEqual(
+            load_generator().links.cite_in_text("28 CFR 35.108(b) and 435.554 apply."),
+            "[28 CFR 35.108(b)](https://www.ecfr.gov/current/title-28/section-35.108#p-35.108%28b%29) and 435.554 "
+            "apply.")
 
     def test_a_part_whose_source_the_manifest_does_not_give_is_left_as_text(self):
         self.assertLinks("CMS SMD 26-001, p. 9", "CMS SMD 26-001, p. 9", manifest={"sources": []})

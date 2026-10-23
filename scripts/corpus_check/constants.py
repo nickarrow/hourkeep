@@ -116,6 +116,27 @@ NOT_STATED = "not stated"
 WARNING_TIERS = ("state agency page", "secondary")
 RULE_DATE = "2026-06-03"
 
+# The pairs of rows a state chooses between, as decision record 0006 names them, each pair's first row in the
+# extract's order first, each row beside the words that say which of the two the state takes. A later topic that
+# writes such a choice adds its pair; the checker fails, at CHOICE_PAIRS_FILE, a pair whose two rows are one, a row
+# in two pairs, and a pair the extract holds only one row of or holds second row first. A state's choice is one
+# fact, on the pair's first row, and only that fact holds CHOICE_KEY, whose value is one of its pair's identifiers
+# or one of CHOICE_WORDS. NOT_PUBLISHED_KEYS are the keys but status that may be `not published`; each so written,
+# like a choice of `not applicable`, needs a note.
+CHOICE_PAIRS_FILE = "scripts/corpus_check/constants.py"
+CHOICE_PAIRS = (
+    (("renewal-notice-with-renewal-form", "sends the notice with the renewal form"),
+     ("renewal-notice-after-renewal-form-period", "sends the notice after the renewal form")),
+    (("more-frequent-check-notice-after-data-check", "sends the notice straight after its data check"),
+     ("more-frequent-check-notice-after-information-request", "asks for information before sending the notice")),
+    (("reschedule-2027-renewals-to-six-months", "moves renewals already scheduled in 2027 earlier"),
+     ("keep-scheduled-2027-renewals", "keeps renewals already scheduled in 2027 where they are")),
+)
+CHOICE_KEY = "choice"
+NOT_APPLICABLE = "not applicable"
+CHOICE_WORDS = (NOT_PUBLISHED, NOT_APPLICABLE)
+NOT_PUBLISHED_KEYS = ("value", CHOICE_KEY, "counts_from")
+
 # The skill: its main file, SKILL, and a topic file for each topic, REFERENCES/<name>.md, each linked from
 # TOPICS_HEADING in SKILL by a list item that starts with TOPIC_LINK. Every list item in a topic file is a rule item,
 # sits under a ## heading, and ends with `[identifier] citation`; a number is a run of digits with any comma or
@@ -124,6 +145,7 @@ RULE_DATE = "2026-06-03"
 SKILL_FOLDER = ".kiro/skills/medicaid-community-engagement/"
 REFERENCES = SKILL_FOLDER + "references/"
 SKILL_MAX_LINES = 500  # for the main file and for each topic file
+SKILL_DESCRIPTION_MAX = 1024  # characters, the limit the Agent Skills specification sets
 TOPICS_HEADING = "## Topics"
 SKILL_HEADINGS = (TOPICS_HEADING, "## Precedence", "## Watch list")  # each exactly once, written exactly so
 TOPIC_LINK = re.compile(r"^\[[^\]]+\]\((references/[^)\s]*)\)")  # its target relative to SKILL_FOLDER
@@ -145,8 +167,15 @@ FENCE = re.compile(r"^ {0,3}(`{3,}|~{3,})")
 
 # An open question's fields: the required ones in the order they must come, Source repeating, then an optional Note
 # last. Why it is open starts with one or more of OPEN_REASONS, separated by semicolons, before its first full stop.
-QUESTION_FIELDS = ("Why it is open", "Who can answer", "Raised", "Source", "Note")
-QUESTION_REQUIRED_FIELDS = QUESTION_FIELDS[:-1]
+# A question whose part moved to the state facts holds MOVED_FIELD alone, in MOVED's form, and none of the others.
+MOVED_FIELD = "Moved"
+QUESTION_FIELDS = ("Why it is open", "Who can answer", "Raised", "Source", "Note", MOVED_FIELD)
+QUESTION_REQUIRED_FIELDS = QUESTION_FIELDS[:4]
+MOVED = re.compile(r"^(\d{4}-\d{2}-\d{2}), to the state fact ((?:federal|[a-z]{2}): [a-z0-9]+(?:-[a-z0-9]+)*)\.$")
+MOVED_FORM = "YYYY-MM-DD, to the state fact <state>: <row>."
+# A state fact named in a Moved line or in Why it is open, by its name `<state>: <row>`, which must exist. "The" may
+# open a sentence, and the name may stand in backticks, as the review page prints a moved question's fact.
+STATE_FACT_NAME = re.compile(r"\b[Tt]he state fact `?((?:federal|[a-z]{2}): [a-z0-9]+(?:-[a-z0-9]+)*)")
 OPEN_REASONS = (
     "the sources conflict", "the sources are silent", "it turns on a choice the state has not published",
     "the answer may be in a provision the corpus has not stored",

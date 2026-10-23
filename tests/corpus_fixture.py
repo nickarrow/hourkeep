@@ -19,6 +19,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from typing import Optional
 
 
 CHECKER = Path(__file__).resolve().parent.parent / "scripts" / "check-corpus.py"
@@ -115,9 +116,13 @@ The regulation wins over a state agency page.
 - 2026-12-01 board meeting: [hearing-request-period]
 """
 
+# The extract's one ## topic heading, which a topic file's title must be.
+TOPIC_HEADING = "Notices of noncompliance and fair hearings"
+
 # The skill's one topic file, which SKILL_TEXT links from ## Topics, with one rule item for each row of the extract.
+# Its title is TOPIC_HEADING.
 TOPIC = ".kiro/skills/medicaid-community-engagement/references/fair-hearings.md"
-TOPIC_TEXT = """# Fair hearings
+TOPIC_TEXT = """# Notices of noncompliance and fair hearings
 
 The row in the extract wins wherever the two differ.
 
@@ -433,6 +438,46 @@ def topic_with(old: str, new: str) -> str:
     if old not in TOPIC_TEXT:
         raise AssertionError("fixture text not found: " + repr(old))
     return TOPIC_TEXT.replace(old, new, 1)
+
+
+# Two of the pairs of rows a state chooses between, as decision record 0006 names them and CHOICE_PAIRS in
+# scripts/corpus_check/constants.py holds them, each pair's first row first. The valid corpus has none of these rows;
+# with_choice_pairs adds them.
+RENEWAL_PAIR = ("renewal-notice-with-renewal-form", "renewal-notice-after-renewal-form-period")
+CHECK_PAIR = ("more-frequent-check-notice-after-data-check", "more-frequent-check-notice-after-information-request")
+
+
+def pair_row(identifier: str) -> str:
+    """A synthetic row on one of the two rows of a pair, which the state chooses between."""
+    return (
+        "\n### {}\n\n"
+        "- Rule: A synthetic rule for one of the two choices a state makes about when its notice comes.\n"
+        "- Citation: 42 CFR 435.558(b); 91 FR 39031\n"
+        "- Source: not stored, https://www.federalregister.gov/d/C1-2026-11094\n"
+        "- Tier: regulation\n"
+        "- State election: yes; the state chooses which of the two rows applies; where it has not chosen, neither\n"
+        "- Verified: no\n"
+        "- Error direction: dangerous\n"
+        "- Recheck: final rule\n"
+    ).format(identifier)
+
+
+def pair_item(identifier: str) -> str:
+    """The rule item for pair_row(identifier)."""
+    return ("- A synthetic rule item for one of the two choices a state makes about when its notice comes.\n"
+            "  [{}] 42 CFR 435.558(b); 91 FR 39031\n").format(identifier)
+
+
+def with_choice_pairs(corpus: Optional[Corpus] = None) -> Corpus:
+    """The corpus, by default a fresh valid one, with the rows of RENEWAL_PAIR and CHECK_PAIR added after the
+    extract's two, and a rule item for each under a new ## group of the topic file. Nothing else changes, so it
+    still passes, with 6 rows and 6 skill items."""
+    corpus = corpus if corpus is not None else Corpus()
+    pairs = RENEWAL_PAIR + CHECK_PAIR
+    corpus.files[EXTRACT] = corpus.files[EXTRACT] + "".join(pair_row(identifier) for identifier in pairs)
+    corpus.files[TOPIC] = (corpus.files[TOPIC] + "\n## Choices a state makes\n\n"
+                           + "".join(pair_item(identifier) for identifier in pairs))
+    return corpus
 
 
 RULE_ITEM = ("- You can ask for a fair hearing within the time the state allows, never more than 90 days.\n"

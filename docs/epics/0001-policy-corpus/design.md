@@ -42,10 +42,11 @@ error would cost a person, and what should trigger a recheck. Rows arrive a topi
 passage on it in each older analysis file is replaced by a pointer to the new rows, and the corrections the research
 found in that passage are applied there and then, so no stale copy outlives its topic. A passage becomes a pointer only
 once every claim in it has a row. A claim no row covers yet, or a passage that also covers topics still to come, is
-corrected in place and waits for its own topic. Two kinds of correction come sooner, in a fix before increment 2.1:
-one the research ledger rates dangerous, and one about an event or a publication that no topic covers. One about a
-state other than Colorado that is not dangerous is not applied, and goes when its file is retired (decision record
-0006).
+corrected in place and waits for its own topic. (Added 2026-10-23: a passage whose remaining claims no row covers yet is
+pointed, with those claims kept after the pointer, as the Formats say under "Pointers and dated corrections"; full
+review 2026-10-23, corpus against source 11.) Two kinds of correction come sooner, in a fix before increment 2.1: one
+the research ledger rates dangerous, and one about an event or a publication that no topic covers. One about a state
+other than Colorado that is not dangerous is not applied, and goes when its file is retired (decision record 0006).
 
 The § 435.603 household income extract in `supporting-regs/README.md` stays, without its v1 notes, and keeps
 precedence on income.
@@ -135,6 +136,13 @@ or two plain sentences saying which sources and how. Then come `- Who can answer
 Colorado office, or a policy person; `- Raised:` the date and the rows that depend on the answer; and `- Source:` once
 for each source the question rests on, one for each side where two conflict, in the form of a row's Source. A
 `- Note:` may come last, for context that is neither a source nor who can answer.
+
+A question whose part moved to the state facts, as decision record 0006 sets out, keeps its `###` heading and, in
+place of its fields, holds one: `- Moved: YYYY-MM-DD, to the state fact <state>: <row>.`, the date it moved and the
+fact's name, `<state>` being the state file's `state` and `<row>` the fact's row. A question that stays after its
+state's part moved ends Why it is open with a sentence naming the fact, in the form
+`Colorado's part moved on YYYY-MM-DD to the state fact co: <row>.`, so the review page, which shows Why it is open and
+not the Note, says where the part went.
 
 ### A rule row
 
@@ -334,6 +342,7 @@ dates written as YYYY-MM-DD:
 - `value`: the value as the source states it, and `counts_from`, the event a period counts from, where it is a period
 - `status`: `known`, `inferred`, or `not published`, with a `note` saying from what it was inferred, or where and when
   the search ran
+- `choice`: on a fact on the first row of a pair only, which of the pair's two rows the state takes, below
 - `citation`: in the same form as a row's Citation
 - `sources`: a list, one entry per source, each with `source` in the same form as a row's Source, `url`, `tier`, and
   `source_date`, the latest date the source gives itself, or `not stated`
@@ -350,15 +359,41 @@ of file in `states/` fails as unlisted. Its `state` is the file's name without `
 `federal` or a state's two-letter code in lowercase, such as `co`, and its `name` is the plain name, such as
 `Colorado`. Every value is a string except `sources` and `facts`, which are lists. Each fact has `row`, `setting`,
 `value`, `status`, `citation`, `sources` and `checked`, and a `note` as well when its status is `inferred` or
-`not published`. A key whose value is empty, or an empty list, counts as missing. A fact marked `not published` has
-the value `not published`. Each source has all four of its keys, its Source is checked as a row's is, its `url` is an
-address beginning `http://` or `https://`, and its tier is one of the tiers above. A fact's citation is checked as a
-row's is, taking the tier of its first source. A source on a state agency page or a secondary source whose date is
-`not stated` gets the same warning, because it too may predate the rule. The checker cannot tell whether a value is a
-period, so it never requires `counts_from`; review checks that every period has one. A source's `url` is the address
-a document in this repository gives for it or, where none does, the address that served it. The federal file's `name`
-is `Federal default`. A fact that records a state's own choice, such as making a federal "may" a "must", says so in
-its `note`. A fact's value uses the source's words, so a period counts from the event the source names.
+`not published` or where the paragraphs below ask for one. A key whose value is empty, or an empty list, counts as
+missing. A fact marked `not published` has the value `not published`. Each source has all four of its keys, its
+Source is checked as a row's is, its `url` is an address beginning `http://` or `https://`, and its tier is one of the
+tiers above. A fact's citation is checked as a row's is, taking the tier of its first source. A source on a state
+agency page or a secondary source whose date is `not stated` gets the same warning, because it too may predate the
+rule. The checker cannot tell whether a value is a period, so it never requires `counts_from`; review checks that
+every period has one. A source's `url` is the address a document in this repository gives for it or, where none does,
+the address that served it. The federal file's `name` is `Federal default`. A fact that records a state's own choice,
+such as making a federal "may" a "must", says so in its `note`. A fact's value uses the source's words, so a period
+counts from the event the source names.
+
+A state file holds at most one fact per row, so a fact's name, `<state>: <row>`, from the file's `state` and the
+fact's `row`, names one fact. Where the federal rule lets a state choose between two rows, the choice is one fact, on
+the first row of the pair in the extract's order whatever the state chooses, so its name never moves; no fact is on
+the second row of a pair. The pairs are listed in `CHOICE_PAIRS` in `scripts/corpus_check/constants.py`, and a later
+topic that writes such a choice adds its pair there. Decision record 0006 set three:
+renewal-notice-with-renewal-form with renewal-notice-after-renewal-form-period;
+more-frequent-check-notice-after-data-check with more-frequent-check-notice-after-information-request; and
+reschedule-2027-renewals-to-six-months with keep-scheduled-2027-renewals. A fact on the first row of a pair has the
+key `choice`, and no other fact does. Its value is one of the pair's two identifiers, `not published`, or
+`not applicable` where the state's source says it makes neither choice, such as a state that never checks between
+renewals. A fact whose choice is `not applicable` has as its `value` its source's words for what the state does, and
+its `status` is `known` where the source states that or `inferred` where it is worked out from what the source says.
+A fact marked `not published` that has `choice` has the choice `not published`.
+
+Three keys may be written `not published`: `value`, `choice` and `counts_from`, the last for a part of a known or
+inferred fact that no source publishes. Each so written needs a `note` saying where and when the search ran, and so
+does a choice of `not applicable`. No other key but `status` is ever `not published`.
+
+A fact marked `not published` still has a citation and sources. Its citation is the federal paragraph that gives the
+choice, and its sources quote the stored federal lines that set the choice out, such as 42 CFR 435.558(b)(2) or (b)(3)
+from the correction, or CMS SMD 26-001, pp. 7 to 8, from the stored letter. Its note names each state source searched,
+the words searched for and the date. A fact that takes the part of an open question names the question by its title
+in its note and keeps the question's Raised date. Text anywhere in `docs/domain/` or the skill that still calls that
+part an open question is corrected, as "Pointers and dated corrections" says, to name the fact instead.
 
 ### The skill
 
@@ -366,6 +401,8 @@ The skill restates rows briefly and holds no rule of its own. It is a main file,
 each topic of the corpus in `references/`, as decision record 0004 sets out, and it holds a rule item for each row.
 Its `name` matches its folder, and its description uses the words a person would use about the work, such as Medicaid
 work requirements, letters, deadlines and exemptions, because the description decides whether the skill loads at all.
+The description is at most 1,024 characters, the limit the Agent Skills specification sets, counted as the checker
+reads it: the text after `description:`, with any continuation lines joined by single spaces.
 
 `SKILL.md` has frontmatter holding `name` and `description` between `---` lines, as the other skills here do. The
 headings `## Topics`, `## Precedence` and `## Watch list` each appear exactly once, written exactly so, because a
@@ -378,13 +415,16 @@ in `SKILL.md` are not rule items and are left to review. `SKILL.md` stays under 
 count, about 1,500 words.
 
 A topic file is `references/<name>.md`, its name lowercase words joined by hyphens, with no frontmatter. Its first line
-is `# <title>`. Every `.md` file directly in `references/` is linked from `## Topics`, and every link there names a
-file that exists. Prose may stand under the title or at the start of a group, and holds no rule; it is left to review.
-Rule items sit under `##` group headings named in plain words for what the group covers. Every list item in a topic
-file is a rule item and sits under a `##` heading, so a list item with no identifier, or one above the first `##`
-heading, fails. A rule item names any choice of the state it depends on by what the choice does, never "this option",
-"that option" or "the other option"; that is left to review. A topic file stays under 500 lines. A topic file holds
-at least one rule item, and each row in the extract has exactly one rule item across the topic files.
+is `# <title>`, and the title is the `##` heading of one topic in the extract, written exactly as the heading is, so
+the topic's one title, which decision record 0006 sets, cannot drift between the two. No two topic files share a
+title. Every `.md` file directly in
+`references/` is linked from `## Topics`, and every link there names a file that exists. Prose may stand under the
+title or at the start of a group, and holds no rule; it is left to review. Rule items sit under `##` group headings
+named in plain words for what the group covers. Every list item in a topic file is a rule item and sits under a `##`
+heading, so a list item with no identifier, or one above the first `##` heading, fails. A rule item names any choice
+of the state it depends on by what the choice does, never "this option", "that option" or "the other option"; that is
+left to review. A topic file stays under 500 lines. A topic file holds at least one rule item, and each row in the
+extract has exactly one rule item across the topic files.
 
 A rule item has words before its identifier. It may continue on lines indented by exactly two spaces, and is read with
 its lines joined by single spaces. It ends with the row's identifier in square brackets, a space, and the row's
@@ -411,11 +451,12 @@ after it, `(Corrected YYYY-MM-DD: said "<the old words>"; <finding ID>.)`, so th
 reader meets them. Where the correction comes from reading a stored source rather than from the research, the finding
 ID gives way to `read in <path>:<line>`; where it rests on both, both are given, the finding ID first, separated by
 `; `. A correction raised by a comment on the review pages, in place or in a row's `Corrected:` field, gives the
-comment as its finding ID, written `issue <number>`. One correction may quote more than one old string, each in its
-own quotes, and quoted words stay exactly as they were written. Text added where no old words are corrected, such as a
-comment explaining a value, is marked `(Added YYYY-MM-DD; <finding ID or read in path:line>.)`. A claim that stays with
-no stored source behind it is marked `(Unverified YYYY-MM-DD: no stored source holds this; searched <what>.)` rather
-than removed.
+comment as its finding ID, written `issue <number>`. A correction that carries out a decision record gives the record
+as its finding ID, written `decision record <number>`, such as `decision record 0006`. One correction may quote
+more than one old string, each in its own quotes, and quoted words stay exactly as they were written. Text added where
+no old words are corrected, such as a comment explaining a value, is marked
+`(Added YYYY-MM-DD; <finding ID or read in path:line>.)`. A claim that stays with no stored source behind it is marked
+`(Unverified YYYY-MM-DD: no stored source holds this; searched <what>.)` rather than removed.
 
 ### The checker
 
@@ -438,8 +479,25 @@ anything git ignores, and fails, naming each problem, when:
   `supporting-regs/README.md`
 - a state fact lacks a key, names a row that does not exist, or has a `checked` value outside a row's Verified
   vocabulary less `no`
+- a state file holds two facts on one row; a fact is on the second row of a pair; a fact on the first row of a pair
+  lacks `choice`, or a fact on any other row has it; a `choice` is neither one of its pair's two identifiers nor
+  `not published` or `not applicable`; a fact marked `not published` has a `choice` other than `not published`; a
+  fact whose `value`, `choice` or `counts_from` is `not published`, or whose `choice` is `not applicable`, lacks a
+  note; or any other key but `status` is `not published`. A fact on a pair's second row is told that and the pair's
+  first row, and not also that its `choice` belongs on the first row of a pair
 - an open question lacks a required field, holds one empty, holds them out of order or repeated, holds a field not
-  listed, or starts `Why it is open` with anything but the four reasons the Formats name
+  listed, or starts `Why it is open` with anything but the four reasons the Formats name. A question holding
+  `Moved` is the exception to the required fields and their order: it fails if it holds any other field or holds
+  `Moved` twice, or if its value is not `YYYY-MM-DD, to the state fact <state>: <row>.` with a real date. A value
+  in that form whose date is no day that exists, such as 2026-02-30, is told so in a message of its own
+- a state fact named as `the state fact <state>: <row>`, in a `Moved` line or in Why it is open, does not exist,
+  with "the" or "The" before it and the name bare or in backticks. The names are built from each state file's
+  `state` and each fact's `row`, so `co: <row>` exists only where `co.json` has a fact on that row
+- `CHOICE_PAIRS` gives one pair the same row twice or puts a row in two pairs, or the extract holds one row of a
+  pair and not the other, or holds the pair's second row first; each is reported at
+  `scripts/corpus_check/constants.py`, where the pairs are kept
+- the skill's description passes 1,024 characters, or a topic file's title is not the `##` heading of a topic in the
+  extract or is the title of another topic file too
 - the skill's main file or a topic file passes 500 lines, a topic file is missing, not linked or holds no rule item,
   a row has no rule item or more than one, or a rule item names a row that does not exist, gives it a different
   citation, or states a number its row's Rule does not
@@ -473,25 +531,33 @@ of the skill, a page of open questions and a page of state facts. Under the titl
 come the line saying it is generated and the sentence "Never post or send anything about a real person's case.",
 which the landing page holds too.
 
-A topic page opens with "Start here": one list item for each group of the topic file that holds a start-here row, its
-text the group's `##` heading and a colon, and under it a link to each of those rows, named by its identifier with
-spaces for hyphens. Both follow the topic file's order, and the list adds no heading of its own.
+A topic page may open with an orientation, one paragraph held for its topic file in `ORIENTATION` in
+`scripts/review_pages/constants.py`, as `START_HERE` there holds its start-here rows, and every word in it that is a
+row's identifier links to that row, and its first "open question" links to the open questions page. For
+who-the-requirement-applies-to it names the page's two terms, applicable individual and specified excluded individual,
+and the rows that define them. Then comes "Start here": one list item for each group of the topic file that holds a
+start-here row, its text the group's `##` heading and a colon, and under it a link to each of those rows, named by its
+identifier with spaces for hyphens. Both follow the topic file's order, and the list adds no heading of its own.
 
 Each row shows its identifier as the heading, the rule, the citation linked to the official text, whether a state can
 choose differently, which way an error would cost a person, who checked it and how, and links to comment on it and to
-the full row in the extract. Where a state can choose, it takes two lines, "Can a state choose differently? Yes. The
-state chooses ..." and "If the state has not chosen: ...". In those two lines every word that is a row's identifier
-links to that row, and the first "open question" in each links to the open questions page; the row's text is
-unchanged. "If this row were wrong:" says "a person on Medicaid could do less than the rules ask of them." for
-`dangerous`, "a person on Medicaid could do more than the rules ask of them." for `burdensome`, and "only a citation,
-a date or context would be off." for `neither`. "Checked:" puts the Verified value in words, such as "2026-10-19 by an
-AI agent reading the stored text.", and a state fact's `checked` value in the same words.
+the full row in the extract. A row with a Source written `not stored, <URL>` shows, after its citation, the line
+"Source, not stored yet:" and that address, linked, once for each such Source. Where a state can choose, it takes
+two lines, "Can a state choose differently? Yes. The state chooses ..." and "If the state has not chosen: ...". In
+those two lines every word that is a row's identifier links to that row, and the first "open question" in each
+links to the open questions page; the row's text is unchanged. "If this row were wrong:" says "a person on Medicaid
+could do less than the rules ask of them." for `dangerous`, "a person on Medicaid could do more than the rules ask of
+them." for `burdensome`, and "only a citation, a date or context would be off." for `neither`. "Checked:" puts the
+Verified value in words, such as "2026-10-19 by an AI agent reading the stored text.", and a state fact's `checked`
+value in the same words.
 
-A CFR citation that names a paragraph, such as `42 CFR 435.558(a)(1)`, links to that paragraph on eCFR's current
-section page, at the fragment `#p-` followed by the section and paragraph percent-encoded:
-`#p-435.558%28a%29%281%29`. A range links to its first paragraph. Every CFR and Federal Register citation in an open
-question's text is linked the same way. So is a section of title 42's parts 400 to 499 listed bare straight after a
-42 CFR reference, as 431.221 and 431.231 are in "42 CFR 431.211, 431.221 and 431.231", and a section-sign reference
+A CFR citation of title 42 or title 28 links to its section on eCFR's current section page for that title, so
+`28 CFR 35.108`, which 42 CFR 435.554(a) incorporates, links as a 42 CFR citation does; a citation of any other title,
+such as 29 CFR, stays text. One that names a paragraph, such as `42 CFR 435.558(a)(1)`, links to that paragraph, at
+the fragment `#p-` followed by the section and paragraph percent-encoded: `#p-435.558%28a%29%281%29`. A range links
+to its first paragraph. Every CFR and Federal Register citation in an open question's text is linked the same way. So
+is a section of title 42's parts 400 to 499 listed bare straight after a 42 CFR reference, and not after a 28 CFR
+one, as 431.221 and 431.231 are in "42 CFR 431.211, 431.221 and 431.231", and a section-sign reference
 to such a section, such as `§ 431.206(c)(2)`, where the question's text names 42 CFR and no other title. A paragraph
 alone, such as the (c)(3) in "§ 431.206(c)(2), (c)(3) or (c)(4)", stays text, and so does any Colorado section.
 Colorado's draft 10 CCR 2505-10 8.100 links to the address the manifest records for the stored draft. A citation
@@ -503,18 +569,34 @@ Google Form pre-filled through its question "Which row, state fact or open quest
 policy@hourkeep.app. A row's name is its identifier, an open question's is its title, and a state fact's is its state
 and row, such as `co: hearing-request-window-at-most-90-days`, which the fact shows before its Comment line. The
 landing page links the Google Form without a name. A state fact's note follows its list, folded in a collapsed
-"Notes for checking" block, and the state facts page opens by defining the three statuses.
+"Notes for checking" block. The state facts page opens by defining the three statuses, then says "A part of a fact,
+such as what a period counts from, may be not published while the rest is known."
 
-The open questions page groups the questions by why each is open, with conflicts first, since there two sources say
-different things; the owner decided that order on 2026-10-22. Its opening paragraph says so. Each group is a `##`
-heading with one sentence under it, and each question a `###` heading with its title unchanged, so its anchor and the
-name it is commented under stay the same. A question goes in the first of these groups that fits it, and so in
-exactly one: "Where the sources conflict" if its reasons include `the sources conflict`; "Waiting on a choice a state
-has not published" if they include `it turns on a choice the state has not published`; "Questions about the federal
-rule" if its Who can answer starts with `CMS`; and "Questions about a state's own rules" otherwise. Its reasons are
-read as the checker reads them. The page shows the conflicts, then the federal rule, then a state's own rules, then a
-state's choice, and leaves out a group with no question. Within a group the questions keep the order of
-`open-questions.md`.
+A fact that holds `choice` shows, straight after its value, the line "Which of the two rows:", which names both of
+the pair's options in words, each with a link to its row, such as "the state sends the notice with the renewal form"
+and "the state sends the notice after the renewal form", joined by ", or ", and then "The state's choice:" and the
+words of the row the state takes, or `not published` or `not applicable`. The words for each row sit beside its
+identifier in `CHOICE_PAIRS`, because the fact's name gives the pair's first row whichever the state takes, and each
+row's words follow "the state", so they are written as "sends the notice with the renewal form".
+
+The open questions page groups the questions by why each is open, with conflicts first, since each of those has two
+sources that say different things; the owner decided that order on 2026-10-22. Its opening paragraph says so. Each
+group is a `##` heading with one sentence under it, and each question a `###` heading with its title unchanged, so
+its anchor and the name it is commented under stay the same. A question goes in the first of these groups that fits
+it, and so in exactly one: "Moved to the state facts" if it holds `Moved`; "Where the sources conflict" if its
+reasons include `the sources conflict`; "Waiting on a choice a state has not published" if they include `it turns on
+a choice the state has not published`; "Questions about the federal rule" if its Who can answer starts with `CMS`;
+and "Questions about a state's own rules" otherwise. Its reasons are read as the checker reads them. The page shows
+the conflicts, then the federal rule, then a state's own rules, then a state's choice, then the moved questions,
+last, and leaves out a group with no question. Within a group the questions keep the order of `open-questions.md`.
+When the moved group is there, the opening paragraph adds "The last group holds questions whose part moved to the
+state facts, each under its old title.", and the group's sentence is "These were open questions. Each is now a state
+fact, named under its old title, and comments on it go to the fact."
+
+A moved question shows its old title as its heading and, in place of Why it is open, Who can answer and Rows it holds
+up, the line "Moved on YYYY-MM-DD to the state fact `<state>: <row>`" and three comment links that carry the fact's
+name, so a comment filed under the old title can still be matched and a new one goes to the fact. The fact's name is
+text and not a link, there and in Why it is open.
 
 The checker fails when `docs/review/` is not what the generator makes. If `docs/review/` is absent, the checker says so
 and checks the rest, as it does for an absent skill.

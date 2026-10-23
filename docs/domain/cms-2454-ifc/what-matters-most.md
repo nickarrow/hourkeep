@@ -167,7 +167,7 @@ information that changes what a State is permitted to do.
 | **(c)(3)** | **Parent, guardian, caretaker relative, or family caregiver** of a dependent child 13 or under, or of a disabled individual | The largest and most misunderstood category. See § 3 below |
 | **(c)(4)** | **Veteran with a disability rated as total** | **Temporary or permanent**, under 38 U.S.C. 1155. Preamble is explicit that **TDIU** veterans — paid at the 100% rate because their disabilities prevent them working — *"must be treated by States in the same manner"* as those with a combined 100% rating (91 FR 33372). A question asking only about a "100% rating" silently excludes them |
 | **(c)(5)** | **Medically frail or otherwise has special medical needs** | Two-part test with a **functional** gate. See § 4 below |
-| **(c)(6)** | **Compliant with TANF work requirements** | SSA § 407. The test **is** compliance. States define compliance differently; CMS says States *should not rely on or require reporting from the individual* (91 FR 33385) |
+| **(c)(6)** | **Compliant with TANF work requirements** | SSA § 407. The test **is** compliance. States define compliance differently; CMS says States *should not rely on or require reporting from the individual* (91 FR 33377) (Corrected 2026-10-23: said "(91 FR 33385)"; read in docs/domain/cms-2454-ifc/2026-11094.xml:1236.) |
 | **(c)(7)** | **Member of a household receiving SNAP who is not exempt from a SNAP work requirement** | **Read the construction.** The test is being **subject to** SNAP work requirements — *not* complying with them — and it keys on **household** receipt, not the individual's own |
 | **(c)(8)** | **Participating in a drug addiction or alcoholic treatment and rehabilitation program** | 7 U.S.C. 2012(h). States **may** set a minimum time commitment — a State election |
 | **(c)(9)** | **Inmate of a public institution** | Uses the long-standing definition at **§ 435.1010**. States are expected to use correctional data they already receive |
@@ -192,39 +192,17 @@ information that changes what a State is permitted to do.
 
 ## 3. The caregiver cluster — six definitions, not one question
 
-§ 435.554(a) defines six terms; § 435.554(c)(3) is the operative exclusion. Collapsing them into "do you care
-for someone?" loses qualifying people.
+Now rows dependent-child-defined, disabled-individual-defined, ada-disability-definition,
+ada-disability-any-one-or-more-prongs, parent-defined, guardian-defined, caretaker-relative-defined,
+caretaker-relative-other-relationships-at-state-option, family-caregiver-defined,
+parent-guardian-caretaker-relative-or-family-caregiver-excluded, family-caregiver-excluded-on-one-criterion,
+family-caregiver-living-with-care-recipient, family-caregiver-relative-living-apart,
+family-caregiver-unrelated-living-apart-80-hours, more-than-one-excluded-in-a-residence,
+caregiving-hours-below-80-count-as-unpaid-work in docs/domain/community-engagement-extract.md (2026-10-23).
 
-- **Dependent child** — a child **13 or under** who relies on another individual for care.
-- **Disabled individual** — the **ADA definition at 28 CFR 35.108**. Explicitly **need not** be
-  Medicaid-eligible on the basis of disability. Any of three prongs qualifies: an impairment that
-  substantially limits a major life activity, a **record** of one, or being **regarded as** having one.
-- **Parent** — legal mother or father, including by adoption, **who provides some level of care**.
-- **Guardian** — an adult **appointed by a court**.
-- **Caretaker relative** — a relative by blood, adoption, or marriage **living with** the person and
-  **assuming primary responsibility** for their care, from an enumerated list. States **may** extend the list
-  — a State election (§ 435.554(a), and see `state-options.md`).
-- **Family caregiver** — an adult family member **or other individual** with a significant relationship who
-  provides a broad range of assistance. Built on the RAISE Family Caregivers Act (PL 115-119).
-
-**Family caregivers must additionally meet one of three criteria at § 435.554(c)(3)(i)(A)–(C):**
-
-| | Resides with? | Related? | Requirement |
-|---|---|---|---|
-| (A) | Yes | — | Assistance on a **regular basis**, not solely incidental |
-| (B) | No | Yes | Assistance on a **regular basis**, not solely incidental |
-| (C) | No | No | **≥ 80 hours per month** of non-incidental assistance |
-
-**Two consequences worth stating out loud:**
-
-**Multiple adults in one residence may each qualify.** § 435.554(c)(3)(ii). CMS aligned this with existing
-SNAP policy (91 FR 33369). It is commonly assumed only one person can be counted.
-
-**Failing (C) does not waste the hours.** A family caregiver who provides fewer than 80 hours to an unrelated
-person they do not live with **still counts those hours as unpaid work** under § 435.552(b). The preamble says
-so directly (91 FR 33355): caregiving hours below the 80-hour threshold in § 435.554(c)(3)(i)(C)
-*"would count toward demonstrating community engagement."* CMS's example: 55 caregiving hours + 25 other
-hours = compliant.
+- Collapsing them into "do you care for someone?" loses qualifying people.
+- The family caregiver definition builds on section 2 of the RAISE Family Caregivers Act (PL 115-119), as the
+  preamble says (91 FR 33366). (Added 2026-10-23; read in docs/domain/cms-2454-ifc/2026-11094.xml:781.)
 
 ---
 
@@ -273,7 +251,12 @@ consideration.**
 > that are not plaintiffs. A second suit, *Taylor v. Kennedy, Jr.*, No. 1:26-cv-03705 (D. Md.), filed 2026-09-18 by
 > 12 plaintiffs, challenges the gate, the "stable recovery" carve-out for substance use disorder, the 12-month claims
 > window and the attestation limit. On 2026-10-14 (ECF 28) that court set a summary judgment schedule and declined to
-> commit to a ruling before 2027-01-01. (Added 2026-10-23; L3-6, L1-12, L3-5.) *(outside the IFC.)*
+> commit to a ruling before 2027-01-01. (Added 2026-10-23; L3-6, L1-12, L3-5.) On 2026-10-23, CourtListener's
+> RECAP copy of the Massachusetts docket page, read at about 00:37 UTC, and RECAP's search index, queried then and
+> at about 03:09 UTC, showed no entry after 144, a notice of appearance filed 2026-10-21, and no entry recording the
+> October 22 hearing as held, no order on the motions and no termination. RECAP updates a docket only when one of
+> its users downloads it from PACER, so it can lag, and PACER was not checked. (Added 2026-10-23; decision record
+> 0006.) *(outside the IFC.)*
 
 ---
 
@@ -668,8 +651,12 @@ population**.
 **The adult group is not "childless adults."** § 435.551 defines applicable individuals by reference to
 **§ 435.119** — the ACA expansion group, adults **19–64** at or below 133% FPL not described in a mandatory
 group. **It includes parents** whose income exceeds the § 435.110 threshold. A parent whose youngest child is
-**14 or older** is an applicable individual, because § 435.554(c)(3) reaches only caregivers of a child 13 or
-under.
+**14 or older** is an applicable individual unless another exclusion applies. § 435.554(c)(3) reaches the parent of a
+dependent child, 13 or under, and the parent of a disabled individual of any age, so a parent who gives some level of
+care to a child of 14 or older who is a disabled individual, as § 435.554(a) defines one, is a specified excluded
+individual. (Corrected 2026-10-23: said "is
+an applicable individual, because § 435.554(c)(3) reaches only caregivers of a child 13 or under."; read in
+docs/domain/cms-2454-ifc/2026-11094.xml:3645, :3649, :3661 and :3670, and :905 for no age limit.)
 
 **Hard limits:**
 
@@ -751,9 +738,12 @@ L3-11, L2-5; read in docs/domain/sources/cms/smd-26-001.txt:289 to :308, :364 to
 :496.)
 
 **Two internal cross-references in the IFC are broken and uncorrected.** § 435.554(c)(3) points at
-"paragraphs (c)(1)(i)(A) through (C)" where (c)(3)(i) is meant, and § 435.554(c)(5)(ii) points at "paragraphs
-(a)(5)(i)(A) through (E)" where (c)(5)(i) is meant. The June 29 correction notice republished §§ 435.557 and
-435.558, **not** § 435.554, so these stand. Do not "fix" a correct citation to match a broken one.
+"paragraphs (c)(1)(i)(A) through (C)", which do not exist, and the preamble places the criteria at
+§ 435.554(c)(3)(i) (91 FR 33366). Reading it as (c)(3)(i) is an inference from those lines; the two conflict, and
+which governs is an open question in docs/domain/open-questions.md. (Corrected 2026-10-23: said
+"where (c)(3)(i) is meant"; read in docs/domain/cms-2454-ifc/2026-11094.xml:781 and :3668.) § 435.554(c)(5)(ii)
+points at "paragraphs (a)(5)(i)(A) through (E)" where (c)(5)(i) is meant. The June 29 correction notice republished
+§§ 435.557 and 435.558, **not** § 435.554, so these stand. Do not "fix" a correct citation to match a broken one.
 
 **Litigation could move the medically-frail gate.** See § 4.
 

@@ -1561,3 +1561,1470 @@ that person met it, is the agency's decision, and nothing here decides it.
   must follow the statute's noncompliance procedures and notice requirements: docs/domain/sources/cms/smd-26-001.txt:214
   "engagement at renewal, states must follow the procedures and notice requirements for non-". Page 9 was read on
   the rendered PDF on 2026-10-17. Whether a person's eligibility period was reduced is the agency's determination.
+
+## Who the requirement applies to, and who is excluded from it
+
+### adult-group-eligibility-subject-to-community-engagement
+
+- Rule: As of the implementation date in accordance with § 435.559, the 50 States and the District of Columbia must
+  provide that eligibility under § 435.119, coverage for individuals age 19 or older and under age 65 at or below 133
+  percent FPL, is subject to the community engagement requirement described at §§ 435.550 through 435.563.
+- Citation: 42 CFR 435.119(d); 91 FR 33469
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3455 "the 50 States and the District of Columbia must provide that eligibility under this section is subject to the community engagement requirement described at"
+- Source: docs/domain/sources/ecfr/2026-10-21/42-cfr-435.119.xml:13 "the 50 States and the District of Columbia must provide that eligibility under this section is subject to the community engagement requirement described at"
+- Tier: regulation
+- State election: yes; the state chooses whether to implement §§ 435.550 through 435.563 before January 1, 2027,
+  under § 435.559(b); where it has not chosen, the requirement is a condition of eligibility for medical assistance
+  furnished on or after January 1, 2027, under § 435.559(a), unless the State is granted an exemption under § 435.560
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment; state plan amendment
+- Note: A person in this group who is told the requirement does not reach their coverage may not meet it. The
+  section's heading, which paragraph (d) does not repeat, is at docs/domain/cms-2454-ifc/2026-11094.xml:3450
+  "Coverage for individuals age 19 or older and under age 65 at or below 133 percent FPL", and its paragraph (a) says
+  it implements SSA 1902(a)(10)(A)(i)(VIII), the clause SSA 1902(xx)(9)(A)(i)(I) names:
+  docs/domain/sources/ecfr/2026-10-21/42-cfr-435.119.xml:4 "This section implements section 1902(a)(10)(A)(i)(VIII)
+  of the Act". The State election rests on § 435.559(a) and (b), read for this row at
+  docs/domain/cms-2454-ifc/2026-11094.xml:3996 "as a condition of eligibility for medical assistance furnished on or
+  after January 1, 2027" and :3997 "The agency may elect to implement". § 435.559 and the exemption under § 435.560
+  have no rows yet; increment 2.7 takes them. The eCFR copy is of 2026-10-21, and its source note ends with the rule,
+  :14 "91 FR 33469, June 3, 2026". Whether a person is eligible under § 435.119 is the agency's determination.
+
+### requirement-applies-in-the-50-states-and-dc
+
+- Rule: Sections 435.550 through 435.563 implement section 1902(xx) of the Act and apply to the 50 States and the
+  District of Columbia. They do not apply to the territories.
+- Citation: 42 CFR 435.550; 91 FR 33470
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3504 "apply to the 50 States and the District of Columbia. These sections do not apply to the territories"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:744 "The term ‘State’ means 1 of the 50 States or the District of Columbia"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment
+- Note: Could go either way, so dangerous: a person in one of the 50 States or the District of Columbia who is told
+  the requirement does not reach them may not meet it, and a person in a territory who is told it does may gather
+  proof nobody asks for. The statute's definition of State for the requirement is SSA 1902(xx)(9)(C), added by Pub.
+  L. 119-21, sec. 71119; the stored copy of the statute is a derived file whose origin was never recorded. The
+  section does not list the territories, and the corpus stores no definition of them.
+
+### applicable-individual-defined
+
+- Rule: An applicable individual is an individual who is not a specified excluded individual as defined at
+  § 435.554 and who is described in paragraph (a) or paragraph (b) of § 435.551.
+- Citation: 42 CFR 435.551 introductory text; 91 FR 33470
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3509 "An applicable individual is an individual who is not a specified excluded individual as defined at"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:688 "The term ‘applicable individual’ means an individual (other than a specified excluded individual"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment
+- Note: Could go either way, so dangerous: a person who takes themselves for an applicable individual when an
+  exclusion fits them may gather proof they need not, and one who takes themselves for excluded when none fits may
+  not meet the requirement. The paragraph's words end in a dash (:3509), and (a) ends "; or" (:3510), so a person
+  described in either paragraph is one. The statute is SSA 1902(xx)(9)(A)(i), whose clause (ii) has the State
+  determine who is a specified excluded individual, in accordance with standards the Secretary specifies:
+  docs/domain/hr1/119hr1enr-title7-part3.md:698 "as determined by the State (in accordance with standards specified
+  by the Secretary)". Whether a person is an applicable individual, and whether they are a specified excluded
+  individual, are the agency's determinations.
+
+### applicable-individual-under-the-state-plan
+
+- Rule: An individual who is not a specified excluded individual is an applicable individual if they are eligible to
+  enroll, or are enrolled, under the State plan under § 435.119.
+- Citation: 42 CFR 435.551(a); 91 FR 33470
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3510 "Eligible to enroll or is enrolled under the State plan under"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:690 "who is eligible to enroll (or is enrolled) under the State plan under subsection (a)(10)(A)(i)(VIII)"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment
+- Note: A person in this group who is told the requirement does not apply to them may not meet it. Paragraph (a)
+  sets no test of age, pregnancy or Medicare of its own, and eligibility under § 435.119 already has those three:
+  docs/domain/sources/ecfr/2026-10-21/42-cfr-435.119.xml:6 "Are age 19 or older and under age 65", :7 "Are not
+  pregnant" and :8 "Are not entitled to or enrolled for Medicare benefits under part A or B of title XVIII of the
+  Act". That (a) needs no test of its own for that reason is an inference from the two texts. § 435.119 implements
+  SSA 1902(a)(10)(A)(i)(VIII) (:4), the clause the statute names here, SSA 1902(xx)(9)(A)(i)(I). A person age 65
+  or older is outside the group the requirement attaches to, under § 435.119's age test here and (b)(1) of
+  applicable-individual-under-a-demonstration, and not a specified excluded individual: what-matters-most.md section
+  12 lists the error "Age 65+ is exempt", where the correction is that they are outside the group entirely, by a
+  different mechanism. Whether a person is eligible under § 435.119 is the agency's determination.
+
+### applicable-individual-under-a-demonstration
+
+- Rule: An individual who is not a specified excluded individual is also an applicable individual if they are
+  otherwise eligible to enroll, or are enrolled, in a demonstration project under section 1115(a)(2) of the Act that
+  provides coverage that meets minimum essential coverage requirements as defined under § 435.4, and they are at
+  least 19 and under 65 years of age; not pregnant; not entitled to or enrolled for benefits under part A of title
+  XVIII, and not enrolled for benefits under part B of title XVIII; and not otherwise eligible to enroll under the
+  State plan.
+- Citation: 42 CFR 435.551(b); 91 FR 33470
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3511 "Otherwise eligible to enroll or is enrolled in a demonstration project under section 1115(a)(2) of the Act that provides coverage that meets minimum essential coverage requirements as defined under"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3512 "At least 19 and under 65 years of age"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3513 "Not pregnant"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3514 "Not entitled to or enrolled for benefits under part A of title XVIII or enrolled for benefits under part B of title XVIII"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3515 "Not otherwise eligible to enroll under the State plan"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:694 "is otherwise eligible to enroll (or is enrolled) under a waiver of such plan that provides coverage that is equivalent to minimum essential coverage"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:696 "has attained the age of 19 and is under 65 years of age, is not pregnant"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment
+- Note: A person covered through a demonstration who is told the requirement reaches only the State plan's group may
+  not meet it. The four tests are paragraphs (b)(1) to (b)(4), joined by "and" (:3514). The statute, SSA
+  1902(xx)(9)(A)(i)(II), says a waiver of the State plan that provides coverage equivalent to minimum essential
+  coverage, as described in section 5000A(f)(1)(A) of the Internal Revenue Code and determined under standards the
+  Secretary prescribes; the regulation says a demonstration project under section 1115(a)(2) whose coverage meets
+  minimum essential coverage requirements as defined under § 435.4. § 435.4 is not stored and was not read, so the
+  corpus does not say what those requirements are. The paragraph reaches a person only where a state runs such a
+  demonstration, which is a choice this rule does not give. Whether a person meets each test is the agency's
+  determination.
+
+### demonstration-populations-reviewed-for-community-engagement
+
+- Rule: The preamble says CMS is reviewing approved section 1115(a)(2) expenditure authority in demonstrations that
+  create an eligibility pathway for individuals not eligible under the State plan, to find which cover individuals who
+  could be subject to the community engagement requirement. By its review so far, many such populations do not meet
+  the definition of an applicable individual, such as a group covered only for family planning benefits, whose coverage
+  does not meet minimum essential coverage requirements; in some, anyone eligible would always be a specified excluded
+  individual; and several demonstrations cover populations generally meeting the definition in which not all
+  individuals would always be excluded or excepted, and these populations could be subject to the requirement.
+- Citation: Preamble to 42 CFR 435.551(b); 91 FR 33354
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:420 "many section 1115(a)(2) expenditure authority demonstration populations do not meet the definition of an applicable individual"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:420 "This coverage does not meet MEC requirements, and thus the community engagement requirement would not apply"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:421 "anyone eligible for the demonstration coverage would always be a specified excluded individual"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:422 "These demonstration populations could be subject to the community engagement requirement."
+- Tier: preamble
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; CMS guidance
+- Note: Could go either way, so dangerous: a person covered through a demonstration who is told no demonstration
+  enrollee is subject may not meet the requirement, and one in a family planning only group who is told they are
+  subject may gather proof nobody asks for. The example where everyone would be excluded is a population that meets
+  an institutional level of care for home and community-based services, excluded as medically frail under
+  § 435.554(c)(5) (:421), which increment 2.2 takes. Lines 420 to 422 are on 91 FR 33354, after the page marker on
+  line 418. The preamble names no demonstration or State; CMS's later count is
+  cms-identified-13-demonstration-populations-in-8-states. Whether a person's demonstration coverage makes them an
+  applicable individual is the agency's determination.
+
+### cms-identified-13-demonstration-populations-in-8-states
+
+- Rule: CMS's overview slide deck of 2026-07-27 on the interim final rule says that, to date, 13 populations
+  covered only under section 1115(a)(2) demonstration authority, in 8 States, are subject to the community
+  engagement requirement, and calls its review ongoing.
+- Citation: CMS IFC overview slide deck of 2026-07-27, slide 9
+- Source: not stored, https://www.medicaid.gov/medicaid/downloads/ce-requirement-ifc-deck.pdf
+- Tier: agency guidance
+- State election: no
+- Verified: no
+- Error direction: dangerous
+- Recheck: CMS guidance
+- Note: A person covered only through one of these demonstrations who is told the requirement reaches only the
+  State plan's adult group may not meet it. The ledger confirmed the count from slide 9 (ledger L2-11, research L2
+  finding 11 and section E5), but the deck is not stored and no one has read it for this row, so it says Verified:
+  no; increment 2.6 stores the deck. Research L2 section E5 names the populations and the States. They are not
+  repeated here, because values for States other than Colorado stay in the research records (decision record 0006,
+  "Other states' values"); Colorado is not among the eight it names, which is the research's reading and was not
+  checked for this row. The interim final rule's burden estimate counts 44 jurisdictions, 43 States and the District
+  of Columbia, as meeting its definition of a State for reporting: docs/domain/cms-2454-ifc/2026-11094.xml:2478
+  "We estimate that 44 jurisdictions meet this definition (43 States and the District of Columbia)" (91 FR 33427).
+  Whether a person is in one of these populations is the agency's determination.
+
+### caretaker-relative-defined
+
+- Rule: For § 435.554, a caretaker relative is a relative of a dependent child or a disabled individual, as § 435.554
+  defines those terms, by blood, adoption, or marriage, with whom the child or disabled individual is living, who
+  assumes primary responsibility for the dependent child's or disabled individual's care, and who is one of these:
+  the dependent child's or disabled individual's father, mother, grandfather, grandmother, brother, sister,
+  stepfather, stepmother, stepbrother, stepsister, uncle, aunt, first cousin, nephew, or niece; the disabled
+  individual's husband, wife, son, daughter, stepson, stepdaughter, grandson, or granddaughter; or the spouse of such
+  parent or relative, even after the marriage is terminated by death or divorce.
+- Citation: 42 CFR 435.554(a), definition of caretaker relative; 91 FR 33471
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3637 "means a relative of a dependent child or a disabled individual, as those terms are defined in this section, by blood, adoption, or marriage with whom the child or disabled individual is living, who assumes primary responsibility for the"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3639 "father, mother, grandfather, grandmother, brother, sister, stepfather, stepmother, stepbrother, stepsister, uncle, aunt, first cousin, nephew, or niece"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3640 "husband, wife, son, daughter, stepson, stepdaughter, grandson, or granddaughter"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3641 "The spouse of such parent or relative, even after the marriage is terminated by death or divorce"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:710 "who is the parent, guardian, caretaker relative, or family caregiver"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment
+- Note: Could go either way, so dangerous: a son or daughter who lives with and cares for a disabled parent, and is
+  told only a child's relatives count, may meet a requirement that does not apply to them, and a relative who does not
+  live with the person or does not assume primary responsibility for their care, and is told they are a caretaker
+  relative, may not meet one that does. The opening words of § 435.554(a), :3634 "For purposes of this section",
+  limit each of its definitions to § 435.554. The list for a disabled individual's own relatives, :3640, names the
+  disabled individual alone, so it does not reach a dependent child. The preamble builds the definition on § 435.4's,
+  which serves the group at § 435.110, and adds the relatives of a disabled individual:
+  docs/domain/cms-2454-ifc/2026-11094.xml:790 "based on the relationships listed in the existing definition at"
+  (91 FR 33367). § 435.4 is stored only in the derived copy docs/domain/supporting-regs/42cfr-supporting-sections.txt,
+  and was not read for this row. The relationships a state may add are in
+  caretaker-relative-other-relationships-at-state-option. Whether a person is a caretaker relative, and whether they
+  live with the person and assume primary responsibility for their care, are the agency's determinations.
+
+### caretaker-relative-other-relationships-at-state-option
+
+- Rule: At State option, a caretaker relative may also be another relative of the dependent child or disabled
+  individual based on blood (including those of half-blood), adoption, or marriage; the domestic partner of the
+  parent or other caretaker relative; or an adult with whom the dependent child or disabled individual is living and
+  who assumes the primary responsibility for their care. The definition's opening words apply to each of these as
+  to the relatives it lists: a caretaker relative is one with whom the dependent child or disabled individual is
+  living and who assumes primary responsibility for their care. To the extent a State has elected to include any of
+  these relationships for the purpose of eligibility for the group at § 435.110, the same elections apply to this
+  definition for that State.
+- Citation: 42 CFR 435.554(a), definition of caretaker relative, paragraph (iv); 91 FR 33471
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3637 "with whom the child or disabled individual is living, who assumes primary responsibility for the"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3642 "At State option, another relative of the dependent child or disabled individual based on blood (including those of half-blood), adoption, or marriage"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3642 "the domestic partner of the parent or other caretaker relative"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3642 "To the extent a State has elected to include any of these relationships for the purpose of eligibility for the group at"
+- Tier: regulation
+- State election: yes; the state chooses whether to count as caretaker relatives another relative by blood,
+  adoption or marriage, the domestic partner of the parent or other caretaker relative, or an adult with whom the
+  dependent child or disabled individual lives and who assumes primary responsibility for their care, and the
+  elections it made for the group at § 435.110 apply here; where it has not chosen, a caretaker relative is only one
+  of the relatives in caretaker-relative-defined
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment; state plan amendment
+- Note: Could go either way, so dangerous: a second cousin or a domestic partner who is told they count in a state
+  that never chose this may not meet the requirement, and one who is told they do not count in a state that did may
+  meet a requirement that does not apply to them; one who lives apart from the person or does not assume primary
+  responsibility for their care, told the state's choice alone makes them a caretaker relative, may not meet one that
+  does. The opening words, :3637, end "and who is one of the following", so (iv) is one of the relationships they
+  govern; the preamble says the definition requires that the caretaker relative assume primary responsibility for the
+  care and live with the person: docs/domain/cms-2454-ifc/2026-11094.xml:790 "the new definition requires that the
+  caretaker relative assume primary responsibility" (91 FR 33367). The opening also says "a relative", which the
+  domestic partner and the unrelated adult of (iv) need not be; this row reads (iv) as naming them anyway. The
+  preamble reads the last sentence as binding a State that
+  expanded § 435.4's definition for § 435.110: docs/domain/cms-2454-ifc/2026-11094.xml:799 "the State must apply the
+  same elections when determining whether an individual is a" (91 FR 33367). No state fact records Colorado's
+  election, and the corpus stores none of Colorado's § 435.110 elections. Which relationships a state counts is its
+  choice; whether a person has one of them is the agency's determination.
+
+### dependent-child-defined
+
+- Rule: For § 435.554, a dependent child is a child 13 years of age or under who relies on another individual for
+  care.
+- Citation: 42 CFR 435.554(a), definition of dependent child; 91 FR 33471
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3645 "means a child 13 years of age or under who relies on another individual for care"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:710 "of a dependent child 13 years of age and under or a disabled individual"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment
+- Note: Could go either way, so dangerous: a parent of a 14-year-old without a disability who is told the child
+  still counts may not meet the requirement, and a parent of a 13-year-old who is told the child is too old may meet
+  one that does not apply to them. The preamble's example has a parent stop meeting the exclusion when the child,
+  who does not have a disability, turns 14: docs/domain/cms-2454-ifc/2026-11094.xml:1331 "turned 14 years old in
+  June" (91 FR 33379). The preamble applies no deprivation requirement, and limits the definition to the exclusion:
+  :898 "and only for the purpose of determining if a person is a specified excluded individual under section"
+  (91 FR 33369). A child of any age who has a disability may be a disabled individual instead; see
+  disabled-individual-has-no-age-limit. Whether a child relies on another for care is the agency's determination.
+
+### disabled-individual-defined
+
+- Rule: For § 435.554, a disabled individual is an individual who meets the Americans with Disabilities Act
+  definition of disability at 28 CFR 35.108. An individual need not be eligible for Medicaid or other Federal
+  programs on the basis of a disability to be a disabled individual under this definition.
+- Citation: 42 CFR 435.554(a), definition of disabled individual; 91 FR 33471
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3649 "means an individual who meets the Americans with Disabilities Act definition of disability at 28 CFR 35.108"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3649 "An individual need not be eligible for Medicaid or other Federal programs on the basis of a disability to be a disabled individual under this definition"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:710 "or a disabled individual"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment
+- Note: Could go either way, so dangerous: a caregiver who is told the person they care for must get SSI, SSDI or
+  Medicaid on the basis of disability may meet a requirement that does not apply to them, and one who is told any
+  health condition is enough may not meet one that does. The statute does not define the term, and the preamble
+  weighed the SSA definition used for SSI and SSDI and chose the ADA's: docs/domain/cms-2454-ifc/2026-11094.xml:900
+  "The statute does not define the term" and :904 "that aligns with the ADA definition" (91 FR 33369). The ADA
+  definition is stored as eCFR of 2026-10-21, docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml, and rows
+  ada-disability-definition, ada-disability-construed-broadly and ada-disability-any-one-or-more-prongs carry its
+  paragraph (a). Whether a person meets the ADA definition is the agency's determination.
+
+### disabled-individual-has-no-age-limit
+
+- Rule: The preamble says there is no upper age limit for a disabled individual, meaning that individuals of any age
+  with a disability would qualify under that term, an older adult who requires assistance in performing activities
+  of daily living among them, and no lower age limit, so the term could apply from birth, with an overlap through
+  the age of 13 with a dependent child. It encourages States to make their materials clear that individuals
+  providing supports to older adults could qualify as a specified excluded individual through the family caregiver
+  component of the exclusion.
+- Citation: Preamble to 42 CFR 435.554(a); 91 FR 33368; 91 FR 33369
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:859 "meaning that individuals of any age with a disability would qualify under that term"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:905 "This term could, therefore, include an older adult who requires assistance of varying scope in performing activities of daily living"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:905 "they could qualify as a specified excluded individual through the family caregiver component"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:905 "there is no lower age limit to"
+- Tier: preamble
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: burdensome
+- Recheck: final rule; correction notice; CMS guidance
+- Note: A person who cares for an older parent and is told a disabled individual must be a child or of working age
+  may meet a requirement that does not apply to them. The age limits are the preamble's reading of the statute, and
+  the regulation's definition, disabled-individual-defined, states none. Line 859 is on 91 FR 33368 and line 905 on
+  91 FR 33369, by the XML's page markers. The older adult still has to meet the ADA definition, and the caregiver
+  one of the categories of § 435.554(c)(3).
+
+### ada-disability-definition
+
+- Rule: Under the ADA's definition at 28 CFR 35.108, disability means, with respect to an individual, a physical or
+  mental impairment that substantially limits one or more of the major life activities of such individual; a record
+  of such an impairment; or being regarded as having such an impairment as described in paragraph (f) of 28 CFR
+  35.108.
+- Citation: 28 CFR 35.108(a)(1); eCFR 2026-10-21
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:5 "A physical or mental impairment that substantially limits one or more of the major life activities of such individual"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:6 "A record of such an impairment; or"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:7 "Being regarded as having such an impairment as described in paragraph (f) of this section"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: eCFR amendment; final rule: a change to the definition of disabled individual in 42 CFR 435.554(a)
+- Note: Could go either way, so dangerous: a caregiver told the person they care for needs a current impairment
+  that limits them may meet a requirement that does not apply to them, and one told any diagnosis is enough may not
+  meet one that does. The section defines each term the paragraph uses, and the rows after
+  ada-disability-any-one-or-more-prongs carry them: physical or mental impairment in (b), :11; major life activities
+  in (c), :16; substantially limits in (d), :21; a record of such an impairment in (e), :55; regarded as in (f), :58,
+  where ada-regarded-as-having-impairment says what the section leaves unsaid about that prong for the caregiver
+  exclusion, an open question in docs/domain/open-questions.md; and what disability does not include in (g), :62.
+  Five paragraphs have no row, because they govern
+  claims and remedies under title II of the ADA or state the section's purpose: (a)(2)(iii), :10, on proceeding
+  under the regarded as prong when not challenging a failure to provide reasonable modifications; (d)(1)(ii), :23,
+  on the object of attention in title II cases; (d)(2)(i), :31, on the purpose of the rules of construction; (e)(3),
+  :57, on a reasonable modification for a person with a record of an impairment; and (f)(3), :61, on liability under
+  title II. The stored text's source note,
+  :66 "AG Order 3702-2016, 81 FR 53223, Aug. 11, 2016", is older than the interim final rule. Whether a person has
+  a disability under this definition is the agency's determination.
+
+### ada-disability-construed-broadly
+
+- Rule: The definition of disability at 28 CFR 35.108 shall be construed broadly in favor of expansive coverage, to
+  the maximum extent permitted by the terms of the ADA.
+- Citation: 28 CFR 35.108(a)(2)(i); eCFR 2026-10-21
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:8 "shall be construed broadly in favor of expansive coverage, to the maximum extent permitted by the terms of the ADA"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: burdensome
+- Recheck: eCFR amendment; final rule: a change to the definition of disabled individual in 42 CFR 435.554(a)
+- Note: A caregiver who reads the definition narrowly may meet a requirement that does not apply to them. Paragraph
+  (d)(1)(i) says the same of substantially limits, and adds that it is not meant to be a demanding standard, as
+  ada-substantially-limits-construed-broadly sets out. The rule of construction is the ADA's, and the interim final
+  rule does not repeat it.
+
+### ada-disability-any-one-or-more-prongs
+
+- Rule: An individual may establish coverage under any one or more of the three prongs of the definition of
+  disability at 28 CFR 35.108(a)(1): the actual disability prong in (a)(1)(i), the record of prong in (a)(1)(ii), or
+  the regarded as prong in (a)(1)(iii).
+- Citation: 28 CFR 35.108(a)(2)(ii); eCFR 2026-10-21
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:9 "An individual may establish coverage under any one or more of the three prongs of the definition of"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: burdensome
+- Recheck: eCFR amendment; final rule: a change to the definition of disabled individual in 42 CFR 435.554(a)
+- Note: A caregiver told the person they care for must meet all three prongs, or the first, may meet a requirement
+  that does not apply to them. Each prong is as the section's later paragraphs define and limit it: the actual
+  disability prong by (b), (c) and (d), the record of prong by (e), which applies (d)(1), the regarded as prong by
+  (f), and all three by
+  the exclusions in (g); the rows from ada-physical-or-mental-impairment-defined to ada-disability-exclusions carry
+  them. Paragraph (a)(2)(iii), :10, is about a person challenging a public entity's failure to provide reasonable
+  modifications, and has no row. How the regarded as prong applies to the caregiver exclusion is an open question
+  in docs/domain/open-questions.md, as ada-regarded-as-having-impairment says.
+
+### ada-physical-or-mental-impairment-defined
+
+- Rule: Under 28 CFR 35.108, a physical or mental impairment means any physiological disorder or condition, cosmetic
+  disfigurement, or anatomical loss affecting one or more body systems, such as neurological, musculoskeletal,
+  special sense organs, respiratory (including speech organs), cardiovascular, reproductive, digestive,
+  genitourinary, immune, circulatory, hemic, lymphatic, skin, and endocrine; or any mental or psychological disorder
+  such as intellectual disability, organic brain syndrome, emotional or mental illness, and specific learning
+  disability. It includes, but is not limited to, contagious and noncontagious diseases and conditions such as
+  orthopedic, visual, speech, and hearing impairments, and cerebral palsy, epilepsy, muscular dystrophy, multiple
+  sclerosis, cancer, heart disease, diabetes, intellectual disability, emotional illness, dyslexia and other specific
+  learning disabilities, Attention Deficit Hyperactivity Disorder, Human Immunodeficiency Virus infection (whether
+  symptomatic or asymptomatic), tuberculosis, drug addiction, and alcoholism.
+- Citation: 28 CFR 35.108(b)(1) and (b)(2); eCFR 2026-10-21
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:12 "Any physiological disorder or condition, cosmetic disfigurement, or anatomical loss affecting one or more body systems"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:13 "Any mental or psychological disorder such as intellectual disability, organic brain syndrome, emotional or mental illness, and specific learning disability"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:14 "includes, but is not limited to, contagious and noncontagious diseases and conditions such as the following"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:14 "tuberculosis, drug addiction, and alcoholism"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: eCFR amendment; final rule: a change to the definition of disabled individual in 42 CFR 435.554(a)
+- Note: Could go either way, so dangerous: a caregiver told only physical conditions count, or that drug addiction
+  or alcoholism do not, may meet a requirement that does not apply to them, and one told that any impairment is a
+  disability may not meet one that does. Under (a)(1)(i), :5, an impairment is a disability only if it also
+  substantially limits one or more major life activities, and (g), :62, says what disability does not include.
+  Whether a person has an impairment is the agency's determination.
+
+### ada-impairment-excludes-homosexuality-and-bisexuality
+
+- Rule: Under 28 CFR 35.108, a physical or mental impairment does not include homosexuality or bisexuality.
+- Citation: 28 CFR 35.108(b)(3); eCFR 2026-10-21
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:15 "does not include homosexuality or bisexuality"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: eCFR amendment; final rule: a change to the definition of disabled individual in 42 CFR 435.554(a)
+- Note: A caregiver told that the person they care for has an impairment because of their sexual orientation may not
+  meet a requirement that does apply to them. The paragraph sets aside the orientation, not the person: someone who
+  is homosexual or bisexual may have an impairment of another kind under (b)(1) and (b)(2).
+
+### ada-major-life-activities-defined
+
+- Rule: Under 28 CFR 35.108, major life activities include, but are not limited to, caring for oneself, performing
+  manual tasks, seeing, hearing, eating, sleeping, walking, standing, sitting, reaching, lifting, bending, speaking,
+  breathing, learning, reading, concentrating, thinking, writing, communicating, interacting with others, and
+  working; and the operation of a major bodily function, such as the functions of the immune system, special sense
+  organs and skin, normal cell growth, and digestive, genitourinary, bowel, bladder, neurological, brain,
+  respiratory, circulatory, cardiovascular, endocrine, hemic, lymphatic, musculoskeletal, and reproductive systems,
+  which includes the operation of an individual organ within a body system. In determining whether an impairment
+  substantially limits a major life activity, the term major shall not be interpreted strictly to create a demanding
+  standard, and whether an activity is a major life activity is not determined by reference to whether it is of
+  central importance to daily life.
+- Citation: 28 CFR 35.108(c)(1) and (c)(2); eCFR 2026-10-21
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:16 "include, but are not limited to:"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:17 "Caring for oneself, performing manual tasks, seeing, hearing, eating, sleeping"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:18 "such as the functions of the immune system"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:18 "The operation of a major bodily function includes the operation of an individual organ within a body system"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:19 "shall not be interpreted strictly to create a demanding standard"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:20 "is not determined by reference to whether it is of"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: burdensome
+- Recheck: eCFR amendment; final rule: a change to the definition of disabled individual in 42 CFR 435.554(a)
+- Note: A caregiver told that only working, or only activities of central importance to daily life, count may meet a
+  requirement that does not apply to them. Both lists are open: they name examples and are not limited to them.
+  Whether an impairment limits a major life activity is the agency's determination.
+
+### ada-substantially-limits-construed-broadly
+
+- Rule: Under 28 CFR 35.108, the rules of construction of paragraph (d)(1) apply when determining whether an
+  impairment substantially limits an individual in a major life activity. Under the first of them, the term
+  substantially limits shall be construed broadly in favor of expansive coverage, to the maximum extent permitted by
+  the terms of the ADA, and is not meant to be a demanding standard.
+- Citation: 28 CFR 35.108(d)(1) introductory text and (d)(1)(i); eCFR 2026-10-21
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:21 "The following rules of construction apply when determining whether an impairment substantially limits an individual in a major life activity"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:22 "shall be construed broadly in favor of expansive coverage, to the maximum extent permitted by the terms of the ADA"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:22 "is not meant to be a demanding standard"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: burdensome
+- Recheck: eCFR amendment; final rule: a change to the definition of disabled individual in 42 CFR 435.554(a)
+- Note: A caregiver who reads substantially limits as a demanding standard may meet a requirement that does not
+  apply to them. ada-disability-construed-broadly holds the same rule for the definition as a whole. Paragraph
+  (d)(1)(ii), :23, is about cases brought under title II of the ADA and has no row. Whether an impairment
+  substantially limits a major life activity is the agency's determination.
+
+### ada-one-major-life-activity-is-enough
+
+- Rule: Under 28 CFR 35.108, an impairment that substantially limits one major life activity does not need to limit
+  other major life activities in order to be considered a substantially limiting impairment.
+- Citation: 28 CFR 35.108(d)(1)(iii); eCFR 2026-10-21
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:24 "does not need to limit other major life activities in order to be considered a substantially limiting impairment"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: burdensome
+- Recheck: eCFR amendment; final rule: a change to the definition of disabled individual in 42 CFR 435.554(a)
+- Note: A caregiver told that the person they care for must be limited in several activities, or in daily life as a
+  whole, may meet a requirement that does not apply to them.
+
+### ada-episodic-or-in-remission-impairment
+
+- Rule: Under 28 CFR 35.108, an impairment that is episodic or in remission is a disability if it would
+  substantially limit a major life activity when active.
+- Citation: 28 CFR 35.108(d)(1)(iv); eCFR 2026-10-21
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:25 "An impairment that is episodic or in remission is a disability if it would substantially limit a major life activity when active"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: burdensome
+- Recheck: eCFR amendment; final rule: a change to the definition of disabled individual in 42 CFR 435.554(a)
+- Note: A caregiver of someone whose condition comes and goes, or is in remission, who is told that only a condition
+  active now counts may meet a requirement that does not apply to them. Whether the impairment would substantially
+  limit a major life activity when active is the agency's determination.
+
+### ada-substantially-limits-compared-to-most-people
+
+- Rule: Under 28 CFR 35.108, an impairment is a disability within the meaning of 28 CFR part 35 if it substantially
+  limits the ability of an individual to perform a major life activity as compared to most people in the general
+  population. An impairment does not need to prevent, or significantly or severely restrict, the individual from
+  performing a major life activity in order to be considered substantially limiting. Nonetheless, not every
+  impairment will constitute a disability within the meaning of 28 CFR 35.108.
+- Citation: 28 CFR 35.108(d)(1)(v); eCFR 2026-10-21
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:26 "if it substantially limits the ability of an individual to perform a major life activity as compared to most people in the general population"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:26 "does not need to prevent, or significantly or severely restrict, the individual from performing a major life activity"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:26 "not every impairment will constitute a disability within the meaning of this section"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: eCFR amendment; final rule: a change to the definition of disabled individual in 42 CFR 435.554(a)
+- Note: Could go either way, so dangerous: a caregiver told that the person they care for must be unable to do an
+  activity may meet a requirement that does not apply to them, and one told that every impairment is a disability
+  may not meet one that does. The paragraph's words this part mean 28 CFR part 35, where the section stands.
+  Whether an impairment substantially limits a major life activity is the agency's determination.
+
+### ada-substantially-limits-individualized-assessment
+
+- Rule: Under 28 CFR 35.108, the determination of whether an impairment substantially limits a major life activity
+  requires an individualized assessment. In making it, the term substantially limits shall be interpreted and
+  applied to require a degree of functional limitation that is lower than the standard for substantially limits
+  applied prior to the ADA Amendments Act.
+- Citation: 28 CFR 35.108(d)(1)(vi); eCFR 2026-10-21
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:27 "requires an individualized assessment"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:27 "to require a degree of functional limitation that is lower than the standard for substantially limits applied prior to the ADA Amendments Act"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: eCFR amendment; final rule: a change to the definition of disabled individual in 42 CFR 435.554(a)
+- Note: Could go either way, so dangerous: a caregiver told that a diagnosis settles the question without an
+  assessment of the person may not meet a requirement that does apply to them, and one held to a standard as high
+  as the one before the ADA Amendments Act may meet one that does not. The individualized assessment is the
+  agency's determination, and software built on this row makes none.
+
+### ada-comparison-usually-needs-no-scientific-evidence
+
+- Rule: Under 28 CFR 35.108, the comparison of an individual's performance of a major life activity to the
+  performance of the same major life activity by most people in the general population usually will not require
+  scientific, medical, or statistical evidence. Nothing in paragraph (d)(1) is intended, however, to prohibit or
+  limit the presentation of scientific, medical, or statistical evidence in making such a comparison where
+  appropriate.
+- Citation: 28 CFR 35.108(d)(1)(vii); eCFR 2026-10-21
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:28 "usually will not require scientific, medical, or statistical evidence"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:28 "is intended, however, to prohibit or limit the presentation of scientific, medical, or statistical evidence in making such a comparison where appropriate"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: eCFR amendment; final rule: a change to the definition of disabled individual in 42 CFR 435.554(a)
+- Note: Could go either way, so dangerous: a caregiver told that they must bring medical or statistical proof that the
+  person they care for is limited may meet a requirement that does not apply to them, and one told that such evidence
+  has no place may offer none where it is needed, and not meet a requirement the agency then finds applies. Whether the
+  comparison shows a substantial limit is the agency's determination.
+
+### ada-mitigating-measures-not-considered
+
+- Rule: Under 28 CFR 35.108, the determination of whether an impairment substantially limits a major life activity
+  shall be made without regard to the ameliorative effects of mitigating measures. However, the ameliorative effects
+  of ordinary eyeglasses or contact lenses, which are lenses intended to fully correct visual acuity or to eliminate
+  refractive error, shall be considered. Mitigating measures include, but are not limited to, medication, medical
+  supplies, equipment, appliances, low-vision devices (devices that magnify, enhance, or otherwise augment a visual
+  image, not including ordinary eyeglasses or contact lenses), prosthetics including limbs and devices, hearing aids
+  and cochlear implants or other implantable hearing devices, mobility devices, and oxygen therapy equipment and
+  supplies; use of assistive technology; reasonable modifications or auxiliary aids or services as the regulation
+  defines them; learned behavioral or adaptive neurological modifications; and psychotherapy, behavioral therapy, or
+  physical therapy.
+- Citation: 28 CFR 35.108(d)(1)(viii) and (d)(4); eCFR 2026-10-21
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:29 "shall be made without regard to the ameliorative effects of mitigating measures"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:29 "the ameliorative effects of ordinary eyeglasses or contact lenses shall be considered"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:29 "are lenses that are intended to fully correct visual acuity or to eliminate refractive error"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:49 "include, but are not limited to:"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:50 "Medication, medical supplies, equipment, appliances, low-vision devices"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:50 "mobility devices, and oxygen therapy equipment and supplies"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:51 "Use of assistive technology"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:52 "Reasonable modifications or auxiliary aids or services as defined in this regulation"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:53 "Learned behavioral or adaptive neurological modifications"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:54 "Psychotherapy, behavioral therapy, or physical therapy"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: eCFR amendment; final rule: a change to the definition of disabled individual in 42 CFR 435.554(a)
+- Note: Could go either way, so dangerous: a caregiver told that a condition kept in check by medication, a hearing
+  aid or therapy is not a disability may meet a requirement that does not apply to them, and one told that vision
+  corrected by ordinary eyeglasses is a disability may not meet one that does. The list of mitigating measures is
+  open: it names examples and is not limited to them. Whether an impairment substantially limits a major life
+  activity is the agency's determination.
+
+### ada-impairment-under-six-months-can-substantially-limit
+
+- Rule: Under 28 CFR 35.108, the six-month transitory part of the transitory and minor exception in paragraph (f)(2)
+  does not apply to the actual disability or record of prongs of the definition of disability. The effects of an
+  impairment lasting or expected to last less than six months can be substantially limiting for establishing an
+  actual disability or a record of a disability.
+- Citation: 28 CFR 35.108(d)(1)(ix); eCFR 2026-10-21
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:30 "exception in paragraph (f)(2) of this section does not apply to the"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:30 "The effects of an impairment lasting or expected to last less than six months can be substantially limiting"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: eCFR amendment; final rule: a change to the definition of disabled individual in 42 CFR 435.554(a)
+- Note: Could go either way, so dangerous: a caregiver told that the condition of the person they care for must last six
+  months or more may meet a requirement that does not apply to them, and one told that any condition of under six months
+  counts may not meet one that does. The paragraph says such effects can be substantially limiting, not that they always
+  are. The six months bear only on the regarded as prong, as ada-regarded-as-excludes-transitory-and-minor sets out.
+  Whether an impairment substantially limits a major life activity is the agency's determination.
+
+### ada-some-impairments-virtually-always-substantially-limit
+
+- Rule: Under 28 CFR 35.108, the individualized assessment of some types of impairments will, in virtually all
+  cases, result in a determination of coverage under the actual disability prong or the record of prong, and for
+  them the necessary individualized assessment should be particularly simple and straightforward. For example, it
+  should easily be concluded that these types of impairments will, at a minimum, substantially limit the major life
+  activities indicated: deafness, hearing; blindness, seeing; intellectual disability, brain function; partially or
+  completely missing limbs or mobility impairments requiring the use of a wheelchair, musculoskeletal function;
+  autism, brain function; cancer, normal cell growth; cerebral palsy, brain function; diabetes, endocrine function;
+  epilepsy, muscular dystrophy, and multiple sclerosis, each neurological function; Human Immunodeficiency Virus
+  (HIV) infection, immune function; and major depressive disorder, bipolar disorder, post-traumatic stress disorder,
+  traumatic brain injury, obsessive compulsive disorder, and schizophrenia, each brain function. These types may
+  substantially limit additional major life activities, major bodily functions included, not listed.
+- Citation: 28 CFR 35.108(d)(2)(ii) and (d)(2)(iii); eCFR 2026-10-21
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:32 "the individualized assessment of some types of impairments will, in virtually all cases, result in a determination of coverage"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:32 "the necessary individualized assessment should be particularly simple and straightforward"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:33 "will, at a minimum, substantially limit the major life activities indicated"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:33 "may substantially limit additional major life activities (including major bodily functions) not explicitly listed"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:34 "Deafness substantially limits hearing"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:35 "Blindness substantially limits seeing"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:36 "Intellectual disability substantially limits brain function"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:37 "mobility impairments requiring the use of a wheelchair substantially limit musculoskeletal function"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:38 "Autism substantially limits brain function"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:39 "Cancer substantially limits normal cell growth"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:40 "Cerebral palsy substantially limits brain function"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:41 "Diabetes substantially limits endocrine function"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:42 "Epilepsy, muscular dystrophy, and multiple sclerosis each substantially limits neurological function"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:43 "Human Immunodeficiency Virus (HIV) infection substantially limits immune function"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:44 "obsessive compulsive disorder, and schizophrenia each substantially limits brain function"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: eCFR amendment; final rule: a change to the definition of disabled individual in 42 CFR 435.554(a)
+- Note: Could go either way, so dangerous: a caregiver told that the person they care for, who is blind or has one
+  of the other listed impairments, needs extensive proof, or that a condition not on the list cannot count, may meet
+  a requirement that does not apply to them, and one told that a listed diagnosis settles the question without the
+  agency's assessment may not meet one that does, since the paragraph says virtually all cases, not all. The list is
+  given as examples. Paragraph (d)(2)(i), :31, states the purpose of the rules of construction and has no
+  row. The individualized assessment is the agency's determination, and software built on this row makes none.
+
+### ada-condition-manner-or-duration
+
+- Rule: Under 28 CFR 35.108, at all times taking into account the rules of construction, in determining whether an
+  individual is substantially limited in a major life activity it may be useful in appropriate cases to consider, as
+  compared to most people in the general population, the conditions under which the individual performs the
+  activity, the manner in which they perform it, or the time it takes them to perform it or for which they can
+  perform it. That may include the difficulty, effort or time required; pain experienced; the length of time the
+  activity can be performed; or the way an impairment affects the operation of a major bodily function. The
+  non-ameliorative effects of mitigating measures, such as negative side effects of medication or burdens of
+  following a particular treatment regimen, may be considered. Under the actual disability and record of prongs, the
+  focus is on how a major life activity is substantially limited, and not on what outcomes an individual can
+  achieve. Given the rules of construction, it may often be unnecessary to analyze most or all of the facts related
+  to condition, manner, or duration, particularly for impairments such as those in paragraph (d)(2)(iii).
+- Citation: 28 CFR 35.108(d)(3); eCFR 2026-10-21
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:45 "At all times taking into account the principles set forth in the rules of construction"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:45 "it may be useful in appropriate cases to consider, as compared to most people in the general population, the conditions under which the individual performs the major life activity"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:46 "consideration of the difficulty, effort or time required to perform a major life activity"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:46 "the non-ameliorative effects of mitigating measures, such as negative side effects of medication or burdens associated with following a particular treatment regimen, may be considered"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:47 "the focus is on how a major life activity is substantially limited, and not on what outcomes an individual can achieve"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:48 "it may often be unnecessary to conduct an analysis involving most or all of the facts related to condition, manner, or duration"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: eCFR amendment; final rule: a change to the definition of disabled individual in 42 CFR 435.554(a)
+- Note: Could go either way, so dangerous: a caregiver told that the person they care for cannot be limited because they
+  hold a job or did well in school may meet a requirement that does not apply to them, and one told that any difficulty,
+  effort or pain makes an impairment substantially limiting may not meet one that does. The paragraph's own example,
+  :47, is someone with a learning disability who achieves a high level of academic success and may still be
+  substantially limited in reading, writing, speaking or learning. Whether an individual is substantially limited is the
+  agency's determination.
+
+### ada-record-of-impairment-defined
+
+- Rule: Under 28 CFR 35.108, an individual has a record of such an impairment if the individual has a history of, or
+  has been misclassified as having, a mental or physical impairment that substantially limits one or more major life
+  activities. Whether an individual has such a record shall be construed broadly to the maximum extent permitted by
+  the ADA and should not demand extensive analysis. An individual falls within this prong if they have a history of
+  an impairment that substantially limited one or more major life activities when compared to most people in the
+  general population, or were misclassified as having had such an impairment, and the principles of paragraph
+  (d)(1) apply in determining whether an impairment substantially limited a major life activity.
+- Citation: 28 CFR 35.108(e)(1) and (e)(2); eCFR 2026-10-21
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:55 "An individual has a record of such an impairment if the individual has a history of, or has been misclassified as having, a mental or physical impairment that substantially limits one or more major life activities"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:56 "shall be construed broadly to the maximum extent permitted by the ADA and should not demand extensive analysis"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:56 "or was misclassified as having had such an impairment"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:56 "the principles articulated in paragraph (d)(1) of this section apply"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: eCFR amendment; final rule: a change to the definition of disabled individual in 42 CFR 435.554(a)
+- Note: Could go either way, so dangerous: a caregiver told that only a present impairment counts may meet a
+  requirement that does not apply to them, and one told that any past illness is a record of an impairment may not
+  meet one that does, since the history must be of an impairment that substantially limited a major life activity.
+  Paragraph (e)(3), :57, is about a reasonable modification for a person with such a record and has no row. Whether
+  a person has a record of an impairment is the agency's determination.
+
+### ada-regarded-as-having-impairment
+
+- Rule: Under 28 CFR 35.108, under the regarded as prong of the definition of disability, and except as paragraph
+  (f)(2) sets out, an individual is regarded as having such an impairment if the individual is subjected to a
+  prohibited action because of an actual or perceived physical or mental impairment, whether or not that impairment
+  substantially limits, or is perceived to substantially limit, a major life activity, even if the public entity
+  asserts, or may or does ultimately establish, a defense to the action prohibited by the ADA.
+- Citation: 28 CFR 35.108(f) introductory text and (f)(1); eCFR 2026-10-21
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:58 "The following principles apply under the"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:59 "if the individual is subjected to a prohibited action because of an actual or perceived physical or mental impairment"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:59 "whether or not that impairment substantially limits, or is perceived to substantially limit, a major life activity"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:59 "even if the public entity asserts, or may or does ultimately establish, a defense to the action prohibited by the ADA"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: eCFR amendment; final rule: a change to the definition of disabled individual in 42 CFR 435.554(a)
+- Note: Could go either way, so dangerous: a caregiver told that this prong needs a substantial limit may meet a
+  requirement that does not apply to them, and one told that any perceived impairment is enough, with no prohibited
+  action, may not meet one that does. How this prong applies to the caregiver exclusion, where no prohibited action
+  may be in question, neither the section nor the preamble lines read for these rows say, and it is an open question
+  in docs/domain/open-questions.md. Paragraph (f)(3), :61, is
+  about liability under title II of the ADA and has no row. Whether a person is regarded as having an impairment is
+  the agency's determination.
+
+### ada-regarded-as-excludes-transitory-and-minor
+
+- Rule: Under 28 CFR 35.108, an individual is not regarded as having such an impairment if the public entity
+  demonstrates that the impairment is, objectively, both transitory and minor. A public entity may not defeat
+  regarded as coverage of an individual simply by demonstrating that it subjectively believed the impairment was
+  transitory and minor; it must demonstrate that the impairment is, in the case of an actual impairment, or would
+  be, in the case of a perceived impairment, objectively both transitory and minor. Transitory means lasting or
+  expected to last six months or less.
+- Citation: 28 CFR 35.108(f)(2); eCFR 2026-10-21
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:60 "if the public entity demonstrates that the impairment is, objectively, both"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:60 "simply by demonstrating that it subjectively believed the impairment was transitory and minor"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:60 "is defined as lasting or expected to last six months or less"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: eCFR amendment; final rule: a change to the definition of disabled individual in 42 CFR 435.554(a)
+- Note: Could go either way, so dangerous: a caregiver told that any impairment expected to last six months or less
+  falls outside this prong may meet a requirement that does not apply to them, since it must also be minor, and one
+  told that a transitory and minor impairment still counts under this prong may not meet one that does. The six
+  months do not limit the other two prongs, as ada-impairment-under-six-months-can-substantially-limit sets out.
+  Whether an impairment is transitory and minor is the agency's determination.
+
+### ada-disability-exclusions
+
+- Rule: Under 28 CFR 35.108, the term disability does not include transvestism, transsexualism, pedophilia,
+  exhibitionism, voyeurism, gender identity disorders not resulting from physical impairments, or other sexual
+  behavior disorders; compulsive gambling, kleptomania, or pyromania; or psychoactive substance use disorders
+  resulting from current illegal use of drugs.
+- Citation: 28 CFR 35.108(g); eCFR 2026-10-21
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:62 "does not include"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:63 "Transvestism, transsexualism, pedophilia, exhibitionism, voyeurism, gender identity disorders not resulting from physical impairments, or other sexual behavior disorders"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:64 "Compulsive gambling, kleptomania, or pyromania"
+- Source: docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml:65 "Psychoactive substance use disorders resulting from current illegal use of drugs"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: eCFR amendment; final rule: a change to the definition of disabled individual in 42 CFR 435.554(a)
+- Note: Could go either way, so dangerous: a caregiver told that one of these conditions makes the person they care
+  for a disabled individual may not meet a requirement that does apply to them, and one told that drug addiction
+  never counts may meet one that does not, since (b)(2), :14, includes drug addiction and alcoholism and (g)(3)
+  leaves out only disorders resulting from current illegal use of drugs. The paragraph sets aside these conditions,
+  not the person: someone with one of them may have a disability of another kind. Whether a person has a disability
+  is the agency's determination.
+
+### family-caregiver-defined
+
+- Rule: For § 435.554, a family caregiver is an adult family member or other individual who has a significant
+  relationship with, and who provides care within a broad range of assistance to, a dependent child or a disabled
+  individual as § 435.554 defines both terms.
+- Citation: 42 CFR 435.554(a), definition of family caregiver; 91 FR 33471
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3653 "means an adult family member or other individual who has a significant relationship with, and who provides care within a broad range of assistance to, a dependent child or a disabled individual"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:710 "(as defined in section 2 of the RAISE Family Caregivers Act)"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment
+- Note: Could go either way, so dangerous: a neighbor or friend who gives such care and is told only relatives count
+  may meet a requirement that does not apply to them, and a family caregiver who is told the definition alone
+  excludes them may not meet one that does, since § 435.554(c)(3) excludes a family caregiver only if they also meet
+  one of the tests of § 435.554(c)(3)(i)(A) to (C). The statute names the RAISE Family Caregivers Act's definition,
+  and the preamble adapts it to the care recipients the statute names and reads it as reaching more than relatives
+  and members of one household: docs/domain/cms-2454-ifc/2026-11094.xml:858 "a family caregiver is not limited to
+  legally recognized relatives or members of the same household" (91 FR 33368). Whether a relationship is
+  significant and whether care is within a broad range of assistance are the agency's determinations.
+
+### guardian-defined
+
+- Rule: For § 435.554, a guardian is an adult appointed by a court to care for and make personal decisions for a
+  dependent child or disabled individual, as § 435.554 defines those terms, who cannot care for themselves, in
+  accordance with applicable State law.
+- Citation: 42 CFR 435.554(a), definition of guardian; 91 FR 33471
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3657 "means an adult appointed by a court to care for and make personal decisions for a dependent child or disabled individual"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3657 "who cannot care for themselves, in accordance with applicable State law"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:710 "who is the parent, guardian, caretaker relative, or family caregiver"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment; state rule: State guardianship law
+- Note: Could go either way, so dangerous: a person who helps someone without a court's appointment and is told they
+  are a guardian may not meet the requirement, and a court-appointed guardian told the role does not count may meet
+  one that does not apply to them. The preamble chose care and personal decisions over financial responsibility:
+  docs/domain/cms-2454-ifc/2026-11094.xml:849 "we specify that a guardian has been appointed by a court to care for
+  and make personal decisions" (91 FR 33367). Who may be appointed is a matter of State law, not a state election
+  under this rule. Whether a person is a guardian is the agency's determination.
+
+### parent-defined
+
+- Rule: For § 435.554, a parent is an individual with the legal status of a mother or father, including by adoption,
+  in accordance with applicable State law, who provides some level of care to a dependent child or disabled
+  individual, as § 435.554 defines those terms.
+- Citation: 42 CFR 435.554(a), definition of parent; 91 FR 33471
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3661 "means an individual with the legal status of a mother or father, including by adoption, in accordance with applicable State law, who provides some level of care to a dependent child or disabled individual"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:710 "who is the parent, guardian, caretaker relative, or family caregiver"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment; state rule: State parentage law
+- Note: Could go either way, so dangerous: a parent who gives no care and is told the legal status alone is enough
+  may not meet the requirement, and a parent who does not live with the child but gives some care, told they must,
+  may meet one that does not apply to them. The preamble's example of a parent who gives no care:
+  docs/domain/cms-2454-ifc/2026-11094.xml:806 "an estranged parent without a relationship with their child would not
+  be considered a specified excluded individual" (91 FR 33367). Unlike caretaker-relative-defined, the definition
+  does not require living with the child or assuming primary responsibility. Who has the legal status is a matter of
+  State law, not a state election under this rule. Whether a parent provides some level of care is the agency's
+  determination.
+
+### specified-excluded-individual-not-subject-to-community-engagement
+
+- Rule: An individual who meets the criteria for one or more of the categories in § 435.554(c) is excluded from the
+  definition of an applicable individual at § 435.551. Community engagement is not a condition of eligibility for
+  specified excluded individuals.
+- Citation: 42 CFR 435.554(b); 91 FR 33471
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3663 "is excluded from the definition of an applicable individual as defined at"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3663 "Community engagement is not a condition of eligibility for specified excluded individuals"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:688 "(other than a specified excluded individual"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment
+- Note: Could go either way, so dangerous: a person who meets a category and is told they must still meet the
+  requirement may gather proof nobody can ask of them, and one who meets none and is told they are excluded may not
+  meet it. Meeting one category is enough (:3663 "one or more of the categories"). The categories are the ten
+  paragraphs of § 435.554(c), which this row does not restate; (c)(5), medical frailty, is increment 2.2's. The
+  statute has the State determine who is a specified excluded individual, in accordance with standards the Secretary
+  specifies (docs/domain/hr1/119hr1enr-title7-part3.md:698), and how the State verifies it is § 435.557, which
+  increments 2.2 and 2.6 take. Whether a person meets a category is the agency's determination.
+
+### specified-excluded-individual-meets-one-category
+
+- Rule: An individual is a specified excluded individual if he or she meets one of the categories listed in
+  § 435.554(c), paragraphs (c)(1) to (c)(10).
+- Citation: 42 CFR 435.554(c); 91 FR 33471
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3665 "An individual is a specified excluded individual if he or she meets one of the following:"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:698 "the term ‘specified excluded individual’ means an individual, as determined by the State"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: burdensome
+- Recheck: final rule; correction notice; eCFR amendment
+- Note: A person who meets one category and is told they must meet more may gather proof nobody can ask of them. The
+  categories are paragraphs (c)(1) to (c)(10), and (a) holds the definitions: what-matters-most.md section 12 lists
+  the error "Citing the exclusions as § 435.554(a)(1)–(10)", and the preamble places them in (c), as at
+  docs/domain/cms-2454-ifc/2026-11094.xml:760 "We implement this definition at new" § 435.554(c)(1) (91 FR 33365).
+  The lead-in is on 91 FR 33471 and the ten paragraphs on 91 FR 33472, by the page marker on line 3666. Paragraph
+  (c)(5), medical frailty, is increment 2.2's. Whether a person meets a category is the agency's determination.
+
+### former-foster-care-child-excluded
+
+- Rule: An individual is a specified excluded individual if they meet the definition of the eligibility group serving
+  former foster care children, described at section 1902(a)(10)(A)(i)(IX) of the Act as amended by Public Law
+  115-271, regardless of whether they turned age 18 on or after January 1, 2023.
+- Citation: 42 CFR 435.554(c)(1); 91 FR 33472
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3668 "The individual meets the definition of the eligibility group serving former foster care children, described at section 1902(a)(10)(A)(i)(IX) of the Act as amended by Public Law 115-271, regardless of whether the individual turned age 18 on or after January 1, 2023"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:700 "who is described in subsection (a)(10)(A)(i)(IX)"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment
+- Note: Could go either way, so dangerous: a former foster youth who turned 18 before 2023 and is told the exclusion
+  is only for those who turned 18 later may meet a requirement that does not apply to them, and a person who was never
+  in foster care while on Medicaid, told they qualify, may not meet one that does. The group's criteria as the
+  preamble reads them are in former-foster-care-criteria-apply-whatever-the-age-18-date. Public Law 115-271 is the
+  SUPPORT Act, which is not stored, nor is SSA 1902(a)(10)(A)(i)(IX). Whether a person meets the group's definition is
+  the agency's determination.
+
+### former-foster-care-criteria-apply-whatever-the-age-18-date
+
+- Rule: The preamble says States must use one set of criteria, the SUPPORT Act's for the former foster care children
+  group, whether or not the individual turned age 18 on or after January 1, 2023, so an individual in the adult group
+  or an applicable section 1115 demonstration may be a specified excluded individual if they are under age 26; are not
+  enrolled in a group described in section 1902(a)(10)(A)(i)(I) through (VII) of the Act, even if they meet its
+  requirements; were in foster care under the responsibility of any State on attaining age 18, or such higher age as
+  the State elected in its title IV-E plan; and were enrolled in Medicaid in any State while in that foster care.
+- Citation: Preamble to 42 CFR 435.554(c)(1); 91 FR 33365-33366
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:762 "States must use a single set of eligibility criteria, under the SUPPORT Act changes to the FFCC group"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:764 "is under age 26"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:764 "even if they meet the eligibility requirements for such group"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:764 "was in foster care under the responsibility of any State upon attaining age 18 (or such higher age as the State has elected in its title IV-E plan)"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:764 "was enrolled in Medicaid in any State while in such foster care"
+- Tier: preamble
+- State election: yes; the state chooses an age higher than 18, in its title IV-E plan, at which a person must have
+  been in its foster care; where it has not chosen, age 18
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; CMS guidance; state plan amendment
+- Note: Could go either way, so dangerous: a former foster youth who aged out in another State and is told only the
+  State's own foster care counts may meet a requirement that does not apply to them, and a person of 26 told they
+  still qualify may not meet one that does. The paragraph starts on 91 FR 33365 and the four criteria follow the page
+  marker for 33366 (:763). The preamble's example is a person who aged out at 21 in one State in 2024, moved, and is
+  excluded in the other while under 26 (:764). The higher age is the State's election in its title IV-E plan, not a
+  choice this rule gives. Whether a person meets each criterion is the agency's determination.
+
+### american-indian-excluded
+
+- Rule: An individual is a specified excluded individual if they meet the definition of Indian at 42 CFR 447.51.
+- Citation: 42 CFR 435.554(c)(2); 91 FR 33472
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3669 "The individual meets the definition of Indian at"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:704 "is an Indian or an Urban Indian"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:706 "is a California Indian described in section 809(a) of such Act"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment
+- Note: Could go either way, so dangerous: a California Indian, an Alaska Native or a person eligible for the Indian
+  Health Service who is told only members of a tribe count may meet a requirement that does not apply to them, and a
+  person who meets none of the definition's tests, told they qualify, may not meet one that does. CMS's renew-info
+  pages for the States carry the line "a member of an Indian or Urban Indian Tribe", which research L2 found leaves
+  out California Indians and people eligible for the Indian Health Service whom § 447.51 covers (ledger L2-14,
+  research L2 section E6); the pages are not stored, and the line was not read for this row. The preamble adopts
+  § 447.51 because it holds each group the statute lists, and says States may not reverify the status:
+  docs/domain/cms-2454-ifc/2026-11094.xml:771 "incorporates each of the specific groups listed in section
+  1902(xx)(9)(A)(ii)(II)(aa) through (cc) of the Act" and "States will not be required to (and may not) reverify"
+  (91 FR 33366). How a state verifies an exclusion is § 435.557, which increments 2.2 and 2.6 take. The definition is
+  in indian-defined-at-447-51 and urban-indian-criteria-at-447-51. Whether a person meets it is the agency's
+  determination.
+
+### indian-defined-at-447-51
+
+- Rule: Under 42 CFR 447.51, Indian means any individual defined at 25 U.S.C. 1603(13), 1603(28), or 1679(a), or who
+  has been determined eligible as an Indian under 42 CFR 136.12. This means the individual is a member of a
+  Federally-recognized Indian tribe; resides in an urban center and meets one or more of four criteria, in
+  urban-indian-criteria-at-447-51; is considered by the Secretary of the Interior to be an Indian for any purpose; or
+  is considered by the Secretary of Health and Human Services to be an Indian for purposes of eligibility for Indian
+  health care services, including as a California Indian, Eskimo, Aleut, or other Alaska Native.
+- Citation: 42 CFR 447.51, definition of Indian; eCFR 2026-10-21
+- Source: docs/domain/sources/ecfr/2026-10-21/42-cfr-447.51.xml:12 "means any individual defined at 25 U.S.C. 1603(13), 1603(28), or 1679(a), or who has been determined eligible as an Indian, under 42 CFR 136.12"
+- Source: docs/domain/sources/ecfr/2026-10-21/42-cfr-447.51.xml:13 "Is a member of a Federally-recognized Indian tribe"
+- Source: docs/domain/sources/ecfr/2026-10-21/42-cfr-447.51.xml:19 "Is considered by the Secretary of the Interior to be an Indian for any purpose; or"
+- Source: docs/domain/sources/ecfr/2026-10-21/42-cfr-447.51.xml:20 "Is considered by the Secretary of Health and Human Services to be an Indian for purposes of eligibility for Indian health care services, including as a California Indian, Eskimo, Aleut, or other Alaska Native"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: eCFR amendment; final rule: a change to 42 CFR 435.554(c)(2)
+- Note: Could go either way, so dangerous: a person who qualifies only through the Secretary of Health and Human
+  Services' determination, told only tribal members count, may meet a requirement that does not apply to them, and a
+  person who meets none of the four tests, told they qualify, may not meet one that does. The definition's own
+  opening is "As used in this part" (:4), meaning part 447; § 435.554(c)(2) brings it into the exclusion. 25 U.S.C.
+  1603 and 1679 and 42 CFR 136.12 are not stored and were not read. The stored text has no source note, so it does not
+  say when the definition was last amended. Whether a person meets the definition is the agency's determination.
+
+### urban-indian-criteria-at-447-51
+
+- Rule: Under 42 CFR 447.51's definition of Indian, an individual who resides in an urban center is an Indian if they
+  meet one or more of four criteria: they are a member of a tribe, band, or other organized group of Indians,
+  including those terminated since 1940 and those recognized now or in the future by the State in which they reside,
+  or a descendant, in the first or second degree, of any such member; they are an Eskimo or Aleut or other Alaska
+  Native; they are considered by the Secretary of the Interior to be an Indian for any purpose; or they are
+  determined to be an Indian under regulations promulgated by the Secretary, which 42 CFR 400.200 defines, in the
+  chapter that holds part 447, as the Secretary of Health and Human Services.
+- Citation: 42 CFR 447.51, definition of Indian, paragraph (2); eCFR 2026-10-21; 42 CFR 400.200, definition of
+  Secretary; eCFR 2026-10-21
+- Source: docs/domain/sources/ecfr/2026-10-21/42-cfr-447.51.xml:14 "Resides in an urban center and meets one or more of the following four criteria"
+- Source: docs/domain/sources/ecfr/2026-10-21/42-cfr-447.51.xml:15 "including those tribes, bands, or groups terminated since 1940 and those recognized now or in the future by the State in which they reside, or who is a descendant, in the first or second degree, of any such member"
+- Source: docs/domain/sources/ecfr/2026-10-21/42-cfr-447.51.xml:16 "Is an Eskimo or Aleut or other Alaska Native"
+- Source: docs/domain/sources/ecfr/2026-10-21/42-cfr-447.51.xml:17 "Is considered by the Secretary of the Interior to be an Indian for any purpose; or"
+- Source: docs/domain/sources/ecfr/2026-10-21/42-cfr-447.51.xml:18 "Is determined to be an Indian under regulations promulgated by the Secretary"
+- Source: docs/domain/sources/ecfr/2026-10-21/42-cfr-400.200.xml:4 "In this chapter, unless the context indicates otherwise"
+- Source: docs/domain/sources/ecfr/2026-10-21/42-cfr-400.200.xml:52 "means the Secretary of Health and Human Services."
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: eCFR amendment; final rule: a change to 42 CFR 435.554(c)(2)
+- Note: Could go either way, so dangerous: a descendant of a tribal member who lives in a city, or a member of a tribe
+  the State recognizes, who is told only members of a federally recognized tribe count may meet a requirement that does
+  not apply to them, and one who lives outside an urban center, told these criteria reach them, may not meet one that
+  does. The criteria reach only an individual who resides in an urban center (:14). § 447.51 does not say which
+  Secretary the last criterion means; § 400.200's definitions apply in chapter IV of title 42 unless the context
+  indicates otherwise, and eCFR's ancestry API for 2026-10-21 places part 447 in that chapter, as the manifest entry for
+  42-cfr-400.200.xml records. That the context does not indicate otherwise is this row's reading: the same definition
+  names the Secretary of the Interior, in (2)(iii) and (3), where it means that Secretary. Whether a person meets a
+  criterion is the agency's determination.
+
+### parent-guardian-caretaker-relative-or-family-caregiver-excluded
+
+- Rule: An individual is a specified excluded individual if they are a parent, guardian, caretaker relative, or
+  family caregiver, as § 435.554(a) defines each, and, for family caregivers, meets one of the criteria the
+  paragraph identifies. The paragraph cites those criteria as paragraphs (c)(1)(i)(A) through (C), which do not
+  exist, and the preamble says the criteria are specified at § 435.554(c)(3)(i). The two conflict, and which governs
+  is an open question.
+- Citation: 42 CFR 435.554(c)(3); 91 FR 33472
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3670 "The individual is a parent, guardian, caretaker relative, or family caregiver, as each is defined in this section, and for family caregivers, meets one of the criteria identified at paragraphs (c)(1)(i)(A) through (C) of this section"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:781 "must also meet certain criteria specified at new"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:710 "who is the parent, guardian, caretaker relative, or family caregiver"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment
+- Note: Could go either way, so dangerous: a parent, guardian or caretaker relative who is told they must also meet
+  a family caregiver's criteria may meet a requirement that does not apply to them, and a family caregiver who is told
+  the definition alone excludes them may not meet one that does. Paragraph (c)(1) is one sentence with no
+  subparagraphs (:3668), so the cross-reference names paragraphs that do not exist; the preamble places the criteria
+  in (c)(3)(i): docs/domain/cms-2454-ifc/2026-11094.xml:781 "must also meet certain criteria specified at new"
+  § 435.554(c)(3)(i) (91 FR 33366). Reading the cross-reference as (c)(3)(i) is an inference from those lines, and
+  the June 29 correction republished only §§ 435.557 and 435.558, so the June 3 text stands. The printed words and
+  the preamble conflict, and which governs is an open question in docs/domain/open-questions.md; this row picks no
+  side. Each term is defined in
+  caretaker-relative-defined, family-caregiver-defined, guardian-defined and parent-defined, each tied to a dependent
+  child, 13 or under, or a disabled individual. Whether a person is a parent, guardian, caretaker relative or family
+  caregiver is the agency's determination.
+
+### family-caregiver-excluded-on-one-criterion
+
+- Rule: An individual who is a family caregiver, as § 435.554(a) defines one, is a specified excluded individual if
+  he or she meets one of the criteria in paragraphs (c)(3)(i)(A) to (C).
+- Citation: 42 CFR 435.554(c)(3)(i); 91 FR 33472
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3671 "An individual who is a family caregiver as defined in this section is a specified excluded individual if he or she meets one of the following criteria"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment
+- Note: Could go either way, so dangerous: a family caregiver who meets one criterion and is told they need more may
+  meet a requirement that does not apply to them, and one who meets none, told the definition is enough, may not meet
+  one that does. The preamble says the criteria do not redefine who a family caregiver is, and apply whether the
+  caregiver is paid or unpaid: docs/domain/cms-2454-ifc/2026-11094.xml:936 "These criteria apply to all family
+  caregivers regardless of whether the individual is a paid or an unpaid family caregiver" (91 FR 33370). It does not
+  require a family caregiver to live with or assume primary responsibility for the person: :937 "we are not requiring
+  that a family caregiver reside with or assume primary responsibility" (91 FR 33370). Whether a person meets a
+  criterion is the agency's determination.
+
+### family-caregiver-living-with-care-recipient
+
+- Rule: A family caregiver is a specified excluded individual if they primarily reside with a dependent child or
+  disabled individual, as § 435.554(a) defines those terms, for whom they provide assistance that occurs on a regular
+  basis and is not solely incidental in nature.
+- Citation: 42 CFR 435.554(c)(3)(i)(A); 91 FR 33472
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3672 "The individual primarily resides with a dependent child or disabled individual, as these terms are defined in this section, for whom he or she provides assistance that occurs on a regular basis and is not solely incidental in nature"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment
+- Note: Could go either way, so dangerous: a person who lives with and regularly helps a disabled parent, told they
+  must count 80 hours, may meet a requirement that does not apply to them, and one whose help is only incidental,
+  told living together is enough, may not meet one that does. The preamble says a family caregiver who lives with or
+  is related to the person needs no minimum hours: docs/domain/cms-2454-ifc/2026-11094.xml:967 "are not required to
+  demonstrate provision of a minimum number of caregiving hours under this regulation" (91 FR 33371). Whether a person
+  primarily resides with the care recipient and whether the assistance is regular and not solely incidental are the
+  agency's determinations.
+
+### family-caregiver-relative-living-apart
+
+- Rule: A family caregiver is a specified excluded individual if they are a relative, as the caretaker relative
+  definition in § 435.554(a) specifies, without regard to its requirements to live with and to assume primary
+  responsibility, of a dependent child or disabled individual for whom they provide assistance that occurs on a
+  regular basis and is not solely incidental in nature, and with whom they do not reside.
+- Citation: 42 CFR 435.554(c)(3)(i)(B); 91 FR 33472
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3673 "without regard to the requirements to live with and to assume primary responsibility"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3673 "for whom he or she provides assistance that occurs on a regular basis and is not solely incidental in nature, and with whom he or she does not reside"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment
+- Note: Could go either way, so dangerous: a daughter who lives apart from and regularly helps a disabled mother, told
+  she must live with her, may meet a requirement that does not apply to her, and a relative whose help is only
+  incidental, told being related is enough, may not meet one that does. The relatives are those of
+  caretaker-relative-defined. Whether the relationships a state may add under
+  caretaker-relative-other-relationships-at-state-option count here, neither the paragraph nor the preamble lines read
+  for this row say, and it is an open question in docs/domain/open-questions.md. No minimum hours apply (:967).
+  Whether a person is such a relative and whether the assistance is regular and not solely incidental are the
+  agency's determinations.
+
+### family-caregiver-unrelated-living-apart-80-hours
+
+- Rule: A family caregiver is a specified excluded individual if they do not reside with and are not a relative, as
+  the caretaker relative definition in § 435.554(a) specifies, without regard to its requirements to live with and to
+  assume primary responsibility, of a dependent child or disabled individual for whom they provide not less than 80
+  hours of assistance that is not solely incidental in nature per month.
+- Citation: 42 CFR 435.554(c)(3)(i)(C); 91 FR 33472
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3674 "The individual does not reside with and is not a relative"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3674 "for whom he or she provides not less than 80 hours of assistance that is not solely incidental in nature per month"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment
+- Note: Could go either way, so dangerous: a friend or neighbor who gives fewer than 80 hours a month and is told
+  they are excluded may not meet the requirement, and one who gives 80 or more, told only relatives count, may meet
+  one that does not apply to them. The preamble reads 80 hours as about 20 hours a week:
+  docs/domain/cms-2454-ifc/2026-11094.xml:981 "roughly equivalent to an average of 20 hours per week" (91 FR 33371).
+  What happens to hours below 80 is in caregiving-hours-below-80-count-as-unpaid-work. The relatives are those of
+  caretaker-relative-defined; whether the relationships a state may add under
+  caretaker-relative-other-relationships-at-state-option count here, neither the paragraph nor the preamble lines read
+  for this row say, and it is an open question in docs/domain/open-questions.md. Whether a person gives 80
+  hours of assistance that is not solely incidental in a month is the agency's determination.
+
+### caregiving-hours-below-80-count-as-unpaid-work
+
+- Rule: The preamble says a person who meets the family caregiver definition but gives fewer than 80 hours a month
+  of assistance to a dependent child or disabled individual they are neither related to nor live with is an
+  applicable individual unless another exclusion applies, and the hours of assistance count as unpaid work under
+  § 435.552(b). In its example, 55 hours a month of such assistance count toward compliance, and the person needs 25
+  more hours a month of the activities the statute lists.
+- Citation: Preamble to 42 CFR 435.554(c)(3)(i)(C); 91 FR 33371
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:983 "Such a person would be an applicable individual unless eligible for other exclusions"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:983 "the hours of assistance provided by such an individual would count as unpaid work under"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:983 "those 55 hours would count towards compliance with the community engagement requirement, and the family caregiver would need 25 additional hours a month"
+- Tier: preamble
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: burdensome
+- Recheck: final rule; correction notice; CMS guidance
+- Note: A caregiver short of 80 hours who is told the hours count for nothing may do more than the requirement asks.
+  The preamble says the same where it defines work, at docs/domain/cms-2454-ifc/2026-11094.xml:443 "The unpaid work of
+  a family caregiver as defined at" § 435.554(a) (91 FR 33355). § 435.552(b), which defines work, has no row yet;
+  increment 2.4 takes it. Whether hours of assistance count as unpaid work for a person is the agency's
+  determination.
+
+### more-than-one-excluded-in-a-residence
+
+- Rule: In residences with more than one parent, guardian, caretaker relative, or family caregiver, multiple
+  individuals who meet the definitions in § 435.554(a) may each qualify as a specified excluded individual.
+- Citation: 42 CFR 435.554(c)(3)(ii); 91 FR 33472
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3675 "In residences with more than one parent, guardian, caretaker relative, or family caregiver, multiple individuals who meet the relevant definitions at paragraph (a) of this section may qualify as a specified excluded individual as described in this section"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: burdensome
+- Recheck: final rule; correction notice; eCFR amendment
+- Note: A second parent or caregiver in the home who is told only one person can be excluded may meet a requirement
+  that does not apply to them. The preamble chose this to align with SNAP, whose time limit exemption reaches
+  everyone in a SNAP household with someone 13 or under: docs/domain/cms-2454-ifc/2026-11094.xml:933 "allows
+  multiple parents, caretaker relatives, guardians, and/or family caregivers in a single residence to qualify for the
+  exclusion" (91 FR 33370). The discussion begins on 91 FR 33369 (:908) and the SNAP comparison follows the 33370
+  marker (:909). Each person must still meet the definitions and criteria. Whether each person does is the agency's
+  determination.
+
+### veteran-with-total-disability-rating-excluded
+
+- Rule: An individual is a specified excluded individual if they are a veteran with a temporary or permanent
+  disability from the Department of Veterans Affairs, rated as 100 percent (total) under 38 U.S.C. 1155.
+- Citation: 42 CFR 435.554(c)(4); 91 FR 33472
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3676 "The individual is a veteran with a temporary or permanent disability from the Department of Veterans Affairs, rated as 100 percent (total) under 38 U.S.C. 1155"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:712 "who is a veteran with a disability rated as total under section 1155 of title 38"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment
+- Note: Could go either way, so dangerous: a veteran with a temporary total rating who is told only a permanent one
+  counts may meet a requirement that does not apply to them, and a veteran rated below 100 percent and not paid at
+  the total rate, told any rating counts, may not meet one that does. The preamble says a temporary or a permanent
+  total rating qualifies: docs/domain/cms-2454-ifc/2026-11094.xml:990 "VA may assign total disability ratings that
+  are permanent or temporary; either would qualify an individual for the exclusion, if rated at 100 percent"
+  (91 FR 33372). Veterans paid at the total rate for individual unemployability are in
+  veteran-paid-at-total-rate-for-unemployability-excluded. 38 U.S.C. 1155 is not stored. Whether a person is a veteran
+  with such a rating is the agency's determination.
+
+### veteran-paid-at-total-rate-for-unemployability-excluded
+
+- Rule: The preamble says veterans who receive total disability based on individual unemployability, which pays
+  veterans with service-connected disabilities 100 percent compensation if they cannot secure or maintain substantial
+  gainful employment even where their combined rating is below 100 percent, must be treated by States in the same
+  manner as veterans with a combined rating of 100 percent, and so meet the exclusion.
+- Citation: Preamble to 42 CFR 435.554(c)(4); 91 FR 33372
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:991 "which allows veterans with service-connected disabilities to receive 100 percent compensation if they cannot secure or maintain"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:991 "must be treated by States in the same manner as all other veterans who have a combined disability rating of 100 percent, thus meeting the exclusion"
+- Tier: preamble
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: burdensome
+- Recheck: final rule; correction notice; CMS guidance
+- Note: A veteran paid at the total rate for unemployability who is asked only about a 100 percent rating may meet a
+  requirement that does not apply to them. what-matters-most.md section 12 lists the error "Veterans need a 100%
+  schedular rating"; this row and veteran-with-total-disability-rating-excluded are the correction, that a temporary
+  or permanent total rating counts, and so does individual unemployability. Research L2 found that CMS's MACPro
+  guide for the State plan page does not mention individual unemployability and does not contradict the preamble
+  (research L2 section E3); the guide is not stored. The preamble also says a permanent and total rating may not be
+  reverified and a temporary one is reverified at least once every 12 months (:992); how a state verifies an
+  exclusion is § 435.557, which increments 2.2 and 2.6 take. Whether a person receives compensation at the total rate
+  is the agency's determination.
+
+### tanf-work-requirement-compliant-excluded
+
+- Rule: An individual is a specified excluded individual if they are compliant with any requirements imposed by the
+  State in accordance with section 407 of the Act.
+- Citation: 42 CFR 435.554(c)(6); 91 FR 33472
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3688 "The individual is compliant with any requirements imposed by the State, in accordance with section 407 of the Act"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:728 "is in compliance with any requirements imposed by the State pursuant to section 407"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment; state rule: State TANF work requirements
+- Note: Could go either way, so dangerous: a person in TANF who meets its work requirements and is told they must
+  also meet Medicaid's may do more than it asks, and one subject to TANF's requirements but not meeting them, told
+  they are excluded, may not meet Medicaid's. Section 407 is TANF's work requirements, and the test is compliance,
+  unlike SNAP's in snap-household-member-not-exempt-from-work-requirement-excluded. The preamble sets no uniform
+  definition of compliance, so the State Medicaid agency assesses compliance with the TANF work requirements the
+  State sets, and says States should not rely on or require reporting from the individual:
+  docs/domain/cms-2454-ifc/2026-11094.xml:1236 "the State Medicaid agency should assess whether the individual is
+  compliant with the specific TANF work requirements established by the State" and "States should not rely on or
+  require reporting from the individual" (91 FR 33377). Section 407 is not stored. Whether a person is compliant is
+  the agency's determination.
+
+### snap-household-member-not-exempt-from-work-requirement-excluded
+
+- Rule: An individual is a specified excluded individual if they are a member of a household that receives
+  Supplemental Nutrition Assistance Program (SNAP) benefits under 7 U.S.C. 2015 and are not exempt from a work
+  requirement under that Act.
+- Citation: 42 CFR 435.554(c)(7); 91 FR 33472
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3689 "The individual is a member of a household that receives Supplemental Nutrition Assistance Program (SNAP) benefits under 7 U.S.C. 2015 and is not exempt from a work requirement under such Act"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:730 "is a member of a household that receives supplemental nutrition assistance program benefits under the Food and Nutrition Act of 2008 and is not exempt from a work requirement under such Act"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment
+- Note: Could go either way, so dangerous: a person in a SNAP household who is subject to SNAP's work rules but not
+  meeting them, and is told the test is meeting them, may meet a requirement that does not apply to them, and a person
+  exempt from SNAP's work rules, told any SNAP household member is excluded, may not meet one that does.
+  what-matters-most.md section 12 lists the error "The SNAP test is complying with SNAP work rules"; the correction is
+  that the test is being subject to them, in a household that receives SNAP. Research L2 found CMS's renew-info pages
+  say people "already meet" SNAP work requirements, against the regulation (research L2 finding 13); the pages are not
+  stored. What household means here no CMS document defines; research L2 reads it as the SNAP household, an inference
+  it labels open (research L2 finding 21), and it is an open question in docs/domain/open-questions.md. 7 U.S.C.
+  2015 is not stored. Whether a person's household receives SNAP and
+  whether they are exempt are the agency's determinations.
+
+### snap-exclusion-covers-general-and-time-limit-work-requirements
+
+- Rule: The preamble reads "not exempt from" a SNAP work requirement as "subject to" one. The State need only
+  determine that the individual is in a household that receives SNAP benefits and is not exempt from SNAP work
+  requirements, and does not need to confirm that the individual is in fact compliant with them. Because the statute
+  does not say which SNAP work requirements apply, both apply: an individual in a household receiving SNAP who is not
+  exempt from the general work requirement, the time limit work requirement, or both is a specified excluded
+  individual.
+- Citation: Preamble to 42 CFR 435.554(c)(7); 91 FR 33377
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1245 "If an individual is in a household that receives SNAP benefits and is subject to a work requirement under the SNAP program, they meet the definition of a specified excluded individual"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1246 "the State does not need to confirm that the individual is in fact compliant with SNAP work requirements"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1246 "were not exempt from the general work requirement, time limit work requirement, or both"
+- Tier: preamble
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: burdensome
+- Recheck: final rule; correction notice; CMS guidance
+- Note: A person subject only to SNAP's time limit work requirement who is told only the general one counts may meet
+  a requirement that does not apply to them. This is the SNAP breadth of ledger L2-12, which research L2 read on CMS's
+  overview deck of 2026-07-27, slide 18, as "general or time limit" work requirements (research L2 section E5); the
+  deck is not stored, and the preamble lines here say the same. The two requirements are sections 6(d)(1) and 6(o) of
+  the Food and Nutrition Act of 2008 (:1246), which are not stored. Whether a person is exempt from either is the
+  agency's determination, made with the SNAP agency, as the preamble asks (:1246).
+
+### treatment-program-participant-excluded
+
+- Rule: An individual is a specified excluded individual if they are participating in a drug addiction or alcoholic
+  treatment and rehabilitation program, as defined in section 3(h) of the Food and Nutrition Act of 2008 (7 U.S.C.
+  2012(h)). States may establish a minimum time commitment, consistent with appropriate clinical guidelines, for
+  participation in such a program.
+- Citation: 42 CFR 435.554(c)(8); 91 FR 33472
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3690 "The individual is participating in a drug addiction or alcoholic treatment and rehabilitation program, as defined in section 3(h) of the Food and Nutrition Act of 2008 (7 U.S.C. 2012(h))"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3690 "States may establish a minimum time commitment, consistent with appropriate clinical guidelines, for participation in such a program"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:732 "who is participating in a drug addiction or alcoholic treatment and rehabilitation program"
+- Tier: regulation
+- State election: yes; the state chooses a minimum time commitment for participation in such a program, consistent
+  with appropriate clinical guidelines; where it has not chosen, the rule sets no minimum and the person need only be
+  participating
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment; state plan amendment
+- Note: Could go either way, so dangerous: a person in a recovery group that is not such a program, told they are
+  excluded, may not meet the requirement, and a person in treatment told they need a set number of hours the state
+  never set may meet one that does not apply to them. Research L2 found CMS's renew-info pages say "SUD treatment
+  program or recovery program", wider than a program under 7 U.S.C. 2012(h) (ledger L2-14, research L2 section E6);
+  the pages are not stored. What section 3(h) defines, as the preamble gives it, is in
+  treatment-program-defined-by-food-and-nutrition-act. A substance use disorder can also bear on medical frailty,
+  § 435.554(c)(5), which increment 2.2 takes, and the privacy duty of § 435.557(f)(2) for data on this exclusion goes
+  with increment 2.2's rows. No state fact records a Colorado minimum. Whether a person is participating is the
+  agency's determination.
+
+### treatment-program-defined-by-food-and-nutrition-act
+
+- Rule: The preamble says section 3(h) of the Food and Nutrition Act of 2008 defines a drug addiction or alcoholic
+  treatment and rehabilitation program as any such program conducted by a private non-profit organization or
+  institution, or a publicly operated community mental health center under part B of title XIX of the Public Health
+  Service Act, to provide treatment that can lead to the rehabilitation of drug addicts or alcoholics. States will
+  need to determine which programs meet the definition, and CMS sets no minimum time commitment for participation.
+- Citation: Preamble to 42 CFR 435.554(c)(8); 91 FR 33378
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1263 "to mean any such program conducted by a private non-profit organization or institution, or a publicly operated community mental health center under part B of title XIX of the Public Health Service Act to provide treatment that can lead to the rehabilitation of drug addicts or alcoholics"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1263 "States will need to determine which rehabilitation and treatment programs meet this definition for purposes of this exclusion"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1263 "We are not establishing a minimum time commitment requirement"
+- Tier: preamble
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; CMS guidance
+- Note: A person in a peer recovery group or other support that is not such a program, told any recovery program
+  counts, may not meet the requirement. The definition is the preamble's paraphrase of 7 U.S.C. 2012(h), which is not
+  stored and was not read. Line 1263 is on 91 FR 33378, after the page marker on line 1249. Which programs in a state
+  meet the definition is the state's determination, and whether a person participates in one is the agency's.
+
+### inmate-of-public-institution-excluded
+
+- Rule: An individual is a specified excluded individual if they are an inmate of a public institution, as
+  § 435.1010 defines it.
+- Citation: 42 CFR 435.554(c)(9); 91 FR 33472
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3691 "The individual is an inmate of a public institution, as defined at"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:734 "who is an inmate of a public institution"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment
+- Note: Could go either way, so dangerous: a person in jail who is told they must still meet the requirement may
+  gather proof nobody can ask of them, and a person in a medical institution, told they count as an inmate, may not
+  meet it. § 435.1010 is stored only in the derived copy docs/domain/supporting-regs/42cfr-supporting-sections.txt and
+  was not read for this row; what the preamble says it means is in inmate-means-held-involuntarily-in-custody. The
+  months after release are a mandatory exception, § 435.553(b), which increment 2.3 takes. Whether a person is an
+  inmate of a public institution is the agency's determination.
+
+### inmate-means-held-involuntarily-in-custody
+
+- Rule: The preamble says an individual is an inmate of a public institution if they are in custody and held
+  involuntarily through operation of law enforcement. Public institutions do not include educational or vocational
+  training institutions, child care institutions, or medical institutions, institutions for mental diseases among
+  them. Inmates include individuals in correctional institutions such as State or Federal prisons, local jails,
+  detention facilities, or other penal settings.
+- Citation: Preamble to 42 CFR 435.554(c)(9); 91 FR 33378
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1267 "We consider an individual to be an inmate of a public institution if the individual is in custody and held involuntarily through operation of law enforcement"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1270 "Public institutions do not include educational or vocational training institutions; child care institutions; or medical institutions, including institutions for mental diseases (IMDs)"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1270 "Inmates of public institutions include individuals in correctional institutions such as State or Federal prisons, local jails, detention facilities, or other penal settings"
+- Tier: preamble
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; CMS guidance
+- Note: Could go either way, so dangerous: a person in an institution for mental diseases who is told they are an
+  inmate may not meet the requirement, and a person held in a local jail, told only prisons count, may gather proof
+  nobody can ask of them. The preamble adopts § 435.1010's long-standing definitions (:1267, :1276), which this row
+  paraphrases as the preamble gives them; § 435.1010 was not read. Lines 1267 and 1270 are on 91 FR 33378.
+
+### pregnant-or-postpartum-excluded
+
+- Rule: An individual is a specified excluded individual if they are pregnant or entitled to postpartum medical
+  assistance under section 1902(e)(5) or (16) of the Act.
+- Citation: 42 CFR 435.554(c)(10); 91 FR 33472
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3692 "The individual is pregnant or entitled to postpartum medical assistance under section 1902(e)(5) or (16) of the Act"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:736 "who is pregnant or entitled to postpartum medical assistance under paragraph (5) or (16) of subsection (e)"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment
+- Note: Could go either way, so dangerous: a person entitled to postpartum coverage who is told it ended at 60 days
+  may meet a requirement that does not apply to them, and one past the end of their state's postpartum period, told
+  they are still excluded, may not meet one that does. How long the postpartum period runs is in
+  postpartum-period-runs-from-the-end-of-pregnancy. SSA 1902(e)(5) and (e)(16) are not stored. Whether a person is
+  pregnant or entitled to postpartum medical assistance is the agency's determination.
+
+### postpartum-period-runs-from-the-end-of-pregnancy
+
+- Rule: The preamble says section 1902(e)(5) of the Act, implemented at § 435.170, gives continuous eligibility
+  during pregnancy and through the end of the month in which the 60-day postpartum period following the end of
+  pregnancy concludes, and section 1902(e)(16) gives a State option, from April 1, 2022, of continuous and extended
+  coverage during pregnancy and for 12 months after the end of the pregnancy. Any woman receiving Medicaid under
+  either while in the State plan adult group or a relevant section 1115(a)(2) demonstration population is a specified
+  excluded individual during the relevant postpartum period.
+- Citation: Preamble to 42 CFR 435.554(c)(10); 91 FR 33378-33379
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1313 "through the end of the month in which the 60-day postpartum period following the end of pregnancy concludes"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1313 "for continuous and extended coverage for women during pregnancy and for 12 months after the end of the pregnancy"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1318 "is a specified excluded individual during the relevant postpartum period"
+- Tier: preamble
+- State election: yes; the state chooses whether to give continuous and extended coverage for 12 months after the
+  end of pregnancy under SSA 1902(e)(16); where it has not chosen, the postpartum period runs to the end of the month
+  in which the 60-day period following the end of pregnancy concludes
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; CMS guidance; state plan amendment
+- Note: Could go either way, so dangerous: a person in a state with 12 months of postpartum coverage who is told it
+  lasts 60 days may meet a requirement that does not apply to them, and one in a state without it, told 12 months,
+  may not meet one that does. what-matters-most.md section 12 lists the error "Postpartum is 60 days"; the correction
+  is that it is often 12 months under SSA 1902(e)(16). The preamble says that as of May 2026, 48 States, the District
+  of Columbia and the U.S. Virgin Islands had elected the 12 months (:1316, 91 FR 33378); Colorado is not named, and no
+  state fact records whether Colorado elected it. Research L2 found CMS's renew-info pages say "given birth in the last
+  12 months", narrower than postpartum coverage, which follows any end of pregnancy (ledger L2-14, research L2 section
+  E6); the pages are not stored. The (e)(16) election is a State plan option, not a choice this rule gives. The
+  paragraph runs onto 91 FR 33379 at the page marker on line 1317. Whether a person is entitled to postpartum
+  coverage, and when their period ends, is the agency's determination.
+
+### no-waiver-of-community-engagement
+
+- Rule: CMS will not approve a section 1115 demonstration project that waives, in whole or in part, the community
+  engagement provisions of section 1902(xx) of the Act.
+- Citation: 42 CFR 435.563(a); 91 FR 33479
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:4162 "CMS will not approve a section 1115 demonstration project that waives, in whole or in part, the community engagement provisions of section 1902(xx) of the Act"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:748 "Notwithstanding section 1115(a), the provisions of this subsection may not be waived"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment
+- Note: A person who is told their state has a waiver from the requirement may not meet it. what-matters-most.md
+  section 12 lists the error "A State can get an 1115 waiver from this"; this row is the correction, that no waiver
+  path exists. The statute is SSA 1902(xx)(10). The section's heading names it a prohibition of waivers:
+  docs/domain/cms-2454-ifc/2026-11094.xml:4161 "Prohibition of waivers of the community engagement requirement". The
+  statute separately lets the Secretary exempt a State that shows a good faith effort to comply, in its paragraph
+  (11), docs/domain/hr1/119hr1enr-title7-part3.md:750 "SPECIAL IMPLEMENTATION RULE"; § 435.560 carries that
+  exemption, and increment 2.7 takes it. What a state that runs the requirement through a demonstration must do is
+  in demonstration-must-meet-every-community-engagement-requirement.
+
+### demonstration-must-meet-every-community-engagement-requirement
+
+- Rule: A State implementing the community engagement provisions of section 1902(xx) of the Act through section 1115
+  demonstration authority must ensure compliance with each of the requirements of section 1902(xx) of the Act.
+- Citation: 42 CFR 435.563(b); 91 FR 33479
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:4164 "A State implementing the community engagement provisions of section 1902(xx) of the Act through section 1115 demonstration authority must ensure compliance with each of the requirements of section 1902(xx) of the Act"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:564 "or, at the option of the State under a waiver or demonstration project under section 1115 or the State plan"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-23, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment
+- Note: A person in a state that runs the requirement through a demonstration, who is told the demonstration's own
+  terms take the place of the statute's, may do less than it requires. The statute lets a State begin earlier at its
+  option under a section 1115 demonstration or the State plan (SSA 1902(xx)(1), :564), as § 435.559(b) does
+  (docs/domain/cms-2454-ifc/2026-11094.xml:3997). The page marker 33480 falls inside the paragraph after its words
+  (:4165), so its page is 91 FR 33479. Whether a state's demonstration complies is not a determination about a
+  person, and this row does not decide it.

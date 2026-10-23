@@ -1,14 +1,19 @@
 """The open questions, docs/domain/open-questions.md: each question is a ### heading followed by a list holding, in
 order, Why it is open, Who can answer, Raised, one or more Sources, and optionally a Note last. Why it is open starts
-with one or more of the four reasons, separated by semicolons. Whether a Source quotes words on its line is not
-checked here yet."""
+with one or more of the four reasons, separated by semicolons. A question whose part moved to the state facts holds
+one field, Moved, and none of the others, its date a day that exists. A state fact named in a Moved line or in Why
+it is open exists. Whether a Source quotes words on its line is not checked here yet."""
 
 from __future__ import annotations
 
 from pathlib import Path
-from typing import List, Optional
+from typing import List, Optional, Set
 
-from .constants import FIELD, HEADING, OPEN_QUESTIONS, OPEN_REASONS, QUESTION_FIELDS, QUESTION_REQUIRED_FIELDS
+from .constants import (
+    FIELD, HEADING, MOVED, MOVED_FIELD, MOVED_FORM, OPEN_QUESTIONS, OPEN_REASONS, QUESTION_FIELDS,
+    QUESTION_REQUIRED_FIELDS, STATE_FACT_NAME,
+)
+from .dates import is_date
 from .files import read_listed, split_lines
 from .report import Problem
 from .rows import Field
@@ -27,8 +32,9 @@ def problem(problems: List[Problem], line: int, message: str) -> None:
     problems.append(Problem(OPEN_QUESTIONS, line, message))
 
 
-def parse_questions(lines: List[bytes], problems: List[Problem]) -> List[Question]:
-    """The questions, reporting every problem with where their fields may go. Prose may stand before the first."""
+def parse_questions(lines: List[bytes], problems: List[Problem], facts: Optional[Set[str]] = None) -> List[Question]:
+    """The questions, reporting every problem with where their fields may go. Prose may stand before the first.
+    `facts` are the state facts' names, `<state>: <row>`; where it is None, a named fact is not looked for."""
     questions: List[Question] = []
     # Where the reader is: "prose" outside any question, "heading" after a ### heading and before its first field,
     # "fields" inside its list, "after" past a blank line that follows the list.
@@ -69,8 +75,41 @@ def parse_questions(lines: List[bytes], problems: List[Problem]) -> List[Questio
         else:
             problem(problems, number, "{!r} is not a field: a field is '- Name: value'".format(line))
     for question in questions:
-        check_question_fields(question, problems)
+        if any(field.name == MOVED_FIELD for field in question.fields):
+            check_moved_question(question, problems)
+        else:
+            check_question_fields(question, problems)
+        if facts is not None:
+            check_named_facts(question, facts, problems)
     return questions
+
+
+def check_moved_question(question: Question, problems: List[Problem]) -> None:
+    """A question whose part moved to the state facts: Moved, once, in MOVED's form, and no other field."""
+    moved = 0
+    for field in question.fields:
+        if field.name != MOVED_FIELD:
+            problem(problems, field.line, "a moved question holds no field but Moved; {} is in {!r}".format(
+                field.name, question.title))
+            continue
+        moved += 1
+        if moved > 1:
+            problem(problems, field.line, "Moved appears more than once in {!r}".format(question.title))
+        match = MOVED.match(field.value)
+        if match is None:
+            problem(problems, field.line, "Moved is {!r}; {!r} is not".format(MOVED_FORM, field.value))
+        elif not is_date(match.group(1)):
+            problem(problems, field.line, "Moved's date {!r} is not a day that exists".format(match.group(1)))
+
+
+def check_named_facts(question: Question, facts: Set[str], problems: List[Problem]) -> None:
+    """Each state fact a Moved line or Why it is open names, as `the state fact <state>: <row>`, exists."""
+    for field in question.fields:
+        if field.name in (MOVED_FIELD, "Why it is open"):
+            for name in STATE_FACT_NAME.findall(field.value):
+                if name not in facts:
+                    problem(problems, field.line, "the state fact {!r} does not exist; no fact in the file whose "
+                            "state is {!r} names that row".format(name, name.split(": ")[0]))
 
 
 def read_field(question: Question, line: str, number: int, problems: List[Problem]) -> None:
@@ -129,9 +168,10 @@ def reasons_problem(value: str) -> Optional[str]:
     return None
 
 
-def check_open_questions(root: Path, files: Optional[List[str]], problems: List[Problem]) -> None:
+def check_open_questions(root: Path, files: Optional[List[str]], problems: List[Problem], facts: Set[str]) -> None:
+    """The open questions, against `facts`, the state facts' names that check_state_facts returns."""
     data = read_listed(root, OPEN_QUESTIONS, files)
     if data is None:
         problem(problems, 0, "the open questions are missing")
         return
-    parse_questions(split_lines(data), problems)
+    parse_questions(split_lines(data), problems, facts)

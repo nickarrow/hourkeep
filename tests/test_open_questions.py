@@ -2,7 +2,9 @@
 docs/epics/0001-policy-corpus/design.md defines it in its paragraph on the open questions: each question is a ###
 heading followed by a list holding, in order, Why it is open, which starts with one or more of the four reasons,
 Who can answer, Raised, one or more Sources, and optionally a Note last. Review of the review pages 2026-10-21, M5.
-Every case changes the valid corpus's one question, whose lines corpus_fixture.py gives.
+Every case of OpenQuestionsTest changes the valid corpus's one question, whose lines corpus_fixture.py gives.
+MovedQuestionTest covers a question whose part moved to the state facts, as decision record 0006 sets out, and a
+state fact named in Why it is open.
 """
 
 from __future__ import annotations
@@ -105,6 +107,116 @@ class OpenQuestionsTest(CorpusTestCase):
                                                               "Synthetic fixture text.\n\nMore prose.\n")))
         self.assertFails(self.check_questions(questions_with(NOTE, NOTE + "\nA stray paragraph.\n")),
                          OPEN_QUESTIONS, 15, "only blank lines and headings come between questions")
+
+
+# A question whose part moved to the state facts, after the valid one: its heading is line 15 and its Moved line 17.
+MOVED_HEADING, MOVED_LINE = 15, 17
+MOVED = "- Moved: 2026-10-23, to the state fact co: notice-response-period.\n"
+MOVED_FORM = "Moved is 'YYYY-MM-DD, to the state fact <state>: <row>.'"
+# The valid corpus's two state facts, by their names `<state>: <row>`.
+FACT_NAMES = ("co: notice-response-period", "federal: hearing-request-period")
+MISSING_FACT_NAMES = ("co: hearing-request-period", "tx: notice-response-period", "co: no-such-row")
+
+
+def with_moved(lines: str = MOVED) -> str:
+    """The valid open questions with a moved question after the one they hold, its list being `lines`."""
+    return OPEN_QUESTIONS_TEXT + "\n### Which path did the state take?\n\n" + lines
+
+
+def why_naming(name: str) -> str:
+    """The valid open questions, their Why it is open ending with the sentence that names where the state's part
+    went, the fact's name broken across the field's two continuation lines."""
+    state, row = name.split(": ")
+    return questions_with("calendar days for one period and not for the other.\n",
+                          "calendar days for one period and not for the other. Colorado's part moved on 2026-10-23 "
+                          "to the state\n  fact {}: {}.\n".format(state, row))
+
+
+def why_with(sentence: str) -> str:
+    """The valid open questions, their Why it is open ending with `sentence` on its last continuation line."""
+    return questions_with("calendar days for one period and not for the other.\n",
+                          "calendar days for one period and not for the other. {}\n".format(sentence))
+
+
+class MovedQuestionTest(CorpusTestCase):
+    """The open questions paragraph under "Where things live", as decision record 0006 changes it. A question whose
+    part moved to the state facts keeps its ### heading and holds one field, `- Moved: YYYY-MM-DD, to the state fact
+    <state>: <row>.`, and none of the required ones. A state fact named as `the state fact <state>: <row>`, "The"
+    opening a sentence or the name in backticks, in a Moved line or in Why it is open, exists: a fact in the file whose
+    state is <state> names the row <row>."""
+
+    def check_questions(self, text: str):
+        corpus = Corpus()
+        corpus.files[OPEN_QUESTIONS] = text
+        return run_checker(corpus)
+
+    def test_a_moved_question_naming_a_fact_that_exists_passes(self):
+        for name in FACT_NAMES:
+            with self.subTest(fact=name):
+                self.assertPasses(self.check_questions(
+                    with_moved("- Moved: 2026-10-23, to the state fact {}.\n".format(name))))
+
+    def test_a_moved_question_naming_no_fact_fails(self):
+        for name in MISSING_FACT_NAMES:
+            with self.subTest(fact=name):
+                self.assertFails(self.check_questions(with_moved("- Moved: 2026-10-23, to the state fact {}.\n".format(
+                    name))), OPEN_QUESTIONS, MOVED_LINE, "the state fact {!r} does not exist".format(name))
+
+    def test_a_malformed_moved_line_fails(self):
+        for bad in ("to the state fact co: notice-response-period.",
+                    "2026-10-23, to the state fact co: notice-response-period",
+                    "2026-10-23 to the state fact co: notice-response-period.",
+                    "2026-10-23, to co: notice-response-period.",
+                    "2026-10-23, to the state fact co notice-response-period.",
+                    "2026-10-23, to the state fact Colorado: notice-response-period."):
+            with self.subTest(moved=bad):
+                self.assertFails(self.check_questions(with_moved("- Moved: {}\n".format(bad))), OPEN_QUESTIONS,
+                                 MOVED_LINE, MOVED_FORM)
+
+    def test_a_moved_line_whose_date_does_not_exist_fails_naming_the_date(self):
+        # Mechanism review 2026-10-23, finding 6: the form message did not say the date was the fault.
+        for date in ("2026-13-01", "2026-02-30"):
+            with self.subTest(date=date):
+                result = self.check_questions(with_moved(
+                    "- Moved: {}, to the state fact co: notice-response-period.\n".format(date)))
+                self.assertFails(result, OPEN_QUESTIONS, MOVED_LINE,
+                                 "Moved's date {!r} is not a day that exists".format(date))
+                self.assertNotIn(MOVED_FORM, result.stdout)
+
+    def test_a_moved_line_given_twice_fails(self):
+        # Mechanism review 2026-10-23, finding 1: the check had no failing fixture.
+        self.assertFails(self.check_questions(with_moved(MOVED + MOVED)), OPEN_QUESTIONS, MOVED_LINE + 1,
+                         "Moved appears more than once")
+
+    def test_a_moved_question_holding_another_field_fails(self):
+        for lines, line in ((MOVED + NOTE, MOVED_LINE + 1), (MOVED + WHO, MOVED_LINE + 1), (NOTE + MOVED, MOVED_LINE)):
+            with self.subTest(lines=lines):
+                self.assertFails(self.check_questions(with_moved(lines)), OPEN_QUESTIONS, line,
+                                 "a moved question holds no field but Moved")
+
+    def test_why_it_is_open_naming_a_fact_that_exists_passes(self):
+        for name in FACT_NAMES:
+            with self.subTest(fact=name):
+                self.assertPasses(self.check_questions(why_naming(name)))
+
+    def test_why_it_is_open_naming_no_fact_fails(self):
+        for name in MISSING_FACT_NAMES:
+            with self.subTest(fact=name):
+                self.assertFails(self.check_questions(why_naming(name)), OPEN_QUESTIONS, 7,
+                                 "the state fact {!r} does not exist".format(name))
+
+    def test_a_fact_named_after_the_with_a_capital_or_in_backticks_is_looked_for(self):
+        # Mechanism review 2026-10-23, finding 3, and do-it review finding 4: "The state fact" opening a sentence, and
+        # a name in backticks as the review page prints it, went unchecked.
+        for sentence in ("The state fact {} holds Colorado's part.", "Colorado's part moved to the state fact `{}`.",
+                         "The state fact `{}` holds Colorado's part."):
+            for name in FACT_NAMES:
+                with self.subTest(sentence=sentence, fact=name):
+                    self.assertPasses(self.check_questions(why_with(sentence.format(name))))
+            for name in MISSING_FACT_NAMES:
+                with self.subTest(sentence=sentence, fact=name):
+                    self.assertFails(self.check_questions(why_with(sentence.format(name))), OPEN_QUESTIONS, 7,
+                                     "the state fact {!r} does not exist".format(name))
 
 
 if __name__ == "__main__":

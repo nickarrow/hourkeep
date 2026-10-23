@@ -1,6 +1,7 @@
 """The skill, .kiro/skills/medicaid-community-engagement/: its main file, SKILL.md, with its frontmatter, length,
-headings and links to its topic files; and each topic file in references/, with its title, length, groups, and each
-rule item's identifier, citation and numbers."""
+headings and links to its topic files; and each topic file in references/, with its title, which is the ## heading
+of a topic in the extract and no other topic file's title, its length, its groups, and each rule item's identifier,
+citation and numbers."""
 
 from __future__ import annotations
 
@@ -9,8 +10,8 @@ from typing import Dict, List, Optional, Tuple
 
 from .constants import (
     BRACKETED, CITATION_PARAGRAPH, EXTRACT, FENCE, FRONTMATTER_KEY, HEADING, LIST_ITEM, NUMBER, REFERENCES, SKILL,
-    SKILL_FOLDER, SKILL_HEADINGS, SKILL_ITEM_END, SKILL_MAX_LINES, TOPIC_LINK, TOPIC_NAME, TOPIC_TITLE,
-    TOPICS_HEADING,
+    SKILL_DESCRIPTION_MAX, SKILL_FOLDER, SKILL_HEADINGS, SKILL_ITEM_END, SKILL_MAX_LINES, TOPIC_LINK, TOPIC_NAME,
+    TOPIC_TITLE, TOPICS_HEADING,
 )
 from .files import read_listed, split_lines
 from .report import Counts, Problem
@@ -18,7 +19,8 @@ from .rows import Row
 
 
 def skill_frontmatter(lines: List[str], problems: List[Problem]) -> None:
-    """The frontmatter between `---` lines: name equal to the skill's folder, and a description that is not empty."""
+    """The frontmatter between `---` lines: name equal to the skill's folder, and a description that is not empty
+    and at most SKILL_DESCRIPTION_MAX characters, its continuation lines joined by single spaces."""
     if not lines or lines[0].rstrip() != "---":
         problems.append(Problem(SKILL, 0, "the skill has no frontmatter between --- lines"))
         return
@@ -45,6 +47,9 @@ def skill_frontmatter(lines: List[str], problems: List[Problem]) -> None:
     description, line = values.get("description", ("", 0))
     if description == "":
         problems.append(Problem(SKILL, line, "the skill's frontmatter lacks its description"))
+    elif len(description) > SKILL_DESCRIPTION_MAX:
+        problems.append(Problem(SKILL, line, "the skill's description has {} characters, more than {:,}".format(
+            len(description), SKILL_DESCRIPTION_MAX)))
 
 
 def fenced_lines(lines: List[str]) -> List[bool]:
@@ -185,12 +190,24 @@ def check_rule_item(path: str, text: str, first: int, by_identifier: Dict[str, R
         counts.skill_items += 1
 
 
-def check_topic_file(path: str, data: bytes, by_identifier: Dict[str, Row], problems: List[Problem],
-                     counts: Counts, found: Dict[str, Tuple[str, int]]) -> None:
+def check_topic_file(path: str, data: bytes, by_identifier: Dict[str, Row], topics: List[str],
+                     problems: List[Problem], counts: Counts, found: Dict[str, Tuple[str, int]],
+                     titles: Dict[str, str]) -> None:
+    """One topic file. `topics` holds the text of the extract's ## topic headings, one of which is its title, and
+    `titles` each title an earlier topic file has, with that file's path; no two topic files share one."""
     lines = decoded_lines(data)
     check_length(path, lines, problems)
+    title = lines[0][2:].strip() if lines else ""
     if not lines or not TOPIC_TITLE.match(lines[0]):
         problems.append(Problem(path, 1 if lines else 0, "a topic file's first line is # and its title"))
+    elif title not in topics:
+        problems.append(Problem(path, 1, "the topic file's title {!r} is not the ## heading of a topic in the "
+                                "extract".format(title)))
+    elif title in titles:
+        problems.append(Problem(path, 1, "the topic file's title {!r} is the title of {} too; each topic has one "
+                                "topic file".format(title, titles[title])))
+    else:
+        titles[title] = path
     check_bracketed(path, lines, by_identifier, problems)
     items = topic_rule_items(path, lines, fenced_lines(lines), problems)
     if not items:
@@ -201,8 +218,8 @@ def check_topic_file(path: str, data: bytes, by_identifier: Dict[str, Row], prob
         check_rule_item(path, text, first, by_identifier, problems, counts, found)
 
 
-def check_skill(root: Path, files: Optional[List[str]], rows: List[Row], problems: List[Problem],
-                counts: Counts) -> None:
+def check_skill(root: Path, files: Optional[List[str]], rows: List[Row], topics: List[str],
+                problems: List[Problem], counts: Counts) -> None:
     data = read_listed(root, SKILL, files)
     if data is None:
         print("{}: the skill is absent, so it was not checked".format(SKILL))
@@ -255,8 +272,9 @@ def check_skill(root: Path, files: Optional[List[str]], rows: List[Row], problem
     # Each row has exactly one rule item across the topic files: a second is reported where it stands, a missing
     # one at the row's heading.
     found: Dict[str, Tuple[str, int]] = {}
+    titles: Dict[str, str] = {}
     for path, topic in topic_files:
-        check_topic_file(path, topic, by_identifier, problems, counts, found)
+        check_topic_file(path, topic, by_identifier, topics, problems, counts, found, titles)
     for row in rows:
         if row.identifier not in found:
             problems.append(Problem(EXTRACT, row.line, "{} has no rule item in the skill's topic files".format(

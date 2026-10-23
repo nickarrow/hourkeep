@@ -4,7 +4,7 @@ may go, each row's fields and their order, each field's value, and each Source."
 from __future__ import annotations
 
 from pathlib import Path
-from typing import List, Optional
+from typing import List, Optional, Tuple
 
 from .constants import (
     CITATION_SEPARATOR, CORRECTED, ERROR_DIRECTIONS, EXTRACT, FIELD, HEADING, IDENTIFIER, NOT_STORED, OPTIONAL_FIELDS,
@@ -41,8 +41,9 @@ def problem(problems: List[Problem], line: int, message: str) -> None:
     problems.append(Problem(EXTRACT, line, message))
 
 
-def parse_extract(lines: List[bytes], problems: List[Problem]) -> List[Row]:
-    """The rows of the extract, reporting every problem with where prose, topics, rows and fields may go."""
+def parse_extract(lines: List[bytes], problems: List[Problem], topics: Optional[List[str]] = None) -> List[Row]:
+    """The rows of the extract, reporting every problem with where prose, topics, rows and fields may go. Each ## topic
+    heading's text is appended to `topics` when it is given."""
     rows: List[Row] = []
     seen = {}  # identifier -> line of its heading
     # Where the reader is: "introduction" before the first ## topic, "topic" under a ## heading before any row,
@@ -66,6 +67,8 @@ def parse_extract(lines: List[bytes], problems: List[Problem]) -> List[Row]:
         elif heading and heading.group(1) == "##":
             if place == "introduction" and not introduction:
                 problem(problems, number, "the extract needs a short introduction before the first ## topic")
+            if topics is not None:
+                topics.append(heading.group(2).strip())
             place, row = "topic", None
         elif heading and heading.group(1) == "###":
             identifier = heading.group(2)
@@ -241,20 +244,23 @@ def check_field_values(row: Row, problems: List[Problem]) -> None:
                     row.identifier))
 
 
-def check_extract(root: Path, files: Optional[List[str]], problems: List[Problem], counts: Counts) -> List[Row]:
+def check_extract(root: Path, files: Optional[List[str]], problems: List[Problem],
+                  counts: Counts) -> Tuple[List[Row], List[str]]:
+    """The rows of the extract, and the text of its ## topic headings, which each topic file's title must be."""
     data = read_listed(root, EXTRACT, files)
     if data is None:
         problem(problems, 0, "the extract is missing")
-        return []
+        return [], []
     lines = split_lines(data)
     if not lines:
         problem(problems, 1, "the extract opens with a # title")
-    rows = parse_extract(lines, problems)
+    topics: List[str] = []
+    rows = parse_extract(lines, problems, topics)
     check_sources(root, rows, files, problems)
     counts.rows = len(rows)
     counts.unverified_rows = sum(1 for row in rows if row.values("Verified") == ["no"])
     counts.person_verified_rows = sum(1 for row in rows if verified_by_a_person(row))
-    return rows
+    return rows, topics
 
 
 def verified_by_a_person(row: Row) -> bool:

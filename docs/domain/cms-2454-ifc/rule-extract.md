@@ -65,30 +65,30 @@ review period during which they were excluded. This is the rule's main transitio
 
 ## 1. Applicable individual — § 435.551
 
-An applicable individual is someone who **is not** a specified excluded individual (§ 435.554) **and** who is:
+Now rows applicable-individual-defined, applicable-individual-under-the-state-plan,
+applicable-individual-under-a-demonstration, requirement-applies-in-the-50-states-and-dc,
+demonstration-populations-reviewed-for-community-engagement, cms-identified-13-demonstration-populations-in-8-states
+in docs/domain/community-engagement-extract.md (2026-10-23).
 
-- (a) eligible to enroll or enrolled under the State plan at § 435.119 (the adult/expansion group); **or**
-- (b) otherwise eligible to enroll or enrolled in a § 1115(a)(2) demonstration providing minimum
-  essential coverage, **and** is:
-  1. at least 19 and under 65 years of age;
-  2. not pregnant;
-  3. not entitled to or enrolled for Medicare Part A, or enrolled for Part B; and
-  4. not otherwise eligible to enroll under the State plan.
-
-**Scope:** applies to the 50 States and DC. **Does not apply to the territories** (§ 435.550).
-
-**44 jurisdictions are in scope: 43 States + DC.** In June 2026 CMS published a list of § 1115 waiver
-programs containing subject individuals, naming three non-expansion States — **Georgia, Tennessee, and
-Wisconsin** — plus § 1115 populations inside five expansion States: **Hawaii, Massachusetts, New York,
-Oregon, and Utah**. An § 1115 enrollee in those five may be subject even though the State also runs a
-state-plan adult group.
-
-**Out of scope:** Alabama, Florida, Kansas, Mississippi, South Carolina, Texas, Wyoming — and all
-territories.
-
-> Note the structural consequence: age 65+, pregnancy, and Medicare enrollment place a person
-> **outside the definition entirely** rather than granting an "exemption." Age under 19 and Medicare
-> also appear as mandatory exceptions in § 435.553, so there is deliberate belt-and-braces overlap.
+- **44 jurisdictions have a population subject to the requirement: 43 States + DC.** (Corrected 2026-10-23: said
+  "**44 jurisdictions are in scope: 43 States + DC.**"; full review 2026-10-23, corpus against source 7.) The
+  figure is the interim final rule's burden estimate, which estimates that 44 jurisdictions, 43 States and the
+  District of Columbia, provide medical assistance subject to section 1902(xx) of the Act (91 FR 33427). (Added
+  2026-10-23; read in docs/domain/cms-2454-ifc/2026-11094.xml:2478.)
+- In June 2026 CMS published a list of § 1115 waiver programs containing subject individuals, naming three
+  non-expansion States — **Georgia, Tennessee, and Wisconsin** — plus § 1115 populations inside five expansion
+  States: **Hawaii, Massachusetts, New York, Oregon, and Utah**. An § 1115 enrollee in those five may be subject
+  even though the State also runs a state-plan adult group. **Out of scope:** Alabama, Florida, Kansas,
+  Mississippi, South Carolina, Texas, Wyoming. (Unverified 2026-10-23: no stored source holds this; searched
+  docs/domain/sources/ and docs/domain/cms-2454-ifc/2026-11094.xml for "Georgia", "Tennessee", "Wisconsin",
+  "Hawaii", "Utah", "Alabama" and "Wyoming"; the hits are on States' earlier demonstrations (2026-11094.xml:307,
+  :314), on a footnote citing Georgia's request to extend its demonstration (:335) and on Colorado's border towns,
+  and none names a State's population as subject or a State as out of scope.
+  Row cms-identified-13-demonstration-populations-in-8-states carries the count from CMS's deck of 2026-07-27, which
+  is not stored, and does not name the States.)
+- Age under 19 and Medicare also appear as mandatory exceptions in § 435.553, so there is deliberate belt-and-braces
+  overlap, at § 435.553(a)(1) and (a)(2) (91 FR 33471). (Added 2026-10-23; read in
+  docs/domain/cms-2454-ifc/2026-11094.xml:3625 and :3626.)
 
 ---
 
@@ -312,42 +312,19 @@ April → yes (March) → deemed compliant.
 
 ### 4.1 Supporting definitions — § 435.554(a)
 
-**Dependent child** — a child **13 years of age or under** who relies on another individual for care.
-
-**Disabled individual** — meets the **ADA definition of disability at 28 CFR 35.108**. Explicitly
-**need not** be eligible for Medicaid or any federal program on the basis of disability.
-
-**Parent** — legal status of mother or father, including by adoption, under State law, **who provides
-some level of care** to a dependent child or disabled individual.
-
-**Guardian** — an adult **appointed by a court** to care for and make personal decisions for a
-dependent child or disabled individual who cannot care for themselves.
-
-**Caretaker relative** — a relative by blood, adoption, or marriage **with whom** the child or
-disabled individual is living, who **assumes primary responsibility** for their care, and who is:
-- (i) the dependent child's or disabled individual's father, mother, grandfather, grandmother,
-  brother, sister, stepfather, stepmother, stepbrother, stepsister, uncle, aunt, first cousin,
-  nephew, or niece;
-- (ii) the disabled individual's husband, wife, son, daughter, stepson, stepdaughter, grandson, or
-  granddaughter;
-- (iii) the spouse of such parent or relative, **even after the marriage ends** by death or divorce;
-- (iv) **at State option**, another relative by blood (including half-blood), adoption, or marriage;
-  the domestic partner of the parent or other caretaker relative; or an adult with whom the person is
-  living who assumes primary responsibility for their care. A State's elections for § 435.110 carry
-  over here.
-
-**Family caregiver** — an adult family member **or other individual** who has a significant
-relationship with, and provides care within a broad range of assistance to, a dependent child or a
-disabled individual.
+Now rows dependent-child-defined, disabled-individual-defined, ada-disability-definition, parent-defined,
+guardian-defined, caretaker-relative-defined, caretaker-relative-other-relationships-at-state-option,
+family-caregiver-defined in docs/domain/community-engagement-extract.md (2026-10-23).
 
 ### 4.2 The ten exclusion categories — § 435.554(c)
 
 **(1) Former foster care children.** Meets the FFCC group description at § 1902(a)(10)(A)(i)(IX) as
 amended by the SUPPORT Act (PL 115-271), **regardless of whether the individual turned 18 on or
-after January 1, 2023**. Operative criteria: under age 26; not enrolled in a group described in
-§ 1902(a)(10)(A)(i)(I)–(VII); was in foster care under the responsibility of **any** State upon
-attaining age 18 (or higher State-elected age); and was enrolled in Medicaid in **any** State while
-in foster care.
+after January 1, 2023**. Operative criteria, as the preamble reads the group (91 FR 33365-33366): under age 26;
+not enrolled in a group described in § 1902(a)(10)(A)(i)(I)–(VII); was in foster care under the responsibility of
+**any** State upon attaining age 18 (or higher State-elected age); and was enrolled in Medicaid in **any** State
+while in foster care. (Corrected 2026-10-23: said "Operative criteria:"; read in
+docs/domain/cms-2454-ifc/2026-11094.xml:762 and :764.)
 
 **(2) American Indians.** Meets the definition of "Indian" at **42 CFR 447.51**, which incorporates
 Indian, Urban Indian, California Indian, and IHS-eligible. **States must not reverify this status** —
@@ -450,9 +427,10 @@ exclusion, which does not require active treatment.
 postpartum entitlement unless it holds information that is not reasonably compatible with it. No document
 needed.
 
-> **§ 435.554(c)(1) qualifier worth stating:** the former-foster-care test requires that the person is not
-> **enrolled** in a group described in § 1902(a)(10)(A)(i)(I)–(VII) — **"even if they meet the eligibility
-> requirements for such group."** User-favorable.
+> **The preamble's qualifier on § 435.554(c)(1) (91 FR 33366):** the former-foster-care test requires that the
+> person is not **enrolled** in a group described in § 1902(a)(10)(A)(i)(I)–(VII) — **"even if they meet the
+> eligibility requirements for such group."** User-favorable. (Corrected 2026-10-23: said "**§ 435.554(c)(1)
+> qualifier worth stating:**"; read in docs/domain/cms-2454-ifc/2026-11094.xml:764 and :3668.)
 
 ---
 
@@ -858,8 +836,8 @@ and anything else CMS specifies. Failure can trigger corrective action under SSA
 
 ### No waivers — § 435.563
 
-CMS **will not approve** a § 1115 demonstration that waives the community engagement provisions in
-whole or in part. A State implementing via § 1115 must comply with every requirement of § 1902(xx).
+Now rows no-waiver-of-community-engagement, demonstration-must-meet-every-community-engagement-requirement in
+docs/domain/community-engagement-extract.md (2026-10-23).
 
 ### Conflict of interest — § 438.58(b)
 
@@ -927,7 +905,7 @@ These are the axes for HourKeep's policy-profile module.
 | Unemployment hardship effectuation | § 435.555(d)(3) | requires State request + CMS approval | **not effectuated** |
 | Income-to-hours proxy | § 435.552(e)(2)(i) | may / may not use | **may** (user-favorable) |
 | Reasonably predictable changes methodology | § 435.603(h)(3) | elect increases / decreases / both / none; window up to 12 months | **not elected** → 6-month preceding average |
-| Caretaker relative optional relationships | § 435.554(a)(iv) | State elections carry from § 435.110 | **base list only** |
+| Caretaker relative optional relationships | § 435.554(a), caretaker relative (iv) (Corrected 2026-10-23: said "§ 435.554(a)(iv)"; read in docs/domain/cms-2454-ifc/2026-11094.xml:3634 and :3642.) | State elections carry from § 435.110 | **base list only** |
 | Medically frail condition list | § 435.554(c)(5)(ii) | State-developed, auditable | **unknown — must be requested from the State** |
 | Rehab program minimum time commitment | § 435.554(c)(8) | may establish | **none** |
 | Implementation date | § 435.559(b) | Jan 1 2027 or earlier | **Jan 1, 2027** |
@@ -989,7 +967,12 @@ These are the axes for HourKeep's policy-profile module.
   suit, *Taylor v. Kennedy, Jr.*, No. 1:26-cv-03705 (D. Md.), filed 2026-09-18 by 12 plaintiffs, challenges the
   gate, the "stable recovery" carve-out for substance use disorder, the 12-month claims window and the attestation
   limit. On 2026-10-14 (ECF 28) that court set a summary judgment schedule and declined to commit to a ruling before
-  2027-01-01. (Added 2026-10-23; L3-6, L1-12, L3-5.) Build medically-frail logic expecting it to move.
+  2027-01-01. (Added 2026-10-23; L3-6, L1-12, L3-5.) On 2026-10-23, CourtListener's RECAP copy of the
+  Massachusetts docket page, read at about 00:37 UTC, and RECAP's search index, queried then and at about 03:09 UTC,
+  showed no entry after 144, a notice of appearance filed 2026-10-21, and no entry recording the October 22 hearing
+  as held, no order on the motions and no termination. RECAP updates a docket only when one of its users downloads
+  it from PACER, so it can lag, and PACER was not checked. (Added 2026-10-23; decision record 0006.) Build
+  medically-frail logic expecting it to move.
   ([Georgetown Litigation Tracker](https://litigationtracker.law.georgetown.edu/litigation/commonwealth-of-massachusetts-et-al-v-oz-et-al/))
 - **Georgia's scope is unsettled.** The IFC forces Georgia to add exclusions Pathways never had; DCH
   projects enrollment rising by ~100,000 against ~20,000 currently covered and is seeking a higher federal

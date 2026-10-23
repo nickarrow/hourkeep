@@ -4,7 +4,7 @@ Status: In progress, since 2026-10-17. What the epic changes and why, and the fo
 `design.md` beside this file.
 
 - [x] 1. One topic, all the way through
-- [ ] 2.1 Who the requirement applies to, and who is excluded from it
+- [x] 2.1 Who the requirement applies to, and who is excluded from it
 - [ ] 2.2 People who are medically frail or have special medical needs
 - [ ] 2.3 Exceptions for a month: mandatory exceptions, and optional short-term hardship exceptions
 - [ ] 2.4 Work, community service, work programs and school
@@ -55,10 +55,12 @@ Checked 2026-10-16:
 - When a topic lands, each older analysis file's passage on that topic becomes a pointer to the new rows, with the
   research's corrections to that passage applied in the same change. A passage becomes a pointer only once every claim
   in it has a row. A claim no row covers yet, or a passage that also covers topics still to come, is corrected in place.
-  Two kinds of correction come sooner, in the fix before increment 2.1 that section 2 describes, in every file that
-  carries the claim: one the ledger rates dangerous, and one about an event or a publication that no topic covers. One
-  about a state other than Colorado that is not dangerous is not applied, and goes when its file is retired (decision
-  record 0006).
+  (Added 2026-10-23: a passage whose remaining claims no row covers yet is pointed, with those claims kept after the
+  pointer, as the epic design's Formats say under "Pointers and dated corrections"; full review 2026-10-23, corpus
+  against source 11.) Two kinds of correction come sooner, in the fix before increment 2.1 that section 2
+  describes, in every file that carries the claim: one the ledger rates dangerous, and one about an event or a
+  publication that no topic covers. One about a state other than Colorado that is not dangerous is not applied, and
+  goes when its file is retired (decision record 0006).
 - When a claim is corrected, search `docs/domain/` outside the stored sources and the research records, and the skill,
   for every copy of it in the same change.
 - The research cites lines in `docs/domain/` as they stood on 2026-10-16, and pointers shift the lines below them. Find
@@ -620,6 +622,383 @@ pointers only. The corrections that cannot wait land before it, in the fix secti
 The owner's go before it starts, and the owner's decision on how to go on if the docket shows an order on the
 provisions Massachusetts v. Oz challenges. Nothing else, unless a site refuses automated requests, in which case a
 copy downloaded in a browser.
+
+### Done, 2026-10-23
+
+Built on the branch `corpus-2.1-who-it-applies-to`, off main at b2be22d, on 2026-10-23, then fixed after the full
+review. Against "How you know it worked":
+
+- `/usr/bin/python3 -m unittest discover -s tests` (3.9.6) ran 357 tests and passed in 158 s, and
+  `/opt/homebrew/bin/python3 -m unittest discover -s tests` (3.14.6) ran 357 and passed in 194 s, each as its own
+  command, on 2026-10-23 at about 07:30 UTC. Main had 317. The 40 new tests, each check with a passing and a failing
+  fixture:
+  - State facts, `ChoiceFactTest` in `tests/test_choice_facts.py`, 11 tests: one fact per row in a file; no fact on
+    a pair's second row, which is told that and not also that only a first row has `choice`; a fact on a pair's
+    first row has `choice`, and no other fact does; `choice` is its pair's identifier or `not published` or `not
+    applicable`; a `not published` fact's `choice` is `not published`; a note wherever `value`, `choice` or
+    `counts_from` is `not published` or `choice` is `not applicable`; no other key `not published`.
+  - The pairs themselves, `ChoicePairsTest` in the same file, 6 tests: `choice_pair_problems` in
+    `scripts/corpus_check/states.py`, reported at `scripts/corpus_check/constants.py:0`, fails a pair whose two rows
+    are one, a row in two pairs, and a pair of which the extract holds one row or holds the second first. The unit
+    tests call it directly, since the suite cannot patch a constant, and one runs the checker on the real
+    `CHOICE_PAIRS` with the renewal pair in order, reversed and halved.
+  - Open questions, `MovedQuestionTest` in `tests/test_open_questions.py`, 9 tests: a `Moved` question names a fact
+    that exists, has the record's form, holds no other field and holds `Moved` once; a date in the form that is no
+    day gets a message of its own; a fact named in Why it is open exists, and is looked for after "the" or "The",
+    bare or in backticks.
+  - The skill, `tests/test_skill.py`, 3 tests: a description of 1,024 characters passes and 1,025 fails; a topic
+    file's title is a `##` heading of the extract; no two topic files share a title.
+  - The review pages, `tests/test_review_pages.py`, 9 tests, and `tests/test_review_question_groups.py`, 2: the moved
+    group, last; the moved question's section, the fact's name as text and in its three comment links; the choice
+    line, naming both rows of the pair in words, each linked, then the state's choice; a line for each Source not stored
+    and none for a stored one; the orientation before Start
+    here, its identifiers linked, before the first group where a topic has no start-here rows, and absent where a
+    topic has none; both opening sentences, with "since each of those has two sources that say different things";
+    and 28 CFR links. Assertions added to existing tests: three 28 CFR cases in
+    `test_links_each_kind_of_part_and_leaves_the_rest_as_text`, the status definitions' `counts_from` sentence, a
+    "Source, not stored yet:" line for a row whose Source is not stored and none for one whose Source is, and the
+    fixture topic file titled with its extract heading.
+- `scripts/check-corpus.py` exits 0 under both and prints `Checked 126 rows (1 say Verified: no, 0 verified by a
+  person), 43 sources, 10 state facts (2 marked not published), 0 warnings, 126 skill items.` Before the increment,
+  main gave 64 rows, 39 sources, 8 state facts and 64 skill items.
+- `docs/review/who-the-requirement-applies-to.md` exists, 686 lines, linked twice from the landing page, to the page
+  and to its start-here rows, and the checker compares it with what the generator makes. `docs/review/` holds 5
+  pages.
+- The open questions page has, in order, "Where the sources conflict", "Questions about the federal rule", "Questions
+  about a state's own rules" and "Moved to the state facts", last, and "Waiting on a choice" nowhere. All 14 question
+  titles of main's page and all 8 fact headings of main's state facts page are still there; there are 18 questions and
+  10 fact headings now.
+- The docket, the ledger findings, the paragraphs of Delivers and the pointed claims are below.
+- The old-wording search: `git grep -F` over `docs/`, `.kiro/`, `scripts/` and `tests/`, less the research records and
+  the stored sources, for 24 old wordings, finds each corrected claim's old wording only in its dated correction, but
+  for one sentence the plan's standing constraints and the epic design's "What it changes" both keep, "A passage becomes
+  a pointer only once every claim in it has a row", each now followed by a dated line that a passage whose remaining
+  claims no row covers yet is pointed with those claims kept, as the Formats say.
+- The fresh-session test ran twice on each model, each as a one-step workflow whose whole prompt was the plan's
+  question, with no skill named. The first runs, on 2026-10-23 at about 04:19 UTC, before the review, both loaded the
+  skill and hhs-benefits unprompted and opened the topic file, and neither met every criterion: both led with an
+  estimate, "Likely" and "Probably not", GPT-5.6 Sol stated the person's facts as met and named no caretaker relative
+  route, and neither cited every row the plan names. A sentence went into `SKILL.md`, that a session answering a person
+  about their own case gives no estimate of whether the requirement applies to them, states none of their facts as met,
+  names every category their facts may point to and what each requires, labels the agency's part Deferred and says what
+  to do next; and one into the topic file's opening, that a person's facts may point to more than one category. The
+  second runs, at about 07:30 UTC, after the fixes, both loaded the skill and hhs-benefits unprompted and opened the
+  topic file. Both named the caretaker relative and family caregiver routes, the (c)(3)(i)(A) test with no minimum hours
+  and the ADA definition, labeled the agency's part Deferred, named the agency, gave no estimate, said what to do next
+  and said which skills they loaded. Claude Opus 5.5 met every criterion of the answer and cited 4 of the 6 rows the
+  plan names, leaving out the § 435.554(b) row and family-caregiver-excluded-on-one-criterion while citing the (c)
+  lead-in and the (c)(3)(i)(A) row. GPT-5.6 Sol cited 3, leaving out family-caregiver-defined,
+  disabled-individual-defined and the (b) row, and did not say that the person cared for need not be eligible on the
+  basis of a disability. Both cited the rows they relied on, and the skill was not changed again to ask for more, which
+  would teach the answer to the test. No skill load was missed, so nothing carries into increment 5.
+
+Massachusetts v. Oz, D. Mass. 1:26-cv-12962. On 2026-10-23, before the first row on § 435.554, CourtListener's RECAP
+copy of the docket page was read at about 00:37 UTC, and RECAP's search index was queried then and again at about
+03:09 UTC; the docket page was not fetched the second time. Both showed entries 143 and 144 only, 144 a notice of
+appearance filed 2026-10-21, no entry recording the summary judgment hearing set for 2026-10-22 as held, no order
+and no termination. RECAP can lag PACER (`docs/domain/research/2026-10-16-policy/L3-statute-litigation.md:206`), and
+PACER was not checked. With no order, the rows went on. The result is in the skill's watch list and in the three
+passages the fix before this increment corrected: `rule-extract.md` section 11, `what-matters-most.md` section 4 and
+the `interpretiveRisk` comment of `state-options.md`, each saying when the page and the index were read.
+
+Each ledger finding the plan's 2.1 names, applied or rejected:
+
+- L1-11, with L3-1 and L5-15, the hearing reset to 2026-10-22: the fix before this increment corrected the three
+  passages. Applied here as the plan asks: the docket checked, its result added to those passages and the watch list.
+- L2-11, dangerous, 13 demonstration-only populations in 8 States: applied, as
+  cms-identified-13-demonstration-populations-in-8-states, agency guidance from CMS's deck of 2026-07-27, slide 9,
+  which is not stored, so the row says `Verified: no`, beside the stored preamble's account in
+  demonstration-populations-reviewed-for-community-engagement. The row names no State, by decision record 0006's
+  "Other states' values". Its page shows the deck's address as "Source, not stored yet".
+- L2-12, the SNAP breadth only: applied, as snap-exclusion-covers-general-and-time-limit-work-requirements, on the
+  preamble at 91 FR 33377, with the (c)(7) row. Its other parts, good faith effort approvals and what plans may do,
+  are not this topic's.
+- L2-14, the parts on this topic only: applied in rows and Notes, the tribal line in american-indian-excluded,
+  "recovery program" in treatment-program-participant-excluded and treatment-program-defined-by-food-and-nutrition-act,
+  and "given birth" in postpartum-period-runs-from-the-end-of-pregnancy. Its income, Medicare, frailty and Alaska and
+  Hawaii parts belong to increments 2.2, 2.3 and 2.5.
+
+Named in no part of the plan's 2.1, bearing on this topic, and not applied: L2-13, CMS's "already meet" SNAP wording,
+named as context in the SNAP row's Note; L7-7 and L5-21, Colorado's own pages, state copy for increment 4; L8-10,
+applied by the fix before this increment; L2-3, on 6-month renewals for demonstration groups, which is not about who
+the requirement applies to.
+
+Each paragraph of Delivers, and what carries it:
+
+- The docket before any § 435.554 row: no row; the result above, in the watch list and the three passages.
+- The rows: 62, where decision record 0006 inferred about 31, under its limit of 64. By tier, 52 regulation, 9
+  preamble and 1 agency guidance; by error direction, 50 dangerous and 12 burdensome; 61 `Verified: 2026-10-23, read
+  in source` and 1 `Verified: no`; 5 with a State election. By paragraph:
+  - § 435.119(d): adult-group-eligibility-subject-to-community-engagement.
+  - § 435.550: requirement-applies-in-the-50-states-and-dc.
+  - § 435.551's opening paragraph, (a) and (b): applicable-individual-defined,
+    applicable-individual-under-the-state-plan, applicable-individual-under-a-demonstration.
+  - § 435.554(a), its seven definitions: caretaker-relative-defined,
+    caretaker-relative-other-relationships-at-state-option, dependent-child-defined, disabled-individual-defined,
+    family-caregiver-defined, guardian-defined, parent-defined.
+  - 28 CFR 35.108, which § 435.554(a) incorporates whole, 20 rows: (a)(1), ada-disability-definition; (a)(2)(i),
+    ada-disability-construed-broadly; (a)(2)(ii), ada-disability-any-one-or-more-prongs; (b)(1) with (b)(2),
+    ada-physical-or-mental-impairment-defined; (b)(3), ada-impairment-excludes-homosexuality-and-bisexuality; (c)(1)
+    with (c)(2), ada-major-life-activities-defined; (d)(1) with (d)(1)(i),
+    ada-substantially-limits-construed-broadly; (d)(1)(iii), ada-one-major-life-activity-is-enough; (d)(1)(iv),
+    ada-episodic-or-in-remission-impairment; (d)(1)(v), ada-substantially-limits-compared-to-most-people;
+    (d)(1)(vi), ada-substantially-limits-individualized-assessment; (d)(1)(vii),
+    ada-comparison-usually-needs-no-scientific-evidence; (d)(1)(viii) with (d)(4),
+    ada-mitigating-measures-not-considered; (d)(1)(ix), ada-impairment-under-six-months-can-substantially-limit;
+    (d)(2)(ii) with (d)(2)(iii) and its list, ada-some-impairments-virtually-always-substantially-limit; (d)(3),
+    ada-condition-manner-or-duration; (e)(1) with (e)(2), ada-record-of-impairment-defined; (f) with (f)(1),
+    ada-regarded-as-having-impairment; (f)(2), ada-regarded-as-excludes-transitory-and-minor; (g),
+    ada-disability-exclusions. No row for (a)(2)(iii), (d)(1)(ii), (d)(2)(i), (e)(3) and (f)(3), which govern ADA
+    title II claims and remedies or state the section's purpose, as ada-disability-definition's Note says.
+  - § 435.554(b): specified-excluded-individual-not-subject-to-community-engagement.
+  - § 435.554(c) less (c)(5): specified-excluded-individual-meets-one-category, for (c)'s own words;
+    former-foster-care-child-excluded, american-indian-excluded,
+    parent-guardian-caretaker-relative-or-family-caregiver-excluded, family-caregiver-excluded-on-one-criterion,
+    family-caregiver-living-with-care-recipient, family-caregiver-relative-living-apart,
+    family-caregiver-unrelated-living-apart-80-hours, more-than-one-excluded-in-a-residence,
+    veteran-with-total-disability-rating-excluded, tanf-work-requirement-compliant-excluded,
+    snap-household-member-not-exempt-from-work-requirement-excluded, treatment-program-participant-excluded,
+    inmate-of-public-institution-excluded, pregnant-or-postpartum-excluded. No row cites (c)(5).
+  - 42 CFR 447.51, which (c)(2) incorporates: indian-defined-at-447-51, urban-indian-criteria-at-447-51, the second
+    also citing 42 CFR 400.200's definition of Secretary.
+  - § 435.563(a) and (b): no-waiver-of-community-engagement,
+    demonstration-must-meet-every-community-engagement-requirement.
+  - The 10 rows of other tiers: the 9 preamble rows,
+    demonstration-populations-reviewed-for-community-engagement, disabled-individual-has-no-age-limit,
+    caregiving-hours-below-80-count-as-unpaid-work, former-foster-care-criteria-apply-whatever-the-age-18-date,
+    veteran-paid-at-total-rate-for-unemployability-excluded,
+    snap-exclusion-covers-general-and-time-limit-work-requirements, treatment-program-defined-by-food-and-nutrition-act,
+    inmate-means-held-involuntarily-in-custody and postpartum-period-runs-from-the-end-of-pregnancy; and the agency
+    guidance row, cms-identified-13-demonstration-populations-in-8-states.
+  - The 5 State elections: adult-group-eligibility-subject-to-community-engagement (§ 435.119(d)'s early start),
+    caretaker-relative-other-relationships-at-state-option (the (iv) relationships),
+    former-foster-care-criteria-apply-whatever-the-age-18-date (an age above 18 in the title IV-E plan),
+    treatment-program-participant-excluded ((c)(8)'s minimum time commitment) and
+    postpartum-period-runs-from-the-end-of-pregnancy (12 months under SSA 1902(e)(16)).
+- The eCFR files, in `docs/domain/sources/ecfr/2026-10-21/`, each with a manifest entry giving the command that
+  fetched it: 42-cfr-435.119.xml, 28-cfr-35.108.xml and 42-cfr-447.51.xml, and, added after the review,
+  42-cfr-400.200.xml, which defines Secretary for chapter IV, the chapter of part 447. No `.gitattributes` line was
+  added: `docs/domain/sources/** -text` already covers the folder (`git check-attr` gives `text: unset`).
+- The topic file: its first line as the plan names it; its opening sentence names "the prohibition of waivers of it in
+  42 CFR 435.563"; 62 rule items, one for each row, in 11 groups, 250 lines. Its `## Topics` item is 27 words after
+  the link. The description gained who has to meet the work requirement and who is exempt or excluded, at 971
+  characters. `SKILL.md` is 1,664 words by `split()`, from 1,318 at main; see deviations.
+- Title 28 links: `CFR_PART`, `CFR_URL`, `cfr_address` and `section_address` take the title, with three 28 CFR cases
+  in `test_links_each_kind_of_part_and_leaves_the_rest_as_text`, and the Formats under "The review pages" say a CFR
+  citation of title 42 or 28 links.
+- The review page `docs/review/who-the-requirement-applies-to.md`, on the landing page, with 20 start-here rows under
+  `who-the-requirement-applies-to` in `START_HERE`, chosen by decision record 0006's rule and in the topic file's
+  order, and, added after the review, an orientation before Start here naming the topic's two terms and the rows that
+  define them.
+- The six entries of `what-matters-most.md` section 12, each quoted as an error in its row's Note:
+  - Citing the exclusions as § 435.554(a)(1) to (10): specified-excluded-individual-meets-one-category, whose Note
+    quotes the entry exactly.
+  - "The SNAP test is complying with SNAP work rules":
+    snap-household-member-not-exempt-from-work-requirement-excluded, with
+    snap-exclusion-covers-general-and-time-limit-work-requirements.
+  - "Veterans need a 100% schedular rating": veteran-paid-at-total-rate-for-unemployability-excluded, with
+    veteran-with-total-disability-rating-excluded.
+  - "Postpartum is 60 days": postpartum-period-runs-from-the-end-of-pregnancy, with pregnant-or-postpartum-excluded.
+  - "Age 65+ is exempt": applicable-individual-under-the-state-plan, with applicable-individual-under-a-demonstration.
+  - "A State can get an 1115 waiver from this": no-waiver-of-community-engagement.
+- L2-11, L2-14 and L2-12: the rows above, under the ledger findings. None corrects a file.
+- The pointers: the six passages the plan names, each now opening with a `Now rows ...` line dated 2026-10-23, and
+  their claims in the table below.
+- Corrected in place, listed below: `rule-extract.md` subsection 4.2 and section 10, section 0 checked with no change;
+  `what-matters-most.md` sections 2, 11 and 13. Section 10's three parameters on this topic are the State elections
+  of caretaker-relative-other-relationships-at-state-option, treatment-program-participant-excluded and
+  adult-group-eligibility-subject-to-community-engagement.
+- The inherited rows showing-requirement-does-not-apply, notice-says-how-to-show-not-applicable and
+  adverse-notice-names-both-failures, read word for word against their stored lines (C1-2026-11094.xml:138, :166,
+  :178 and :184 to :186) and against applicable-individual-defined,
+  specified-excluded-individual-not-subject-to-community-engagement and
+  specified-excluded-individual-meets-one-category: each says what its source says, so none got a `Corrected:`.
+- The change for unpublished state choices: the Formats in `docs/epics/0001-policy-corpus/design.md` (131 lines
+  added and 50 removed against b2be22d, the review's changes included); the checker (`constants.py`, `states.py`,
+  `questions.py`, `skill.py`, `rows.py`, `run.py`); the generator (`pages.py`, `constants.py`, `links.py`,
+  `__init__.py`; `corpus.py` unchanged, as the plan says); the opening paragraph of `open-questions.md`; the tests
+  above; and the data, the four questions of decision record 0006 in `open-questions.md`, `co.json` from 4 facts to
+  6, two of them marked `not published` and a third whose `counts_from` is `not published`, and the pages
+  regenerated.
+
+The claims of each passage pointed, numbered RE1, RE4.1 and RE9 for `rule-extract.md` section 1, subsection 4.1 and
+section 9's "No waivers"; WMM3 for `what-matters-most.md` section 3; SR2 and SR3 for `supporting-regs/README.md`
+sections 2 and 3. "Stays" means the claim is still in the passage after its pointer line, marked as the Formats say.
+Each heading stays.
+
+| Claim | Where it went |
+|---|---|
+| RE1-1, an applicable individual is not a specified excluded individual and is described in (a) or (b) | applicable-individual-defined |
+| RE1-2, (a), the State plan's group at § 435.119 | applicable-individual-under-the-state-plan |
+| RE1-3, (b), a § 1115(a)(2) demonstration giving minimum essential coverage, with its four tests | applicable-individual-under-a-demonstration |
+| RE1-4, the 50 States and DC, not the territories | requirement-applies-in-the-50-states-and-dc |
+| RE1-5, 44 jurisdictions, 43 States and DC | stays, corrected on 2026-10-23 to "have a population subject to the requirement", `what-matters-most.md`'s wording, and cited to the burden estimate, 2026-11094.xml:2478 (91 FR 33427); no row's Rule states it |
+| RE1-6, CMS's "June 2026" list naming Georgia, Tennessee and Wisconsin and five expansion States | the count is cms-identified-13-demonstration-populations-in-8-states, the preamble's account demonstration-populations-reviewed-for-community-engagement; the State names and the June date stay, marked Unverified, since no stored source names them (the search's only hits, 2026-11094.xml:307, :314 and :335, name no population as subject) |
+| RE1-7, an enrollee in those five may be subject though the State runs an adult group | stays with RE1-6, inside the Unverified mark; its rule part is demonstration-populations-reviewed-for-community-engagement |
+| RE1-8, out of scope: seven States and the territories | the territories, requirement-applies-in-the-50-states-and-dc; the seven States stay inside the Unverified mark |
+| RE1-9, age 65 or older, pregnancy and Medicare put a person outside the definition | applicable-individual-under-the-state-plan and applicable-individual-under-a-demonstration |
+| RE1-10, under 19 and Medicare are also mandatory exceptions | stays, cited to § 435.553(a)(1) and (a)(2), 2026-11094.xml:3625 and :3626 (91 FR 33471); increment 2.3 writes § 435.553 |
+| RE4.1, dependent child | dependent-child-defined |
+| RE4.1, disabled individual, by the ADA's definition, need not be eligible on the basis of disability | disabled-individual-defined, ada-disability-definition |
+| RE4.1, parent | parent-defined |
+| RE4.1, guardian | guardian-defined |
+| RE4.1, caretaker relative, (i) to (iii) | caretaker-relative-defined |
+| RE4.1, caretaker relative (iv), at State option, with the § 435.110 elections carried over | caretaker-relative-other-relationships-at-state-option |
+| RE4.1, family caregiver | family-caregiver-defined |
+| RE9-1, CMS will not approve a § 1115 demonstration that waives the provisions | no-waiver-of-community-engagement |
+| RE9-2, a State implementing through § 1115 must meet every requirement of § 1902(xx) | demonstration-must-meet-every-community-engagement-requirement |
+| WMM3-1, (a) defines six terms and (c)(3) is the operative exclusion | parent-guardian-caretaker-relative-or-family-caregiver-excluded, with the six definition rows |
+| WMM3-2, collapsing them into one question loses qualifying people | stays, as advice on HourKeep's copy, since decision record 0006 drops such claims only when a file is retired |
+| WMM3-3 to WMM3-6, dependent child, disabled individual with its three prongs, parent, guardian | dependent-child-defined; disabled-individual-defined, ada-disability-definition, ada-disability-any-one-or-more-prongs; parent-defined; guardian-defined |
+| WMM3-7, caretaker relative, and the States' option to extend the list | caretaker-relative-defined, caretaker-relative-other-relationships-at-state-option; the pointer to `state-options.md` dropped with the text |
+| WMM3-8, family caregiver, built on the RAISE Family Caregivers Act (PL 115-119) | family-caregiver-defined; the public law number stays, cited to the preamble, 2026-11094.xml:781 (91 FR 33366) |
+| WMM3-9, a family caregiver must also meet one of (c)(3)(i)(A) to (C) | family-caregiver-excluded-on-one-criterion; the printed cross-reference and the preamble conflict, an open question that parent-guardian-caretaker-relative-or-family-caregiver-excluded cites |
+| WMM3-10, the table of (A), (B) and (C) | family-caregiver-living-with-care-recipient, family-caregiver-relative-living-apart, family-caregiver-unrelated-living-apart-80-hours |
+| WMM3-11, more than one in a residence may qualify, aligned with SNAP | more-than-one-excluded-in-a-residence, whose Note puts the SNAP comparison at 91 FR 33370 (:909, :933); "It is commonly assumed only one person can be counted" and "Two consequences worth stating out loud" dropped as framing |
+| WMM3-12, hours below 80 count as unpaid work, with the 55 plus 25 example | caregiving-hours-below-80-count-as-unpaid-work, whose Note quotes :443 on 91 FR 33355 |
+| SR2-1, § 435.554(a) refers to the section, and no eligibility on the basis of disability is needed | disabled-individual-defined |
+| SR2-2, the three prongs of (a)(1) | ada-disability-definition, with ada-record-of-impairment-defined, ada-regarded-as-having-impairment and ada-regarded-as-excludes-transitory-and-minor for the second and third |
+| SR2-3, construed broadly | ada-disability-construed-broadly |
+| SR2-4, any one or more prongs | ada-disability-any-one-or-more-prongs |
+| SR2-5, HourKeep's question is narrower, and why | stays, as advice on HourKeep's screening, corrected: a "record of" impairment is a history of one that substantially limited a major life activity, or a misclassification as having one (35.108.xml:55), and "regarded as" turns on a prohibited action (:59) |
+| SR3-1, the definition by 25 U.S.C. 1603 and 1679 and 42 CFR 136.12 | indian-defined-at-447-51 |
+| SR3-2, the four routes | indian-defined-at-447-51 for 1, 3 and 4; urban-indian-criteria-at-447-51 for 2 |
+| SR3-3, HourKeep's question misses Alaska Natives, second-degree descendants and State-recognized tribes | stays, as advice, corrected: State-recognized tribes count for a person who resides in an urban center (447.51.xml:14, :15); section 5's item 7, a copy, gained a dated line that 42 CFR 447.51 names State recognition only in its urban-center route, and that whether another route reaches such a person rests on 42 CFR 136.12 and 25 U.S.C. 1603, which are not stored |
+| SR3-4, States may not reverify | stays inside SR3-3's advice; american-indian-excluded's Note quotes the preamble (:771, 91 FR 33366) |
+
+Corrected in place, each quoting the old words and citing the stored line, as the Formats say:
+
+- `rule-extract.md` subsection 4.2, (1): "Operative criteria:" became "Operative criteria, as the preamble reads the
+  group (91 FR 33365-33366):", and "§ 435.554(c)(1) qualifier worth stating" became the preamble's qualifier, since
+  the four criteria and "even if they meet the eligibility requirements for such group" are the preamble's (:762,
+  :764), not (c)(1)'s words (:3668). The verification claims of 4.2 are § 435.557's, increments 2.2 and 2.6.
+- `rule-extract.md` section 10: the caretaker relative parameter's "§ 435.554(a)(iv)" became "§ 435.554(a),
+  caretaker relative (iv)", since (a) has no numbered paragraphs (:3634, :3642), and its copy in `state-options.md`
+  the same way. Section 0 was checked against
+  specified-excluded-individual-not-subject-to-community-engagement and needed no change.
+- `what-matters-most.md` section 2, (c)(6): "(91 FR 33385)" became "(91 FR 33377)", the page of :1236.
+- `what-matters-most.md` section 11: "A parent whose youngest child is 14 or older is an applicable individual,
+  because § 435.554(c)(3) reaches only caregivers of a child 13 or under" corrected, since (c)(3) also reaches the
+  parent of a disabled individual of any age (:3645, :3649, :3661, :3670, :905).
+- `what-matters-most.md` section 13: "where (c)(3)(i) is meant" now says the preamble places the criteria at
+  (c)(3)(i) (91 FR 33366), that reading it so is an inference, and that the two conflict, an open question.
+- `supporting-regs/README.md` sections 2 and 3, as SR2-5 and SR3-3 say, and section 5's item 7, as SR3-3 says.
+- After the review: `rule-extract.md` section 1's 44 jurisdictions line, as RE1-5 says; the skill's watch list item
+  for Massachusetts v. Oz, whose "The case challenges the medically frail rules. The research names no row in this
+  topic it would change" became that each topic holding a provision either suit challenges, in its complaint or
+  motion, checks both dockets first (decision record 0007); and the Note of the Colorado draft 30 days question,
+  whose first side moved to the `counts_from` of co: renewal-notice-with-renewal-form. Each is dated 2026-10-23 and
+  cites the full review.
+- After the review, added with a dated line: the plan's standing constraint on pointers says a passage whose
+  remaining claims no row covers yet is pointed, with those claims kept after the pointer, as the Formats say.
+
+Deviations from the plan:
+
+- 62 rows, where decision record 0006 inferred about 31, under its limit of 64: 52 regulation rows, since (c)(3)(i)
+  has its lead-in and a row each for (A), (B) and (C), 28 CFR 35.108 has 20 and 42 CFR 447.51 two; 9 preamble rows
+  where the preamble adds to a rule; and 1 agency guidance row for L2-11.
+- 28 CFR 35.108 was built with three rows, for (a)(1), (a)(2)(i) and (a)(2)(ii). The review found, as blocking,
+  that the plan delivers rows for the section where § 435.554(a) incorporates it, which is the whole section. The
+  orchestrator's call, for the owner: a row for every paragraph except the five that govern ADA title II claims and
+  remedies or state its purpose, (a)(2)(iii), (d)(1)(ii), (d)(2)(i), (e)(3) and (f)(3), with a paragraph and its
+  subparagraphs, or two paragraphs stating one rule, as one row. That added 17 rows and a group of the topic file.
+- A fourth eCFR file, 42 CFR 400.200, which the plan does not name, stored after the review so
+  urban-indian-criteria-at-447-51 can say which Secretary its last criterion means. That § 400.200's "unless the
+  context indicates otherwise" leaves § 447.51's Secretary as HHS's is the row's reading, and its Note says so.
+- The L2-11 row cites CMS's deck of 2026-07-27, slide 9, which is not stored, so it says `Verified: no`; increment
+  2.6 stores the deck. It names no State, by decision record 0006's "Other states' values".
+- No `.gitattributes` line was added: `docs/domain/sources/** -text` already covers the eCFR folder.
+- § 435.554(c)(3) cites "paragraphs (c)(1)(i)(A) through (C)", which do not exist, and the preamble (:781) places
+  the criteria at § 435.554(c)(3)(i). The row cites both and picks neither, the skill's Precedence names the
+  conflict, and which governs is an open question.
+- Four open questions this increment raised, from the review, each `Raised: 2026-10-23`: the (c)(3)
+  cross-reference; how the regarded as prong of 28 CFR 35.108 applies to the disabled individual of the caregiver
+  exclusion; whether the relationships a state adds to the caretaker relative definition count for a family
+  caregiver who lives apart; and what household means in § 435.554(c)(7). There are 18 now.
+- caregiving-hours-below-80-count-as-unpaid-work reaches into § 435.552(b), increment 2.4's, because
+  `what-matters-most.md` section 3, pointed here, makes the claim.
+- One correction no finding named: `what-matters-most.md` section 11's parent whose youngest child is 14 or older.
+- `rule-extract.md` section 1 keeps the "June 2026" list, its State names and the seven out-of-scope States, marked
+  Unverified. Their three unmarked copies, `rule-extract.md` section 11 (about lines 932 to 935),
+  `what-matters-most.md` section 11 (about 640 to 643) and `state-options.md` (about 339 to 341), two of them citing
+  KFF, wait for increment 4, since decision record 0006 does not apply a correction about another state that is not
+  dangerous.
+- The moved question on Colorado's SMD 26-001 path dropped its Montana research lead, since a moved question holds
+  only `Moved` and the lead is about another state; ledger line 232 keeps it.
+- In the topic file the group for § 435.554(c)(3) comes before the definitions it uses, so `START_HERE` follows the
+  topic file's order, not the extract's.
+- `ChoiceFactTest` is in `tests/test_choice_facts.py`, with `ChoicePairsTest`, where the plan names
+  `tests/test_state_facts.py`, which is as at main.
+- The choice line on the state facts page names both rows of the pair in words, each linked, then "The state's
+  choice:" and the chosen row's words, `not published` or `not applicable`, where the plan has it name only the
+  option the state takes, with a link to that row. `CHOICE_WORDS_BY_ROW` in `pages.py` went, unused.
+- Generator and checker changes the plan does not name, each from the review, each with its fixtures and its sentence
+  in the Formats: the topic page's orientation (`ORIENTATION` in `scripts/review_pages/constants.py`); a "Source, not
+  stored yet:" line with the address for a Source written `not stored, <URL>`; the check of `CHOICE_PAIRS`; a failure
+  for two topic files sharing a title; a message of its own for a `Moved` date that is no day; a state fact named
+  after "The" or in backticks looked for.
+- `SKILL.md` is 1,664 words by `split()`, past its target of about 1,500: the build left it at 1,498, and the review's
+  fixes added the Precedence sentence on the (c)(3) conflict, the sentence on answering a person about their own
+  case, and the watch list's wider docket duty.
+- Three test files are past 300 lines and were not split: `tests/corpus_fixture.py` 502 (457 at main),
+  `tests/test_review_pages.py` 506 (377) and `tests/test_skill.py` 439 (388). Most of their bulk predates this
+  increment, so each waits for a refactor of its own, along its seam: in `test_review_pages.py`, `CitationLinkTest`
+  and `RowWordsTest`, plain `unittest.TestCase` classes, could leave as `tests/test_review_links.py`; in
+  `test_skill.py`, `SkillMainFileTest` and `TopicFileTest` are two files' worth; in `corpus_fixture.py` the valid
+  corpus's texts and builders are one thing and the harness another, a weaker seam since every test imports both.
+- For increment 3: `medicaid-work-requirements-cfa-service-blueprint.md` lines 53 and 105 say "Parent or guardian
+  of someone with a disability", narrower than § 435.554(c)(3), which also excludes a caretaker relative or family
+  caregiver of a disabled individual of any age (2026-11094.xml:3670). Decision record 0006 moves that file in
+  increment 3 with its remaining ledger corrections, dated there.
+
+Still unverified:
+
+- Every check of the 62 rows, the 62 rule items, the four new open questions, the pointers and the corrections was
+  made by an AI agent; no person with Medicaid policy knowledge has read them. The error directions of the 17 rows on
+  28 CFR 35.108 are one session's reading of the Formats' definitions.
+- Federal Register pages were read from the XML's `PRTPAGE` markers, not the rendered pages.
+- The CMS deck (slide 9, L2-11) and the renew-info pages (L2-14) were read only through research L2; whether
+  Colorado is among the deck's 8 States is unknown.
+- Not stored or read, though rows cross-refer to them: 42 CFR 435.4, § 435.1010, 42 CFR 136.12, 25 U.S.C. 1603 and
+  1679, 7 U.S.C. 2012(h) and 2015, SSA 407, 1902(e)(5) and (e)(16), 38 U.S.C. 1155.
+- That 42 CFR 400.200 and 447.51 sit in one chapter rests on eCFR's ancestry API, queried once and not stored.
+- Each eCFR file was fetched once; eCFR's title 28 paragraph fragment for links was not seen, the page request being
+  redirected.
+- That the Agent Skills specification counts description characters as `len()` does.
+- The docket result is RECAP's copy only; PACER was not checked.
+- Colorado's between-renewals fact is `not published`, where draft 8.100 lines 1361 to 1366 follow
+  § 435.556(a)(2)(iii) and its part h has parts for application and redetermination only; that this leans toward no
+  such check is inference, and a reviewer may read `inferred`.
+- The pages' new orientation and choice line were not viewed in a browser or on GitHub; the mechanism check read the
+  Markdown the generator makes.
+- The 317 tests at main are a count of `def test_` lines there, not a run.
+
+Review. The full review, on 2026-10-23, ran six mandates two at a time, each against its own source. The 45 rows and
+their rule items against the stored sources, GPT-5.6 Sol: 1 blocking and 4 should fix. The checker, generator and tests
+against the code, with 26 breaks in a clone of which 25 failed a test, Claude Opus 5.5: 1 should fix and 5 notes. The
+corpus changes beyond the rows against the stored sources, the research and the decision records, Claude Opus 5.5: 4
+should fix and 9 notes; its search of the Federal Register and eCFR found nothing published since 2026-10-16 that
+changes a conclusion. A red team against the plan, decision records 0006 and 0007 and `docs/design.md`, GPT-5.6 Sol: 2
+blocking and 7 should fix. A cold reader, as a policy expert on the pages, a fresh session and the next session,
+GPT-5.6 Sol: 4 should fix and 3 notes. A do-it reviewer carrying out the plan's checks, the Formats and the README in a
+clone, Claude Opus 5.5: 2 should fix and 4 notes. That is 46: 3 blocking, 22 should fix and 21 notes, six issues of them
+raised twice, each confirmed against the files. The blocking ones were 28 CFR 35.108's missing paragraphs, raised by two
+reviewers, whose 17 rows are the orchestrator's call above; and the fresh-session test, which had run before the
+reviewers' briefs were written and was rerun after the fixes. The orchestrator added one from the first fresh-session
+runs, that a session answering about a person's own case gave an estimate of it. Two findings were rejected: that the
+fourth Colorado question should explain its moved part first, since decision record 0006 sets the order of its last two
+sentences; and that the Formats should say which date of the June 3 printing a state fact gives as its `source_date`,
+since no fact cites that printing yet and the two that cite the correction use its filing date as `federal.json` does.
+One was taken in part: of the four test files past 300 lines, the one that grew by this increment's new tests was split,
+and the seams of the other three are recorded above. All the rest were applied. The fixes then had two checks. Against
+the sources and the decided list, GPT-5.6 Sol: 3 should fix, a rule item that gave the six-month limit to the regarded
+as prong without its "and minor", four rows rated burdensome that could go wrong either way, now dangerous, and this
+entry and the rerun not yet written; all three done. Against the code, with 26 breaks of which 24 failed a test,
+Claude Opus 5.5: 5 notes, of which 4 were taken, a Formats sentence on the orientation's link to the open questions
+page, a test of two Sources not stored, a blank line and a docstring, and 1 rejected, a test of the orientation's
+default, which the checker's comparison of the real pages covers, as it does for `START_HERE`. The orchestrator also
+corrected the manifest note of 42 CFR 400.200, which gave curl's compressed byte count as the file's size, and put the
+plan's dated line on pointers into the epic design as well.
 
 ## 2.2 People who are medically frail or have special medical needs
 

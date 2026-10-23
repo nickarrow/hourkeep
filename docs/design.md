@@ -279,11 +279,12 @@ passages in it. An AI agent then rechecked each one against its sources, which f
 secondary, a news report for one and a KFF brief for three, and confirmed 36, confirmed 2 in part and partly rejected
 1 (research ledger, Ledger A). Some of the errors would lead a person to do less than the rule requires. Those on
 notices of noncompliance and fair hearings were corrected on 2026-10-17 to 2026-10-19, when that topic's rows landed
-(epic 0001, increment 1). Ahead of the other topics, a fix before increment 2.1 corrects the ones the research ledger
-rates dangerous and those about an event or a publication that no topic covers (decision record 0006); the rest wait for
-their own topics. Before HourKeep tells anyone anything, `docs/domain/` becomes one verified extract, files of state
-facts each with its source and date, and a HourKeep domain skill, the instructions AI agents working on HourKeep load.
-The skill lists each rule with its citation and points to its row in the extract, which carries the date it was
+(epic 0001, increment 1), and those on who the requirement applies to on 2026-10-23, when that topic's rows landed
+(increment 2.1). Ahead of the other topics, a fix before increment 2.1 corrected, on 2026-10-23, the ones the research
+ledger rates dangerous and those about an event or a publication that no topic covers (decision record 0006); the rest
+wait for their own topics. Before HourKeep tells anyone anything, `docs/domain/` becomes one verified extract, files of
+state facts each with its source and date, and a HourKeep domain skill, the instructions AI agents working on HourKeep
+load. The skill lists each rule with its citation and points to its row in the extract, which carries the date it was
 verified, the direction an error would cost a person, and what should trigger a recheck. Already on the skill's watch
 list: the Massachusetts v. Oz summary judgment hearing on October 22, 2026 (research L1-11), and Taylor v. Kennedy in
 Maryland (L1-12), both challenging the medically frail rules; an IRS proposed rule on the tax credit bar, open for

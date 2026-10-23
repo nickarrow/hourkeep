@@ -1,6 +1,6 @@
 ---
 name: medicaid-community-engagement
-description: Use for anything about Medicaid work requirements, also called community engagement, and the letters about them. Covers a letter saying the state cannot confirm someone met the work requirement, what that letter has to tell them, the deadline to answer and when the letter counts as received, losing or being denied coverage, fair hearings and appeals, bringing someone to help at a hearing, keeping coverage during an appeal, the 2027 renewal changes, and Colorado's deadlines. Restates cited rows from docs/domain/community-engagement-extract.md.
+description: Use for anything about Medicaid work requirements, also called community engagement, and the letters about them. Covers who has to meet the work requirement and who is exempt or excluded from it, such as a parent or caregiver of a young child or of a family member with a disability, a pregnant or postpartum person, a veteran with a total disability rating, American Indians and Alaska Natives, former foster youth, people on SNAP or TANF or in a treatment program, and people in jail or prison, and that a state cannot waive it. Also covers a letter saying the state cannot confirm someone met the work requirement, what that letter has to tell them, the deadline to answer and when the letter counts as received, losing or being denied coverage, fair hearings and appeals, bringing someone to help at a hearing, keeping coverage during an appeal, the 2027 renewal changes, and Colorado's deadlines. Restates cited rows from docs/domain/community-engagement-extract.md.
 ---
 
 # Medicaid community engagement
@@ -15,10 +15,12 @@ not from this skill's folder. Every check so far, of the rows and of the skill, 
 The rule items say what the rules are and where they come from. Whether a requirement applies to a person, whether they
 met it or should be deemed to have met it, whether a showing is satisfactory and when a notice was received are the
 agency's determinations, and software built on this skill never computes them. It labels each one Deferred, asks the
-screening question and names the agency as the one to ask. The hhs-benefits skill,
-`.kiro/skills/hhs-benefits/SKILL.md`, defines the three labels, Computed, Conditional and Deferred, under "Label
-every number shown to a person". (Added 2026-10-19; full review 2026-10-19, cold reader a3.) Where an answer turns
-on a choice the state makes, say which choice.
+screening question and names the agency as the one to ask. A session answering a person about their own case does
+the same: it gives no estimate of whether the requirement applies to them, such as "probably" or "likely", states none
+of their facts as met, names every category their facts may point to and what each requires, labels the agency's part
+Deferred and says what to do next. The hhs-benefits skill, `.kiro/skills/hhs-benefits/SKILL.md`, defines the three
+labels, Computed, Conditional and Deferred, under "Label every number shown to a person". (Added 2026-10-19; full
+review 2026-10-19, cold reader a3.) Where an answer turns on a choice the state makes, say which choice.
 
 When you answer a question from the rule items, name each row you relied on by its identifier, so the answer can be
 checked against the extract, and say which skills you loaded. The deadline a person meets is the one printed on their
@@ -31,6 +33,9 @@ cross-check.
   meaning when the notice comes, what it must say, the 30 days to answer and what happens after them; fair hearings
   and keeping coverage during an appeal; and renewals already scheduled in 2027. Read it before answering any
   question about those.
+- [Who the requirement applies to, and who is excluded from it](references/who-the-requirement-applies-to.md): who
+  must meet the requirement, who is excluded, such as caregivers, veterans and SNAP households, and that it cannot be
+  waived. Read it before answering those questions.
 
 ## Precedence
 
@@ -68,16 +73,27 @@ When two sources disagree, this is the order. It comes from the epic design,
   where SSA 1902(e)(14)(L) has the state redetermine, once every 6 months for redeterminations scheduled from 2027,
   individuals enrolled under SSA 1902(a)(10)(A)(i)(VIII), and individuals it describes who are enrolled under a
   waiver giving all of them coverage equivalent to minimum essential coverage, except the American Indians and
-  Alaska Natives the statute exempts. Those rows cite both, and which governs is an open question.
+  Alaska Natives the statute exempts. Those rows cite both, and which governs is an open question. In the topic of
+  who the requirement applies to, for parent-guardian-caretaker-relative-or-family-caregiver-excluded, 42 CFR
+  435.554(c)(3), as the June 3 printing gives it, has a family caregiver meet one of the criteria at paragraphs
+  (c)(1)(i)(A) through (C), which do not exist, where the preamble says the criteria are at § 435.554(c)(3)(i). The
+  row cites both, and which governs is an open question.
 
 ## Watch list
 
 Each item is a date or an event and the rows or state facts it could change. The dates come from the research
 ledger, `docs/domain/research/2026-10-16-policy/ledger.md`, or from a stored source, as each item says.
 
-- 2026-10-22: the summary judgment hearing in Massachusetts v. Oz, D. Mass. 1:26-cv-12962 (ledger L1-11). The case
-  challenges the medically frail rules. The research names no row in this topic it would change; through the
-  exclusions a notice must explain it could reach `notice-says-how-to-show-not-applicable` (an inference).
+- 2026-10-22: the summary judgment hearing in Massachusetts v. Oz, D. Mass. 1:26-cv-12962 (ledger L1-11). On
+  2026-10-23, CourtListener's RECAP copy of the docket page, read at about 00:37 UTC, and RECAP's search index,
+  queried then and at about 03:09 UTC, showed no entry after 144, a notice of appearance filed 2026-10-21, and no
+  entry recording the hearing as held, no order and no termination; RECAP can lag PACER, which was not checked. The
+  States' motion presses the medically frail gate of § 435.554(c)(5)(i) and § 435.557(a)(vii), (a)(viii), (f) and
+  (f)(1), none with a row yet, and each topic holding a provision either suit challenges, in its complaint or
+  motion, checks both dockets first (decision record 0007). (Corrected 2026-10-23: said "The case challenges the
+  medically frail rules. The research names no row in this topic it would change"; full review 2026-10-23, corpus
+  against source 9.) Through the exclusions a notice must explain, it could reach
+  `notice-says-how-to-show-not-applicable` (an inference).
 - Taylor v. Kennedy, Jr., D. Md. 1:26-cv-03705, with no ruling promised before 2027-01-01 (ledger L1-12). Same reach
   as Massachusetts v. Oz, by the same inference.
 - 2026-11-30: comments close on the IRS proposed rule at 91 FR 65494 on the premium tax credit bar (ledger L1-9).

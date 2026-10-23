@@ -41,6 +41,10 @@ export interface PolicyProfile {
    * of § 435.556(a)(2); the medically-frail functional-impairment gate, under challenge in Massachusetts v. Oz,
    * whose summary judgment hearing was reset to 2026-10-22 by ECF 143, entered 2026-10-08. (Corrected 2026-10-23:
    * said "(under challenge in Massachusetts v. Oz, SJ hearing 2026-10-20)."; L1-11, L3-1, L5-15, L8-16.)
+   * On 2026-10-23, CourtListener's RECAP copy of the docket page, read at about 00:37 UTC, and RECAP's search
+   * index, queried then and at about 03:09 UTC, showed no entry after 144, a notice of appearance filed
+   * 2026-10-21, and no entry recording the hearing as held, no order on the motions and no termination. RECAP
+   * can lag PACER, which was not checked. (Added 2026-10-23; decision record 0006.)
    */
   interpretiveRisk?: Array<{ field: string; basis: string; watch: string }>;
 
@@ -89,7 +93,8 @@ export interface PolicyProfile {
     | { kind: "reasonably-predictable-changes"; windowMonths: number; direction: "increases" | "decreases" | "both" };
 
   // --- Exclusion-affecting options (§ 435.554) ---
-  extendedCaretakerRelativeRelationships: boolean;  // § 435.554(a)(iv)
+  extendedCaretakerRelativeRelationships: boolean;  // § 435.554(a), caretaker relative (iv)
+  // (Corrected 2026-10-23: said "§ 435.554(a)(iv)"; read in docs/domain/cms-2454-ifc/2026-11094.xml:3634 and :3642.)
   rehabMinimumTimeCommitmentHours: number | null;   // § 435.554(c)(8)
   medicallyFrailConditionListUrl: string | null;    // § 435.554(c)(5)(ii)
 

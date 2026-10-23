@@ -7,11 +7,15 @@ import subprocess
 import unittest
 
 from corpus_fixture import (
-    COUNTS_LINE, Corpus, CorpusTestCase, EXTRACT, NOTICE_ITEM, RULE_ITEM, SKILL, SKILL_TEXT, TOPIC, TOPIC_TEXT,
-    extract_with, run_checker, skill_with, topic_with,
+    COUNTS_LINE, Corpus, CorpusTestCase, EXTRACT, NOTICE_ITEM, RULE_ITEM, SKILL, SKILL_TEXT, TOPIC, TOPIC_HEADING,
+    TOPIC_TEXT, extract_with, run_checker, skill_with, topic_with,
 )
 
 REFERENCES = ".kiro/skills/medicaid-community-engagement/references/"
+# A second ## topic in the extract, before its second row, so a second topic file has a title of its own.
+SECOND_TOPIC = "Another topic"
+TWO_TOPICS_EXTRACT = extract_with("### notice-response-period", "## {}\n\n### notice-response-period".format(
+    SECOND_TOPIC))
 
 
 def skill_items(result: subprocess.CompletedProcess) -> str:
@@ -94,6 +98,19 @@ class SkillMainFileTest(CorpusTestCase):
             with self.subTest(old=old[:20]):
                 self.assertFails(self.check_skill(skill_with(old, "")), SKILL, line, "description")
 
+    def test_a_description_of_1024_characters_passes_and_1025_fails(self):
+        # Formats, "The skill": the description is at most 1,024 characters, the Agent Skills specification's limit.
+        old = "Use when a person asks about Medicaid work requirements, letters, deadlines and exemptions."
+        for length in (1024, 1025):
+            with self.subTest(length=length):
+                description = old + " " + "x" * (length - len(old) - 1)
+                self.assertEqual(len(description), length)
+                result = self.check_skill(skill_with(old, description))
+                if length == 1024:
+                    self.assertPasses(result)
+                else:
+                    self.assertFails(result, SKILL, 3, "the skill's description has 1025 characters, more than 1,024")
+
     def test_500_lines_pass_and_501_fail(self):
         padding_500 = "\n" * (500 - SKILL_TEXT.count("\n"))
         self.assertPasses(self.check_skill(SKILL_TEXT + padding_500))
@@ -153,8 +170,9 @@ class SkillMainFileTest(CorpusTestCase):
 
     def test_every_md_file_directly_in_references_must_be_linked(self):
         corpus = Corpus()
+        corpus.files[EXTRACT] = TWO_TOPICS_EXTRACT
         corpus.files[TOPIC] = topic_with(NOTICE_ITEM, "")
-        corpus.files[REFERENCES + "extra.md"] = "# Extra\n\n## The 30 days\n\n" + NOTICE_ITEM
+        corpus.files[REFERENCES + "extra.md"] = "# " + SECOND_TOPIC + "\n\n## The 30 days\n\n" + NOTICE_ITEM
         self.assertFails(run_checker(corpus), REFERENCES + "extra.md", 0, "not linked from ## Topics")
         corpus.files[SKILL] = skill_with("\n## Precedence", "- [Extra](references/extra.md): more. Read it first."
                                          "\n\n## Precedence")
@@ -166,9 +184,10 @@ class SkillMainFileTest(CorpusTestCase):
 
     def test_the_skill_items_are_counted_across_all_topic_files(self):
         corpus = Corpus()
+        corpus.files[EXTRACT] = TWO_TOPICS_EXTRACT
         corpus.files[TOPIC] = topic_with(NOTICE_ITEM, "")
         corpus.files[REFERENCES + "notices.md"] = (
-            "# Notices\n\n## The 30 days\n\n- You have 30 calendar days to respond.\n"
+            "# " + SECOND_TOPIC + "\n\n## The 30 days\n\n- You have 30 calendar days to respond.\n"
             "  [notice-response-period] 42 CFR 435.558(a)(2); 91 FR 39030\n")
         corpus.files[SKILL] = skill_with("\n## Precedence", "- [Notices](references/notices.md): the 30 days. Read "
                                          "it first.\n\n## Precedence")
@@ -218,8 +237,8 @@ class TopicFileTest(CorpusTestCase):
     def test_a_topic_file_with_no_rule_item_fails(self):
         # Formats: a topic file holds at least one rule item. Mechanism review S1, 2026-10-21: an emptied topic file
         # passed, where an emptied ## Rules section had failed.
-        for text in ("# Fair hearings\n\nThe row in the extract wins wherever the two differ.\n",
-                     "# Fair hearings\n\n## Asking for a hearing\n\nNo items here.\n"):
+        for text in ("# " + TOPIC_HEADING + "\n\nThe row in the extract wins wherever the two differ.\n",
+                     "# " + TOPIC_HEADING + "\n\n## Asking for a hearing\n\nNo items here.\n"):
             with self.subTest(text=text):
                 self.assertFails(self.check_topic(text), TOPIC, 0, "the topic file holds no rule item")
         corpus = Corpus()
@@ -249,8 +268,40 @@ class TopicFileTest(CorpusTestCase):
         for first in ("## Fair hearings", "#Fair hearings", "# ", "---\nname: fair-hearings\n---\n# Fair hearings",
                       "Fair hearings"):
             with self.subTest(first=first):
-                result = self.check_topic(topic_with("# Fair hearings", first))
+                result = self.check_topic(topic_with("# " + TOPIC_HEADING, first))
                 self.assertFails(result, TOPIC, 1, "a topic file's first line is # and its title")
+
+    def test_a_title_that_is_a_heading_of_the_extract_passes_and_one_that_is_not_fails(self):
+        # Formats, "The skill": a topic file's title, its first line after "# ", is the ## heading of one topic in
+        # the extract. Decision record 0006: the heading, the title and the link name one topic.
+        self.assertPasses(self.check_topic(TOPIC_TEXT))
+        corpus = Corpus()
+        corpus.files[EXTRACT] = extract_with("### notice-response-period", "## Another topic\n\n"
+                                             "### notice-response-period")
+        corpus.files[TOPIC] = topic_with("# " + TOPIC_HEADING, "# Another topic")
+        self.assertPasses(run_checker(corpus))
+        # Not a heading at all; another case; part of one; the extract's # title; a row's ### heading; and the
+        # topic file's own ## group heading.
+        for title in ("Fair hearings", TOPIC_HEADING.lower(), "Notices of noncompliance",
+                      "Community engagement extract", "hearing-request-period", "Asking for a hearing"):
+            with self.subTest(title=title):
+                result = self.check_topic(topic_with("# " + TOPIC_HEADING, "# " + title))
+                self.assertFails(result, TOPIC, 1, "the topic file's title {!r} is not the ## heading of a topic in "
+                                 "the extract".format(title))
+
+    def test_two_topic_files_sharing_a_title_fail(self):
+        # Decision record 0006 gives each topic one title, so two topic files with the same title fail, the second
+        # where its title stands. Mechanism review 2026-10-23, finding 2.
+        corpus = Corpus()
+        corpus.files[EXTRACT] = TWO_TOPICS_EXTRACT
+        corpus.files[TOPIC] = topic_with(NOTICE_ITEM, "")
+        corpus.files[REFERENCES + "other.md"] = "# " + SECOND_TOPIC + "\n\n## The 30 days\n\n" + NOTICE_ITEM
+        corpus.files[SKILL] = skill_with("\n## Precedence", "- [Other](references/other.md): the 30 days. Read it "
+                                         "first.\n\n## Precedence")
+        self.assertPasses(run_checker(corpus))
+        corpus.files[REFERENCES + "other.md"] = "# " + TOPIC_HEADING + "\n\n## The 30 days\n\n" + NOTICE_ITEM
+        self.assertFails(run_checker(corpus), REFERENCES + "other.md", 1, "the topic file's title {!r} is the title "
+                         "of {} too; each topic has one topic file".format(TOPIC_HEADING, TOPIC))
 
     def test_500_lines_pass_and_501_fail(self):
         padding_500 = "\n" * (500 - TOPIC_TEXT.count("\n"))

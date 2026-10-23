@@ -494,6 +494,70 @@
       "note": "eCFR date 2026-10-15 is title 42's up_to_date_as_of in https://www.ecfr.gov/api/versioner/v1/titles.json at 2026-10-17T05:15:39Z, where latest_amended_on and latest_issue_date were 2026-10-13. The XML names no date of its own (_SUBSTITUTE_DATE_). Asked at 2026-10-17T06:56:48Z for 2026-10-14, the date research L1 read, eCFR returned the same bytes. No HourKeep document cites an address for this file."
     },
     {
+      "path": "docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml",
+      "sha256": "ea849fb31286edcd17c9a801d55b06ef213db55660b318c44063b67dedab5aa1",
+      "kind": "verbatim",
+      "cited_url": "not recorded",
+      "retrievals": [
+        {
+          "served_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-21/title-28.xml?part=35&section=35.108",
+          "command": "curl -sS --fail --compressed -L --max-time 60 -o docs/domain/sources/ecfr/2026-10-21/28-cfr-35.108.xml -w '%{http_code} %{content_type} %{size_download} %{url_effective}\\n' 'https://www.ecfr.gov/api/versioner/v1/full/2026-10-21/title-28.xml?part=35&section=35.108'",
+          "retrieved": "2026-10-23T02:52:56Z"
+        }
+      ],
+      "superseded": [],
+      "ecfr_date": "2026-10-21",
+      "note": "eCFR date 2026-10-21 is the up_to_date_as_of of both title 28 and title 42 in https://www.ecfr.gov/api/versioner/v1/titles.json at 2026-10-23T02:52:48Z, so the sections increment 2.1 stores share it; title 28's latest_amended_on and latest_issue_date were 2026-09-30. The XML names no date of its own (_SUBSTITUTE_DATE_). It answered 200, text/xml, with no redirect. The section's paragraphs (a) to (g) open on lines 4, 11, 16, 21, 55, 58 and 62, and its source note on line 66 gives AG Order 3702-2016, 81 FR 53223, Aug. 11, 2016. No HourKeep document cites an address for this file."
+    },
+    {
+      "path": "docs/domain/sources/ecfr/2026-10-21/42-cfr-400.200.xml",
+      "sha256": "0718a9229cd972213057670b53272b5b232c439f057a4c7fd807b9f130514260",
+      "kind": "verbatim",
+      "cited_url": "not recorded",
+      "retrievals": [
+        {
+          "served_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-21/title-42.xml?part=400&section=400.200",
+          "command": "curl -sS --fail --compressed -L --max-time 60 -o docs/domain/sources/ecfr/2026-10-21/42-cfr-400.200.xml -w '%{http_code} %{content_type} %{size_download} %{url_effective}\\n' 'https://www.ecfr.gov/api/versioner/v1/full/2026-10-21/title-42.xml?part=400&section=400.200'",
+          "retrieved": "2026-10-23T05:56:44Z"
+        }
+      ],
+      "superseded": [],
+      "ecfr_date": "2026-10-21",
+      "note": "Stored for the eCFR date 2026-10-21, the date of the other sections increment 2.1 stores; titles.json was not reread for this fetch. The XML names no date of its own (_SUBSTITUTE_DATE_). It answered 200, text/xml, with no redirect; curl's size_download printed 2351, the compressed transfer, and the stored file is 6193 bytes. The section opens on line 4 with 'In this chapter, unless the context indicates otherwise', and line 52 defines Secretary as the Secretary of Health and Human Services. Its source note on line 59 gives 48 FR 12534, Mar. 25, 1983. eCFR's ancestry API for 2026-10-21, queried at 2026-10-23T05:57:04Z and not stored, placed § 400.200 in title 42, chapter IV, subchapter A, part 400, and § 447.51 in chapter IV, subchapter C, part 447. No HourKeep document cites an address for this file."
+    },
+    {
+      "path": "docs/domain/sources/ecfr/2026-10-21/42-cfr-435.119.xml",
+      "sha256": "99a873419a2e2d002e31f3333d504eaa6142680bdc53ef89bdd8ae58dcf4c657",
+      "kind": "verbatim",
+      "cited_url": "not recorded",
+      "retrievals": [
+        {
+          "served_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-21/title-42.xml?part=435&section=435.119",
+          "command": "curl -sS --fail --compressed -L --max-time 60 -o docs/domain/sources/ecfr/2026-10-21/42-cfr-435.119.xml -w '%{http_code} %{content_type} %{size_download} %{url_effective}\\n' 'https://www.ecfr.gov/api/versioner/v1/full/2026-10-21/title-42.xml?part=435&section=435.119'",
+          "retrieved": "2026-10-23T02:52:56Z"
+        }
+      ],
+      "superseded": [],
+      "ecfr_date": "2026-10-21",
+      "note": "eCFR date 2026-10-21 is the up_to_date_as_of of both title 28 and title 42 in https://www.ecfr.gov/api/versioner/v1/titles.json at 2026-10-23T02:52:48Z, so the sections increment 2.1 stores share it; title 42's latest_amended_on and latest_issue_date were 2026-10-13. The XML names no date of its own (_SUBSTITUTE_DATE_). It answered 200, text/xml, with no redirect. Paragraph (d), Community engagement, the paragraph the interim final rule adds, is on line 13, and the source note on line 14 ends with 91 FR 33469, June 3, 2026. For § 435.119(d) as the rule adds it, the June 3 printing of the interim final rule governs; this file holds the section as eCFR prints it on its eCFR date. No HourKeep document cites an address for this file."
+    },
+    {
+      "path": "docs/domain/sources/ecfr/2026-10-21/42-cfr-447.51.xml",
+      "sha256": "b49720ed41308d1c9ad35b7aa2e9166e614a9d91a2040872b504603fb7486e21",
+      "kind": "verbatim",
+      "cited_url": "not recorded",
+      "retrievals": [
+        {
+          "served_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-21/title-42.xml?part=447&section=447.51",
+          "command": "curl -sS --fail --compressed -L --max-time 60 -o docs/domain/sources/ecfr/2026-10-21/42-cfr-447.51.xml -w '%{http_code} %{content_type} %{size_download} %{url_effective}\\n' 'https://www.ecfr.gov/api/versioner/v1/full/2026-10-21/title-42.xml?part=447&section=447.51'",
+          "retrieved": "2026-10-23T02:52:57Z"
+        }
+      ],
+      "superseded": [],
+      "ecfr_date": "2026-10-21",
+      "note": "eCFR date 2026-10-21 is the up_to_date_as_of of both title 28 and title 42 in https://www.ecfr.gov/api/versioner/v1/titles.json at 2026-10-23T02:52:48Z, so the sections increment 2.1 stores share it; title 42's latest_amended_on and latest_issue_date were 2026-10-13. The XML names no date of its own (_SUBSTITUTE_DATE_) and, unlike the other two, holds no source note. It answered 200, text/xml, with no redirect. The definition of Indian opens on line 12 and its four numbered parts follow on lines 13 to 20. No HourKeep document cites an address for this file."
+    },
+    {
       "path": "docs/domain/sources/federal-register/C1-2026-11094.xml",
       "sha256": "ecece41810ab13c3bd27fb38d2d175489456d37195ef7a7011626c57215e4347",
       "kind": "verbatim",
