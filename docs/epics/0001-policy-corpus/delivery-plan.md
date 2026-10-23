@@ -625,10 +625,11 @@ copy downloaded in a browser.
 
 ### Delivers
 
-- Before any row, the docket in Massachusetts v. Oz checked again, from where increment 2.1's check left it, with the
-  result in the Done entry and the skill's watch list. The outcome rule is increment 2.1's: an order on the provisions
-  the case challenges stops row work on them until the owner decides how to go on; none, and the work goes on, with
-  the query, its date and RECAP's lag recorded in the Done entry.
+- Before any row, the docket in Massachusetts v. Oz checked again, from where increment 2.1's check left it, and the
+  docket in Taylor v. Kennedy, D. Md. 1:26-cv-03705, checked for the first time (decision record 0007), with the results
+  in the Done entry and the skill's watch list. The outcome rule is increment 2.1's: an order on the provisions the
+  cases challenge stops row work on them until the owner decides how to go on; none, and the work goes on, with each
+  query, its date and RECAP's lag recorded in the Done entry.
 - Rows for § 435.554(c)(5) and § 435.557(f), the second from the stored correction. About 23 rows, decision record
   0006's inference from 919 words of regulation text. § 435.557(f)(2), the privacy duty, covers data used to verify
   participation in a drug addiction or alcoholic treatment and rehabilitation program as well as medical frailty, so
@@ -680,7 +681,7 @@ challenges those rules, so a ruling reaches this one topic and holds up no other
   tests` (3.14.6) both pass, each run as its own command.
 - `scripts/check-corpus.py` exits 0 under both and prints its counts.
 - `docs/review/medically-frail-or-special-medical-needs.md` exists and the checker compares it.
-- The docket result is in the Done entry and the watch list, with the date it was checked.
+- Both docket results are in the Done entry and the watch list, each with the date it was checked.
 - Each ledger finding this increment applies appears once in its Done entry, applied or rejected with a reason.
 - A search of `docs/domain/` outside the stored sources and the research records finds each corrected claim's old
   wording only in its dated correction.
@@ -698,13 +699,17 @@ challenges those rules, so a ruling reaches this one topic and holds up no other
 
 ### Needs from you
 
-The owner's go before it starts, and the owner's decision on how to go on if the docket shows an order on the
-provisions Massachusetts v. Oz challenges.
+The owner's go before it starts, and the owner's decision on how to go on if either docket shows an order on the
+provisions the cases challenge.
 
 ## 2.3 Exceptions for a month: mandatory exceptions, and optional short-term hardship exceptions
 
 ### Delivers
 
+- Before any row on § 435.555(d)(2)(i) or (iv), which the Massachusetts v. Oz complaint names and its motion for summary
+  judgment does not press, the dockets in Massachusetts v. Oz, D. Mass. 1:26-cv-12962, and Taylor v. Kennedy, D. Md.
+  1:26-cv-03705, checked, under increment 2.1's outcome rule, with the results in the Done entry and the skill's watch
+  list (decision record 0007).
 - Rows for § 435.553, its opening paragraph and (a) and (b); § 435.555(a) to (f); and § 435.557(g), from the stored
   correction. A paragraph named takes its own text, the words before its first subparagraph included. About 41 rows,
   decision record 0006's inference from 1,623 words of regulation text.
@@ -767,10 +772,12 @@ the screen of exclusions and exceptions is complete, and what counts toward the 
   notice of how to request it and by when; and that the state must first try reliable information to verify the
   hospital care before asking the person for more. It cites by identifier the rows on § 435.555(a), (c)(2) and
   (d)(1) and § 435.557(g)(2)(i), and says which skills it loaded.
+- Both docket results are in the Done entry and the watch list, each with the date it was checked.
 
 ### Needs from you
 
-The owner's go before it starts.
+The owner's go before it starts, and the owner's decision on how to go on if either docket shows an order on
+§ 435.555(d)(2).
 
 ## 2.4 Work, community service, work programs and school
 
@@ -932,6 +939,9 @@ downloaded in a browser.
 
 ### Delivers
 
+- Before any row on § 435.557(a)(vii) or (a)(viii), the 12-month limits both suits challenge, the dockets in
+  Massachusetts v. Oz, D. Mass. 1:26-cv-12962, and Taylor v. Kennedy, D. Md. 1:26-cv-03705, checked, under increment
+  2.1's outcome rule, with the results in the Done entry and the skill's watch list (decision record 0007).
 - Rows for § 435.557(a), (b), (c) and (e) from the stored correction; § 435.945(j) as the rule amends it; and
   § 438.58(b). About 42 rows, decision record 0006's inference from 1,679 words of § 435.557: 1,665 in paragraphs
   (a), (b), (c) and (e), and the 14 of the section's heading, which no other topic counts. The amendment to
@@ -1013,16 +1023,22 @@ this topic compares those rows with its own once its own are written, so a diffe
   Deferred, with the agency named. It cites by identifier the rows on § 435.557(a)'s definition of reliable
   information available to the State, § 435.557(b) and (b)(2)(iii), and § 435.557(c)(1)(i), and says which skills it
   loaded.
+- Both docket results are in the Done entry and the watch list, each with the date it was checked.
 
 ### Needs from you
 
-The owner's go before it starts. Nothing else, unless medicaid.gov refuses automated requests, in which case a copy of
+The owner's go before it starts, and the owner's decision on how to go on if either docket shows an order on
+§ 435.557(a)(vii) or (a)(viii). Nothing else, unless medicaid.gov refuses automated requests, in which case a copy of
 the IFC deck downloaded in a browser.
 
 ## 2.7 Which months are checked, how often, and when the requirement starts
 
 ### Delivers
 
+- Before any row on § 435.556(a)(1) or (2), which the Massachusetts v. Oz complaint names and its motion for summary
+  judgment does not press, the dockets in Massachusetts v. Oz, D. Mass. 1:26-cv-12962, and Taylor v. Kennedy, D. Md.
+  1:26-cv-03705, checked, under increment 2.1's outcome rule, with the results in the Done entry and the skill's watch
+  list (decision record 0007).
 - Before any row is written or edited, an inventory of the candidate rows on SMD 26-001 and on the statute, added to
   the figure below and recorded in the Done entry. If the topic would pass 64 rows, a new decision record splits it,
   as decision record 0006 requires, and no row is written until that record is accepted.
@@ -1136,12 +1152,13 @@ renewals are verification under § 435.557(d), and comes before outreach, whose 
   to check between renewals. Each date and month count is labeled Conditional on the state's choices, which it names,
   with the agency named as the one to ask. It cites by identifier the rows on § 435.559(a), (b) and (c),
   § 435.556(a)(2) and § 435.557(d), and says which skills it loaded.
+- Both docket results are in the Done entry and the watch list, each with the date it was checked.
 
 ### Needs from you
 
-The owner's go before it starts, and the owner's acceptance of a decision record that splits the topic if the
-inventory shows it would pass 64 rows. Nothing else, unless GovInfo refuses automated requests, in which case a copy
-downloaded in a browser.
+The owner's go before it starts, and the owner's decision on how to go on if either docket shows an order on
+§ 435.556(a), and the owner's acceptance of a decision record that splits the topic if the inventory shows it would pass
+64 rows. Nothing else, unless GovInfo refuses automated requests, in which case a copy downloaded in a browser.
 
 ## 2.8 Outreach, and what states report to CMS
 

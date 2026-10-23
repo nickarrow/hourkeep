@@ -2,7 +2,7 @@
 
 Date: 2026-10-22
 
-Status: Accepted on 2026-10-23, decided by the owner
+Status: Accepted on 2026-10-23, decided by the owner; superseded in part by 0007, for the litigation check
 
 ## Context
 
