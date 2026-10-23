@@ -423,6 +423,15 @@ true" ("the rest wait for their own topics") and `README.md` under "What is here
 time"). The fix adds to each that the dangerous corrections, and those no topic covers, come first, in a fix before
 increment 2.1.
 
+(Done 2026-10-23, on the branch fix-corrections-that-cannot-wait: every correction above applied, as 52 dated
+corrections, 14 additions and 1 mark of a claim no stored source holds, and L2-14's Alaska and Hawaii part rejected for
+the reason above. A reviewer against the ledger (GPT-5.6 Sol) found nothing. A do-it reviewer (Claude Opus 5.5), who
+applied the change in a clone and ran it, found 1 should fix, a sentence of `rule-extract.md` subsection 7.9 still
+calling the Hub's education and VA data forthcoming, corrected under L2-18 and L8-17; and 3 notes, none changing this
+fix: "sourced elsewhere" left in `state-options.md`'s renewal caveat, which is true of the statute; lines 214 and 277 of
+the Medicaid summary, which the ledger rates burdensome and increment 3 corrects; and that the suites show only that
+nothing the checker reads broke. 317 tests passed and `scripts/check-corpus.py` exited 0 under both interpreters.)
+
 (Decided 2026-10-22 by the owner. This increment is split by topic: one increment for each topic of 42 CFR 435.550 to
 435.563, each reviewed and published on the review pages on its own, since increment 1's one topic came to 64 rows.
 The decision record names the topics and their order, and they are written into this plan once it is approved. It

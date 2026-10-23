@@ -25,7 +25,9 @@ calls the **Working Families Tax Cut (WFTC)** legislation. Codified at **42 CFR 
 > income and seasonal **33360** · mandatory exceptions **33363** · specified excluded **33364** · medically
 > frail **33373** · hardship **33379** · assessing compliance **33388** · ex parte **33392** ·
 > noncompliance **33410** · implementation timing **33415** · good-faith exemption **33417** ·
-> burden analysis **33435** · regulatory text **33465 ff.**
+> burden analysis **33435** · regulatory text **33469 ff.**
+> (Corrected 2026-10-23: said "regulatory text **33465 ff.**"; L8-12; read in
+> docs/domain/cms-2454-ifc/2026-11094.txt:3595 and docs/domain/cms-2454-ifc/2026-11094.xml:3357 to :3400.)
 
 ---
 
@@ -257,9 +259,21 @@ consideration.**
 **Handling this data engages HIPAA and 42 CFR part 2** (substance use disorder records).
 
 > **Contested.** *Commonwealth of Massachusetts et al. v. Oz et al.*, No. 1:26-cv-12962 (D. Mass.), filed
-> June 29, 2026, 26 plaintiffs, targets this functional gate and the narrowing of attestation. Preliminary
-> injunction **denied** July 2026; summary judgment hearing **October 20, 2026**. **No injunction is in
-> effect — the rule is operative** — but expect movement. *(outside the IFC.)*
+> June 29, 2026, 26 plaintiffs. The complaint challenged three provisions as contrary to law and seven as arbitrary
+> and capricious, with a Spending Clause count. On 2026-09-01 the States narrowed it, in their motion for partial
+> summary judgment, to three: this functional gate, the 12-month claims window, and the 2028 limit on
+> self-attestation. Preliminary injunction **denied** without prejudice on July 29, 2026, on irreparable harm alone;
+> summary judgment hearing reset to **October 22, 2026** by ECF 143, entered 2026-10-08. As of 2026-10-16 no ruling
+> had issued and **no injunction was in effect, so the rule was operative**, but expect movement.
+> (Corrected 2026-10-23: said "targets this functional gate and the narrowing of attestation.", "Preliminary
+> injunction **denied** July 2026; summary judgment hearing **October 20, 2026**." and "**No injunction is in
+> effect — the rule is operative** — but expect movement."; L1-11, L3-1, L5-15, L8-16, L3-2, L3-4.) The States ask
+> for vacatur of the challenged phrases, an injunction for the 26 plaintiffs, and six months free of penalties for
+> implementation errors or delays; the government asks for remand without vacatur and says vacatur would reach States
+> that are not plaintiffs. A second suit, *Taylor v. Kennedy, Jr.*, No. 1:26-cv-03705 (D. Md.), filed 2026-09-18 by
+> 12 plaintiffs, challenges the gate, the "stable recovery" carve-out for substance use disorder, the 12-month claims
+> window and the attestation limit. On 2026-10-14 (ECF 28) that court set a summary judgment schedule and declined to
+> commit to a ruling before 2027-01-01. (Added 2026-10-23; L3-6, L1-12, L3-5.) *(outside the IFC.)*
 
 ---
 
@@ -501,7 +515,10 @@ prior month.**
 
 ---
 
-## 8. Verification — ex parte first, and it covers most people
+## 8. Verification: ex parte first, which CMS estimates covers about 56 percent of people due for renewal
+
+(Corrected 2026-10-23: the heading said "Verification — ex parte first, and it covers most people"; L8-9; read in
+docs/domain/cms-2454-ifc/2026-11094.xml:2592 to :2594.)
 
 **§ 435.557(a)** defines the reliable information available to the State. **§ 435.557(b)** imposes the duty to
 use it **before requesting anything from the individual**. Cite the pair — the June 29, 2026 correction
@@ -619,9 +636,12 @@ So a request is required for **(d)(1)** institutional services and **(d)(4)** tr
 for (d)(2) emergency/disaster or (d)(3) unemployment** — the State applies those itself.
 **§ 435.555(c)** requires notice telling people a hardship exception exists and its anticipated end date.
 
-The travel event covers the individual **or their dependent** (a minor child, for this section —
-§ 435.555(b)(1)). If the dependent travels alone, the individual must show they took leave or absented
-themselves for related reasons.
+The travel event covers the individual **or their dependent**. For this section a dependent is any of three
+(§ 435.555(b)(1)(i) to (iii)): the individual's minor child, as State law defines minor, who lives with them; their
+tax dependent, whether or not a minor child and whether or not living with them; or someone for whom a court has
+appointed them guardian. (Corrected 2026-10-23: said "(a minor child, for this section — § 435.555(b)(1))"; L8-3;
+read in docs/domain/cms-2454-ifc/2026-11094.xml:3707 to :3714.) If the dependent travels alone, the individual must
+show they took leave or absented themselves for related reasons.
 
 **The unemployment event is a second, separate election** on top of electing hardship at all, and requires a
 State request plus CMS approval (§ 435.555(d)(3)).
@@ -706,9 +726,29 @@ project's own documents or code at least once.
 
 **Renewal frequency conflicts with itself.** The IFC revises § 435.916 to say MAGI renewals happen every 12
 months and no more often. Its own preamble says the adult group is subject to **6-month** renewals from
-January 1, 2027 under SSA § 1902(e)(14)(L) — a **different section of PL 119-21 that this rule does not
-implement**, and which does **not** apply to American Indians or most § 1115 enrollees. Treat 6 months as
-operative for the adult group, flag it as sourced elsewhere, and watch for the reconciling rulemaking.
+January 1, 2027 under SSA § 1902(e)(14)(L), which § 71107 of PL 119-21 adds and **this rule does not implement**.
+(Corrected 2026-10-23: said "— a **different section of PL 119-21 that this rule does not implement**,"; L3-9; read
+in docs/domain/hr1/119hr1enr-title7-part3.md:233 to :244.) The 6-month renewals do **not** apply to the American
+Indians and Alaska Natives described in SSA 1902(xx)(9)(A)(ii)(II), or to people described in the adult group in a
+State that covers them only through a partial expansion under a § 1115 demonstration. People described in the adult
+group who are covered under a waiver, a § 1115 demonstration included, that gives coverage equivalent to minimum
+essential coverage to everyone in the group do get 6-month renewals. (Corrected 2026-10-23: said "and which does
+**not** apply to American Indians or most § 1115 enrollees."; L2-3; read in
+docs/domain/sources/cms/smd-26-001.txt:23 to :26, :118 to :122 and :133 to :146.) Treat 6 months as operative for
+the adult group. CMS's guidance on it is SMD 26-001, sent to State Medicaid Directors on March 6, 2026. As of
+2026-10-16 the Federal Register's only CMS documents matching § 435.916 or § 1902(e)(14)(L) since July 4, 2025 were
+the interim final rule and its correction, so no rulemaking reconciling § 435.916 has issued. (Corrected 2026-10-23:
+said "flag it as sourced elsewhere, and watch for the reconciling rulemaking."; L2-2, L3-10; read in
+docs/domain/sources/cms/smd-26-001.txt:6 to :11.)
+SMD 26-001 gives a State two paths for adults already enrolled on January 1, 2027. On the first, the State moves
+already-set 2027 renewal initiation dates earlier, to no earlier than January 1, 2027, in practice January 4, 2027,
+and grants 6 months at that renewal. On the second, it keeps the already-set dates and grants 6 months at the first
+renewal initiated in 2027. A person's next renewal date turns on the State's path. CMS treats shortening an
+eligibility period, and moving someone at renewal from a group with a 12-month period to one with 6 months, as an
+action under 42 CFR 431.201 that needs at least 10 days' advance notice with fair hearing rights. A State that covers
+the adult group in its State plan must submit a SPA through MACPro no later than March 31, 2027. (Added 2026-10-23;
+L3-11, L2-5; read in docs/domain/sources/cms/smd-26-001.txt:289 to :308, :364 to :369, :443 to :446 and :492 to
+:496.)
 
 **Two internal cross-references in the IFC are broken and uncorrected.** § 435.554(c)(3) points at
 "paragraphs (c)(1)(i)(A) through (C)" where (c)(3)(i) is meant, and § 435.554(c)(5)(ii) points at "paragraphs
@@ -730,7 +770,12 @@ repo's secondary material — none should be relied on for a user-facing claim w
 The rule is more favourable than it sounds, and the favourable parts are the under-communicated ones. If you
 take three things from this document into copy:
 
-1. **Most people will not be asked for anything** — 56% verified ex parte, and States must exhaust their own
+1. **CMS estimates that more than half of the people due for renewal will not be asked for anything**: about 56
+   percent of the roughly 20 million applicable individuals due for renewal will have their compliance with, or
+   exception or exclusion from, the requirement verified ex parte, and the other 44 percent, 8.8 million people,
+   will need to provide information to the State (91 FR 33434). The estimate is for people due for renewal, not for
+   applicants. (Corrected 2026-10-23: said "**Most people will not be asked for anything** — 56% verified ex
+   parte,"; L8-9; read in docs/domain/cms-2454-ifc/2026-11094.xml:2592 to :2594.) And States must exhaust their own
    records before asking.
 2. **Existing enrollees are assessed at their first renewal *initiated* on or after their State's
    implementation date**, and a State may implement before January 1, 2027. In a State that implements on

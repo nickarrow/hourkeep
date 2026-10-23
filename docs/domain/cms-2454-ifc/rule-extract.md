@@ -583,8 +583,13 @@ the individual**.
 > **This is the single largest driver of a user needing to do nothing, and it should be explained to them.**
 > States **must** require SNAP and TANF information, **incarceration data** from correctional facilities,
 > and **education information** from State colleges, community colleges, high school equivalency programs,
-> and high schools. Combined with payroll data, 12 months of adjudicated claims, and encounter data, a
-> large share of users will never be asked for anything.
+> and high schools. Combined with payroll data, 12 months of adjudicated claims, and encounter data, these let the
+> State verify many people without asking them for anything. CMS estimates that about 56 percent of the roughly 20
+> million applicable individuals due for renewal will have their compliance with, or exception or exclusion from, the
+> requirement verified ex parte, and that the other 44 percent, 8.8 million people, will need to provide information
+> to the State (91 FR 33434). The estimate is for people due for renewal, not for applicants. (Corrected 2026-10-23:
+> said "a large share of users will never be asked for anything."; L8-9; read in
+> docs/domain/cms-2454-ifc/2026-11094.xml:2592 to :2594.)
 >
 > Corollary from § II.I.6.e: the State **must not request** documentation when the hours already visible in
 > its own data are sufficient.
@@ -698,10 +703,13 @@ elect** the option under § 1902(xx)(3)(A) **not to seek further information**.
 
 ### 7.9 Federal data services — § 435.557(e)
 
-Must obtain information through the Secretary's electronic service (the **Federal Data Services Hub**)
-where available. New data sources must be connected **as soon as practicable, no later than 12 months**
-after first becoming available. Named forthcoming sources: **National Student Clearinghouse**, **VA**,
-and the **Eligibility Made Easy (Emmy)** tool/API.
+Must obtain information through the Secretary's electronic service (the **Federal Data Services Hub**) where available.
+New data sources must be connected **as soon as practicable, no later than 12 months** after first becoming available.
+The preamble gives the **National Student Clearinghouse** and the **VA** as examples of the additional data sources CMS
+expects to connect, and the **Eligibility Made Easy (Emmy)** tool as another federal service it is establishing; CMS's
+Emmy page, read 2026-10-16, says the Hub now offers federal education-enrollment and VA disability data (§ 11).
+(Corrected 2026-10-23: said "Named forthcoming sources: **National Student Clearinghouse**, **VA**, and the
+**Eligibility Made Easy (Emmy)** tool/API."; L2-18, L8-17; read in docs/domain/cms-2454-ifc/2026-11094.xml:1792.)
 
 ---
 
@@ -867,10 +875,29 @@ frequently**. But the preamble (§ II.I.6) states:
 > effective January 1, 2027, most of the population required to demonstrate community engagement is
 > also subject to a new **6-month renewal** requirement for the adult group under § 1902(e)(14)(L).
 
-That 6-month requirement comes from a **different** section of PL 119-21 and is **not implemented by
-this rule**. It **does not apply** to American Indians or to most § 1115 demonstration enrollees, who
-remain on 12-month renewals. Treat the 6-month figure as operative but sourced elsewhere, and watch
-for the separate rulemaking that reconciles § 435.916.
+That 6-month requirement comes from § 71107 of PL 119-21, which adds SSA 1902(e)(14)(L), and is **not implemented by
+this rule**. (Corrected 2026-10-23: said "comes from a **different** section of PL 119-21"; L3-9; read in
+docs/domain/hr1/119hr1enr-title7-part3.md:233 to :244.) It **does not apply** to the American Indians and Alaska
+Natives described in SSA 1902(xx)(9)(A)(ii)(II), or to people described in the adult group in a State that covers
+them only through a partial expansion under a § 1115 demonstration; they remain on 12-month renewals. People described
+in the adult group who are covered under a waiver, a § 1115 demonstration included, that gives coverage equivalent to
+minimum essential coverage to everyone in the group do get 6-month renewals. (Corrected 2026-10-23: said "It **does
+not apply** to American Indians or to most § 1115 demonstration enrollees, who remain on 12-month renewals."; L2-3;
+read in docs/domain/sources/cms/smd-26-001.txt:23 to :26, :118 to :122 and :133 to :146.) Treat the 6-month figure
+as operative. CMS's guidance on it is SMD 26-001, sent to State Medicaid Directors on March 6, 2026. As of
+2026-10-16 the Federal Register's only CMS documents matching § 435.916 or § 1902(e)(14)(L) since July 4, 2025 were
+the interim final rule and its correction, so no rulemaking reconciling § 435.916 has issued. (Corrected 2026-10-23:
+said "Treat the 6-month figure as operative but sourced elsewhere, and watch for the separate rulemaking that
+reconciles § 435.916."; L2-2, L3-10; read in docs/domain/sources/cms/smd-26-001.txt:6 to :11.)
+SMD 26-001 gives a State two paths for adults already enrolled on January 1, 2027. On the first, the State moves
+already-set 2027 renewal initiation dates earlier, to no earlier than January 1, 2027, in practice January 4, 2027,
+and grants 6 months at that renewal. On the second, it keeps the already-set dates and grants 6 months at the first
+renewal initiated in 2027. A person's next renewal date turns on the State's path. CMS treats shortening an
+eligibility period, and moving someone at renewal from a group with a 12-month period to one with 6 months, as an
+action under 42 CFR 431.201 that needs at least 10 days' advance notice with fair hearing rights. A State that covers
+the adult group in its State plan must submit a SPA through MACPro no later than March 31, 2027. (Added 2026-10-23;
+L3-11, L2-5; read in docs/domain/sources/cms/smd-26-001.txt:289 to :308, :364 to :369, :443 to :446 and :492 to
+:496.)
 
 Practical note from the preamble: most States take 60–90 days to process a renewal cohort, so someone
 on 6-month renewals may be only ~3 months into an eligibility period when the next renewal starts.
@@ -929,18 +956,40 @@ These are the axes for HourKeep's policy-profile module.
 - **44 jurisdictions (43 States + DC)** must implement — see § 1 above. An earlier version of this document
   said 43 and omitted Tennessee; that came from a KFF brief predating CMS's June 2026 § 1115 list.
   ([KFF tracker](https://www.kff.org/medicaid/medicaid-work-requirements-tracker-overview/))
-- **Eight States will require medical-frailty documentation from January 2027, not January 2028**:
-  Arkansas, Idaho, Indiana, Iowa, North Carolina, North Dakota, Ohio, Utah. Idaho allows new enrollees to
-  attest for six months, then requires documentation. North Carolina statute bars self-attestation as sole
-  evidence. **So the documentation-hardening date is a per-State value, not a national constant.**
-- **CMS's own burden estimate:** of the ~20 million in the adult group, about **56% will be verified ex
-  parte**, leaving roughly **8.8 million** who must submit information, at an estimated **2 hours each**.
+- **Some States will require medical-frailty documentation from January 2027, not January 2028, and which
+  ones no single source settles.** A list of eight, Arkansas, Idaho, Indiana, Iowa, North Carolina, North Dakota,
+  Ohio and Utah, rests on one press report, Politico's of 2026-08-09, which the research of 2026-10-16 did not
+  open. AP, in September 2026, names a different six as barring self-attestation from next year: Arkansas, Idaho,
+  Indiana, New Hampshire, North Carolina and Ohio. New Hampshire's statute, RSA 126-AA:6, accepts medical frailty
+  only on a clinician's certification, and Iowa says it "may require" documentation. The tracker in
+  `state-options.md` gives 2027-01 to nine States, not eight. (Corrected 2026-10-23: said "**Eight States will
+  require medical-frailty documentation from January 2027, not January 2028**: Arkansas, Idaho, Indiana, Iowa, North
+  Carolina, North Dakota, Ohio, Utah."; L4-13, L8-6.) Idaho allows new enrollees to attest for six months, then
+  requires documentation. North Carolina statute bars self-attestation as sole evidence. **So the
+  documentation-hardening date is a per-State value, not a national constant.**
+- **CMS's own burden estimate:** of the roughly 20 million applicable individuals due for renewal, about **56%
+  will have their compliance, or exception or exclusion, verified ex parte**, leaving the other 44 percent, roughly
+  **8.8 million**, who must submit information, at an estimated **2 hours each** (91 FR 33434). The estimate is for
+  people due for renewal, not for applicants. (Corrected 2026-10-23: said "of the ~20 million in the adult group,
+  about **56% will be verified ex parte**"; L8-9; read in docs/domain/cms-2454-ifc/2026-11094.xml:2592 to :2594.)
   That is the addressable population.
 - **Active litigation.** *Commonwealth of Massachusetts et al. v. Oz et al.*, No. 1:26-cv-12962 (D. Mass.),
-  filed June 29, 2026, 26 plaintiffs, targeting the **medically frail** functional-impairment gate and the
-  narrowing of self-attestation. **Preliminary injunction denied July 29–30, 2026. Summary judgment hearing
-  October 20, 2026** — before the implementation deadline. No injunction is in effect; the rule is fully
-  operative. Build medically-frail logic expecting it to move.
+  filed June 29, 2026, 26 plaintiffs. The complaint challenged three provisions as contrary to law and seven as
+  arbitrary and capricious, with a Spending Clause count. On 2026-09-01 the States narrowed it, in their motion for
+  partial summary judgment, to three: the **medically frail** "significantly impairs" gate, the 12-month claims
+  window, and the 2028 limit on self-attestation. **The preliminary injunction was denied without prejudice on July
+  29, 2026, on irreparable harm alone. The summary judgment hearing was reset to October 22, 2026** by ECF 143,
+  entered 2026-10-08, before the implementation deadline. As of 2026-10-16 no ruling had issued and no injunction
+  was in effect, so the rule was fully operative. (Corrected 2026-10-23: said "targeting the **medically frail**
+  functional-impairment gate and the narrowing of self-attestation.", "**Preliminary injunction denied July 29–30,
+  2026. Summary judgment hearing October 20, 2026**" and "No injunction is in effect; the rule is fully
+  operative."; L1-11, L3-1, L5-15, L8-16, L3-2, L3-4.) The States ask for vacatur of the challenged phrases, an
+  injunction for the 26 plaintiffs, and six months free of penalties for implementation errors or delays; the
+  government asks for remand without vacatur and says vacatur would reach States that are not plaintiffs. A second
+  suit, *Taylor v. Kennedy, Jr.*, No. 1:26-cv-03705 (D. Md.), filed 2026-09-18 by 12 plaintiffs, challenges the
+  gate, the "stable recovery" carve-out for substance use disorder, the 12-month claims window and the attestation
+  limit. On 2026-10-14 (ECF 28) that court set a summary judgment schedule and declined to commit to a ruling before
+  2027-01-01. (Added 2026-10-23; L3-6, L1-12, L3-5.) Build medically-frail logic expecting it to move.
   ([Georgetown Litigation Tracker](https://litigationtracker.law.georgetown.edu/litigation/commonwealth-of-massachusetts-et-al-v-oz-et-al/))
 - **Georgia's scope is unsettled.** The IFC forces Georgia to add exclusions Pathways never had; DCH
   projects enrollment rising by ~100,000 against ~20,000 currently covered and is seeking a higher federal
@@ -950,15 +999,19 @@ These are the axes for HourKeep's policy-profile module.
   repo [DSACMS/iv-cbv-payroll](https://github.com/DSACMS/iv-cbv-payroll)) is open source and federal, and
   generates a standardized evidence package for the State. **Emmy API** (`CMSgov/emmy-api`) connects States
   to VA Lighthouse and the National Student Clearinghouse; folded into the Federal Data Services Hub in July
-  2026.
+  2026. (Unverified 2026-10-23: no stored source holds this; searched docs/domain/sources/ for "Emmy" and "Data
+  Services Hub", and the research of 2026-10-16 found no source for the July 2026 date; L8-17.) CMS's Emmy page
+  says the Hub now offers federal education-enrollment and VA disability data for eligibility and ex parte
+  renewals. (Added 2026-10-23; L2-18, L8-17.)
 
   **Verified directly 2026-08-16.** CMS's own repo description calls Emmy App **"a prototype… currently being
   piloted for testing and validation purposes"** — weaker than the "numerous States have successfully
   piloted" framing in the first research pass. Development is genuinely active (27 commits in the most recent
   week, v0.2.0 released 2026-08-12, current work on sending CE documents to agencies over HTTP and S3;
-  `emmy-api` last pushed 2026-08-03). **But there are credible reports it may be discontinued**, and active
-  development right up to cancellation is the normal shape of a cancelled pilot. Read its schema; do not
-  build on it. See ADR-0006.
+  `emmy-api` last pushed 2026-08-03). CMS's Emmy page, read 2026-10-16, says the CE modules are piloting in one
+  State, with more pilots possible in 2027, and says nothing of discontinuing Emmy. (Corrected 2026-10-23: said
+  "**But there are credible reports it may be discontinued**, and active development right up to cancellation is
+  the normal shape of a cancelled pilot."; L2-18, L8-17.) Read its schema; do not build on it. See ADR-0006.
 - **Outreach notices: most States send September 2026.** § 435.561(b) requires 3 months plus the
   application lookback, so 1-month States (about 36 of them) send in **September**, 2-month in August,
   3-month in July. Only Idaho and Indiana were on the July schedule. **And the IFC requires notices to all
@@ -973,13 +1026,23 @@ These are the axes for HourKeep's policy-profile module.
   caregiving, in-kind work, unpaid work, and self-employment are not.**
 - About **20 million people** were in the expansion group as of June 2025 — roughly 30% of enrollment
   in expansion States. (KFF)
-- **Iowa, Montana, and Nebraska** intend to implement **before** January 1, 2027. **Arkansas** plans a
-  July soft launch with no disenrollment until January 2027. (KFF)
+- **Nebraska, Montana and Arkansas** went live before January 1, 2027, and **Iowa** starts 2026-12-01 (Iowa HHS),
+  as § 9 has it. **Montana** held people harmless through September 2026 and has enforced since 2026-10-01, by
+  denial or disenrollment, asking at redetermination for 3 months, not necessarily consecutive, since the last one
+  (Montana DPHHS slides of 2026-09-10, p. 13, and https://dphhs.mt.gov/medicaidchanges/). **Arkansas**'s soft
+  launch began 2026-07-01, with no disenrollment until January 2027. (Corrected 2026-10-23: said "**Iowa, Montana,
+  and Nebraska** intend to implement **before** January 1, 2027. **Arkansas** plans a July soft launch with no
+  disenrollment until January 2027. (KFF)"; L8-16, L6-12.)
 - **Most States** plan to verify at renewal every six months and to look back **one month** at both
   application and renewal — the least restrictive configuration. (KFF)
-- **Idaho, Indiana, and New Hampshire** have enacted legislation requiring **more than one month** of
-  lookback at application and/or renewal, with **quarterly** compliance checks in Indiana and New
-  Hampshire. Arkansas will also look back more than one month at renewal. (KFF)
+- State sources give four States' lookbacks: **Idaho** 3 months at application and 3 in the 6-month period;
+  **Indiana** 3 before application and 3 before each renewal or quarterly review; **New Hampshire** 1 at
+  application, with compliance checks at least quarterly (RSA 126-AA:6); **Arkansas** 1 at application and 1 in
+  each 6 months. At renewal, Kentucky asks for 3 months since the last determination (KRS 205.5371), Montana 3,
+  not necessarily consecutive, North Carolina 3 of 6 and Iowa 2. (Corrected 2026-10-23: said "**Idaho, Indiana,
+  and New Hampshire** have enacted legislation requiring **more than one month** of lookback at application
+  and/or renewal, with **quarterly** compliance checks in Indiana and New Hampshire. Arkansas will also look back
+  more than one month at renewal. (KFF)"; L4-14, L8-7, L4-15, L3-17.)
 - Seven States overall reported early implementation or more restrictive verification than required.
   (KFF)
 - CMS announced that Medicaid technology vendors pledged **over $600 million** in no-cost or
@@ -997,12 +1060,28 @@ These are the axes for HourKeep's policy-profile module.
 1. **Final rule.** 79,718 comments were filed. Expect a final rule that may revise IFC
    interpretations. Treat every interpretation here as versioned.
 2. **§ 435.916 reconciliation.** The IFC text says 12-month MAGI renewals while the preamble
-   references a statutory 6-month renewal for the adult group under § 1902(e)(14)(L). A separate
-   rulemaking is presumably pending.
-3. **State medically frail lists.** Each State must publish an auditable condition list. None are
-   catalogued here yet; they materially affect who qualifies.
-4. **Emmy / Hub data sources.** National Student Clearinghouse and VA connections are described as
-   forthcoming. Availability dates unknown.
-5. **State plan / SPA templates.** CMS says the election material is "currently under development."
+   references a statutory 6-month renewal for the adult group under § 1902(e)(14)(L). No reconciling rulemaking has
+   issued: as of 2026-10-16 the Federal Register's only CMS documents matching § 435.916 or § 1902(e)(14)(L) since
+   July 4, 2025 were the interim final rule and its correction, and CMS addressed the 6-month renewal in SMD 26-001
+   of March 6, 2026, on § 71107 of PL 119-21. (Corrected 2026-10-23: said "A separate rulemaking is presumably
+   pending."; L2-2, L3-10; read in docs/domain/sources/cms/smd-26-001.txt:6 to :11.)
+3. **State medically frail lists.** Each State must develop an auditable condition list, and must have reasonable
+   processes and criteria for someone whose condition is not on it to request consideration. (Corrected 2026-10-23:
+   said "Each State must publish an auditable condition list."; L8-4; read in
+   docs/domain/cms-2454-ifc/2026-11094.xml:3684 to :3687.) None are catalogued here yet; they materially affect who
+   qualifies.
+4. **Emmy / Hub data sources.** CMS's Emmy page, read 2026-10-16, says the Hub now offers federal
+   education-enrollment and VA disability data for eligibility and ex parte renewals (§ 11). When each State
+   connects to them is unknown: § 435.557(e)(1) has a State connect to a new source as soon as practicable, and no
+   later than 12 months after it first becomes available through the Hub (§ 7.9). (Corrected 2026-10-23: said
+   "National Student Clearinghouse and VA connections are described as forthcoming. Availability dates unknown.";
+   L2-18, L8-17; read in docs/domain/sources/federal-register/C1-2026-11094.xml:97.)
+5. **State plan / SPA templates.** CMS has published the MACPro implementation guide for the "Community Engagement
+   for Certain Adults" State plan page (PDF created 2026-08-04,
+   https://www.medicaid.gov/resources-for-states/downloads/macpro-ig-community-engagement-certain-adults.pdf). It
+   holds the elections C.1 short-term hardship, D.2 months before application, D.4 months at renewal, E.1 to E.3 more
+   frequent verification, and F.3 the "unable to verify" option at renewal. The guide is not stored in the corpus.
+   (Corrected 2026-10-23: said "CMS says the election material is "currently under development.""; L2-6, L4-6,
+   L6-2.)
 6. **Per-State elections.** The consolidated parameter list in § 10 needs per-State values; only
    partial data exists today via KFF.

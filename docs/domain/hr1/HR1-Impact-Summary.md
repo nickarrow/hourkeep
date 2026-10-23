@@ -239,7 +239,7 @@ New Section 1932(j) requires managed care contracts to "promptly transmit to the
 #### 6. Eligibility Redeterminations (Section 71107)
 
 - **Major Change**: 6-month redetermination cycle for expansion adults starting after December 31, 2026
-- **Exception**: Excludes certain vulnerable populations
+- **Exception**: Does not apply to any individual described in SSA 1902(xx)(9)(A)(ii)(II): an Indian or Urban Indian, a California Indian, or someone otherwise determined eligible as an Indian for the Indian Health Service. That is the only exemption § 71107 gives. (Corrected 2026-10-23: said "Excludes certain vulnerable populations"; L3-12; read in docs/domain/hr1/119hr1enr-title7-part3.md:244 and :702 to :708.)
 - **Technology Impact**: Automated redetermination scheduling systems
 - **Implementation Funding**: $75M for FY 2026
 

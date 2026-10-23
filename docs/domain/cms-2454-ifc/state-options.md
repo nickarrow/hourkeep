@@ -37,9 +37,10 @@ export interface PolicyProfile {
   /**
    * Separate from `confidence`. Flags values that rest on a CMS *interpretation* a final rule
    * or a court could move — distinct from "we don't know what Idaho elected."
-   * Known interpretive risks: the MAGI-household reading of § 435.552(f); the
-   * "whether or not consecutive" reading of § 435.556(a)(2); the medically-frail
-   * functional-impairment gate (under challenge in Massachusetts v. Oz, SJ hearing 2026-10-20).
+   * Known interpretive risks: the MAGI-household reading of § 435.552(f); the "whether or not consecutive" reading
+   * of § 435.556(a)(2); the medically-frail functional-impairment gate, under challenge in Massachusetts v. Oz,
+   * whose summary judgment hearing was reset to 2026-10-22 by ECF 143, entered 2026-10-08. (Corrected 2026-10-23:
+   * said "(under challenge in Massachusetts v. Oz, SJ hearing 2026-10-20)."; L1-11, L3-1, L5-15, L8-16.)
    */
   interpretiveRisk?: Array<{ field: string; basis: string; watch: string }>;
 
@@ -113,8 +114,14 @@ export interface PolicyProfile {
    */
   renewalInitiationLeadDays: { min: number; max: number };
   /**
-   * PER-STATE, not a constant. Federally 2028-01-01 (§ 435.557(b)(2)(ii)), but eight States
-   * require medical-frailty documentation from January 2027: AR, ID, IN, IA, NC, ND, OH, UT.
+   * PER-STATE, not a constant. Federally 2028-01-01 (§ 435.557(b)(2)(ii)), but some States will require
+   * medical-frailty documentation from January 2027, and no single source settles which. A list of eight, AR, ID,
+   * IN, IA, NC, ND, OH and UT, rests on one press report, Politico's of 2026-08-09, which the research of 2026-10-16
+   * did not open. AP, in September 2026, names a different six as barring self-attestation from next year: AR, ID,
+   * IN, NH, NC and OH. New Hampshire's statute, RSA 126-AA:6, accepts medical frailty only on a clinician's
+   * certification, and Iowa says it "may require" documentation. The tracker below gives 2027-01 to nine States, not
+   * eight. (Corrected 2026-10-23: said "but eight States require medical-frailty documentation from January 2027:
+   * AR, ID, IN, IA, NC, ND, OH, UT."; L4-13, L8-6.)
    */
   documentationRequiredFrom: string;
   /** § 435.560. Non-null means the State is NOT enforcing yet. Expires no later than 2028-12-31. */
@@ -132,7 +139,12 @@ export interface PolicyProfile {
   /** § 435.916(a)(3)(iii). 90 is a FEDERAL FLOOR for MAGI; the only election is to elect longer. */
   reconsiderationDays: number;
   /**
-   * How long the eligibility period is: 6 for the adult group, 12 for AI/AN and most 1115.
+   * How long the eligibility period is: 6 for the adult group, including people described in it who are covered
+   * under a waiver, a § 1115 demonstration included, that gives coverage equivalent to minimum essential coverage to
+   * everyone in the group; 12 for the American Indians and Alaska Natives described in SSA 1902(xx)(9)(A)(ii)(II),
+   * and for people described in the adult group in a State that covers them only through a partial expansion under
+   * a § 1115 demonstration. (Corrected 2026-10-23: said "12 for AI/AN and most 1115."; L2-3; read in
+   * docs/domain/sources/cms/smd-26-001.txt:23 to :26, :118 to :122 and :133 to :146.)
    *
    * ALSO the assumed span of a renewal review period, which is what
    * `renewalReviewPeriodEndingAt` derives its month list from. W5 declared this
@@ -244,13 +256,13 @@ The least-restrictive statutory floor. Safe to show any user, and honest as long
 | `unemploymentHardshipEffectuated` | false | requires State request + CMS approval |
 | `implementationDate` | 2027-01-01 | § 435.559(a) — 91 FR 33478. (b) is the election to go earlier |
 | `renewalInitiationLeadDays` | `{ min: 60, max: 90 }` | **Preamble, 91 FR 33416.** Note which way it cuts: CMS rejected an end-date trigger *because* a 60–90 day process would have pulled January 2027 renewals into review by November 2026. Choosing initiation instead pushes a user's first assessment **later** |
-| `documentationRequiredFrom` | 2028-01-01 | § 435.557(b)(2)(ii) — **but 2027-01-01 in eight States** |
+| `documentationRequiredFrom` | 2028-01-01 | § 435.557(b)(2)(ii), **but 2027-01-01 in some States, and no single source settles which.** A list of eight rests on one press report; AP names a different six; New Hampshire's RSA 126-AA:6 accepts medical frailty only on a clinician's certification; the tracker gives 2027-01 to nine. See the schema note on `documentationRequiredFrom`. (Corrected 2026-10-23: said "— **but 2027-01-01 in eight States**"; L4-13, L8-6.) |
 | `goodFaithEffortExemptionThrough` | null | § 435.560. CMS expects ~10 States to request one |
 | `noncomplianceResponseDays` | 30 | § 435.558(a)(2) |
 | `noticeReceiptPresumptionDays` | 5 | § 435.558(c)(4) |
 | `reconsiderationDays` | 90 | § 435.916(a)(3)(iii) — federal floor |
 | `renewalIntervalMonths` | 6 | **SSA § 1902(e)(14)(L), NOT this rule.** See the next row |
-| `renewalIntervalMonthsSource` | *(the caveat, in full)* | The IFC amends § 435.916 to say MAGI renewals happen every 12 months and no more often, while its own preamble says the adult group is subject to 6-month renewals from January 1, 2027 under § 1902(e)(14)(L) — a different section of PL 119-21 that this rule does not implement, and which does not reach American Indians or most § 1115 enrollees. No reconciling rulemaking has issued. 6 is treated as operative and flagged as sourced elsewhere |
+| `renewalIntervalMonthsSource` | *(the caveat, in full)* | The IFC amends § 435.916 to say MAGI renewals happen every 12 months and no more often, while its own preamble says the adult group is subject to 6-month renewals from January 1, 2027 under § 1902(e)(14)(L), which § 71107 of PL 119-21 adds and this rule does not implement. (Corrected 2026-10-23: said "— a different section of PL 119-21 that this rule does not implement,"; L3-9; read in docs/domain/hr1/119hr1enr-title7-part3.md:233 to :244.) The 6-month renewals do not reach the American Indians and Alaska Natives described in SSA 1902(xx)(9)(A)(ii)(II), or people described in the adult group in a State that covers them only through a partial expansion under a § 1115 demonstration; people described in the adult group who are covered under a waiver, a § 1115 demonstration included, that gives coverage equivalent to minimum essential coverage to everyone in the group do get them. (Corrected 2026-10-23: said "and which does not reach American Indians or most § 1115 enrollees."; L2-3; read in docs/domain/sources/cms/smd-26-001.txt:23 to :26, :118 to :122 and :133 to :146.) CMS's guidance on the 6 months is SMD 26-001, sent to State Medicaid Directors on March 6, 2026. As of 2026-10-16 the Federal Register's only CMS documents matching § 435.916 or § 1902(e)(14)(L) since July 4, 2025 were the interim final rule and its correction, so no rulemaking reconciling § 435.916 has issued. (Corrected 2026-10-23: said "No reconciling rulemaking has issued."; L2-2, L3-10; read in docs/domain/sources/cms/smd-26-001.txt:6 to :11.) SMD 26-001 gives a State two paths for adults already enrolled on January 1, 2027. On the first, the State moves already-set 2027 renewal initiation dates earlier, to no earlier than January 1, 2027, in practice January 4, 2027, and grants 6 months at that renewal. On the second, it keeps the already-set dates and grants 6 months at the first renewal initiated in 2027. A person's next renewal date turns on the State's path. CMS treats shortening an eligibility period, and moving someone at renewal from a group with a 12-month period to one with 6 months, as an action under 42 CFR 431.201 that needs at least 10 days' advance notice with fair hearing rights. A State that covers the adult group in its State plan must submit a SPA through MACPro no later than March 31, 2027. (Added 2026-10-23; L3-11, L2-5; read in docs/domain/sources/cms/smd-26-001.txt:289 to :308, :364 to :369, :443 to :446 and :492 to :496.) 6 is treated as operative and flagged as sourced elsewhere |
 | `submissionModalities` | `["online","phone","mail","in-person","fax","electronic"]` | § 435.907(a). **Fax is real** — Missouri accepts it |
 | `unableToVerifyAtRenewal` | `no default` | § 435.558(b)(2). The rule sets no default: the State chooses and records its choice in its State plan. Nebraska sends the notice with the renewal form, and Colorado's draft rule appears to (inferred) (research L4-5, L5-3). Which reading applies where a State plan records nothing is open question Q1 in `docs/domain/open-questions.md`. (Corrected 2026-10-17: said "`option-2-sequential`" and "Assumed because it is more protective — two windows rather than one"; L4-5, L5-3; read in docs/domain/cms-2454-ifc/2026-11094.xml:2029.) |
 | `unableToVerifyAtVerification` | null | No more-frequent verification assumed |
@@ -278,32 +290,46 @@ The least-restrictive statutory floor. Safe to show any user, and honest as long
 
 ## Per-State tracker
 
-Sources so far are third-party reported (KFF's survey of Medicaid officials, fielded January–March
-2026). Treat every row as `confidence: "third-party-reported"` until we find State-published material.
+Sources so far are third-party reported (KFF's survey of Medicaid officials, fielded January–March 2026). Treat
+every row as `confidence: "third-party-reported"` until we find State-published material. The survey predates the
+interim final rule of 2026-06-03, and the rows carry no retrieval date. Where a survey answer has a State electing
+the short-term hardship exception for some events and not others, the preamble says the statute gives a State no
+option to make one or only some of the events the exclusive basis for the exception, though certain events include
+a State request among their criteria (91 FR 33380), and CMS's MACPro implementation guide, p. 5, has a State that
+elects the exception implement all its event types. The Oklahoma and New York rows recorded such plans until
+2026-10-23. Values corrected on 2026-10-23 come from State pages and statutes the research read on 2026-10-16.
+(Added 2026-10-23; L8-15; read in docs/domain/cms-2454-ifc/2026-11094.xml:1346.)
 
 | State | Implementation | App. lookback | Renewal months | More frequent | Hardship | Frailty docs from | Source |
 |---|---|---|---|---|---|---|---|
 | **Modal case** (~34 States) | 2027-01-01 | 1 | 1 | decline | all four | 2028-01-01 | KFF survey |
 | **Nebraska** | **LIVE 2026-05-01 — first State to disenroll** | ? | ? | ? | ? | **2027-01** | KFF, state press |
-| **Montana** | **LIVE 2026-07-01** | ? | ? | ? | ? | ? | KFF |
-| **Arkansas** | **LIVE 2026-07-01** soft launch, no disenrollment before 2027-01-01 | ? | **3** | decline | ? | **2027-01** | AR DHS |
-| **Iowa** | **2026-12-01** | ? | ? | ? | **none** | **2027-01** | Iowa HHS |
+| **Montana** | **LIVE 2026-07-01** | ? | **3**, not necessarily consecutive, since the last redetermination (Corrected 2026-10-23: said "?"; L4-15.) | ? | ? | ? | KFF; MT DPHHS for the 2026-10-23 value |
+| **Arkansas** | **LIVE 2026-07-01** soft launch, no disenrollment before 2027-01-01 | 1, the month before applying (Corrected 2026-10-23: said "?"; L4-14, L8-7.) | 1 in each 6 months (Corrected 2026-10-23: said "**3**"; L4-14, L8-7.) | decline | ? | **2027-01** | AR DHS |
+| **Iowa** | **2026-12-01** | ? | **2** since the last renewal or application (Corrected 2026-10-23: said "?"; L4-15.) | ? | **none** | **2027-01**; Iowa HHS says it "may require" medical documentation for medical frailty (Added 2026-10-23; L4-13.) | Iowa HHS |
 | Georgia | already live (Pathways § 1115); converts 2027-01-01. **Waiver expires 2026-12-31** | ? | ? | ? | ? | ? | GA DCH |
-| Idaho | 2027-01-01 | **3** | ? | ? | ? | **2027-01** (6-mo attestation for new enrollees) | KFF, legislation |
-| Indiana | 2027-01-01 | **3** | every month | **quarterly** | **none** | **2027-01** | KFF, legislation |
-| New Hampshire | 2027-01-01 | 1 | every month | **quarterly** | ? | ? | KFF, enacted text |
-| North Carolina | 2027-01-01 | ? | ? | ? | ? | **2027-01** (statute bars attestation as sole evidence) | Politico |
-| North Dakota | 2027-01-01 | ? | ? | ? | ? | **2027-01** | Politico |
-| Ohio | 2027-01-01 | ? | ? | ? | ? | **2027-01** | Politico |
-| Utah | 2027-01-01 | ? | ? | ? | ? | **2027-01** | Politico |
-| Missouri | 2027-01-01 | ? | ? | ? | **no unemployment event** | ? | MO DSS FAQ |
-| Oklahoma | 2027-01-01 | ? | ? | ? | **no unemployment or disaster event** | ? | KFF |
-| New York | 2027-01-01 | ? | ? | ? | **no medical-travel event** | ? | KFF |
+| Idaho | 2027-01-01 | **3** | **3** of the 6-month period (Corrected 2026-10-23: said "?"; L4-14, L4-15.) | ? | ? | **2027-01** (6-mo attestation for new enrollees) | KFF, legislation; ID DHW for the 2026-10-23 value |
+| Indiana | 2027-01-01 | **3** | **3** before each renewal (Corrected 2026-10-23: said "every month"; L4-14, L4-15.) | **quarterly** | **none** | **2027-01** | KFF, legislation; IN FSSA partner toolkit for the 2026-10-23 value |
+| New Hampshire | 2027-01-01 | 1 | every month | **at least quarterly** (Corrected 2026-10-23: said "**quarterly**"; L4-14.) | **none** without the oversight committee's approval (Corrected 2026-10-23: said "?"; L4-18.) | RSA 126-AA:6 accepts medical frailty only on a clinician's certification; from when is not confirmed (Corrected 2026-10-23: said "?"; L4-13.) | KFF, enacted text (RSA 126-AA:6) |
+| North Carolina | 2027-01-01 | ? | **3** of 6 (Corrected 2026-10-23: said "?"; L4-15.) | ? | ? | **2027-01** (statute bars attestation as sole evidence) | Politico, whose report of 2026-08-09 the research of 2026-10-16 did not open; AP (September 2026) also names North Carolina (Added 2026-10-23; L4-13, L8-6.); NC Medicaid for the 2026-10-23 value |
+| North Dakota | 2027-01-01 | ? | ? | ? | ? | **2027-01** | Politico, the row's only source, whose report of 2026-08-09 the research of 2026-10-16 did not open (Added 2026-10-23; L4-13, L8-6.) |
+| Ohio | 2027-01-01 | ? | ? | ? | ? | **2027-01** | Politico, whose report of 2026-08-09 the research of 2026-10-16 did not open; AP (September 2026) also names Ohio (Added 2026-10-23; L4-13, L8-6.) |
+| Utah | 2027-01-01 | ? | ? | ? | ? | **2027-01** | Politico, the row's only source, whose report of 2026-08-09 the research of 2026-10-16 did not open (Added 2026-10-23; L4-13, L8-6.) |
+| Missouri | 2027-01-01 | ? | ? | ? | **none**: no short-term hardship exception (Corrected 2026-10-23: said "**no unemployment event**"; L4-9, L4-18.) | ? | MO DSS FAQ |
+| Oklahoma | 2027-01-01 | ? | ? | ? | **all four**; OHCA says the two county-based events, disaster and unemployment, await federal approval (Corrected 2026-10-23: said "**no unemployment or disaster event**"; L4-10, L8-15.) | ? | KFF; OHCA for the 2026-10-23 value |
+| New York | 2027-01-01 | ? | ? | ? | **all four**, medical travel included (Corrected 2026-10-23: said "**no medical-travel event**"; L4-11, L8-15.) | ? | KFF; NY State of Health for the 2026-10-23 value |
 | Tennessee | 2027-01-01 (§ 1115) | ? | ? | ? | ? | ? | TennCare notices |
+
+Kentucky has no row. KRS 205.5371, as amended by 2026 Ky. Acts ch. 179 and in effect since 2026-04-14, has applicants
+show the month before they apply and enrollees 3 months since their last determination, where the federal default
+shows 1, and bars the cabinet from seeking a good-faith effort exemption without the General Assembly. (Added
+2026-10-23; L3-17, L4-15.)
 
 **Aggregate from the KFF survey of all 44:** 34 verify every six months at renewal · 36 use a 1-month
 application lookback · 34 use 1 month at renewal · **29 plan at least one hardship exception, and all but
-three of those take all four.**
+three of those take all four.** Those three answers predate the interim final rule, whose preamble gives a State
+no option to make one or only some of the events the exclusive basis for the exception (91 FR 33380); see the note
+above the tracker. (Added 2026-10-23; L8-15; read in docs/domain/cms-2454-ifc/2026-11094.xml:1346.)
 
 **In scope (44 = 43 States + DC):** the expansion States and DC, **plus Georgia, Tennessee, and Wisconsin**
 (§ 1115), plus § 1115 populations inside **Hawaii, Massachusetts, New York, Oregon, and Utah**.
@@ -317,15 +343,26 @@ territories** (§ 435.550).
 
 ## Open data gaps
 
-1. **Exact lookback values** for Idaho, Indiana, New Hampshire, Arkansas — reported as "more than one"
-   without specifics.
-2. **Hardship elections.** No State's election is confirmed. This is the largest gap, because it
-   determines whether an entire feature is relevant to a given user.
+1. **Exact lookback values** for Idaho, Indiana, New Hampshire, Arkansas are now published by State sources:
+   Idaho 3 months at application and 3 in the 6-month period; Indiana 3 before application and 3 before each renewal
+   or quarterly review; New Hampshire 1 at application, with checks at least quarterly; Arkansas 1 at application
+   and 1 in each 6 months. The tracker carries them. (Corrected 2026-10-23: said "— reported as "more than one"
+   without specifics."; L4-14, L8-7.)
+2. **Hardship elections.** State sources now give some: Missouri uses no short-term hardship exception, New
+   Hampshire's statute allows none without the oversight committee's approval, and Oklahoma and New York list all
+   four events. (Corrected 2026-10-23: said "No State's election is confirmed."; L4-18, L4-9, L4-10, L4-11.) This is
+   the largest gap, because it determines whether an entire feature is relevant to a given user.
 3. **Medically frail condition lists.** Every State must **develop** one — § 435.554(c)(5)(ii) requires it be auditable, regularly revised, and paired with an off-list request path, but does **not** require publication. None catalogued, and a user told to ask for the list may find their State has not published it. *(Corrected 2026-09-02: this said "publish".)*
 4. **Reasonably-predictable-changes elections.** CMS says most States elect it and most elect both
    directions, but per-State values are unknown — and this changes the seasonal calculation outright.
-5. **SPA / State plan election material.** CMS said the template was "currently under development."
-   That document, once published, is the authoritative source for most of this table.
+5. **SPA / State plan election material.** CMS has published the MACPro implementation guide for the "Community
+   Engagement for Certain Adults" State plan page (PDF created 2026-08-04,
+   https://www.medicaid.gov/resources-for-states/downloads/macpro-ig-community-engagement-certain-adults.pdf). It
+   holds the elections C.1 short-term hardship, D.2 months before application, D.4 months at renewal, E.1 to E.3 more
+   frequent verification, and F.3 the "unable to verify" option at renewal. The guide is not stored in the corpus. A
+   State's SPA on that page, once approved, is the authoritative source for most of this table. (Corrected
+   2026-10-23: said "CMS said the template was "currently under development."" and "That document, once published,
+   is the authoritative source for most of this table."; L2-6, L4-6, L6-2.)
 
 ## How to add a State
 

@@ -20,9 +20,10 @@ There is no app code in this repository yet. [hourkeep.app](https://hourkeep.app
   and Code for America's service blueprints. Where the analysis and the regulation disagree, the regulation wins. A
   verification pass on 2026-10-16 found errors in the analysis files. They are corrected a topic at a time, as each
   topic's rows land in `docs/domain/community-engagement-extract.md`, which is the authority wherever it has rows;
-  notices of noncompliance and fair hearings came first. Each row quotes a source stored in `docs/domain/sources/`,
-  which `docs/domain/sources/MANIFEST.json` lists with its hash. The research behind it is in
-  `docs/domain/research/`.
+  notices of noncompliance and fair hearings came first. Ahead of the other topics, a fix before increment 2.1 corrects
+  the ones the research ledger rates dangerous and those about an event or a publication that no topic covers. Each row
+  quotes a source stored in `docs/domain/sources/`, which `docs/domain/sources/MANIFEST.json` lists with its hash. The
+  research behind it is in `docs/domain/research/`.
 - `docs/review/` holds the review pages, where people who know Medicaid policy can check each rule HourKeep relies on
   and comment on it. Start at `docs/review/README.md`. The pages are generated from the rows by
   `scripts/build-review-pages.py`.

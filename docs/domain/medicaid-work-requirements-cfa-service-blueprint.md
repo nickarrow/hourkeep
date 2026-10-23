@@ -12,9 +12,9 @@ This service blueprint documents the complete process flow for implementing Medi
 
 **Effective Date:** January 1st, 2027 (or earlier if state chooses)
 
-**Scope:** Medicaid expansion adults will have work requirements. The policy carves out exemptions so that only adults who receive Medicaid as a result of Medicaid expansion after the Affordable Care Act have to meet work requirements.
+**Scope:** Medicaid expansion adults will have work requirements. So will people enrolled in a § 1115 demonstration that provides minimum essential coverage who are at least 19 and under 65, not pregnant, not entitled to or enrolled in Medicare Part A or enrolled in Part B, and not otherwise eligible under the State plan, unless they are excluded (42 CFR 435.551(b)); see the note below. (Corrected 2026-10-23: said "The policy carves out exemptions so that only adults who receive Medicaid as a result of Medicaid expansion after the Affordable Care Act have to meet work requirements."; L8-10; read in docs/domain/cms-2454-ifc/2026-11094.xml:3509 to :3515.)
 
-> **Note:** Work requirements are irrelevant for the 10 states that chose not to expand Medicaid: TX, WY, KS, WI, TN, MS, AL, GA, SC, FL.
+> **Note:** The requirement also reaches people enrolled in a § 1115 demonstration that provides minimum essential coverage (42 CFR 435.551(b)), so a State that did not expand Medicaid can still have people subject to it. As of May 2026, CMS counts 43 States and the District of Columbia, 44 jurisdictions, covering people subject to it (91 FR 33429). CMS's slides on the interim final rule (slide 9) list, to date, demonstration-only populations subject to it in Georgia (Pathways and ESI/HIPP), Tennessee (the TennCare III parent and caretaker relative expansion) and Wisconsin (BadgerCare childless adults), three of the 10 States this note named. The research did not verify that the other seven have none. (Corrected 2026-10-23: said "Work requirements are irrelevant for the 10 states that chose not to expand Medicaid: TX, WY, KS, WI, TN, MS, AL, GA, SC, FL."; L8-10; read in docs/domain/cms-2454-ifc/2026-11094.xml:2510 and :3511.)
 
 ### Work Requirement Criteria
 
@@ -49,13 +49,13 @@ People are exempt from work requirements if they are:
 
 2. **Family/Caregiving:**
    - Pregnant or postpartum
-   - Living in a household with a dependent 13 or younger
+   - Parent, guardian, caretaker relative or family caregiver of a dependent child, a child 13 years of age or under who relies on another individual for care (42 CFR 435.554(c)(3)). A family caregiver must also give the child help that is regular and not solely incidental while living with them or being their relative, or otherwise give at least 80 hours of such help a month (42 CFR 435.554(c)(3)(i)). Living in the same household is not enough. (Corrected 2026-10-23: said "Living in a household with a dependent 13 or younger"; L8-10; read in docs/domain/cms-2454-ifc/2026-11094.xml:3644 to :3646 and :3670 to :3674.)
    - Parent or guardian of someone with a disability
 
 3. **Health/Disability:**
    - On (or entitled to) Medicare
    - Eligible for non-MAGI Medicaid
-   - Disabled veteran
+   - Veteran with a temporary or permanent disability from the Department of Veterans Affairs rated as 100 percent (total) under 38 U.S.C. 1155 (42 CFR 435.554(c)(4)). That includes a veteran paid at the 100 percent rate for individual unemployability (TDIU) whose combined rating is below 100 percent (91 FR 33372). Any other rating below 100 percent does not qualify. (Corrected 2026-10-23: said "Disabled veteran"; L8-10; read in docs/domain/cms-2454-ifc/2026-11094.xml:3676 and :991.)
    - Medically frail/special needs as defined by the Secretary of HHS, including:
      - Blind
      - Disabled
@@ -101,7 +101,7 @@ People are exempt from work requirements if they are:
 Age and household member exemptions can often be assessed just from the application:
 
 - 18 or younger or 65 or older
-- Living in a household with someone 13 or younger
+- Parent, guardian, caretaker relative or family caregiver of a dependent child 13 or under (42 CFR 435.554(c)(3)), with a family caregiver's tests as under Exemption Categories above. Living in the same household is not enough. (Corrected 2026-10-23: said "Living in a household with someone 13 or younger"; L8-10; read in docs/domain/cms-2454-ifc/2026-11094.xml:3670 to :3674.)
 - Parent or guardian of someone with a disability
 - Pregnant or postpartum
 
