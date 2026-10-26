@@ -2,7 +2,7 @@
 
 Date: 2026-10-26
 
-Status: Proposed
+Status: Accepted on 2026-10-26, decided by the owner
 
 ## Context
 
