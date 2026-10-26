@@ -69,12 +69,14 @@ AI agent from reading that folder, which each person sets up on their own machin
 
 HourKeep is licensed under the GNU General Public License, version 3 or later, so anyone may use, change or sell it,
 and nobody who passes it on may close it. See `LICENSE` and `docs/decisions/0002-keep-gpl-3.0-or-later.md`. The
-bootstrap files carry the MIT License, reproduced in `NOTICE.md`.
+bootstrap files carry the MIT License, reproduced in `NOTICE.md`. `CODE_OF_CONDUCT.md`, adapted from the Contributor
+Covenant, keeps its license, CC BY-SA 4.0.
 
 ## Problems, questions and security
 
 Open an issue for a problem or a question. To propose a change, start with [`CONTRIBUTING.md`](CONTRIBUTING.md).
-Report a security problem privately, through this repository's Security tab and "Report a vulnerability".
+Report a security problem privately, through this repository's Security tab and "Report a vulnerability". Everyone
+taking part follows the [code of conduct](CODE_OF_CONDUCT.md).
 
 Comments on the policy rows are welcome, through the links on the review pages in `docs/review/` or at
 [policy@hourkeep.app](mailto:policy@hourkeep.app). Never include anything about a real person's case.
