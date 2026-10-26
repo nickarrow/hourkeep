@@ -46,9 +46,10 @@ python3 scripts/check-corpus.py
 ```
 
 The first runs the checker's tests, which take a few minutes. The second checks the corpus itself and names each
-problem it finds. Run both after any change to `docs/domain/`, the skill, the checker or its tests. The Formats
-section of `docs/epics/0001-policy-corpus/design.md` sets the form each problem is measured against. Neither command
-can tell whether a row says what its source means; review does that.
+problem it finds. Run both after any change to `docs/domain/`, the skill, the checker or its tests. GitHub runs both
+on every push and pull request, under Python 3.9 and a current Python. The Formats section of
+`docs/epics/0001-policy-corpus/design.md` sets the form each problem is measured against. Neither command can tell
+whether a row says what its source means; review does that.
 
 ## The first version
 

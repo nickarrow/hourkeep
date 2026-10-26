@@ -112,7 +112,9 @@ python3 scripts/check-corpus.py
 The first rebuilds the review pages from the rows, the domain skill, the state facts in `docs/domain/states/` and
 `docs/domain/open-questions.md`. The checker fails until the pages match them, so commit any page the rebuild changes.
 The tests take a few minutes. The last two must pass under Python 3.9 and under a current Python before a change
-merges. Run them under both if you have both, and say in the pull request which you ran.
+merges. Run them under both if you have both, and say in the pull request which you ran. GitHub also runs them, under
+Python 3.9 and a current Python, on every push to this repository and on every pull request without a merge conflict.
+An outside contributor's run starts once the owner approves it, and its result shows on the pull request.
 
 ## Open the pull request
 
