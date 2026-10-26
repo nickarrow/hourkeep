@@ -72,8 +72,8 @@ bootstrap files carry the MIT License, reproduced in `NOTICE.md`.
 
 ## Problems, questions and security
 
-Open an issue for a problem or a question. Report a security problem privately, through this repository's Security tab
-and "Report a vulnerability".
+Open an issue for a problem or a question. To propose a change, start with [`CONTRIBUTING.md`](CONTRIBUTING.md).
+Report a security problem privately, through this repository's Security tab and "Report a vulnerability".
 
 Comments on the policy rows are welcome, through the links on the review pages in `docs/review/` or at
 [policy@hourkeep.app](mailto:policy@hourkeep.app). Never include anything about a real person's case.

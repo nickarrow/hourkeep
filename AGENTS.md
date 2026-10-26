@@ -188,3 +188,11 @@ corpus is consistent and names each problem when it is not. It cannot tell wheth
 review does that. The tests build a git repository for each test, so give that command a timeout of several minutes.
 A PDF's text extraction is made on macOS with `swift scripts/extract-pdf-text.swift <pdf> > <txt>`; the redirect
 empties `<txt>` before the script runs, so after a failed run, restore it from git.
+
+Each increment's Done entry, and the commit message for work done outside an increment, such as a fix, names every
+judgment call an agent made without asking, so the person can overrule it, or says there were none (decision record
+0009).
+
+HourKeep's maintainer is Nick Aretakis (@nickarrow), and where its files say "the owner", they mean him, even in a
+fork. If this checkout is a fork, or you are working for anyone other than him, read `CONTRIBUTING.md` before you
+start, and follow it where it and this file differ on git or on records (decision record 0008).
