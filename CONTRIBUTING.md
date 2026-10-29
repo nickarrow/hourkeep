@@ -34,8 +34,8 @@ For anything bigger, open an issue first and say what you want to change and why
 pull request. For a change to any of these, wait for the owner's answer before you start, because the owner decides
 them:
 
-- how the project is run: `AGENTS.md`, `DATA-GUARD.md`, `HOW-TO-WORK.md`, `missions/`, `.kiro/`, `.github/` and
-  `docs/decisions/`
+- how the project is run: `AGENTS.md`, `CODE_OF_CONDUCT.md`, `DATA-GUARD.md`, `HOW-TO-WORK.md`, `missions/`, `.kiro/`,
+  `.github/` and `docs/decisions/`
 - what HourKeep is and the order it is built in: `docs/design.md` and `docs/epics/`
 - the policy corpus in `docs/domain/`, and anything a person on Medicaid will read
 
@@ -112,7 +112,9 @@ python3 scripts/check-corpus.py
 The first rebuilds the review pages from the rows, the domain skill, the state facts in `docs/domain/states/` and
 `docs/domain/open-questions.md`. The checker fails until the pages match them, so commit any page the rebuild changes.
 The tests take a few minutes. The last two must pass under Python 3.9 and under a current Python before a change
-merges. Run them under both if you have both, and say in the pull request which you ran.
+merges. Run them under both if you have both, and say in the pull request which you ran. GitHub also runs them, under
+Python 3.9 and a current Python, on every push to this repository and on every pull request without a merge conflict.
+An outside contributor's run starts once the owner approves it, and its result shows on the pull request.
 
 ## Open the pull request
 
@@ -132,9 +134,13 @@ owner may push it to your branch and say so in a comment; otherwise you'll be as
 Report a security problem privately, through this repository's Security tab and "Report a vulnerability", never in an
 issue.
 
+Everyone taking part in HourKeep's spaces follows its [code of conduct](CODE_OF_CONDUCT.md). Report a breach of it to
+conduct@hourkeep.app.
+
 ## License
 
 HourKeep is licensed under the GNU General Public License, version 3 or later, in [`LICENSE`](LICENSE). By
 contributing, you agree that your contribution is licensed under it too. The files that came from the bootstrap carry
 its MIT License, reproduced in [`NOTICE.md`](NOTICE.md), and a change to one of them is licensed under the MIT License
-as well, so it can go back to the bootstrap.
+as well, so it can go back to the bootstrap. `CODE_OF_CONDUCT.md` keeps the Contributor Covenant's license, CC BY-SA
+4.0, and so does a change to it.

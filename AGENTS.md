@@ -189,6 +189,9 @@ review does that. The tests build a git repository for each test, so give that c
 A PDF's text extraction is made on macOS with `swift scripts/extract-pdf-text.swift <pdf> > <txt>`; the redirect
 empties `<txt>` before the script runs, so after a failed run, restore it from git.
 
+GitHub runs both checks on every push and every pull request (`.github/workflows/checks.yml`, decision record 0010).
+After a push, look at the run, with `gh run list` for example, and fix a red check on `main` before the next change.
+
 Each increment's Done entry, and the commit message for work done outside an increment, such as a fix, names every
 judgment call an agent made without asking, so the person can overrule it, or says there were none (decision record
 0009).

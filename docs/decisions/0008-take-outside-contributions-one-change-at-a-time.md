@@ -2,7 +2,7 @@
 
 Date: 2026-10-26
 
-Status: Accepted on 2026-10-26, decided by the owner
+Status: Accepted on 2026-10-26, decided by the owner; superseded in part by 0011, for the code of conduct
 
 ## Context
 

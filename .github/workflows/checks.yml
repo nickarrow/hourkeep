@@ -1,0 +1,38 @@
+# Runs the corpus checks AGENTS.md asks for, the checker's tests and the checker itself, under Python 3.9, the oldest
+# the checker supports, and under Python 3.14, on every push, on every pull request, and by hand. It asks only to read,
+# and changes nothing on GitHub. docs/decisions/0010-run-the-corpus-checks-on-github.md says why, and why each action
+# is pinned to a commit.
+name: Corpus checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    name: Python ${{ matrix.python }}
+    # Pinned rather than ubuntu-latest, which becomes Ubuntu 26.04 in November 2026: setup-python installs only the
+    # versions built for an image, and Python 3.9 has builds for 22.04 and 24.04 and none for 26.04.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.9", "3.14"]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Show which Python runs the checks
+        run: python3 --version
+      - name: Run the checker's tests
+        run: python3 -m unittest discover -s tests
+      - name: Run the checker
+        run: python3 scripts/check-corpus.py
