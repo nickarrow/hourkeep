@@ -13,7 +13,7 @@ We also write for:
 - caseworkers, who read the package
 - Medicaid policy experts, who read the review pages
 
-(`docs/design.md`, "Who it is for")
+(`docs/design.md`, "Who it is for"; for the policy experts, decision record 0005)
 
 When these readers need different words, write for the person on Medicaid.
 
@@ -23,10 +23,10 @@ pages. It adds to "How to write it down" in `AGENTS.md`. Where it differs from t
 
 Where a rule comes from outside HourKeep, it names its source:
 
-- the eAPD content guide, written by the CMS and 18F team that built the Advanced Planning Document app:
+- the eAPD content guide, written by the CMS and 18F team that built the Advance Planning Document app:
   [`eapd-wiki/Content-guide.md`](https://github.com/nickarrow/eapd/blob/ae50d8da9f766bdd5d1cccf977e9badb6764097a/eapd-wiki/Content-guide.md),
   in the public domain
-- the [18F content guide](https://guides.18f.org/content-guide/)
+- the [18F content guide](https://guides.18f.org/content-guide/), archived since January 20, 2025
 - [WCAG 2.2](https://www.w3.org/TR/WCAG22/)
 - a HourKeep document
 
@@ -55,8 +55,9 @@ The site at hourkeep.app already writes this way:
 > on the letter. Before that date, do what the letter asks, or contact the office if you can't or aren't sure how. If
 > you can't find a date, call and ask.
 
-Aim for a sixth to eighth grade reading level. Use a readability score to find hard sentences. Test with real readers to
-learn whether they understand (`docs/design.md`, "What counts as working").
+Aim for a sixth to eighth grade reading level (`docs/design.md`, "Who it is for"). Use a readability score to find hard
+sentences (HourKeep's own), and test with real readers to learn whether they understand (`docs/design.md`, "What
+counts as working").
 
 ## Keep each rule's meaning
 
@@ -73,7 +74,8 @@ Each rule HourKeep explains comes from a row in `docs/domain/community-engagemen
 - Use the row's words for must, may and should. Keep every deadline, condition, exception and appeal the row includes.
 - Check outside wording before you reuse it. Check wording from CMS or a state against the row. CMS's state pages say
   people "already meet" SNAP work requirements. Colorado's pages say people are "complying with" them. The rule says
-  "subject to" (`docs/design.md`, "What it will not do").
+  "not exempt from" a work requirement (row `snap-household-member-not-exempt-from-work-requirement-excluded`;
+  `docs/design.md`, "What it will not do").
 
 The prototype in [pull request #1](https://github.com/nickarrow/hourkeep/pull/1) had two sentences that did not match
 their rows:
@@ -99,11 +101,11 @@ HourKeep does not say whether the rule applies to a person or whether they have 
 
 - Show each exclusion as a statement the person can tap, with no Yes or No buttons. The design puts them all on one
   screen (Proposed).
-- If a person skips an exclusion, save and print nothing about it.
+- If a person skips an exclusion, save and print nothing about it (Proposed).
 - Do not ask a person to say they are not meeting the requirement. The state can use that answer against them
-  (`docs/design.md`, "What may mean the rule does not apply").
+  (`docs/design.md`, "What may mean the rule does not apply"; Proposed).
 - Give every number one of the three labels in `docs/design.md`:
-    - Computed: show the formula and the citation, such as `38 + 41 + 6 = 85`.
+  - Computed: show the formula and the citation, such as `38 + 41 + 6 = 85`.
   - Conditional: name the state's choice the number depends on.
   - Deferred: never computed. Ask the screening question and name who to ask.
 - Whether the rule applies to someone, and whether they met it, is always Deferred.
@@ -114,8 +116,8 @@ HourKeep does not say whether the rule applies to a person or whether they have 
 - Ask what the letter says. States give the same kind of letter different names (`docs/design.md`, "The letter").
 - Show the deadline printed on the letter first, every time. HourKeep also counts the days to check that date. If the
   two dates differ, say so. Tell the person to meet the printed date and to contact the office that sent the letter.
-- Write `Look for a deadline on the letter`. A notice of noncompliance must have a deadline. Other letters may not
-  (`public/index.html`, source comment).
+- Write `Look for a deadline on the letter`. A notice of noncompliance must clearly state its deadline (row
+  `notice-states-the-deadline`). Other letters may have none (`public/index.html`, source comment).
 
 ### Name the requirement
 
@@ -125,15 +127,15 @@ L2-16).
 
 ## Style
 
-Where this standard and `AGENTS.md` say nothing, follow the AP Stylebook. This standard differs from AP in two places:
-dates spell out the month, and screens use numerals for every number. Proposed.
+Where this standard and `AGENTS.md` say nothing, follow the AP Stylebook. This standard differs from AP in three places:
+dates spell out the month, every number is a numeral and there are no em dashes.
 
 ### Acronyms and abbreviations
 
 - Spell out an acronym the first time it appears on a screen. If it appears only once or twice, use the full words
   (eAPD, "Acronyms and abbreviations").
-- The first time SNAP appears, add "also called food stamps." Say "Medicaid" or "the federal government" in place of CMS
-  on screens. HourKeep's own.
+- The first time SNAP appears, add "also called food stamps." On screens, write "the federal government" in place of
+  CMS. Where the state acts, write "your state Medicaid office," since "Medicaid" alone can mean either. HourKeep's own.
 
 ### Capitalization
 
@@ -158,15 +160,17 @@ dates spell out the month, and screens use numerals for every number. Proposed.
 
 ### Punctuation and text styling
 
-- Leave out the comma before the last "and" or "or" in a simple list, as AP and the rest of HourKeep's writing do:
+- Leave out the comma before the last "and" or "or" in a simple list, as AP does:
   `hours, weeks and months`. Keep it when an item has its own "and," or when the list would be unclear without it.
-- Put one space after a period.
-- Use "and" in place of an ampersand.
-- Use curly quotation marks and apostrophes (`‘’` and `“”`) on the screens, in the package and on the site. The rows
-  quote their sources with straight marks, and the review pages show them as they are.
+- Put one space after a period (eAPD, "Punctuation and text styling").
+- Avoid ampersands (eAPD, "Punctuation and text styling"). Write "and" instead.
+- Use curly quotation marks and apostrophes (`‘’` and `“”`) on the screens, in the package and on the site (eAPD,
+  "Punctuation and text styling"). The rows quote their sources with straight marks, and the review pages show them as
+  they are.
 - Call a button or step by its exact name on screen (18F, ["Technical and interface
   writing"](https://guides.18f.org/content-guide/our-style/technical-and-interface-writing/)). Put the name in quotation
-  marks. Do not use italics (GOV.UK, ["A to Z of GOV.UK
+  marks. That is HourKeep's own: eAPD used italics, and GOV.UK uses bold when the text tells the reader to select a
+  button. Do not use italics (GOV.UK, ["A to Z of GOV.UK
   style"](https://www.gov.uk/guidance/style-guide/a-to-z-of-gov-uk-style)).
 - Use a comma or a period where you might use an em dash (`AGENTS.md`).
 
@@ -189,7 +193,7 @@ An instruction comes before most fields. It has four parts. Keep the parts separ
 
 - **Heading** (`heading`). Names a part of the screen in a few words.
 - **Short instruction** (`short`). One sentence that tells the person what to do with the fields below it. It appears in
-  bold. Leave out "please" (eAPD, citing the CMS Design System).
+  bold. Leave out "please": the eAPD guide, citing the CMS Design System, says to limit it, and HourKeep goes further.
 - **Detail** (`detail`). One or two sentences that explain how, or give an example.
 - **Help text** (`helpText`). Useful information that is separate from the instruction. It appears next to the field or
   step it is about, in a style that sets it apart from the text around it.
@@ -206,14 +210,16 @@ An instruction comes before most fields. It has four parts. Keep the parts separ
 
 - Use sentence case. Name the action and the thing it acts on: `Print this package`.
 - If a button takes the person to another step, name that step on the button. HourKeep's own.
-- Write link text that names the page it opens, such as `Find your state's Medicaid phone number` (WCAG 2.2, 2.4.4).
+- Write link text that names the page it opens, such as `Find your state's Medicaid phone number` (WCAG 2.2,
+  2.4.4 and 2.4.9, the second at Level AAA).
 
 ### Messages
 
-Every error, warning and confirmation tells the person three things: what happened, what it means for them and what to
-do next. A confirmation describes what HourKeep did, such as `Saved on this device`. HourKeep sends nothing, so do not
-say it "sent," "submitted" or "received" anything. A row may still use "received" for the notice, which the rule says is
-considered received 5 days after its date (`docs/design.md`, "Keeping records safe").
+Every error and warning tells the person three things: what happened, what it means for them and what to do next. A
+confirmation says what HourKeep did, such as `Saved on this device`. HourKeep sends nothing, so do not say it "sent,"
+"submitted" or "received" anything (`docs/design.md`, "Keeping records safe"). A row may still use "received" for the
+notice. The rule considers a notice of noncompliance received 5 days after the date on it, unless the person shows they
+did not receive it within those 5 days (row `notice-presumed-received-after-5-days`; `docs/design.md`, "The letter").
 
 ### Screen readers
 
@@ -249,9 +255,9 @@ printing a phrase in its place. Listed as unanswered, a skipped question would l
 HourKeep will have Spanish at launch. Write every string so it can be translated (`docs/design.md`, "Spanish").
 
 - Use "usted," as `public/index.html` does.
-- Call the requirement "requisitos de trabajo." CMS's Spanish research advises against "participación comunitaria," as
-  its English research does against "community engagement." Match what Spanish letters actually say, once someone has
-  read the Spanish.
+- Call the requirement "requisitos de trabajo." CMS's Spanish summary of the same research advises against
+  "compromiso comunitario" and "participación comunitaria," as the English research does against "community
+  engagement" (research L2, E7). Match what Spanish letters actually say, once someone has read the Spanish.
 - Translate the meaning of the rule. Then check the Spanish against the row. Colorado's Spanish letter uses "al menos a
   tiempo parcial" for "at least half-time." The Spanish phrase means "at least part time." A person reading it could
   count less school than the rule requires (`docs/design.md`, "What it will not do", research L5-19).
@@ -275,4 +281,4 @@ HourKeep will have Spanish at launch. Write every string so it can be translated
   "What counts as working"; WCAG 2.2, 1.4.4).
 - Use automated checks to find wording problems. Test with people to learn whether they understand the screen.
 - The final test is whether people at a partner organization can use HourKeep without training (`docs/design.md`, "What
-  counts as working").
+  counts as working", where which organization, and when, is Open).
