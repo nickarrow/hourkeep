@@ -1002,40 +1002,107 @@ plan's dated line on pointers into the epic design as well.
 
 ## 2.2 People who are medically frail or have special medical needs
 
+(Revised on 2026-10-29, before any of its work began, after Massachusetts v. Oz was decided that day, as decision
+record 0013 records. The section as first written is at commit 5684f66.)
+
 ### Delivers
 
-- Before any row, the docket in Massachusetts v. Oz checked again, from where increment 2.1's check left it, and the
-  docket in Taylor v. Kennedy, D. Md. 1:26-cv-03705, checked for the first time (decision record 0007), with the results
-  in the Done entry and the skill's watch list. The outcome rule is increment 2.1's: an order on the provisions the
-  cases challenge stops row work on them until the owner decides how to go on; none, and the work goes on, with each
-  query, its date and RECAP's lag recorded in the Done entry.
-- Rows for § 435.554(c)(5) and § 435.557(f), the second from the stored correction. About 23 rows, decision record
-  0006's inference from 919 words of regulation text. § 435.557(f)(2), the privacy duty, covers data used to verify
-  participation in a drug addiction or alcoholic treatment and rehabilitation program as well as medical frailty, so
-  its rows also carry its share for § 435.554(c)(8), increment 2.1's exclusion, and say so.
-- A decision, made before any row is drafted and recorded in the Done entry, on whether CMS's frailty deck that L2-8
-  cites is stored and rowed. It is stored and rowed only for an operative claim that no higher source carries; the
-  Done entry records the claim either way, and the higher source that carries it where one does. If it is stored, it
-  is stored as served with a manifest entry and a `.gitattributes` line. L2-8 asks for a change to
-  `state-options.md`'s schema only if that schema survives, and it does not, so no schema changes.
+- The docket check that decision record 0007 sets, run on 2026-10-29 through CourtListener's search API. Massachusetts
+  v. Oz, D. Mass. 1:26-cv-12962, was decided that day: entry 147, the memorandum and order on the cross-motions for
+  summary judgment; entry 148, the order of vacatur and enjoinment; and entry 149, the judgment, which dismissed the
+  case. Taylor v. Kennedy, D. Md. 1:26-cv-03705, checked for the first time, holds no order on a challenged provision.
+  The owner decided how to go on the same day: this section as revised. Each query, its time and RECAP's lag go in the
+  Done entry and the result in the skill's watch list, and both dockets are checked again before the Done entry, for an
+  appeal, a stay or a new order.
+- The three orders stored as sources, each a PDF with its text extraction, under `docs/domain/sources/courts/`, with
+  manifest entries and the command that fetched each from CourtListener's RECAP archive.
+- Decision record 0013 carried out: a sentence in the epic design under "What has to be true of every rule", the
+  folder `courts/` among the Formats' publishers, and an item in the skill's Precedence.
+- Rows that say what is in force after the ruling, as decision record 0013 sets out:
+  - § 435.554(c)(5) and (c)(5)(i) as printed, and a `court` row for the vacatur of the phrase "whose physical,
+    mental, or other behavioral health condition significantly impairs the individual's ability to comply with the
+    community engagement requirement in this subpart and is an individual" and the injunction, quoting entry 148 and
+    citing entry 147's reasoning, that the five groups the statute names are a floor CMS had no authority to narrow.
+    Its Note names the preamble statements that explain the vacated phrase, 91 FR 33373 among them, which no row
+    carries.
+  - (c)(5)(i)(A) to (E), each as printed: (B) keeps its stable recovery, which Taylor v. Kennedy still challenges, and
+    (D) its activities of daily living, which the statute itself sets.
+  - (c)(5)(ii) and (ii)(A) to (C): the list of conditions the state must develop, keep auditable and revise, and the
+    process for a person whose condition is not on it to ask to be considered.
+  - § 435.557(f)(1), (i), (ii), (ii)(A), (ii)(B) and (iii), from the stored correction and as written, each Note saying
+    that the court upheld the 12-month window and the limit of one sworn statement per period of enrollment, and that
+    Taylor v. Kennedy still challenges both. § 435.557(f)(2), the privacy duty, naming each law it lists, none of them
+    stored, as its Note says; it also covers data used to verify participation in a drug addiction or alcoholic
+    treatment and rehabilitation program, so its rows carry that share for § 435.554(c)(8), increment 2.1's exclusion,
+    and say so.
+  - A `court` row for the six months, quoting entry 148(c), which bars CMS from penalizing the plaintiff states for any
+    errors or delays in implementing the rule for six months from the order, and entry 147's pages 15 and 16, which
+    describe a stay of enforcement for decisions on medical frailty, and picking neither.
+  - Preamble rows where the preamble adds to a provision still in force, such as its examples of disabling mental
+    disorders, moderate or severe bipolar disorder among them (91 FR 33375), and that missing claims cannot defeat the
+    exclusion (91 FR 33406). None rests on the vacated phrase.
+- SSA § 1614, which § 435.554(c)(5)(i)(A) incorporates for "blind or disabled", stored as govinfo serves 42 U.S.C.
+  1382c in the United States Code's latest edition, with its command. Rows for § 1614(a)(2), blindness, and for each
+  paragraph of § 1614(a)(3) that can reach a person aged 19 to 64, with a paragraph and its subparagraphs, or two
+  paragraphs stating one rule, as one row. The build lists the cut, likely (C) and (I), which concern children, and
+  (F), which reaches only people found disabled under a state plan for December 1973, in the first row's Note, and the
+  review checks it.
+- Three open questions: whether the vacatur reaches the states that did not sue, in CMS's practice, since entry 148
+  limits only its injunctions to the plaintiffs and CMS has said nothing; which of entry 148(c) and entry 147 describes
+  the six months; and the cross-reference of § 435.554(c)(5)(ii) and (ii)(A) to "paragraphs (a)(5)(i)(A) through (E)",
+  which do not exist, where the preamble names § 435.554(c)(5)(i)(A) through (E) (ledger L1-7).
+- CMS's frailty deck, "Implementing Medical Frailty Under Community Engagement", stored as medicaid.gov serves it, a
+  33-page PDF with its text extraction under `docs/domain/sources/cms/`, with a manifest entry and the command that
+  fetched it; no `.gitattributes` line, since `docs/domain/sources/** -text` covers the folder. Agency guidance rows
+  only for its three claims that no higher source carries and that do not rest on the vacated phrase: checking first
+  the exclusions a state can see in its own records (page 10); the documents a state may seek when its data are not
+  enough (page 20); and stable recovery as 5 or more consecutive years, where the regulation says 5 or more years
+  (page 31). The Done entry records the deck's other operative claims and the higher source of each. Its three tiers
+  get no row, since tiers 1 and 2 are defined by the vacated phrase (page 12), and its anticipated five-year lookback
+  goes on the watch list as CMS's intention (page 31). This applies L2-8.
 - The topic file `.kiro/skills/medicaid-community-engagement/references/medically-frail-or-special-medical-needs.md`,
   whose first line is `# People who are medically frail or have special medical needs`; its item under `## Topics` in
-  `SKILL.md`, at about 25 words; and words in the skill's description for being medically frail or having special
-  medical needs.
-- The review page `docs/review/medically-frail-or-special-medical-needs.md`, listed on the landing page, and its
-  start-here rows under the key `medically-frail-or-special-medical-needs`, chosen by decision record 0006's rule.
-- Its 1 entry of `what-matters-most.md` section 12, "Medically frail means having a listed diagnosis", as a row or
-  part of one, with the error quoted in the row's Note.
-- Rows carrying the subject of the dangerous finding L8-4, that a state must develop a list of conditions and keep
-  the request path for a condition not on it, which the fix before increment 2.1 corrected in place. The Done entry
-  records these rows as coverage of that correction and does not list L8-4 as applied again. And L2-14's part on
-  frailty described without the functional gate, as rows.
+  `SKILL.md`, at about 25 words; and the skill's description rewritten as the owner approved on 2026-10-29, at 798
+  characters, with room for the six topics after this one.
+- The review page `docs/review/medically-frail-or-special-medical-needs.md`, listed on the landing page, its start-here
+  rows under the key `medically-frail-or-special-medical-needs`, chosen by decision record 0006's rule, and an
+  orientation that names the ruling. Citations of SSA § 1614 link to their official text, with a case in
+  `CitationLinkTest`, as increment 2.1 did for 28 CFR.
+- Its 1 entry of `what-matters-most.md` section 12, "Medically frail means having a listed diagnosis", as a row or part
+  of one, with the error quoted in the row's Note. A state's list identifies people, it does not define the exclusion,
+  and a person whose condition is not on it can ask to be considered. The rebuttal the file gives, a two-part test with
+  a functional gate, is corrected in place, dated, citing the stored order.
+- Rows carrying the subject of L8-4, that a state must develop a list of conditions and keep the request path, which
+  the fix before increment 2.1 corrected in place. The Done entry records them as coverage and does not list L8-4 as
+  applied again.
+- L2-14's frailty part, which called CMS's beneficiary pages dangerous for leaving out the functional gate, applied in
+  the direction the ruling sets: after it, leaving the gate out is right, and the rows say so. The Done entry records
+  the reversal.
 - L1-7, the third broken cross-reference, in § 435.554(c)(5)(ii)(A), added in `what-matters-most.md` section 13, with
-  that section's broken cross-reference in § 435.554(c)(5)(ii) and its litigation paragraph corrected in place where
-  the rows and the docket check say otherwise. The section is pointed in increment 2.7.
+  that section's broken cross-reference in § 435.554(c)(5)(ii) and its litigation paragraph corrected in place. The
+  section is pointed in increment 2.7.
 - Pointers, once its rows carry every claim: in `rule-extract.md`, subsection 4.2, "The ten exclusion categories",
-  with increment 2.1's rows, and subsection 7.7, "Medical frailty verification and privacy"; in
-  `what-matters-most.md`, section 4, "Medically frail".
+  with increment 2.1's rows, and subsection 7.7, "Medical frailty verification and privacy"; in `what-matters-most.md`,
+  section 4, "Medically frail".
+- Corrected in place, each dated and citing the stored order, where a passage states the gate or a litigation state
+  the ruling ends: `rule-extract.md` section 11; in `what-matters-most.md`, section 2's table row for (c)(5), section
+  4's heading, which a pointer keeps, and its litigation paragraph; the `interpretiveRisk` comment of
+  `state-options.md`; the skill's watch list; and in `docs/design.md`, the
+  sentence under "What has to be true" naming both suits and, under "What may mean the rule does not apply", the
+  proposed tap statement "a health condition that makes work hard", which the ruling makes narrower than the rule.
+  Research B's inventory of 2026-10-29 lists each passage.
+- The watch list: the government's time to appeal, to 2026-12-28; any request to stay; a supplemental interim final
+  rule, which the government told the court CMS was likely to issue if the court vacated (entry 142, page 19);
+  govinfo's copy of entry 147; the end of the six months, 2027-04-29 by HourKeep's count, since neither document gives
+  a date; Taylor v.
+  Kennedy's cross-motion, due 2026-11-03, and its last brief, due 2026-12-02; CMS's response, such as a revised deck;
+  and Colorado's Medical Services Board on 2026-11-27, whose draft 8.100 adds its own condition, "special medical needs
+  that cause significant impairment to work, volunteer, or attend school" (draft lines 1213 and 1214).
+- Increments 2.3, 2.6 and 2.7 each gain a dated line: the Massachusetts case was decided and dismissed on 2026-10-29,
+  so its check looks for an appeal, a stay or a new order, and Taylor v. Kennedy's docket is checked as before.
+  Increment 2.6's says the court upheld § 435.557(a)(vii) and (a)(viii). Increment 4's Colorado facts on how medical
+  frailty is shown are read against the adopted rule and the injunction, and increment 5's watch list sentence names
+  the ruling.
 - A row that relies on "reliable information available to the State" or "period of enrollment" quotes § 435.557(a)'s
   words from the stored correction in its Note and names the paragraph, as decision record 0006 has a forward
   reference handled.
@@ -1043,43 +1110,61 @@ plan's dated line on pointers into the epic design as well.
   adverse-notice-names-both-failures rechecked, since they name § 435.554 without excluding paragraph (c)(5), each
   given a dated `Corrected:` where a new row shows it says more or less than its source.
 
+About 40 to 50 rows: about 23 on the two paragraphs, by decision record 0006's estimate, about 11 on SSA § 1614, the
+court rows, the preamble rows and the deck's 3. Past 64, a new decision record splits the topic.
+
 ### Deliberately not
 
-The other nine exclusions, which increment 2.1 wrote. § 435.557(a)'s definitions as rows, which increment 2.6 writes.
-How Colorado shows medically frail status and when its documentation starts, which are Colorado facts for increment
-4, and any other state's frailty documentation rules, which leave with `state-options.md`.
+The other nine exclusions, which increment 2.1 wrote, and § 435.557(a)'s definitions, which increment 2.6 writes. How
+Colorado shows medically frail status, when its documentation starts and whether its adopted rule keeps the draft's
+condition, which are Colorado facts for increment 4, and any other state's frailty rules, which leave with
+`state-options.md`. Rows on the parties' briefs, which are not stored; research A's reading of them is in the Done
+entry. Anything from Taylor v. Kennedy beyond its docket list, since its plaintiffs are individuals and its filings
+describe them. Rows for the deck's three tiers and its anticipated five-year lookback. A conclusion on whether vacatur
+under the APA binds CMS for states that did not sue, which stays an open question.
 
 ### Why this shape
 
-§ 435.557(f) verifies the status § 435.554(c)(5) defines, so the two are reviewed together. Massachusetts v. Oz
-challenges those rules, so a ruling reaches this one topic and holds up no other exclusion.
+§ 435.557(f) verifies the status § 435.554(c)(5) defines, so the two are reviewed together. The ruling changed one
+phrase of (c)(5)(i) and upheld (f)'s limits, so the topic is written once, after the ruling, under the precedence that
+lets its rows say what is in force, and holds up no other topic.
 
 ### How you know it worked
 
 - `/usr/bin/python3 -m unittest discover -s tests` (3.9.6) and `/opt/homebrew/bin/python3 -m unittest discover -s
-  tests` (3.14.6) both pass, each run as its own command.
-- `scripts/check-corpus.py` exits 0 under both and prints its counts.
+  tests` (3.14.6) both pass, each run as its own command, with a passing and a failing fixture for each new check
+  named in the Done entry.
+- `scripts/check-corpus.py` exits 0 under both and prints its counts, with the three orders, SSA § 1614 and the deck
+  among the sources.
 - `docs/review/medically-frail-or-special-medical-needs.md` exists and the checker compares it.
-- Both docket results are in the Done entry and the watch list, each with the date it was checked.
+- Both docket results are in the Done entry and the watch list, each with the time it was checked, the second time
+  before the Done entry included.
 - Each ledger finding this increment applies appears once in its Done entry, applied or rejected with a reason.
-- A search of `docs/domain/` outside the stored sources and the research records finds each corrected claim's old
-  wording only in its dated correction.
+- A search of `docs/domain/` outside the stored sources and the research records, the skill and `docs/design.md`
+  finds each corrected claim's old wording only in its dated correction, "Two-part test", "functional gate", "no
+  ruling had issued" and "a health condition that makes work hard" among them.
 - The Done entry lists each paragraph in Delivers with the rows that carry it, or the reason it has none, and each
   claim of each passage pointed in `rule-extract.md` and `what-matters-most.md` with the row that now carries it.
 - A fresh agent session is asked: "I have bipolar disorder. How does the state decide whether I'm medically frail, so
-  the work requirement doesn't apply to me?" It runs, with no skill named, and a miss is handled, as in increment
-  2.1. Its answer says that medically frail means both a condition that significantly impairs the person's ability
-  to comply with the requirement and being in one of the groups § 435.554(c)(5)(i) lists, a disabling mental
-  disorder among them; that the state must develop a list of conditions and have a process for a person whose
-  condition is not on it to ask to be considered; and that the state first tries to verify the status from reliable
-  information, claims from the preceding 12 months included, and that whether the person is excluded is the
-  agency's determination, labeled Deferred, with the agency named. It cites by identifier the rows on
-  § 435.554(c)(5)(i) and (ii) and § 435.557(f)(1), and says which skills it loaded.
+  the work requirement doesn't apply to me?" It runs, with no skill named, on both model families, as in increment
+  2.1, and a miss is handled the same way. Its answer says that medically frail means being in one of the five groups
+  § 435.554(c)(5)(i) lists, as each defines itself, and that bipolar disorder may fall in the group of a disabling
+  mental disorder, which the preamble's examples include where it is moderate or severe; that on 2026-10-29 a federal
+  court vacated the rule's added condition that the person's condition significantly impair their ability to comply,
+  and barred CMS from applying it to the states that sued, Colorado among them; that the state must develop a list
+  of conditions and have a process for a person whose condition is not on it to ask to be considered; that the state
+  first tries to verify the status from reliable information, claims from the preceding 12 months included, before
+  asking the person; and that whether the person is excluded is the agency's determination, labeled Deferred, with the
+  agency named. It gives no estimate of the person's own status and states none of their facts as met. It cites by
+  identifier the rows on § 435.554(c)(5)(i), the vacatur, (c)(5)(i)(C), (c)(5)(ii)(C) and § 435.557(f)(1), and says
+  which skills it loaded.
+- After the description is rewritten, increment 1's and increment 2.1's fresh-session questions run again on both
+  model families, and each loads the skill unprompted.
 
 ### Needs from you
 
-The owner's go before it starts, and the owner's decision on how to go on if either docket shows an order on the
-provisions the cases challenge.
+The owner's read of this revision, his acceptance of decision record 0013, and his word on the design's new tap
+statement. (Asked 2026-10-29.)
 
 ## 2.3 Exceptions for a month: mandatory exceptions, and optional short-term hardship exceptions
 
