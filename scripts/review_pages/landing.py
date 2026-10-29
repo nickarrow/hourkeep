@@ -4,12 +4,13 @@ from __future__ import annotations
 
 from typing import List, Mapping, Sequence
 
-from .constants import (DOMAIN_FROM_REVIEW, EMAIL, EXTRACT_FROM_REVIEW, GOOGLE_FORM, ISSUE_FORM, LEDGER_FROM_REVIEW,
-                        OPEN_QUESTIONS_PAGE, STATE_FACTS_PAGE)
+from .constants import (CODE_OF_CONDUCT_FROM_REVIEW, CONDUCT_EMAIL, DOMAIN_FROM_REVIEW, EMAIL, EXTRACT_FROM_REVIEW,
+                        GOOGLE_FORM, ISSUE_FORM, LEDGER_FROM_REVIEW, OPEN_QUESTIONS_PAGE, STATE_FACTS_PAGE)
 from .corpus import Topic
 
 # The page's words, read on GitHub, often on a phone, by a Medicaid policy expert who may never have used GitHub.
-# {start_here} and {pages} are lists of links the generator fills in; the rest is fixed text.
+# {start_here} and {pages} are lists of links the generator fills in, and the other fields are the links and addresses
+# held in constants.py; the rest is fixed text.
 TEMPLATE = """\
 # Review HourKeep's policy rules
 
@@ -57,6 +58,9 @@ name.
 Never post or send anything about a real person's case. That means no names, case numbers, dates of birth, addresses
 or other details that could identify someone.
 
+Everyone who comments, in any of the three ways, follows HourKeep's [code of conduct]({code_of_conduct}).
+Report a breach of it to [{conduct_email}](mailto:{conduct_email}).
+
 ## What happens to your comment
 
 The project's owner reads every comment. Before any row changes, the comment is checked against a source. A comment
@@ -97,4 +101,5 @@ def landing_page(topics: List[Topic], start_here: Mapping[str, Sequence[str]]) -
     pages += ["- [Open questions]({})".format(OPEN_QUESTIONS_PAGE), "- [State facts]({})".format(STATE_FACTS_PAGE)]
     return TEMPLATE.format(start_here="\n".join(starts), pages="\n".join(pages), issue_form=ISSUE_FORM,
                            google_form=GOOGLE_FORM, email=EMAIL, ledger=LEDGER_FROM_REVIEW,
-                           extract=EXTRACT_FROM_REVIEW, domain=DOMAIN_FROM_REVIEW)
+                           extract=EXTRACT_FROM_REVIEW, domain=DOMAIN_FROM_REVIEW,
+                           code_of_conduct=CODE_OF_CONDUCT_FROM_REVIEW, conduct_email=CONDUCT_EMAIL)

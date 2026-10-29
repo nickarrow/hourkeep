@@ -40,6 +40,13 @@ class LandingPageTest(GeneratorTestCase):
         self.assertEqual(self.prose.count("which way a mistake would hurt a person on Medicaid"), 2)
         self.assertNotIn("hurt someone", self.prose)
 
+    def test_says_under_how_to_comment_that_the_code_of_conduct_applies_and_links_it(self):
+        start = self.prose.index("## How to comment")
+        section = self.prose[start:self.prose.index("## What happens to your comment", start)]
+        self.assertIn("Everyone who comments, in any of the three ways, follows HourKeep's "
+                      "[code of conduct](../../CODE_OF_CONDUCT.md). Report a breach of it to "
+                      "[conduct@hourkeep.app](mailto:conduct@hourkeep.app).", section)
+
     def test_says_what_name_to_give_in_a_comment(self):
         for sentence in ("Every row has a short name, such as `notice-response-period`, shown as its heading.",
                          "A state fact's name adds its state, such as `co: hearing-request-window-at-most-90-days`.",

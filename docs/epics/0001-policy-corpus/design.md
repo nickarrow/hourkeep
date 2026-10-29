@@ -529,7 +529,9 @@ Medicaid policy experts read the rows and comment on them, as
 `docs/decisions/0005-publish-the-policy-rows-for-open-review.md` records. There is a landing page, one page per topic
 of the skill, a page of open questions and a page of state facts. Under the title of each page but the landing page
 come the line saying it is generated and the sentence "Never post or send anything about a real person's case.",
-which the landing page holds too.
+which the landing page holds too. The landing page's "How to comment" ends by saying that everyone who comments, in
+any of the three ways, follows HourKeep's code of conduct, `CODE_OF_CONDUCT.md`, which it links, and that a breach is
+reported to conduct@hourkeep.app, as decision record 0011 sets out.
 
 A topic page may open with an orientation, one paragraph held for its topic file in `ORIENTATION` in
 `scripts/review_pages/constants.py`, as `START_HERE` there holds its start-here rows, and every word in it that is a

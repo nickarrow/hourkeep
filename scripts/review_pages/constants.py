@@ -12,6 +12,7 @@ STATE_FACTS_PAGE = "state-facts.md"
 DOMAIN_FROM_REVIEW = "../domain/"  # the corpus, docs/domain/, as a page in docs/review/ links it
 EXTRACT_FROM_REVIEW = "../domain/community-engagement-extract.md"  # the extract, as a page in docs/review/ links it
 LEDGER_FROM_REVIEW = "../domain/research/2026-10-16-policy/ledger.md"  # the research ledger, likewise
+CODE_OF_CONDUCT_FROM_REVIEW = "../../CODE_OF_CONDUCT.md"  # the code of conduct, at the repository root, likewise
 FEDERAL_STATE = "federal"  # the state file whose facts come first
 # The open questions page's groups, in the order it shows them, each its ## heading and the sentence under it. The
 # owner decided on 2026-10-22 that conflicts come first, since each of those has two sources that say different
@@ -48,6 +49,7 @@ GOOGLE_FORM = "https://forms.gle/Tvs27CNLg6Jdip429"  # the landing page's plain 
 GOOGLE_FORM_FOR = ("https://docs.google.com/forms/d/e/1FAIpQLSfmdg1bA4lF_frlMIl8LGIjwUS0ymtHKcqar2aB_h0evB97yQ/viewform"
                    "?usp=pp_url&entry.399684664=")
 EMAIL = "policy@hourkeep.app"
+CONDUCT_EMAIL = "conduct@hourkeep.app"  # where a breach of the code of conduct is reported (decision record 0011)
 
 # The parts of a citation the pages link to the official text. Each pattern's whole match becomes the link's words.
 # A CFR part's groups are its title, 42 or 28, its section, and the paragraph it names, if any, such as (a)(1), the

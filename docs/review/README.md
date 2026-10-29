@@ -45,6 +45,9 @@ name.
 Never post or send anything about a real person's case. That means no names, case numbers, dates of birth, addresses
 or other details that could identify someone.
 
+Everyone who comments, in any of the three ways, follows HourKeep's [code of conduct](../../CODE_OF_CONDUCT.md).
+Report a breach of it to [conduct@hourkeep.app](mailto:conduct@hourkeep.app).
+
 ## What happens to your comment
 
 The project's owner reads every comment. Before any row changes, the comment is checked against a source. A comment
