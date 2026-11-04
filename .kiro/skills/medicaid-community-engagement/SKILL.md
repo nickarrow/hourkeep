@@ -70,29 +70,8 @@ When two sources disagree, this is the order. It comes from the epic design,
   the reinstatement that 42 CFR 431.231(a) leaves optional a must. Both are in `docs/domain/states/co.json`. A
   state's draft rule chooses nothing until it is adopted.
 - Where two sources conflict, whatever their tiers, the row cites both, the question goes in
-  `docs/domain/open-questions.md`, and this file says there is a conflict without picking a side. In this topic,
-  Colorado's rule reinstates a member's services back to the date of action and continues them until a final agency
-  decision after the hearing "Where the member requests a hearing not more than ten (10) days after the date of
-  action", while HCPF's appeals page has the Office of Administrative Courts get the request no later than 10 days
-  after the date of action. Whether the 10 days run to the member's request or to the court's receipt of it is an
-  open question. The next action picks no side: make sure the request arrives within the 10 days. (Corrected
-  2026-10-19: said "HCPF's appeals page has the Office of Administrative Courts receive a request within 10 days,
-  where Colorado's rule has the member request a hearing within 10 days."; full review 2026-10-19, cold reader a2;
-  read in docs/domain/states/co.json:38.) And for reschedule-2027-renewals-to-six-months,
-  keep-scheduled-2027-renewals and first-path-period-not-shorter-than-six-months, 42 CFR 435.916(a)(1), as the
-  interim final rule reprints it, says MAGI-based eligibility is renewed once every 12 months and no more often,
-  where SSA 1902(e)(14)(L) has the state redetermine, once every 6 months for redeterminations scheduled from 2027,
-  individuals enrolled under SSA 1902(a)(10)(A)(i)(VIII), and individuals it describes who are enrolled under a
-  waiver giving all of them coverage equivalent to minimum essential coverage, except the American Indians and
-  Alaska Natives the statute exempts. Those rows cite both, and which governs is an open question. In the topic of
-  who the requirement applies to, for parent-guardian-caretaker-relative-or-family-caregiver-excluded, 42 CFR
-  435.554(c)(3), as the June 3 printing gives it, has a family caregiver meet one of the criteria at paragraphs
-  (c)(1)(i)(A) through (C), which do not exist, where the preamble says the criteria are at § 435.554(c)(3)(i). The
-  row cites both, and which governs is an open question. In the medical frailty topic, two conflicts are open
-  questions: six-months-without-penalty-for-plaintiff-states cites entry 148 and entry 147 on what the six months
-  reach, and state-develops-list-of-frailty-conditions and frailty-condition-list-auditable-and-consistent cite
-  § 435.554(c)(5)(ii)'s paragraphs (a)(5)(i)(A) through (E), which do not exist, and the preamble's
-  § 435.554(c)(5)(i)(A) through (E).
+  `docs/domain/open-questions.md`, and the topic file that holds the row says there is a conflict without picking
+  a side, in prose at the start of the row's group.
 
 ## Watch list
 
@@ -141,8 +120,6 @@ ledger, `docs/domain/research/2026-10-16-policy/ledger.md`, or from a stored sou
   places: `medically-frail-defined`, `medically-frail-impairment-phrase-vacated`, the five group rows, from
   `medically-frail-blind-or-disabled` to `medically-frail-serious-or-complex-condition`,
   `disabling-mental-disorder-examples` and the review page's orientation.
-- govinfo's copy of entry 147: a second retrieval of the stored PDF if the bytes match, or a source of its own if
-  they differ. Rows: every row that cites entry 147.
 - 2027-04-29: six months from the order of 2026-10-29, by HourKeep's count, since neither entry 148 nor entry 147
   gives an end date. Row: `six-months-without-penalty-for-plaintiff-states`.
 - CMS's response to the ruling, such as a revised frailty deck or a statement on the states that did not sue
@@ -157,15 +134,18 @@ ledger, `docs/domain/research/2026-10-16-policy/ledger.md`, or from a stored sou
   `frailty-verification-uses-no-information-older-than-12-months`.
 - 2026-11-30: comments close on the IRS proposed rule at 91 FR 65494 on the premium tax credit bar (ledger L1-9).
   Row: `notice-says-consequences-including-premium-tax-credit`.
-- 2026-11-27: Colorado's Medical Services Board takes up the draft 10 CCR 2505-10 8.100; emergency reading
-  2026-12-11, effective 2027-01-01, permanent adoption 2027-02-12 (ledger L5-1, from an HCPF deck that is not
-  stored). Rows: `renewal-notice-with-renewal-form`, `renewal-notice-after-renewal-form-period` and Colorado's
-  inferred renewal fact, whichever option the adopted rule takes. The draft's definition of Medically Frail adds to
-  the five groups its own condition, "special medical needs that cause significant impairment to work, volunteer,
-  or attend school" (`docs/domain/sources/colorado/10-ccr-2505-10-8.100-draft-2026-09-28.txt`, lines 1213 and
-  1214), which the adopted rule may keep or drop. Colorado's facts on how medical frailty is shown, which
-  increment 4 writes, are read against the adopted rule and the injunction in Massachusetts v. Oz. Rows:
-  `medically-frail-defined` and `medically-frail-impairment-phrase-vacated`. (Added 2026-10-29; read in
+- 2026-11-27: on a proposed timeline, updated draft language of 10 CCR 2505-10 8.100 is to be submitted to Colorado's
+  Medical Services Board; the timeline then has an emergency rule reading at the Board's meeting of 2026-12-11, a
+  proposed effective date of 2027-01-01 and permanent adoption 2027-02-12 (ledger L5-1, from an HCPF deck that is not
+  stored). (Corrected 2026-11-04: said "Colorado's Medical Services Board takes up the draft 10 CCR 2505-10 8.100;
+  emergency reading 2026-12-11, effective 2027-01-01"; ledger L5-1.) Rows: `renewal-notice-with-renewal-form`,
+  `renewal-notice-after-renewal-form-period` and Colorado's inferred renewal fact, whichever option the adopted rule
+  takes. The draft's definition of Medically Frail adds to the five groups its own condition, "special medical needs
+  that cause significant impairment to work, volunteer, or attend school"
+  (`docs/domain/sources/colorado/10-ccr-2505-10-8.100-draft-2026-09-28.txt`, lines 1213 and 1214), which the adopted
+  rule may keep or drop. Colorado's facts on how medical frailty is shown, which increment 4 writes, are read against
+  the adopted rule and the injunction in Massachusetts v. Oz. Rows: `medically-frail-defined` and
+  `medically-frail-impairment-phrase-vacated`. (Added 2026-10-29; read in
   docs/domain/sources/colorado/10-ccr-2505-10-8.100-draft-2026-09-28.txt:1213.)
 - Colorado's 10 CCR 2505-10 8.000, version 12612, is an emergency rule effective 2026-07-10, by the stored
   rule-information page (`docs/domain/sources/colorado/10-ccr-2505-10-8.000-rule-information-2026-10-17.html`,

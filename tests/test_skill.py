@@ -276,8 +276,8 @@ class TopicFileTest(CorpusTestCase):
         # the extract. Decision record 0006: the heading, the title and the link name one topic.
         self.assertPasses(self.check_topic(TOPIC_TEXT))
         corpus = Corpus()
-        corpus.files[EXTRACT] = extract_with("### notice-response-period", "## Another topic\n\n"
-                                             "### notice-response-period")
+        # The extract's one topic renamed, with the file retitled to match, so each item's row stays under its title.
+        corpus.files[EXTRACT] = extract_with("## " + TOPIC_HEADING, "## Another topic")
         corpus.files[TOPIC] = topic_with("# " + TOPIC_HEADING, "# Another topic")
         self.assertPasses(run_checker(corpus))
         # Not a heading at all; another case; part of one; the extract's # title; a row's ### heading; and the

@@ -1,7 +1,7 @@
 """The skill, .kiro/skills/medicaid-community-engagement/: its main file, SKILL.md, with its frontmatter, length,
 headings and links to its topic files; and each topic file in references/, with its title, which is the ## heading
 of a topic in the extract and no other topic file's title, its length, its groups, and each rule item's identifier,
-citation and numbers."""
+citation and numbers, and that the item's row stands under the topic the file's title names."""
 
 from __future__ import annotations
 
@@ -155,9 +155,11 @@ def topic_rule_items(path: str, lines: List[str], fenced: List[bool],
 
 
 def check_rule_item(path: str, text: str, first: int, by_identifier: Dict[str, Row], problems: List[Problem],
-                    counts: Counts, found: Dict[str, Tuple[str, int]]) -> None:
+                    counts: Counts, found: Dict[str, Tuple[str, int]], title: Optional[str]) -> None:
     """One rule item. `found` maps each row's identifier to where its first rule item stands; a second one for the
-    same row is reported, whatever else is wrong with either."""
+    same row is reported, whatever else is wrong with either. `title` is the topic file's title when it is the
+    heading of a topic in the extract, and None when it is not, which is reported where the title stands; the item's
+    row must stand under that heading. An item in the wrong file is not counted among the skill items matched."""
     match = SKILL_ITEM_END.match(text)
     if match is None:
         problems.append(Problem(path, first, "a rule item ends with [identifier] citation"))
@@ -177,6 +179,11 @@ def check_rule_item(path: str, text: str, first: int, by_identifier: Dict[str, R
         return  # reported where the bracketed identifier stands
     row_citation = (row.values("Citation") or [""])[0]
     matched = True
+    if title is not None and row.topic != title:
+        problems.append(Problem(path, first, "{}'s row is under the topic {!r} in the extract, so its rule item "
+                                "goes in that topic's file, not in the file titled {!r}".format(identifier, row.topic,
+                                                                                              title)))
+        matched = False
     if citation != row_citation:
         problems.append(Problem(path, first, "the citation {!r} is not {}'s citation, {!r}".format(
             citation, identifier, row_citation)))
@@ -198,6 +205,7 @@ def check_topic_file(path: str, data: bytes, by_identifier: Dict[str, Row], topi
     lines = decoded_lines(data)
     check_length(path, lines, problems)
     title = lines[0][2:].strip() if lines else ""
+    topic: Optional[str] = None  # the title, once it is known to be a topic's heading, which each item's row is under
     if not lines or not TOPIC_TITLE.match(lines[0]):
         problems.append(Problem(path, 1 if lines else 0, "a topic file's first line is # and its title"))
     elif title not in topics:
@@ -208,6 +216,8 @@ def check_topic_file(path: str, data: bytes, by_identifier: Dict[str, Row], topi
                                 "topic file".format(title, titles[title])))
     else:
         titles[title] = path
+    if lines and TOPIC_TITLE.match(lines[0]) and title in topics:
+        topic = title
     check_bracketed(path, lines, by_identifier, problems)
     items = topic_rule_items(path, lines, fenced_lines(lines), problems)
     if not items:
@@ -215,7 +225,7 @@ def check_topic_file(path: str, data: bytes, by_identifier: Dict[str, Row], topi
     for text, first, grouped in items:
         if not grouped:
             problems.append(Problem(path, first, "a list item in a topic file sits under a ## heading"))
-        check_rule_item(path, text, first, by_identifier, problems, counts, found)
+        check_rule_item(path, text, first, by_identifier, problems, counts, found, topic)
 
 
 def check_skill(root: Path, files: Optional[List[str]], rows: List[Row], topics: List[str],

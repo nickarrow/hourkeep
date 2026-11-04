@@ -4,9 +4,9 @@ moved to the state facts last, and the state facts, with a choice fact's line fo
 from __future__ import annotations
 
 import re
-from typing import Dict, List, Sequence
+from typing import Dict, List, Sequence, Set
 
-from corpus_check.constants import CHOICE_KEY, CHOICE_PAIRS, MOVED, MOVED_FIELD
+from corpus_check.constants import CHOICE_KEY, CHOICE_PAIRS, IDENTIFIER_SHAPED, MOVED, MOVED_FIELD
 from corpus_check.questions import open_reasons
 from corpus_check.rows import Row
 
@@ -18,6 +18,9 @@ from .constants import (
 )
 from .corpus import Question, Topic
 
+# A word that may be a row's identifier, which is linked when it is one. It is wider than IDENTIFIER_SHAPED, the
+# shape an orientation's words are checked against, because linking reaches any identifier the extract allows, while
+# the check only has to find misspellings without taking dates and numbers for identifiers.
 IDENTIFIER_WORD = re.compile(r"(?<![a-z0-9-])[a-z0-9]+(?:-[a-z0-9]+)*(?![a-z0-9-])")
 OPEN_QUESTION = re.compile(r"\bopen question\b")
 GENERATED = ("This page is generated from HourKeep's policy rows and is not edited by hand. "
@@ -47,12 +50,35 @@ def first(row: Row, name: str) -> str:
     return values[0] if values else ""
 
 
-def linked_words(text: str, rows: Dict[str, Row], pages: Dict[str, str]) -> str:
-    """`text` with every whole word that is a row's identifier linked to its row, and its first 'open question'
-    linked to the open questions page."""
+def linked_words(text: str, rows: Dict[str, Row], pages: Dict[str, str], questions: Sequence[str] = ()) -> str:
+    """`text` with every whole word that is a row's identifier linked to its row. Each 'open question' in it links to
+    the question `questions` names for it, in order, at the question's heading on the open questions page; where
+    `questions` names none, the first links to the page."""
     text = IDENTIFIER_WORD.sub(lambda match: row_link(match.group(0), pages) if match.group(0) in rows
                                else match.group(0), text)
-    return OPEN_QUESTION.sub("[open question](" + OPEN_QUESTIONS_PAGE + ")", text, count=1)
+    if not questions:
+        return OPEN_QUESTION.sub("[open question](" + OPEN_QUESTIONS_PAGE + ")", text, count=1)
+    titles = iter(questions)
+    return OPEN_QUESTION.sub(lambda match: "[open question]({}#{})".format(
+        OPEN_QUESTIONS_PAGE, links.heading_anchor(next(titles))), text)
+
+
+def check_orientation(name: str, orientation: str, rows: Dict[str, Row], questions: Sequence[str],
+                      headings: Set[str]) -> None:
+    """Raises ValueError when the orientation of the topic file `name` holds a word shaped like an identifier that is
+    no row's; names questions, by title, other than those in `headings`, the open questions still open on the page;
+    names more or fewer questions than it holds words 'open question'; or holds more than one and names none."""
+    unknown = [word for word in IDENTIFIER_SHAPED.findall(orientation) if word not in rows]
+    if unknown:
+        raise ValueError("the orientation of {}.md holds {}, which names no row".format(name, ", ".join(unknown)))
+    held = len(OPEN_QUESTION.findall(orientation))
+    if (questions or held > 1) and len(questions) != held:
+        raise ValueError("the orientation of {}.md holds {} 'open question' and names {} questions for them".format(
+            name, held, len(questions)))
+    missing = [title for title in questions if title not in headings]
+    if missing:
+        raise ValueError("the orientation of {}.md names questions that are not open questions on the open questions "
+                         "page: {}".format(name, "; ".join(missing)))
 
 
 def not_stored_lines(row: Row) -> List[str]:
@@ -92,16 +118,18 @@ def start_here_section(topic: Topic, start_here: Sequence[str]) -> List[str]:
 
 
 def topic_page(topic: Topic, rows: Dict[str, Row], start_here: Sequence[str], manifest: dict,
-               pages: Dict[str, str], orientation: str = "") -> str:
+               pages: Dict[str, str], orientation: str, questions: Sequence[str], headings: Set[str]) -> str:
     """A topic page: its header, its orientation if it has one, Start here if it has start-here rows, then each
-    group of the topic file with its rows."""
+    group of the topic file with its rows. `questions` are the titles of the open questions the orientation names,
+    each of which must be in `headings`, the titles of the questions still open on the open questions page."""
     in_topic = [identifier for _, identifiers in topic.groups for identifier in identifiers]
     missing = [identifier for identifier in start_here if identifier not in in_topic]
     if missing:
         raise ValueError("start-here rows not in the topic file {}.md: {}".format(topic.name, ", ".join(missing)))
     lines = header(topic.title)
     if orientation:
-        lines += [linked_words(orientation, rows, pages), ""]
+        check_orientation(topic.name, orientation, rows, questions, headings)
+        lines += [linked_words(orientation, rows, pages, questions), ""]
     if start_here:
         lines += start_here_section(topic, start_here)
     for heading, identifiers in topic.groups:

@@ -228,9 +228,9 @@ class TopicPageTest(GeneratorTestCase):
     def test_an_orientation_comes_before_start_here_with_each_row_identifier_in_it_linked(self):
         page = self.page("fair-hearings.md", start_here={"fair-hearings": ["notice-response-period"]},
                          orientation={"fair-hearings": "One term runs through this page, as notice-response-period "
-                                                       "and no-such-row say."})
+                                                       "says."})
         orientation = ("\n\nOne term runs through this page, as [notice-response-period](fair-hearings.md"
-                       "#notice-response-period) and no-such-row say.\n\n## Start here\n")
+                       "#notice-response-period) says.\n\n## Start here\n")
         self.assertIn(REAL_CASE + orientation, page)
 
     def test_an_orientation_comes_before_the_first_group_when_the_topic_has_no_start_here_rows(self):

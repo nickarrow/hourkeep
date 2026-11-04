@@ -27,7 +27,7 @@ def check(root: Path) -> Tuple[List[Problem], List[Problem], Counts]:
     check_manifest(root, files, problems, counts)
     check_unlisted_files(root, files, problems)
     facts = check_state_facts(root, rows, files, problems, warnings, counts)
-    check_open_questions(root, files, problems, facts)
+    check_open_questions(root, files, problems, facts, rows)
     check_skill(root, files, rows, topics, problems, counts)
     check_review_pages(root, files, problems)
     return problems, warnings, counts

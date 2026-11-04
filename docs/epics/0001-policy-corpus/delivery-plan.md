@@ -1092,14 +1092,17 @@ record 0013 records. The section as first written is at commit 5684f66.)
   proposed tap statement "a health condition that makes work hard", which the ruling makes narrower than the rule.
   The Done entry lists each passage corrected. (Corrected 2026-10-29: said "Research B's inventory of 2026-10-29
   lists each passage."; full review 2026-10-29, corpus against source N6.)
-- The watch list: the time to appeal, for any party, to 2026-12-28 (Corrected 2026-10-29: said "the government's
-  time to appeal"; full review 2026-10-29, corpus against source S3.); any request to stay; a supplemental interim final
-  rule, which the government told the court CMS was likely to issue if the court vacated (entry 142, page 19);
-  govinfo's copy of entry 147; the end of the six months, 2027-04-29 by HourKeep's count, since neither document gives
-  a date; Taylor v.
-  Kennedy's cross-motion, due 2026-11-03, and its last brief, due 2026-12-02; CMS's response, such as a revised deck;
-  and Colorado's Medical Services Board on 2026-11-27, whose draft 8.100 adds its own condition, "special medical needs
-  that cause significant impairment to work, volunteer, or attend school" (draft lines 1213 and 1214).
+- The watch list: the time to appeal, for any party, to 2026-12-28 (Corrected 2026-10-29: said "the government's time to
+  appeal"; full review 2026-10-29, corpus against source S3.); any request to stay; a supplemental interim final rule,
+  which the government told the court CMS was likely to issue if the court vacated (entry 142, page 19); govinfo's copy
+  of entry 147 (Added 2026-11-04: govinfo published it as granule USCOURTS-mad-1_26-cv-12962-1, its copy is stored as a
+  source of its own in docs/domain/sources/govinfo/, and the item is out of the watch list; decision record 0013.); the
+  end of the six months, 2027-04-29 by HourKeep's count, since neither document gives a date; Taylor v. Kennedy's
+  cross-motion, due 2026-11-03, and its last brief, due 2026-12-02; CMS's response, such as a revised deck; and the
+  proposed submission of updated language of Colorado's draft 8.100 to its Medical Services Board on 2026-11-27
+  (Corrected 2026-11-04: said "Colorado's Medical Services Board on 2026-11-27, whose draft 8.100"; ledger L5-1.), a
+  draft that adds its own condition, "special medical needs that cause significant impairment to work, volunteer, or
+  attend school" (draft lines 1213 and 1214).
 - Increments 2.3, 2.6 and 2.7 each gain a dated line: the Massachusetts case was decided and dismissed on 2026-10-29,
   so its check looks for an appeal, a stay or a new order, and Taylor v. Kennedy's docket is checked as before.
   Increment 2.6's says the court upheld § 435.557(a)(vii) and (a)(viii). Increment 4's Colorado facts on how medical
@@ -1329,13 +1332,14 @@ Each ledger finding the plan's 2.2 names, applied or rejected:
   state-develops-list-of-frailty-conditions and request-consideration-when-condition-not-listed carry its subject,
   and their Notes name it. The fix before increment 2.1 corrected the passage.
 
-Named in no part of the plan's 2.2 as a finding to apply, and touched: L1-11, the hearing of 2026-10-22, whose
-watch list item now records the ruling; L1-12 with L3-5, Taylor v. Kennedy, whose item was corrected in place with
-its docket check and the briefing dates, and which 13 rows name, 12 in their Notes and
+Named in no part of the plan's 2.2 as a finding to apply, and touched: L1-11, the hearing of 2026-10-22, whose watch
+list item now records the ruling; L1-12 with L3-5, Taylor v. Kennedy, whose item was corrected in place with its docket
+check and the briefing dates, and which 13 rows name, 12 in their Notes and
 missing-claims-cannot-defeat-frailty-exclusion in its Recheck, those on the vacated words, the stable recovery
-carve-out, the 12-month window and the limit of one sworn statement among them; L5-1, Colorado's Medical
-Services Board on 2026-11-27, whose item gained the draft's own frailty condition. None of the three changes a row's
-Rule.
+carve-out, the 12-month window and the limit of one sworn statement among them; L5-1, the proposed submission of draft
+8.100's updated language to Colorado's Medical Services Board on 2026-11-27 (Corrected 2026-11-04: said "Colorado's
+Medical Services Board on 2026-11-27"; ledger L5-1.), whose item gained the draft's own frailty condition. None of the
+three changes a row's Rule.
 
 Each paragraph of Delivers, and what carries it:
 
@@ -1466,18 +1470,18 @@ Each paragraph of Delivers, and what carries it:
   kept and corrected. Each opens with a `Now rows ...` line dated 2026-10-29, and a script found every identifier in
   them in the extract. Their claims are in the table below.
 - Corrected in place, each quoting the old words and citing the stored order or line, listed below.
-- The watch list, in `SKILL.md`: the Massachusetts v. Oz and Taylor v. Kennedy items corrected in place, and new
-  items for the time to appeal, to 2026-12-28; any request to stay entry 148; a supplemental interim final rule
-  (entry 142, ECF page 19, not stored); govinfo's copy of entry 147; 2027-04-29, the end of the six months by
-  HourKeep's count; CMS's response, such as a revised deck; and CMS's anticipated five-year lookback. Taylor's
-  cross-motion, due 2026-11-03, and last brief, due 2026-12-02, are in its item. The Colorado Medical Services Board
-  item of 2026-11-27 gained the draft's own condition (draft 8.100 lines 1213 and 1214) with an `Added` mark. After
-  the review, each item gives only its date or event, what it could change and the rows or places (O1); the time to
-  appeal runs for any party, so the States may appeal Count II (R3-S3); a new item is for a motion to alter or amend
-  the judgment under Federal Rule of Civil Procedure 59(e), which would move the time to appeal (R3-S3); and the
-  appeal and stay items name their rows by rule, every row whose Citation names entry 148 or 147, 9 rows now, with
-  the topic file's opening, the review page's orientation and the passages corrected under decision record 0013
-  (R4-1, R2-1).
+- The watch list, in `SKILL.md`: the Massachusetts v. Oz and Taylor v. Kennedy items corrected in place, and new items
+  for the time to appeal, to 2026-12-28; any request to stay entry 148; a supplemental interim final rule (entry 142,
+  ECF page 19, not stored); govinfo's copy of entry 147; 2027-04-29, the end of the six months by HourKeep's count;
+  CMS's response, such as a revised deck; and CMS's anticipated five-year lookback. Taylor's cross-motion, due
+  2026-11-03, and last brief, due 2026-12-02, are in its item. The item of 2026-11-27 on Colorado's draft 8.100
+  (Corrected 2026-11-04: said "The Colorado Medical Services Board item of 2026-11-27"; ledger L5-1.) gained the draft's
+  own condition (draft 8.100 lines 1213 and 1214) with an `Added` mark. After the review, each item gives only its date
+  or event, what it could change and the rows or places (O1); the time to appeal runs for any party, so the States may
+  appeal Count II (R3-S3); a new item is for a motion to alter or amend the judgment under Federal Rule of Civil
+  Procedure 59(e), which would move the time to appeal (R3-S3); and the appeal and stay items name their rows by rule,
+  every row whose Citation names entry 148 or 147, 9 rows now, with the topic file's opening, the review page's
+  orientation and the passages corrected under decision record 0013 (R4-1, R2-1).
 - Dated lines in increments 2.3, 2.6 and 2.7 (`Added 2026-10-29`: decided and dismissed; the owner's decision of
   that day and decision record 0013 settle the outcome for entries 147 to 149, so the check looks for an appeal, a
   stay or a new order, and any one of those stops row work, which the review asked for (R3-S4); and Taylor's docket
@@ -2624,9 +2628,11 @@ Maintaining any state other than Colorado.
 
 ### Why this shape
 
-The design phases states in, starting with Colorado. Colorado's rule is a draft due before its Medical Services Board on
-November 27, 2026, and the research found its hardship and seasonal-income positions still open (research L5,
-findings 10 and 11), so its facts need a recheck date in the watch list, and some will be `not published`.
+The design phases states in, starting with Colorado. Colorado's rule is a draft whose updated language goes to its
+Medical Services Board on November 27, 2026, for an emergency reading on December 11, and the research found its
+hardship and seasonal-income positions still open (research L5, findings 10 and 11), so its facts need a recheck date in
+the watch list, and some will be `not published`. (Corrected 2026-11-04: said "a draft due before its Medical Services
+Board on November 27, 2026"; ledger L5-1.)
 
 ### How you know it worked
 

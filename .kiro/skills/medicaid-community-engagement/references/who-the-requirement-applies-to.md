@@ -48,6 +48,11 @@ both a caretaker relative and a family caregiver, and an answer names each.
 
 ## Parents, guardians, caretaker relatives and family caregivers
 
+Two sources conflict here. For parent-guardian-caretaker-relative-or-family-caregiver-excluded, 42 CFR 435.554(c)(3), as
+the June 3 printing gives it, has a family caregiver meet one of the criteria at paragraphs (c)(1)(i)(A) through (C),
+which do not exist, where the preamble says the criteria are at § 435.554(c)(3)(i). The row cites both, and which
+governs is an open question.
+
 - A parent, guardian, caretaker relative or family caregiver, as § 435.554(a) defines each, is a specified excluded
   individual, and a family caregiver must also meet one of the criteria the paragraph cites as (c)(1)(i)(A) through
   (C), which do not exist; the preamble says the criteria are at (c)(3)(i). Which governs is an open question.

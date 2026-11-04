@@ -35,6 +35,9 @@ names each.
 
 ## What the court ordered on 2026-10-29
 
+Two sources conflict here, and the conflict is an open question: six-months-without-penalty-for-plaintiff-states cites
+entry 148 and entry 147 on what the six months reach.
+
 - In Massachusetts v. Oz, the federal court in Massachusetts declared unlawful, and vacated and set aside under
   5 U.S.C. 706(2), the words that require a condition significantly impairing a person's ability to comply, and
   enjoined the defendants, CMS and HHS and the officials heading them in their official capacities, their agents,
@@ -156,6 +159,10 @@ names each.
   1382c(a)(3)(J)
 
 ## The State's list of conditions, and asking to be considered
+
+Two sources conflict here, and the conflict is an open question: state-develops-list-of-frailty-conditions and
+frailty-condition-list-auditable-and-consistent cite § 435.554(c)(5)(ii)'s paragraphs (a)(5)(i)(A) through (E), which do
+not exist, and the preamble's § 435.554(c)(5)(i)(A) through (E).
 
 - The State must develop a list of diseases, diagnoses, disorders or other health conditions to identify people who
   meet the criteria of the five groups. The list identifies people, and where the state has none, the five groups of

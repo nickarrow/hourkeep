@@ -1,0 +1,383 @@
+[[page 1]]
+Case 1:26-cv-12962-RGS Document 147 Filed 10/29/26 Page 1 of 16
+UNITED STATES DISTRICT COURT
+DISTRICT OF MASSACHUSETTS
+CIVIL ACTION NO. 26-12962-RGS
+COMMONWEALTH OF MASSACHUSETTS, et al.
+v.
+MEHMET OZ, M.D., in his official capacity as
+Director of the Centers for Medicare & Medicaid Services, et al.
+MEMORANDUM AND ORDER ON
+CROSS-MOTIONS FOR SUMMARY JUDGMENT
+October 29, 2026
+STEARNS, D.J.
+Plaintiffs Commonwealth of Massachusetts; State of California; State
+of New Jersey; State of Arizona; State of Colorado; State of Connecticut;
+State of Delaware; District of Columbia; State of Hawai‘i; State of Illinois;
+Office of the Governor, ex rel. Andy Beshear, in his official capacity as
+Governor of the Commonwealth of Kentucky; State of Maine; State of
+Maryland; State of Michigan; State of Minnesota; State of Nevada; State of
+New Mexico; State of New York; State of North Carolina; State of Oregon;
+Josh Shapiro, in his official capacity as Governor of the Commonwealth of
+Pennsylvania; State of Rhode Island; State of Vermont; Commonwealth of
+Virginia; State of Washington; and State of Wisconsin (collectively, the
+States) filed this action against Mehmet Oz, in his official capacity as Director
+[[page 2]]
+Case 1:26-cv-12962-RGS Document 147 Filed 10/29/26 Page 2 of 16
+of the Centers for Medicare & Medicaid Services; the Centers for Medicare &
+Medicaid Services (CMS); Robert F. Kennedy, Jr., in his official capacity as
+Secretary of the U.S. Department of Health & Human Services; and the U.S.
+Department of Health & Human Services (collectively, the Government) to
+challenge certain limitations imposed by CMS in its Interim Final Rule (IFR)
+implementing H.R. 1:1 (1) the incorporation of a work, study, or community
+service requirement in the definition of “medically frail”; (2) limiting the
+lookback period for claims and encounter data used to assess medical frailty
+to twelve months; and (3) restrictions on the use of self-attestations to
+establish medical frailty. In a three-count Complaint, the States accuse the
+Government of violating the Administrative Procedure Act (APA), 5 U.S.C.
+§§ 706(A)-(C), and the Spending Clause of the U.S. Constitution. Before the
+court are the parties’ cross-motions for summary judgment. On October 22,
+2026, the court convened a hearing on the motions. For the following
+reasons, the court will allow in part and deny in part the States’ motion and
+allow in part and deny in part the Government’s motion.
+BACKGROUND
+Enacted in 1965, Medicaid is a cooperative federal-state program in
+which the federal government supplies funding to states to assist in
+1 H.R. 1 was designated by its sponsor as the “One Big Beautiful Bill.”
+2
+[[page 3]]
+Case 1:26-cv-12962-RGS Document 147 Filed 10/29/26 Page 3 of 16
+providing medical services to low-income individuals and individuals with
+disabilities. See 42 U.S.C. §§ 1396 et seq. A state that elects to participate in
+the program must submit a plan for approval to the Secretary of the U.S.
+Department of Health & Human Services, who generally exercises his
+authority under the Medicaid statute through CMS. If a plan is approved,
+the state receives Medicaid funds from the federal government for a
+percentage of the money spent by the state in providing covered medical care
+to Medicaid-eligible individuals.
+On July 4, 2025, President Trump signed into law H.R. 1, which makes
+Medicaid eligibility for “applicable individuals” – a category which broadly
+includes individuals newly rendered eligible for Medicaid coverage under the
+Affordable Care Act (i.e., the “expansion population”), see id.
+§ 1396a(xx)(9)(A) – contingent on compliance with a community
+engagement requirement2 beginning January 1, 2027. Id. § 1396a(xx)(1).
+Certain individuals (“specified excluded individuals”) are excepted from the
+definition of “applicable individuals,” including, as relevant here:
+An individual . . . who is medically frail or otherwise has special
+medical needs (as defined by the Secretary), including an
+individual—
+2 To satisfy the community engagement requirement, an applicable
+individual must perform 80 hours of work or community service each month
+or be enrolled at least half-time in an educational program. See id.
+§ 1396a(xx)(2).
+3
+[[page 4]]
+Case 1:26-cv-12962-RGS Document 147 Filed 10/29/26 Page 4 of 16
+(aa) who is blind or disabled (as defined in section 1382c of
+this title);
+(bb) with a substance use disorder;
+(cc) with a disabling mental disorder;
+(dd) with a physical, intellectual or developmental
+disability that significantly impairs their ability to perform
+1 or more activities of daily living; or
+(ee) with a serious or complex medical condition . . . .
+Id. § 1396a(xx)(9)(A)(ii)(V).
+Given the short timeline which states were given to implement the
+community engagement requirement and the substantial programmatic
+changes implementation would necessitate, CMS early in the process
+provided the States with informal guidance on how to assess community
+engagement. At no point did the informal guidance offered by CMS reference
+any work requirement in relation to the specific category “medically frail or
+otherwise has special medical needs.” Nonetheless, when – consistent with
+Section 71119(d) of H.R. 13 — CMS issued the IFR in June of 2026, it
+unexpectedly defined “[a]n individual who is medically frail or otherwise has
+3 “Not later than June 1, 2026, the Secretary of Health and Human
+Services shall promulgate an interim final rule for purposes of implementing
+the provisions of, and the amendments made by, this section.” Pub. L. No.
+119-21, 139 Stat. 72, 314.
+4
+[[page 5]]
+Case 1:26-cv-12962-RGS Document 147 Filed 10/29/26 Page 5 of 16
+special medical needs” as “an individual whose physical, mental, or other
+behavioral health condition significantly impairs the individual’s ability to
+comply with the community engagement requirement” and who further falls
+within one of the five subcategories enumerated by Congress. 42 C.F.R.
+§ 435.554(c)(5)(i).
+The IFR incorporates two other major changes that figure in this
+litigation. First, it limits the States’ ability to rely on medical records to verify
+medical frailty. Only claims and encounter data from the twelve months
+preceding the date an application is filed are considered reliable for the
+purposes of verifying medical frailty. See id. §§ 435.557(a)(vii)-(viii).
+Second, it limits an individual’s ability to self-attest to medical frailty. The
+States may only accept one self-attestation per period of enrollment, see id.
+§ 435.557(f)(1)(ii), which is defined as “a continuous period of enrollment in
+coverage under the State plan or waiver without the individual being
+disenrolled, regardless of the number of consecutive eligibility periods, of
+redeterminations or renewals, or of transitions between eligibility groups,”
+id. § 435.557(a).
+DISCUSSION
+In the context of administrative law litigation,
+“a motion for summary
+judgment is simply a vehicle to tee up a case for judicial review.” Boston
+5
+[[page 6]]
+Case 1:26-cv-12962-RGS Document 147 Filed 10/29/26 Page 6 of 16
+Redevelopment Auth. v. Nat’l Park Serv., 838 F.3d 42, 47 (1st Cir. 2016).
+“[A]n inquiring court must review an agency action not to determine whether
+a dispute of fact remains but, rather, to determine whether the agency action
+was arbitrary and capricious.” Id. Because this standard “affords great
+deference to agency decisionmaking and agency actions are presumed valid,
+‘judicial review [under the APA], even at the summary judgment stage, is
+narrow.’” California v. Dep’t of Educ., 2026 WL 2754968, at *11 (D. Mass.
+Sept. 17, 2026) (alteration in original), quoting Associated Fisheries of
+Maine, Inc. v. Daley, 127 F.3d 104, 109 (1st Cir. 1997).
+I. APA Claims (Counts I and II)
+The States assert two claims under the APA: (1) that the definition of
+“medically frail” in the IFR is contrary to law (Count I); and (2) that its
+definition, as well as the twelve-month lookback period and the self-
+attestation limit, are each arbitrary and capricious (Count II).
+a. Contrary to Law
+The parties agree that, under H.R. 1, the term “medically frail” must
+“includ[e]” individuals who are blind or disabled; have a substance use
+disorder; have a disabling mental disorder; have a physical, intellectual or
+developmental disability that significantly impairs their ability to perform
+one or more activities of daily living; or have a serious or complex medical
+6
+[[page 7]]
+Case 1:26-cv-12962-RGS Document 147 Filed 10/29/26 Page 7 of 16
+condition. 42 U.S.C. § 1396a(xx)(9)(A)(ii)(V). Their dispute centers on
+whether CMS was permitted to add a further limitation to the term in the
+IFR, defining an individual who is “medically frail” as one who falls within
+these five subcategories and “whose physical, mental, or other behavioral
+health condition significantly impairs the individual’s ability to comply with
+the community engagement requirement.
+”
+“As usual, when tasked with interpreting a statute, we ‘must start with
+the text of the statute itself,’ aiming as best we can ‘to effectuate
+congressional intent.’” Washington v. Dep’t of Hous. & Urb. Dev., 171 F.4th
+473, 490 (1st Cir. 2026), quoting Teles de Menezes v. Rubio, 156 F.4th 1, 12
+(1st Cir. 2025). “Unless the statute specifies otherwise, ‘we generally assume
+that the [text] carries its plain and ordinary meaning.’” Washington, 171
+F.4th at 490 (alteration in original), quoting City of Providence v. Barr, 954
+F.3d 23, 31 (1st Cir. 2020).
+Although H.R. 1 generally gives CMS discretion to define “medically
+frail or otherwise has special needs,” the statute is clear that the term must,
+“includ[e]” individuals within five listed subcategories.4 “[T]he verb to
+4 The agency’s discretion to define “medically frail” is subject to the
+statutory limitations imposed by Congress. See Safer Chemicals, Healthy
+Fams. v. Env’t Prot. Agency, 943 F.3d 397, 425 (9th Cir. 2019) (“We agree
+that the statute grants EPA discretion to determine the conditions of use for
+each chemical substance, but that discretion may only be exercised within
+7
+[[page 8]]
+Case 1:26-cv-12962-RGS Document 147 Filed 10/29/26 Page 8 of 16
+include introduces examples.” Hincapie-Zapata v. United States Att’y Gen.,
+977 F.3d 1197, 1201 (11th Cir. 2020) (emphasis in original), quoting Antonin
+Scalia & Bryan A. Garner, Reading Law: The Interpretation of Legal Texts
+§ 15, at 132 (2012); see also Fed. Land Bank of St. Paul v. Bismarck Lumber
+Co., 314 U.S. 95, 100 (1941) (“[T]he term ‘including’ is not one of all-
+embracing definition, but connotes simply an illustrative application of the
+general principle.”). It follows that individuals falling within one of the five
+listed subcategories – blind or disabled; having a substance use disorder;
+having a disabling mental disorder; having a physical, intellectual or
+developmental disability that significantly impairs their ability to perform
+one or more activities of daily living; or having a serious or complex medical
+condition – serve as examples of what Congress meant as “medically frail.”
+The Government argues that, even if the listed subcategories exemplify
+medical frailty, it does not follow that “medically frail” “must include every
+possible object within” these subcategories. Gov’t Cross-Mot. [Dkt # 138-1]
+at 11. At least one Circuit, however, has concluded otherwise in
+the bounds of the statutory definition itself. Where Congress has explicitly
+provided a definition for a term, and that definition is clear, an agency must
+follow it.”) (internal citation omitted); see also City of Providence, 954 F.3d
+at 31 (“When an executive agency administers a federal statute, the agency’s
+power to act is ‘authoritatively prescribed by Congress.’”), quoting City of
+Arlington v. Fed. Commc’n Comm’n, 569 U.S. 290, 297 (2013).
+8
+[[page 9]]
+Case 1:26-cv-12962-RGS Document 147 Filed 10/29/26 Page 9 of 16
+circumstances similar to those here, holding that where “include” is used
+without qualification, any object within a listed category falls within the
+scope of the term.5 See Hincapie-Zapata, 977 F.3d at 1202 (11th Cir. 2020)
+(“Because the text contains no language qualifying the amount of ‘money’
+necessary to constitute ‘funds,’ the ordinary meaning establishes that any
+provision of ‘money’ qualifies as ‘material support.’”). As in Hincapie-
+Zapata, the court does not find the Government’s unsupported assertion
+that a contrary construction should control compelling or persuasive.
+Apart from the statutory language, the context in which it was written
+further indicates that Congress intended for the “including” clause to set a
+definitional floor for the term “medically frail” from which the agency lacked
+discretion to deviate. Every other exemption from the community
+engagement requirement created by Congress operates categorically,
+without reference to any requirement that the individual be unable to comply
+with the community engagement requirement. And the court finds it equally
+5 It is true that Hincapie-Zapata contemplates a set of circumstances
+under which the examples following “including” may not be fully
+incorporated into the preceding term, namely, when the listed examples “‘are
+broader than the general category’ and need to be ‘limited in [the] light of
+that category.’” Hincapie-Zapata, 977 F.3d at 1202 (alteration in original)
+quoting Massachusetts v. Env’t Prot. Agency, 549 U.S. 497, 556-557 (2007)
+(Scalia, J., dissenting). But the Eleventh Circuit categorizes it as an exception
+to the general rule, not the rule itself. And the exception so defined has no
+relevance here.
+9
+[[page 10]]
+Case 1:26-cv-12962-RGS Document 147 Filed 10/29/26 Page 10 of 16
+significant that Congress did impose a functionality-based limitation
+elsewhere: individuals “with a physical, intellectual or developmental
+disability” only qualify as “medically frail” if their condition “significantly
+impairs their ability to perform [one] or more activities of daily living.” 42
+U.S.C. § 1396a(xx)(9)(A)(ii)(V)(dd). Congress clearly knew how to qualify
+classifications and did so where it wished.
+Legislative history, although sparse on this issue, resolves any
+lingering ambiguity. The House Committee Report states that the term
+“medically frail” “includes, but is not limited to, individuals who are blind or
+disabled, who have a chronic substance use disorder, who have a serious and
+complex medical condition, or who have a condition, as defined by the State
+and approved by the Secretary, as meeting the definition of medically frail.”
+H.R. Rep. No. 119-106, pt. 1, at 620 (2025). Three different Senators and one
+Representative, moreover, made contemporaneous statements describing
+the five listed subcategories as qualifying as “medically frail” without further
+elaboration.
+6
+6 Representative Brett Guthrie was even more explicit, stating that an
+individual is “exempt if you’re medically frail, which includes anyone who’s
+blind, disabled, battling a chronic substance-use disorder or living with a
+serious and complex medical condition like cancer.” Klunder Aff. [Dkt #
+106], Ex. 62 at 6 (emphasis added).
+10
+[[page 11]]
+Case 1:26-cv-12962-RGS Document 147 Filed 10/29/26 Page 11 of 16
+In sum, the court agrees with the States that the agency lacked
+authority to exclude any subset of individuals in the five subcategories
+delineated as “medically frail” by Congress, as the IFR purports to do. The
+portion of the IFR imposing a limitation that the individual’s “physical,
+mental, or other behavioral health condition significantly impairs the
+individual’s ability to comply with the community engagement requirement”
+is beyond the powers of CMS (ultra vires) and thus contrary to law. Ryan v.
+Immigr. & Customs Enf’t, 974 F.3d 9, 19 (1st Cir. 2020) (“When an agency
+acts in a manner not authorized by statute, its action is ultra vires and a
+violation of the APA.
+”).
+b. Arbitrary and Capricious7
+“An agency action qualifies as ‘arbitrary’ or ‘capricious’ if it is not
+‘reasonable and reasonably explained.’” Ohio v. Env’t Prot. Agency, 603 U.S.
+279, 292 (2024), quoting Fed. Commc’n Comm’n v. Prometheus Radio
+Project, 592 U.S. 414, 423 (2021). “In reviewing an agency’s action under
+that standard, a court may not ‘substitute its judgment for that of the
+agency.’” Ohio, 603 U.S. at 292, quoting Fed. Commc’n Comm’n v. Fox
+7 Because the court finds the definition of “medically frail” to be
+contrary to law, it need not also determine whether it is arbitrary and
+capricious. The court accordingly only addresses the twelve-month lookback
+period and the self-attestation limit.
+11
+[[page 12]]
+Case 1:26-cv-12962-RGS Document 147 Filed 10/29/26 Page 12 of 16
+Television Stations, Inc., 556 U.S. 502, 513 (2009). Its task is to assess
+whether “the agency has offered ‘a satisfactory explanation for its action[,]
+including a rational connection between the facts found and the choice
+made,’” Ohio, 603 U.S. at 292 (alteration in original), quoting Motor Vehicle
+Mfrs. Ass’n of United States, Inc. v. State Farm Mut. Auto. Ins. Co., 463 U.S.
+29, 43 (1983), not “whether a regulatory decision is the best one possible or
+even whether it is better than the alternatives,” Fed. Energy Regul. Comm’n
+v. Elec. Power Supply Ass’n, 577 U.S. 260, 292 (2016).
+The court finds the States’ objections to the twelve-month lookback
+period and the limitation on the use of self-attestations unconvincing and
+falling well short of the arbitrary or capricious standard under the APA. The
+Government provided a non-frivolous rationale for adopting each provision
+and explained why it did not find the States’ concerns of disenrollment
+compelling. See, e.g., Medicaid Program; Community Engagement
+Requirement for Certain Individuals, 91 Fed. Reg. 33348, 33405 (June 3,
+2026) (“States may not consider information older than 12 months when
+verifying medical frailty or other special medical needs, because older
+information may not reflect the individual’s current condition.”); id. at
+33406 (“[I]n some cases, reliable claims information may not be available to
+the State for individuals who are medically frail or otherwise have other
+12
+[[page 13]]
+Case 1:26-cv-12962-RGS Document 147 Filed 10/29/26 Page 13 of 16
+special medical needs, particularly in cases where an individual recently
+obtained a diagnosis and medical services, but the claims data are lagging.
+For this reason, the absence of adjudicated claims or encounter data
+altogether, as well as the absence of particular claims or types of claims in
+available adjudicated claims data, may not be used to determine ineligibility
+for the exclusion based on medical frailty or other special medical needs.”);
+id. (“We believe that requiring verification of medical frailty to confirm an
+individual’s specified excluded status using data or other documentation
+after the State has verified that exclusion using a statement or other
+information provided under penalty of perjury (such as a screening tool) will
+motivate individuals to access care.”). The APA does not require more. That
+the States (or even the court) may disagree with the wisdom of the agency’s
+policies and conclusions, or may have made different choices, is irrelevant.
+II. Spending Clause Claim (Count III)
+Count III asserts that the IFR violates the Spending Clause of the U.S.
+Constitution primarily because it does not provide clear notice of the States’
+obligations to satisfy the conditions to receive the restricted federal Medicaid
+funding. Given the court’s conclusion that the definition of “medically frail”
+is contrary to law, it need not address this alternative ground for relief.
+13
+[[page 14]]
+Case 1:26-cv-12962-RGS Document 147 Filed 10/29/26 Page 14 of 16
+III. Relief
+Having determined that the portion of the IFR imposing a requirement
+that, to qualify as “medically frail,” an individual must establish that their
+“physical, mental, or other behavioral health condition significantly impairs
+the individual’s ability to comply with the community engagement
+requirement” in addition to falling within one of the five enumerated
+subcategories is contrary to law, the court must now determine the
+appropriate remedy.
+The court agrees with the States that vacatur of the offending language
+is warranted here. The text can easily be excised from the IFR without
+otherwise impacting the validity of its provisions, and vacatur (as opposed to
+the Government’s preferred remedy of remand) ensures that the issue is not
+left unresolved and that the parties have the clarity needed to comply with
+the January 1, 2027, implementation deadline imposed by Congress.
+8
+In addition to vacatur, the States seek the entry of a permanent
+injunction enjoining enforcement or implementation of the relevant portion
+of the IFR. A plaintiff seeking a permanent injunction
+8 The States made clear at the October 22, 2026, hearing that they do
+not seek to extend the Congressionally mandated January 1, 2027,
+implementation date, a form of relief that the court in any event would be
+powerless to grant.
+14
+[[page 15]]
+Case 1:26-cv-12962-RGS Document 147 Filed 10/29/26 Page 15 of 16
+must demonstrate: (1) that it has suffered an irreparable injury;
+(2) that remedies available at law, such as monetary damages,
+are inadequate to compensate for that injury; (3) that,
+considering the balance of the hardships between the [parties], a
+remedy in equity is warranted; and (4) that the public interest
+will not be disserved by a permanent injunction.
+Esso Standard Oil Co. v. Lopez-Freytes, 522 F.3d 136, 148 (1st Cir. 2008),
+quoting eBay Inc. v. MercExchange, L.L.C., 547 U.S. 388, 390 (2006).
+The States have met their burden of showing irreparable harm for
+which monetary damages would provide inadequate compensation – they
+face the burden of costly and intensive alterations to their eligibility
+verification systems. See Doe v. Trump, 157 F.4th 36, 79 (1st Cir. 2025).
+They have also met their burden on the balance of hardship and public
+interest factors. It is well-recognized that there is an inherent public interest
+in ensuring that the government follows the law, and because enforcement
+of an unlawful definition of “medically frail” may lead to the disenrollment
+of otherwise eligible vulnerable individuals relying on Medicaid coverage for
+continuity of care, the States (and public) face potential for great hardship in
+the absence of an injunction. The court accordingly will issue the permanent
+injunction requested by the States.
+Finally, to accommodate any errors or delays which may arise given the
+short timeline under which the States must now change their verification
+systems, the court agrees that the States should receive a 6-month stay of
+15
+[[page 16]]
+Case 1:26-cv-12962-RGS Document 147 Filed 10/29/26 Page 16 of 16
+enforcement9 as to any determination that an individual does or does not
+qualify as “medically frail” within the scope of H.R. 1.
+ORDER
+For the foregoing reasons, the States’ motion for summary judgment is
+ALLOWED IN PART and DENIED IN PART, and the Government’s motion
+for summary judgment is ALLOWED IN PART and DENIED IN PART.
+SO ORDERED.
+/s/ Richard G. Stearns
+UNITED STATES DISTRICT JUDGE
+9 As previously noted, this stay of enforcement has no impact on the
+Congressionally mandated January 1, 2027, deadline for implementation.
+16

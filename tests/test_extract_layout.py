@@ -6,8 +6,8 @@ from __future__ import annotations
 import unittest
 
 from corpus_fixture import (
-    COLORADO, Corpus, CorpusTestCase, EXTRACT, EXTRACT_TEXT, TOPIC, extract_with, load_checker, run_checker,
-    topic_with,
+    COLORADO, Corpus, CorpusTestCase, EXTRACT, EXTRACT_TEXT, NOTICE_ITEM, OPEN_QUESTIONS, OPEN_QUESTIONS_TEXT, SKILL,
+    TOPIC, extract_with, load_checker, run_checker, skill_with, topic_with,
 )
 
 
@@ -59,9 +59,16 @@ class ExtractLayoutTest(CorpusTestCase):
         self.assertFails(result, EXTRACT, 5, "comes before the first ## topic")
 
     def test_a_second_topic_passes(self):
-        result = self.check_extract(extract_with("### notice-response-period", "## Another topic\n\n"
-                                                 "### notice-response-period"))
-        self.assertPasses(result)
+        # The second topic's row has its rule item in that topic's own file, as the Formats require.
+        corpus = Corpus()
+        corpus.files[EXTRACT] = extract_with("### notice-response-period", "## Another topic\n\n"
+                                             "### notice-response-period")
+        corpus.files[TOPIC] = topic_with(NOTICE_ITEM, "")
+        corpus.files[SKILL] = skill_with("\n## Precedence", "- [Another topic](references/another-topic.md): the "
+                                         "30 days. Read it first.\n\n## Precedence")
+        corpus.files[TOPIC.replace("fair-hearings", "another-topic")] = (
+            "# Another topic\n\n## Answering a notice\n\n" + NOTICE_ITEM)
+        self.assertPasses(run_checker(corpus))
 
     def test_another_heading_level_after_the_introduction_fails(self):
         result = self.check_extract(extract_with("### notice-response-period", "#### notice-response-period"))
@@ -72,6 +79,9 @@ class ExtractLayoutTest(CorpusTestCase):
         corpus.files[EXTRACT] = extract_with("### notice-response-period", "### notice-response-period-30")
         corpus.states[COLORADO]["facts"][0]["row"] = "notice-response-period-30"  # the fact follows its row
         corpus.files[TOPIC] = topic_with("[notice-response-period]", "[notice-response-period-30]")  # so does its item
+        # and so does the question that raises it
+        corpus.files[OPEN_QUESTIONS] = OPEN_QUESTIONS_TEXT.replace("notice-response-period",
+                                                                   "notice-response-period-30")
         self.assertPasses(run_checker(corpus))
 
     def test_a_malformed_identifier_fails(self):

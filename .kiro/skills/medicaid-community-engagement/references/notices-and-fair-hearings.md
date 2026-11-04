@@ -248,6 +248,15 @@ or on an exception, say so, point the person to the dates on their own notice, a
 The items here that use the date of action or the 5-day notice depend on sections the corpus has not read, which
 the paragraph at the start of Hearing rights and the notice of action explains.
 
+Two sources conflict here. Colorado's rule reinstates a member's services back to the date of action and continues them
+until a final agency decision after the hearing "Where the member requests a hearing not more than ten (10) days after
+the date of action", while HCPF's appeals page has the Office of Administrative Courts get the request no later than 10
+days after the date of action. Whether the 10 days run to the member's request or to the court's receipt of it is an
+open question. The next action picks no side: make sure the request arrives within the 10 days. (Corrected 2026-10-19:
+said "HCPF's appeals page has the Office of Administrative Courts receive a request within 10 days, where Colorado's
+rule has the member request a hearing within 10 days."; full review 2026-10-19, cold reader a2; read in
+docs/domain/states/co.json:38.)
+
 - If the agency sent the notice of action 10 days in advance, or the 5-day notice, and the person asks for a hearing
   before the date of action, the agency may not end or reduce services until the hearing decision, unless the
   hearing finds the only issue is one of federal or state law or policy and the agency promptly tells the person in
@@ -277,6 +286,14 @@ eligibility period in the adult expansion group on January 1, 2027, whose annual
 2027; for those people a state takes one of two paths, which SMD 26-001 calls "Reschedule Renewal Initiation Dates for
 Beneficiaries Enrolled as of January 1, 2027" and "Transition Beneficiaries Enrolled on January 1, 2027, at Their Next
 Scheduled Renewal".
+
+Two sources conflict here. For reschedule-2027-renewals-to-six-months, keep-scheduled-2027-renewals and
+first-path-period-not-shorter-than-six-months, 42 CFR 435.916(a)(1), as the interim final rule reprints it, says
+MAGI-based eligibility is renewed once every 12 months and no more often, where SSA 1902(e)(14)(L) has the state
+redetermine, once every 6 months for redeterminations scheduled from 2027, individuals enrolled under SSA
+1902(a)(10)(A)(i)(VIII), and individuals it describes who are enrolled under a waiver giving all of them coverage
+equivalent to minimum essential coverage, except the American Indians and Alaska Natives the statute exempts. Those rows
+cite both, and which governs is an open question.
 
 - The statute's requirement that a state redetermine eligibility once every 6 months does not apply to an individual
   who is an Indian or an Urban Indian as the Indian Health Care Improvement Act defines those terms, a California

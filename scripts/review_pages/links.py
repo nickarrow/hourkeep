@@ -12,8 +12,8 @@ from corpus_check.constants import STATE_ELECTION
 
 from .constants import (
     CCR_DRAFT_PART, CCR_DRAFT_SOURCE, CCR_PART, CCR_SOURCE, CFR_LISTED, CFR_PARAGRAPH, CFR_PART, CFR_SECTION_SIGN,
-    CFR_TITLE, CFR_TITLE_42, CFR_URL, EMAIL, FR_PART, FR_URL, GOOGLE_FORM_FOR, ISSUE_FORM, NOT_RECORDED,
-    PUBLIC_LAW_PART, PUBLIC_LAW_URL, SMD_PART, SMD_SOURCE, SSA_PART, SSA_URL,
+    CFR_TITLE, CFR_TITLE_42, CFR_URL, COURT_CASES, DOCKET_ENTRY_PART, EMAIL, FR_PART, FR_URL, GOOGLE_FORM_FOR,
+    ISSUE_FORM, NOT_RECORDED, PUBLIC_LAW_PART, PUBLIC_LAW_URL, SMD_PART, SMD_SOURCE, SSA_PART, SSA_URL,
 )
 
 IF_WRONG = {
@@ -37,10 +37,29 @@ def source_address(manifest: dict, path_matches) -> Optional[str]:
         return None
     if found.get("cited_url", NOT_RECORDED) != NOT_RECORDED:
         return found["cited_url"]
-    for retrieval in found.get("retrievals", []):
+    return served_address(found)
+
+
+def served_address(entry: dict) -> Optional[str]:
+    """The first served_url a manifest entry records, or None."""
+    for retrieval in entry.get("retrievals", []):
         if isinstance(retrieval, dict) and retrieval.get("served_url", NOT_RECORDED) != NOT_RECORDED:
             return retrieval["served_url"]
     return None
+
+
+def entry_address(manifest: dict, path: str) -> Optional[str]:
+    """The first served_url of the manifest entry at `path`, or None when there is no such entry or it records none."""
+    for entry in manifest.get("sources", []):
+        if isinstance(entry, dict) and entry.get("path") == path:
+            return served_address(entry)
+    return None
+
+
+def heading_anchor(heading: str) -> str:
+    """The anchor GitHub gives a heading: its text in lowercase, with every character taken out but letters, digits,
+    hyphens, underscores and spaces, and each space made a hyphen."""
+    return re.sub(r"[^\w\- ]", "", heading.lower()).replace(" ", "-")
 
 
 def section_address(title: str, section: str, paragraph: str) -> str:
@@ -55,8 +74,10 @@ def cfr_address(match) -> str:
     return section_address(*match.group(1, 2, 3))
 
 
-def cite_part(part: str, manifest: dict) -> str:
-    """One part of a citation, the words its pattern matches linked to the official text, or the part as it is."""
+def cite_part(part: str, manifest: dict, entries: Optional[str] = None) -> str:
+    """One part of a citation, the words its pattern matches linked to the official text, or the part as it is.
+    `entries` is the path of the stored entries of the case the citation names, with {} for the entry's number, or
+    None when it names no such case."""
     linkers = (
         (CFR_PART, cfr_address),
         (FR_PART, lambda match: FR_URL.format(match.group(1), match.group(2))),
@@ -66,6 +87,8 @@ def cite_part(part: str, manifest: dict) -> str:
          lambda match: source_address(manifest, lambda path: CCR_DRAFT_SOURCE.match(path) is not None)),
         (SSA_PART, lambda match: SSA_URL[match.group(1)]),
         (PUBLIC_LAW_PART, lambda match: PUBLIC_LAW_URL),
+        (DOCKET_ENTRY_PART,
+         lambda match: entry_address(manifest, entries.format(match.group(1))) if entries is not None else None),
     )
     for pattern, address in linkers:
         match = pattern.search(part)
@@ -79,8 +102,10 @@ def cite_part(part: str, manifest: dict) -> str:
 
 
 def cite(citation: str, manifest: dict) -> str:
-    """A Citation, each part, separated by '; ', linked where the pages know its official text."""
-    return "; ".join(cite_part(part, manifest) for part in citation.split("; "))
+    """A Citation, each part, separated by '; ', linked where the pages know its official text. A docket entry links
+    only where the citation names the docket number of a case in COURT_CASES, which a later part may leave out."""
+    entries = next((path for number, path in COURT_CASES.items() if number in citation), None)
+    return "; ".join(cite_part(part, manifest, entries) for part in citation.split("; "))
 
 
 def cite_in_text(text: str) -> str:

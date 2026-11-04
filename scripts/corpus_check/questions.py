@@ -2,7 +2,9 @@
 order, Why it is open, Who can answer, Raised, one or more Sources, and optionally a Note last. Why it is open starts
 with one or more of the four reasons, separated by semicolons. A question whose part moved to the state facts holds
 one field, Moved, and none of the others, its date a day that exists. A state fact named in a Moved line or in Why
-it is open exists. Whether a Source quotes words on its line is not checked here yet."""
+it is open exists. Each word in Raised shaped like an identifier names a row, and each row whose Rule or Note says
+open question is named in some question's Raised. Whether a Source quotes words on its line is not checked here
+yet."""
 
 from __future__ import annotations
 
@@ -10,13 +12,13 @@ from pathlib import Path
 from typing import List, Optional, Set
 
 from .constants import (
-    FIELD, HEADING, MOVED, MOVED_FIELD, MOVED_FORM, OPEN_QUESTIONS, OPEN_REASONS, QUESTION_FIELDS,
-    QUESTION_REQUIRED_FIELDS, STATE_FACT_NAME,
+    EXTRACT, FIELD, HEADING, IDENTIFIER_SHAPED, MOVED, MOVED_FIELD, MOVED_FORM, OPEN_QUESTION_WORDS, OPEN_QUESTIONS,
+    OPEN_REASONS, QUESTION_FIELDS, QUESTION_REQUIRED_FIELDS, STATE_FACT_NAME,
 )
 from .dates import is_date
 from .files import read_listed, split_lines
 from .report import Problem
-from .rows import Field
+from .rows import Field, Row
 
 
 class Question:
@@ -168,10 +170,34 @@ def reasons_problem(value: str) -> Optional[str]:
     return None
 
 
-def check_open_questions(root: Path, files: Optional[List[str]], problems: List[Problem], facts: Set[str]) -> None:
-    """The open questions, against `facts`, the state facts' names that check_state_facts returns."""
+def check_raised_rows(questions: List[Question], rows: List[Row], problems: List[Problem]) -> None:
+    """Each word shaped like an identifier in a question's Raised names a row, and each row whose Rule or Note says
+    open question is named in some question's Raised, so a question deleted while its rows wait on it fails."""
+    identifiers = {row.identifier for row in rows}
+    raised: Set[str] = set()
+    for question in questions:
+        for field in question.fields:
+            if field.name != "Raised":
+                continue
+            for word in IDENTIFIER_SHAPED.findall(field.value):
+                if word in identifiers:
+                    raised.add(word)
+                else:
+                    problem(problems, field.line, "Raised: {} names no row".format(word))
+    for row in rows:
+        if row.identifier not in raised and any(OPEN_QUESTION_WORDS.search(value)
+                                                for value in row.values("Rule") + row.values("Note")):
+            problems.append(Problem(EXTRACT, row.line, "{} says open question, and no open question's Raised "
+                                    "names it".format(row.identifier)))
+
+
+def check_open_questions(root: Path, files: Optional[List[str]], problems: List[Problem], facts: Set[str],
+                         rows: List[Row]) -> None:
+    """The open questions, against `facts`, the state facts' names that check_state_facts returns, and `rows`, the
+    rows of the extract, which their Raised names and which name them."""
     data = read_listed(root, OPEN_QUESTIONS, files)
     if data is None:
         problem(problems, 0, "the open questions are missing")
         return
-    parse_questions(split_lines(data), problems, facts)
+    questions = parse_questions(split_lines(data), problems, facts)
+    check_raised_rows(questions, rows, problems)

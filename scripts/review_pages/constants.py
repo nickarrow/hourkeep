@@ -87,12 +87,18 @@ SSA_URL = {
 SSA_PART = re.compile(r"SSA (" + "|".join(re.escape(section) for section in SSA_URL) + r")\b[^\s;,]*")
 PUBLIC_LAW_PART = re.compile(r"Pub\. L\. 119-21")
 PUBLIC_LAW_URL = "https://www.govinfo.gov/content/pkg/PLAW-119publ21/html/PLAW-119publ21.htm"
+# A docket entry, "docket entry <n>", in a citation that names the number of a case whose entries are stored, links to
+# the address its RECAP copy in courts/, the copy the rows cite, was fetched from: that copy's manifest served_url,
+# since the address the manifest cites for each RECAP copy is the case's docket page. Each case's RECAP copies, keyed
+# by its docket number; an entry not stored stays text, and govinfo's copy of entry 147 is not the one linked.
+COURT_CASES = {"1:26-cv-12962": "docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-{}.pdf"}
+DOCKET_ENTRY_PART = re.compile(r"docket entry (\d+)")
 NOT_RECORDED = "not recorded"
 # A row's Source that is not stored yet, 'not stored, <URL>', whose address its page shows.
 NOT_STORED_ADDRESS = re.compile(r"^not stored, (\S+)$")
 
 # The paragraph a topic page opens with, before Start here, keyed by topic file as START_HERE is; each word in it
-# that is a row's identifier links to the row. A topic file with none opens with Start here.
+# shaped like an identifier must be a row's, and links to the row. A topic file with none opens with Start here.
 ORIENTATION = {
     "who-the-requirement-applies-to": (
         "Two terms run through this page. A person the requirement applies to is what the rule calls an applicable "
@@ -112,9 +118,21 @@ ORIENTATION = {
         "medically-frail-defined and the five group rows from medically-frail-blind-or-disabled to "
         "medically-frail-serious-or-complex-condition, quote the text as printed and say the words were vacated, and "
         "medically-frail-defined says what is in force in the states that sued. Whether the vacatur reaches the "
-        "states that did not sue is an open question. So is what the six months in "
-        "six-months-without-penalty-for-plaintiff-states cover, where the order and the memorandum, the court's "
-        "written reasons, differ. Whether a person is medically frail is the agency's determination."
+        "states that did not sue is an open question. What the six months in "
+        "six-months-without-penalty-for-plaintiff-states cover is another open question, since the order and the "
+        "memorandum, the court's written reasons, differ. Whether a person is medically frail is the agency's "
+        "determination."
+    ),
+}
+# The open questions an orientation names, keyed by topic file, each by its title, in the order the words "open
+# question" stand in the orientation; each of those links to its question's heading on the open questions page. An
+# orientation not keyed here links its first "open question" to the page.
+ORIENTATION_QUESTIONS = {
+    "medically-frail-or-special-medical-needs": (
+        "Does the vacatur of the impairment words in the definition of medically frail reach the states that did not "
+        "sue, in CMS's practice?",
+        "Which describes the six months in Massachusetts v. Oz: the order's bar on penalties for errors or delays in "
+        "implementing the rule, or the memorandum's stay of enforcement for decisions on medical frailty?",
     ),
 }
 

@@ -406,25 +406,27 @@ reads it: the text after `description:`, with any continuation lines joined by s
 
 `SKILL.md` has frontmatter holding `name` and `description` between `---` lines, as the other skills here do. The
 headings `## Topics`, `## Precedence` and `## Watch list` each appear exactly once, written exactly so, because a
-misspelled heading would otherwise switch a check off without a sound. `## Topics` holds one list item per topic file:
-a markdown link `[<title>](references/<name>.md)`, then what the file covers, and that a session reads it before
-answering a question it covers. A `## Topics` that links no topic file fails. `## Precedence` says which source wins
-when two disagree, and each item of `## Watch list` is a date or an event and the rows it could change. The list items
-in `SKILL.md` are not rule items and are left to review. `SKILL.md` stays under 500 lines, as the
-[Agent Skills specification](https://agentskills.io/specification) recommends, and, as a target the checker does not
-count, about 1,500 words.
+misspelled heading would otherwise switch a check off without a sound. `## Topics` holds one list item per topic file: a
+markdown link `[<title>](references/<name>.md)`, then what the file covers, and that a session reads it before answering
+a question it covers. A `## Topics` that links no topic file fails. `## Precedence` says which source wins when two
+disagree and how a conflict between two sources is handled, and names no conflict itself, since each is named in its
+row's topic file. Each item of `## Watch list` is a date or an event and the rows it could change, and an item whose
+event has come and been dealt with is taken out. The list items in `SKILL.md` are not rule items and are left to review.
+`SKILL.md` stays under 500 lines, as the [Agent Skills specification](https://agentskills.io/specification) recommends,
+and, as a target the checker does not count, about 1,500 words.
 
 A topic file is `references/<name>.md`, its name lowercase words joined by hyphens, with no frontmatter. Its first line
-is `# <title>`, and the title is the `##` heading of one topic in the extract, written exactly as the heading is, so
-the topic's one title, which decision record 0006 sets, cannot drift between the two. No two topic files share a
-title. Every `.md` file directly in
-`references/` is linked from `## Topics`, and every link there names a file that exists. Prose may stand under the
-title or at the start of a group, and holds no rule; it is left to review. Rule items sit under `##` group headings
-named in plain words for what the group covers. Every list item in a topic file is a rule item and sits under a `##`
-heading, so a list item with no identifier, or one above the first `##` heading, fails. A rule item names any choice
-of the state it depends on by what the choice does, never "this option", "that option" or "the other option"; that is
-left to review. A topic file stays under 500 lines. A topic file holds at least one rule item, and each row in the
-extract has exactly one rule item across the topic files.
+is `# <title>`, and the title is the `##` heading of one topic in the extract, written exactly as the heading is, so the
+topic's one title, which decision record 0006 sets, cannot drift between the two. No two topic files share a title.
+Every `.md` file directly in `references/` is linked from `## Topics`, and every link there names a file that exists.
+Prose may stand under the title or at the start of a group, and holds no rule; it is left to review. Where two sources
+conflict on a row, prose at the start of the row's group says so, names what each says and picks no side, and the
+question goes in `docs/domain/open-questions.md`. Rule items sit under `##` group headings named in plain words for what
+the group covers. Every list item in a topic file is a rule item and sits under a `##` heading, so a list item with no
+identifier, or one above the first `##` heading, fails. A rule item names any choice of the state it depends on by what
+the choice does, never "this option", "that option" or "the other option"; that is left to review. A topic file stays
+under 500 lines. A topic file holds at least one rule item, and each row in the extract has exactly one rule item across
+the topic files, in the topic file whose title is the `##` heading the row stands under in the extract.
 
 A rule item has words before its identifier. It may continue on lines indented by exactly two spaces, and is read with
 its lines joined by single spaces. It ends with the row's identifier in square brackets, a space, and the row's
@@ -490,19 +492,27 @@ anything git ignores, and fails, naming each problem, when:
   `Moved` is the exception to the required fields and their order: it fails if it holds any other field or holds
   `Moved` twice, or if its value is not `YYYY-MM-DD, to the state fact <state>: <row>.` with a real date. A value
   in that form whose date is no day that exists, such as 2026-02-30, is told so in a message of its own
-- a state fact named as `the state fact <state>: <row>`, in a `Moved` line or in Why it is open, does not exist,
-  with "the" or "The" before it and the name bare or in backticks. The names are built from each state file's
-  `state` and each fact's `row`, so `co: <row>` exists only where `co.json` has a fact on that row
+- a state fact named as `the state fact <state>: <row>`, in a `Moved` line or in Why it is open, does not exist, with
+  "the" or "The" before it and the name bare or in backticks. The names are built from each state file's `state` and
+  each fact's `row`, so `co: <row>` exists only where `co.json` has a fact on that row
+- a word in an open question's Raised shaped like an identifier names no row, or a row whose Rule or Note says "open
+  question", in any case and also as the start of "open questions", is named in no question's Raised, so a question
+  deleted while its rows still wait on it fails. A word is shaped like an identifier when it starts with a lowercase
+  letter, is made of lowercase letters and digits joined by hyphens, has at least one hyphen and has no letter, digit or
+  hyphen touching it, so a date, a number such as 12-month, a docket number such as 1:26-cv-12962 and a finding such as
+  L1-4 are not taken for one, and a hyphenated word such as self-attestation is, and fails
 - `CHOICE_PAIRS` gives one pair the same row twice or puts a row in two pairs, or the extract holds one row of a
   pair and not the other, or holds the pair's second row first; each is reported at
   `scripts/corpus_check/constants.py`, where the pairs are kept
 - the skill's description passes 1,024 characters, or a topic file's title is not the `##` heading of a topic in the
   extract or is the title of another topic file too
-- the skill's main file or a topic file passes 500 lines, a topic file is missing, not linked or holds no rule item,
-  a row has no rule item or more than one, or a rule item names a row that does not exist, gives it a different
-  citation, or states a number its row's Rule does not
-- a review page differs from what the generator makes or is missing, or a file in `docs/review/` is one the
-  generator does not make
+- the skill's main file or a topic file passes 500 lines, a topic file is missing, not linked or holds no rule item, a
+  row has no rule item or more than one, or a rule item names a row that does not exist, gives it a different citation,
+  sits in a topic file whose title is not the `##` heading its row stands under, or states a number its row's Rule does
+  not
+- a review page differs from what the generator makes or is missing, or a file in `docs/review/` is one the generator
+  does not make, or the generator cannot make the pages, as when a start-here row is not in its topic file or an
+  orientation names a row or an open question that does not exist
 
 It prints how many rows it checked, how many of them say `Verified: no` and how many a person verified, and how many
 sources, state facts, facts marked `not published`, warnings and skill items it matched. If the skill is absent it
@@ -534,8 +544,16 @@ any of the three ways, follows HourKeep's code of conduct, `CODE_OF_CONDUCT.md`,
 reported to conduct@hourkeep.app, as decision record 0011 sets out.
 
 A topic page may open with an orientation, one paragraph held for its topic file in `ORIENTATION` in
-`scripts/review_pages/constants.py`, as `START_HERE` there holds its start-here rows, and every word in it that is a
-row's identifier links to that row, and its first "open question" links to the open questions page. For
+`scripts/review_pages/constants.py`, as `START_HERE` there holds its start-here rows, and every word in it shaped like
+an identifier, as an open question's Raised is read, must be a row's, and links to that row. Each "open question" in it,
+the words in lowercase, links to the question `ORIENTATION_QUESTIONS` there names for it, by title and in the order they
+stand, at that question's heading on the open questions page, whose anchor is the one GitHub gives the heading: its
+words in lowercase, with every character taken out but letters, digits, hyphens, underscores and spaces, and each space
+made a hyphen. An orientation that names no questions may hold one "open question", which links to the page. A word that
+names no row, a title that is not a question still open on the page, which a question moved to the state facts is not,
+more or fewer titles than the paragraph has "open question", or more than one with none named stops the build. A key of
+`START_HERE`, `ORIENTATION` or `ORIENTATION_QUESTIONS` that names no topic file is passed over, since the tests' corpora
+have topic files of their own, and a test that reads this repository's skill fails it. For
 who-the-requirement-applies-to it names the page's two terms, applicable individual and specified excluded individual,
 and the rows that define them. Then comes "Start here": one list item for each group of the topic file that holds a
 start-here row, its text the group's `##` heading and a colon, and under it a link to each of those rows, named by its
@@ -555,17 +573,23 @@ value in the same words.
 
 A CFR citation of title 42 or title 28 links to its section on eCFR's current section page for that title, so
 `28 CFR 35.108`, which 42 CFR 435.554(a) incorporates, links as a 42 CFR citation does; a citation of any other title,
-such as 29 CFR, stays text. One that names a paragraph, such as `42 CFR 435.558(a)(1)`, links to that paragraph, at
-the fragment `#p-` followed by the section and paragraph percent-encoded: `#p-435.558%28a%29%281%29`. A range links
-to its first paragraph. Every CFR and Federal Register citation in an open question's text is linked the same way. So
-is a section of title 42's parts 400 to 499 listed bare straight after a 42 CFR reference, and not after a 28 CFR
-one, as 431.221 and 431.231 are in "42 CFR 431.211, 431.221 and 431.231", and a section-sign reference
-to such a section, such as `§ 431.206(c)(2)`, where the question's text names 42 CFR and no other title. A paragraph
-alone, such as the (c)(3) in "§ 431.206(c)(2), (c)(3) or (c)(4)", stays text, and so does any Colorado section.
-Colorado's draft 10 CCR 2505-10 8.100 links to the address the manifest records for the stored draft. A citation of
-the Social Security Act links to the section's page in SSA's Compilation, whatever paragraph it names: `SSA 1614` to
-https://www.ssa.gov/OP_Home/ssact/title16b/1614.htm and `SSA 1902` to https://www.ssa.gov/OP_Home/ssact/title19/1902.htm;
-a citation of any other section of the Act stays text. A citation links to the current official text, while
+such as 29 CFR, stays text. One that names a paragraph, such as `42 CFR 435.558(a)(1)`, links to that paragraph, at the
+fragment `#p-` followed by the section and paragraph percent-encoded: `#p-435.558%28a%29%281%29`. A range links to its
+first paragraph. Every CFR and Federal Register citation in an open question's text is linked the same way. So is a
+section of title 42's parts 400 to 499 listed bare straight after a 42 CFR reference, and not after a 28 CFR one, as
+431.221 and 431.231 are in "42 CFR 431.211, 431.221 and 431.231", and a section-sign reference to such a section, such
+as `§ 431.206(c)(2)`, where the question's text names 42 CFR and no other title. A paragraph alone, such as the (c)(3)
+in "§ 431.206(c)(2), (c)(3) or (c)(4)", stays text, and so does any Colorado section. Colorado's draft 10 CCR 2505-10
+8.100 links to the address the manifest records for the stored draft. A citation of the Social Security Act links to the
+section's page in SSA's Compilation, whatever paragraph it names: `SSA 1614` to
+https://www.ssa.gov/OP_Home/ssact/title16b/1614.htm and `SSA 1902` to
+https://www.ssa.gov/OP_Home/ssact/title19/1902.htm; a citation of any other section of the Act stays text. In a citation
+that names the docket number of Massachusetts v. Oz, 1:26-cv-12962, each `docket entry <n>` links to the address its
+RECAP copy in `docs/domain/sources/courts/`, the copy the rows cite, was fetched from, that copy's manifest
+`served_url`, since the address the manifest cites for each RECAP copy is the case's docket page; govinfo's copy of
+entry 147, a source of its own, is not the one linked; an entry not stored, such as entry 142, stays text, and so does
+an entry of a case whose entries are not stored. A part of a citation links at most one citation, so each docket entry
+stands in a part of its own, as it does in every row's Citation. A citation links to the current official text, while
 each row was checked against the stored copy its Verified date names. The two can differ once the text is amended.
 
 Every row, open question and state fact has three comment links, each carrying its name: the GitHub issue form, the

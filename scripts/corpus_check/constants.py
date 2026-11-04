@@ -180,6 +180,15 @@ OPEN_REASONS = (
     "the sources conflict", "the sources are silent", "it turns on a choice the state has not published",
     "the answer may be in a provision the corpus has not stored",
 )
+# A word in prose shaped like a row's identifier, which must name one: a lowercase letter, then lowercase letters and
+# digits joined by hyphens, with at least one hyphen, and no letter, digit or hyphen touching it. Every row's
+# identifier starts with a letter and has a hyphen, so a plain word such as "rows" is not taken for one, nor a date
+# such as 2026-10-29, a number such as 12-month, a docket number such as 1:26-cv-12962 or a finding such as L1-4. A
+# hyphenated word such as self-attestation is, and fails. An open question's Raised and a review page's orientation
+# are read for these.
+IDENTIFIER_SHAPED = re.compile(r"(?<![A-Za-z0-9-])[a-z][a-z0-9]*(?:-[a-z0-9]+)+(?![A-Za-z0-9-])")
+# A row whose Rule or Note says this waits on an open question, which some question's Raised must name.
+OPEN_QUESTION_WORDS = re.compile(r"\bopen question", re.IGNORECASE)
 
 HEADING = re.compile(r"^(#+) (.*)$")
 IDENTIFIER = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")

@@ -26,11 +26,13 @@ class Field:
 
 
 class Row:
-    """A `###` section of the extract. Its heading is its identifier."""
+    """A `###` section of the extract. Its heading is its identifier, and `topic` is the text of the ## topic heading
+    it stands under, which its rule item's topic file has as its title."""
 
-    def __init__(self, identifier: str, line: int) -> None:
+    def __init__(self, identifier: str, line: int, topic: str = "") -> None:
         self.identifier = identifier
         self.line = line
+        self.topic = topic
         self.fields: List[Field] = []
 
     def values(self, name: str) -> List[str]:
@@ -51,6 +53,7 @@ def parse_extract(lines: List[bytes], problems: List[Problem], topics: Optional[
     place = "introduction"
     introduction = False
     row: Optional[Row] = None
+    topic = ""  # the text of the last ## topic heading
     for number, raw in enumerate(lines, start=1):
         try:
             line = raw.decode("utf-8")
@@ -67,8 +70,9 @@ def parse_extract(lines: List[bytes], problems: List[Problem], topics: Optional[
         elif heading and heading.group(1) == "##":
             if place == "introduction" and not introduction:
                 problem(problems, number, "the extract needs a short introduction before the first ## topic")
+            topic = heading.group(2).strip()
             if topics is not None:
-                topics.append(heading.group(2).strip())
+                topics.append(topic)
             place, row = "topic", None
         elif heading and heading.group(1) == "###":
             identifier = heading.group(2)
@@ -82,7 +86,7 @@ def parse_extract(lines: List[bytes], problems: List[Problem], topics: Optional[
                     identifier, seen[identifier]))
             else:
                 seen[identifier] = number
-            row = Row(identifier, number)
+            row = Row(identifier, number, topic)
             rows.append(row)
             place = "heading"
         elif place == "introduction":

@@ -692,6 +692,32 @@
       "note": "42 U.S.C. 1382c, Definitions, which is section 1614 of the Social Security Act (source credit, line 93: \"title XVI, &sect;1614\"), in the United States Code, 2024 Edition (line 3), whose comment on line 10 gives currentthrough:20250106. The address answered 200 text/html, 59,402 bytes, with no redirect. The 2024 edition is the latest govinfo serves for the section: at 2026-10-29T21:49Z the 2025 edition's address, https://www.govinfo.gov/content/pkg/USCODE-2025-title42/html/USCODE-2025-title42-chap7-subchapXVI-partA-sec1382c.htm, redirected once to https://www.govinfo.gov/error. Paragraph (a)(2), blindness, is line 23, and paragraph (a)(3), disability, lines 24 to 49. The latest amendment the source credit (line 93) and the Amendments note (line 102) give is Pub. L. 108-203, title IV, section 434(a), of 2004-03-02, to (a)(1)(B)(ii). uscode.house.gov's current release point, which its page says is current through Public Law 119-136 (October 22, 2026), was read at https://uscode.house.gov/us/usc/119-136/t42/s1382c/ at 2026-10-29T21:50:32Z and is not stored; the site's view.xhtml and download.shtml addresses answered 404, and its banner says it runs in a temporary format. That page gives the same latest amendment, and its text of the section from (a)(2) to the end of its last subsection, (f), compared word by word with this copy's after tags and entities were removed and dashes and spaces made uniform, differs only by a word joiner, U+2060, that it puts before each dash. So neither source shows an amendment to (a)(2) or (a)(3) after this edition, through Public Law 119-136. The bytes match, by SHA-256, a probe copy fetched from the same address at about 17:50 UTC that day."
     },
     {
+      "path": "docs/domain/sources/govinfo/massachusetts-v-oz-1-26-cv-12962-147.pdf",
+      "sha256": "e0ddca6178da696f8fe07d47884ef655b123c45df5131d37d5b7780a6364e6f0",
+      "kind": "verbatim",
+      "cited_url": "https://www.govinfo.gov/content/pkg/USCOURTS-mad-1_26-cv-12962/pdf/USCOURTS-mad-1_26-cv-12962-1.pdf",
+      "retrievals": [
+        {
+          "served_url": "https://www.govinfo.gov/content/pkg/USCOURTS-mad-1_26-cv-12962/pdf/USCOURTS-mad-1_26-cv-12962-1.pdf",
+          "command": "curl -sS --fail -L --max-time 120 -A 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Safari/605.1.15' -o docs/domain/sources/govinfo/massachusetts-v-oz-1-26-cv-12962-147.pdf -w '%{http_code} %{content_type} %{size_download} %{num_redirects} %{url_effective}\\n' 'https://www.govinfo.gov/content/pkg/USCOURTS-mad-1_26-cv-12962/pdf/USCOURTS-mad-1_26-cv-12962-1.pdf'",
+          "retrieved": "2026-11-04T06:11:23Z"
+        }
+      ],
+      "superseded": [],
+      "note": "Entry 147 on the docket of Massachusetts v. Oz, D. Mass. No. 1:26-cv-12962, the Memorandum and Order on Cross-Motions for Summary Judgment of October 29, 2026, as govinfo publishes it: granule USCOURTS-mad-1_26-cv-12962-1 of the package USCOURTS-mad-1_26-cv-12962, whose dateIssued is 2026-10-29. govinfo's granules API, read at 2026-11-04T04:38:48Z, listed this granule and granule 0, the memorandum and order of 2026-07-29 on the preliminary injunction. 16 pages. The address answered 200 application/pdf, 281,447 bytes, with no redirect, and the bytes match, by SHA-256, a copy fetched from the same address at about 2026-11-04T04:39:25Z. They differ from CourtListener's RECAP copy, docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.pdf, 187,147 bytes, so this is a source of its own, as decision record 0013 says of govinfo's copy. Its text extraction is the RECAP copy's byte for byte, by SHA-256, so the rows go on citing the RECAP copy's lines."
+    },
+    {
+      "path": "docs/domain/sources/govinfo/massachusetts-v-oz-1-26-cv-12962-147.txt",
+      "sha256": "67637b404b2039a0a5815b6681741b2888e8b6b214409667d9f52eee6c33e216",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [],
+      "derived_from": "docs/domain/sources/govinfo/massachusetts-v-oz-1-26-cv-12962-147.pdf",
+      "derivation": "swift scripts/extract-pdf-text.swift docs/domain/sources/govinfo/massachusetts-v-oz-1-26-cv-12962-147.pdf > docs/domain/sources/govinfo/massachusetts-v-oz-1-26-cv-12962-147.txt, run from the repository root; script SHA-256 acc232701cc1f8e2858dcc4615960e1af322ebad22ed61c1d9848c423996d577; macOS 26.7.2 (25G332); Apple Swift version 6.2 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)",
+      "note": "Made at 2026-11-04T06:11:38Z; 16 pages, each opened by a line [[page N]]. Its bytes are those of the RECAP copy's extraction, docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt, by SHA-256. Each page's first line is the court's header, such as Case 1:26-cv-12962-RGS Document 147 Filed 10/29/26 Page 1 of 16."
+    },
+    {
       "path": "docs/domain/supporting-regs/42cfr-supporting-sections.txt",
       "sha256": "82b9986fd74f126797f4aa80e5a9812b39b1cea39b839d9070e13fd5953637d3",
       "kind": "derived",
