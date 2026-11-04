@@ -1,0 +1,847 @@
+[[page 1]]
+Implementing Medical Frailty Under Community
+Engagement (Section 71119 of WFTC Legislation)
+This communication was printed, published, or produced and disseminated at U.S. taxpayer expense. The information provided in this document is intended only
+to be a general informal summary of technical legal standards. It is not intended to take the place of the statutes, regulations, or formal policy guidance that it is
+based upon. This document summarizes current policy and operations as of the date it was presented. We encourage readers to refer to the applicable statutes,
+regulations, and other interpretive materials for complete and current information.
+1
+[[page 2]]
+Provisions of the Interim Final Rule with Comment
+Period (IFC)
+[[page 3]]
+Background
+ The definition of specified excluded individuals who do not need to meet the
+community engagement requirement in section 1902(xx)(9)(A)(ii) of the Social
+Security Act (the Act) includes an individual who is medically frail or otherwise has
+special medical needs (as defined by the Secretary) including an individual:
+– Who is blind or disabled (as defined in section 1614 of the Act);
+– With a substance use disorder (SUD);
+– With a disabling mental disorder;
+– With a physical, intellectual or developmental disability that significantly
+impairs their ability to perform one or more activities of daily living (ADL); or
+– With a serious or complex medical condition.
+ CMS interpreted the medically frail exclusion in the community engagement IFC at
+42 CFR 435.554(c)(5).
+3
+[[page 4]]
+Medically Frail Definition in the IFC (slide 1 of 3)
+ CMS defined medically frail or otherwise has special medical needs (henceforth
+referred to as medically frail) at 42 CFR 435.554(c)(5)(i).
+ While there is similarity between how medically frail is defined in the community
+engagement IFC and Alternative Benefit Plan (ABP) regulations, the definitions are
+not identical. The IFC definition must be used to define medical frailty for the
+purpose of determining exclusion from the community engagement requirement.
+ CMS is not providing states with the flexibility to include populations beyond the
+five categories included in the statute.
+ The IFC provides that an individual in one of the five categories is considered
+medically frail only if the individual’s physical, mental, or other behavioral health
+condition significantly impairs the individual’s ability to comply with the
+community engagement requirement. This requirement applies to all the
+medically frail categories.
+4
+[[page 5]]
+Medically Frail Definition in the IFC (slide 2 of 3)
+ CMS further defined an individual with an SUD in the IFC as excluding individuals
+in stable recovery (which means, an individual in recovery for 5 or more years).
+– The IFC definition includes individuals in early and sustained
+recovery (less than 5 years).
+ CMS also defined a serious or complex medical condition in the IFC consistent with
+the Institute of Medicine’s (IOM) report “Definition of Serious and Complex
+Medical Conditions”:
+– A serious or complex medical condition is a medical condition that
+is life threatening, seriously disabling without necessarily being
+life threatening, causing significant pain or discomfort that can cause
+serious interruptions to life activities, requiring a major time or
+effort commitment from caregivers for a substantial period of time,
+requiring frequent monitoring, associated with severe consequences or
+negative consequences for someone else, affecting multiple organ
+systems, requiring management to tight physiological parameters,
+requiring coordination of multiple specialties, requiring treatment that carries
+a risk of serious complications, or requiring adjustment in non-
+medical environments.
+5
+[[page 6]]
+Medically Frail Definition in the IFC (slide 3 of 3)
+ CMS did not further define in our regulation the following medically
+frail categories identified in the community engagement statute:
+– An individual who is blind or disabled (as defined in section 1614 of the Act);
+– An individual with a disabling mental disorder; and
+– An individual with a physical, intellectual, or developmental disability that
+significantly impairs their ability to perform one or more ADL.
+6
+[[page 7]]
+Medically Frail Lists of Conditions
+ At 42 CFR 435.554(c)(5)(ii) CMS required that states must develop a list of
+diseases, diagnoses, disorders, or other health conditions (henceforth
+referred to as conditions) to identify individuals who are medically frail.
+– The list must be auditable, justifiable, and consistent with the definition of
+medically frail established at 42 CFR 435.554(c)(5)(i)(A) through (E).
+– The list must be revised on a regular basis to add or remove conditions based
+on the state’s experience applying this exclusion.
+ If an individual does not have a condition on this list, states must have reasonable
+processes and criteria in place for individuals to request consideration for the
+medically frail exclusion.
+7
+[[page 8]]
+Medically Frail Verification
+ States must attempt to verify medical frailty using reliable information available to the state,
+which includes claims relevant to the individual that were adjudicated in the prior 12 months
+(including claims that were paid, pended or denied), encounter data relevant to the individual
+from the preceding 12 months, as well as any other health data (e.g., health information
+exchange (HIE) data) for an individual (ex parte verification).
+ If there are no reliable data available to the state to verify medical frailty or the data are not
+reasonably compatible with the information provided by or on behalf of the individual:
+– Before January 1, 2028, the state may require documentation or may accept a statement
+or other information provided under penalty of perjury (hereinafter referred to as a "self-
+declaration") each time the state verifies the individual’s medically frail status.
+– Beginning on January 1, 2028, the state may accept a self-declaration provided under
+penalty of perjury only once during the beneficiary’s period of enrollment (defined as
+continuous period of enrollment in coverage under the state plan or waiver without the
+individual being disenrolled). At the individual’s first renewal thereafter and each
+subsequent verification, the individual’s medically frail status must be verified using
+reliable information available to the state or documentation submitted by (or on behalf of)
+the individual.
+ After verifying medical frailty using reliable information or documentation, states must reverify
+an individual’s medical frailty status at least every 12 months.
+8
+[[page 9]]
+Medically Frail Identification Example:
+A Tiered Medical Frailty Framework
+[[page 10]]
+Medical Frailty Implementation (slide 1 of 2)
+ As noted in the IFC, states must, where possible, verify medical frailty on an ex parte basis
+using reliable information available to the state without requiring the individual to submit
+additional information.
+ The following slides provide examples of how a state could implement the medically frail
+exclusion via a tiered medical frailty framework using reliable information primarily from
+adjudicated claims or encounter data.
+ States are not required to use this example tiered medical frailty framework. There are a
+number of data-driven approaches that states could take to implement the IFC.
+ We also recognize that medical frailty is one of several exclusions states will be evaluating
+to determine if an applicant or beneficiary qualifies as a specified excluded individual and
+encourage states to design their process in such a way that minimizes administrative
+burden, considering factors such as the availability of data and the likelihood an individual
+has reasonably available documentation if data are not available.
+– States may wish to first look at exclusions for which reliable information is
+readily available in the state’s system (e.g., status as a parent of a dependent child 13
+years of age or under, pregnancy status or American Indian status) before
+evaluating qualification for exclusions that require other data sources or are
+more likely to require documentation, which may include medical frailty.
+10
+[[page 11]]
+Medical Frailty Implementation (slide 2 of 2)
+ We encourage states to categorize their list of conditions required under 42
+CFR 435.554(c)(5)(ii) consistent with how they implement their medical frailty framework
+(e.g., if a state adopts the tiered medical frailty framework, then Tier 1 conditions should
+be categorized separately from Tier 2 conditions, etc.).
+ We remind states that whether they use this example tiered medical frailty framework or
+another approach in implementing the IFC, an individual must have a condition that falls
+under one of the five categories described at 42 CFR 435.554(c)(5)(i) and the individual’s
+physical, mental, or other behavioral health condition must significantly impair the
+individual’s ability to comply with the community engagement requirement in order for
+the individual to be determined medically frail.
+11
+[[page 12]]
+Tiered Medical Frailty Framework
+Discussed in
+more detail
+later
+ States could utilize a tiered approach building on available coding and data sets to better
+organize a list of qualifying conditions for medical frailty.
+ For example, states could utilize a three-tiered framework to identify individuals who
+may qualify as medically frail based on their conditions:
+– Tier 1 conditions are those from which the state can confirm that the individual’s ability
+to comply with the community engagement requirement is significantly impaired
+based on the information included in readily available International Statistical
+Classification of Diseases and Related Health Problems 10th Revision (ICD-10) code
+data.
+– Tier 2 consists of conditions that may indicate an individual is medically frail but
+additional information is needed to determine if the condition significantly impairs
+the individual’s ability to comply with community engagement, such as by assessing
+severity or functional status (e.g., elevated acute care utilization, high-risk
+polypharmacy, use of certain durable medical equipment) or other factors indicating
+impairment (e.g., co-morbidities, chronic conditions, acute or temporary conditions
+like injuries or surgery).
+– Tier 3 means there is insufficient OR no information or data to assess medical frailty
+based on Tier 1 / Tier 2 criteria alone. This should trigger a manual individualized
+review process where additional documentation may be required prior to deciding
+on exclusion.
+12
+[[page 13]]
+Step-wise Approach for Implementing Tiered
+Medical Frailty Framework
+Identify the universe of
+applicable conditions
+Match applicable
+conditions to
+relevant code sets
+Develop
+methodology using
+tiered framework
+• Identify which
+conditions support a
+finding that the
+individual is medically
+frail, OR could, in
+select circumstances,
+be significantly impairing
+(e.g., Type 2 diabetes
+with foot ulcer).
+• We remind states they
+must have reasonable
+processes and criteria
+in place for individuals
+with conditions not
+identified to request
+consideration for the
+medical
+frailty exclusion.
+• For each applicable
+condition, identify all
+types of data and
+codes that could relate
+to the presence of the
+condition.
+• Relevant data may
+include fee-for-service
+(FFS) claims, managed
+care encounters, HIEs,
+health data utilities,
+and / or all-payer
+claims.
+• Codes may include
+ICD-10, Current
+Procedural
+Terminology (CPT),
+Healthcare Common
+Procedure Coding
+System (HCPCS),
+National Drug Codes
+(NDCs), place of
+service codes, etc.
+• Using existing codes
+and datasets, develop
+a set of rules that
+would determine
+whether an individual
+would meet Tier 1 or
+Tier 2 criteria.
+• Develop and apply a
+methodology on
+historical claims and
+other data used to
+verify medical frailty to
+assess percentage
+deemed medically frail
+and validate with
+clinicians.
+Apply methodology
+against available
+beneficiary data
+• Apply the
+methodology to
+the individuals
+identified as
+potentially being
+medically frail to make
+a determination for
+purposes of
+community
+engagement
+exclusions.
+• Establish a cadence to
+re-run the logic (at
+least once every 12
+months) and update
+medical frailty
+determination as
+beneficiary health
+status and data change
+over time.
+13
+[[page 14]]
+Implementing the Medically Frail Exclusion: Data
+Sources and Codes (slide 1 of 4)
+ States should consider using administrative and clinical data sources to identify
+individuals who are medically frail, such as:
+– FFS claims;
+– Managed care encounters;
+– HIEs/electronic health records;
+– Health data utilities;
+– Worker's compensation claims;
+– Short-term disability claims; and/or
+– All-payer claims databases.
+ These data sources and any logic or methodologies need to be linked to eligibility
+and enrollment systems, which involves significant coordination among clinical, IT,
+policy, data systems, and eligibility operations staff.
+ States may phase-in data sources (e.g., HIEs, etc.) to complement more readily
+available administrative data sources (e.g., claims and encounter data) to improve
+data matching processes for identifying medically frail individuals.
+14
+[[page 15]]
+Implementing the Medically Frail Exclusion: Data
+Sources and Codes (slide 2 of 4)
+ We encourage states to use the ICD-10 code set to identify diseases, diagnoses,
+disorders, or other health conditions (conditions) that are likely to identify
+individuals who may qualify as medically frail in conjunction with functional- and
+utilization-related code sets that may more accurately identify the severity of a
+condition, such as:
+– CPT codes;
+– HCPCS codes;
+– Claims for specific services such as inpatient services, pharmacy services,
+durable medical equipment, and personal care services;
+– NDCs;
+– Place of service codes; and
+– Revenue codes.
+15
+[[page 16]]
+Implementing the Medically Frail Exclusion: Data
+Sources and Codes (slide 3 of 4)
+ States could use existing data sources to identify the specific codes to include in
+their process for identifying individuals who are medically frail, such as:
+– Codes used for Alternative Benefit Plan (ABP) medically frail determinations, if
+they meet the definition at 42 CFR 435.554(c)(5)(i);
+– The Chronic Conditions Data Warehouse (CCW);
+– The HEDIS Frailty and Advanced Illness criteria; and
+– Existing SUD and serious mental illness (SMI) 1115 demonstrations.
+ States could also consider convening workgroups or other partnerships with
+clinicians, vendors, managed care plans, and stakeholders to help develop or refine
+their code sets.
+ We remind states that non-medical coding on its own cannot be used to determine
+that an individual is medically frail (e.g., a Z code for homelessness could not be
+used on its own to determine that an individual is medically frail, but other coding
+that shows the individual has a disabling mental disorder that significantly impairs
+the individual’s ability to comply with the community engagement
+requirement could).
+16
+[[page 17]]
+Implementing the Medically Frail Exclusion: Data
+Sources and Codes (slide 4 of 4)
+ The example tiered medical frailty framework outlined in this deck primarily relies
+on ICD-10 codes for Tier 1 and then ICD-10 codes in conjunction with functional-
+and utilization-related codes for Tier 2.
+ States can follow this approach or choose to use a combination of codes at
+different tiers in developing their own methodology.
+ The following slides provide more detailed information on the application of data
+sources and codes to the example tiered medical frailty framework.
+17
+[[page 18]]
+Application of Medical Frailty Framework
+(slide 1 of 5)
+ Tier 1
+– Are those conditions from which the state can confirm that the individual’s ability to comply
+with the community engagement requirement is significantly impaired based on the
+information included in readily available ICD-10 code data.
+– Individuals with existing claims can be identified largely from medical claims and managed
+care encounters using ICD-10 codes that demonstrate a condition significantly impairs an
+individual’s ability to comply with the community engagement requirement.
+▫ States may use codes other than ICD-10 diagnosis codes (e.g., revenue codes) to
+determine medical frailty where diagnosis codes are not available.
+– Examples of ICD-10 codes that could exclude an individual include, but are not limited to:
+– ICD-10-CM C25.0: Malignant neoplasm (cancer) of the head of the pancreas;
+– ICD-10-CM G12.21: amyotrophic lateral sclerosis (ALS);
+– ICD-10-CM N18.6: end-stage renal disease (ESRD); and
+– ICD-10-CM B22.0 (Human Immunodeficiency Virus (HIV) disease resulting in
+encephalopathy).
+18
+[[page 19]]
+Application of Medical Frailty Framework
+(slide 2 of 5)
+ Tier 2
+– Individuals who have an identified condition on the state’s list, but it cannot be
+determined from the ICD-10 diagnosis code, or other coding when ICD-10 codes are not
+available (e.g., revenue codes, etc.), if their condition significantly impairs their ability to
+comply with the community engagement requirement.
+– States may use multiple data points, such as additional diagnosis (e.g., co-
+morbidities) and utilization data available to the state (e.g., pharmacy claims or HIE data)
+and methodologies to identify individuals for the exclusion.
+– States could use the diagnosis codes in conjunction with functional- and utilization-
+related code sets that may more accurately reflect whether a condition significantly
+impairs an individual's ability to comply with the community engagement requirement,
+such as CPT, HCPCS, NDCs, etc.
+– This tier could include individuals with multiple serious chronic conditions in conjunction
+with high service utilization or repeated inpatient admissions for serious or complex
+conditions.
+19
+[[page 20]]
+Application of Medical Frailty Framework
+(slide 3 of 5)
+ Tier 3
+– For individuals where there is insufficient data OR no data for Tier 1 or 2, this triggers a
+manual individualized review where states may seek documentation from the individual
+to verify whether the individual qualifies as medically frail.
+– The type of documentation may include, but is not limited to:
+▫ Health records such as medical history, treatment records, progress notes,
+discharge paperwork, medication lists, and lab or other diagnostic test results;
+▫ Provider documentation or certification;
+▫ Managed care plan care management information; and/or
+▫ Level of care or functional assessment information that is not in a state’s
+administrative data.
+– Subject to the state option to accept self-declaration under penalty of perjury before
+January 1, 2028, and thereafter one declaration of medical frailty per period of
+enrollment, the state is ultimately responsible for using documentation to determine if
+an individual qualifies as medically frail.
+20
+[[page 21]]
+Application of Medical Frailty Framework (slide 4
+of 5) – Key Points
+ Because an exclusion on the basis of medical frailty depends on whether a health condition or
+conditions significantly impairs an individual's ability to comply with the community
+engagement requirement, determining whether an individual qualifies for the exclusion may
+require consulting multiple data sources.
+ The aim of a data-first approach is to limit the need to rely on manual verification by a clinician
+or caseworker to determine medical frailty.
+ In the following slides, we identify several clinical conditions as fictional illustrative examples
+to demonstrate the nuance in determining medical frailty for a beneficiary:
+– Coronary artery disease;
+– Type 2 diabetes;
+– Breast cancer;
+– Anxiety; and
+– SUD.
+21
+[[page 22]]
+Application of Medical Frailty Framework
+(slide 5 of 5) – Key Points
+ For each of these conditions, we will discuss various clinical vignettes and how datasets
+would put each individual into Tier 1, Tier 2, or Tier 3.
+ The clinical vignettes are meant to convey a fuller picture of each fictional individual’s
+circumstances but are not meant to imply that a state needs to know all of the
+circumstances captured in the vignettes to determine medical frailty.
+ Accompanying the clinical vignettes is a non-exhaustive set of actual data that might be
+available to a state; these codes are what would form the basis for determining medical
+frailty for a potential individual in each of the illustrative examples.
+22
+[[page 23]]
+Coronary Artery Disease – Tier 1 Example
+Clinical vignette
+Sam is a 50-year-old man with a past medical
+history of hyperlipidemia, type 2 diabetes, and
+obesity who has developed increasing
+shortness of breath and chest discomfort with
+exertion. His wife calls an ambulance after he
+almost passes out at home and EMS takes him
+to his local community emergency
+department, where he is admitted for further
+workup. A cardiac echo demonstrates an
+ejection fraction of 30%, and he is found to
+have multivessel coronary artery disease on
+coronary angiogram.
+He is seen by the inpatient cardiology and
+cardiac surgery teams and is consented for a
+coronary artery bypass graft surgery. After 2
+weeks in the hospital, he is discharged home
+with home physical therapy and skilled
+nursing. He is also asked to adhere to a
+cardiac regimen to manage his condition.
+Data availability for State Medicaid Agency (*Red* = qualifying codes
+on a standalone basis)
+Data source Select codes available based on 12-month look
+back (not exhaustive)
+Medical claims *ICD-10-CM I50.21: Acute systolic (congestive)
+heart failure*
+Pharmacy
+claims
+NDC 16103-351-11: Aspirin
+NDC 0078-0659-20: Sacubitril-valsartan
+NDC 10631-008-30: Metoprolol
+NDC 30698-060-10: Furosemide
+NDC 0597-0152-07: Empagliflozin
+NDC 0615-8008-05: Atorvastatin
+Determination: Tier 1 medical frailty based on recent ICD-10-CM
+code, which demonstrates acute systolic (congestive) heart failure.
+Please note that there could be other data elements in an actual
+claim that could support a determination of medical frailty (e.g., MS-
+DRG indicating major cardiovascular procedure).
+23
+[[page 24]]
+Coronary Artery Disease – Tier 2 Example
+Clinical vignette
+Maria is a 54-year-old woman with
+hypertension, obesity, osteoarthritis,
+hyperlipidemia, and type 2 diabetes who
+underwent complex percutaneous coronary
+intervention 2 years ago for triple vessel
+coronary artery disease since she was deemed
+not a surgical candidate. Her recent echo
+demonstrated an ejection fraction of 40% and
+a stress test indicated no reversible ischemia
+that would require intervention but she had
+multiple regional wall motion abnormalities.
+She has been adherent to her medications,
+and she is on maximally tolerated doses of
+guideline-directed medical therapy. She has
+been able to avoid ED visits and
+hospitalizations over the past year but cannot
+walk more than 30 feet without feeling short
+of breath and uses a rolling walker to assist.
+Her cardiologist documents that her
+functional decline is due to her coronary
+artery disease and refers her to complete an
+intensive cardiac rehabilitation program.
+Data availability for State Medicaid Agency (*Orange* = qualifying
+codes only in combination and set by state)
+Data source Select codes available based on 12-month look
+back (not exhaustive)
+Medical claims *ICD-10-CM R00.89: Dyspnea, other*
+CPT 93306: Transthoracic echocardiography (TTE)
+*E0135: Walker, folding, wheeled, adjustable or
+fixed height*
+*G0422: Intensive Cardiac Rehabilitation (ICR)
+that includes exercise, w/ or w/o continuous ECG
+monitoring*
+Pharmacy
+claims
+*NDC 00093-7314-98: Clopidogrel*
+*NDC 16103-351-11: Aspirin*
+*NDC 0078-0659-20: Sacubitril-valsartan*
+*NDC 10631-008-30: Metoprolol*
+*NDC 30698-060-10: Furosemide*
+HIE / clinical
+data
+LP35943-7: Walking speed < 1.5 m/s
+Determination: Tier 2 medical frailty based on combination of need
+for walker and intensive cardiac rehabilitation, despite nonspecific
+ICD-10-CM codes
+24
+[[page 25]]
+Type 2 Diabetes – Tier 1 Example
+Clinical vignette
+James is a 45-year-old man with longstanding
+poorly controlled type 2 diabetes and
+hypertension.
+He has been on insulin for 10 years and his
+most recent HbA1c is 10.2%. His problem list
+reflects diabetic chronic kidney disease stage
+4 with a creatinine of 3.6 (GFR 22), requiring
+nephrology monitoring for dialysis planning;
+bilateral proliferative diabetic retinopathy for
+which he has undergone multiple rounds of
+laser photocoagulation and now has
+significant visual impairment in his left eye;
+and a below-knee amputation of his right leg
+two years ago following a non-healing diabetic
+foot ulcer.
+Because of his amputation, the patient now
+uses a wheelchair. He has started to develop a
+new ulcer on his left leg, and he has home
+health services to help with wound care.
+Data availability for State Medicaid Agency (*Red* = qualifying codes
+on a standalone basis)
+Data source Select codes available based on 12-month look
+back (not exhaustive)
+Medical claims *ICD-10-CM E11.3519: Type 2 diabetes mellitus
+with proliferative diabetic retinopathy with
+macular edema, unspecified eye*
+Pharmacy
+claims
+NDC 0088-2219-05: Insulin glargine
+NDC 0169-2100-11: Insulin aspart
+NDC 0591-0408-01: Lisinopril
+NDC 72865-260-01: Torsemide
+NDC 58468-0130-1: Sevelamer carbonate
+NDC 0378-3952-05: Atorvastatin
+Determination: Tier 1 medical frailty based on the ICD-10-CM code,
+which demonstrates a significant complication of type 2 diabetes.
+Please note that there could be other data elements in an actual
+claim that could support a determination of medical frailty (e.g., CPT
+code indicating treatment of diabetic retinopathy).
+25
+[[page 26]]
+Type 2 Diabetes – Tier 3 Example
+Clinical vignette
+Joyce is a 52-year-old woman with type 2
+diabetes. Her most recent HbA1c was 8.0%,
+reflecting mild dysregulation despite being on
+metformin and empagliflozin. Her blood
+pressure is reasonably controlled on lisinopril
+and amlodipine.
+She reports intermittent tingling and
+numbness in her fingertips and toes
+bilaterally, and at her last primary care
+physical, she was told this was likely
+consistent with early diabetic peripheral
+neuropathy. She has no skin ulcers, wounds,
+or lesions. Her pedal pulses are intact, and her
+basic metabolic panel demonstrated a normal
+creatinine of 1.1.
+She lives with her husband and kids, performs
+all activities of daily living without assistance,
+and has no recent ED visits or hospitalizations.
+Data availability for State Medicaid Agency
+Data source Select codes available based on 12-month look
+back (not exhaustive)
+Medical claims ICD-10-CM E11.65: Type 2 diabetes with
+hyperglycemia
+ICD-10-CM I10: Essential hypertension
+CPT 99213: Office visit, established patient
+G0245: Initial evaluation, diabetic sensory
+neuropathy with loss of protective sensation
+Pharmacy
+claims
+NDC 67877-221-10: Metformin hydrochloride
+NDC 0597-0152-30: Empagliflozin
+NDC 0591-0408-01: Lisinopril
+NDC 59762-2010-9: Amlodipine
+NDC 0378-3952-05: Atorvastatin
+Determination: Medical frailty cannot be determined based on
+administrative data as severity is indeterminate or not likely. Manual
+review would be required before the beneficiary could be classified
+as medically frail based on diabetes or neuropathy.
+26
+[[page 27]]
+Breast Cancer – Tier 1 Example
+Clinical vignette
+Diana is a 47-year-old woman with limited
+past medical history who presents to her
+oncologist for follow-up after a recent
+diagnosis of HER2-positive, hormone
+receptor-negative invasive ductal carcinoma
+of the right breast, staged at IIIC based on
+involvement of four ipsilateral axillary lymph
+nodes and a 4.2 cm primary tumor.
+She completed neoadjuvant chemotherapy
+with paclitaxel, trastuzumab, and pertuzumab
+followed by right modified radical mastectomy
+with axillary lymph node dissection.
+Residual disease was found on pathology so
+now she must undergo adjuvant
+chemoradiation, requiring transportation to
+appointments 3 -5 days a week.
+She reports significant fatigue, lymphedema
+of the right arm requiring a compression
+garment to the chest wall, and neuropathy in
+her hands and feet from chemotherapy.
+Data availability for State Medicaid Agency (*Red* = qualifying codes
+on a standalone basis)
+Data source Select codes available based on 12-month look
+back (not exhaustive)
+Medical claims *ICD-10-CM C77.3: Secondary and unspecified
+malignant neoplasms (metastatic cancer) of the
+axilla and upper limb lymph nodes*
+Pharmacy
+claims
+J9267: Paclitaxel
+J9355: Trastuzumab
+J9307: Pertuzumab
+Determination: Tier 1 medical frailty based on the ICD-10-CM code,
+which demonstrates a recent diagnosis of advanced breast cancer.
+Please note that there could be other data elements in an actual
+claim that could support a determination of medical frailty (e.g., CPT
+indicating modified radical mastectomy for breast cancer).
+27
+[[page 28]]
+Breast Cancer – Tier 3 Example
+Clinical vignette
+Patricia is a 54-year-old woman with a history
+of stage IIA, hormone receptor-positive,
+HER2-negative invasive ductal carcinoma of
+the left breast diagnosed ten years ago, for
+which she underwent a left lumpectomy with
+sentinel lymph node biopsy followed by
+adjuvant radiation therapy and initiated
+adjuvant endocrine therapy with anastrozole.
+She completed her course of anastrozole
+five years ago with no recurrence identified.
+She has no evidence of active disease on her
+most recent annual surveillance mammogram
+and is seen by her oncologist once yearly for
+clinical follow-up. She is otherwise up to date
+on her cervical cancer screening, colorectal
+cancer screening, bone density scan, lipid
+panel, HbA1c, and annual primary care visit.
+Data availability for State Medicaid Agency
+Data source Select codes available based on 12-month look
+back (not exhaustive)
+Medical claims ICD-10-CM Z85.3: Personal history of malignant
+neoplasm of breast
+ICD-10-CM Z13.820: Encounter for screening for
+osteoporosis
+CPT 99213: Office visit, established patient,
+moderate complexity
+CPT 77067: Screening mammography, bilateral
+CPT 80061: Lipid panel
+CPT 83036: Hemoglobin A1c
+Pharmacy
+claims
+NDC 63044-401-01: Vitamin D supplement
+Determination: Medical frailty cannot be determined based on
+administrative data as severity is indeterminate or not likely. Manual
+review would be required before the beneficiary could be classified
+as medically frail based on breast cancer diagnosis.
+28
+[[page 29]]
+Anxiety – Tier 1 example
+Clinical vignette
+Marcus is a 51-year-old man with a
+longstanding history of panic disorder with
+agoraphobia that has failed low dose
+sertraline, venlafaxine, and buspirone.
+He is now on a combination regimen of high-
+dose SSRI plus scheduled clonazepam under
+close psychiatric supervision. Despite
+treatment, he continues to experience
+multiple panic attacks weekly, accompanied
+by chest pain and tachycardia, prompting two
+additional ED visits in the past 6 months (both
+with negative cardiac workups).
+He is currently unable to leave his home
+unaccompanied and requires his brother (his
+primary caregiver) to accompany him to all
+medical visits, including his twice-weekly
+outpatient intensive psychiatric program.
+Data availability for State Medicaid Agency (*Red* = qualifying codes
+on a standalone basis)
+Data source Select codes available based on 12-month look
+back (not exhaustive)
+Medical claims *ICD-10-CM F40.01: Agoraphobia with panic
+disorder*
+Pharmacy
+claims
+NDC 68180-0353-06: Sertraline
+NDC 00093-0832-01: Clonazepam
+Determination: Tier 1 medical frailty based on ICD-10 code, which
+demonstrates particularly severe form of psychiatric co-morbidity.
+Please note that there could be other data elements in an actual
+claim that could support a determination of medical frailty (e.g.,
+HCPCS code indicating intensive outpatient psychiatric services).
+29
+[[page 30]]
+Anxiety – Tier 3 example
+Clinical vignette
+Priya is a 32-year-old woman with past
+medical history of anxiety who is followed by
+her primary care physician for routine adult
+health maintenance.
+In the past, she has described chronic, low-
+grade worry and occasional difficulty sleeping
+that has waxed and waned over roughly a
+decade, attributing flare-ups to various
+overlapping stressors, including caring for an
+aging parent and general financial strain.
+She denies panic attacks and has never
+required additional behavioral health care
+beyond a low-dose SSRI that is managed by
+her PCP. There is no record of any ED visits or
+inpatient visits.
+Data availability for State Medicaid Agency
+Data source Select codes available based on 12-month look
+back (not exhaustive)
+Medical claims ICD-10-CM F41.9: Anxiety disorder, unspecified
+CPT 99213: Office visit, established
+patient, moderate complexity
+CPT 80061: Lipid panel
+CPT 83036: Hemoglobin A1c
+Pharmacy
+claims
+NDC 60687-231-11: Sertraline
+Determination: Medical frailty cannot be determined based on
+administrative data as severity is indeterminate or not likely. Manual
+review would be required before the beneficiary could be classified
+as medically frail based on anxiety diagnosis.
+30
+[[page 31]]
+SUD Medically Frail Category and Recovery
+ 42 CFR 435.554(c)(5)(i)(B) excludes individuals in stable recovery from the SUD category of
+medically frail, which means an individual who is in recovery from an SUD for 5 or more
+consecutive years would not be considered medically frail under the SUD category.
+ To determine an individual in recovery for less than 5 years is medically frail, the state
+must determine that the SUD significantly impairs the individual’s ability to comply with
+the community engagement requirement.
+ 42 CFR 435.557(f)(1) specifies that states may verify an individual’s medical frailty by
+looking back at claims adjudicated in the “preceding 12 months.”
+ This 12-month lookback period complicates the verification of medical frailty on the basis
+of an SUD, due to the 5-year timeframe specified in regulation.
+ As of the date of this presentation, CMS anticipates allowing states to verify that an
+individual is not in recovery from an SUD for 5 years or more by using claims and
+encounter data from the preceding 5 years, notwithstanding the requirement that
+adjudicated claims and encounter data be from the preceding 12 months.
+31
+[[page 32]]
+Substance Use Disorder – Tier 1 Example
+Clinical vignette
+Raymond is a 51-year-old man with a known
+history of severe alcohol use disorder and
+alcoholic cirrhosis who had achieved sobriety
+for approximately 6 months. He is brought to
+the hospital by EMS after being found
+altered and severely intoxicated due to
+alcohol use relapse.
+On arrival, he is altered and also jaundiced,
+with his liver function tests severely elevated
+consistent with alcoholic hepatitis. He also has
+abdominal distention as well as metabolic
+derangements that are likely consistent with
+decompensated alcoholic cirrhosis. His wife
+was called by the medical team, and she
+reports he has not been taking any of his liver
+medications.
+He is started on steroids for his alcoholic
+hepatitis, benzodiazepines to manage his
+eventual withdrawal, and a paracentesis is
+performed for his abdominal ascites. He
+remains in the hospital for 3 weeks before
+being discharged to a skilled nursing facility.
+Data availability for State Medicaid Agency (*Red* = qualifying
+codes on a standalone basis)
+Data source Select codes available based on 5-year look back
+(not exhaustive)
+Medical claims *ICD-10-CM F10.231: Alcohol dependence with
+withdrawal delirium*
+Pharmacy
+claims
+NDC 00009-0041-01: Methylprednisolone
+NDC 00641-6001-25: Lorazepam
+NDC 0121-1154-06: Lactulose
+NDC 65649-301-03: Rifaximin
+Determination: Tier 1 medical frailty based on the ICD-10-CM code
+or MS DRG, which demonstrates that patient has severe features of
+alcohol use disorder (withdrawal). Please note that there could be
+other data elements in an actual claim that could support a
+determination of medical frailty (e.g., MS-DRG indicating admission
+for alcoholic hepatitis).
+32
+[[page 33]]
+Substance Use Disorder – Tier 2 Example
+Clinical vignette
+Diane is a 39-year-old woman with a history
+of opioid use disorder and PTSD that started
+after a motor vehicle accident 4.5 years ago.
+Following the accident, she was prescribed a
+prolonged course of oxycodone which
+triggered her substance use disorder.
+Due to her substance use disorder, she
+requested increasing doses of opioids.
+Eventually her prescribing physician stopped
+due to concerns about dependence and
+encouraged her to seek care.
+She connected with a substance use peer
+counselor 18 months ago who convinced her
+to get linked in with a methadone clinic, which
+she visits daily to receive her medication.
+Despite her ability to avoid acute care over
+the past 12 months, she reports that she
+struggles with significant cravings that
+interfere with ability to work and she calls her
+peer counselor 7x per week and engage in
+group counseling.
+Data availability for State Medicaid Agency (*Orange* = qualifying
+codes only in combination and set by state)
+Data source Select codes available based on 5-year look back
+(not exhaustive)
+Medical claims *ICD-10-CM F11.21: Opioid dependence, in
+remission*
+*ICD-10-CM F43.10: Post-traumatic stress
+disorder, unspecified*
+*H0020: Alcohol and/or drug services;
+methadone administration and/or service*
+*H0038: Self-help/peer services*
+Pharmacy
+claims
+*NDC 68094-031-59: Methadone hydrochloride*
+NDC 68084-617-01: Escitalopram
+HIE LOINC 91393-9: Opioid Risk Tool panel
+Determination: Tier 2 medical frailty due to significant time
+commitment of ongoing daily visits to methadone clinic and weekly
+frequency of self-help / peer services.
+33

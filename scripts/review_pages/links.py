@@ -64,7 +64,7 @@ def cite_part(part: str, manifest: dict) -> str:
         (CCR_PART, lambda match: source_address(manifest, lambda path: CCR_SOURCE.match(path) is not None)),
         (CCR_DRAFT_PART,
          lambda match: source_address(manifest, lambda path: CCR_DRAFT_SOURCE.match(path) is not None)),
-        (SSA_PART, lambda match: SSA_URL),
+        (SSA_PART, lambda match: SSA_URL[match.group(1)]),
         (PUBLIC_LAW_PART, lambda match: PUBLIC_LAW_URL),
     )
     for pattern, address in linkers:

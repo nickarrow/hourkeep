@@ -3028,3 +3028,1266 @@ that person met it, is the agency's decision, and nothing here decides it.
   (docs/domain/cms-2454-ifc/2026-11094.xml:3997). The page marker 33480 falls inside the paragraph after its words
   (:4165), so its page is 91 FR 33479. Whether a state's demonstration complies is not a determination about a
   person, and this row does not decide it.
+
+## People who are medically frail or have special medical needs
+
+### medically-frail-or-special-medical-needs-excluded
+
+- Rule: An individual is a specified excluded individual if they are medically frail or otherwise have special
+  medical needs, as § 435.554(c)(5) sets out for this exclusion.
+- Citation: 42 CFR 435.554(c)(5); 91 FR 33472
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3677 "The individual is medically frail or otherwise has special medical needs. For purposes of this exclusion:"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3665 "An individual is a specified excluded individual if he or she meets one of the following:"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:714 "who is medically frail or otherwise has special medical needs (as defined by the Secretary), including an individual"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment; court ruling
+- Note: Could go either way, so dangerous: a person who is medically frail and is told they must still meet the
+  requirement may gather proof nobody can ask of them, and a person who is not, told a health condition alone
+  excludes them, may not meet it. The statute is SSA 1902(xx)(9)(A)(ii)(V), which leaves the definition to the
+  Secretary and names five groups it includes (docs/domain/hr1/119hr1enr-title7-part3.md:714 to :724); the court in
+  Massachusetts v. Oz read those groups as a floor the definition may not narrow, as
+  medically-frail-impairment-phrase-vacated records. The definition is in medically-frail-defined, its five groups
+  in the five rows after the two court rows, and the State's list of conditions in the four rows after those. How
+  the State verifies the status is § 435.557(f), whose rows follow in this topic. Paragraph (c)(5) is on 91 FR
+  33472, after the page marker on line 3666. Whether a person is medically frail is the agency's determination.
+
+### medically-frail-defined
+
+- Rule: As printed, § 435.554(c)(5)(i) defines an individual who is medically frail or otherwise has special medical
+  needs as an individual whose physical, mental, or other behavioral health condition significantly impairs the
+  individual's ability to comply with the community engagement requirement and who is in one of the five groups of
+  paragraphs (c)(5)(i)(A) to (E). On 2026-10-29 a federal court declared unlawful, and vacated and set aside, the
+  words "whose physical, mental, or other behavioral health condition significantly impairs the individual's ability
+  to comply with the community engagement requirement in this subpart and is an individual", and enjoined the
+  defendants, CMS and HHS and the officials heading them in their official capacities, their agents, employees,
+  appointees, successors and anyone acting in concert or participation with them from applying them to the plaintiff
+  states, Colorado among them. In those states the definition is therefore an individual in one of the five groups.
+  Whether the vacatur, which names no party, has the same effect for the states that did not sue, in CMS's practice, is
+  an open question.
+- Citation: 42 CFR 435.554(c)(5)(i); 91 FR 33472; Massachusetts v. Oz, D. Mass. No. 1:26-cv-12962, docket entry 148,
+  pp. 1-2
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3678 "An individual who is medically frail or otherwise has special medical needs is defined as an individual whose physical, mental, or other behavioral health condition significantly impairs the individual's ability to comply with the community engagement requirement in this subpart and is an individual:"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:22 "is DECLARED unlawful, and"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:23 "VACATED and SET ASIDE pursuant to 5 U.S.C."
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:29 "enforcing, or otherwise applying this provision to Plaintiff States."
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:15 "State of Colorado"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:714 "who is medically frail or otherwise has special medical needs (as defined by the Secretary), including an individual"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment; court ruling: an appeal, a stay or a new order in
+  Massachusetts v. Oz, D. Mass. 1:26-cv-12962, or a ruling in Taylor v. Kennedy, D. Md. 1:26-cv-03705
+- Note: Could go either way, so dangerous: a person in one of the five groups who is told the vacated words still
+  apply, so that their condition must keep them from meeting the requirement, may meet a requirement that does not
+  apply to them, and a person told that a health condition alone puts them in a group, without the group's own
+  terms, may not meet one that does. The order names the words it vacates as the part of the rule that defines
+  medically frail or special medical needs to include them
+  (docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:16 to :23), and what it did, and its
+  reach, are in medically-frail-impairment-phrase-vacated. Decision record 0013 has this row quote the text as
+  printed and cite the order. The June 29 correction republished only §§ 435.557 and 435.558, so the June 3 text
+  is the printed text. The government told the court that CMS was likely to reimpose the provisions by a
+  supplemental interim final rule if the court vacated them (docket entry 142, ECF page 19, as decision record 0013
+  records); entry 142 is not stored. Taylor v. Kennedy, D. Md. 1:26-cv-03705, still challenges the words (ledger
+  L1-12). The open question on the vacatur's reach is in docs/domain/open-questions.md, and this row
+  picks no side on it. Whether a person is medically frail is the agency's determination.
+
+### medically-frail-impairment-phrase-vacated
+
+- Rule: On 2026-10-29, in Massachusetts v. Oz, the U.S. District Court for the District of Massachusetts declared
+  unlawful, and vacated and set aside under 5 U.S.C. 706(2), the portion of the interim final rule that defines
+  medically frail or special medical needs to include "whose physical, mental, or other behavioral health condition
+  significantly impairs the individual's ability to comply with the community engagement requirement in this subpart
+  and is an individual". It enjoined the defendants, CMS and HHS and the officials heading them in their official
+  capacities, their agents, employees, appointees, successors and anyone acting in concert or participation with
+  them from implementing, enforcing, retroactively enforcing, or otherwise applying that provision to the plaintiff
+  states, Colorado among them. The vacatur names no party, the injunction names the plaintiff states, and the order
+  states no end date for either. The court's memorandum holds that the five groups the statute names set a floor
+  for the term from which CMS lacked discretion to deviate, and that CMS lacked authority to exclude any subset of
+  individuals in them. Whether the vacatur reaches the states that did not sue, in CMS's practice, is an open
+  question.
+- Citation: Massachusetts v. Oz, D. Mass. No. 1:26-cv-12962, docket entry 148, pp. 1-2; docket entry 147, pp. 1-2, 9, 11
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:18 "33348 (June 3, 2026), which defines"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:20 "behavioral health condition significantly impairs the individual"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:22 "is DECLARED unlawful, and"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:23 "VACATED and SET ASIDE pursuant to 5 U.S.C."
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:26 "b) Defendants, their agents, employees, appointees, successors, and"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:27 "anyone acting in concert or participation with Defendants are"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:28 "hereby ENJOINED from implementing, enforcing, retroactively"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:29 "enforcing, or otherwise applying this provision to Plaintiff States."
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:15 "State of Colorado"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:24 "in his official capacity as Director"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:27 "the Centers for Medicare &"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:28 "Medicaid Services (CMS)"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:28 "in his official capacity as"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:29 "Secretary of the U.S. Department of Health & Human Services; and the U.S."
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:30 "Department of Health & Human Services (collectively, the Government)"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:209 "definitional floor for the term"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:210 "discretion to deviate"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:252 "authority to exclude any subset of individuals in the five subcategories"
+- Tier: court
+- State election: no
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: court ruling: an appeal, a stay or a new order in Massachusetts v. Oz, or a ruling in Taylor v. Kennedy,
+  D. Md. 1:26-cv-03705; date 2026-12-28: the time to appeal ends; final rule: including a
+  supplemental interim final rule; CMS guidance
+- Note: Could go either way, so dangerous: a person in one of the five groups, told the vacated words still apply,
+  may meet a requirement that does not apply to them, and a person told the ruling ended the requirement, or
+  excluded everyone with a health condition, may not meet one that does. The words are those printed in
+  § 435.554(c)(5)(i) (docs/domain/cms-2454-ifc/2026-11094.xml:3678), and medically-frail-defined quotes the text as
+  printed. Entry 149, the judgment, enters judgment for the plaintiffs on Count I, the claim that the definition is
+  contrary to law (entry 147, p. 6), and dismisses the case:
+  docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-149.txt:19 "Judgment is entered in favor of
+  plaintiffs as to Count I" and :20 "This case is hereby DISMISSED". The memorandum did not
+  decide whether the definition is also arbitrary and capricious (entry 147, p. 11 n.7). It upheld two other
+  provisions the States challenged, which this topic's § 435.557(f) rows carry (entry 147, p. 12). The preamble
+  statements that explain the vacated words are at docs/domain/cms-2454-ifc/2026-11094.xml:1020 and :1021 (91 FR
+  33373), the second saying a person able to perform 80 hours per month of qualifying activities would not qualify;
+  :1195 (91 FR 33376); :1208 (91 FR 33377); :1927 (91 FR 33405); and the parts of :1027, :1030, :1036 and :1100
+  (91 FR 33374), :1131, :1133, :1154 and :1155 (91 FR 33375), :1188 to :1190 and :1204 (91 FR 33376) and :1937
+  (91 FR 33406) that tie a group to the vacated words. The orders do not name them, and no row carries them,
+  because each explains words no longer in force in the plaintiff states. Research L2 found CMS's renew-info pages
+  list the frailty groups without the vacated words and rated that dangerous (ledger L2-14, research L2 section
+  E6); since 2026-10-29, leaving the words out is right in the plaintiff states. The pages are not stored, and
+  whether they match each group's own terms was not checked. Taylor v. Kennedy, D. Md. 1:26-cv-03705, also
+  challenges the words (ledger L1-12), and on 2026-10-29 its docket held no order on a challenged provision, as
+  the delivery plan's section 2.2 records. The time to appeal runs to 2026-12-28, 60 days after the judgment under
+  Federal Rule of Appellate Procedure 4(a)(1)(B), as decision record 0013 records, and that rule gives the 60 days
+  to any party when a United States agency or officer is one, so the States may appeal too. Rule 4 is not stored, and a
+  timely motion to alter or amend the judgment under Federal Rule of Civil Procedure 59(e), not stored either, would
+  restart the time (Federal Rule of Appellate Procedure 4(a)(4)(A)(iv)), as the skill's watch list says. Whether a
+  person is medically frail is the agency's determination.
+
+### six-months-without-penalty-for-plaintiff-states
+
+- Rule: Entry 148, the order of 2026-10-29, enjoins the defendants, CMS and HHS and the officials heading them in
+  their official capacities, their agents, employees, appointees, successors and anyone acting in concert or
+  participation with them from penalizing the plaintiff states, Colorado among them, "for any errors or delays in
+  implementing the IFR for a period of six months following the date of this order". Entry 147, the memorandum,
+  says "the States should receive a 6-month stay of enforcement as to any determination that an individual does or
+  does not qualify as" medically frail "within the scope of H.R. 1". The order reaches errors or delays in
+  implementing the whole rule, and the memorandum reaches determinations of medical frailty. Which of the two
+  describes the six months is an open question. Neither gives an end date, and the memorandum says the stay has no
+  impact on the January 1, 2027 deadline for implementation.
+- Citation: Massachusetts v. Oz, D. Mass. No. 1:26-cv-12962, docket entry 148, p. 2; docket entry 147, pp. 1-2, 15-16
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:11 "October 29, 2026"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:30 "c) Defendants, their agents, employees, appointees, successors, and"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:31 "anyone acting in concert or participation with Defendants are"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:32 "ENJOINED from penalizing Plaintiff States for any errors"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:33 "or delays in implementing the IFR for a period of six months"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:34 "following the date of this order."
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:15 "State of Colorado"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:24 "in his official capacity as Director"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:27 "the Centers for Medicare &"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:28 "Medicaid Services (CMS)"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:28 "in his official capacity as"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:29 "Secretary of the U.S. Department of Health & Human Services; and the U.S."
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:30 "Department of Health & Human Services (collectively, the Government)"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:368 "the court agrees that the States should receive a 6-month stay of"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:372 "as to any determination that an individual does or does not"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:373 "within the scope of H.R. 1."
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:381 "this stay of enforcement has no impact on the"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:382 "January 1, 2027, deadline for implementation"
+- Tier: court
+- State election: no
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: court ruling: an appeal, a stay or a new order in Massachusetts v. Oz; date 2026-12-28: the time to
+  appeal ends; date 2027-04-29: six months from the order, by this row's count; CMS guidance
+- Note: A person told the six months pause the requirement for them, or move its start past 2027-01-01, may not
+  meet it. The error the other way, telling a person the six months do not change what they must do, does not lead
+  them to do more than the rule requires, so the row is dangerous. Both texts give the relief to the States: the
+  order bars the defendants from penalizing them, and in the memorandum the States receive the stay
+  (docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:368). The memorandum gives the reason, to
+  accommodate errors or delays given the short timeline under which the States must change their verification
+  systems (:366 to :368), and says the States did not seek to extend the January 1, 2027 implementation date,
+  which the court would be powerless to grant (p. 14 n.8, :339 to :342). By this row's count, six months from
+  2026-10-29 ends on 2027-04-29. Which text describes the six months is an open question in
+  docs/domain/open-questions.md, and this row picks no side. Whether a person met the requirement is the agency's
+  determination.
+
+### medically-frail-blind-or-disabled
+
+- Rule: One of the five groups in the definition of an individual who is medically frail or otherwise has special
+  medical needs is an individual who is blind or disabled, as defined in section 1614 of the Social Security Act.
+  The definition's opening binds this group. As printed, it also requires that the individual's condition
+  significantly impair their ability to comply with the community engagement requirement, and on 2026-10-29 a
+  federal court vacated and set aside those words, as medically-frail-impairment-phrase-vacated records.
+- Citation: 42 CFR 435.554(c)(5)(i)(A); 91 FR 33472; Massachusetts v. Oz, D. Mass. No. 1:26-cv-12962, docket entry 148,
+  pp. 1-2
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3679 "Who is blind or disabled (as defined in section 1614 of the Social Security Act);"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3678 "is defined as an individual whose physical, mental, or other behavioral health condition significantly impairs"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:23 "VACATED and SET ASIDE pursuant to 5 U.S.C."
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:716 "who is blind or disabled (as defined in section 1614);"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment; court ruling
+- Note: Could go either way, so dangerous: a person who is blind or disabled under section 1614, told they must
+  also show their condition keeps them from meeting the requirement, may meet a requirement that does not apply to
+  them, and a person whose disability does not meet section 1614's definition, told any disability counts, may not
+  meet one that does. The preamble ties this group to section 1614 and not to the definition of a disabled
+  individual in § 435.554(a): docs/domain/cms-2454-ifc/2026-11094.xml:1023 "is expressly tied to the definition of a
+  disabled individual at section 1614 of the Act" (91 FR 33373). It paraphrases section 1614's definitions of blind
+  and disabled at :1027 (91 FR 33374). The statute's text is stored at
+  docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html, and this topic's rows on SSA 1614(a)(2)
+  and (a)(3) carry it. Whether a person is blind or disabled is the agency's determination.
+
+### medically-frail-substance-use-disorder
+
+- Rule: One of the five groups in the definition of an individual who is medically frail or otherwise has special
+  medical needs is an individual with a substance use disorder, excluding an individual in stable recovery, which
+  means an individual who is in recovery for 5 or more years. The definition's opening binds this group. As
+  printed, it also requires that the individual's condition significantly impair their ability to comply with the
+  community engagement requirement, and on 2026-10-29 a federal court vacated and set aside those words, as
+  medically-frail-impairment-phrase-vacated records.
+- Citation: 42 CFR 435.554(c)(5)(i)(B); 91 FR 33472; Massachusetts v. Oz, D. Mass. No. 1:26-cv-12962, docket entry 148,
+  pp. 1-2
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3680 "With a substance use disorder, excluding an individual in stable recovery (which means, an individual who is in recovery for 5 or more years);"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3678 "is defined as an individual whose physical, mental, or other behavioral health condition significantly impairs"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:23 "VACATED and SET ASIDE pursuant to 5 U.S.C."
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:718 "with a substance use disorder;"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment; court ruling: a ruling in Taylor v. Kennedy, D. Md.
+  1:26-cv-03705, or an appeal, a stay or a new order in Massachusetts v. Oz
+- Note: Could go either way, so dangerous: a person with a substance use disorder in recovery for less than 5
+  years, told they are in stable recovery, may meet a requirement that does not apply to them, and a person in
+  recovery for 5 or more years, told they are still in the group, may not meet one that does. The statute names the
+  group without the carve-out (docs/domain/hr1/119hr1enr-title7-part3.md:718), and the preamble gives the vacated
+  words as the carve-out's reason: docs/domain/cms-2454-ifc/2026-11094.xml:1030 "since their SUDs are unlikely to
+  significantly impair their ability to comply" (91 FR 33374). The order vacated only the definition's opening
+  words (docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:16 to :23), and the States' three
+  challenged provisions did not include the carve-out
+  (docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:32 to :36), so it stands as printed, though
+  the memorandum says CMS lacked authority to exclude any subset of individuals in the five groups (:252). Taylor v.
+  Kennedy, D. Md. 1:26-cv-03705, challenges the carve-out (ledger L1-12), and on 2026-10-29 its docket held no order
+  on a challenged provision, as the delivery plan's section 2.2 records. CMS's frailty deck reads stable recovery
+  as 5 or more consecutive years (docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.txt:747,
+  page 31), in an agency guidance row of this topic; the regulation says 5 or more years. A person participating
+  in a treatment program may also be
+  excluded under § 435.554(c)(8), as treatment-program-participant-excluded says. Whether a person has a substance
+  use disorder, and whether they are in stable recovery, is the agency's determination.
+
+### medically-frail-disabling-mental-disorder
+
+- Rule: One of the five groups in the definition of an individual who is medically frail or otherwise has special
+  medical needs is an individual with a disabling mental disorder. The definition's opening binds this group. As
+  printed, it also requires that the individual's condition significantly impair their ability to comply with the
+  community engagement requirement, and on 2026-10-29 a federal court vacated and set aside those words, as
+  medically-frail-impairment-phrase-vacated records.
+- Citation: 42 CFR 435.554(c)(5)(i)(C); 91 FR 33472; Massachusetts v. Oz, D. Mass. No. 1:26-cv-12962, docket entry 148,
+  pp. 1-2
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3681 "With a disabling mental disorder;"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3678 "is defined as an individual whose physical, mental, or other behavioral health condition significantly impairs"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:23 "VACATED and SET ASIDE pursuant to 5 U.S.C."
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:720 "with a disabling mental disorder;"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment; court ruling
+- Note: Could go either way, so dangerous: a person whose mental disorder is disabling, told they must also show it
+  keeps them from meeting the requirement, may meet a requirement that does not apply to them, and a person whose
+  disorder is not disabling, told any mental disorder counts, may not meet one that does. The preamble says the
+  disorder must be disabling: docs/domain/cms-2454-ifc/2026-11094.xml:1131 "so an individual with a non-disabling
+  mental disorder would not qualify for this exclusion" (91 FR 33375). It declines to define a disabling mental
+  disorder in the regulation, and its direction to States to consider whether the disorder significantly impairs
+  the individual's ability to comply rests on the vacated words (:1131). Its examples of disabling mental disorders
+  are in a preamble row of this topic. Whether a person's mental disorder is disabling is the agency's
+  determination.
+
+### medically-frail-disability-impairing-daily-living
+
+- Rule: One of the five groups in the definition of an individual who is medically frail or otherwise has special
+  medical needs is an individual with a physical, intellectual, or developmental disability that significantly
+  impairs their ability to perform one or more activities of daily living. The definition's opening binds this
+  group. As printed, it also requires that the individual's condition significantly impair their ability to comply
+  with the community engagement requirement, and on 2026-10-29 a federal court vacated and set aside those words,
+  as medically-frail-impairment-phrase-vacated records.
+- Citation: 42 CFR 435.554(c)(5)(i)(D); 91 FR 33472; Massachusetts v. Oz, D. Mass. No. 1:26-cv-12962, docket entry 148,
+  pp. 1-2
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3682 "With a physical, intellectual, or developmental disability that significantly impairs their ability to perform one or more activities of daily living; or"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3678 "is defined as an individual whose physical, mental, or other behavioral health condition significantly impairs"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:23 "VACATED and SET ASIDE pursuant to 5 U.S.C."
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:722 "that significantly impairs their ability to perform 1 or more activities of daily living"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment; court ruling
+- Note: Could go either way, so dangerous: a person whose disability significantly impairs one activity of daily
+  living, told they must also show it keeps them from meeting the requirement, may meet a requirement that does not
+  apply to them, and a person whose disability does not impair an activity of daily living, told any disability
+  counts here, may not meet one that does. The test of activities of daily living is the statute's own
+  (docs/domain/hr1/119hr1enr-title7-part3.md:722), and the court read it as showing that Congress knew how to
+  qualify a group and did so here:
+  docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:226 "significant that Congress did impose a
+  functionality-based limitation" (p. 10). The preamble reads the test as activities of daily living and not
+  instrumental activities of daily living: docs/domain/cms-2454-ifc/2026-11094.xml:1154 "but not IADLs, as IADLs
+  are different from ADLs" (91 FR 33375). Its direction to States to consider the disability's effect on the
+  individual's ability to comply with the requirement (:1154) rests on the vacated words. Whether a person's
+  disability significantly impairs an activity of daily living is the agency's determination.
+
+### medically-frail-serious-or-complex-condition
+
+- Rule: One of the five groups in the definition of an individual who is medically frail or otherwise has special
+  medical needs is an individual with a serious or complex medical condition, which is a medical condition that is
+  life threatening, seriously disabling without necessarily being life threatening, causing significant pain or
+  discomfort that can cause serious interruptions to life activities, requiring a major time or effort commitment
+  from caregivers for a substantial period of time, requiring frequent monitoring, associated with severe
+  consequences or negative consequences for someone else, affecting multiple organ systems, requiring management to
+  tight physiological parameters, requiring coordination of multiple specialties, requiring treatment that carries
+  a risk of serious complications, or requiring adjustment in non-medical environments. The definition's opening
+  binds this group. As printed, it also requires that the individual's condition significantly impair their
+  ability to comply with the community engagement requirement, and on 2026-10-29 a federal court vacated and set
+  aside those words, as medically-frail-impairment-phrase-vacated records.
+- Citation: 42 CFR 435.554(c)(5)(i)(E); 91 FR 33472; Massachusetts v. Oz, D. Mass. No. 1:26-cv-12962, docket entry 148,
+  pp. 1-2
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3683 "With a serious or complex medical condition which is a medical condition that is life threatening"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3683 "or requiring adjustment in non-medical environments"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3678 "is defined as an individual whose physical, mental, or other behavioral health condition significantly impairs"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:23 "VACATED and SET ASIDE pursuant to 5 U.S.C."
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:724 "with a serious or complex medical condition;"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment; court ruling
+- Note: Could go either way, so dangerous: a person whose condition fits one of the descriptions, told they must
+  also show it keeps them from meeting the requirement, may meet a requirement that does not apply to them, and a
+  person whose condition fits none, told any diagnosis counts, may not meet one that does. The descriptions are
+  alternatives joined by "or" (docs/domain/cms-2454-ifc/2026-11094.xml:3683), and the preamble reads the group as a
+  condition that is serious, complex or both: :1155 "a serious medical condition, a complex medical condition, or a
+  medical condition that is both serious and complex" (91 FR 33375). The descriptions come from the Institute of
+  Medicine's list of possible criteria (:1189, 91 FR 33376). The preamble's statement that a well-managed condition
+  that does not significantly impair the individual's ability to meet the requirement should not be determined
+  medically frail rests on the vacated words (:1188), and it gives its examples of conditions States may consider
+  serious or complex for when they significantly impair that ability (:1190). Whether a person's condition is
+  serious or complex is the agency's determination.
+
+### state-develops-list-of-frailty-conditions
+
+- Rule: The State must develop a list of diseases, diagnoses, disorders, or other health conditions to identify
+  individuals who meet the criteria of the five groups of individuals who are medically frail or otherwise have
+  special medical needs. The paragraph cites those criteria as paragraphs (a)(5)(i)(A) through (E), which do not
+  exist, and the preamble names § 435.554(c)(5)(i)(A) through (E). The two conflict, and which governs is an open
+  question.
+- Citation: 42 CFR 435.554(c)(5)(ii); 91 FR 33472
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3684 "The State must develop a list of diseases, diagnoses, disorders, or other health conditions to identify individuals who meet the criteria in paragraphs (a)(5)(i)(A) through (E) of this section."
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1204 "435.554(c)(5)(i)(A) through (E). We anticipate these lists will generally take the form of health care code sets"
+- Tier: regulation
+- State election: yes; the state chooses which diseases, diagnoses, disorders or other health conditions its list
+  holds; where it has not chosen, the rule gives no list of its own, and the five groups of § 435.554(c)(5)(i)
+  still say who is medically frail
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment; court ruling; CMS guidance; state rule
+- Note: Could go either way, so dangerous: a person whose condition is not on the list, told the list decides who is
+  medically frail, may meet a requirement that does not apply to them, and a person whose condition is on it, told
+  the listing alone settles their status, may not meet one that does. what-matters-most.md section 12 lists the
+  error "Medically frail means having a listed diagnosis"; the correction is that a state's list identifies people
+  and does not define the exclusion: a person is medically frail by being in one of the five groups of
+  § 435.554(c)(5)(i), and a person whose condition is not on the list can ask to be considered, as
+  request-consideration-when-condition-not-listed says. The rule says the State must develop the list, and it does
+  not say the State must publish it; the preamble says the lists must be shared with CMS on request:
+  docs/domain/cms-2454-ifc/2026-11094.xml:1208 "must be shared with us upon request as part of our oversight and
+  data monitoring activities" (91 FR 33377). That the rule says develop, and not publish, is ledger L8-4's subject.
+  The preamble expects the lists to take the form of health care code sets such as ICD-10 codes (:1204, 91 FR
+  33376), and says they help identify individuals who might potentially qualify "if they also meet the standard
+  in" § 435.554(c)(5)(i), words that rest on the vacated words of medically-frail-defined (:1204). On the
+  cross-reference: § 435.554(a) holds definitions and has no paragraph (a)(5) (:3634 to :3662), and the preamble
+  names § 435.554(c)(5)(i)(A) through (E) at :1204 (91 FR 33376) and :1206 (91 FR 33377). Reading the
+  cross-reference as (c)(5)(i)(A) through (E) is an inference from those lines, and the June 29 correction
+  republished only §§ 435.557 and 435.558, so the June 3 text stands. The printed words and the preamble conflict,
+  and which governs is an open question in docs/domain/open-questions.md; this row picks no side. Ledger L1-7
+  records the same cross-reference in (c)(5)(ii)(A). Whether a person is medically frail is the agency's
+  determination.
+
+### frailty-condition-list-auditable-and-consistent
+
+- Rule: The State's list of conditions must be auditable, justifiable, and consistent with the definitions of the
+  five groups of individuals who are medically frail or otherwise have special medical needs. The paragraph cites
+  those definitions as paragraphs (a)(5)(i)(A) through (E), which do not exist, and the preamble names
+  § 435.554(c)(5)(i)(A) through (E). The two conflict, and which governs is an open question.
+- Citation: 42 CFR 435.554(c)(5)(ii)(A); 91 FR 33472
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3685 "The list must be auditable, justifiable, and consistent with the definitions established in paragraphs (a)(5)(i)(A) through (E) of this section."
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1204 "435.554(c)(5)(i)(A) through (E). We anticipate these lists will generally take the form of health care code sets"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment; court ruling; CMS guidance
+- Note: Could go either way, so dangerous: a person told a list may leave out conditions that fit a group may not
+  ask to be considered and may meet a requirement that does not apply to them, and a person told a list may hold
+  conditions outside the five groups may rely on a listed condition that fits none and not meet one that does. The
+  preamble says CMS may find, through Payment Error Rate Measurement audits or other audits, that a State
+  determined medical frailty in a manner inconsistent with § 435.554(c)(5)(i), and that such a State would not be
+  in compliance: docs/domain/cms-2454-ifc/2026-11094.xml:1208 "States would not be in compliance with the
+  regulation" (91 FR 33377). Its parenthetical, which describes inconsistency as frequent approval with little to no
+  support for the vacated words, rests on them (:1208). The cross-reference to paragraphs that do not exist is
+  ledger L1-7, read against § 435.554(a) (:3634 to :3662) and the preamble's § 435.554(c)(5)(i)(A) through (E)
+  (:1204, 91 FR 33376), as state-develops-list-of-frailty-conditions sets out; the June 3 text stands. The printed
+  words and the preamble conflict, and which governs is an open question in docs/domain/open-questions.md; this row
+  picks no side. Whether a state's list meets the paragraph is not a determination about a person, and this row does
+  not decide it.
+
+### frailty-condition-list-revised-regularly
+
+- Rule: The State must revise its list on a regular basis to add or remove diseases, diagnoses, disorders, or health
+  conditions based on the State's experience applying the exclusion.
+- Citation: 42 CFR 435.554(c)(5)(ii)(B); 91 FR 33472
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3686 "The State must revise this list on a regular basis to add or remove diseases, diagnoses, disorders, or health conditions based on the State's experience applying this exclusion."
+- Tier: regulation
+- State election: yes; the state chooses how often it revises its list and what it adds or removes, based on its
+  experience applying the exclusion; where it has not chosen, the rule sets no interval and the list must still be
+  revised on a regular basis
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment; court ruling; CMS guidance; state rule
+- Note: Could go either way, so dangerous: a person whose condition was added, told the list never changes, may not
+  ask again and may meet a requirement that does not apply to them, and a person whose condition was removed, told
+  it is still listed, may not meet one that does. The preamble gives examples:
+  docs/domain/cms-2454-ifc/2026-11094.xml:1206 "States may determine that health conditions no longer need to be
+  included on their lists because of advancements in treatment" (91 FR 33377), and conditions that are rare and
+  were missed may be added (:1206). How often a person's status is reverified is § 435.557(f)(1)(iii), in this
+  topic. Whether a person is medically frail is the agency's determination.
+
+### request-consideration-when-condition-not-listed
+
+- Rule: If an individual does not have a disease, diagnosis, disorder, or health condition on the State's list, the
+  State must have reasonable processes and criteria in place for the individual to request consideration for the
+  exclusion for individuals who are medically frail or otherwise have special medical needs.
+- Citation: 42 CFR 435.554(c)(5)(ii)(C); 91 FR 33472
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3687 "If an individual does not have a disease, diagnosis, disorder, or health condition on this list"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3687 "the State must have reasonable processes and criteria in place for such individual to request consideration for the exclusion for individuals who are medically frail or otherwise have special medical needs"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1206 "the State must have reasonable processes and criteria in place for such individuals to request consideration for the medically frail exclusion"
+- Tier: regulation
+- State election: yes; the state chooses its processes and criteria for a request to be considered, which must be
+  reasonable; where it has not chosen, the rule names no process of its own, and the State must still have one
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment; court ruling; CMS guidance; state rule
+- Note: Could go either way, so dangerous: a person whose condition is not listed but fits a group, told there is
+  no way to be considered, may meet a requirement that does not apply to them, and a person told that asking to be
+  considered excludes them may not meet one that does. what-matters-most.md section 12 lists the error "Medically
+  frail means having a listed diagnosis"; the correction is that a state's list identifies people and does not
+  define the exclusion, and a person whose condition is not on it can ask to be considered under this paragraph.
+  The rule keeps this path whatever the list holds, and says the State must develop the list, not publish it, as
+  state-develops-list-of-frailty-conditions says; that is ledger L8-4's subject. The preamble expects requests to
+  be infrequent: docs/domain/cms-2454-ifc/2026-11094.xml:1206 "We expect that individuals will request
+  consideration on an infrequent basis" (91 FR 33377). Whether a request succeeds, and whether the person is
+  medically frail, is the agency's determination.
+
+### frailty-verified-first-from-reliable-information
+
+- Rule: The agency must attempt to verify that an individual is a specified excluded individual on the basis that
+  they are medically frail or otherwise have special medical needs, as § 435.554(c)(5) defines it, using reliable
+  information available to the State, including claims relevant to the individual that have been adjudicated in the
+  preceding 12 months, whether paid, pended or denied, and encounter data, as relevant to the individual.
+- Citation: 42 CFR 435.557(f)(1); 91 FR 39030
+- Source: docs/domain/sources/federal-register/C1-2026-11094.xml:106 "The agency must attempt to verify that an individual is a specified excluded individual on the basis that the individual is medically frail or otherwise has special medical needs as defined at"
+- Source: docs/domain/sources/federal-register/C1-2026-11094.xml:106 "using reliable information available to the State, including claim(s) relevant to the individual that have been adjudicated in the preceding 12 months, including those that have been paid, pended or denied, and encounter data, as relevant to the individual."
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:630 "or that an individual is a specified excluded individual under paragraph (9)(A)(ii), the State shall"
+- Source: docs/domain/hr1/119hr1enr-title7-part3.md:630 "without requiring, where possible, the applicable individual to submit additional information."
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment; court ruling: a ruling in Taylor v. Kennedy, D. Md.
+  1:26-cv-03705, or an appeal, a stay or a new order in Massachusetts v. Oz
+- Note: Could go either way, so dangerous: a person told the State will find their status in its own records may
+  not answer when it asks them for more, and may not meet a requirement that applies to them, and a person told
+  they must prove the status themselves from the start may gather proof the State must first look for. The statute
+  has the State use reliable information available to it, without requiring the individual, where possible, to
+  submit additional information (SSA 1902(xx)(5), docs/domain/hr1/119hr1enr-title7-part3.md:630). § 435.557(a)
+  defines reliable information available to the State and lists claims and encounter data among its kinds:
+  docs/domain/sources/federal-register/C1-2026-11094.xml:29 "information necessary for determining eligibility to
+  which the agency has access or should have access", :37 "Claim(s) relevant to the individual that have been
+  adjudicated in the preceding 12 months" and :38 "Encounter data, as relevant to the individual, for the preceding
+  12 months". The States in Massachusetts v. Oz challenged the twelve-month lookback period, which the court's
+  memorandum places in § 435.557(a)(vii) and (viii) and whose words this paragraph repeats
+  (docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:108 to :110, p. 5), and the court upheld
+  it: :284 to :286, the objections "falling well short of the arbitrary or capricious standard under the APA" (p.
+  12). The States may appeal Count II, on which the judgment gave the defendants partial judgment
+  (docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-149.txt:19 "partial judgment in favor of" and :20
+  "defendants as to Count II."), by 2026-12-28, the time to appeal medically-frail-impairment-phrase-vacated gives.
+  Taylor v. Kennedy, D. Md. 1:26-cv-03705, still challenges the 12-month window (ledger L1-12), and on
+  2026-10-29 its docket held no order on a challenged provision, as the delivery plan's section 2.2 records. The
+  definition this paragraph cites is in medically-frail-defined. Paragraph (f) is on 91 FR 39030, after the page
+  marker on line 100. Whether a person is medically frail is the agency's determination.
+
+### frailty-documentation-or-sworn-statement-before-2028
+
+- Rule: Before January 1, 2028, when there is no reliable information available to the State, or the reliable
+  information is not reasonably compatible with the information provided by or on behalf of the individual, the
+  agency may require documentation, or accept a statement or other information under penalty of perjury, that
+  provides sufficient information, as determined by the State, to verify that an applicant or beneficiary is
+  medically frail or otherwise has special medical needs, each time the State verifies an individual's medical
+  frailty.
+- Citation: 42 CFR 435.557(f)(1)(i); 91 FR 39030
+- Source: docs/domain/sources/federal-register/C1-2026-11094.xml:108 "Before January 1, 2028, when there is no reliable information available to the State or the reliable information is not reasonably compatible with the information provided by or on behalf of the individual"
+- Source: docs/domain/sources/federal-register/C1-2026-11094.xml:108 "the agency may require documentation or accept a statement or other information under penalty of perjury that provides sufficient information, as determined by the State, to verify an applicant or beneficiary is medically frail or otherwise has special medical needs, each time the State verifies an individual's medical frailty."
+- Tier: regulation
+- State election: yes; the state chooses whether to require documentation or accept a statement or other
+  information under penalty of perjury, and what information is sufficient; where it has not chosen, the rule names
+  no default
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment; court ruling: a ruling in Taylor v. Kennedy, D. Md.
+  1:26-cv-03705, or an appeal, a stay or a new order in Massachusetts v. Oz; state plan amendment
+- Note: Could go either way, so dangerous: a person told a sworn statement will do, in a State that requires
+  documentation, may not send what it asks for and may not meet a requirement that applies to them, and a person
+  told they need documents, in a State that accepts a statement, may gather proof it does not ask of them. Through
+  2027 a statement may be used each time the State verifies; the limit of one per period of enrollment begins on
+  January 1, 2028, as one-sworn-statement-per-period-of-enrollment-from-2028 says. The preamble gives the reason
+  for the two dates, that some States may need to change systems and processes, and says States may require
+  documentation or accept other information "(even if documentation is reasonably available)" through December 31,
+  2027 (docs/domain/cms-2454-ifc/2026-11094.xml:1950, 91 FR 33407). § 435.557(a) defines reliable information
+  available to the State: docs/domain/sources/federal-register/C1-2026-11094.xml:29 "information necessary for
+  determining eligibility to which the agency has access or should have access". The States in Massachusetts v. Oz
+  challenged the limit on self-attestations, and the court upheld it
+  (docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:111 to :113, p. 5, and :284 to :286, p. 12);
+  this paragraph is the rule before the limit begins. The States may appeal Count II, on which the judgment gave
+  the defendants partial judgment (docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-149.txt:19 "partial
+  judgment in favor of" and :20 "defendants as to Count II."), by 2026-12-28, the time to appeal
+  medically-frail-impairment-phrase-vacated gives. Taylor v. Kennedy, D. Md. 1:26-cv-03705, still challenges
+  the attestation limit (ledger L1-12), and on 2026-10-29 its docket held no order on a challenged provision, as the
+  delivery plan's section 2.2 records. Whether a statement or document is sufficient, and whether the person is
+  medically frail, is the agency's determination.
+
+### one-sworn-statement-per-period-of-enrollment-from-2028
+
+- Rule: Beginning on January 1, 2028, when there is no reliable information available to the State, or the reliable
+  information available to the State is not reasonably compatible with the information provided by or on behalf of
+  the individual, the agency may accept a statement or other information provided under penalty of perjury that
+  provides sufficient information, as determined by the State, to verify qualification for the exclusion only once
+  during the beneficiary's period of enrollment, as § 435.557(a) defines it.
+- Citation: 42 CFR 435.557(f)(1)(ii); 91 FR 39030
+- Source: docs/domain/sources/federal-register/C1-2026-11094.xml:109 "Beginning on January 1, 2028, the agency may accept a statement or other information provided under penalty of perjury that provides sufficient information, as determined by the State, to verify qualification for the exclusion only once during the beneficiary's period of enrollment"
+- Source: docs/domain/sources/federal-register/C1-2026-11094.xml:109 "when there is no reliable information available to the State or the reliable information available to the State is not reasonably compatible with the information provided by or on behalf of the individual."
+- Tier: regulation
+- State election: yes; the state chooses whether to accept a statement or other information under penalty of
+  perjury, and what information is sufficient; where it has not chosen, the rule names no default, and the limit of
+  once per period of enrollment holds whatever it chooses
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment; court ruling: a ruling in Taylor v. Kennedy, D. Md.
+  1:26-cv-03705, or an appeal, a stay or a new order in Massachusetts v. Oz; state plan amendment
+- Note: Could go either way, so dangerous: a person told they can swear to their status again later in the same
+  period of enrollment may rely on a statement the State may not accept, and may not meet a requirement that
+  applies to them, and a person told a sworn statement never counts may gather documents the State would not ask
+  for. § 435.557(a) defines both terms the paragraph relies on:
+  docs/domain/sources/federal-register/C1-2026-11094.xml:25 "means a continuous period of enrollment in coverage
+  under the State plan or waiver without the individual being disenrolled, regardless of the number of consecutive
+  eligibility periods, of redeterminations or renewals, or of transitions between eligibility groups", and :29
+  "information necessary for determining eligibility to which the agency has access or should have access". The
+  preamble restates the limit: docs/domain/cms-2454-ifc/2026-11094.xml:1941 "States may only use a statement or
+  other information provided under penalty of perjury one time during an individual's period of enrollment" (91 FR
+  33406). The States in Massachusetts v. Oz challenged this limit, which the court's memorandum places in
+  § 435.557(f)(1)(ii) (docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:111 to :113, p. 5), and
+  the court upheld it (:284 to :286, p. 12). The States may appeal Count II, on which the judgment gave the
+  defendants partial judgment (docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-149.txt:19 "partial
+  judgment in favor of" and :20 "defendants as to Count II."), by 2026-12-28, the time to appeal
+  medically-frail-impairment-phrase-vacated gives. Taylor v. Kennedy, D. Md. 1:26-cv-03705, still challenges the
+  attestation limit (ledger L1-12), and on 2026-10-29 its docket held no order on a challenged provision, as the
+  delivery plan's section 2.2 records. Whether a statement is sufficient, and whether the person is medically frail,
+  is the agency's determination.
+
+### frailty-verified-at-first-renewal-after-sworn-statement
+
+- Rule: Under paragraph (f)(1)(ii), which begins on January 1, 2028, at the individual's first regularly scheduled
+  redetermination after their status was determined using their statement provided under penalty of perjury or
+  other information as described in that paragraph, the agency must verify that the individual is medically frail
+  or otherwise has special medical needs using reliable information available to the State or, if that
+  information is not sufficient for verification, using documentation submitted by or on behalf of the individual.
+- Citation: 42 CFR 435.557(f)(1)(ii)(A); 91 FR 39030
+- Source: docs/domain/sources/federal-register/C1-2026-11094.xml:110 "At the individual's first regularly scheduled redetermination after such status was determined using the individual's statement provided under penalty of perjury or other information as described in this paragraph (f)(1)(ii)"
+- Source: docs/domain/sources/federal-register/C1-2026-11094.xml:110 "the agency must verify that the individual is medically frail or otherwise has special medical needs using reliable information available to the State, or, if reliable information available to the State is not sufficient for verification, using documentation submitted by or on behalf of the individual."
+- Source: docs/domain/sources/federal-register/C1-2026-11094.xml:109 "Beginning on January 1, 2028, the agency may accept a statement"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment; court ruling: a ruling in Taylor v. Kennedy, D. Md.
+  1:26-cv-03705, or an appeal, a stay or a new order in Massachusetts v. Oz
+- Note: Could go either way, so dangerous: a person told a sworn statement holds for 12 months may not send
+  documentation at an earlier renewal and may not meet a requirement that applies to them, and a person told they
+  must send documents at that renewal even when the State's own information is enough may gather proof it does not
+  ask of them. The preamble says the renewal could come sooner than 12 months:
+  docs/domain/cms-2454-ifc/2026-11094.xml:1952 "which could be 6 months from the individual's last verification even
+  in a State that otherwise elects to reverify medical frailty status every 12 months" (91 FR 33407). It gives an
+  example, a statement accepted in February 2028 and the status verified from the State's information or the
+  person's documentation at the renewal in August (:1942, 91 FR 33406). § 435.557(a) defines reliable information
+  available to the State: docs/domain/sources/federal-register/C1-2026-11094.xml:29 "information necessary for
+  determining eligibility to which the agency has access or should have access". The States in Massachusetts v. Oz
+  challenged the limit on self-attestations, which the court's memorandum places in § 435.557(f)(1)(ii), and the
+  court upheld it (docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:111 to :113, p. 5, and :284
+  to :286, p. 12). The States may appeal Count II, on which the judgment gave the defendants partial judgment
+  (docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-149.txt:19 "partial judgment in favor of" and :20
+  "defendants as to Count II."), by 2026-12-28, the time to appeal medically-frail-impairment-phrase-vacated gives.
+  Taylor v. Kennedy, D. Md. 1:26-cv-03705, still challenges the attestation limit (ledger L1-12), and on 2026-10-29
+  its docket held no order on a challenged provision, as the delivery plan's section 2.2 records. Whether the
+  State's information or a document is sufficient, and whether the person is medically frail, is the
+  agency's determination.
+
+### second-frailty-claim-after-sworn-statement-needs-other-proof
+
+- Rule: If an enrollee declares specified excluded individual status on the basis of being medically frail or
+  otherwise having special medical needs after having sought that status, on or after January 1, 2028, on the basis
+  of a statement provided under penalty of perjury or other information described in paragraph (f)(1)(ii), during
+  the same period of enrollment, the agency must verify the status using reliable information available to the
+  State or, if that information is not sufficient for verification, using documentation submitted by or on behalf
+  of the individual.
+- Citation: 42 CFR 435.557(f)(1)(ii)(B); 91 FR 39030
+- Source: docs/domain/sources/federal-register/C1-2026-11094.xml:111 "If an enrollee declares specified excluded individual status on the basis of being medically frail or otherwise having special medical needs after having sought such status on or after January 1, 2028, on the basis of a statement provided under penalty of perjury or other information described in this paragraph (f)(1)(ii) during the same period of enrollment"
+- Source: docs/domain/sources/federal-register/C1-2026-11094.xml:111 "the agency must verify that status using reliable information available to the State, or, if reliable information available to the State is not sufficient for verification, using documentation submitted by or on behalf of the individual."
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment; court ruling: a ruling in Taylor v. Kennedy, D. Md.
+  1:26-cv-03705, or an appeal, a stay or a new order in Massachusetts v. Oz
+- Note: Could go either way, so dangerous: a person who swore to their status once and later claims it again,
+  told a second sworn statement will do, may not send what the State needs and may not meet a requirement that
+  applies to them, and a person in a new period of enrollment, told the limit still binds them, may gather proof
+  the State would not ask for. The preamble's example is a person who stays enrolled and later declares the status
+  on another basis: docs/domain/cms-2454-ifc/2026-11094.xml:1942 "the State may not accept the individual's
+  statement or other information of provided under penalty of perjury as verification" (91 FR 33406), as printed.
+  § 435.557(a) defines both terms the paragraph relies on:
+  docs/domain/sources/federal-register/C1-2026-11094.xml:25 "means a continuous period of enrollment in coverage
+  under the State plan or waiver without the individual being disenrolled", and :29 "information necessary for
+  determining eligibility to which the agency has access or should have access". The States in Massachusetts v. Oz
+  challenged the limit on self-attestations, which the court's memorandum places in § 435.557(f)(1)(ii), and the
+  court upheld it (docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:111 to :113, p. 5, and :284
+  to :286, p. 12); this paragraph applies the limit. The States may appeal Count II, on which the judgment gave the
+  defendants partial judgment (docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-149.txt:19 "partial
+  judgment in favor of" and :20 "defendants as to Count II."), by 2026-12-28, the time to appeal
+  medically-frail-impairment-phrase-vacated gives. Taylor v. Kennedy, D. Md. 1:26-cv-03705, still challenges the
+  attestation limit (ledger L1-12), and on 2026-10-29 its docket held no order on a challenged provision, as the
+  delivery plan's section 2.2 records. Whether the person is medically frail is the agency's determination.
+
+### frailty-reverified-at-least-every-12-months
+
+- Rule: After verifying an individual's specified excluded individual status on the basis of being medically frail
+  or otherwise having special medical needs using reliable information available to the State or documentation
+  submitted by or on behalf of the individual, the agency must reverify this status at least every 12 months.
+- Citation: 42 CFR 435.557(f)(1)(iii); 91 FR 39030
+- Source: docs/domain/sources/federal-register/C1-2026-11094.xml:112 "After verifying an individual's specified excluded individual status on the basis of being medically frail or otherwise having special medical needs using reliable information available to the State or documentation submitted by or on behalf of the individual"
+- Source: docs/domain/sources/federal-register/C1-2026-11094.xml:112 "the agency must reverify this status at least every 12 months."
+- Tier: regulation
+- State election: yes; the state chooses to reverify more often than every 12 months, such as at each renewal; where
+  it has not chosen, the agency reverifies the status at least every 12 months
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment; court ruling; state plan amendment
+- Note: Could go either way, so dangerous: a person told their verified status lasts until a renewal more than 12
+  months away may not answer a reverification and may not meet a requirement that applies to them, and a person
+  told they must prove the status again at every renewal, in a State that reverifies once every 12 months, may
+  gather proof it does not ask of them. The preamble says States may reverify more often:
+  docs/domain/cms-2454-ifc/2026-11094.xml:1952 "although States may reverify more frequently, such as at each
+  renewal" (91 FR 33407). Between regularly scheduled redeterminations, § 435.557(d)(4), which this topic does not
+  row, bars reverifying the excluded status of an individual found excluded at their last determination or
+  redetermination, or at a more frequent verification, unless the agency has information that the status changed:
+  docs/domain/sources/federal-register/C1-2026-11094.xml:91 "The agency may not reverify the specified excluded
+  status of an individual between regularly scheduled redeterminations". These 12 months count how often the
+  status is reverified; the 12-month window the court upheld is the one in paragraph (f)(1), on how old the
+  information may be. The three provisions
+  the States challenged in Massachusetts v. Oz did not include this paragraph
+  (docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:32 to :36), and ledger L1-12's list of
+  Taylor v. Kennedy's challenges does not name it. § 435.557(a) defines reliable information available to the
+  State: docs/domain/sources/federal-register/C1-2026-11094.xml:29 "information necessary for determining
+  eligibility to which the agency has access or should have access". Whether the person is still medically frail
+  is the agency's determination.
+
+### frailty-verification-data-privacy
+
+- Rule: The agency must comply with all applicable Federal privacy requirements, including section 1902(a)(7) of
+  the Act; 42 CFR part 431, subpart F; the Health Insurance Portability and Accountability Act of 1996, 42 U.S.C.
+  1320d et seq.; 42 CFR part 2; and any other applicable Federal privacy laws, when accessing, storing, and handling
+  data obtained to verify that an individual is medically frail or otherwise has special medical needs.
+- Citation: 42 CFR 435.557(f)(2); 91 FR 39030
+- Source: docs/domain/sources/federal-register/C1-2026-11094.xml:114 "(2) The agency must comply with all applicable Federal privacy requirements including section 1902(a)(7) of the Act"
+- Source: docs/domain/sources/federal-register/C1-2026-11094.xml:114 "part 431, subpart F of this subchapter"
+- Source: docs/domain/sources/federal-register/C1-2026-11094.xml:114 "the Health Insurance Portability and Accountability Act of 1996 (42 U.S.C. 1320d"
+- Source: docs/domain/sources/federal-register/C1-2026-11094.xml:116 "part 2 of this title"
+- Source: docs/domain/sources/federal-register/C1-2026-11094.xml:116 "and any other applicable Federal privacy laws when accessing, storing, and handling data obtained to verify that an individual is medically frail or otherwise has special medical needs"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment; court ruling
+- Note: Could go either way, so dangerous: a person told the health records they give to show they are medically
+  frail have no protection may hold them back and meet a requirement that does not apply to them, and a person
+  told these laws keep the State from using its own claims data may wait for a verification that never comes and
+  not meet one that does. None of the laws the paragraph names is stored: SSA 1902(a)(7), 42 CFR part 431 subpart
+  F, HIPAA and 42 CFR part 2. So no row says what any of them requires. The preamble names part 2's bearing on
+  substance use disorders: docs/domain/cms-2454-ifc/2026-11094.xml:1957 "we recognize the intersection of 42 CFR
+  part 2 and the medically frail exclusion for individuals with SUDs" (91 FR 33407). The same duty covers data
+  obtained to verify participation in a treatment program, which treatment-program-verification-data-privacy
+  carries.
+
+### treatment-program-verification-data-privacy
+
+- Rule: The agency must comply with all applicable Federal privacy requirements, including section 1902(a)(7) of
+  the Act; 42 CFR part 431, subpart F; the Health Insurance Portability and Accountability Act of 1996, 42 U.S.C.
+  1320d et seq.; 42 CFR part 2; and any other applicable Federal privacy laws, when accessing, storing, and handling
+  data obtained to verify that an individual is participating in a drug addiction or alcoholic treatment and
+  rehabilitation program, the exclusion of § 435.554(c)(8).
+- Citation: 42 CFR 435.557(f)(2); 91 FR 39030
+- Source: docs/domain/sources/federal-register/C1-2026-11094.xml:114 "(2) The agency must comply with all applicable Federal privacy requirements including section 1902(a)(7) of the Act"
+- Source: docs/domain/sources/federal-register/C1-2026-11094.xml:114 "part 431, subpart F of this subchapter"
+- Source: docs/domain/sources/federal-register/C1-2026-11094.xml:114 "the Health Insurance Portability and Accountability Act of 1996 (42 U.S.C. 1320d"
+- Source: docs/domain/sources/federal-register/C1-2026-11094.xml:116 "part 2 of this title"
+- Source: docs/domain/sources/federal-register/C1-2026-11094.xml:116 "when accessing, storing, and handling data obtained to verify that an individual"
+- Source: docs/domain/sources/federal-register/C1-2026-11094.xml:116 "or is participating in a drug addiction or alcoholic treatment and rehabilitation program."
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3690 "The individual is participating in a drug addiction or alcoholic treatment and rehabilitation program"
+- Tier: regulation
+- State election: no
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; eCFR amendment; court ruling
+- Note: This row carries § 435.557(f)(2)'s share for § 435.554(c)(8), the exclusion for participants in a treatment
+  program that increment 2.1 rowed as treatment-program-participant-excluded, whose Note hands the share to this
+  topic. Could go either way, so dangerous: a person told the records of their treatment have no protection may
+  hold them back and meet a requirement that does not apply to them, and a person told these laws keep the State
+  from verifying participation at all may wait for a verification that never comes and not meet one that does. None
+  of the laws the paragraph names is stored: SSA 1902(a)(7), 42 CFR part 431 subpart F, HIPAA and 42 CFR part 2.
+  So no row says what any of them requires. Whether a person is participating in such a program is the agency's
+  determination.
+
+### disabling-mental-disorder-examples
+
+- Rule: The preamble says it would be reasonable for States to consider certain conditions, when such conditions
+  are disabling and significantly impair an individual's ability to comply with the community engagement
+  requirement, as disabling mental disorders, including schizophrenia, schizotypal disorder, delusional disorder,
+  other non-mood psychotic disorders, moderate or severe bipolar disorder, major depressive disorder, and panic
+  disorder, and that this is a list of examples, not an exhaustive list. On 2026-10-29 a federal court vacated and set
+  aside the definition's words on which the second of those conditions rests, as
+  medically-frail-impairment-phrase-vacated records. The preamble says the ISMICC, DSM-5, and ICD-10 criteria for
+  serious mental illness are commonly used to define and classify disabling mental disorders, and that States may find
+  them useful resources for setting criteria to identify individuals with disabling mental disorders.
+- Citation: Preamble to 42 CFR 435.554(c)(5)(i)(C); 91 FR 33375; Massachusetts v. Oz, D. Mass. No. 1:26-cv-12962, docket
+  entry 148, pp. 1-2
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1131 "We also believe it would be reasonable for States to consider certain conditions, when such conditions are disabling and significantly impair an individual's ability to comply with the community engagement requirement"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1131 "as disabling mental disorders, including schizophrenia, schizotypal disorder, delusional disorder, other non-mood psychotic disorders, moderate or severe bipolar disorder, major depressive disorder, and panic disorder"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1131 "We note that this is a list of examples, not an exhaustive list."
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1131 "criteria for serious mental illness (SMIs) are commonly used to define and classify disabling mental disorders"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1131 "States may find the ISMICC, DSM-5, and ICD-10 to be useful resources for setting criteria to identify individuals with disabling mental disorders"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:23 "VACATED and SET ASIDE pursuant to 5 U.S.C."
+- Tier: preamble
+- State election: yes; the state chooses its criteria for identifying individuals with disabling mental disorders,
+  and may draw on the ISMICC, DSM-5, and ICD-10; where it has not chosen, the group is an individual with a
+  disabling mental disorder, which the rule does not further define
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; court ruling; CMS guidance; state rule
+- Note: Could go either way, so dangerous: a person with moderate or severe bipolar disorder, told only the
+  psychotic disorders count, may meet a requirement that does not apply to them, and a person whose disorder is not
+  disabling, told any condition named here counts whatever its severity, may not meet one that does. The Rule
+  quotes the sentence of examples as printed, with both its conditions, and cites the order, as decision record
+  0013 decides. The same paragraph directs States to consider whether the disabling mental disorder significantly
+  impairs an individual's ability to comply (docs/domain/cms-2454-ifc/2026-11094.xml:1131), and this row leaves
+  that direction out, because it applies the vacated words too. The court enjoined CMS from applying those words
+  to the plaintiff states, and whether the vacatur reaches the other states is an open question. The ISMICC is the
+  Interdepartmental Serious Mental Illness Coordinating Committee (:1131). Line 1131 is on 91 FR 33375, after the page
+  marker on line 1104. The group is medically-frail-disabling-mental-disorder. Whether a person's mental disorder is
+  disabling is the agency's determination.
+
+### frailty-verification-uses-no-information-older-than-12-months
+
+- Rule: The preamble says States may not consider information older than 12 months when verifying medical frailty
+  or other special medical needs, because older information may not reflect the individual's current condition.
+- Citation: Preamble to 42 CFR 435.557(f)(1); 91 FR 33405
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1931 "States may not consider information older than 12 months when verifying medical frailty or other special medical needs, because older information may not reflect the individual's current condition."
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1931 "we provide that the State must attempt to verify that an individual is a specified excluded individual on the basis that the individual is medically frail"
+- Tier: preamble
+- State election: no
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; court ruling: a ruling in Taylor v. Kennedy, D. Md. 1:26-cv-03705, or an
+  appeal, a stay or a new order in Massachusetts v. Oz; CMS guidance
+- Note: Could go either way, so dangerous: a person told records older than 12 months count may rely on them, send
+  nothing newer and not meet a requirement that applies to them, and a person told only a shorter period counts may
+  gather newer proof than the State asks for. The sentence follows the preamble's account of § 435.557(f)(1), and
+  § 435.557(a)(vii) and (viii) put the same 12 months into the definition of reliable information available to the
+  State (docs/domain/sources/federal-register/C1-2026-11094.xml:37 and :38). The court quoted this sentence among
+  the Government's reasons and upheld the twelve-month lookback period
+  (docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:284 to :293, p. 12). The States may appeal
+  Count II, on which the judgment gave the defendants partial judgment
+  (docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-149.txt:19 "partial judgment in favor of" and :20
+  "defendants as to Count II."), by 2026-12-28, the time to appeal medically-frail-impairment-phrase-vacated gives.
+  Taylor v. Kennedy, D.
+  Md. 1:26-cv-03705, still challenges the 12-month window (ledger L1-12), and on 2026-10-29 its docket held no order
+  on a challenged provision, as the delivery plan's section 2.2 records. Line 1931 is on 91 FR 33405, after the page
+  marker on line 1884. Whether the State's information shows a person is medically frail is the agency's
+  determination.
+
+### frailty-checked-in-state-records-before-person-asked
+
+- Rule: The preamble says that if a State's initial screening questions identify an individual as potentially
+  medically frail or otherwise having special medical needs, the State must attempt to verify medical frailty using
+  reliable information available to the State before seeking documentation or other information from the
+  individual. From January 1, 2028, at the renewal after a status verified by a statement under penalty of perjury,
+  and at each verification after it, States must attempt the verification using adjudicated claims or encounter
+  data, as relevant to the individual, for the preceding 12 months, before requesting documentation from the
+  individual. It says States should consider plain language screening questions in applications and forms used at
+  application and renewal.
+- Citation: Preamble to 42 CFR 435.557(f)(1); 91 FR 33405; 91 FR 33407
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1933 "If an individual is identified as potentially medically frail or otherwise having other special medical needs based on the initial screening questions, the State must attempt to verify medical frailty using reliable information available to the State prior to seeking documentation or other information from the individual"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1933 "States should consider incorporating plain language screening questions in Medicaid applications and other program applications and forms for use at application and renewal"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1952 "requires, beginning January 1, 2028, that the individual's medical frailty status must be reverified at the next regular renewal"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1952 "States must attempt this verification and each verification thereafter using adjudicated claims or encounter data as relevant to the individual for the preceding 12 months, before requesting documentation from the individual."
+- Tier: preamble
+- State election: yes; the state chooses whether to use plain language screening questions at application and
+  renewal; where it has not chosen, the State must still attempt verification from reliable information available
+  to it before asking the individual
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; court ruling: a ruling in Taylor v. Kennedy, D. Md. 1:26-cv-03705, or an
+  appeal, a stay or a new order in Massachusetts v. Oz; CMS guidance
+- Note: Could go either way, so dangerous: a person told the State will settle the matter from its records may not
+  answer a request for documents and may not meet a requirement that applies to them, and a person told to send
+  proof before the State has looked may gather what it would not have asked for. The regulation has the State
+  attempt verification from reliable information first, as frailty-verified-first-from-reliable-information says,
+  and the statute has it do so without requiring the individual, where possible, to submit additional information
+  (SSA 1902(xx)(5), docs/domain/hr1/119hr1enr-title7-part3.md:630); this row adds the order, before the person is
+  asked. § 435.557(a) defines reliable information available to the State:
+  docs/domain/sources/federal-register/C1-2026-11094.xml:29 "information necessary for determining eligibility to
+  which the agency has access or should have access". The court upheld the twelve-month lookback period
+  (docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:284 to :286, p. 12), and the States may
+  appeal Count II, on which the judgment gave the defendants partial judgment
+  (docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-149.txt:19 "partial judgment in favor of" and :20
+  "defendants as to Count II."), by 2026-12-28, the time to appeal medically-frail-impairment-phrase-vacated gives.
+  Taylor v. Kennedy, D. Md. 1:26-cv-03705, still challenges the 12-month window (ledger L1-12); on 2026-10-29 its
+  docket held no order
+  on a challenged provision, as the delivery plan's section 2.2 records. Lines 1933 and 1952 are on 91 FR 33405 and
+  33407, after the page markers on lines 1884 and 1945. Whether a person is medically frail is the agency's
+  determination.
+
+### missing-claims-cannot-defeat-frailty-exclusion
+
+- Rule: The preamble says the absence of adjudicated claims or encounter data altogether, and the absence of
+  particular claims or types of claims in available adjudicated claims data, may not be used to determine
+  ineligibility for the exclusion based on medical frailty or other special medical needs; that an individual may
+  not be determined not to be medically frail only because their condition or utilization relates to one or more
+  non-listed diagnosis codes; and that States must provide an individual with the opportunity to provide
+  documentation or other information demonstrating the status when the State is unable to verify it using
+  information available to the State.
+- Citation: Preamble to 42 CFR 435.557(f)(1); 91 FR 33406
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1937 "the absence of adjudicated claims or encounter data altogether, as well as the absence of particular claims or types of claims in available adjudicated claims data, may not be used to determine ineligibility for the exclusion based on medical frailty or other special medical needs"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1937 "an individual may not be determined not to be medically frail only because their condition or utilization relates to one or more non-listed diagnosis codes"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1937 "States must provide an individual with the opportunity to provide documentation or other information demonstrating medical frailty or otherwise having other special medical needs status when the State is unable to verify the excluded status using information available to the State"
+- Tier: preamble
+- State election: no
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; court ruling: a ruling in Taylor v. Kennedy, D. Md. 1:26-cv-03705, or an
+  appeal, a stay or a new order in Massachusetts v. Oz; CMS guidance
+- Note: Could go either way, so dangerous: a person whose State finds no claims for them, told that settles it,
+  may meet a requirement that does not apply to them, and a person told the State cannot decide without claims,
+  so they need send nothing, may not meet one that does. The preamble gives claims lag as the reason:
+  docs/domain/cms-2454-ifc/2026-11094.xml:1937 "particularly in cases where an individual recently obtained a
+  diagnosis and medical services, but the claims data are lagging", and it says the same of new applicants and new
+  conditions (:1940, 91 FR 33406). The court quoted the sentence on missing claims among the Government's reasons
+  for the twelve-month lookback period it upheld
+  (docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:294 to :304, pp. 12-13). The States may
+  appeal Count II, on which the judgment gave the defendants partial judgment
+  (docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-149.txt:19 "partial judgment in favor of" and :20
+  "defendants as to Count II."), by 2026-12-28, the time to appeal medically-frail-impairment-phrase-vacated gives.
+  This row leaves
+  out the passage's account of the information States should gather and the methods they may use, which names
+  level of impairment among the domains, acuity scores, and lists of diagnosis codes combined with utilization data
+  and severity; it was written for the definition with the vacated words, and
+  medically-frail-impairment-phrase-vacated lists the line among those tied in part to them. A person whose
+  condition is not on the State's list can ask to be considered, as request-consideration-when-condition-not-listed
+  says. Line 1937 is on 91 FR 33406, after the page marker on line 1936. Whether a person is medically frail is the
+  agency's determination.
+
+### frailty-documentation-from-many-kinds-of-practitioner
+
+- Rule: The preamble says a person's status as medically frail or otherwise having special medical needs may be
+  apparent from other documentation or information they provide, even when they do not identify themselves on a
+  screener, and that States may accept provider documentation from many types of practitioners qualified under
+  State scope of practice laws to determine that an individual's condition qualifies them, including physicians,
+  nurse practitioners, physician assistants, psychologists, counselors and therapists, clinical social workers, and
+  other practitioners credentialed by the State. States' lists of qualified practitioners must be shared with CMS
+  upon request.
+- Citation: Preamble to 42 CFR 435.557(f)(1); 91 FR 33406
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1939 "but their status as medically frail or otherwise having special medical needs may be apparent based on other documentation or information provided by the individual"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1939 "States may accept provider documentation from many types of practitioners, including physicians, nurse practitioners, physician assistants, psychologists, counselors and therapists, clinical social workers, and other practitioners credentialed by the State"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1939 "qualified to determine that an individual's condition qualifies them as medically frail or having other special medical needs under State scope of practice laws"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1939 "must be shared with us upon request as part of our oversight and data monitoring activities"
+- Tier: preamble
+- State election: yes; the state chooses which practitioners' documentation it accepts, among those qualified
+  under its scope of practice laws; where it has not chosen, the preamble names no default
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; correction notice; court ruling; CMS guidance; state rule
+- Note: Could go either way, so dangerous: a person told only a physician's letter counts may seek one when a
+  counselor's would do, and a person told any practitioner's letter counts may send one from a practitioner their
+  State does not accept and not meet a requirement that applies to them. Documentation is what
+  frailty-documentation-or-sworn-statement-before-2028, frailty-verified-at-first-renewal-after-sworn-statement and
+  second-frailty-claim-after-sworn-statement-needs-other-proof let the State ask for. Line 1939 is on 91 FR 33406,
+  after the page marker on line 1936. Whether a document is sufficient, and whether the person is medically frail,
+  is the agency's determination.
+
+### blind-as-defined-in-section-1614
+
+- Rule: Section 1614(a)(2) of the Social Security Act, whose definition 42 CFR 435.554(c)(5)(i)(A) incorporates for
+  an individual who is blind, considers an individual blind if they have central visual acuity of 20/200 or less in
+  the better eye with the use of a correcting lens. An eye with a limitation in the fields of vision such that the
+  widest diameter of the visual field subtends an angle no greater than 20 degrees is considered as having a central
+  visual acuity of 20/200 or less. An individual is also considered blind if they are blind as defined under a State
+  plan approved under title X or XVI of the Act (subchapter X or XVI in the Code) as in effect for October 1972 and
+  received aid under that plan, on the basis of blindness, for December 1973, so long as they are continuously blind
+  as so defined.
+- Citation: SSA 1614(a)(2); 42 U.S.C. 1382c(a)(2)
+- Source: docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html:23 "if he has central visual acuity of 20/200 or less in the better eye with the use of a correcting lens"
+- Source: docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html:23 "the widest diameter of the visual field subtends an angle no greater than 20 degrees shall be considered"
+- Source: docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html:23 "if he is blind as defined under a State plan approved under subchapter X or XVI as in effect for October 1972 and received aid under such plan (on the basis of blindness) for December 1973, so long as he is continuously blind as so defined"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3679 "Who is blind or disabled (as defined in section 1614 of the Social Security Act);"
+- Tier: statute
+- State election: no
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; court ruling; CMS guidance
+- Note: Could go either way, so dangerous: a person whose corrected vision in the better eye is 20/200 or less,
+  told only total blindness counts, may meet a requirement that does not apply to them, and a person with a
+  lesser loss of vision, told any loss counts, may not meet one that does. The definitions in section 1614(a) are
+  written for title XVI, Supplemental Security Income ("for purposes of this subchapter", line 23), and the
+  regulation incorporates them by reference; the preamble paraphrases this paragraph's first sentence at
+  docs/domain/cms-2454-ifc/2026-11094.xml:1027 (91 FR 33374). The statute is quoted from govinfo's United States
+  Code, 2024 Edition, current through 2025-01-06, which the manifest entry compares with uscode.house.gov's release
+  point through Public Law 119-136 and finds no later amendment to (a)(2) or (a)(3). This topic rows paragraph
+  (a)(2) and each paragraph of (a)(3) that can reach a person aged 19 to 64, the ages
+  applicable-individual-under-the-state-plan and applicable-individual-under-a-demonstration give for the
+  requirement: disabled-as-defined-in-section-1614 for (a)(3)(A) and (B), which state one rule, and
+  disabling-impairment-medically-demonstrable, substantial-gainful-activity-criteria,
+  disabled-under-former-state-plan, combined-effect-of-impairments-considered,
+  title-ii-disability-rules-apply-to-section-1614 and drug-addiction-or-alcoholism-material-not-disabled for (D),
+  (E), (F), (G), (H) and (J). Left out, because each concerns only individuals under the age of 18, younger than
+  those ages: (a)(3)(C), which defines disability for an individual under the age of 18 (lines 26 and 27);
+  (a)(3)(I), on evaluating the case of an individual who has not attained the age of 18 years (line 48); and clauses
+  (ii) and (iv) of (a)(3)(H), on reviews of individuals under 18 and of infants of low birth weight (lines 33 to 36
+  and 42 to 47), which the (H) row leaves out. Also not rowed, because the regulation incorporates section 1614 for
+  blind or disabled and (a)(2) and (a)(3) are where the section defines those words:
+  (a)(1), on who is an aged, blind, or disabled individual for title XVI, with its age, residence and citizenship
+  conditions (lines 18 to 21); (a)(4), on when a recipient of benefits based on disability may be found no longer
+  entitled to them (lines 50 to 73); and subsections (b) to (f), on spouses, children, the United States and
+  deeming (lines 74 to 92). Whether a person is blind as section 1614 defines it is the agency's determination.
+
+### disabled-as-defined-in-section-1614
+
+- Rule: Section 1614(a)(3)(A) and (B) of the Social Security Act, whose definition 42 CFR 435.554(c)(5)(i)(A)
+  incorporates for an individual who is disabled, consider an individual disabled if they are unable to engage in
+  any substantial gainful activity by reason of any medically determinable physical or mental impairment which can
+  be expected to result in death or which has lasted or can be expected to last for a continuous period of not less
+  than twelve months. They are determined to be under a disability only if their physical or mental impairment or
+  impairments are of such severity that they are not only unable to do their previous work but cannot, considering
+  their age, education, and work experience, engage in any other kind of substantial gainful work which exists in
+  the national economy, regardless of whether such work exists in the immediate area in which they live, whether a
+  specific job vacancy exists for them, or whether they would be hired if they applied for work. Work which exists
+  in the national economy means work which exists in significant numbers either in the region where the individual
+  lives or in several regions of the country.
+- Citation: SSA 1614(a)(3)(A); SSA 1614(a)(3)(B); 42 U.S.C. 1382c(a)(3)(A)-(B)
+- Source: docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html:24 "if he is unable to engage in any substantial gainful activity by reason of any medically determinable physical or mental impairment which can be expected to result in death or which has lasted or can be expected to last for a continuous period of not less than twelve months"
+- Source: docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html:25 "he is not only unable to do his previous work but cannot, considering his age, education, and work experience, engage in any other kind of substantial gainful work which exists in the national economy"
+- Source: docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html:25 "regardless of whether such work exists in the immediate area in which he lives, or whether a specific job vacancy exists for him, or whether he would be hired if he applied for work"
+- Source: docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html:25 "means work which exists in significant numbers either in the region where such individual lives or in several regions of the country"
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3679 "Who is blind or disabled (as defined in section 1614 of the Social Security Act);"
+- Tier: statute
+- State election: no
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; court ruling; CMS guidance
+- Note: Could go either way, so dangerous: a person who cannot do their past work or any other work, told a
+  disability must be visible or listed by name to count, may meet a requirement that does not apply to them, and a
+  person who could do other work, told any condition that keeps them from their old job counts, may not meet one
+  that does. Subparagraph (A) opens "Except as provided in subparagraph (C)" (line 24), which is the definition for
+  an individual under the age of 18 and is left out, as blind-as-defined-in-section-1614 says. The preamble
+  paraphrases (A) at docs/domain/cms-2454-ifc/2026-11094.xml:1027 (91 FR 33374), and it ties this group to section
+  1614 and not to the broader definition of a disabled individual in § 435.554(a) (:1023, 91 FR 33373). A person
+  who is not disabled under section 1614 may still be in another of the five groups, since
+  docs/domain/cms-2454-ifc/2026-11094.xml:1020 "Individuals only need to fit within one of these categories to
+  qualify for the medically frail exclusion" (91 FR 33373); the groups are medically-frail-disabling-mental-disorder,
+  medically-frail-disability-impairing-daily-living and the others medically-frail-defined lists. What counts as
+  substantial gainful activity is substantial-gainful-activity-criteria. Whether a person is disabled as section 1614
+  defines it is the agency's determination.
+
+### disabling-impairment-medically-demonstrable
+
+- Rule: For section 1614(a)(3) of the Social Security Act, a physical or mental impairment is an impairment that
+  results from anatomical, physiological, or psychological abnormalities which are demonstrable by medically
+  acceptable clinical and laboratory diagnostic techniques.
+- Citation: SSA 1614(a)(3)(D); 42 U.S.C. 1382c(a)(3)(D)
+- Source: docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html:28 "a physical or mental impairment is an impairment that results from anatomical, physiological, or psychological abnormalities which are demonstrable by medically acceptable clinical and laboratory diagnostic techniques"
+- Tier: statute
+- State election: no
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; court ruling; CMS guidance
+- Note: Could go either way, so dangerous: a person told their own account of a condition is enough may send
+  nothing more and not meet a requirement that applies to them, and a person told only a laboratory test counts may
+  seek one when clinical findings would do. The paragraph defines the impairment that
+  disabled-as-defined-in-section-1614 requires, so it binds only the group of an individual who is blind or
+  disabled, and not the other four groups of medically-frail-defined. Whether an impairment is medically
+  demonstrable is the agency's determination.
+
+### substantial-gainful-activity-criteria
+
+- Rule: The Commissioner of Social Security prescribes by regulation the criteria for when services performed or
+  earnings derived from services demonstrate an individual's ability to engage in substantial gainful activity, and
+  an individual whose services or earnings meet those criteria is found not to be disabled, notwithstanding section
+  1614(a)(3)(B) of the Social Security Act. Where an individual's disability is severe enough to result in a
+  functional limitation requiring assistance for them to work, their earnings exclude the cost to them of attendant
+  care services, medical devices, equipment, prostheses, and similar items and services necessary for that purpose,
+  as the Commissioner's regulations determine, whether or not the assistance is also needed for their normal daily
+  functions, and subject to reasonable limits the Commissioner may prescribe. Routine drugs and routine medical
+  services are not excluded unless necessary for the control of the disabling condition. Determinations on
+  substantial gainful activity are made without regard to the legality of the activity.
+- Citation: SSA 1614(a)(3)(E); 42 U.S.C. 1382c(a)(3)(E)
+- Source: docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html:29 "The Commissioner of Social Security shall by regulations prescribe the criteria for determining when services performed or earnings derived from services demonstrate an individual's ability to engage in substantial gainful activity."
+- Source: docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html:29 "there shall be excluded from such earnings an amount equal to the cost (to such individual) of any attendant care services, medical devices, equipment, prostheses, and similar items and services"
+- Source: docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html:29 "(not including routine drugs or routine medical services unless such drugs or services are necessary for the control of the disabling condition)"
+- Source: docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html:29 "whether or not such assistance is also needed to enable him to carry out his normal daily functions"
+- Source: docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html:29 "an individual whose services or earnings meet such criteria shall be found not to be disabled"
+- Source: docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html:29 "without regard to the legality of the activity"
+- Tier: statute
+- State election: no
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; court ruling; CMS guidance
+- Note: Could go either way, so dangerous: a person who works a little, told any work rules out a disability, may
+  meet a requirement that does not apply to them, and a person whose earnings meet the Commissioner's criteria,
+  told their work does not matter, may count on being in this group and not meet a requirement that applies to
+  them. The criteria, and the amounts they set, are in the Commissioner's regulations, which are not stored, so no
+  row gives an amount. The paragraph says when work shows a person is not disabled under section 1614, and nothing
+  about the other four groups of medically-frail-defined. Whether a person's work is substantial gainful activity
+  is the agency's determination.
+
+### disabled-under-former-state-plan
+
+- Rule: Notwithstanding section 1614(a)(3)(A) through (E) of the Social Security Act, an individual is also
+  considered disabled for title XVI if they are permanently and totally disabled as defined under a State plan
+  approved under title XIV or XVI of the Act (subchapter XIV or XVI in the Code) as in effect for October 1972 and
+  received aid under that plan, on the basis of disability, for December 1973 and for at least one month before
+  July 1973, so long as they are continuously disabled as so defined.
+- Citation: SSA 1614(a)(3)(F); 42 U.S.C. 1382c(a)(3)(F)
+- Source: docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html:30 "Notwithstanding the provisions of subparagraphs (A) through (E), an individual shall also be considered to be disabled for purposes of this subchapter"
+- Source: docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html:30 "if he is permanently and totally disabled as defined under a State plan approved under subchapter XIV or XVI as in effect for October 1972"
+- Source: docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html:30 "and received aid under such plan (on the basis of disability) for December 1973 (and for at least one month prior to July 1973), so long as he is continuously disabled as so defined"
+- Tier: statute
+- State election: no
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; court ruling; CMS guidance
+- Note: Could go either way, so dangerous: a person continuously disabled under a former State plan since before
+  1974, who received aid under it then, told only the test in disabled-as-defined-in-section-1614 counts, may meet
+  a requirement that does not apply to them, and a person told any disability once recognized under a former State
+  plan counts, without the aid for December 1973 and for a month before July 1973, or without being continuously
+  disabled as so defined since, may not meet one that does. The Code writes title XIV and title XVI as subchapter
+  XIV and "this subchapter". This paragraph widens only the group of an individual who is blind or disabled, and
+  says nothing about the other four groups of medically-frail-defined. Whether a person was disabled under a former
+  State plan and has stayed continuously disabled as it defined the term is the agency's determination.
+
+### combined-effect-of-impairments-considered
+
+- Rule: In determining whether an individual's physical or mental impairment or impairments are of a sufficient
+  medical severity to be the basis of eligibility under section 1614 of the Social Security Act, the Commissioner of
+  Social Security considers the combined effect of all of the individual's impairments, without regard to whether
+  any such impairment, if considered separately, would be of such severity. If the Commissioner finds a medically
+  severe combination of impairments, the combined impact of the impairments is considered throughout the
+  disability determination process.
+- Citation: SSA 1614(a)(3)(G); 42 U.S.C. 1382c(a)(3)(G)
+- Source: docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html:31 "the Commissioner of Social Security shall consider the combined effect of all of the individual's impairments without regard to whether any such impairment, if considered separately, would be of such severity"
+- Source: docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html:31 "the combined impact of the impairments shall be considered throughout the disability determination process"
+- Tier: statute
+- State election: no
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; court ruling; CMS guidance
+- Note: Could go either way, so dangerous: a person with several conditions, none severe alone, told each must be
+  severe by itself, may meet a requirement that does not apply to them, and a person told several mild conditions
+  always add up to a disability may not meet one that does. The paragraph names the Commissioner, as section 1614
+  does throughout, and the regulation incorporates its definition for the exclusion. Whether a person's
+  impairments together are severe enough is the agency's determination.
+
+### title-ii-disability-rules-apply-to-section-1614
+
+- Rule: In determinations of disability under title XVI of the Social Security Act, the provisions of 42 U.S.C.
+  421(h), 421(k) and 423(d)(5) apply in the same manner as they apply to determinations of disability under title
+  II. If an individual is eligible for title XVI benefits by reason of disability for the month before the month
+  in which they attain the age of 18 years, the Commissioner of Social Security redetermines that eligibility by
+  applying the criteria used in determining initial eligibility for individuals who are age 18 or older, either
+  during the 1-year period beginning on their 18th birthday or, in lieu of a continuing disability review, whenever
+  the Commissioner determines that their case is subject to that redetermination; paragraph (4) does not apply to
+  it.
+- Citation: SSA 1614(a)(3)(H)(i); SSA 1614(a)(3)(H)(iii); 42 U.S.C. 1382c(a)(3)(H)
+- Source: docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html:32 "the provisions of sections 421(h), 421(k), and 423(d)(5) of this title shall apply in the same manner as they apply to determinations of disability under subchapter II"
+- Source: docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html:37 "for the month preceding the month in which the individual attains the age of 18 years, the Commissioner shall redetermine such eligibility"
+- Source: docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html:38 "(I) by applying the criteria used in determining initial eligibility for individuals who are age 18 or older; and"
+- Source: docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html:39 "either during the 1-year period beginning on the individual's 18th birthday or, in lieu of a continuing disability review, whenever the Commissioner determines that an individual's case is subject to a redetermination under this clause"
+- Source: docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html:41 "With respect to any redetermination under this clause, paragraph (4) shall not apply."
+- Tier: statute
+- State election: no
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; court ruling; CMS guidance
+- Note: Could go either way, so dangerous: a person found disabled as a child, told that finding still stands
+  after 18, may not meet a requirement that applies to them once the adult criteria of
+  disabled-as-defined-in-section-1614 are applied, and a person told a childhood finding ends at 18 with nothing
+  more may meet a requirement that does not apply to them while that finding stands. The Code writes title II and
+  title XVI as subchapter II and "this subchapter". 42 U.S.C. 421(h), 421(k) and 423(d)(5) are not stored and were
+  not read, so this row says only that they apply. Clause (ii), on reviews at least once every 3 years of
+  individuals under 18 whose impairment is likely to improve (lines 33 to 36), and clause (iv), on reviews within 12
+  months after birth for infants whose low birth weight is material to the finding (lines 42 to 47), concern
+  children and are left out. Whether a person is disabled as section 1614 defines it is the agency's
+  determination.
+
+### drug-addiction-or-alcoholism-material-not-disabled
+
+- Rule: Notwithstanding section 1614(a)(3)(A) of the Social Security Act, an individual is not considered disabled
+  for title XVI if alcoholism or drug addiction would, but for this rule, be a contributing factor material to the
+  Commissioner of Social Security's determination that the individual is disabled.
+- Citation: SSA 1614(a)(3)(J); 42 U.S.C. 1382c(a)(3)(J)
+- Source: docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html:49 "an individual shall not be considered to be disabled for purposes of this subchapter if alcoholism or drug addiction would (but for this subparagraph) be a contributing factor material to the Commissioner's determination that the individual is disabled"
+- Tier: statute
+- State election: no
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: final rule; court ruling; CMS guidance
+- Note: Could go either way, so dangerous: a person whose disability rests on alcoholism or drug addiction, told
+  they are therefore in no group, may meet a requirement that does not apply to them, and a person told they are
+  disabled under section 1614 when this paragraph rules it out may not meet one that does. This paragraph narrows
+  only the group of an individual who is blind or disabled. An individual only needs to fit within one of the five
+  groups (docs/domain/cms-2454-ifc/2026-11094.xml:1020, 91 FR 33373), and an individual with a substance use
+  disorder who is not in stable recovery is in the group medically-frail-substance-use-disorder rows. A person
+  participating in a drug addiction or alcoholic treatment and rehabilitation program may also be excluded under
+  § 435.554(c)(8), as treatment-program-participant-excluded says. Whether alcoholism or drug addiction is material
+  to a finding of disability, and whether a person is in any group, is the agency's determination.
+
+### state-may-check-exclusions-in-own-records-first
+
+- Rule: CMS's frailty deck says States may wish to first look at exclusions for which reliable information is
+  readily available in the State's system, such as status as a parent of a dependent child 13 years of age or
+  under, pregnancy status or American Indian status, before evaluating qualification for exclusions that require
+  other data sources or are more likely to require documentation, which may include medical frailty. It encourages
+  States to design their process in a way that minimizes administrative burden, considering factors such as the
+  availability of data and the likelihood that an individual has documentation reasonably available if data are
+  not available.
+- Citation: CMS, Implementing Medical Frailty Under Community Engagement, slide 10
+- Source: docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.txt:126 "States may wish to first look at exclusions for which reliable information is"
+- Source: docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.txt:128 "years of age or under, pregnancy status or American Indian status) before"
+- Source: docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.txt:129 "evaluating qualification for exclusions that require other data sources or are"
+- Source: docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.txt:130 "more likely to require documentation, which may include medical frailty."
+- Source: docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.txt:123 "encourage states to design their process in such a way that minimizes administrative"
+- Source: docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.txt:124 "burden, considering factors such as the availability of data and the likelihood an individual"
+- Source: docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.txt:125 "has reasonably available documentation if data are not available."
+- Tier: agency guidance
+- State election: yes; the state chooses the order in which it evaluates the exclusions; where it has not chosen,
+  the deck sets no order
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: CMS guidance: a revised deck; court ruling; final rule
+- Note: Could go either way, so dangerous: a person told the State will find every exclusion in its own records
+  first may wait and not answer a request about a status its records do not show, and a person told the State must
+  ask them about every exclusion may send proof of a status its records already show. The deck is "Implementing
+  Medical Frailty Under Community Engagement (Section 71119 of WFTC Legislation)" (lines 2 and 3); medicaid.gov
+  posted it on 2026-09-08, its page 1 states no date, and it says it summarizes policy as of the date it was
+  presented (line 6). The exclusions it names are rows of their own:
+  parent-guardian-caretaker-relative-or-family-caregiver-excluded, pregnant-or-postpartum-excluded and
+  american-indian-excluded. § 435.557(a) defines reliable information available
+  to the State: docs/domain/sources/federal-register/C1-2026-11094.xml:29 "information necessary for determining
+  eligibility to which the agency has access or should have access". The slide's first point, that States must,
+  where possible, verify medical frailty on an ex parte basis (lines 113 to 115), is carried by
+  frailty-verified-first-from-reliable-information from the regulation and the statute. The slide also introduces
+  the deck's tiered medical frailty framework (lines 116 to 120), which no row carries, because its tiers 1 and 2
+  are defined by the words medically-frail-impairment-phrase-vacated records as vacated (page 12, lines 154 to
+  161); this claim does not rest on them. Slide 11 restates those words as a condition for every group (lines 138
+  to 143). Whether a person is excluded is the agency's determination.
+
+### documents-state-may-seek-for-frailty
+
+- Rule: CMS's frailty deck says the type of documentation a State may seek from an individual to verify whether
+  the individual qualifies as medically frail may include, but is not limited to: health records such as medical
+  history, treatment records, progress notes, discharge paperwork, medication lists, and lab or other diagnostic
+  test results; provider documentation or certification; managed care plan care management information; and level
+  of care or functional assessment information that is not in a State's administrative data.
+- Citation: CMS, Implementing Medical Frailty Under Community Engagement, slide 20
+- Source: docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.txt:372 "states may seek documentation from the individual"
+- Source: docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.txt:373 "to verify whether the individual qualifies as medically frail."
+- Source: docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.txt:374 "The type of documentation may include, but is not limited to:"
+- Source: docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.txt:375 "Health records such as medical history, treatment records, progress notes,"
+- Source: docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.txt:376 "discharge paperwork, medication lists, and lab or other diagnostic test results;"
+- Source: docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.txt:377 "Provider documentation or certification;"
+- Source: docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.txt:378 "Managed care plan care management information; and/or"
+- Source: docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.txt:379 "Level of care or functional assessment information that is not in a"
+- Source: docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.txt:380 "administrative data."
+- Tier: agency guidance
+- State election: yes; the state chooses which documentation it seeks; where it has not chosen, the deck names no
+  default and its list is not limited
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: CMS guidance: a revised deck; court ruling; final rule
+- Note: Could go either way, so dangerous: a person told only a doctor's certification counts may seek one when
+  their treatment records would do, and a person told any one of these settles it may send a document their State
+  does not find sufficient and not meet a requirement that applies to them. The deck sets this list in tier 3 of
+  its tiered medical frailty framework, for individuals its data do not place in tier 1 or tier 2, as its trigger
+  for the review in which the State may seek the documentation:
+  docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.txt:371 "For individuals where there is
+  insufficient data OR no data for Tier 1 or 2, this triggers a" and :372 "manual individualized review where
+  states may seek documentation from the individual". Tiers 1 and 2 are defined by the words
+  medically-frail-impairment-phrase-vacated records as vacated: :155 "to comply with the community engagement
+  requirement is significantly impaired" and :160 "additional information is needed to determine if the condition
+  significantly impairs" (page 12). So this row carries the list and neither the tier nor its trigger. When a
+  State may require documentation is in the regulation's rows frailty-documentation-or-sworn-statement-before-2028
+  and one-sworn-statement-per-period-of-enrollment-from-2028. That level of care or functional assessment information
+  may still bear on the group whose own words require a disability that significantly impairs the ability to perform one
+  or more activities of daily living, medically-frail-disability-impairing-daily-living, is an inference. The row leaves
+  out the slide's last point (lines 381 to 384), on statements under penalty of perjury before and from January 1, 2028,
+  which frailty-documentation-or-sworn-statement-before-2028 and one-sworn-statement-per-period-of-enrollment-from-2028
+  carry from the regulation. The rows missing-claims-cannot-defeat-frailty-exclusion and
+  frailty-documentation-from-many-kinds-of-practitioner give the preamble's opportunity to provide documentation and the
+  practitioners whose documentation a State may accept. Whether a document is sufficient, and whether the person is
+  medically frail, is the agency's determination.
+
+### stable-recovery-read-as-five-consecutive-years
+
+- Rule: CMS's frailty deck reads the exclusion of individuals in stable recovery from the substance use disorder
+  group of 42 CFR 435.554(c)(5)(i)(B) as meaning that an individual who is in recovery from a substance use
+  disorder for 5 or more consecutive years would not be considered medically frail under that group. The
+  regulation says an individual who is in recovery for 5 or more years.
+- Citation: CMS, Implementing Medical Frailty Under Community Engagement, slide 31
+- Source: docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.txt:745 "42 CFR 435.554(c)(5)(i)(B) excludes individuals in stable recovery from the SUD category of"
+- Source: docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.txt:746 "medically frail, which means an individual who is in recovery from an SUD for 5 or more"
+- Source: docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.txt:747 "consecutive years would not be considered medically frail under the SUD category."
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3680 "(which means, an individual who is in recovery for 5 or more years)"
+- Tier: agency guidance
+- State election: no
+- Verified: 2026-10-29, read in source
+- Error direction: dangerous
+- Recheck: CMS guidance: a revised deck; court ruling: a ruling in Taylor v. Kennedy, D. Md. 1:26-cv-03705, or an
+  appeal, a stay or a new order in Massachusetts v. Oz; final rule; correction notice
+- Note: Could go either way, so dangerous: a person whose recovery adds up to 5 years or more with a break in it,
+  told the years need not be consecutive, may meet a requirement that does not apply to them, and the same person,
+  told the deck's reading binds their State when the State reads the regulation otherwise, may count on the
+  exclusion and not meet a requirement that applies to them. The regulation, medically-frail-substance-use-disorder,
+  does not say whether the years must be unbroken; the deck is the only stored source that does, as CMS's reading
+  at its tier, and its page 5 restates the regulation without the word (lines 45 and 46). The row leaves out the
+  slide's other points: that to find an individual in recovery for less than 5 years medically frail the State
+  must find that the disorder significantly impairs their ability to comply (lines 748 to 750), the words
+  medically-frail-impairment-phrase-vacated records as vacated; that § 435.557(f)(1) has States look back at claims
+  adjudicated in the preceding 12 months (lines 751 to 754), which frailty-verified-first-from-reliable-information
+  carries; and that CMS, as of the date of the presentation, anticipates allowing States to use claims and
+  encounter data from the preceding 5 years to verify that an individual is not in stable recovery (lines 755 to
+  758), which is CMS's intention, gets no row and goes on the skill's watch list. Taylor v. Kennedy, D. Md.
+  1:26-cv-03705, challenges the stable recovery carve-out (ledger L1-12). Whether a person is in stable recovery is
+  the agency's determination.

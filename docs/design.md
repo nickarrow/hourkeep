@@ -126,11 +126,13 @@ effort:
 The exclusions and exceptions appear on one screen as plain statements a person can tap: pregnant, or in the
 postpartum coverage that follows a pregnancy however it ended (42 CFR 435.554(c)(10)), caring for a child 13 or
 younger (435.554(a), (c)(3)), caring for someone with a disability, American Indian or Alaska Native, someone at home
-gets SNAP, a health condition that makes work hard, in treatment for drug or alcohol use, a veteran whose VA disability
-rating is total, temporary or permanent, including one paid at the 100 percent rate for individual unemployability
-(435.554(c)(4); 91 FR 33372), and the rest. Only what is tapped gets follow-up questions. Skipping is never saved as a
-no, and HourKeep never asks a person to say they are not meeting the requirement, because a casual "no" can be used
-against them. (Proposed, 2026-10-16.)
+gets SNAP, a disability, or a serious health, mental health or substance use condition, in treatment for drug or
+alcohol use, a veteran whose VA disability rating is total, temporary or permanent, including one paid at the 100
+percent rate for individual unemployability (435.554(c)(4); 91 FR 33372), and the rest. (Corrected 2026-10-29: said
+"a health condition that makes work hard"; decision record 0013; read in
+docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:23.) Only what is tapped gets follow-up questions.
+Skipping is never saved as a no, and HourKeep never asks a person to say they are not meeting the requirement, because a
+casual "no" can be used against them. (Proposed, 2026-10-16.)
 
 Each tapped item turns into a short list: what to tell the state, and what to gather. The state may already know some
 of it, and HourKeep says so.
@@ -279,17 +281,24 @@ passages in it. An AI agent then rechecked each one against its sources, which f
 secondary, a news report for one and a KFF brief for three, and confirmed 36, confirmed 2 in part and partly rejected
 1 (research ledger, Ledger A). Some of the errors would lead a person to do less than the rule requires. Those on
 notices of noncompliance and fair hearings were corrected on 2026-10-17 to 2026-10-19, when that topic's rows landed
-(epic 0001, increment 1), and those on who the requirement applies to on 2026-10-23, when that topic's rows landed
-(increment 2.1). Ahead of the other topics, a fix before increment 2.1 corrected, on 2026-10-23, the ones the research
+(epic 0001, increment 1), those on who the requirement applies to on 2026-10-23, when that topic's rows landed
+(increment 2.1), and those on people who are medically frail on 2026-10-29 to 2026-11-04, when theirs landed (increment
+2.2). Ahead of the other topics, a fix before increment 2.1 corrected, on 2026-10-23, the ones the research
 ledger rates dangerous and those about an event or a publication that no topic covers (decision record 0006); the rest
 wait for their own topics. Before HourKeep tells anyone anything, `docs/domain/` becomes one verified extract, files of
 state facts each with its source and date, and a HourKeep domain skill, the instructions AI agents working on HourKeep
 load. The skill lists each rule with its citation and points to its row in the extract, which carries the date it was
 verified, the direction an error would cost a person, and what should trigger a recheck. Already on the skill's watch
-list: the Massachusetts v. Oz summary judgment hearing on October 22, 2026 (research L1-11), and Taylor v. Kennedy in
-Maryland (L1-12), both challenging the medically frail rules; an IRS proposed rule on the tax credit bar, open for
-comment until November 30, 2026 (L1-9); Colorado's rule, due to take effect January 1, 2027 (L5-1); and SNAP's pending
-rule (L7-10).
+list: Massachusetts v. Oz (research L1-11), in which the court on October 29, 2026 vacated and set aside the words of
+the medically frail definition requiring that a condition significantly impair a person's ability to comply, enjoined
+CMS from applying them to the states that sued, Colorado among them, and dismissed the case, with the time to appeal
+running to December 28, 2026; Taylor v. Kennedy in Maryland (L1-12), still challenging the medically
+frail rules (Corrected 2026-10-29: said "the Massachusetts v. Oz summary judgment hearing on October 22, 2026
+(research L1-11), and Taylor v. Kennedy in Maryland (L1-12), both challenging the medically frail rules"; decision
+record 0013; read in docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:23 and :29 and
+docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-149.txt:20.); an IRS proposed rule on the tax credit bar,
+open for comment until November 30, 2026 (L1-9); Colorado's rule, due to take effect January 1, 2027 (L5-1); and SNAP's
+pending rule (L7-10).
 
 That sets the pace. Work on the app that no person reads, such as storage, backup, capture and the package's
 plumbing, can start once the corpus epic's first increment has landed. Anything a person reads waits until the rules

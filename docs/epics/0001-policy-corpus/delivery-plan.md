@@ -5,7 +5,7 @@ Status: In progress, since 2026-10-17. What the epic changes and why, and the fo
 
 - [x] 1. One topic, all the way through
 - [x] 2.1 Who the requirement applies to, and who is excluded from it
-- [ ] 2.2 People who are medically frail or have special medical needs
+- [x] 2.2 People who are medically frail or have special medical needs
 - [ ] 2.3 Exceptions for a month: mandatory exceptions, and optional short-term hardship exceptions
 - [ ] 2.4 Work, community service, work programs and school
 - [ ] 2.5 Monthly income, income counted as work hours, and seasonal workers
@@ -1090,8 +1090,10 @@ record 0013 records. The section as first written is at commit 5684f66.)
   `state-options.md`; the skill's watch list; and in `docs/design.md`, the
   sentence under "What has to be true" naming both suits and, under "What may mean the rule does not apply", the
   proposed tap statement "a health condition that makes work hard", which the ruling makes narrower than the rule.
-  Research B's inventory of 2026-10-29 lists each passage.
-- The watch list: the government's time to appeal, to 2026-12-28; any request to stay; a supplemental interim final
+  The Done entry lists each passage corrected. (Corrected 2026-10-29: said "Research B's inventory of 2026-10-29
+  lists each passage."; full review 2026-10-29, corpus against source N6.)
+- The watch list: the time to appeal, for any party, to 2026-12-28 (Corrected 2026-10-29: said "the government's
+  time to appeal"; full review 2026-10-29, corpus against source S3.); any request to stay; a supplemental interim final
   rule, which the government told the court CMS was likely to issue if the court vacated (entry 142, page 19);
   govinfo's copy of entry 147; the end of the six months, 2027-04-29 by HourKeep's count, since neither document gives
   a date; Taylor v.
@@ -1118,10 +1120,13 @@ court rows, the preamble rows and the deck's 3. Past 64, a new decision record s
 The other nine exclusions, which increment 2.1 wrote, and § 435.557(a)'s definitions, which increment 2.6 writes. How
 Colorado shows medically frail status, when its documentation starts and whether its adopted rule keeps the draft's
 condition, which are Colorado facts for increment 4, and any other state's frailty rules, which leave with
-`state-options.md`. Rows on the parties' briefs, which are not stored; research A's reading of them is in the Done
-entry. Anything from Taylor v. Kennedy beyond its docket list, since its plaintiffs are individuals and its filings
-describe them. Rows for the deck's three tiers and its anticipated five-year lookback. A conclusion on whether vacatur
-under the APA binds CMS for states that did not sue, which stays an open question.
+`state-options.md`. Rows on the parties' briefs, docket entries 104, 138-1 and 140, which are not stored; what the
+research read in them, that both sides briefed vacatur as reaching every state, is in the open question on the
+vacatur's reach. (Corrected 2026-10-29: said "research A's reading of them is in the Done entry."; full review
+2026-10-29, corpus against source N6.) Anything from Taylor v. Kennedy beyond its docket list, since its plaintiffs
+are individuals and its filings describe them. Rows for the deck's three tiers and its anticipated five-year
+lookback. A conclusion on whether vacatur under the APA binds CMS for states that did not sue, which stays an open
+question.
 
 ### Why this shape
 
@@ -1166,6 +1171,719 @@ lets its rows say what is in force, and holds up no other topic.
 The owner's read of this revision, his acceptance of decision record 0013, and his word on the design's new tap
 statement. (Asked 2026-10-29.)
 
+### Done, 2026-11-04
+
+Built on the branch `corpus-2.2-medically-frail`, off main at 5270acc, the commit that revised this section, on
+2026-10-29 between about 21:46 and 23:15 UTC, in ten steps. Against "How you know it worked":
+
+- `/usr/bin/python3 -m unittest discover -s tests` (3.9.6) ran 358 tests and passed in 148 s, and
+  `/opt/homebrew/bin/python3 -m unittest discover -s tests` (3.14.6) ran 358 and passed in 183 s, each as its own
+  command, on 2026-10-29, finishing at 23:07:34 and 23:08:16 UTC; the two ran at the same time. Main had 358, the
+  count CI ran for 2d65028. No check was added, so no new fixture: the test changes are cases in
+  `CitationLinkTest.test_links_each_kind_of_part_and_leaves_the_rest_as_text`. The build's, `SSA 1614(a)(3)(A)`
+  linking to SSA's page for section 1614, failed under 3.9.6 before the code changed (5 tests, 1 failure, the
+  citation left as text) and passes now. The review's fixes added two (R2-N5): `SSA 1903(a)` stays text, which
+  passed before the fix, and `SSA 16140` stays text, which failed before `SSA_PART` was built from `SSA_URL`'s keys
+  with a word boundary after the section number. The SSA 1902 case is kept. After that fix, on 2026-10-30, 358 tests
+  passed under 3.9.6 in 181 s and under 3.14.6 in 219 s, each as its own command. After the hand fixes the review below
+  describes, a last run that began at 01:04:06 UTC passed 358 under 3.9.6 in 148 s and then 358 under 3.14.6 in 173 s.
+- `scripts/check-corpus.py` exits 0 under both and prints `Checked 163 rows (1 say Verified: no, 0 verified by a
+  person), 52 sources, 10 state facts (2 marked not published), 0 warnings, 163 skill items.` Main gave 126 rows, 43
+  sources and 126 skill items. The 9 new sources are the three orders and their extractions, the deck and its
+  extraction, and SSA § 1614.
+- `docs/review/medically-frail-or-special-medical-needs.md` exists, 434 lines, linked twice from the landing page, to
+  the page and to its start-here rows, and the checker compares it with what the generator makes. `docs/review/`
+  holds 6 pages.
+- The docket results, with the time of each query, are below; the skill's watch list carries the results without the
+  times. The checks after the build, the last at 04:35 UTC on 2026-11-04, found no appeal, no stay and no order on a
+  challenged provision.
+- The ledger findings, the paragraphs of Delivers and the pointed claims are below.
+- The old-wording search, run again after the review's fixes on 2026-10-30 at about 00:40 UTC, is this command, from
+  the repository root. It leaves out the research records and the stored sources, the interim final rule's own
+  `2026-11094.xml`, `2026-11094.txt` and `SECTION-INDEX.txt` among them (R6-1, R6-2):
+
+  ```
+  git grep -n -i -F --untracked \
+    -e "Two-part test" -e "two-part test" -e "functional gate" -e "no ruling had issued" \
+    -e "a health condition that makes work hard" -e "gate is functional" -e "functional-impairment gate" \
+    -e "Two internal cross-references" -e "none with a row yet" -e "Same reach as Massachusetts" \
+    -e "expect movement" -e "could be 6 months" -e "2026-10-22: the summary judgment hearing" \
+    -e "summary judgment hearing on October 22, 2026" -e "This is the most directly actionable line" \
+    -e "And the 12-month reverification" -e "The States ask" -e "the government asks for remand" \
+    -e "summary judgment hearing was reset" -e "for unlisted conditions" \
+    -e "where (c)(5)(i) is meant" -e "Litigation could move the medically-frail gate" \
+    -e "Research B's inventory" -e "research A's reading" -e "the government's time to appeal" \
+    -e "hearing on October 22, 2026," -e "too little data" -e "no data to verify" -e "when they are disabling," \
+    -e "enjoined CMS and those" -e "enjoined CMS from applying them to the states that sued" \
+    -e "born before 1956" -e "The five groups:" -e "Seven statute rows" -e "7 such links" -e "36 rule items" \
+    -e "must not reverify" \
+    -- docs .kiro scripts ':!docs/domain/research' ':!docs/domain/sources' \
+    ':!docs/domain/cms-2454-ifc/2026-11094.xml' ':!docs/domain/cms-2454-ifc/2026-11094.txt' \
+    ':!docs/domain/cms-2454-ifc/SECTION-INDEX.txt'
+  ```
+
+  The 37 wordings are the build's 12, the first 12 above; 14 more that, with those 12, cover each of the 25 old wordings
+  quoted in the 22 `Corrected 2026-10-29` marks, taken as fragments that avoid the bold markers, since git grep reads
+  the raw text; and 11 from the review's fixes, from "too little data" on: 10 wordings the fixes replaced, and "must not
+  reverify", which R3-S1 first proposed to replace. Every hit is in a dated correction; in this section of the plan,
+  which names the wordings; in decision record 0013, line 59, which is accepted and stays; in the Note of
+  frailty-verified-at-first-renewal-after-sworn-statement and `rule-extract.md` subsection 7.7, which quote "could be 6
+  months" from 91 FR 33407; at `rule-extract.md` line 340, "States must not reverify this status", which the preamble's
+  "(and may not)" at 91 FR 33366 supports (R3-S1 as revised); or in text that only shares words: "The States asked" in
+  the past tense, `rule-extract.md` line 884's past "The summary judgment hearing was reset to October 22, 2026", and
+  the `interpretiveRisk` comment's "functional-impairment gate, which Massachusetts v. Oz vacated". git grep matches
+  within one line, so a wording broken across two lines escapes it. Read again with line breaks and bold removed, the
+  same files gave one more, `docs/design.md` lines 293 and 294, "enjoined CMS from applying them to the states that
+  sued", which stays, since R1-3 keeps prose saying the order enjoined CMS.
+- The fresh-session test ran once on each model after the review's fixes, on 2026-10-30 at about 01:05 UTC, each run a
+  one-step workflow whose whole prompt was the plan's question, with no skill named, and increment 1's and increment
+  2.1's questions then ran again on each model at about 01:07 UTC. All six runs loaded the skill and hhs-benefits
+  unprompted and opened the topic file for their question, so the rewritten description loads the skill. No skill load
+  was missed, so nothing carries into increment 5. On the plan's question, Claude Opus 5.5 said that the rule excludes
+  anyone in one of five groups and named three that bipolar disorder may point to, each as a possibility: a disabling
+  mental disorder, with the preamble's example of moderate or severe bipolar disorder; disabled as SSA § 1614 defines
+  it; and a serious or complex medical condition. It also gave the ruling, the injunction for the states that sued,
+  Colorado among them, and the ruling's unsettled reach elsewhere; the list and the request path; the State's records of
+  the preceding 12 months first; and the agency as the one that decides. It gave no estimate, stated none of the
+  person's facts as met and cited 18 rows, all 5 the plan names, but did not use the label Deferred. It sent its answer
+  twice, and the second, its last, did not say which skills it loaded, though the first did. GPT-5.6 Sol opened
+  "Deferred: Your state Medicaid office decides whether you are medically frail." It named the disabling mental disorder
+  group with the preamble's example, the ruling and its reach, the list and the request path, and the State's records of
+  the preceding 12 months first, and gave no estimate. It did not say that medically frail means being in one of five
+  groups, or name another group the person's facts may point to; it cited 11 rows, 3 of the 5 the plan names, leaving
+  out medically-frail-defined and medically-frail-impairment-phrase-vacated though it described the ruling; it told the
+  person to contact "the Medicaid office listed on your letter before its deadline", a letter the question never
+  mentioned; and it did not say which skills it loaded. On increment 1's question, both models gave the seven things the
+  notice must say, the 30 days with the 5-day presumption, and the deadline printed on the letter, and named their
+  skills. On increment 2.1's, both named the caretaker relative and family caregiver routes with what each requires and
+  labeled the agency's part Deferred. GPT-5.6 Sol did not say which skills it loaded. Claude Opus 5.5 said "Your
+  situation matches two exclusions", stating as settled that the person's facts point to them, and said the requirement
+  covers only adults in the expansion group, leaving out the section 1115 demonstrations of
+  applicable-individual-under-a-demonstration. As in increment 2.1, the skill was not changed to make an answer cite the
+  plan's rows or use its words, which would teach the test its answer key.
+
+The docket check, on 2026-10-29, through CourtListener's API with the owner's token, run before this section was
+revised. The first query, at 18:16:51 UTC, was answered 401 for both dockets, the stored token being 9 characters,
+and the owner replaced it. Then:
+
+- Massachusetts v. Oz, D. Mass. 1:26-cv-12962, RECAP docket 73546826: the docket at 19:23:59 UTC and its entries at
+  19:24:17 UTC (292 documents indexed), the orders fetched at 19:25:21 UTC. The case was terminated on 2026-10-29.
+  Three entries were new since 145, each filed and entered that day: 147, the memorandum and order on the
+  cross-motions for summary judgment, 16 pages; 148, the order of vacatur and enjoinment, 2 pages; 149, the judgment,
+  1 page. RECAP held no entry 146. Research for this increment searched RECAP's entries again at 19:48:59 and
+  20:04:17 UTC and found none after 149, searched the First Circuit at 19:56 UTC and found no case, found no other
+  suit in RECAP, and found no public statement from CMS by 20:05 UTC; govinfo held only the case's memorandum and
+  order of 2026-07-29 at about 20:00 UTC.
+- Taylor v. Kennedy, Jr., D. Md. 1:26-cv-03705, RECAP docket 74813673, checked for the first time: the docket at
+  19:24:27 UTC and its entries at 19:24:29 UTC, the full list read at 19:28:25 UTC after a rate limit answer (82
+  documents). The case is open. The newest entries were orders admitting counsel pro hac vice (56 to 59,
+  2026-10-28), amicus filings and motions for leave to file them (30 to 55, 2026-10-27), the plaintiffs' motion for
+  summary judgment (29, 2026-10-20) and the order of 2026-10-14 (28), which research L3 reads as the briefing
+  schedule. No order on a challenged provision. Only the docket list was read, since its plaintiffs are individuals.
+- RECAP can lag PACER (`docs/domain/research/2026-10-16-policy/L3-statute-litigation.md:206`), and PACER was not
+  checked. The orders' bytes fetched again from `storage.courtlistener.com` at 21:46 UTC for storage match the
+  19:25:21 UTC copies by SHA-256.
+- The owner decided how to go on at about 19:45 UTC: this section as revised, with decision record 0013. The result
+  is in the skill's watch list, in its Massachusetts v. Oz and Taylor v. Kennedy items, each corrected in place. The
+  review's fixes took the query times, the read times and the note on RECAP's lag out of those items, and out of
+  the items on govinfo and on CMS's response, since `AGENTS.md` keeps dated notes on the repository's own work out
+  of the skills (O1). Each is recorded here, and the RECAP check of 2026-10-23 that the Massachusetts v. Oz item
+  carried, entry 144 the newest then, is in increment 2.1's Done entry.
+- After the build, through the same API: Massachusetts v. Oz entries after 149 at 23:17:42 UTC on 2026-10-29, none;
+  Taylor v. Kennedy entries after 59 at 23:18:07 UTC, none; and First Circuit dockets named Massachusetts and Oz at
+  23:18:44 UTC, none. After the review's fixes, on 2026-10-30, the same three queries at 01:07:56, 01:08:01 and 01:08:07
+  UTC, and again just before this entry at 01:18:33, 01:19:01 and 01:19:13 UTC, found none. An empty answer could also
+  come from a query that matches nothing, so the same queries for Massachusetts v. Oz entries from 147 and Taylor v.
+  Kennedy entries from 57 ran at 01:20:00 and 01:20:05 UTC, and returned 147 to 149 and 57 to 59. With no appeal, stay
+  or new order in RECAP, nothing stopped the rows. The first check after this entry was drafted ran the same three
+  queries at 18:09:11, 18:10:45 and 18:11:11 UTC on 2026-10-30, with controls at 18:10:08 and 18:10:59 UTC, and found
+  none. Before the commit, on 2026-11-04, the same three queries ran at 04:35:12, 04:35:27 and 04:35:39 UTC, with a
+  control for Massachusetts v. Oz from entry 147 at 04:36:28 UTC. Massachusetts v. Oz had no entry after 149, and the
+  First Circuit no case. Taylor v. Kennedy had entries 60 to 73, filed from 2026-10-30 to 2026-11-03 and known only by
+  RECAP's short descriptions: two quality-control notices, two notices of appearance, four amicus appearances, three
+  motions for leave to file and an order on a motion for leave to file, a notice of the administrative record and a
+  disclosure statement. None is an order on a challenged provision, and the government's cross-motion, due 2026-11-03,
+  was not among them. A search of the text RECAP holds for documents filed since 2026-10-30 that say both "community
+  engagement" and "medically frail" found none, where the same search from 2026-10-01 found entries 142, 147 and 148. A
+  search for dockets filed since 2026-10-29 that mention community engagement found one, N.D. Cal. 3:26-cv-12800,
+  against the Department of Justice and the Department of Homeland Security, which names neither HHS nor CMS.
+
+Each ledger finding the plan's 2.2 names, applied or rejected:
+
+- L2-8, the deck's optional three-tier framework, its Tier 3 document list and the anticipated five-year lookback:
+  applied, as the deck's three agency guidance rows, state-may-check-exclusions-in-own-records-first (page 10),
+  documents-state-may-seek-for-frailty (page 20) and stable-recovery-read-as-five-consecutive-years (page 31). The
+  tiers get no row, since tiers 1 and 2 are defined by the vacated words (page 12), and the document list's row
+  carries the list without its tier or its trigger. The lookback is on the watch list as CMS's intention. The ledger
+  rated it burdensome; each of the three rows is rated dangerous, since each could go wrong either way.
+- L2-14, its frailty part, which rated dangerous CMS's renew-info pages for leaving out the functional gate: applied
+  in the direction the ruling sets, in medically-frail-impairment-phrase-vacated's Note, which says that since
+  2026-10-29 leaving the words out is right in the plaintiff states. The pages are not stored, and whether they match
+  each group's own terms was not checked. The finding is reversed.
+- L1-7, the third broken cross-reference, § 435.554(c)(5)(ii)(A)'s "paragraphs (a)(5)(i)(A) through (E)": applied,
+  in state-develops-list-of-frailty-conditions and frailty-condition-list-auditable-and-consistent, which cite both
+  the printed text and the preamble's § 435.554(c)(5)(i)(A) through (E) and pick neither; in the open question on
+  which paragraphs the list must match; and in `what-matters-most.md` section 13, now "Three internal
+  cross-references", corrected in place.
+- L8-4, that a state must develop a list, not publish one, and keep the request path: coverage, not applied again.
+  state-develops-list-of-frailty-conditions and request-consideration-when-condition-not-listed carry its subject,
+  and their Notes name it. The fix before increment 2.1 corrected the passage.
+
+Named in no part of the plan's 2.2 as a finding to apply, and touched: L1-11, the hearing of 2026-10-22, whose
+watch list item now records the ruling; L1-12 with L3-5, Taylor v. Kennedy, whose item was corrected in place with
+its docket check and the briefing dates, and which 13 rows name, 12 in their Notes and
+missing-claims-cannot-defeat-frailty-exclusion in its Recheck, those on the vacated words, the stable recovery
+carve-out, the 12-month window and the limit of one sworn statement among them; L5-1, Colorado's Medical
+Services Board on 2026-11-27, whose item gained the draft's own frailty condition. None of the three changes a row's
+Rule.
+
+Each paragraph of Delivers, and what carries it:
+
+- The docket check: no row; the result above and in the watch list.
+- The three orders, in `docs/domain/sources/courts/`: `massachusetts-v-oz-1-26-cv-12962-147.pdf`, `-148.pdf` and
+  `-149.pdf`, 187,147, 77,951 and 63,531 bytes, each with its `.txt` extraction (16, 2 and 1 page lines), and six
+  manifest entries. Each PDF's entry gives the curl command that fetched it from `storage.courtlistener.com`, its
+  `served_url`, and as `cited_url` the CourtListener docket page; each note says govinfo had not published the entry
+  by 2026-10-29.
+- Decision record 0013 carried out: a bullet under "What has to be true of every rule" in the epic design, second,
+  after the conflict rule it qualifies; `courts/` and `govinfo/` among the publishers in its table under "Where things
+  live"; and an item in the skill's `## Precedence` naming the vacatur in Massachusetts v. Oz as its case. After the
+  review, the design's bullet adds 0013's "with any appeal and any other suit still pending against the provision"
+  (R3-N5); the Precedence item gives the definition without the vacated words in the plaintiff states, Colorado
+  among them, and calls its reach elsewhere an open question (R3-S2); and the Precedence item on conflicts names
+  this topic's two (R3-N4).
+- The rows: 37, where the plan expected about 40 to 50. By tier, 19 regulation, 8 statute, 5 preamble, 3 agency
+  guidance and 2 court; all 37 dangerous; all 37 `Verified: 2026-10-29, read in source`; 11 with a State election.
+  Every row's Recheck includes `court ruling`. By paragraph:
+  - § 435.554(c)(5) and (c)(5)(i) as printed: medically-frail-or-special-medical-needs-excluded and
+    medically-frail-defined. The court row on the vacatur and the injunction: medically-frail-impairment-phrase-vacated,
+    quoting entry 148 and citing entry 147's reasoning that the five groups the statute names are a floor; its Note
+    names the preamble statements that explain the vacated words, 91 FR 33373 among them (2026-11094.xml:1020 and
+    :1021), and says no row carries them. After the review, it and the six-months row name the enjoined side as
+    entry 148 does, the defendants, CMS and HHS and the officials heading them in their official capacities, their
+    agents, employees, appointees, successors and anyone acting in concert or participation with them, the
+    defendants identified from entry 147's caption (R1-3), and their Rechecks and Notes say the time to appeal, which
+    runs for any party (R3-S3).
+  - (c)(5)(i)(A) to (E), each as printed, each Rule saying the definition's opening binds the group and that its
+    impairment words were vacated: medically-frail-blind-or-disabled, medically-frail-substance-use-disorder (its
+    Note: Taylor v. Kennedy challenges stable recovery), medically-frail-disabling-mental-disorder,
+    medically-frail-disability-impairing-daily-living and medically-frail-serious-or-complex-condition.
+  - (c)(5)(ii) and (ii)(A) to (C): state-develops-list-of-frailty-conditions,
+    frailty-condition-list-auditable-and-consistent, frailty-condition-list-revised-regularly and
+    request-consideration-when-condition-not-listed.
+  - § 435.557(f)(1), (i), (ii), (ii)(A), (ii)(B) and (iii), from the stored correction (C1-2026-11094.xml:106 to
+    :116): frailty-verified-first-from-reliable-information, frailty-documentation-or-sworn-statement-before-2028,
+    one-sworn-statement-per-period-of-enrollment-from-2028, frailty-verified-at-first-renewal-after-sworn-statement,
+    second-frailty-claim-after-sworn-statement-needs-other-proof and frailty-reverified-at-least-every-12-months.
+    Each Note on the 12-month window or the limit of one sworn statement says the court upheld it (entry 147, pages 5
+    and 12) and that Taylor v. Kennedy still challenges it; (iii)'s Note says neither suit names it. After the
+    review, the Notes of the 8 rows that say the court upheld their provision, five here and three preamble rows,
+    also say the States may appeal Count II, on which the judgment was for the defendants, by 2026-12-28 (R3-S3).
+  - § 435.557(f)(2): frailty-verification-data-privacy, and treatment-program-verification-data-privacy for its share
+    for § 435.554(c)(8), which says so and names treatment-program-participant-excluded. Both name every law the
+    paragraph lists and say none is stored.
+  - The court row for the six months: six-months-without-penalty-for-plaintiff-states, quoting entry 148(c) and
+    entry 147 at pages 15 and 16 and picking neither.
+  - The preamble rows: disabling-mental-disorder-examples (91 FR 33375, 2026-11094.xml:1131, moderate or severe
+    bipolar disorder among the examples), missing-claims-cannot-defeat-frailty-exclusion (91 FR 33406, :1937),
+    frailty-verification-uses-no-information-older-than-12-months (91 FR 33405, :1931),
+    frailty-checked-in-state-records-before-person-asked (91 FR 33405 and 33407, :1933 and :1952) and
+    frailty-documentation-from-many-kinds-of-practitioner (91 FR 33406, :1939). Where a passage mixes a surviving
+    claim with the vacated words, the row carries only the surviving claim and its Note says what it leaves out:
+    :1937's domains, acuity scores and code lists. :1131's row, after the review, quotes the sentence of examples as
+    printed, with both its conditions, "disabling and significantly impair", and cites entry 148, as decision record
+    0013 has a row on a provision do; the row leaves out, and its Note names, the paragraph's direction to States to
+    consider whether the disorder significantly impairs ability to comply (R1-1).
+- SSA § 1614: `docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html`, 59,402 bytes, the 2024
+  edition, since the 2025 edition's address redirected to govinfo's error page. The entry's note records that the
+  latest amendment is Pub. L. 108-203 of 2004, to (a)(1)(B)(ii), and that uscode.house.gov's release point 119-136
+  (through 2026-10-22), read and not stored, lists the same and differs from (a)(2) to the end of (f) only by word
+  joiners before dashes. Eight statute rows: blind-as-defined-in-section-1614 ((a)(2)),
+  disabled-as-defined-in-section-1614 ((a)(3)(A) and (B) as one rule), disabling-impairment-medically-demonstrable
+  ((D)), substantial-gainful-activity-criteria ((E)), disabled-under-former-state-plan ((F)),
+  combined-effect-of-impairments-considered ((G)), title-ii-disability-rules-apply-to-section-1614 ((H)(i) and
+  (iii)) and drug-addiction-or-alcoholism-material-not-disabled ((J)). The review added the (F) row (R1-4), since
+  the build's cut of (F) rested on the inference that the former State plans paid disability aid only from age 18,
+  which no stored source supports; its Rule is from govinfo's line 30. The cut is in
+  blind-as-defined-in-section-1614's Note: (a)(3)(C) and (I), which concern children under 18; (H)(ii) and (H)(iv),
+  on children and infants; and (a)(1), (a)(4) and (b) to (f), which define neither word. The review checked the cut.
+- The three open questions, each `Raised: 2026-10-29`, in `docs/domain/open-questions.md`, which holds 21 now:
+  whether the vacatur reaches the states that did not sue, in CMS's practice, raised by medically-frail-defined,
+  medically-frail-impairment-phrase-vacated, the five group rows and disabling-mental-disorder-examples, its Note
+  naming the parties' briefs (docket entries 104, 138-1 and 140) as research; which of entry 148(c) and entry 147
+  describes the six months, raised by six-months-without-penalty-for-plaintiff-states; and which paragraphs a state's
+  list must match under § 435.554(c)(5)(ii), raised by state-develops-list-of-frailty-conditions and
+  frailty-condition-list-auditable-and-consistent, with the deck's page 7 among its Sources.
+- The deck: `docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.pdf`, 577,628 bytes, 33 pages,
+  with its 847-line extraction and two manifest entries; medicaid.gov's community engagement page, read and not
+  stored, lists it as posted 09/08/2026, and page 1 states no date. No `.gitattributes` line, since `git check-attr`
+  gives `text: unset` for the new files. The three agency guidance rows are under L2-8 above.
+- The deck's other operative claims, each with its higher source, read in the extraction:
+  - Pages 3, 5, 6 and 7 restate SSA 1902(xx)(9)(A)(ii)(V), § 435.554(c)(5)(i)(B), (E) and (c)(5)(ii): the group
+    rows and the list rows carry them. Page 6 says CMS did not further define groups (A), (C) and (D).
+  - Page 4: the IFC's definition, not the alternative benefit plan's, decides the exclusion, and states may not add
+    populations beyond the five groups. The preamble says both (2026-11094.xml:1012, :1016 and :1018, 91 FR
+    33372 and 33373); no row carries them, and they stay in `rule-extract.md` subsection 4.2 and
+    `what-matters-most.md` section 4. Its last bullet, and page 11's reminder, state the vacated words.
+  - Page 8 restates § 435.557(f)(1) to (iii), claims paid, pended or denied included (C1-2026-11094.xml:106): the
+    (f) rows.
+  - Page 10's ex parte sentence: frailty-verified-first-from-reliable-information. Its burden factors are in
+    state-may-check-exclusions-in-own-records-first.
+  - Pages 11 to 13, 17 to 19 and 21 to 22: the tiers, the step-wise approach and the key points, no row. Page 13's
+    reminder of the request process is (c)(5)(ii)(C)'s row, and its re-run at least every 12 months (f)(1)(iii)'s.
+  - Pages 14 to 16: data sources and code sets a state should consider, no row; their higher source is § 435.557(a)'s
+    definition of reliable information available to the State, its electronic data sources, claims and encounter
+    data among them (C1-2026-11094.xml:29 to :38), which increment 2.6 rows. Page 16's point that a non-medical
+    code such as one for homelessness cannot alone show frailty matches the preamble at :1018 (91 FR 33373), and its
+    example rests on the vacated words.
+  - Pages 23 to 30, 32 and 33: fictional clinical vignettes, each placed in a tier, no row.
+  - Page 31's remaining lines: 748 to 750 state the vacated words; 751 to 754 are carried by
+    frailty-verified-first-from-reliable-information; 755 to 758, the lookback, are on the watch list.
+- The topic file: its first line as the plan names it; an opening that says the definition is in force without the
+  vacated words in the states that sued since 2026-10-29, that whether the same holds elsewhere is an open question,
+  and that whether a person is medically frail is the agency's determination; 37 rule items, one for each row, in 8
+  groups, 261 lines. After the review, the third group's heading is "The five groups, and how CMS and the preamble
+  read two of them", since it holds the five group items and the two that read them (R5-1). Its `## Topics` item is
+  29 words after the link. The description is the owner's approved text, 798 characters, compared by script with
+  the proposal. `SKILL.md` is 2,485 words by `split()`, from 1,664 at main; see deviations.
+- The review page, on the landing page, with 20 start-here rows under `medically-frail-or-special-medical-needs` in
+  `START_HERE`, chosen by decision record 0006's rule and in the topic file's order, and an orientation naming the
+  ruling, medically-frail-impairment-phrase-vacated, medically-frail-defined, the five group rows,
+  six-months-without-penalty-for-plaintiff-states and both open questions on the ruling. After the review, the
+  orientation is in 12 shorter sentences, says in plain words what vacate and set aside, enjoin and memorandum mean,
+  and names the enjoined side as entry 148 does (R1-3, R2-1, R5-3). Citations of SSA § 1614 link to
+  `https://www.ssa.gov/OP_Home/ssact/title16b/1614.htm` (`SSA_PART` and `SSA_URL` in
+  `scripts/review_pages/constants.py`, `links.py`), with the `CitationLinkTest` cases above and a sentence in the
+  Formats under "The review pages"; the page has 10 such links, on the 8 § 1614 rows.
+- Section 12's entry "Medically frail means having a listed diagnosis": quoted exactly in the Notes of
+  state-develops-list-of-frailty-conditions and request-consideration-when-condition-not-listed, whose items say the
+  list identifies people and that a person whose condition is not on it can still ask. The rebuttal in
+  `what-matters-most.md` section 12 is corrected in place, citing entry 148; its error column is unchanged, so the
+  rows' quote still matches.
+- L8-4, L2-14 and L1-7: under the ledger findings above.
+- The pointers: `rule-extract.md` subsection 4.2, with 37 identifiers, increment 2.1's rows for (c)(1) to (4) and
+  (6) to (10) and this topic's; subsection 7.7, with 12; and `what-matters-most.md` section 4, with 17, its heading
+  kept and corrected. Each opens with a `Now rows ...` line dated 2026-10-29, and a script found every identifier in
+  them in the extract. Their claims are in the table below.
+- Corrected in place, each quoting the old words and citing the stored order or line, listed below.
+- The watch list, in `SKILL.md`: the Massachusetts v. Oz and Taylor v. Kennedy items corrected in place, and new
+  items for the time to appeal, to 2026-12-28; any request to stay entry 148; a supplemental interim final rule
+  (entry 142, ECF page 19, not stored); govinfo's copy of entry 147; 2027-04-29, the end of the six months by
+  HourKeep's count; CMS's response, such as a revised deck; and CMS's anticipated five-year lookback. Taylor's
+  cross-motion, due 2026-11-03, and last brief, due 2026-12-02, are in its item. The Colorado Medical Services Board
+  item of 2026-11-27 gained the draft's own condition (draft 8.100 lines 1213 and 1214) with an `Added` mark. After
+  the review, each item gives only its date or event, what it could change and the rows or places (O1); the time to
+  appeal runs for any party, so the States may appeal Count II (R3-S3); a new item is for a motion to alter or amend
+  the judgment under Federal Rule of Civil Procedure 59(e), which would move the time to appeal (R3-S3); and the
+  appeal and stay items name their rows by rule, every row whose Citation names entry 148 or 147, 9 rows now, with
+  the topic file's opening, the review page's orientation and the passages corrected under decision record 0013
+  (R4-1, R2-1).
+- Dated lines in increments 2.3, 2.6 and 2.7 (`Added 2026-10-29`: decided and dismissed; the owner's decision of
+  that day and decision record 0013 settle the outcome for entries 147 to 149, so the check looks for an appeal, a
+  stay or a new order, and any one of those stops row work, which the review asked for (R3-S4); and Taylor's docket
+  is checked as before), 2.6's also saying entry 147 upheld
+  § 435.557(a)(vii) and (a)(viii); increment 4's first Delivers paragraph (`Added`: Colorado's frailty facts read
+  against the adopted rule and the injunction); and increment 5's watch list sentence (`Corrected`: names the
+  ruling, the time to appeal and any stay).
+- § 435.557(a)'s words: the 8 rows that rely on "reliable information available to the State" or "period of
+  enrollment" quote its definition from the correction in their Notes (C1-2026-11094.xml:29 and :25) and name the
+  paragraph: frailty-verified-first-from-reliable-information, frailty-documentation-or-sworn-statement-before-2028,
+  one-sworn-statement-per-period-of-enrollment-from-2028, frailty-verified-at-first-renewal-after-sworn-statement,
+  second-frailty-claim-after-sworn-statement-needs-other-proof, frailty-reverified-at-least-every-12-months,
+  frailty-checked-in-state-records-before-person-asked and state-may-check-exclusions-in-own-records-first.
+- The inherited rows showing-requirement-does-not-apply (C1-2026-11094.xml:138), notice-says-how-to-show-not-applicable
+  (:166) and adverse-notice-names-both-failures (:178, :184 to :186), read against the new rows: each restates
+  § 435.558's reference to the categories of § 435.554, which the ruling leaves standing, and none says more or less
+  than its source, so none got a `Corrected:`.
+
+The claims of each passage pointed, numbered RE4.2 and RE7.7 for `rule-extract.md` subsections 4.2 and 7.7 and WMM4
+for `what-matters-most.md` section 4. "Stays" means the claim is still in the passage after its pointer line, marked
+as the Formats say, with the preamble line that supports it; J3 is `docs/domain/cms-2454-ifc/2026-11094.xml`.
+
+| Claim | Where it went |
+|---|---|
+| RE4.2-1, (1), the SUPPORT Act group, Pub. L. 115-271, whatever the age-18 date | former-foster-care-child-excluded, former-foster-care-criteria-apply-whatever-the-age-18-date |
+| RE4.2-2, the four operative criteria | former-foster-care-criteria-apply-whatever-the-age-18-date |
+| RE4.2-3, the preamble's qualifier "even if they meet the eligibility requirements" | the same row; "User-favorable." dropped as framing |
+| RE4.2-4, (2), Indian as § 447.51 defines it, and its four routes | american-indian-excluded, indian-defined-at-447-51, urban-indian-criteria-at-447-51 |
+| RE4.2-5, States must not reverify | stays, J3:771 (91 FR 33366) "(and may not)", with J3:1777 (91 FR 33396) and J3:1867 (91 FR 33403) "do not need to reverify" |
+| RE4.2-6, (3), parent, guardian, caretaker relative or family caregiver of a child 13 or under or a disabled individual | parent-guardian-caretaker-relative-or-family-caregiver-excluded |
+| RE4.2-7, paid caregivers qualify | stays, J3:936 (91 FR 33370) |
+| RE4.2-8, guardianship needs a court order, the one documentary basis, and the pre-2028 latitude does not apply | stays; the court order part at J3:1877 (91 FR 33404), "one basis" and "pre-2028" marked Unverified |
+| RE4.2-9, family caregiver, (A) to (C) | family-caregiver-excluded-on-one-criterion and its three criterion rows |
+| RE4.2-10, (c)(3)(ii), more than one in a residence | more-than-one-excluded-in-a-residence |
+| RE4.2-11, hours below 80 count, 55 plus 25 | caregiving-hours-below-80-count-as-unpaid-work |
+| RE4.2-12, (4), temporary or permanent total rating, 38 U.S.C. 1155 | veteran-with-total-disability-rating-excluded |
+| RE4.2-13, total disability rating based on individual unemployability | veteran-paid-at-total-rate-for-unemployability-excluded |
+| RE4.2-14, screener advice | stays, as advice |
+| RE4.2-15, reverification by type | stays, J3:992 (91 FR 33372) |
+| RE4.2-16, (5), the two-part test and its gate | medically-frail-defined, as printed; medically-frail-impairment-phrase-vacated, the vacatur |
+| RE4.2-17, a diagnosis alone is not enough, with the 80 hours | J3:1021 (91 FR 33373), named in medically-frail-impairment-phrase-vacated's Note among the statements that explain the vacated words; no row |
+| RE4.2-18, (A) and its blind or disabled parenthetical | medically-frail-blind-or-disabled, blind-as-defined-in-section-1614, disabled-as-defined-in-section-1614 |
+| RE4.2-19, (B), stable recovery as 5 or more years | medically-frail-substance-use-disorder |
+| RE4.2-20, (B), active treatment, early and sustained recovery, self-identification after relapse | stays, J3:1059, :1087 and :1090 (91 FR 33374) |
+| RE4.2-21 to RE4.2-23, (C), (D) and (E) with its qualifiers | medically-frail-disabling-mental-disorder, medically-frail-disability-impairing-daily-living, medically-frail-serious-or-complex-condition |
+| RE4.2-24, (ii), the list, auditable, consistent with (A) to (E), revised, and the request path | state-develops-list-of-frailty-conditions, frailty-condition-list-auditable-and-consistent, frailty-condition-list-revised-regularly, request-consideration-when-condition-not-listed; the cross-reference is an open question |
+| RE4.2-25, no added categories, homelessness | stays, J3:1018 (91 FR 33373) |
+| RE4.2-26, not the alternative benefit plan's definition, § 440.315(f) | stays, J3:1012 and :1016 (91 FR 33372 and 33373) |
+| RE4.2-27, (6), TANF under SSA 407 | tanf-work-requirement-compliant-excluded |
+| RE4.2-28, (7), a SNAP household member not exempt, and its construction | snap-household-member-not-exempt-from-work-requirement-excluded, snap-exclusion-covers-general-and-time-limit-work-requirements |
+| RE4.2-29, (8), a program under 7 U.S.C. 2012(h), the State's minimum time commitment | treatment-program-participant-excluded, treatment-program-defined-by-food-and-nutrition-act |
+| RE4.2-30, (8) is distinct from the substance use disorder group | stays, J3:1098 (91 FR 33374) |
+| RE4.2-31, (9), an inmate, § 435.1010 | inmate-of-public-institution-excluded, inmate-means-held-involuntarily-in-custody |
+| RE4.2-32, (10), SSA 1902(e)(5) or (e)(16) | pregnant-or-postpartum-excluded |
+| RE4.2-33, (10), attestation under § 435.956(e), no document | stays, J3:1988 (91 FR 33408); verification is increment 2.6's |
+| RE7.7-1, reliable information first, claims of the preceding 12 months and encounter data | frailty-verified-first-from-reliable-information, frailty-checked-in-state-records-before-person-asked |
+| RE7.7-2, nothing older than 12 months | frailty-verification-uses-no-information-older-than-12-months |
+| RE7.7-3, who can sign documentation | frailty-documentation-from-many-kinds-of-practitioner; "most directly actionable line" stays, as advice |
+| RE7.7-4, absent claims and codes not on the list | missing-claims-cannot-defeat-frailty-exclusion |
+| RE7.7-5, a new basis after a sworn statement | second-frailty-claim-after-sworn-statement-needs-other-proof |
+| RE7.7-6, "could be 6 months" | stays, corrected in place, since J3:1952 (91 FR 33407) says it of the reverification at the first regular renewal after a sworn statement, not of the 12-month reverification |
+| RE7.7-7, the table, each time through 2027 and once from 2028 | frailty-documentation-or-sworn-statement-before-2028, one-sworn-statement-per-period-of-enrollment-from-2028 |
+| RE7.7-8, the first regular renewal after a sworn statement | frailty-verified-at-first-renewal-after-sworn-statement |
+| RE7.7-9, at least every 12 months | frailty-reverified-at-least-every-12-months |
+| RE7.7-10, (f)(2)'s laws | frailty-verification-data-privacy, treatment-program-verification-data-privacy; "Three user-facing facts" and "A new basis burns no second attestation" dropped as framing |
+| WMM4-1, the heading | kept, corrected |
+| WMM4-2, two parts, both required, the gate | medically-frail-defined, medically-frail-impairment-phrase-vacated |
+| WMM4-3, a diagnosis alone is not enough, with the 80 hours | J3:1021 in medically-frail-impairment-phrase-vacated's Note; no row |
+| WMM4-4, (A) | medically-frail-blind-or-disabled, blind-as-defined-in-section-1614, disabled-as-defined-in-section-1614 |
+| WMM4-5, (B), 5 or more years; active treatment, early and sustained recovery, relapse | medically-frail-substance-use-disorder; the rest stays, J3:1059, :1087 and :1090 |
+| WMM4-6, (C), (D) with "one is enough", and (E) | the three group rows |
+| WMM4-7, the list and the request path | the four (c)(5)(ii) rows |
+| WMM4-8, an unlisted condition still qualifies "if they meet the gate and one of (A)-(E)" | state-develops-list-of-frailty-conditions, request-consideration-when-condition-not-listed; the gate part, medically-frail-impairment-phrase-vacated |
+| WMM4-9, "Ask for the list..." | stays, as advice |
+| WMM4-10, the alternative benefit plan's definition | stays, J3:1012 and :1016 |
+| WMM4-11, HIPAA and 42 CFR part 2 | frailty-verification-data-privacy, treatment-program-verification-data-privacy |
+| WMM4-12, the litigation blockquote | stays, corrected in place as this section lists; its ruling claims are also medically-frail-impairment-phrase-vacated's and six-months-without-penalty-for-plaintiff-states' |
+
+Corrected in place, each dated 2026-10-29, quoting the old words and citing decision record 0013 or 0007 and the
+stored lines (`courts/` entries 148 at :23, :29 and :33, 147 at :15 and :285, and 149 at :20, as each needs):
+
+- `rule-extract.md` section 11, the litigation bullet: "As of 2026-10-16 no ruling had issued and no injunction was
+  in effect, so the rule was fully operative." became the ruling, entries 148, 147 and 149, and the briefs' "The
+  States ask for vacatur" and "the government asks for remand without vacatur and says vacatur" went into the past
+  tense; an `Added` sentence says the vacatur's reach for other states is an open question.
+- `rule-extract.md` subsection 7.7, RE7.7-6, "could be 6 months", as the table says; after the review, the corrected
+  text opens "From January 1, 2028," as J3:1952 does (R3-S5), and the line before it, which had been reworded with
+  no mark, carries a mark quoting "This is the most directly actionable line in the rule" (R3-N9).
+- `what-matters-most.md` section 2, the (c)(5) row, which said "Two-part test with a **functional** gate. See § 4
+  below".
+- `what-matters-most.md` section 4: its heading, "Medically frail — the gate is functional, not diagnostic", now
+  "Medically frail: one of five groups, each as it defines itself"; its litigation blockquote's "this functional
+  gate", "As of 2026-10-16 no ruling had issued ... but expect movement." and the briefs' present tense, with the
+  `Added` reach sentence.
+- `what-matters-most.md` section 12, the rebuttal of "Medically frail means having a listed diagnosis", which said
+  "Two-part test with a **functional** gate, plus a **request path** for unlisted conditions". After the review, the
+  rebuttal also says the court enjoined CMS from applying the words to the plaintiff States, Colorado among them,
+  and that the vacatur's reach elsewhere is an open question (R3-S2, R3-N7).
+- `what-matters-most.md` section 13: "Two internal cross-references in the IFC are broken and uncorrected." now
+  three (L1-7); the (c)(5)(ii) sentence, which said it "points at "paragraphs (a)(5)(i)(A) through (E)" where
+  (c)(5)(i) is meant.", now says (c)(5)(ii) and (ii)(A) both cite paragraphs that do not exist and that reading the
+  preamble's paragraphs is an inference and an open question; and "Litigation could move the medically-frail gate.
+  See § 4.", now the ruling, the open reach, an appeal or stay that could undo it, and Taylor v. Kennedy.
+- `state-options.md`, the `interpretiveRisk` comment's "the medically-frail functional-impairment gate, under
+  challenge in Massachusetts v. Oz, whose summary judgment hearing was reset to 2026-10-22 by ECF 143, entered
+  2026-10-08."
+- `docs/design.md`: the tap statement "a health condition that makes work hard", now "a disability, or a serious
+  health, mental health or substance use condition", the paragraph still `(Proposed, 2026-10-16.)`; and the sentence
+  naming both suits, which said "the Massachusetts v. Oz summary judgment hearing on October 22, 2026 (research
+  L1-11), and".
+- The skill's watch list: the Massachusetts v. Oz item ("2026-10-22: the summary judgment hearing in Massachusetts v.
+  Oz, D. Mass. 1:26-cv-12962 (ledger L1-11). On" and "none with a row yet, and each topic") and the Taylor v.
+  Kennedy item ("with no ruling promised before 2027-01-01 (ledger L1-12). Same reach as Massachusetts v. Oz, by the
+  same inference.").
+- This plan's increment 5, its watch list sentence, which said "The watch list holds the Massachusetts v. Oz hearing
+  on October 22, 2026,".
+- From the review, in this section of the plan: Delivers' list of passages to correct, which named a scratch
+  document, "Research B's inventory of 2026-10-29 lists each passage." (R3-N6); Delivers' watch list, which said
+  "the government's time to appeal" (R3-S3); and Deliberately not, which said "research A's reading of them is in
+  the Done entry." and now names the briefs and points at the open question that says what was read in them
+  (R3-N6). Each mark gives its finding as "full review 2026-10-29, corpus against source" and the finding's number.
+
+Deviations from the plan:
+
+- 37 rows, where the plan expected about 40 to 50: 19 on the two paragraphs, where decision record 0006 estimated about
+  23; 8 on SSA § 1614, where the plan expected about 11, since the paragraphs on children and those that define neither
+  word get none, and (A) with (B), and (H)(i) with (iii), each state one rule; 2 court rows, 5 preamble rows and the
+  deck's 3. Delivers expected (F) among the cut; the review gave it a row.
+- documents-state-may-seek-for-frailty carries the deck's list of documentation with no trigger, where Delivers
+  says "the documents a state may seek when its data are not enough": the deck's trigger is "insufficient data OR
+  no data for Tier 1 or 2" (deck .txt:371), and tiers 1 and 2 rest on the vacated words, so the row's Note quotes
+  the trigger and the regulation's rows say when a State may require documentation (R1-2).
+- § 435.557(f)(2) is two rows, so its share for § 435.554(c)(8) has an identifier of its own.
+- SSA § 1614 is govinfo's 2024 edition, since the 2025 edition is not published there.
+- The watch list gives the docket results without the times of the queries, where the plan's check asks for the times
+  there as well as here: `AGENTS.md` keeps dated notes on the repository's own work out of the skills, so the review's
+  fixes took the times out of the watch list, and they are here (O1).
+- RE7.7-6, "could be 6 months", corrected in place, though the plan does not list it, because the claim misstated
+  J3:1952.
+- `docs/design.md` gained `Corrected` marks in the Formats' form, which it had not used before.
+- `SKILL.md` is 2,485 words by `split()`, from 1,664 at main, past the Formats' target of about 1,500 and the review's
+  of near 1,700 (O1). The build left it at 2,558. Counted from each section's heading line, the frontmatter and opening
+  went from 512 at main to 473, Topics from 92 to 132, Precedence from 583 to 777 and the watch list from 477 to 1,103.
+  The review's trim took the query times, read times and reading notes out of the watch list, and its fixes added the
+  59(e) item, the time to appeal for any party and the qualifier on the plaintiff states, and a fix check's mark saying
+  where a removed sentence went added 14 more, so the trim paid for the fixes and little more. The watch list and
+  Precedence now hold this topic's dated events, the ruling, Taylor v. Kennedy, the time to appeal, a 59(e) motion, a
+  stay, a supplemental interim final rule, govinfo's copy, the six months, CMS's response, the lookback and Colorado's
+  draft, and its two conflicts. The orchestrator decided on 2026-10-30 to cut no further outside the review's findings,
+  and moving each topic's conflicts out of Precedence into its topic file goes to the owner as a later decision.
+- The open question on the list's cross-reference has the deck's page 7 among its Sources, though no row cites that
+  page.
+- The Taylor v. Kennedy item was corrected in place with its two dates, rather than given a second item.
+- The Massachusetts v. Oz part of a Citation is not linked on the review pages, since no linker covers court
+  entries and the plan asks for none.
+
+Still unverified:
+
+- Every check of the 37 rows, the 37 rule items, the three questions, the pointers and the corrections was made by an
+  AI agent; no person with Medicaid policy knowledge has read them.
+- That https://www.ssa.gov/OP_Home/ssact/title16b/1614.htm serves section 1614: curl with a browser User-Agent got
+  403, as SSA's Compilation answers; the address follows the form of title 19's page. ssa.gov's copy of § 1614 was
+  not read.
+- How the former State plans under titles XIV and XVI defined permanent and total disability, and whom they paid;
+  disabled-under-former-state-plan leaves both to the agency's determination, and no stored source holds the plans.
+- Federal Rules of Appellate Procedure 4(a)(1)(B) and 4(a)(4)(A)(iv) and Federal Rule of Civil Procedure 59(e),
+  read on the Legal Information Institute's pages on 2026-10-29 and 2026-10-30 for the time to appeal for any party
+  and the 59(e) item, and 28 U.S.C. 2107, read there too; none is stored. The 59(e) item has no date, since Rule
+  6(a)'s rule for a last day on a weekend or holiday was not read.
+- What 42 U.S.C. 421(h), 421(k) and 423(d)(5), the Commissioner's regulations on substantial gainful activity, and
+  the laws § 435.557(f)(2) names require; none is stored. That no stored file holds 42 CFR part 431 subpart F.
+- The research's reading of which preamble passages tie a group to the vacated words, beyond each step's own read of
+  those lines, and that the passages corrected in place, listed above, are every passage the ruling makes untrue; a
+  grep of the analysis files for "gate", "significantly impair", "diagnosis alone" and "frail" found no other.
+- CMS's renew-info pages (L2-14), read only through research L2 and not stored.
+- Whether CMS has said anything on the ruling beyond what was read: medicaid.gov's community engagement page answered
+  403 to the check of 2026-10-30, and on 2026-11-04 it answered over HTTP/2 and listed nothing posted after the frailty
+  deck of 09/08/2026; CMS's newsroom and site map were read on 2026-10-30 and not since.
+- The research for this increment's query times (19:48:59, 19:56 and 20:04:17 UTC) and its reading of the parties'
+  briefs, which are not stored; Taylor v. Kennedy's schedule, from research L3, against entry 28 itself, not read;
+  the docket results are RECAP's, and PACER was not checked.
+- That CourtListener's docket page lists the three entries: the page was not opened, and the stored PDFs came from
+  RECAP's storage addresses.
+- That medicaid.gov refuses a simpler request for the deck, not tried; that the deck's slide numbers equal its PDF
+  pages beyond the number printed at the foot of pages 10, 20 and 31.
+- Federal Register pages were read from the XML's `PRTPAGE` markers, not the rendered pages.
+- The research-sourced claims kept in the litigation paragraphs of `rule-extract.md` and `what-matters-most.md`,
+  such as the complaint's counts and Taylor's filing.
+- That the start-here rows match what the owner would pick.
+- How the skill answers beyond these six runs: each question ran once on each model, and the orchestrator read the
+  answers in the session logs; no person has read them.
+
+Judgment calls each step made without asking, for the owner to overrule:
+
+- Storing the orders: the manifest notes say the bytes match the docket check's copies, a time taken from the check's
+  record, not timed again; that each PDF answered with no redirect from RECAP's archive copy, without claiming the
+  docket page links it; they name no person, not even the judge; entry 149's note says what the judgment enters.
+- Storing § 1614 and the deck: the name `42-usc-1382c-2024-edition-2026-10-29.html`, with the edition, since govinfo
+  serves several, and `.html` as the other stored pages are named; `cited_url` the address fetched for both, as
+  SMD 26-001's is; the govinfo note quotes the source credit's raw `&sect;1614`; the deck's note records the posting
+  line and the PDF's own dates; both notes say the pages read beside them are not stored.
+- Decision record 0013 and the SSA links: `SSA_URL` became a dict keyed by section, keeping its name; the test case
+  cites `SSA 1614(a)(3)(A)`, the form the rows use; the design's bullet sits second, after the conflict rule; the
+  Precedence item says the frailty items give the definition without the vacated words, which the review limited to
+  the plaintiff states (R3-S2), and leaves the injunction, the six months and the upheld limits to the rows.
+- The rows on § 435.554(c)(5): their 13 identifiers; each (A) to (E) row carries the vacated opening and cites entry
+  148, reading decision record 0013's "every row an order touches"; medically-frail-defined's Rule says what is in
+  force in the plaintiff states; State election `no` on both court rows, since being a plaintiff is a fact of the
+  case, `yes` on (ii), (ii)(B) and (ii)(C), `no` on (ii)(A); all dangerous, the six-months row with both directions in
+  its Note; Recheck dates 2026-12-28 on both court rows and 2027-04-29 on the six months, "final rule: including a
+  supplemental interim final rule" on the vacatur row, and `state rule` on (ii), (ii)(B) and (ii)(C); L2-14's
+  reversal written in the vacatur row, for the plaintiff states only; why no row carries the gate statements, "each
+  explains words no longer in force in the plaintiff states"; Taylor's docket cited to this section and entry 142 to
+  decision record 0013, not to scratch research; entry 147 lines 32 to 36 as the source that the States did not
+  challenge the stable recovery carve-out; the preamble's :1188 and :1190 described as tied to the vacated words,
+  not as fallen.
+- The rows on § 435.557(f) and the preamble: their 13 identifiers; (f)(2) as two rows; five preamble rows, the plan's
+  two and :1931, :1933 with :1952, and :1939, with :1940 to :1942, :1950, :1952's "could be 6 months" and "may
+  reverify more frequently", and :1957 left as Note quotes; State election `yes` on (f)(1)(i), (ii) and (iii) and on
+  the :1131, :1933 and :1939 rows; the (f)(2) rows dangerous, since a person told their records are unprotected may
+  hold them back and one told the laws stop the State using its data may wait; the court-upheld sentence also on
+  (f)(1)(i), though the memorandum names only (f)(1)(ii); (iii)'s Note saying neither suit names it and quoting
+  § 435.557(d)(4); `state plan amendment` added to the Recheck of (i), (ii) and (iii), and `state rule` to the :1131
+  and :1939 rows; (f)(1)'s Note cites SSA 1902(xx)(5) from the H.R. 1 copy.
+- The rows on § 1614 and the deck: their 11 identifiers, the review's (F) row among them; (a)(2) as one row with its
+  1972 and 1973 clause; (A) with (B), and (H) with (i) and (iii), (iii) because a redetermination under it can come
+  after 19; (D), (E), (G) and (J) each a row; (F) cut on an inference about age, which the review reversed (R1-4);
+  "this subchapter" read as title XVI, from the source credit; 42 U.S.C. 421(h), 421(k) and 423(d)(5) named and not
+  described; Citations naming both SSA and 42 U.S.C.; State election `no` on every statute row and page 31, `yes` on
+  pages 10 and 20; page 31's Note treats the deck as the stored source that
+  settles "consecutive" at its tier, so no fourth open question; page 20's Note labels as an inference that
+  functional assessment information may still bear on group (D); each deck Rule opens "CMS's frailty deck says".
+- The questions and the watch list: the three titles; "the sources are silent" for the reach question; "CMS, or a
+  policy person" for the six months, partly a legal reading; the briefs named by docket number, not by a scratch
+  path; the five group rows and disabling-mental-disorder-examples in the reach question's Raised; the deck's page 7
+  as a Source; Taylor's item corrected in place; the Colorado board item extended with an `Added` mark, not
+  repeated; the stay item names no court; the lookback as its own item; the research's later search times recorded
+  with the docket check's.
+- The topic file and the page: the eight group headings and their order, the extract's except that the deck and
+  preamble rows sit beside the provision each reads; the § 1614 group after the five groups; the opening's
+  restatement of medically-frail-defined; "A state chooses ..." where a row's State election is `yes`; the 20
+  start-here rows, section 12's rows, the rows on L2-14's reversal, L8-4, L1-7 and L1-12's four provisions, and the
+  rows the fresh-session question names, with disabled-as-defined-in-section-1614 the one § 1614 row; the
+  orientation naming both open questions on the ruling.
+- The pointers and corrections: claims that stay keep their old words, followed by one sentence giving the preamble
+  page and an `Added` mark, as increment 2.1 did; a claim carried only in a row's Note counted as not carried, so it
+  stays; the guardianship claim marked Unverified in part, not corrected; RE7.7-6 corrected; RE4.2-17 and WMM4-3
+  dropped with the pointer and left to the vacatur row's Note; WMM4's `Corrected` mark between its heading and its
+  pointer, which the review moved after the pointer line, as the Formats order them (R3-N8); the labels "Active
+  litigation" and "Contested" and the advice "Build medically-frail logic expecting it to move." kept, since Taylor
+  is pending and an appeal is open; new prose says "vacated and set aside", names the plaintiff States for the
+  injunction and calls the reach an open question; the design's tap correction cites
+  decision record 0013 and the order, not the owner's approval of the words, which this section's Needs records;
+  `Added` for the lines in 2.3, 2.6, 2.7 and 4, `Corrected` for 5; 2.6's line telling its rows to say the court
+  upheld § 435.557(a)(vii) and (a)(viii), from decision record 0013; whitespace-only rewraps of two old correction
+  lines; the three inherited rows left without `Corrected`.
+- This entry: the old-wording search used the plan's four wordings, eight more and every old wording quoted in this
+  increment's corrections; the deck's other claims grouped by page; the tests under the two Pythons run at the same
+  time.
+- The review's fixes, on 2026-10-29 and 2026-10-30, by step:
+  - The rows (R1-1 to R1-3): the topic file's opening and the medically-frail-defined item say "and anyone acting
+    for them or with them", shorter than the order's list; the Sources on entry 147's lines 24 and 28 quote only "in
+    his official capacity as", so no official is named; the six-months Note says the order bars the defendants;
+    the documents row keeps "may seek from an individual", resting on its Note's quote of deck line 372; that row's
+    rule item names no section in its pointer, since the checker rejects a section number its row's Rule lacks.
+  - § 1614(a)(3)(F) and the time to appeal (R1-4, R3-S3): the identifier disabled-under-former-state-plan; the
+    Count II sentence in the Notes of the 8 rows whose Note says the court upheld their provision, and not in
+    frailty-reverified-at-least-every-12-months, on whose (f)(1)(iii) the court did not rule; that sentence in
+    Notes only, since each of those Rechecks already names an appeal; the (F) Note says nothing on how the former
+    plans defined the term; "any party" rests on the Legal Information Institute's copy of 28 U.S.C. 2107.
+  - The skill and the orientation (O1, R3-S2, R3-N4, R4-1, R2-1, R5-1, R5-3): the line holding the 2026-10-23
+    correction mark rewrapped, its quoted words unchanged; no new mark for the case item's sentence on the RECAP
+    check of 2026-10-23, which moved to increment 2.1's Done entry rather than being corrected; the (f)(1) rows
+    named by rule rather than listed; disabling-mental-disorder-examples added to the supplemental rule item, since
+    it now cites entry 148; the 59(e) item points at the appeal item's rows; the orientation's plain meanings,
+    "cancel" among them; R5-1's heading as the review worded it; the case item's description of the entries, Taylor's
+    list of challenged provisions, the lookback's description and the govinfo item's premise trimmed as well as the
+    times.
+  - The analysis files (R3-S1, R3-S5, R3-N5, R3-N7 to R3-N9): the N9 mark rather than restoring the old words, since
+    "This is" would have no referent after the pointer; N7's words copied from section 2's (c)(5) row, keeping
+    "enjoined CMS"; `docs/design.md` says "the time to appeal" without "for any party".
+  - The citation pattern (R2-N5): no word for the boundary in the Formats, which already say a citation of any other
+    section stays text; `\b` as the boundary, which also keeps a lettered section such as 1614A from linking to 1614;
+    the two cases added as subtests of the existing test, so the count stays 358.
+  - This plan (R3-S4, R3-N6, R2-2): the dated lines in 2.3, 2.6 and 2.7 edited without a mark, being new in this
+    increment; the marks on Delivers and Deliberately not dated 2026-10-29, the review's date, though the clock read
+    2026-10-30; Delivers' "the government's time to appeal" corrected in this step, the earlier steps having left
+    it; Deliberately not pointing at the open question, which says what was read in the briefs, rather than at this
+    entry, which does not.
+  - The final run (R6-1, R6-2): the search made case-insensitive, which adds decision record 0013's "The
+    government's time to appeal"; each old wording searched by a fragment without bold; "must not reverify" searched
+    though R3-S1 as revised keeps it; no count of hits given, since the command finds its own lines here; the seven
+    long Citation lines on the court-cited rows wrapped at 120 like prose. Left longer than 120: the skill's
+    description, which is one line of frontmatter; its Topics line for this topic, which is a link and nothing else;
+    three question headings in `open-questions.md`; and a URL line in the epic design.
+- The orchestrator's, from the review to this entry:
+  - Confirming the review's findings: R2-N5, a note, taken as should fix, since it is code this increment changed; R5-2
+    rejected for this increment and offered to the owner, since it changes the Formats for every orientation; R2-N3,
+    R2-N4, R2-N6 and R2-1's idea of failing the checker on a misspelled orientation identifier left for the owner as
+    later work.
+  - Fix step 3's pause: `SKILL.md` accepted at the 2,471 words the trim reached, 2,485 after the hand fixes, since it
+    could not reach the target of about 1,700 the orchestrator had set; the stay and appeal items naming their rows by
+    rule rather than listing them; nothing cut outside the review's findings; and moving each topic's conflicts out of
+    Precedence left to the owner.
+  - Fix step 4's pause: "must not reverify" kept, since 91 FR 33366 supports it, and only the citation of its sentence
+    changed; `what-matters-most.md` line 166 left as it was.
+  - The fix checks: their findings fixed by the orchestrator by hand rather than in another fix loop; FC-O7 rejected.
+  - The fresh-session runs: once on each model for each question, after the fixes, and their lapses recorded without
+    changing the skill.
+  - The clause in `docs/design.md` under "What has to be true" that names this topic's corrections beside increment 1's
+    and 2.1's, which the plan does not list; without it the sentence leaves them among the corrections that wait for
+    their topics.
+  - This entry's heading gives the day in UTC on which the increment landed, since every time in the entry is UTC.
+  - The checks after this entry: the finding on decision record 0013's appeal wording rejected, as R3-S3 had left it;
+    HCPF's pages named in increment 4's dated line, not in the skill's watch list, since increment 4 writes Colorado's
+    frailty facts and the skill's rule items already give the definition in force in Colorado; the dates set at the
+    commit to the day the increment landed.
+  - Before the commit, on 2026-11-04: govinfo's copy of entry 147 not stored here, though decision record 0013 makes a
+    copy whose bytes differ a source of its own, and offered to the owner as the next change; the watch list's item for
+    2026-11-27 and the note of Colorado's state fact on renewal-notice-with-renewal-form, both older than this
+    increment, left as they are and offered to the owner for a correction, since HCPF's deck has the Medical Services
+    Board read the draft on 2026-12-11; KFF's and Georgetown's readings of the vacatur's reach left out of the open
+    question, since CMS is the one who can answer it.
+
+Review. The full review, on 2026-10-29, ran six mandates two at a time, each against its own source. The 36 rows and
+their rule items against the stored sources, GPT-5.6 Sol: 2 blocking and 2 should fix. The checker, generator and tests
+against the code, with 20 breaks in a clone, Claude Opus 5.5: 2 should fix and 5 notes; of the breaks, the 14 that
+should fail did, 5 passed (a rule item's meaning changed, an open question deleted, a misspelled identifier in a
+question's Raised, a rule item in the wrong topic file, a misspelled identifier in the orientation), and 1 failed only
+until the pages were rebuilt. The corpus changes beyond the rows against the stored sources, the research and the
+decision records, Claude Opus 5.5: 5 should fix and 9 notes; its search at about 23:30 UTC for anything published since
+the ruling found nothing that changes a conclusion. A red team against the plan, decision records 0006, 0007 and 0013
+and `docs/design.md`, GPT-5.6 Sol: 1 blocking, 4 should fix and 1 note. A cold reader, as a policy expert on the pages,
+a fresh session and the next session, GPT-5.6 Sol: 2 should fix and 2 notes. A do-it reviewer carrying out the plan's
+checks, `CONTRIBUTING.md`'s and the README's commands and one stored order's manifest commands in a clone, Claude Opus
+5.5: 1 should fix and 1 note. That is 37 as reported: 3 blocking, 16 should fix and 18 notes. Each was checked against
+the files: 35 were confirmed, 1 was confirmed in part and 1 was rejected for this increment. The orchestrator added
+three of its own: `SKILL.md`'s size, a byte count in a memory outside the repository, and its own miscount of the rows
+with a State election, 10 where there are 11, in a report to the owner. Six issues were raised by more than one
+reviewer, and a seventh, `SKILL.md`'s size, by a reviewer and the orchestrator. The blocking ones were the preamble's
+examples of disabling mental disorders, given without half their condition and with no order cited, and the deck's
+documents row, which kept a trigger from tiers resting on the vacated words, raised by two reviewers. The rejected one
+was linking each open question the orientation names to its own heading, which changes the Formats' rule for every
+orientation, and is offered to the owner instead. The one confirmed in part was the claim that States must not reverify
+American Indian status: it holds on the preamble at 91 FR 33366, which neither the reviewer nor the orchestrator had
+read, so only its citation changed; the fix step found it. One decided fix fell short: `SKILL.md` came to 2,485 words,
+where the orchestrator had set about 1,700, as the deviations say. Not fixed here, and offered to the owner: the checker
+passes when an open question is deleted, when a question's Raised names no row, when a rule item sits in another topic's
+file and when an orientation misspells an identifier; and docket-entry citations do not link on the pages. A fix loop of
+seven steps applied the rest. The fixes then had two checks, one per model family, each against the log's decided fixes
+and the stored sources. GPT-5.6 Sol: 2 should fix and 1 note, with every count in this entry recounted and matching. The
+should fix were the four places, the dated lines in 2.3, 2.6 and 2.7 and this entry's line on them, that said "only one
+of those stops row work", which read as one particular event and now say "any one of those"; and the stored § 1614
+page's size, still wrong in the orchestrator's scratch notes and in a memory outside the repository after the
+orchestrator had found it (O2), both corrected. The note was this paragraph and the fresh-session results, still to be
+written. Claude Opus 5.5 found every fix applied as decided, with 3 should fix and 8 notes. The should fix were
+disabling-mental-disorder-examples' rule item, whose "It says" read as the court after the new sentence and now says
+"The preamble says"; a row and its item that spoke of "the definition's words that the second of those conditions
+applies", now "on which the second of those conditions rests"; and this entry's count of 21 rows on the two paragraphs,
+where there are 19. Seven notes were taken: the skill's mark quoting only "On" for a removed sentence now says where the
+sentence went; a search fragment that spanned bold markers, and so could match only its own line, now avoids them;
+medically-frail-defined's Rule names the defendants as the order does, as its sibling court rows do; the documents row
+has a Source for its "from an individual"; the vacatur row's Note says the rules on the time to appeal are not stored
+and that a timely 59(e) motion would restart it; two of the orientation's plain-language sentences say what is cancelled
+and which rows say what; and a topic item says the order "states no end date for either", as its row does. One was
+rejected: `open-questions.md` line 368's "enjoins CMS from penalizing" is true, and R1-3 leaves prose that names CMS
+alone as it is. The orchestrator made these fixes by hand, each an exact replacement asserted once, and diffed the files
+against snapshots taken before. A first script refilled whole paragraphs beyond the changed lines; its files were
+restored from the snapshot and the fixes redone, refilling only the changed item. After the hand fixes the pages were
+rebuilt, the checker printed 163 rows and 0 warnings under both Pythons, and the tests passed, as the first list says.
+
+After this entry was drafted, on 2026-10-30, two more checks ran, each on GPT-5.6 Sol and read-only: one on sources the
+review had not had, one on text no reviewer had seen. The first looked for anything since the ruling, in RECAP's two
+dockets and the First Circuit, CMS's newsroom and site map, the Federal Register and its public inspection list, HCPF,
+the Medical Services Board, the Colorado Attorney General and published analyses, and read the parties' briefs against
+what the corpus says of them: 2 should fix and 2 notes. It found nothing filed or published since that changes a row,
+though medicaid.gov answered 403. The briefs say what the corpus says they say: both sides argued that vacatur reaches
+every state (entry 104, ECF page 36; entry 138-1, ECF page 41), and the government that CMS is likely to reimpose the
+provisions by a supplemental interim final rule (entry 142, ECF page 19). Of its should fix, one was rejected: decision
+record 0013's "The government's time to appeal" is true of the government, an accepted record is superseded rather than
+edited, and the review had left it under R3-S3. The other was taken: HCPF's work-requirements page and its FAQ still
+list the medically frail conditions for a person "for whom their condition prevents them from completing 80 hours per
+month of work, school, and/or volunteer activities", and increment 4's dated line now names both pages. The second read
+the hand fixes, this entry's new text, the design clause and the commit message: 5 should fix and 1 note, and it found
+the hand fixes matched their findings and sources. The should fix were `SKILL.md`'s count, 2,485 words where this entry
+said 2,471, since a hand fix added 14; Claude Opus 5.5's last answer to the bipolar question, which, sent after a first,
+named no skills; this paragraph's count of confirmed findings, which had left out the rejected one; the commit message's
+claim that every other finding was applied; and the dates that hold only if the increment lands on the day this entry's
+heading gives. The first four were taken. The dates were set at the commit to the day the increment landed, 2026-11-04.
+The note, that the watch list lacks the query times the plan's check asks for, was already among the deviations.
+
+Before the commit, on 2026-11-04, the orchestrator checked the sources again, since four days had passed; the dockets
+are above. govinfo had published entry 147 as granule USCOURTS-mad-1_26-cv-12962-1, dated 2026-10-29: 281,447 bytes
+where the stored copy is 187,147, with the same 16 pages and the same 3,693 words in the same order by pypdf's
+extraction. The Federal Register held one CMS document since 2026-10-29 that mentions community engagement, a Privacy
+Act notice of a matching program, and none that mentions medically frail; its public inspection list held one CMS
+document, a correction to a notice of information collection. medicaid.gov's community engagement page, which answered
+over HTTP/2, lists nothing posted after the frailty deck of 09/08/2026, and the deck's bytes match the stored copy.
+HCPF's two pages had the same text as on 2026-10-30. The Medical Services Board's page lists its next meetings as
+November 13 and December 11. HCPF's deck of 2026-09-28, which is not stored, has updated draft language submitted to the
+Board on November 27 and an emergency reading at its meeting of December 11 (page 30; research L5, line 45), where the
+skill's watch list says the Board takes up the draft on 2026-11-27 and the note of Colorado's state fact on
+renewal-notice-with-renewal-form says a Board reading that day; both are older than this increment. KFF and Georgetown's
+Center for Children and Families, both on 2026-11-02, read the vacatur as reaching every state, and KFF says HHS had not
+announced whether it would appeal. None of it changes a row.
+
 ## 2.3 Exceptions for a month: mandatory exceptions, and optional short-term hardship exceptions
 
 ### Delivers
@@ -1174,6 +1892,10 @@ statement. (Asked 2026-10-29.)
   judgment does not press, the dockets in Massachusetts v. Oz, D. Mass. 1:26-cv-12962, and Taylor v. Kennedy, D. Md.
   1:26-cv-03705, checked, under increment 2.1's outcome rule, with the results in the Done entry and the skill's watch
   list (decision record 0007).
+  (Added 2026-10-29: Massachusetts v. Oz was decided and dismissed on 2026-10-29. The owner's decision of that day and
+  decision record 0013 settle the outcome for entries 147 to 149, so its check looks for an appeal, a stay or a new
+  order, and any one of those stops row work under the outcome rule. Taylor v. Kennedy's docket is checked as before;
+  decision record 0013; read in docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-149.txt:20.)
 - Rows for § 435.553, its opening paragraph and (a) and (b); § 435.555(a) to (f); and § 435.557(g), from the stored
   correction. A paragraph named takes its own text, the words before its first subparagraph included. About 41 rows,
   decision record 0006's inference from 1,623 words of regulation text.
@@ -1406,6 +2128,12 @@ downloaded in a browser.
 - Before any row on § 435.557(a)(vii) or (a)(viii), the 12-month limits both suits challenge, the dockets in
   Massachusetts v. Oz, D. Mass. 1:26-cv-12962, and Taylor v. Kennedy, D. Md. 1:26-cv-03705, checked, under increment
   2.1's outcome rule, with the results in the Done entry and the skill's watch list (decision record 0007).
+  (Added 2026-10-29: Massachusetts v. Oz was decided and dismissed on 2026-10-29. The owner's decision of that day and
+  decision record 0013 settle the outcome for entries 147 to 149, so its check looks for an appeal, a stay or a new
+  order, and any one of those stops row work under the outcome rule. Taylor v. Kennedy's docket is checked as before.
+  The court's memorandum, entry 147, upheld § 435.557(a)(vii) and (a)(viii), the twelve-month lookback, at page 12,
+  so each row's Note says so, with Taylor v. Kennedy, which still challenges them; decision record 0013; read in
+  docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:110 and :284 to :286.)
 - Rows for § 435.557(a), (b), (c) and (e) from the stored correction; § 435.945(j) as the rule amends it; and
   § 438.58(b). About 42 rows, decision record 0006's inference from 1,679 words of § 435.557: 1,665 in paragraphs
   (a), (b), (c) and (e), and the 14 of the section's heading, which no other topic counts. The amendment to
@@ -1503,6 +2231,10 @@ the IFC deck downloaded in a browser.
   judgment does not press, the dockets in Massachusetts v. Oz, D. Mass. 1:26-cv-12962, and Taylor v. Kennedy, D. Md.
   1:26-cv-03705, checked, under increment 2.1's outcome rule, with the results in the Done entry and the skill's watch
   list (decision record 0007).
+  (Added 2026-10-29: Massachusetts v. Oz was decided and dismissed on 2026-10-29. The owner's decision of that day and
+  decision record 0013 settle the outcome for entries 147 to 149, so its check looks for an appeal, a stay or a new
+  order, and any one of those stops row work under the outcome rule. Taylor v. Kennedy's docket is checked as before;
+  decision record 0013; read in docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-149.txt:20.)
 - Before any row is written or edited, an inventory of the candidate rows on SMD 26-001 and on the statute, added to
   the figure below and recorded in the Done entry. If the topic would pass 64 rows, a new decision record splits it,
   as decision record 0006 requires, and no row is written until that record is accepted.
@@ -1791,7 +2523,17 @@ The state facts files complete for the federal default, and for everything Color
 `not published`: look-back months at application and renewal, hardship exceptions, income-to-hours, how medically frail
 status is shown and when documentation starts, how the 30 days are counted, submission channels, the appeal window,
 and the start date. Colorado's facts come from its draft rule (10 CCR 2505-10 § 8.100), HCPF's pages and its English
-and Spanish letter templates, each stored with its retrieval date.
+and Spanish letter templates, each stored with its retrieval date. (Added 2026-10-29: Colorado's facts on how
+medically frail status is shown are read against the adopted rule and against the injunction in Massachusetts v. Oz,
+which bars CMS from applying to Colorado, a plaintiff, the vacated words of § 435.554(c)(5)(i). The draft's definition
+adds its own condition, "special medical needs that cause significant impairment to work, volunteer, or attend school"
+(draft lines 1213 and 1214), which the adopted rule may keep or drop; decision record 0013; read in
+docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:29.) (Added 2026-10-30: HCPF's work-requirements
+page, https://hcpf.colorado.gov/hr1-medicaid-work-requirements, and its FAQ, https://hcpf.colorado.gov/hr1-faqs, which
+says it was updated September 21, 2026, both read on 2026-10-30 and not stored, still list the medically frail
+conditions for a person "for whom their condition prevents them from completing 80 hours per month of work, school,
+and/or volunteer activities". They are read against the injunction too; check of 2026-10-30, since the ruling,
+finding 2.)
 
 Every Colorado fact marked `not published` or `inferred`, those increments 2.1 to 2.8 wrote included, is rechecked
 against every Colorado source this increment stores, and its note gains the recheck's date and result. A fact a newly
@@ -1916,9 +2658,11 @@ reading is the research's, not a native speaker's (ledger L5-19). The vocabulary
 terminology note in the header of `rule-extract.md`, which increment 4 retires, so it is read from git history. The
 error checklist is a list in the skill naming each error this corpus has made and the row that corrects it, drawn from
 the rows' Notes, where increments 2.1 to 2.8 quote the entries of `what-matters-most.md` section 12 that their rows
-correct, and from errors found after 2026-10-16 (decision record 0006). The watch list holds the Massachusetts v. Oz
-hearing on October 22, 2026, Taylor v. Kennedy, the IRS proposed rule open for comment until November 30, 2026,
-Colorado's rule, SNAP's pending rule, and the next eCFR check.
+correct, and from errors found after 2026-10-16 (decision record 0006). The watch list holds Massachusetts v. Oz,
+decided on 2026-10-29, with the time to appeal and any request to stay, Taylor v. Kennedy, the IRS proposed rule open
+for comment until November 30, 2026, Colorado's rule, SNAP's pending rule, and the next eCFR check. (Corrected
+2026-10-29: said "The watch list holds the Massachusetts v. Oz hearing on October 22, 2026,"; decision record 0013; read
+in docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-149.txt:20.)
 
 ### Deliberately not
 

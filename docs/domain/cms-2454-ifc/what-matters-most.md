@@ -166,7 +166,7 @@ information that changes what a State is permitted to do.
 | **(c)(2)** | **American Indians** | Uses the existing definition at **42 CFR 447.51** — Indian, Urban Indian, California Indian, IHS-eligible. **States must not, and may not, reverify this status** (91 FR 33366). Say so once |
 | **(c)(3)** | **Parent, guardian, caretaker relative, or family caregiver** of a dependent child 13 or under, or of a disabled individual | The largest and most misunderstood category. See § 3 below |
 | **(c)(4)** | **Veteran with a disability rated as total** | **Temporary or permanent**, under 38 U.S.C. 1155. Preamble is explicit that **TDIU** veterans — paid at the 100% rate because their disabilities prevent them working — *"must be treated by States in the same manner"* as those with a combined 100% rating (91 FR 33372). A question asking only about a "100% rating" silently excludes them |
-| **(c)(5)** | **Medically frail or otherwise has special medical needs** | Two-part test with a **functional** gate. See § 4 below |
+| **(c)(5)** | **Medically frail or otherwise has special medical needs** | One of **five groups**, each as it defines itself. On 2026-10-29 a federal court vacated and set aside the rule's added condition that the person's condition significantly impair their ability to comply, and enjoined CMS from applying it to the plaintiff States, Colorado among them; whether the vacatur reaches the other States is an open question. See § 4 below (Corrected 2026-10-29: said "Two-part test with a **functional** gate. See § 4 below"; decision record 0013; read in docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:23 and :29 and docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:15.) |
 | **(c)(6)** | **Compliant with TANF work requirements** | SSA § 407. The test **is** compliance. States define compliance differently; CMS says States *should not rely on or require reporting from the individual* (91 FR 33377) (Corrected 2026-10-23: said "(91 FR 33385)"; read in docs/domain/cms-2454-ifc/2026-11094.xml:1236.) |
 | **(c)(7)** | **Member of a household receiving SNAP who is not exempt from a SNAP work requirement** | **Read the construction.** The test is being **subject to** SNAP work requirements — *not* complying with them — and it keys on **household** receipt, not the individual's own |
 | **(c)(8)** | **Participating in a drug addiction or alcoholic treatment and rehabilitation program** | 7 U.S.C. 2012(h). States **may** set a minimum time commitment — a State election |
@@ -206,49 +206,58 @@ caregiving-hours-below-80-count-as-unpaid-work in docs/domain/community-engageme
 
 ---
 
-## 4. Medically frail — the gate is functional, not diagnostic
+## 4. Medically frail: one of five groups, each as it defines itself
 
-§ 435.554(c)(5). **Two parts, and both are required.**
+Now rows medically-frail-or-special-medical-needs-excluded, medically-frail-defined,
+medically-frail-impairment-phrase-vacated, six-months-without-penalty-for-plaintiff-states,
+medically-frail-blind-or-disabled, blind-as-defined-in-section-1614, disabled-as-defined-in-section-1614,
+medically-frail-substance-use-disorder, medically-frail-disabling-mental-disorder,
+medically-frail-disability-impairing-daily-living, medically-frail-serious-or-complex-condition,
+state-develops-list-of-frailty-conditions, frailty-condition-list-auditable-and-consistent,
+frailty-condition-list-revised-regularly, request-consideration-when-condition-not-listed,
+frailty-verification-data-privacy, treatment-program-verification-data-privacy in
+docs/domain/community-engagement-extract.md (2026-10-29).
 
-**The gate**, from the regulatory text: the individual's physical, mental, or other behavioral health
-condition **significantly impairs their ability to comply with the community engagement requirement**.
-CMS is explicit that diagnosis alone is insufficient — someone who can perform 80 hours a month despite their
-condition does not qualify on this basis.
+(Corrected 2026-10-29: said "Medically frail — the gate is functional, not diagnostic"; decision record 0013; read in
+docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:23.)
 
-**And one of five**, at § 435.554(c)(5)(i)(A)–(E):
-
-- **(A)** blind or disabled per SSA § 1614
-- **(B)** **substance use disorder**, excluding individuals in **stable recovery**, which the rule sets at
-  **5 or more years**. Applies whether or not the person is in active treatment, and covers early (< 1 yr)
-  and sustained (1–5 yr) recovery. States must allow self-identification **including after a relapse**
-- **(C)** disabling mental disorder
-- **(D)** physical, intellectual, or developmental disability significantly impairing **one or more**
-  activities of daily living — **one is enough**
-- **(E)** serious or complex medical condition, with an extensive qualifier list
-
-**Two State obligations that are the most actionable thing here.** § 435.554(c)(5)(ii): the State **must**
-maintain an auditable, regularly revised list of qualifying conditions, **and** a process for someone whose
-condition is not on the list to **request consideration**. Someone whose condition is absent from the list
-still qualifies if they meet the gate and one of (A)–(E). **Ask for the list, and ask how to request
-consideration.**
-
-**Do not conflate** with the Alternative Benefit Plan medically-frail definition at **42 CFR 440.315(f)**.
-
-**Handling this data engages HIPAA and 42 CFR part 2** (substance use disorder records).
+- (B), substance use disorder, applies whether or not the person is in active treatment, and covers early (< 1 yr)
+  and sustained (1–5 yr) recovery. States must allow self-identification **including after a relapse**. The preamble
+  says so at 91 FR 33374. (Added 2026-10-29; read in docs/domain/cms-2454-ifc/2026-11094.xml:1059, :1087 and
+  :1090.)
+- **Ask for the list, and ask how to request consideration.**
+- **Do not conflate** with the Alternative Benefit Plan medically-frail definition at **42 CFR 440.315(f)**. The
+  preamble compares the two at 91 FR 33372 and keeps them separate at 91 FR 33373. (Added 2026-10-29; read in
+  docs/domain/cms-2454-ifc/2026-11094.xml:1012 and :1016.)
 
 > **Contested.** *Commonwealth of Massachusetts et al. v. Oz et al.*, No. 1:26-cv-12962 (D. Mass.), filed
 > June 29, 2026, 26 plaintiffs. The complaint challenged three provisions as contrary to law and seven as arbitrary
 > and capricious, with a Spending Clause count. On 2026-09-01 the States narrowed it, in their motion for partial
-> summary judgment, to three: this functional gate, the 12-month claims window, and the 2028 limit on
-> self-attestation. Preliminary injunction **denied** without prejudice on July 29, 2026, on irreparable harm alone;
-> summary judgment hearing reset to **October 22, 2026** by ECF 143, entered 2026-10-08. As of 2026-10-16 no ruling
-> had issued and **no injunction was in effect, so the rule was operative**, but expect movement.
+> summary judgment, to three: the words of the medically frail definition requiring that a condition significantly
+> impair a person's ability to comply, the 12-month claims window, and the 2028 limit on self-attestation.
+> (Corrected 2026-10-29: said "this functional gate"; decision record 0013; read in
+> docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:23.) Preliminary injunction **denied**
+> without prejudice on July 29, 2026, on irreparable harm alone; summary judgment hearing reset to **October 22,
+> 2026** by ECF 143, entered 2026-10-08. On 2026-10-29 the court ruled. Its order, entry 148, declared unlawful, and
+> vacated and set aside under 5 U.S.C. 706(2), those words of the definition, enjoined CMS from applying them to the
+> plaintiff States, Colorado among them, and barred it from penalizing those States for errors or delays in
+> implementing the rule for six months. Its memorandum, entry 147, upheld the 12-month claims window and the limit
+> on self-attestation, and its judgment, entry 149, dismissed the case. (Corrected 2026-10-29: said "As of
+> 2026-10-16 no ruling had issued and **no injunction was in effect, so the rule was operative**, but expect
+> movement."; decision record 0013; read in docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:23,
+> :29 and :33, docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:15 and :285 and
+> docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-149.txt:20.)
 > (Corrected 2026-10-23: said "targets this functional gate and the narrowing of attestation.", "Preliminary
 > injunction **denied** July 2026; summary judgment hearing **October 20, 2026**." and "**No injunction is in
-> effect — the rule is operative** — but expect movement."; L1-11, L3-1, L5-15, L8-16, L3-2, L3-4.) The States ask
-> for vacatur of the challenged phrases, an injunction for the 26 plaintiffs, and six months free of penalties for
-> implementation errors or delays; the government asks for remand without vacatur and says vacatur would reach States
-> that are not plaintiffs. A second suit, *Taylor v. Kennedy, Jr.*, No. 1:26-cv-03705 (D. Md.), filed 2026-09-18 by
+> effect — the rule is operative** — but expect movement."; L1-11, L3-1, L5-15, L8-16, L3-2, L3-4.) The States
+> asked for vacatur of the challenged phrases, an injunction for the 26 plaintiffs, and six months free of penalties
+> for implementation errors or delays; the government asked for remand without vacatur and said vacatur would reach
+> States that are not plaintiffs. (Corrected 2026-10-29: said "The States ask" and "the government asks for remand
+> without vacatur and says vacatur"; decision record 0013; read in
+> docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-149.txt:20.) Whether the vacatur reaches the States that
+> did not sue, in CMS's practice, is an open question in docs/domain/open-questions.md. (Added 2026-10-29; decision
+> record 0013; read in docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:23 and :29.) A second suit,
+> *Taylor v. Kennedy, Jr.*, No. 1:26-cv-03705 (D. Md.), filed 2026-09-18 by
 > 12 plaintiffs, challenges the gate, the "stable recovery" carve-out for substance use disorder, the 12-month claims
 > window and the attestation limit. On 2026-10-14 (ECF 28) that court set a summary judgment schedule and declined to
 > commit to a ruling before 2027-01-01. (Added 2026-10-23; L3-6, L1-12, L3-5.) On 2026-10-23, CourtListener's
@@ -695,7 +704,7 @@ project's own documents or code at least once.
 | "Job training programs generally count" | A **closed list of five**. Health-provider-run and Medicaid supported employment do **not** | § 435.552(b) |
 | "The SNAP test is complying with SNAP work rules" | It is being **subject to** them, and it is **household**-based | § 435.554(c)(7) |
 | "Veterans need a 100% schedular rating" | **Temporary or permanent** total, and **TDIU** counts | § 435.554(c)(4); 91 FR 33372 |
-| "Medically frail means having a listed diagnosis" | Two-part test with a **functional** gate, plus a **request path** for unlisted conditions | § 435.554(c)(5) |
+| "Medically frail means having a listed diagnosis" | Being in **one of five groups**, each as it defines itself. A State's list identifies people and does not define the exclusion, and there is a **request path** for unlisted conditions. On 2026-10-29 a federal court vacated and set aside the rule's added condition that the person's condition significantly impair their ability to comply, and enjoined CMS from applying it to the plaintiff States, Colorado among them; whether the vacatur reaches the other States is an open question (Corrected 2026-10-29: said "Two-part test with a **functional** gate, plus a **request path** for unlisted conditions"; decision record 0013; read in docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:23 and :29 and docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:15.) | § 435.554(c)(5); Massachusetts v. Oz, D. Mass. 1:26-cv-12962, docket entry 148 |
 | "Postpartum is 60 days" | Often **12 months** under SSA § 1902(e)(16) | § 435.554(c)(10) |
 | "Age 65+ is exempt" | They are **outside the group entirely** — a different mechanism | § 435.551, § 435.119 |
 | "Under 19 is an exclusion" | It is a **mandatory exception** | § 435.553(a)(1) |
@@ -737,15 +746,28 @@ the adult group in its State plan must submit a SPA through MACPro no later than
 L3-11, L2-5; read in docs/domain/sources/cms/smd-26-001.txt:289 to :308, :364 to :369, :443 to :446 and :492 to
 :496.)
 
-**Two internal cross-references in the IFC are broken and uncorrected.** § 435.554(c)(3) points at
+**Three internal cross-references in the IFC are broken and uncorrected.** (Corrected 2026-10-29: said "**Two
+internal cross-references in the IFC are broken and uncorrected.**"; L1-7.) § 435.554(c)(3) points at
 "paragraphs (c)(1)(i)(A) through (C)", which do not exist, and the preamble places the criteria at
 § 435.554(c)(3)(i) (91 FR 33366). Reading it as (c)(3)(i) is an inference from those lines; the two conflict, and
 which governs is an open question in docs/domain/open-questions.md. (Corrected 2026-10-23: said
 "where (c)(3)(i) is meant"; read in docs/domain/cms-2454-ifc/2026-11094.xml:781 and :3668.) § 435.554(c)(5)(ii)
-points at "paragraphs (a)(5)(i)(A) through (E)" where (c)(5)(i) is meant. The June 29 correction notice republished
+points at "paragraphs (a)(5)(i)(A) through (E)", and so does § 435.554(c)(5)(ii)(A); neither exists, since
+§ 435.554(a) holds only definitions, and the preamble places the criteria at § 435.554(c)(5)(i)(A) through (E)
+(91 FR 33376). Reading them as (c)(5)(i)(A) through (E) is an inference from those lines; the two conflict, and
+which governs is an open question in docs/domain/open-questions.md. (Corrected 2026-10-29: said "points at
+"paragraphs (a)(5)(i)(A) through (E)" where (c)(5)(i) is meant."; L1-7; read in
+docs/domain/cms-2454-ifc/2026-11094.xml:3684, :3685 and :1204.) The June 29 correction notice republished
 §§ 435.557 and 435.558, **not** § 435.554, so these stand. Do not "fix" a correct citation to match a broken one.
 
-**Litigation could move the medically-frail gate.** See § 4.
+**Litigation has moved the medically-frail gate, and could move it again.** On 2026-10-29, in Massachusetts v. Oz,
+a federal court vacated and set aside the words of § 435.554(c)(5)(i) requiring that a condition significantly
+impair a person's ability to comply, and enjoined CMS from applying them to the plaintiff States. Whether the
+vacatur reaches the other States is an open question, an appeal or a stay could undo it, and Taylor v. Kennedy,
+D. Md. 1:26-cv-03705, still challenges those words, the stable recovery carve-out, the 12-month claims window and
+the attestation limit. See § 4. (Corrected 2026-10-29: said "**Litigation could move the medically-frail gate.**
+See § 4."; decision record 0013, L1-12; read in
+docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:23 and :29.)
 
 **Not verified in the IFC regulatory text**, and flagged as such rather than asserted: that § 435.557(a)
 names SNAP/TANF and school enrollment specifically as opposed to the preamble discussing them; the

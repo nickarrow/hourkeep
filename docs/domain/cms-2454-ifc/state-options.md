@@ -38,8 +38,14 @@ export interface PolicyProfile {
    * Separate from `confidence`. Flags values that rest on a CMS *interpretation* a final rule
    * or a court could move — distinct from "we don't know what Idaho elected."
    * Known interpretive risks: the MAGI-household reading of § 435.552(f); the "whether or not consecutive" reading
-   * of § 435.556(a)(2); the medically-frail functional-impairment gate, under challenge in Massachusetts v. Oz,
-   * whose summary judgment hearing was reset to 2026-10-22 by ECF 143, entered 2026-10-08. (Corrected 2026-10-23:
+   * of § 435.556(a)(2); the medically-frail functional-impairment gate, which Massachusetts v. Oz vacated and set
+   * aside on 2026-10-29, enjoining CMS from applying it to the plaintiff States, Colorado among them; whether the
+   * vacatur reaches the other States is an open question, and Taylor v. Kennedy, D. Md. 1:26-cv-03705, still
+   * challenges it. (Corrected 2026-10-29: said "the medically-frail functional-impairment gate, under challenge in
+   * Massachusetts v. Oz, whose summary judgment hearing was reset to 2026-10-22 by ECF 143, entered 2026-10-08.";
+   * decision record 0013, L1-12; read in docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:23
+   * and :29, and docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:15.) The hearing was reset
+   * to 2026-10-22 by ECF 143, entered 2026-10-08. (Corrected 2026-10-23:
    * said "(under challenge in Massachusetts v. Oz, SJ hearing 2026-10-20)."; L1-11, L3-1, L5-15, L8-16.)
    * On 2026-10-23, CourtListener's RECAP copy of the docket page, read at about 00:37 UTC, and RECAP's search
    * index, queried then and at about 03:09 UTC, showed no entry after 144, a notice of appearance filed

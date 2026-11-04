@@ -1,6 +1,6 @@
 ---
 name: medicaid-community-engagement
-description: Use for anything about Medicaid work requirements, also called community engagement, and the letters about them. Covers who has to meet the work requirement and who is exempt or excluded from it, such as a parent or caregiver of a young child or of a family member with a disability, a pregnant or postpartum person, a veteran with a total disability rating, American Indians and Alaska Natives, former foster youth, people on SNAP or TANF or in a treatment program, and people in jail or prison, and that a state cannot waive it. Also covers a letter saying the state cannot confirm someone met the work requirement, what that letter has to tell them, the deadline to answer and when the letter counts as received, losing or being denied coverage, fair hearings and appeals, bringing someone to help at a hearing, keeping coverage during an appeal, the 2027 renewal changes, and Colorado's deadlines. Restates cited rows from docs/domain/community-engagement-extract.md.
+description: Use for anything about Medicaid work requirements, also called community engagement, and the letters about them. Covers who must meet them and who is exempt or excluded, such as parents and caregivers, pregnant or postpartum people, veterans, American Indians and Alaska Natives, former foster youth, people on SNAP or TANF, in treatment or in jail, and people who are medically frail or have special medical needs, such as a serious illness, disability, mental illness or substance use disorder; that no state can waive them; letters saying the state cannot confirm someone met them, deadlines and when a letter counts as received; losing coverage, appeals and fair hearings; the 2027 renewal changes; and Colorado's deadlines. Restates cited rows from docs/domain/community-engagement-extract.md.
 ---
 
 # Medicaid community engagement
@@ -36,6 +36,9 @@ cross-check.
 - [Who the requirement applies to, and who is excluded from it](references/who-the-requirement-applies-to.md): who
   must meet the requirement, who is excluded, such as caregivers, veterans and SNAP households, and that it cannot be
   waived. Read it before answering those questions.
+- [People who are medically frail or have special medical needs](references/medically-frail-or-special-medical-needs.md):
+  who is medically frail after the 2026-10-29 court ruling, the State's list of conditions, and how the State
+  verifies the status. Read it before answering any question about those.
 
 ## Precedence
 
@@ -54,6 +57,14 @@ When two sources disagree, this is the order. It comes from the epic design,
 - A row cites the highest source there is: statute and regulation text first, then the preamble, then CMS guidance
   such as SMD 26-001, then a secondary source. On the state side, a state regulation comes before a state draft rule
   and a state agency page.
+- A court order that vacates, sets aside or enjoins a provision governs over the provision's text, within the order's
+  reach, from the day it is entered until it is stayed, reversed or vacated, as decision record 0013 decides. The row
+  on the provision quotes the text as printed and cites the order, and the rule item says what is in force. On
+  2026-10-29, in Massachusetts v. Oz, D. Mass. 1:26-cv-12962, docket entry 148 vacated and set aside a phrase of
+  42 CFR 435.554(c)(5)(i), so the rule items on medical frailty give the definition without it in the plaintiff
+  states, Colorado among them, and call its reach elsewhere an open question. Where an order does not state its
+  reach, or an order and its memorandum differ, the row quotes each and picks no side, and the question goes in
+  `docs/domain/open-questions.md`. A ruling that upholds a provision changes no row.
 - Where federal law lets a state choose, the state's own rule governs within the federal limit. Colorado's 60
   calendar days to ask for a hearing sit inside the 90-day ceiling of 42 CFR 431.221(d), and Colorado's rule makes
   the reinstatement that 42 CFR 431.231(a) leaves optional a must. Both are in `docs/domain/states/co.json`. A
@@ -77,31 +88,85 @@ When two sources disagree, this is the order. It comes from the epic design,
   who the requirement applies to, for parent-guardian-caretaker-relative-or-family-caregiver-excluded, 42 CFR
   435.554(c)(3), as the June 3 printing gives it, has a family caregiver meet one of the criteria at paragraphs
   (c)(1)(i)(A) through (C), which do not exist, where the preamble says the criteria are at § 435.554(c)(3)(i). The
-  row cites both, and which governs is an open question.
+  row cites both, and which governs is an open question. In the medical frailty topic, two conflicts are open
+  questions: six-months-without-penalty-for-plaintiff-states cites entry 148 and entry 147 on what the six months
+  reach, and state-develops-list-of-frailty-conditions and frailty-condition-list-auditable-and-consistent cite
+  § 435.554(c)(5)(ii)'s paragraphs (a)(5)(i)(A) through (E), which do not exist, and the preamble's
+  § 435.554(c)(5)(i)(A) through (E).
 
 ## Watch list
 
 Each item is a date or an event and the rows or state facts it could change. The dates come from the research
 ledger, `docs/domain/research/2026-10-16-policy/ledger.md`, or from a stored source, as each item says.
 
-- 2026-10-22: the summary judgment hearing in Massachusetts v. Oz, D. Mass. 1:26-cv-12962 (ledger L1-11). On
-  2026-10-23, CourtListener's RECAP copy of the docket page, read at about 00:37 UTC, and RECAP's search index,
-  queried then and at about 03:09 UTC, showed no entry after 144, a notice of appearance filed 2026-10-21, and no
-  entry recording the hearing as held, no order and no termination; RECAP can lag PACER, which was not checked. The
-  States' motion presses the medically frail gate of § 435.554(c)(5)(i) and § 435.557(a)(vii), (a)(viii), (f) and
-  (f)(1), none with a row yet, and each topic holding a provision either suit challenges, in its complaint or
-  motion, checks both dockets first (decision record 0007). (Corrected 2026-10-23: said "The case challenges the
-  medically frail rules. The research names no row in this topic it would change"; full review 2026-10-23, corpus
-  against source 9.) Through the exclusions a notice must explain, it could reach
-  `notice-says-how-to-show-not-applicable` (an inference).
-- Taylor v. Kennedy, Jr., D. Md. 1:26-cv-03705, with no ruling promised before 2027-01-01 (ledger L1-12). Same reach
-  as Massachusetts v. Oz, by the same inference.
+- 2026-10-29: Massachusetts v. Oz, D. Mass. 1:26-cv-12962, was decided and dismissed in docket entries 147 to 149
+  (ledger L1-11). Event: a new order. Rows: every row that cites entry 148 or 147. The States' motion presses the
+  medically frail gate of § 435.554(c)(5)(i) and § 435.557(a)(vii), (a)(viii), (f) and (f)(1); (f) and (f)(1) now
+  have rows, and (a)(vii) and (a)(viii) wait for increment 2.6. Each topic holding a provision either suit
+  challenges, in its complaint or motion, checks both dockets first (decision record 0007). (Corrected 2026-10-23:
+  said "The case challenges the medically frail rules. The research names no row in this topic it would change";
+  full review 2026-10-23, corpus against source 9.)
+  (Corrected 2026-10-29: said "2026-10-22: the summary judgment hearing in Massachusetts v. Oz, D. Mass.
+  1:26-cv-12962 (ledger L1-11). On" and "none with a row yet, and each topic", the sentence on the RECAP check of
+  2026-10-23 being in increment 2.1's Done entry; decision record 0013; read in
+  docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:23.) Through the exclusions a notice must explain,
+  it could reach `notice-says-how-to-show-not-applicable` (an inference).
+- Taylor v. Kennedy, Jr., D. Md. 1:26-cv-03705 (ledger L1-12), which challenges the words Massachusetts v. Oz
+  vacated, stable recovery in § 435.554(c)(5)(i)(B), and the 12-month limit and the one sworn statement of
+  § 435.557(f)(1). Under its order of 2026-10-14, entry 28, the government's cross-motion is due 2026-11-03 and the
+  last brief 2026-12-02, with no hearing set and no ruling promised before 2027-01-01
+  (`docs/domain/research/2026-10-16-policy/L3-statute-litigation.md`, lines 135 and 136). Event: an order on a
+  challenged provision. Rows: `medically-frail-defined`, `medically-frail-impairment-phrase-vacated`,
+  `medically-frail-substance-use-disorder`, `stable-recovery-read-as-five-consecutive-years` and every row whose
+  Note says Taylor v. Kennedy still challenges its provision. (Corrected 2026-10-29: said "with no ruling promised
+  before 2027-01-01 (ledger L1-12). Same reach as Massachusetts v. Oz, by the same inference."; ledger L1-12;
+  decision record 0007.)
+- 2026-12-28: the time to appeal Massachusetts v. Oz ends for any party, 60 days after the judgment under Federal
+  Rule of Appellate Procedure 4(a)(1)(B) (decision record 0013), so the States may appeal the ruling for the
+  defendants on Count II, which upheld the limits of § 435.557(f)(1). Rows: every row whose Citation names docket
+  entry 148 or 147, and every row whose Note says the court upheld its part of § 435.557(f)(1). Places: the topic
+  file's opening paragraph, the review page's orientation in `scripts/review_pages/constants.py`, and the passages
+  of `cms-2454-ifc/rule-extract.md`, `what-matters-most.md` and `state-options.md` corrected on 2026-10-29 under
+  decision record 0013.
+- A motion to alter or amend the judgment in Massachusetts v. Oz under Federal Rule of Civil Procedure 59(e), due
+  28 days after the judgment. A timely one would have the time to appeal run from the order disposing of it, under
+  Federal Rule of Appellate Procedure 4(a)(4)(A)(iv), and move the 2026-12-28 date. Rows and places: those the
+  2026-12-28 item names.
+- A request to stay entry 148, and any stay or reversal of it, each an event of its own whenever it comes. A stay or
+  a reversal would bring a dated correction to every place the order touches (decision record 0013). Rows: every
+  row whose Citation names docket entry 148 or 147. Places: the topic file's opening paragraph, the review page's
+  orientation, and the passages of the older analysis files corrected on 2026-10-29 under decision record 0013.
+- A supplemental interim final rule, which the government told the court CMS was likely to issue to reimpose the
+  provisions if the court vacated them (docket entry 142, ECF page 19, not stored; decision record 0013). Rows and
+  places: `medically-frail-defined`, `medically-frail-impairment-phrase-vacated`, the five group rows, from
+  `medically-frail-blind-or-disabled` to `medically-frail-serious-or-complex-condition`,
+  `disabling-mental-disorder-examples` and the review page's orientation.
+- govinfo's copy of entry 147: a second retrieval of the stored PDF if the bytes match, or a source of its own if
+  they differ. Rows: every row that cites entry 147.
+- 2027-04-29: six months from the order of 2026-10-29, by HourKeep's count, since neither entry 148 nor entry 147
+  gives an end date. Row: `six-months-without-penalty-for-plaintiff-states`.
+- CMS's response to the ruling, such as a revised frailty deck or a statement on the states that did not sue
+  (decision record 0013). Rows: `state-may-check-exclusions-in-own-records-first`,
+  `documents-state-may-seek-for-frailty`, `stable-recovery-read-as-five-consecutive-years` and those the open
+  question on the vacatur's reach names.
+- CMS's anticipated five-year lookback, to verify that a person is not in recovery from a substance use disorder for
+  5 years or more, notwithstanding the 12-month limit; no row carries it
+  (`docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.txt`, lines 755 to 758). Event: guidance or
+  a rule that allows it. Rows: `medically-frail-substance-use-disorder`,
+  `stable-recovery-read-as-five-consecutive-years` and
+  `frailty-verification-uses-no-information-older-than-12-months`.
 - 2026-11-30: comments close on the IRS proposed rule at 91 FR 65494 on the premium tax credit bar (ledger L1-9).
   Row: `notice-says-consequences-including-premium-tax-credit`.
 - 2026-11-27: Colorado's Medical Services Board takes up the draft 10 CCR 2505-10 8.100; emergency reading
   2026-12-11, effective 2027-01-01, permanent adoption 2027-02-12 (ledger L5-1, from an HCPF deck that is not
   stored). Rows: `renewal-notice-with-renewal-form`, `renewal-notice-after-renewal-form-period` and Colorado's
-  inferred renewal fact, whichever option the adopted rule takes.
+  inferred renewal fact, whichever option the adopted rule takes. The draft's definition of Medically Frail adds to
+  the five groups its own condition, "special medical needs that cause significant impairment to work, volunteer,
+  or attend school" (`docs/domain/sources/colorado/10-ccr-2505-10-8.100-draft-2026-09-28.txt`, lines 1213 and
+  1214), which the adopted rule may keep or drop. Colorado's facts on how medical frailty is shown, which
+  increment 4 writes, are read against the adopted rule and the injunction in Massachusetts v. Oz. Rows:
+  `medically-frail-defined` and `medically-frail-impairment-phrase-vacated`. (Added 2026-10-29; read in
+  docs/domain/sources/colorado/10-ccr-2505-10-8.100-draft-2026-09-28.txt:1213.)
 - Colorado's 10 CCR 2505-10 8.000, version 12612, is an emergency rule effective 2026-07-10, by the stored
   rule-information page (`docs/domain/sources/colorado/10-ccr-2505-10-8.000-rule-information-2026-10-17.html`,
   lines 241 and 248). Event: the emergency rule lapses or a permanent rule is filed, eDocket 2026-00296 and

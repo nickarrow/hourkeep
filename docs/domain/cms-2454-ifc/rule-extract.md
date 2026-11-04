@@ -318,119 +318,60 @@ family-caregiver-defined in docs/domain/community-engagement-extract.md (2026-10
 
 ### 4.2 The ten exclusion categories — § 435.554(c)
 
-**(1) Former foster care children.** Meets the FFCC group description at § 1902(a)(10)(A)(i)(IX) as
-amended by the SUPPORT Act (PL 115-271), **regardless of whether the individual turned 18 on or
-after January 1, 2023**. Operative criteria, as the preamble reads the group (91 FR 33365-33366): under age 26;
-not enrolled in a group described in § 1902(a)(10)(A)(i)(I)–(VII); was in foster care under the responsibility of
-**any** State upon attaining age 18 (or higher State-elected age); and was enrolled in Medicaid in **any** State
-while in foster care. (Corrected 2026-10-23: said "Operative criteria:"; read in
-docs/domain/cms-2454-ifc/2026-11094.xml:762 and :764.)
+Now rows specified-excluded-individual-meets-one-category, former-foster-care-child-excluded,
+former-foster-care-criteria-apply-whatever-the-age-18-date, american-indian-excluded, indian-defined-at-447-51,
+urban-indian-criteria-at-447-51, parent-guardian-caretaker-relative-or-family-caregiver-excluded,
+family-caregiver-excluded-on-one-criterion, family-caregiver-living-with-care-recipient,
+family-caregiver-relative-living-apart, family-caregiver-unrelated-living-apart-80-hours,
+caregiving-hours-below-80-count-as-unpaid-work, more-than-one-excluded-in-a-residence,
+veteran-with-total-disability-rating-excluded, veteran-paid-at-total-rate-for-unemployability-excluded,
+medically-frail-or-special-medical-needs-excluded, medically-frail-defined, medically-frail-impairment-phrase-vacated,
+medically-frail-blind-or-disabled, blind-as-defined-in-section-1614, disabled-as-defined-in-section-1614,
+medically-frail-substance-use-disorder, medically-frail-disabling-mental-disorder,
+medically-frail-disability-impairing-daily-living, medically-frail-serious-or-complex-condition,
+state-develops-list-of-frailty-conditions, frailty-condition-list-auditable-and-consistent,
+frailty-condition-list-revised-regularly, request-consideration-when-condition-not-listed,
+tanf-work-requirement-compliant-excluded, snap-household-member-not-exempt-from-work-requirement-excluded,
+snap-exclusion-covers-general-and-time-limit-work-requirements, treatment-program-participant-excluded,
+treatment-program-defined-by-food-and-nutrition-act, inmate-of-public-institution-excluded,
+inmate-means-held-involuntarily-in-custody, pregnant-or-postpartum-excluded in
+docs/domain/community-engagement-extract.md (2026-10-29).
 
-**(2) American Indians.** Meets the definition of "Indian" at **42 CFR 447.51**, which incorporates
-Indian, Urban Indian, California Indian, and IHS-eligible. **States must not reverify this status** —
-it is not subject to change.
-
-**(3) Parent, guardian, caretaker relative, or family caregiver** of a dependent child 13 and under
-or a disabled individual.
-
-**Paid caregivers qualify.** The criteria apply "regardless of whether the individual is a paid or an
-unpaid family caregiver," because the exclusion recognizes the time and responsibility, not the
-compensation.
-
-**Guardianship is the one basis where a document is mandatory now.** The pre-2028 latitude to accept
-non-documentary information **does not apply** to verifying guardianship status — a court order or other
-legal instrument is required.
-
-For **family caregivers** specifically, one of three criteria at § 435.554(c)(3)(i) must be met:
-- **(A)** primarily resides with the dependent child or disabled individual, providing assistance
-  that occurs **on a regular basis and is not solely incidental**;
-- **(B)** is a relative (per the caretaker relative list, but **without** the live-with and
-  primary-responsibility requirements), provides regular non-incidental assistance, and **does not
-  reside** with them;
-- **(C)** **neither resides with nor is related to** the person, and provides **≥ 80 hours per month**
-  of non-incidental assistance.
-
-§ 435.554(c)(3)(ii): in residences with more than one parent, guardian, caretaker relative, or family
-caregiver, **multiple individuals may each qualify**.
-
-**Important interaction:** a family caregiver who fails (C) because they provide fewer than 80 hours
-to a non-relative they do not live with **still counts those hours as unpaid work** under § 435.552(b)
-and needs only enough additional activity to reach 80. CMS example: 55 caregiving hours + 25 other
-hours = compliant.
-
-**(4) Veteran with a disability rated as total.** A **temporary or permanent** disability from the VA
-rated **100 percent (total)** under 38 U.S.C. 1155.
-
-> **Includes TDIU.** Veterans receiving total disability based on **individual unemployability** — 100%
-> compensation because they cannot secure or maintain substantial gainful employment — qualify **even
-> though their combined rating is below 100%**, and must be treated the same as veterans with a 100%
-> combined rating. **A screener asking only "is your rating 100%?" wrongly excludes them.** Ask about
-> 100% *compensation*, not the combined rating alone.
->
-> Reverification differs by type: a **permanent and total** rating **may not be reverified**; a
-> **temporary** total rating **must be reverified at least every 12 months**.
-
-**(5) Medically frail or otherwise has special medical needs.** Two-part test.
-
-*Gate:* the individual's physical, mental, or other behavioral health condition **significantly
-impairs their ability to comply with the community engagement requirement**. CMS is explicit that
-diagnosis alone is insufficient — if a person can perform 80 hours per month notwithstanding their
-condition, they do not qualify.
-
-*And* one of:
-- **(A)** blind or disabled as defined in SSA § 1614. (Blind = central visual acuity 20/200 or less
-  in the better eye with a correcting lens. Disabled = unable to engage in any substantial gainful
-  activity by reason of a medically determinable impairment expected to result in death or lasting
-  ≥ 12 continuous months.)
-- **(B)** has a substance use disorder, **excluding individuals in stable recovery**, defined as
-  **in recovery for 5 or more years**. Applies **regardless of whether in active treatment**, and
-  includes early recovery (< 12 months) and sustained recovery (1 to < 5 years). States must have
-  reasonable processes for people to self-identify, **including after a relapse**.
-- **(C)** has a disabling mental disorder.
-- **(D)** has a physical, intellectual, or developmental disability that significantly impairs their
-  ability to perform **one or more activities of daily living**.
-- **(E)** has a **serious or complex medical condition** — life threatening; or seriously disabling
-  without being life threatening; or causing significant pain or discomfort that seriously interrupts
-  life activities; or requiring major time or effort from caregivers for a substantial period; or
-  requiring frequent monitoring; or associated with severe or negative consequences for someone else;
-  or affecting multiple organ systems; or requiring management to tight physiological parameters; or
-  requiring coordination of multiple specialties; or requiring treatment carrying a risk of serious
-  complications; or requiring adjustment in non-medical environments.
-
-*State obligations* — § 435.554(c)(5)(ii): the State **must** develop an **auditable, justifiable**
-list of diseases, diagnoses, disorders, or health conditions mapping to (A)–(E); **revise it
-regularly**; and maintain **reasonable processes and criteria for individuals not on the list to
-request consideration**.
-
-CMS declined to let States add categories beyond the five. Homelessness alone does not qualify,
-though a homeless person's SUD or disabling mental disorder may.
-
-This definition is **distinct from** the Alternative Benefit Plan medically-frail definition at
-§ 440.315(f) — do not conflate them.
-
-**(6)** Compliant with State requirements imposed under **SSA § 407** (TANF work requirements).
-
-**(7)** A **member of a household that receives SNAP** benefits under 7 U.S.C. 2015 **and is not
-exempt from** a SNAP work requirement.
-*Note the construction: the test is being **subject to** (not exempt from) SNAP work requirements —
-not complying with them. And it keys on **household** SNAP receipt.*
-
-**(8)** Participating in a **drug addiction or alcoholic treatment and rehabilitation program** as
-defined in § 3(h) of the Food and Nutrition Act of 2008 (7 U.S.C. 2012(h)). **States may establish a
-minimum time commitment** consistent with clinical guidelines. Distinct from the SUD medically-frail
-exclusion, which does not require active treatment.
-
-**(9)** An **inmate of a public institution** as defined at § 435.1010.
-
-**(10) Pregnant or entitled to postpartum** medical assistance under SSA § 1902(e)(5) or (16).
-**Verified by attestation** — under § 435.956(e) the State **must accept** an attestation of pregnancy or
-postpartum entitlement unless it holds information that is not reasonably compatible with it. No document
-needed.
-
-> **The preamble's qualifier on § 435.554(c)(1) (91 FR 33366):** the former-foster-care test requires that the
-> person is not **enrolled** in a group described in § 1902(a)(10)(A)(i)(I)–(VII) — **"even if they meet the
-> eligibility requirements for such group."** User-favorable. (Corrected 2026-10-23: said "**§ 435.554(c)(1)
-> qualifier worth stating:**"; read in docs/domain/cms-2454-ifc/2026-11094.xml:764 and :3668.)
+- **(2) American Indians.** **States must not reverify this status** — it is not subject to change. The preamble
+  says so at 91 FR 33366, and at 91 FR 33396 and 33403 says States do not need to reverify it. (Added 2026-10-29;
+  read in docs/domain/cms-2454-ifc/2026-11094.xml:771, :1777 and :1867.)
+- **(3) Paid caregivers qualify.** The criteria apply "regardless of whether the individual is a paid or an
+  unpaid family caregiver," because the exclusion recognizes the time and responsibility, not the
+  compensation. The preamble says so of family caregivers at 91 FR 33370. (Added 2026-10-29; read in
+  docs/domain/cms-2454-ifc/2026-11094.xml:936.)
+- **Guardianship is the one basis where a document is mandatory now.** The pre-2028 latitude to accept
+  non-documentary information **does not apply** to verifying guardianship status — a court order or other
+  legal instrument is required. (Unverified 2026-10-29: no stored source holds that guardianship is the only such
+  basis or that the pre-2028 latitude does not apply to it; searched docs/domain/cms-2454-ifc/2026-11094.xml and
+  docs/domain/sources/federal-register/C1-2026-11094.xml for "guardian" with "document", "2028" and "legal
+  instrument". The one hit, 2026-11094.xml:1877 (91 FR 33404), says the State must require a court order or other
+  legal instrument in accordance with applicable State law to verify an individual's status as a guardian.)
+- **(4) Veterans.** **A screener asking only "is your rating 100%?" wrongly excludes them.** Ask about 100%
+  *compensation*, not the combined rating alone. Reverification differs by type: a **permanent and total** rating
+  **may not be reverified**; a **temporary** total rating **must be reverified at least every 12 months**. The
+  preamble gives the reverification rule at 91 FR 33372. (Added 2026-10-29; read in
+  docs/domain/cms-2454-ifc/2026-11094.xml:992.)
+- **(5)(B) Substance use disorder.** Applies **regardless of whether in active treatment**, and includes early
+  recovery (< 12 months) and sustained recovery (1 to < 5 years). States must have reasonable processes for people
+  to self-identify, **including after a relapse**. The preamble says so at 91 FR 33374. (Added 2026-10-29; read in
+  docs/domain/cms-2454-ifc/2026-11094.xml:1059, :1087 and :1090.)
+- **(5) No added categories.** CMS declined to let States add categories beyond the five. Homelessness alone does
+  not qualify, though a homeless person's SUD or disabling mental disorder may. The preamble says so at 91 FR
+  33373. (Added 2026-10-29; read in docs/domain/cms-2454-ifc/2026-11094.xml:1018.)
+- **(5) Not the ABP definition.** This definition is **distinct from** the Alternative Benefit Plan medically-frail
+  definition at § 440.315(f) — do not conflate them. The preamble compares the two at 91 FR 33372 and keeps them
+  separate at 91 FR 33373. (Added 2026-10-29; read in docs/domain/cms-2454-ifc/2026-11094.xml:1012 and :1016.)
+- **(8)** Distinct from the SUD medically-frail exclusion, which does not require active treatment. The preamble
+  says so at 91 FR 33374. (Added 2026-10-29; read in docs/domain/cms-2454-ifc/2026-11094.xml:1098.)
+- **(10) Pregnant or entitled to postpartum.** **Verified by attestation** — under § 435.956(e) the State **must
+  accept** an attestation of pregnancy or postpartum entitlement unless it holds information that is not reasonably
+  compatible with it. No document needed. The preamble says so at 91 FR 33408; how a State verifies an exclusion is
+  § 435.557, which increment 2.6 rows. (Added 2026-10-29; read in docs/domain/cms-2454-ifc/2026-11094.xml:1988.)
 
 ---
 
@@ -641,37 +582,21 @@ a parent of a dependent child, apply the American Indian exclusion, because it n
 
 ### 7.7 Medical frailty verification and privacy — § 435.557(f)
 
-Must attempt verification using reliable information **including adjudicated claims from the preceding
-12 months and encounter data**. States **may not consider information older than 12 months**.
+Now rows frailty-verified-first-from-reliable-information, frailty-checked-in-state-records-before-person-asked,
+frailty-verification-uses-no-information-older-than-12-months, missing-claims-cannot-defeat-frailty-exclusion,
+frailty-documentation-or-sworn-statement-before-2028, frailty-documentation-from-many-kinds-of-practitioner,
+one-sworn-statement-per-period-of-enrollment-from-2028, frailty-verified-at-first-renewal-after-sworn-statement,
+second-frailty-claim-after-sworn-statement-needs-other-proof, frailty-reverified-at-least-every-12-months,
+frailty-verification-data-privacy, treatment-program-verification-data-privacy in
+docs/domain/community-engagement-extract.md (2026-10-29).
 
-> **Three user-facing facts that belong in the UI.**
->
-> **Who can sign the documentation.** States may accept provider documentation from **physicians, nurse
-> practitioners, physician assistants, psychologists, counselors and therapists, clinical social workers,
-> and other practitioners credentialed by the State.** This is the most directly actionable line in the
-> rule for a "what do I go get?" flow.
->
-> **Absence of claims cannot be used against you.** Neither the absence of adjudicated claims altogether,
-> nor the absence of particular claims or claim types, may be used to find someone ineligible for the
-> exclusion — and someone may not be found not-medically-frail merely because their condition maps to a
-> non-listed diagnosis code.
->
-> **A new basis burns no second attestation.** Under § 435.557(f)(1)(ii)(B), declaring frailty on a **new
-> basis** within the same period of enrollment after having used a penalty-of-perjury statement requires
-> verification by reliable information or documentation. And the 12-month reverification "could be
-> **6 months**" from the last verification even in a State that otherwise reverifies annually.
-
-| Period | Statement under penalty of perjury |
-|---|---|
-| Through Dec 31, 2027 | May accept **each time** frailty is verified |
-| From Jan 1, 2028 | May accept **only once during the beneficiary's period of enrollment** |
-
-- At the first regularly scheduled redetermination after a penalty-of-perjury determination, the
-  agency **must** verify using reliable information, or documentation if that is insufficient.
-- After verifying by reliable information or documentation, the agency **must reverify at least every
-  12 months**.
-- **§ 435.557(f)(2):** must comply with SSA § 1902(a)(7), 42 CFR part 431 subpart F, HIPAA, and
-  **42 CFR part 2** (substance use disorder records) when handling frailty or rehabilitation data.
+- Who can sign the documentation is the most directly actionable line in the rule for a "what do I go get?" flow.
+  (Corrected 2026-10-29: said "This is the most directly actionable line in the rule"; full review 2026-10-29,
+  corpus against source N9.)
+- From January 1, 2028, the reverification at the first regular renewal after a penalty-of-perjury statement "could
+  be **6 months**" from the last verification even in a State that otherwise reverifies annually (91 FR 33407).
+  (Corrected 2026-10-29: said "And the 12-month reverification "could be **6 months**" from the last verification
+  even in a State that otherwise reverifies annually."; read in docs/domain/cms-2454-ifc/2026-11094.xml:1952.)
 
 ### 7.8 Mandatory exception verification — § 435.557(g)
 
@@ -957,13 +882,26 @@ These are the axes for HourKeep's policy-profile module.
   partial summary judgment, to three: the **medically frail** "significantly impairs" gate, the 12-month claims
   window, and the 2028 limit on self-attestation. **The preliminary injunction was denied without prejudice on July
   29, 2026, on irreparable harm alone. The summary judgment hearing was reset to October 22, 2026** by ECF 143,
-  entered 2026-10-08, before the implementation deadline. As of 2026-10-16 no ruling had issued and no injunction
-  was in effect, so the rule was fully operative. (Corrected 2026-10-23: said "targeting the **medically frail**
-  functional-impairment gate and the narrowing of self-attestation.", "**Preliminary injunction denied July 29–30,
-  2026. Summary judgment hearing October 20, 2026**" and "No injunction is in effect; the rule is fully
-  operative."; L1-11, L3-1, L5-15, L8-16, L3-2, L3-4.) The States ask for vacatur of the challenged phrases, an
-  injunction for the 26 plaintiffs, and six months free of penalties for implementation errors or delays; the
-  government asks for remand without vacatur and says vacatur would reach States that are not plaintiffs. A second
+  entered 2026-10-08, before the implementation deadline. On 2026-10-29 the court ruled. Its order, entry 148,
+  declared unlawful, and vacated and set aside under 5 U.S.C. 706(2), the words of the **medically frail**
+  definition requiring that a condition significantly impair a person's ability to comply, enjoined CMS from
+  applying them to the plaintiff States, Colorado among them, and barred it from penalizing those States for errors
+  or delays in implementing the rule for six months. Its memorandum, entry 147, upheld the 12-month claims window
+  and the limit on self-attestation, and its judgment, entry 149, dismissed the case. (Corrected 2026-10-29: said "As of
+  2026-10-16 no ruling had issued and no injunction was in effect, so the rule was fully operative."; decision record
+  0013; read in docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:23, :29 and :33,
+  docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:285 and
+  docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-149.txt:20.) (Corrected 2026-10-23: said "targeting the
+  **medically frail** functional-impairment gate and the narrowing of self-attestation.", "**Preliminary injunction
+  denied July 29–30, 2026. Summary judgment hearing October 20, 2026**" and "No injunction is in effect; the rule is
+  fully operative."; L1-11, L3-1, L5-15, L8-16, L3-2, L3-4.) The States asked for vacatur of the challenged phrases, an
+  injunction for the 26 plaintiffs, and six months free of penalties for implementation errors or delays; the government
+  asked for remand without vacatur and said vacatur would reach States that are not plaintiffs.
+  (Corrected 2026-10-29: said "The States ask for vacatur" and "the government asks for remand without vacatur and says
+  vacatur"; decision record 0013; read in docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-149.txt:20.)
+  Whether the vacatur reaches the States that did not sue, in CMS's practice, is an open question in
+  docs/domain/open-questions.md. (Added 2026-10-29; decision record 0013; read in
+  docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:23 and :29.) A second
   suit, *Taylor v. Kennedy, Jr.*, No. 1:26-cv-03705 (D. Md.), filed 2026-09-18 by 12 plaintiffs, challenges the
   gate, the "stable recovery" carve-out for substance use disorder, the 12-month claims window and the attestation
   limit. On 2026-10-14 (ECF 28) that court set a summary judgment schedule and declined to commit to a ruling before

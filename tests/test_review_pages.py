@@ -439,6 +439,10 @@ class CitationLinkTest(unittest.TestCase):
             ("10 CCR 2505-10 8.057.4.B.1", "[10 CCR 2505-10 8.057.4.B.1](https://example.gov/8.000.pdf)"),
             ("SSA 1902(e)(14)(L)(ii)",
              "[SSA 1902(e)(14)(L)(ii)](https://www.ssa.gov/OP_Home/ssact/title19/1902.htm)"),
+            ("SSA 1614(a)(3)(A)",
+             "[SSA 1614(a)(3)(A)](https://www.ssa.gov/OP_Home/ssact/title16b/1614.htm)"),
+            ("SSA 1903(a)", "SSA 1903(a)"),
+            ("SSA 16140", "SSA 16140"),
             ("Pub. L. 119-21, sec. 71107", "[Pub. L. 119-21](https://www.govinfo.gov/content/pkg/PLAW-119publ21/html/"
              "PLAW-119publ21.htm), sec. 71107"),
             ("eCFR 2026-10-15", "eCFR 2026-10-15"),

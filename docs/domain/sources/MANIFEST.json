@@ -258,6 +258,32 @@
       "note": "Its first 3 lines are [Congressional Bills 119th Congress], [From the U.S. Government Publishing Office] and [H.R. 1 Enrolled Bill (ENR)]; the address it came from was not recorded. How the file was first made, before the initial commit 341200a (2025-11-01), was never recorded. Commit 7984863 (2025-11-02) then rewrote it: that commit adds Prettier with the package.json script \"format\": \"prettier --write .\" and says \"Format all documentation files for consistency\"."
     },
     {
+      "path": "docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.pdf",
+      "sha256": "7fda30e19a053b0d58e7739c260a8d5c15529e5a6cc7b155f3037b084be92103",
+      "kind": "verbatim",
+      "cited_url": "https://www.medicaid.gov/resources-for-states/working-families-tax-cut-legislation/community-engagement/ImplementingMedicalFrailtyDeck.pdf",
+      "retrievals": [
+        {
+          "served_url": "https://www.medicaid.gov/resources-for-states/working-families-tax-cut-legislation/community-engagement/ImplementingMedicalFrailtyDeck.pdf",
+          "command": "curl -sS --fail -L --http2 --compressed --max-time 120 -A 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7' -H 'Accept-Language: en-US,en;q=0.9' -H 'Accept-Encoding: gzip, deflate' -H 'Referer: https://www.medicaid.gov/resources-for-states/working-families-tax-cut-legislation/community-engagement' -H 'sec-ch-ua: \"Google Chrome\";v=\"141\", \"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"141\"' -H 'sec-ch-ua-mobile: ?0' -H 'sec-ch-ua-platform: \"macOS\"' -H 'Sec-Fetch-Dest: document' -H 'Sec-Fetch-Mode: navigate' -H 'Sec-Fetch-Site: same-origin' -H 'Sec-Fetch-User: ?1' -H 'Upgrade-Insecure-Requests: 1' -o docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.pdf -w '%{http_code} %{content_type} %{size_download} %{num_redirects} %{url_effective}\\n' 'https://www.medicaid.gov/resources-for-states/working-families-tax-cut-legislation/community-engagement/ImplementingMedicalFrailtyDeck.pdf'",
+          "retrieved": "2026-10-29T21:51:34Z"
+        }
+      ],
+      "superseded": [],
+      "note": "CMS's slide deck \"Implementing Medical Frailty Under Community Engagement (Section 71119 of WFTC Legislation)\" (extraction lines 2 and 3). 33 pages. Page 1 states no date, and no page gives the deck's own date. medicaid.gov's community engagement page, https://www.medicaid.gov/resources-for-states/working-families-tax-cut-legislation/community-engagement, read at 2026-10-29T21:51:49Z and not stored, links this address under the heading Interim Final Rule and lists it as \"(Posted 09/08/2026)\"; the date in this file's name is that posting date. The PDF's XMP metadata gives CreateDate 2026-09-02T19:40:54Z and ModifyDate 2026-09-03T18:24:58Z, converted here to UTC from the local time and offset it writes. The address answered 200 application/pdf, 577,628 bytes, with no redirect, to the Chrome header set in the command. The bytes match, by SHA-256, a probe copy fetched from the same address at about 17:48 UTC that day."
+    },
+    {
+      "path": "docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.txt",
+      "sha256": "1a54652e43d33b31cbe9816540ec67ed2fb4653e5b0189d7ffff6bfdb5cebe4d",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [],
+      "derived_from": "docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.pdf",
+      "derivation": "swift scripts/extract-pdf-text.swift docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.pdf > docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.txt, run from the repository root; script SHA-256 acc232701cc1f8e2858dcc4615960e1af322ebad22ed61c1d9848c423996d577; macOS 26.7.2 (25G332); Apple Swift version 6.2 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)",
+      "note": "Made at 2026-10-29T21:51:41Z; 33 pages, each opened by a line [[page N]]. PDFKit can separate a paragraph's label from its text, so read the cited slide on the rendered page. Page 10 begins on line 111, page 12 on line 145, page 20 on line 367 and page 31 on line 743. Byte-identical by SHA-256 to the extraction made of the probe copy that day."
+    },
+    {
       "path": "docs/domain/sources/cms/smd-26-001.pdf",
       "sha256": "50f47fe6d3b6a0274fa7e5383c4ed7dfd574ddc478317f0a983853d6edd5bba2",
       "kind": "verbatim",
@@ -364,6 +390,84 @@
       ],
       "superseded": [],
       "note": "HCPF's appeals page, as docs/domain/research/2026-10-16-policy/L5-colorado.md:228 cites it. With a browser User-Agent and -L, the cited address answered 307 to https://www.healthfirstcolorado.com/appeals/, then 301 to https://www.healthfirstcolorado.gov/appeals/, then 301 to https://www.healthfirstcolorado.gov/benefits-services/appeals/, which served these bytes with 200. The page gives datePublished 2025-08-01T20:32:10Z and dateModified 2026-08-10T13:58:24Z (line 28, which writes each with a zero offset in place of the Z)."
+    },
+    {
+      "path": "docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.pdf",
+      "sha256": "f576c15edd7e65cc0edab27497b002fc88e1377bf3d961254b2032b1434de9dd",
+      "kind": "verbatim",
+      "cited_url": "https://www.courtlistener.com/docket/73546826/commonwealth-of-massachusetts-v-oz/",
+      "retrievals": [
+        {
+          "served_url": "https://storage.courtlistener.com/recap/gov.uscourts.mad.302893/gov.uscourts.mad.302893.147.0_1.pdf",
+          "command": "curl -sS --fail -L --max-time 120 -A 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Safari/605.1.15' -o docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.pdf -w '%{http_code} %{content_type} %{size_download} %{num_redirects} %{url_effective}\\n' 'https://storage.courtlistener.com/recap/gov.uscourts.mad.302893/gov.uscourts.mad.302893.147.0_1.pdf'",
+          "retrieved": "2026-10-29T21:46:50Z"
+        }
+      ],
+      "superseded": [],
+      "note": "Entry 147 on the docket of Massachusetts v. Oz, D. Mass. No. 1:26-cv-12962, the Memorandum and Order on Cross-Motions for Summary Judgment, dated October 29, 2026 and filed 10/29/26 (extraction lines 2, 10 to 12). 16 pages. The cited address is CourtListener's RECAP copy of the docket, and the served address is RECAP's archive copy of the entry, which answered 200 application/pdf, 187,147 bytes, with no redirect. The bytes match, by SHA-256, the copy fetched from the same address at 2026-10-29T19:25:21Z for the docket check. govinfo had not published it by 2026-10-29: at about 20:00 UTC that day govinfo held only granule 0 for the case, the memorandum and order of 2026-07-29 on the preliminary injunction."
+    },
+    {
+      "path": "docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt",
+      "sha256": "67637b404b2039a0a5815b6681741b2888e8b6b214409667d9f52eee6c33e216",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [],
+      "derived_from": "docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.pdf",
+      "derivation": "swift scripts/extract-pdf-text.swift docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.pdf > docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt, run from the repository root; script SHA-256 acc232701cc1f8e2858dcc4615960e1af322ebad22ed61c1d9848c423996d577; macOS 26.7.2 (25G332); Apple Swift version 6.2 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)",
+      "note": "Made at 2026-10-29T21:46:57Z; 16 pages, each opened by a line [[page N]]. PDFKit can separate a paragraph's label from its text, so read the cited paragraph on the rendered page. Each page's first line is the court's header, such as Case 1:26-cv-12962-RGS Document 147 Filed 10/29/26 Page 1 of 16."
+    },
+    {
+      "path": "docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.pdf",
+      "sha256": "aa2c0f8e6a0769054d0a3058000c5d7b6a858a7843382e2377d0513a2cf21764",
+      "kind": "verbatim",
+      "cited_url": "https://www.courtlistener.com/docket/73546826/commonwealth-of-massachusetts-v-oz/",
+      "retrievals": [
+        {
+          "served_url": "https://storage.courtlistener.com/recap/gov.uscourts.mad.302893/gov.uscourts.mad.302893.148.0_2.pdf",
+          "command": "curl -sS --fail -L --max-time 120 -A 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Safari/605.1.15' -o docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.pdf -w '%{http_code} %{content_type} %{size_download} %{num_redirects} %{url_effective}\\n' 'https://storage.courtlistener.com/recap/gov.uscourts.mad.302893/gov.uscourts.mad.302893.148.0_2.pdf'",
+          "retrieved": "2026-10-29T21:46:51Z"
+        }
+      ],
+      "superseded": [],
+      "note": "Entry 148 on the docket of Massachusetts v. Oz, D. Mass. No. 1:26-cv-12962, the Order of Vacatur and Enjoinment, dated October 29, 2026 and filed 10/29/26 (extraction lines 2, 10 and 11). 2 pages. The cited address is CourtListener's RECAP copy of the docket, and the served address is RECAP's archive copy of the entry, which answered 200 application/pdf, 77,951 bytes, with no redirect. The bytes match, by SHA-256, the copy fetched from the same address at 2026-10-29T19:25:21Z for the docket check. govinfo had not published it by 2026-10-29: at about 20:00 UTC that day govinfo held only granule 0 for the case, the memorandum and order of 2026-07-29 on the preliminary injunction."
+    },
+    {
+      "path": "docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt",
+      "sha256": "dbb333853f09024dbddfe9b4ef22baf920251b7c039c771b4cc5d3d8ad3bc2ff",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [],
+      "derived_from": "docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.pdf",
+      "derivation": "swift scripts/extract-pdf-text.swift docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.pdf > docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt, run from the repository root; script SHA-256 acc232701cc1f8e2858dcc4615960e1af322ebad22ed61c1d9848c423996d577; macOS 26.7.2 (25G332); Apple Swift version 6.2 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)",
+      "note": "Made at 2026-10-29T21:46:58Z; 2 pages, each opened by a line [[page N]]. PDFKit can separate a paragraph's label from its text, so read the cited paragraph on the rendered page. Each page's first line is the court's header, such as Case 1:26-cv-12962-RGS Document 148 Filed 10/29/26 Page 1 of 2."
+    },
+    {
+      "path": "docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-149.pdf",
+      "sha256": "e61123186292244bdced6b481c4e0420a982d1bdf057a23efb65092eb598cb37",
+      "kind": "verbatim",
+      "cited_url": "https://www.courtlistener.com/docket/73546826/commonwealth-of-massachusetts-v-oz/",
+      "retrievals": [
+        {
+          "served_url": "https://storage.courtlistener.com/recap/gov.uscourts.mad.302893/gov.uscourts.mad.302893.149.0_1.pdf",
+          "command": "curl -sS --fail -L --max-time 120 -A 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Safari/605.1.15' -o docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-149.pdf -w '%{http_code} %{content_type} %{size_download} %{num_redirects} %{url_effective}\\n' 'https://storage.courtlistener.com/recap/gov.uscourts.mad.302893/gov.uscourts.mad.302893.149.0_1.pdf'",
+          "retrieved": "2026-10-29T21:46:51Z"
+        }
+      ],
+      "superseded": [],
+      "note": "Entry 149 on the docket of Massachusetts v. Oz, D. Mass. No. 1:26-cv-12962, the Judgment, dated October 29, 2026 and filed 10/29/26 (extraction lines 2, 13 and 14), which enters judgment for the plaintiffs on Count I and partial judgment for the defendants on Count II and dismisses the case (lines 19 and 20). 1 page. The cited address is CourtListener's RECAP copy of the docket, and the served address is RECAP's archive copy of the entry, which answered 200 application/pdf, 63,531 bytes, with no redirect. The bytes match, by SHA-256, the copy fetched from the same address at 2026-10-29T19:25:21Z for the docket check. govinfo had not published it by 2026-10-29: at about 20:00 UTC that day govinfo held only granule 0 for the case, the memorandum and order of 2026-07-29 on the preliminary injunction."
+    },
+    {
+      "path": "docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-149.txt",
+      "sha256": "7f5ecd0ff7c046a65ef539d99aab62d0c2e61c23fad4d23a320f1cdc03231d6b",
+      "kind": "derived",
+      "cited_url": "not recorded",
+      "retrievals": [],
+      "superseded": [],
+      "derived_from": "docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-149.pdf",
+      "derivation": "swift scripts/extract-pdf-text.swift docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-149.pdf > docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-149.txt, run from the repository root; script SHA-256 acc232701cc1f8e2858dcc4615960e1af322ebad22ed61c1d9848c423996d577; macOS 26.7.2 (25G332); Apple Swift version 6.2 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)",
+      "note": "Made at 2026-10-29T21:46:59Z; 1 page, opened by a line [[page 1]]. PDFKit can separate a paragraph's label from its text, so read the cited paragraph on the rendered page. The page's first line is the court's header, Case 1:26-cv-12962-RGS Document 149 Filed 10/29/26 Page 1 of 1."
     },
     {
       "path": "docs/domain/sources/ecfr/2026-10-15/42-cfr-431.206.xml",
@@ -571,6 +675,21 @@
       ],
       "superseded": [],
       "note": "Federal Register document C1-2026-11094, 91 FR 39028-39031, published 2026-06-29, which corrects 2026-11094. cited_url as docs/domain/research/2026-10-16-policy/L1-federal-rule-text.md:52 gives it. The address is the full_text_xml_url of the API record https://www.federalregister.gov/api/v1/documents/C1-2026-11094.json, read at 2026-10-17T05:15:09Z. Line 136 holds \"30 calendar days\", between PRTPAGE 39030 (line 100) and 39031 (line 147)."
+    },
+    {
+      "path": "docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html",
+      "sha256": "12d3636371c861fb005dabd9a2f302d24d2b0ebd04780a48254ced4e894f429b",
+      "kind": "verbatim",
+      "cited_url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title42/html/USCODE-2024-title42-chap7-subchapXVI-partA-sec1382c.htm",
+      "retrievals": [
+        {
+          "served_url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title42/html/USCODE-2024-title42-chap7-subchapXVI-partA-sec1382c.htm",
+          "command": "curl -sS --fail -L --max-time 120 -A 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Safari/605.1.15' -o docs/domain/sources/govinfo/42-usc-1382c-2024-edition-2026-10-29.html -w '%{http_code} %{content_type} %{size_download} %{num_redirects} %{url_effective}\\n' 'https://www.govinfo.gov/content/pkg/USCODE-2024-title42/html/USCODE-2024-title42-chap7-subchapXVI-partA-sec1382c.htm'",
+          "retrieved": "2026-10-29T21:49:47Z"
+        }
+      ],
+      "superseded": [],
+      "note": "42 U.S.C. 1382c, Definitions, which is section 1614 of the Social Security Act (source credit, line 93: \"title XVI, &sect;1614\"), in the United States Code, 2024 Edition (line 3), whose comment on line 10 gives currentthrough:20250106. The address answered 200 text/html, 59,402 bytes, with no redirect. The 2024 edition is the latest govinfo serves for the section: at 2026-10-29T21:49Z the 2025 edition's address, https://www.govinfo.gov/content/pkg/USCODE-2025-title42/html/USCODE-2025-title42-chap7-subchapXVI-partA-sec1382c.htm, redirected once to https://www.govinfo.gov/error. Paragraph (a)(2), blindness, is line 23, and paragraph (a)(3), disability, lines 24 to 49. The latest amendment the source credit (line 93) and the Amendments note (line 102) give is Pub. L. 108-203, title IV, section 434(a), of 2004-03-02, to (a)(1)(B)(ii). uscode.house.gov's current release point, which its page says is current through Public Law 119-136 (October 22, 2026), was read at https://uscode.house.gov/us/usc/119-136/t42/s1382c/ at 2026-10-29T21:50:32Z and is not stored; the site's view.xhtml and download.shtml addresses answered 404, and its banner says it runs in a temporary format. That page gives the same latest amendment, and its text of the section from (a)(2) to the end of its last subsection, (f), compared word by word with this copy's after tags and entities were removed and dashes and spaces made uniform, differs only by a word joiner, U+2060, that it puts before each dash. So neither source shows an amendment to (a)(2) or (a)(3) after this edition, through Public Law 119-136. The bytes match, by SHA-256, a probe copy fetched from the same address at about 17:50 UTC that day."
     },
     {
       "path": "docs/domain/supporting-regs/42cfr-supporting-sections.txt",

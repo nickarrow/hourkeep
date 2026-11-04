@@ -78,8 +78,13 @@ CCR_SOURCE = re.compile(r"^docs/domain/sources/colorado/10-ccr-2505-10-8\.000-[^
 # Colorado's draft 10 CCR 2505-10 8.100, cited in a part that says it is the draft, links to the stored draft.
 CCR_DRAFT_PART = re.compile(r"10 CCR 2505-10 8\.100(?![0-9])[^\s;,]*(?=.*\bdraft\b)")
 CCR_DRAFT_SOURCE = re.compile(r"^docs/domain/sources/colorado/10-ccr-2505-10-8\.100-draft-[^/]*\.pdf$")
-SSA_PART = re.compile(r"SSA 1902[^\s;,]*")
-SSA_URL = "https://www.ssa.gov/OP_Home/ssact/title19/1902.htm"
+# A section of the Social Security Act links to its page in SSA's Compilation, keyed by section number. The number
+# ends at a word boundary, so SSA 16140 does not link to section 1614, and any section not keyed stays text.
+SSA_URL = {
+    "1614": "https://www.ssa.gov/OP_Home/ssact/title16b/1614.htm",
+    "1902": "https://www.ssa.gov/OP_Home/ssact/title19/1902.htm",
+}
+SSA_PART = re.compile(r"SSA (" + "|".join(re.escape(section) for section in SSA_URL) + r")\b[^\s;,]*")
 PUBLIC_LAW_PART = re.compile(r"Pub\. L\. 119-21")
 PUBLIC_LAW_URL = "https://www.govinfo.gov/content/pkg/PLAW-119publ21/html/PLAW-119publ21.htm"
 NOT_RECORDED = "not recorded"
@@ -95,6 +100,21 @@ ORIENTATION = {
         "specified excluded individual, as specified-excluded-individual-not-subject-to-community-engagement and "
         "specified-excluded-individual-meets-one-category set out. Whether a person is either is the agency's "
         "determination."
+    ),
+    "medically-frail-or-special-medical-needs": (
+        "On 2026-10-29, in Massachusetts v. Oz, a federal court vacated and set aside the words of the definition of "
+        "medically frail that require a condition to significantly impair a person's ability to comply. To vacate and "
+        "set aside words of a rule is to cancel them. The court also enjoined the defendants from applying those "
+        "words to the states that sued, Colorado among them. To enjoin is to order someone not to do something. The "
+        "enjoined side is the defendants, CMS and HHS and the officials heading them in their official capacities, "
+        "their agents, employees, appointees, successors and anyone acting in concert or participation with them. The "
+        "order is set out in medically-frail-impairment-phrase-vacated. The rows on the definition, "
+        "medically-frail-defined and the five group rows from medically-frail-blind-or-disabled to "
+        "medically-frail-serious-or-complex-condition, quote the text as printed and say the words were vacated, and "
+        "medically-frail-defined says what is in force in the states that sued. Whether the vacatur reaches the "
+        "states that did not sue is an open question. So is what the six months in "
+        "six-months-without-penalty-for-plaintiff-states cover, where the order and the memorandum, the court's "
+        "written reasons, differ. Whether a person is medically frail is the agency's determination."
     ),
 }
 
@@ -143,5 +163,27 @@ START_HERE = {
         "pregnant-or-postpartum-excluded",
         "postpartum-period-runs-from-the-end-of-pregnancy",
         "no-waiver-of-community-engagement",
+    ),
+    "medically-frail-or-special-medical-needs": (
+        "medically-frail-or-special-medical-needs-excluded",
+        "medically-frail-defined",
+        "medically-frail-impairment-phrase-vacated",
+        "six-months-without-penalty-for-plaintiff-states",
+        "medically-frail-blind-or-disabled",
+        "medically-frail-substance-use-disorder",
+        "medically-frail-disabling-mental-disorder",
+        "disabling-mental-disorder-examples",
+        "medically-frail-disability-impairing-daily-living",
+        "medically-frail-serious-or-complex-condition",
+        "disabled-as-defined-in-section-1614",
+        "state-develops-list-of-frailty-conditions",
+        "frailty-condition-list-auditable-and-consistent",
+        "request-consideration-when-condition-not-listed",
+        "frailty-verified-first-from-reliable-information",
+        "frailty-checked-in-state-records-before-person-asked",
+        "frailty-verification-uses-no-information-older-than-12-months",
+        "missing-claims-cannot-defeat-frailty-exclusion",
+        "frailty-documentation-or-sworn-statement-before-2028",
+        "one-sworn-statement-per-period-of-enrollment-from-2028",
     ),
 }

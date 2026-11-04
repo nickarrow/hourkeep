@@ -333,3 +333,76 @@ state facts keeps its heading, with a `Moved` line naming the fact that now hold
   (docs/domain/research/2026-10-16-policy/L2-cms-guidance.md:33 and :171), a research record, so it is named here
   rather than cited as a Source. Getting it wrong is dangerous: a person who shares a home with SNAP recipients but
   is not on their SNAP case, told they are excluded, may not meet a requirement that applies to them.
+
+### Does the vacatur of the impairment words in the definition of medically frail reach the states that did not sue, in CMS's practice?
+
+- Why it is open: the sources are silent. On 2026-10-29, in Massachusetts v. Oz, docket entry 148 vacated and set
+  aside the words of 42 CFR 435.554(c)(5)(i) that require a condition to significantly impair a person's ability to
+  comply, naming no party, while its injunctions name only the plaintiff states, and no stored source says how CMS
+  applies the vacatur in the states that did not sue.
+- Who can answer: CMS
+- Raised: 2026-10-29, by rows medically-frail-defined, medically-frail-impairment-phrase-vacated,
+  medically-frail-blind-or-disabled, medically-frail-substance-use-disorder, medically-frail-disabling-mental-disorder,
+  medically-frail-disability-impairing-daily-living, medically-frail-serious-or-complex-condition and
+  disabling-mental-disorder-examples
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:22 "is DECLARED unlawful, and"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:23 "VACATED and SET ASIDE pursuant to 5 U.S.C."
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:29 "enforcing, or otherwise applying this provision to Plaintiff States."
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:333 "left unresolved and that the parties have the clarity needed to comply with"
+- Note: Paragraph (a) of the order vacates the words and names no party; paragraphs (b) and (c), the injunctions,
+  are limited to the plaintiff states, Colorado among them (massachusetts-v-oz-1-26-cv-12962-147.txt:15). The
+  memorandum says vacatur ensures the parties have the clarity needed to comply with the January 1, 2027 deadline
+  (:329 to :334, p. 14) and does not mention the states that did not sue. Research for increment 2.2, reading the
+  parties' briefs (docket entries 104, 138-1 and 140), found both sides briefed vacatur as reaching every state, and
+  decision record 0013 records that; the briefs are not stored, so they are named here rather than cited as a
+  Source. The government told the court that CMS was likely to reimpose the provisions by a supplemental interim
+  final rule if the court vacated them (docket entry 142, ECF page 19, as decision record 0013 records). Whether
+  vacatur under 5 U.S.C. 706(2) binds CMS as to states that were not parties is a legal question this corpus does
+  not answer. Getting it wrong could go either way: a person in a state that did not sue, in one of the five groups,
+  told the words still apply, may meet a requirement that does not apply to them, and one told they do not apply,
+  where CMS still applies them, may not meet one that does. Colorado was a plaintiff, so the question does not
+  reach a Colorado person.
+
+### Which describes the six months in Massachusetts v. Oz: the order's bar on penalties for errors or delays in implementing the rule, or the memorandum's stay of enforcement for decisions on medical frailty?
+
+- Why it is open: the sources conflict. Docket entry 148, paragraph (c), enjoins CMS from penalizing the plaintiff
+  states for any errors or delays in implementing the interim final rule for six months following the order, and
+  docket entry 147, at pages 15 and 16, describes a 6-month stay of enforcement as to any determination that an
+  individual does or does not qualify as medically frail.
+- Who can answer: CMS, or a policy person
+- Raised: 2026-10-29, by row six-months-without-penalty-for-plaintiff-states
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:32 "ENJOINED from penalizing Plaintiff States for any errors"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:33 "or delays in implementing the IFR for a period of six months"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:368 "the court agrees that the States should receive a 6-month stay of"
+- Source: docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-147.txt:372 "as to any determination that an individual does or does not"
+- Note: The two differ in subject and in form. The order reaches errors or delays in implementing the whole rule
+  and bars penalties; the memorandum reaches determinations of medical frailty and calls the relief a stay of
+  enforcement. The order counts the six months from its date, 2026-10-29 (massachusetts-v-oz-1-26-cv-12962-148.txt:11
+  and :34), and the memorandum gives no start. Neither gives an end date; by the row's count, six months from
+  2026-10-29 ends on 2027-04-29. Both give the relief to the States, and the memorandum says the stay has no impact
+  on the January 1, 2027 deadline for implementation (massachusetts-v-oz-1-26-cv-12962-147.txt:381 and :382). The
+  answer decides what CMS may not penalize a plaintiff state for, and in neither text does a person's requirement
+  pause.
+
+### Which paragraphs must a state's list of frailty conditions match under 42 CFR 435.554(c)(5)(ii), which cites paragraphs that do not exist?
+
+- Why it is open: the sources conflict. 42 CFR 435.554(c)(5)(ii) and (ii)(A), as the June 3 printing gives them,
+  tie the State's list of conditions to paragraphs (a)(5)(i)(A) through (E), and § 435.554(a) holds definitions and
+  has no paragraph (a)(5), while the preamble names § 435.554(c)(5)(i)(A) through (E).
+- Who can answer: CMS
+- Raised: 2026-10-29, by rows state-develops-list-of-frailty-conditions and
+  frailty-condition-list-auditable-and-consistent
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3684 "The State must develop a list of diseases, diagnoses, disorders, or other health conditions to identify individuals who meet the criteria in paragraphs (a)(5)(i)(A) through (E) of this section."
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:3685 "The list must be auditable, justifiable, and consistent with the definitions established in paragraphs (a)(5)(i)(A) through (E) of this section."
+- Source: docs/domain/cms-2454-ifc/2026-11094.xml:1204 "435.554(c)(5)(i)(A) through (E). We anticipate these lists will generally take the form of health care code sets"
+- Source: docs/domain/sources/cms/implementing-medical-frailty-deck-2026-09-08.txt:79 "medically frail established at 42 CFR 435.554(c)(5)(i)(A) through (E)."
+- Note: § 435.554(a) runs from docs/domain/cms-2454-ifc/2026-11094.xml:3634 to :3662 and holds no paragraph (a)(5).
+  The preamble names § 435.554(c)(5)(i)(A) through (E) at :1204 (91 FR 33376) and :1206 (91 FR 33377), and CMS's
+  frailty deck, page 7, says the list must be consistent with the definition at 42 CFR 435.554(c)(5)(i)(A) through
+  (E). The deck is agency guidance and does not amend the regulation's text. The June 29 correction republished only
+  §§ 435.557 and 435.558, so it does not reach § 435.554. Reading the printed words as meaning (c)(5)(i)(A) through
+  (E) is an inference, and no stored source says which governs. This is ledger L1-7, the third broken
+  cross-reference the research found after those in § 435.554(c)(3) and (c)(5)(ii). Getting it wrong could go
+  either way: a person told the list must match nothing in particular may not ask to be considered when a list
+  leaves out a condition that fits a group, and one told the list settles the five groups may rely on a listed
+  condition that fits none.

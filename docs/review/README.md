@@ -17,6 +17,7 @@ One row helps. If you have a few minutes, start with these rows:
 
 - [Notices of noncompliance and fair hearings: start here](notices-and-fair-hearings.md#start-here)
 - [Who the requirement applies to, and who is excluded from it: start here](who-the-requirement-applies-to.md#start-here)
+- [People who are medically frail or have special medical needs: start here](medically-frail-or-special-medical-needs.md#start-here)
 
 For each row, check three things:
 
@@ -76,5 +77,6 @@ HourKeep is not part of any government. It cannot see or change anyone's Medicai
 
 - [Notices of noncompliance and fair hearings](notices-and-fair-hearings.md)
 - [Who the requirement applies to, and who is excluded from it](who-the-requirement-applies-to.md)
+- [People who are medically frail or have special medical needs](medically-frail-or-special-medical-needs.md)
 - [Open questions](open-questions.md)
 - [State facts](state-facts.md)

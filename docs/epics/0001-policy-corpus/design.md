@@ -98,7 +98,7 @@ Where this section leaves a detail open, increment 1 settles it and writes it he
 
 | Path | What it holds |
 |---|---|
-| `docs/domain/sources/` | Sources stored from now on, in one folder per publisher: `federal-register/`, `ecfr/`, `cms/`, `colorado/` and so on |
+| `docs/domain/sources/` | Sources stored from now on, in one folder per publisher: `federal-register/`, `ecfr/`, `govinfo/`, `cms/`, `colorado/`, `courts/` for court orders and the memorandums that explain them, and so on |
 | `docs/domain/sources/MANIFEST.json` | One entry for every stored source in `docs/domain/`, those stored before this epic included, at the paths they already have |
 | `docs/domain/community-engagement-extract.md` | The rows, grouped by topic under `##` headings |
 | `docs/domain/states/federal.json`, `docs/domain/states/co.json` | State facts for the federal default and for Colorado |
@@ -562,9 +562,11 @@ is a section of title 42's parts 400 to 499 listed bare straight after a 42 CFR 
 one, as 431.221 and 431.231 are in "42 CFR 431.211, 431.221 and 431.231", and a section-sign reference
 to such a section, such as `§ 431.206(c)(2)`, where the question's text names 42 CFR and no other title. A paragraph
 alone, such as the (c)(3) in "§ 431.206(c)(2), (c)(3) or (c)(4)", stays text, and so does any Colorado section.
-Colorado's draft 10 CCR 2505-10 8.100 links to the address the manifest records for the stored draft. A citation
-links to the current official text, while each row was checked against the stored copy its Verified date names. The
-two can differ once the text is amended.
+Colorado's draft 10 CCR 2505-10 8.100 links to the address the manifest records for the stored draft. A citation of
+the Social Security Act links to the section's page in SSA's Compilation, whatever paragraph it names: `SSA 1614` to
+https://www.ssa.gov/OP_Home/ssact/title16b/1614.htm and `SSA 1902` to https://www.ssa.gov/OP_Home/ssact/title19/1902.htm;
+a citation of any other section of the Act stays text. A citation links to the current official text, while
+each row was checked against the stored copy its Verified date names. The two can differ once the text is amended.
 
 Every row, open question and state fact has three comment links, each carrying its name: the GitHub issue form, the
 Google Form pre-filled through its question "Which row, state fact or open question?", and email to
@@ -611,6 +613,14 @@ and checks the rest, as it does for an absent skill.
   list, unresolved. Six-month renewals are the first case: 42 CFR 435.916(a)(1), as the interim final rule reprinted it
   (91 FR 33480), still says every 12 months, while SSA 1902(e)(14)(L) makes it six months for most expansion adults
   from 2027, as SMD 26-001 explains.
+- A court order that vacates, sets aside or enjoins a provision governs over the provision's text, within the order's
+  reach, from the day it is entered until it is stayed, reversed or vacated, as decision record 0013 decides
+  (`docs/decisions/0013-a-court-order-governs-the-text-it-sets-aside.md`). The row on the provision quotes the text as
+  printed and cites the order, a `court` row says what the order did and whom it binds, from when and for how long,
+  and the rule item says what is in force. Where the order does not state its reach, or the order and its memorandum
+  differ, the row quotes each, picks neither, and the question goes on the open questions list. A ruling that upholds
+  a provision changes no row, and the row's Note says so, with any appeal and any other suit still pending against the
+  provision. Every row an order touches is rechecked on `court ruling`.
 - It says whether it was verified, on what date, and how. Anything unverified says `Verified: no`.
 - It names what would make it wrong.
 - When it is corrected, every copy of the old claim in `docs/domain/` and in the skill is found and fixed in the same
