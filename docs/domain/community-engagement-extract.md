@@ -3133,8 +3133,8 @@ that person met it, is the agency's decision, and nothing here decides it.
 - Verified: 2026-10-29, read in source
 - Error direction: dangerous
 - Recheck: court ruling: an appeal, a stay or a new order in Massachusetts v. Oz, or a ruling in Taylor v. Kennedy,
-  D. Md. 1:26-cv-03705; date 2026-12-28: the time to appeal ends; final rule: including a
-  supplemental interim final rule; CMS guidance
+  D. Md. 1:26-cv-03705; date 2026-12-28: the time to appeal ends unless something on the docket moves it (decision
+  record 0014); final rule: including a supplemental interim final rule; CMS guidance
 - Note: Could go either way, so dangerous: a person in one of the five groups, told the vacated words still apply,
   may meet a requirement that does not apply to them, and a person told the ruling ended the requirement, or
   excluded everyone with a health condition, may not meet one that does. The words are those printed in
@@ -3161,6 +3161,8 @@ that person met it, is the agency's decision, and nothing here decides it.
   timely motion to alter or amend the judgment under Federal Rule of Civil Procedure 59(e), not stored either, would
   restart the time (Federal Rule of Appellate Procedure 4(a)(4)(A)(iv)), as the skill's watch list says. Whether a
   person is medically frail is the agency's determination.
+- Corrected: 2026-11-04: the Recheck said "date 2026-12-28: the time to appeal ends"; decision record 0014: another
+  party's notice, a motion, an extension or a reopening can move the date.
 
 ### six-months-without-penalty-for-plaintiff-states
 
@@ -3197,7 +3199,8 @@ that person met it, is the agency's decision, and nothing here decides it.
 - Verified: 2026-10-29, read in source
 - Error direction: dangerous
 - Recheck: court ruling: an appeal, a stay or a new order in Massachusetts v. Oz; date 2026-12-28: the time to
-  appeal ends; date 2027-04-29: six months from the order, by this row's count; CMS guidance
+  appeal ends unless something on the docket moves it (decision record 0014); date 2027-04-29: six months from the
+  order, by this row's count; CMS guidance
 - Note: A person told the six months pause the requirement for them, or move its start past 2027-01-01, may not
   meet it. The error the other way, telling a person the six months do not change what they must do, does not lead
   them to do more than the rule requires, so the row is dangerous. Both texts give the relief to the States: the
@@ -3209,6 +3212,8 @@ that person met it, is the agency's decision, and nothing here decides it.
   2026-10-29 ends on 2027-04-29. Which text describes the six months is an open question in
   docs/domain/open-questions.md, and this row picks no side. Whether a person met the requirement is the agency's
   determination.
+- Corrected: 2026-11-04: the Recheck said "date 2026-12-28: the time to appeal ends"; decision record 0014: another
+  party's notice, a motion, an extension or a reopening can move the date.
 
 ### medically-frail-blind-or-disabled
 

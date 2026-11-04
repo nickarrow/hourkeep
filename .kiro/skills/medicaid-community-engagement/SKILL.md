@@ -101,16 +101,22 @@ ledger, `docs/domain/research/2026-10-16-policy/ledger.md`, or from a stored sou
   before 2027-01-01 (ledger L1-12). Same reach as Massachusetts v. Oz, by the same inference."; ledger L1-12;
   decision record 0007.)
 - 2026-12-28: the time to appeal Massachusetts v. Oz ends for any party, 60 days after the judgment under Federal
-  Rule of Appellate Procedure 4(a)(1)(B) (decision record 0013), so the States may appeal the ruling for the
-  defendants on Count II, which upheld the limits of § 435.557(f)(1). Rows: every row whose Citation names docket
-  entry 148 or 147, and every row whose Note says the court upheld its part of § 435.557(f)(1). Places: the topic
-  file's opening paragraph, the review page's orientation in `scripts/review_pages/constants.py`, and the passages
-  of `cms-2454-ifc/rule-extract.md`, `what-matters-most.md` and `state-options.md` corrected on 2026-10-29 under
-  decision record 0013.
+  Rule of Appellate Procedure 4(a)(1)(B), unless another party's notice of appeal, a motion, an extension or a
+  reopening gives more, so a check on or after that day records what the docket held and does not say the ruling
+  can no longer be appealed (decision record 0014). The States may appeal the ruling for the defendants on Count II,
+  which upheld the limits of § 435.557(f)(1). Rows: every row whose Citation names docket entry 148 or 147, and
+  every row whose Note says the court upheld its part of § 435.557(f)(1). Places: the topic file's opening
+  paragraph, the review page's orientation in `scripts/review_pages/constants.py`, and the passages of
+  `cms-2454-ifc/rule-extract.md`, `what-matters-most.md` and `state-options.md` corrected on 2026-10-29 under
+  decision record 0013. (Corrected 2026-11-04: said "4(a)(1)(B) (decision record 0013), so the States may appeal";
+  decision record 0014.)
 - A motion to alter or amend the judgment in Massachusetts v. Oz under Federal Rule of Civil Procedure 59(e), due
-  28 days after the judgment. A timely one would have the time to appeal run from the order disposing of it, under
-  Federal Rule of Appellate Procedure 4(a)(4)(A)(iv), and move the 2026-12-28 date. Rows and places: those the
-  2026-12-28 item names.
+  by 2026-11-27, since the 28 days after the judgment end on Thanksgiving Day, or another motion that Federal Rule
+  of Appellate Procedure 4(a)(4)(A) lists. A timely one would have the time to appeal run from the order disposing
+  of the last of them, and move the 2026-12-28 date (decision record 0014). Rows and places: those the 2026-12-28
+  item names. (Corrected 2026-11-04: said "due 28 days after the judgment. A timely one would have the time to
+  appeal run from the order disposing of it, under Federal Rule of Appellate Procedure 4(a)(4)(A)(iv), and move the
+  2026-12-28 date."; decision record 0014.)
 - A request to stay entry 148, and any stay or reversal of it, each an event of its own whenever it comes. A stay or
   a reversal would bring a dated correction to every place the order touches (decision record 0013). Rows: every
   row whose Citation names docket entry 148 or 147. Places: the topic file's opening paragraph, the review page's

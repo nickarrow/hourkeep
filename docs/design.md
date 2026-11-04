@@ -292,7 +292,8 @@ verified, the direction an error would cost a person, and what should trigger a 
 list: Massachusetts v. Oz (research L1-11), in which the court on October 29, 2026 vacated and set aside the words of
 the medically frail definition requiring that a condition significantly impair a person's ability to comply, enjoined
 CMS from applying them to the states that sued, Colorado among them, and dismissed the case, with the time to appeal
-running to December 28, 2026; Taylor v. Kennedy in Maryland (L1-12), still challenging the medically
+running to December 28, 2026 by default (Corrected 2026-11-04: said "with the time to appeal running to December 28,
+2026"; decision record 0014.); Taylor v. Kennedy in Maryland (L1-12), still challenging the medically
 frail rules (Corrected 2026-10-29: said "the Massachusetts v. Oz summary judgment hearing on October 22, 2026
 (research L1-11), and Taylor v. Kennedy in Maryland (L1-12), both challenging the medically frail rules"; decision
 record 0013; read in docs/domain/sources/courts/massachusetts-v-oz-1-26-cv-12962-148.txt:23 and :29 and

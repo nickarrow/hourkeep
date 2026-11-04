@@ -2,7 +2,7 @@
 
 Date: 2026-10-29
 
-Status: Accepted on 2026-10-29, decided by the owner
+Status: Accepted on 2026-10-29, decided by the owner; superseded in part by 0014, for the time to appeal
 
 ## Context
 
